@@ -11,9 +11,12 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -25,7 +28,7 @@ import ziyue.tjmetro.BlockList;
  * @since 1.0b
  */
 
-public class BlockRolling extends Block
+public class BlockRolling extends Block implements SimpleWaterloggedBlock
 {
     public BlockRolling() {
         super(Properties.copy(Blocks.IRON_BARS));
@@ -34,12 +37,18 @@ public class BlockRolling extends Block
     public static final BooleanProperty FACING = BooleanProperty.create("facing");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
     public static final BooleanProperty CHANGED = BooleanProperty.create("changed");
+    public static final BooleanProperty WATERLOGGED = BooleanProperty.create("waterlogged");
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         BlockPos pos = ctx.getClickedPos();
-        return defaultBlockState().setValue(FACING, ctx.getHorizontalDirection() == Direction.EAST || (ctx.getHorizontalDirection() == Direction.WEST)).setValue(CHANGED, false).setValue(BOTTOM, !(ctx.getLevel().getBlockState(pos.below()).getBlock() == BlockList.ROLLING.get()));
+        Direction direction = ctx.getHorizontalDirection();
+        return defaultBlockState()
+                .setValue(FACING, (direction == Direction.EAST) || (direction == Direction.WEST))
+                .setValue(CHANGED, false)
+                .setValue(BOTTOM, !(ctx.getLevel().getBlockState(pos.below()).getBlock() == BlockList.ROLLING.get()))
+                .setValue(WATERLOGGED, false);
     }
 
     @Override
@@ -52,7 +61,7 @@ public class BlockRolling extends Block
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(BOTTOM, FACING, CHANGED);
+        builder.add(BOTTOM, FACING, CHANGED, WATERLOGGED);
     }
 
     @Override
@@ -70,5 +79,10 @@ public class BlockRolling extends Block
             else
                 level.setBlockAndUpdate(blockPos, blockState.setValue(BOTTOM, true));
         }
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState blockState) {
+        return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 }

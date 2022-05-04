@@ -7,8 +7,12 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -18,11 +22,13 @@ import org.jetbrains.annotations.Nullable;
  * @since 1.0b
  */
 
-public class BlockLogo extends HorizontalDirectionalBlock
+public class BlockLogo extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
+    public static final BooleanProperty WATERLOGGED = BooleanProperty.create("waterlogged");
+
     public BlockLogo()
     {
-        super(Properties.copy(Blocks.LOGO.get()).noCollission());
+        super(Properties.copy(Blocks.LOGO.get()).noCollission().lightLevel((state) -> 0));
     }
 
     @Override
@@ -34,11 +40,16 @@ public class BlockLogo extends HorizontalDirectionalBlock
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection());
+        return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection()).setValue(WATERLOGGED, false);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, WATERLOGGED);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState blockState) {
+        return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 }

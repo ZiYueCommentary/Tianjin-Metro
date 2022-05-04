@@ -23,9 +23,8 @@ public class BlockStationNameSign1 extends BlockStationNameSignBase
         return IBlock.checkHoldingBrush(world, player, () -> {
             final boolean isWhite = IBlock.getStatePropertySafe(state, COLOR) == 0;
             final int newColorProperty = isWhite ? 2 : 0;
-            final boolean newMetalProperty = isWhite == IBlock.getStatePropertySafe(state, METAL);
 
-            updateProperties(world, pos, newMetalProperty, newColorProperty);
+            updateProperties(world, pos, newColorProperty);
         });
     }
 
@@ -47,8 +46,8 @@ public class BlockStationNameSign1 extends BlockStationNameSignBase
         }
     }
 
-    private static void updateProperties(Level world, BlockPos pos, boolean metalProperty, int colorProperty)
+    private static void updateProperties(Level world, BlockPos pos, int colorProperty)
     {
-        world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(COLOR, colorProperty).setValue(METAL, metalProperty));
+        world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(COLOR, colorProperty));
     }
 }

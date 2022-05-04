@@ -1,6 +1,5 @@
 package ziyue.tjmetro;
 
-import mtr.MTR;
 import mtr.RegistryObject;
 import mtr.item.ItemBlockEnchanted;
 import mtr.mappings.BlockEntityMapper;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class MainFabric implements ModInitializer {
-
 	@Override
 	public void onInitialize() {
 		Main.init(MainFabric::registerItem, MainFabric::registerBlock, MainFabric::registerBlock, MainFabric::registerEnchantedBlock, MainFabric::registerBlockEntityType, MainFabric::registerSoundEvent);

@@ -4,5 +4,8 @@
     "block.tjmetro.logo": "天津地铁Logo",
     "block.tjmetro.station_name_sign_1": "站名牌",
     "block.tjmetro.station_name_sign_2": "站名牌",
-    "block.tjmetro.railway_sign_wall": "指示牌（墙上）"
+    "block.tjmetro.railway_sign_wall": "指示牌（墙上）",
+    "block.tjmetro.roadblock": "路障",
+
+    "tooltip.tjmetro.station_name": "文字取决于车站"
 }

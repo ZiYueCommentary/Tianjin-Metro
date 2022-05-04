@@ -31,7 +31,5 @@ bin/
 # fabric
 
 run/
-common/src/main/resources/assets/londonunderground/sounds/northernline/
 mappings
-checkouts
 .architectury-transformer

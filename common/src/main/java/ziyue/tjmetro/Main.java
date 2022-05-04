@@ -1,6 +1,7 @@
 package ziyue.tjmetro;
 
-import mtr.*;
+import mtr.Registry;
+import mtr.RegistryObject;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -27,6 +28,7 @@ public class Main
 		registerBlockItem.accept("logo", BlockList.LOGO, TAB);
 		registerBlockItem.accept("rolling", BlockList.ROLLING, TAB);
 		registerBlockItem.accept("station_name_sign_2", BlockList.STATION_NAME_SIGN_2, TAB);
+		//registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
 
 		registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
 		registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);

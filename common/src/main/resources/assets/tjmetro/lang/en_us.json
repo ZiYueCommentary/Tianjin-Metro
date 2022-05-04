@@ -4,5 +4,8 @@
     "block.tjmetro.logo": "Tianjin Metro Logo",
     "block.tjmetro.station_name_sign_1": "Station Name Sign",
     "block.tjmetro.station_name_sign_2": "Station Name Sign",
-    "block.tjmetro.railway_sign_wall": "Railway Sign Wall"
+    "block.tjmetro.railway_sign_wall": "Railway Sign Wall",
+    "block.tjmetro.roadblock": "Roadblock",
+
+    "tooltip.tjmetro.station_name": "Text depends on the station"
 }
