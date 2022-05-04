@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "ziyue.tjmetro.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "FinishInitializationMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
