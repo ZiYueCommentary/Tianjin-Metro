@@ -28,12 +28,13 @@ public class Main
 		registerBlockItem.accept("logo", BlockList.LOGO, TAB);
 		registerBlockItem.accept("rolling", BlockList.ROLLING, TAB);
 		registerBlockItem.accept("station_name_sign_2", BlockList.STATION_NAME_SIGN_2, TAB);
-		//registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
+		registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
 
 		registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
 		registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);
 		registerEnchantedBlockItem.accept("ceiling_no_light", BlockList.STATION_COLOR_CEILING_NO_LIGHT, TAB);
 		registerEnchantedBlockItem.accept("station_name_sign_1", BlockList.STATION_NAME_SIGN_1, TAB);
+		registerEnchantedBlockItem.accept("station_name_tall_block_double_sided", BlockList.STATION_NAME_TALL_DOUBLE_SIDED, TAB);
 	}
 
 	@FunctionalInterface

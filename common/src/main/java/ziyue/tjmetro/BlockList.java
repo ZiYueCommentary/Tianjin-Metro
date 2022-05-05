@@ -16,4 +16,5 @@ public interface BlockList
     RegistryObject<Block> STATION_NAME_SIGN_1 = new RegistryObject<>(BlockStationNameSign1::new);
     RegistryObject<Block> STATION_NAME_SIGN_2 = new RegistryObject<>(BlockStationNameSign2::new);
     RegistryObject<Block> ROADBLOCK = new RegistryObject<>(BlockRoadblock::new);
+    RegistryObject<Block> STATION_NAME_TALL_DOUBLE_SIDED = new RegistryObject<>(BlockStationNameTallDoubleSided::new);
 }

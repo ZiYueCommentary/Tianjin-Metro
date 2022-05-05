@@ -8,7 +8,8 @@
 		"ZiYueCommentary"
 	],
 	"contact": {
-		"sources": "https://github.com/ZiYueCommentary/Tianjin-Metro"
+		"sources": "https://github.com/ZiYueCommentary/Tianjin-Metro",
+		"issues": "https://github.com/ZiYueCommentary/Tianjin-Metro/issues"
 	},
 	"license": "MIT",
 	"icon": "icon.png",
@@ -19,6 +20,9 @@
 		],
 		"client": [
           "ziyue.tjmetro.MainFabricClient"
+		],
+		"modmenu": [
+			"mtr.ModMenuConfig"
 		]
 	},
 	"mixins": [

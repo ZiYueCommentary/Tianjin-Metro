@@ -4,6 +4,8 @@
   "package": "ziyue.tjmetro.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ConfigScreenMixin",
+    "FallingBlockMixin",
     "FinishInitializationMixin"
   ],
   "client": [

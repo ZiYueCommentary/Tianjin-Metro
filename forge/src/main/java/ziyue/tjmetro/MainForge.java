@@ -30,7 +30,7 @@ public class MainForge {
 
 	public MainForge() {
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		net.tjmetro.mappings.ForgeUtilities.registerModEventBus(Reference.MOD_ID, eventBus);
+		ForgeUtilities.registerModEventBus(Reference.MOD_ID, eventBus);
 
 		ITEMS.register();
 		BLOCKS.register();

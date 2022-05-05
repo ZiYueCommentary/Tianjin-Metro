@@ -3,7 +3,7 @@ loaderVersion = "[36,)"
 license = "MIT"
 
 [[mods]]
-modId = "londonunderground"
+modId = "tjmetro"
 version = "${version}"
 displayName = "Tianjin Metro"
 authors = "ZiYueCommentary"
@@ -37,3 +37,7 @@ mandatory = true
 versionRange = "1.0"
 ordering = "AFTER"
 side = "BOTH"
+
+[modproperties.tjmetro]
+catalogueItemIcon="tjmetro:logo"
+configuredBackground="minecraft:textures/block/dirt.png"

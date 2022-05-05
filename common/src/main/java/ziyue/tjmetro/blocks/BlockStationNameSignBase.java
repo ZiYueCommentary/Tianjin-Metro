@@ -5,7 +5,6 @@ import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -48,17 +47,12 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        final Direction side = ctx.getClickedFace();
-        if (side != Direction.UP && side != Direction.DOWN)
-            return defaultBlockState().setValue(FACING, side.getOpposite()).setValue(WATERLOGGED, false);
-        else
-            return null;
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection()).setValue(WATERLOGGED, false);
     }
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-        return world.getBlockState(pos.relative(facing)).isFaceSturdy(world, pos.relative(facing), facing.getOpposite());
+        return true;
     }
 
     @Override

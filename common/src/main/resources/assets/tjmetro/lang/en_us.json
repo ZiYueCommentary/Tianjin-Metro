@@ -7,5 +7,9 @@
     "block.tjmetro.railway_sign_wall": "Railway Sign Wall",
     "block.tjmetro.roadblock": "Roadblock",
 
-    "tooltip.tjmetro.station_name": "Text depends on the station"
+    "tooltip.tjmetro.station_name": "Text depends on the station",
+
+    "gui.tjmetro.options": "Tianjin Metro Options",
+    "options.tjmetro.no_falling_blocks": "Prevent Falling Blocks",
+    "tooltip.tjmetro.no_suggest": "This feature is not suggest."
 }

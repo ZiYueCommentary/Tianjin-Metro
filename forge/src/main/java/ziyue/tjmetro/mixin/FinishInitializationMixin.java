@@ -10,7 +10,8 @@ import ziyue.tjmetro.Reference;
 import static com.mojang.blaze3d.vertex.VertexConsumer.LOGGER;
 
 @Mixin(RenderSystem.class)
-public class FinishInitializationMixin {
+public class FinishInitializationMixin
+{
     @Inject(at = @At("TAIL"), method = "finishInitialization")
     private static void init(CallbackInfo callbackInfo) {
         LOGGER.info("----------------" + Reference.NAME + "----------------");
