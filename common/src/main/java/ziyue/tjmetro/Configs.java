@@ -9,14 +9,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 
-public class Configs {
-    public static boolean noFallingBlocks;
+import static ziyue.tjmetro.Main.LOGGER;
 
+public class Configs
+{
     public static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");
+
+    public static boolean noFallingBlocks;
     public static final String NO_FALLING_BLOCKS = "no_falling_blocks";
 
     public static void writeToFile() {
-        System.out.println("Wrote Tianjin Metro config to file");
+        LOGGER.info("Wrote Tianjin Metro config to file");
         final JsonObject jsonConfig = new JsonObject();
         jsonConfig.addProperty(NO_FALLING_BLOCKS, noFallingBlocks);
 
@@ -28,7 +31,7 @@ public class Configs {
     }
 
     public static void refreshProperties() {
-        System.out.println("Refreshed Tianjin Metro config");
+        LOGGER.info("Refreshed Tianjin Metro config");
         try {
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_FILE_PATH))).getAsJsonObject();
             try {

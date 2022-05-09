@@ -1,8 +1,12 @@
 {
   "variants": {
-    "facing=north": { "model": "tjmetro:block/roadblock" },
-    "facing=east":  { "model": "tjmetro:block/roadblock", "y":  90},
-    "facing=south":  { "model": "tjmetro:block/roadblock", "y":  180},
-    "facing=west":  { "model": "tjmetro:block/roadblock", "y":  270}
+    "facing=north,is_right=false": { "model": "tjmetro:block/roadblock_left" },
+    "facing=east,is_right=false":  { "model": "tjmetro:block/roadblock_left", "y":  90},
+    "facing=south,is_right=false": { "model": "tjmetro:block/roadblock_left", "y": 180 },
+    "facing=west,is_right=false":  { "model": "tjmetro:block/roadblock_left", "y": 270 },
+    "facing=north,is_right=true": { "model": "tjmetro:block/roadblock_right" },
+    "facing=east,is_right=true":  { "model": "tjmetro:block/roadblock_right", "y":  90},
+    "facing=south,is_right=true": { "model": "tjmetro:block/roadblock_right", "y": 180 },
+    "facing=west,is_right=true":  { "model": "tjmetro:block/roadblock_right", "y": 270 }
   }
 }

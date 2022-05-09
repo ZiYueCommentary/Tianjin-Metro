@@ -13,7 +13,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-public class MainFabric implements ModInitializer {
+public class MainFabric implements ModInitializer
+{
 	@Override
 	public void onInitialize() {
 		Main.init(MainFabric::registerItem, MainFabric::registerBlock, MainFabric::registerBlock, MainFabric::registerEnchantedBlock, MainFabric::registerBlockEntityType, MainFabric::registerSoundEvent);

@@ -18,7 +18,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Reference.MOD_ID)
-public class MainForge {
+public class MainForge
+{
 	private static final DeferredRegisterHolder<Item> ITEMS = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.ITEM_REGISTRY);
 	private static final DeferredRegisterHolder<Block> BLOCKS = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.BLOCK_REGISTRY);
 	private static final DeferredRegisterHolder<BlockEntityType<?>> BLOCK_ENTITY_TYPES = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
@@ -30,7 +31,7 @@ public class MainForge {
 
 	public MainForge() {
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		ForgeUtilities.registerModEventBus(Reference.MOD_ID, eventBus);
+		net.tjmetro.mappings.ForgeUtilities.registerModEventBus(Reference.MOD_ID, eventBus);
 
 		ITEMS.register();
 		BLOCKS.register();

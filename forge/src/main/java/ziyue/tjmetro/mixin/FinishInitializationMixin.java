@@ -5,9 +5,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ziyue.tjmetro.Configs;
 import ziyue.tjmetro.Reference;
 
-import static com.mojang.blaze3d.vertex.VertexConsumer.LOGGER;
+import static ziyue.tjmetro.Main.LOGGER;
 
 @Mixin(RenderSystem.class)
 public class FinishInitializationMixin
@@ -18,5 +19,6 @@ public class FinishInitializationMixin
         LOGGER.info("Hello from ZiYueCommentary!");
         LOGGER.info("ModID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
+        Configs.refreshProperties();
     }
 }
