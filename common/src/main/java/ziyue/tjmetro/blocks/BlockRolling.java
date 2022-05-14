@@ -46,7 +46,7 @@ public class BlockRolling extends Block implements SimpleWaterloggedBlock
         BlockPos pos = ctx.getClickedPos();
         Direction direction = ctx.getHorizontalDirection();
         return defaultBlockState()
-                .setValue(FACING, (direction == Direction.EAST) || (direction == Direction.WEST))
+                .setValue(FACING, ctx.getHorizontalDirection().getAxis() == Direction.Axis.X)
                 .setValue(CHANGED, false)
                 .setValue(BOTTOM, !(ctx.getLevel().getBlockState(pos.below()).getBlock() == BlockList.ROLLING.get()))
                 .setValue(WATERLOGGED, false);

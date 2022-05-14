@@ -68,7 +68,7 @@ task setupFiles() {
 		outputs.upToDateWhen { false }
 		from(zipTree("common/src/main/java/ziyue/tjmetro/mappings/files.zip")) { eachFile { file -> file.relativePath = new RelativePath(true, file.relativePath.segments.drop(1) as String[]) } }
 		into "common/src/main/java/ziyue/tjmetro/mappings"
-		filter(ReplaceTokens, tokens: ["package": "net.tjmetro.mappings; import mtr.mappings.*"])
+		filter(ReplaceTokens, tokens: ["package": "ziyue.tjmetro.mappings; import mtr.mappings.*"])
 	}
 
 	ant.path { ant.fileset(dir: "common/src/main/java/ziyue/tjmetro/mappings", includes: "Fabric*.java") }.list().each {

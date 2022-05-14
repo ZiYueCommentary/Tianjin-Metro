@@ -47,7 +47,7 @@ public abstract class RenderMixin extends RenderStationNameBase<BlockStationName
             int length = this.getLength(world, pos);
             String str = IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, stationName);
             boolean showStation = ((ShowNameProperty)world.getBlockState(pos).getBlock()).getShowNameProperty(world.getBlockState(pos)); //need show "station"?
-            IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, showStation ? str : str.replace(" Station", "").replace("站", ""), HorizontalAlignment.LEFT, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, ((float)length + logoSize) / 2.0F - 0.5F, 0.0F, (float)length - logoSize, logoSize - 0.125F, 40.0F / logoSize, propagateProperty >= 2 && propagateProperty < 4 ? -16777216 : -1, false, 15728880, (x1, y1, x2, y2) -> {
+            IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, showStation ? str : str.replaceFirst(" Station", "").replaceFirst("站", ""), HorizontalAlignment.LEFT, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, ((float)length + logoSize) / 2.0F - 0.5F, 0.0F, (float)length - logoSize, logoSize - 0.125F, 40.0F / logoSize, propagateProperty >= 2 && propagateProperty < 4 ? -16777216 : -1, false, 15728880, (x1, y1, x2, y2) -> {
                 VertexConsumer vertexConsumer = vertexConsumers.getBuffer(MoreRenderLayers.getInterior(new ResourceLocation("mtr:textures/sign/logo.png")));
                 IDrawing.drawTexture(matrices, vertexConsumer, x1 - logoSize, -logoSize / 2.0F, logoSize, logoSize, facing, 15728880);
             });
@@ -55,20 +55,14 @@ public abstract class RenderMixin extends RenderStationNameBase<BlockStationName
     }
 
     private int getLength(BlockGetter world, BlockPos pos) {
-        if (world == null) {
-            return 1;
-        } else {
-            Direction facing = (Direction)IBlock.getStatePropertySafe(world, pos, BlockStationNameEntrance.FACING);
-            int length = 1;
+        if (world == null) return 1;
+        Direction facing = IBlock.getStatePropertySafe(world, pos, BlockStationNameEntrance.FACING);
+        int length = 1;
 
-            while(true) {
-                BlockState state = world.getBlockState(pos.relative(facing.getClockWise(), length));
-                if (!(state.getBlock() instanceof BlockStationNameEntrance)) {
-                    return length;
-                }
-
-                ++length;
-            }
+        while(true) {
+            BlockState state = world.getBlockState(pos.relative(facing.getClockWise(), length));
+            if (!(state.getBlock() instanceof BlockStationNameEntrance)) return length;
+            ++length;
         }
     }
 }
