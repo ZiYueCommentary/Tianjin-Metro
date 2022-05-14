@@ -19,6 +19,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import ziyue.tjmetro.IBlockExtension;
+
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
  * @author ZiYueCommentary
@@ -28,7 +31,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class BlockRoadblock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
     public static final BooleanProperty IS_RIGHT = BooleanProperty.create("is_right");
-    public static final BooleanProperty WATERLOGGED = BooleanProperty.create("waterlogged");
 
     public BlockRoadblock() {
         super(Properties.copy(Blocks.LOGO.get()).lightLevel((state) -> 0));
@@ -46,21 +48,22 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
         }
         return null;
     }
+
     @Override
     public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         boolean isRight = state.getValue(IS_RIGHT);
         switch (state.getValue(FACING)){
             case NORTH:
-                onBreakCreative(world, player, isRight ? pos.west() : pos.east());
+                IBlockExtension.onBreakCreative(world, player, isRight ? pos.west() : pos.east(), this);
                 break;
             case WEST:
-                onBreakCreative(world, player, isRight ? pos.south() : pos.north());
+                IBlockExtension.onBreakCreative(world, player, isRight ? pos.south() : pos.north(), this);
                 break;
             case SOUTH:
-                onBreakCreative(world, player, isRight ? pos.east() : pos.west());
+                IBlockExtension.onBreakCreative(world, player, isRight ? pos.east() : pos.west(), this);
                 break;
             case EAST:
-                onBreakCreative(world, player, isRight ? pos.north() : pos.south());
+                IBlockExtension.onBreakCreative(world, player, isRight ? pos.north() : pos.south(), this);
                 break;
         }
         super.playerWillDestroy(world, pos, state, player);
@@ -89,18 +92,5 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
     @Override
     public FluidState getFluidState(BlockState blockState) {
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
-    }
-
-    static void onBreakCreative(Level world, Player player, BlockPos pos) {
-        if (!world.isClientSide && player == null || player.isCreative()) {
-            try {
-                world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? net.minecraft.world.level.block.Blocks.WATER.defaultBlockState() : net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 35);
-            } catch(Exception exception) {
-                ziyue.tjmetro.Main.LOGGER.info("Get WATERLOGGED state failed: replace with air");
-                world.setBlock(pos, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 35);
-            }
-            final BlockState state = world.getBlockState(pos);
-            world.levelEvent(player, 2001, pos, Block.getId(state));
-        }
     }
 }

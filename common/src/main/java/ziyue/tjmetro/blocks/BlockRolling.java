@@ -23,6 +23,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockList;
 
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
+
 /**
  * @author ZiYueCommentary
  * @since 1.0b
@@ -37,7 +39,6 @@ public class BlockRolling extends Block implements SimpleWaterloggedBlock
     public static final BooleanProperty FACING = BooleanProperty.create("facing");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
     public static final BooleanProperty CHANGED = BooleanProperty.create("changed");
-    public static final BooleanProperty WATERLOGGED = BooleanProperty.create("waterlogged");
 
     @Nullable
     @Override

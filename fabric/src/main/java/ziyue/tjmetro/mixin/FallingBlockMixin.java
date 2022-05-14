@@ -15,6 +15,12 @@ import java.util.Random;
 import static net.minecraft.world.level.block.FallingBlock.isFree;
 import static ziyue.tjmetro.Configs.noFallingBlocks;
 
+/**
+ * Made for <i>No Falling Blocks</i> feature.
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
 @Mixin(FallingBlock.class)
 public abstract class FallingBlockMixin extends Block
 {

@@ -34,6 +34,11 @@ public class RenderStationNameSign<T extends BlockStationNameBase.TileEntityStat
 
     @Override
     public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
+        final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, entity.getBlockPos());
+        render(entity, tickDelta, matrices, vertexConsumers, light, overlay, station == null ? new TranslatableComponent("gui.mtr.untitled").getString() : station.name);
+    }
+
+    public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, String string) {
         if (!entity.shouldRender()) {
             return;
         }
@@ -68,9 +73,8 @@ public class RenderStationNameSign<T extends BlockStationNameBase.TileEntityStat
         matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
-        final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, pos);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-        drawStationName(entity, matrices, vertexConsumers, immediate, station == null ? new TranslatableComponent("gui.mtr.untitled").getString() : station.name, color, light);
+        drawStationName(entity, matrices, vertexConsumers, immediate, string, color, light);
         immediate.endBatch();
         matrices.popPose();
     }

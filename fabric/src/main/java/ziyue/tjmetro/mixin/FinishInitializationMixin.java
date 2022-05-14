@@ -10,6 +10,11 @@ import ziyue.tjmetro.Reference;
 
 import static ziyue.tjmetro.Main.LOGGER;
 
+/**
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
 @Mixin(RenderSystem.class)
 public abstract class FinishInitializationMixin
 {

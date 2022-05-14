@@ -15,12 +15,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
  * @author ZiYueCommentary
@@ -29,8 +30,6 @@ import java.util.List;
 
 public class BlockStationColorCeilingAuto extends BlockCeilingAuto implements SimpleWaterloggedBlock
 {
-    public static final BooleanProperty WATERLOGGED = BooleanProperty.create("waterlogged");
-
     public BlockStationColorCeilingAuto(Properties settings) {
         super(settings);
     }
@@ -57,11 +56,8 @@ public class BlockStationColorCeilingAuto extends BlockCeilingAuto implements Si
     }
 
     private static boolean hasLight(boolean facing, BlockPos pos) {
-        if (facing) {
-            return pos.getZ() % 3 == 0;
-        } else {
-            return pos.getX() % 3 == 0;
-        }
+        if (facing) return pos.getZ() % 3 == 0;
+        else return pos.getX() % 3 == 0;
     }
 
     @Override

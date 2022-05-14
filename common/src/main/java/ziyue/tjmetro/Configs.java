@@ -11,6 +11,11 @@ import java.util.Collections;
 
 import static ziyue.tjmetro.Main.LOGGER;
 
+/**
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
 public class Configs
 {
     public static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");

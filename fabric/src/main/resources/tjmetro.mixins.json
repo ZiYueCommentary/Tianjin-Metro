@@ -6,7 +6,9 @@
   "mixins": [
     "ConfigScreenMixin",
     "FallingBlockMixin",
-    "FinishInitializationMixin"
+    "FinishInitializationMixin",
+    "stationnameentrance.BlockMixin",
+    "stationnameentrance.RenderMixin"
   ],
   "client": [
   ],

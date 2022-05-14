@@ -20,6 +20,11 @@ import ziyue.tjmetro.Configs;
 import static ziyue.tjmetro.Configs.noFallingBlocks;
 import static ziyue.tjmetro.Configs.writeToFile;
 
+/**
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
 @Mixin(ConfigScreen.class)
 public class ConfigScreenMixin extends ScreenMapper implements IGui
 {

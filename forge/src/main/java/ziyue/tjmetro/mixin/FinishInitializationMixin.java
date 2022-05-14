@@ -10,8 +10,13 @@ import ziyue.tjmetro.Reference;
 
 import static ziyue.tjmetro.Main.LOGGER;
 
+/**
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
 @Mixin(RenderSystem.class)
-public class FinishInitializationMixin
+public abstract class FinishInitializationMixin
 {
     @Inject(at = @At("TAIL"), method = "finishInitialization")
     private static void init(CallbackInfo callbackInfo) {

@@ -38,7 +38,6 @@ public class Main
 		registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);
 		registerEnchantedBlockItem.accept("ceiling_no_light", BlockList.STATION_COLOR_CEILING_NO_LIGHT, TAB);
 		registerEnchantedBlockItem.accept("station_name_sign_1", BlockList.STATION_NAME_SIGN_1, TAB);
-		registerEnchantedBlockItem.accept("station_name_tall_block_double_sided", BlockList.STATION_NAME_TALL_DOUBLE_SIDED, TAB);
 		registerEnchantedBlockItem.accept("bench", BlockList.BENCH, TAB);
 	}
 

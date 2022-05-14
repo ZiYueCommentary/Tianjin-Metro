@@ -20,6 +20,7 @@ public class BlockStationNameSign1 extends BlockStationNameSignBase
 {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+
         return IBlock.checkHoldingBrush(world, player, () -> {
             final boolean isWhite = IBlock.getStatePropertySafe(state, COLOR) == 0;
             final int newColorProperty = isWhite ? 2 : 0;

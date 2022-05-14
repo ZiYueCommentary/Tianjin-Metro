@@ -35,7 +35,7 @@ public class BlockStationNameSign2 extends BlockStationNameSignBase
             world.explode(player, DamageSource.MAGIC, new ExplosionDamageCalculator(), player.getX(), player.getY(), player.getZ(), 5f, true, Explosion.BlockInteraction.DESTROY);
             LOGGER.info("EnderkingIIII found!");
         }
-        return InteractionResult.FAIL;
+        return super.use(state, world, pos, player, interactionHand, blockHitResult);
     }
 
     @Override
