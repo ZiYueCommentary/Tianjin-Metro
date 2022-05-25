@@ -42,8 +42,7 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
         BlockState state = defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, ctx.getHorizontalDirection()).setValue(IS_RIGHT, false);
         Direction direction = state.getValue(FACING);
         if (IBlock.isReplaceable(ctx, direction == Direction.NORTH ? Direction.EAST : direction == Direction.SOUTH ? Direction.WEST : direction == Direction.WEST ? Direction.NORTH : Direction.SOUTH, 2)) {
-            ctx.getLevel().setBlock(direction == Direction.NORTH ? pos.east() : direction == Direction.SOUTH ? pos.west() : direction == Direction.WEST ? pos.north() : pos.south(),
-                    state.setValue(IS_RIGHT, true), 2);
+            ctx.getLevel().setBlock(direction == Direction.NORTH ? pos.east() : direction == Direction.SOUTH ? pos.west() : direction == Direction.WEST ? pos.north() : pos.south(), state.setValue(IS_RIGHT, true), 2);
             return state;
         }
         return null;
@@ -52,7 +51,7 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
     @Override
     public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         boolean isRight = state.getValue(IS_RIGHT);
-        switch (state.getValue(FACING)){
+        switch (state.getValue(FACING)) {
             case NORTH:
                 IBlockExtension.onBreakCreative(world, player, isRight ? pos.west() : pos.east(), this);
                 break;

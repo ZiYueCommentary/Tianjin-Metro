@@ -3,20 +3,32 @@ package ziyue.tjmetro.blocks;
 import mtr.Blocks;
 import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
+import mtr.mappings.BlockEntityClientSerializableMapper;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import ziyue.tjmetro.packet.PacketGuiServer;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
@@ -39,6 +51,22 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
     }
 
     @Override
+    public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        Runnable runnable = () -> {
+            final BlockEntity entity = world.getBlockEntity(pos);
+            if (entity instanceof TileEntityStationNameWall) {
+                ((TileEntityStationNameWall) entity).syncData();
+                PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
+            }
+        };
+        //如果用if语句判断之后再执行就会导致崩溃，syncData和player转换都有问题
+        //所以为什么这个可以？？
+        //我特么为这破事折腾两天
+        //2022/5/25
+        return IBlock.checkHoldingItem(world, player, item -> runnable.run(), null, Items.STICK);
+    }
+
+    @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
         return IBlock.getVoxelShapeByDirection(1f, 3.5f, 0f, 15f, 14.5f, 0.5f, IBlock.getStatePropertySafe(blockState, FACING));
     }
@@ -57,5 +85,42 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
     @Override
     public FluidState getFluidState(BlockState blockState) {
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
+    }
+
+    public abstract static class TileEntityStationNameWall extends BlockEntityClientSerializableMapper
+    {
+        public final float yOffset;
+        public final float zOffset;
+
+        public final String CONTENT_ID = "content";
+        public String content = "";
+
+        public TileEntityStationNameWall(BlockEntityType<?> entity, BlockPos pos, BlockState state) {
+            super(entity, pos, state);
+            this.yOffset = 0;
+            this.zOffset = 0.05f;
+        }
+
+        @Override
+        public void readCompoundTag(CompoundTag compoundTag) {
+            content = compoundTag.getString(CONTENT_ID);
+            super.readCompoundTag(compoundTag);
+        }
+
+        @Override
+        public void writeCompoundTag(CompoundTag compoundTag) {
+            compoundTag.putString(CONTENT_ID, content);
+            super.writeCompoundTag(compoundTag);
+        }
+
+        public void setData(String content) {
+            this.content = content;
+            setChanged();
+            syncData();
+        }
+
+        public boolean shouldRender() {
+            return true;
+        }
     }
 }

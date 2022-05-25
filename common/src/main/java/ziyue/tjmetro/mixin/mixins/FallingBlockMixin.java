@@ -1,4 +1,4 @@
-package ziyue.tjmetro.mixin;
+package ziyue.tjmetro.mixin.mixins;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -19,6 +19,7 @@ import static ziyue.tjmetro.Configs.noFallingBlocks;
  * Made for <i>No Falling Blocks</i> feature.
  * @author ZiYueCommentary
  * @since 1.0b
+ * @see FallingBlock
  */
 
 @Mixin(FallingBlock.class)

@@ -1,5 +1,6 @@
 package ziyue.tjmetro;
 
+import mtr.MTR;
 import mtr.Registry;
 import mtr.RegistryObject;
 import mtr.mappings.BlockEntityMapper;
@@ -12,8 +13,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.function.BiConsumer;
+
+import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_CONTENT;
 
 public class Main
 {
@@ -24,8 +28,8 @@ public class Main
 	public static void init(
 			BiConsumer<String, RegistryObject<Item>> registerItem,
 			BiConsumer<String, RegistryObject<Block>> registerBlock,
-			RegisterBlockItem registerBlockItem,
-			RegisterBlockItem registerEnchantedBlockItem,
+			MTR.RegisterBlockItem registerBlockItem,
+			MTR.RegisterBlockItem registerEnchantedBlockItem,
 			BiConsumer<String,RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>>> registerBlockEntityType,
 			BiConsumer<String, SoundEvent> registerSoundEvent
 	) {
@@ -39,10 +43,10 @@ public class Main
 		registerEnchantedBlockItem.accept("ceiling_no_light", BlockList.STATION_COLOR_CEILING_NO_LIGHT, TAB);
 		registerEnchantedBlockItem.accept("station_name_sign_1", BlockList.STATION_NAME_SIGN_1, TAB);
 		registerEnchantedBlockItem.accept("bench", BlockList.BENCH, TAB);
-	}
 
-	@FunctionalInterface
-	public interface RegisterBlockItem {
-		void accept(String string, RegistryObject<Block> block, CreativeModeTab tab);
+		registerBlockEntityType.accept("station_name_sign_2", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_2);
+		registerBlockEntityType.accept("station_name_sign_1", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1);
+
+		Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
 	}
 }

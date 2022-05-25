@@ -1,4 +1,4 @@
-package ziyue.tjmetro.mixin;
+package ziyue.tjmetro.mixin.mixins;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,8 +11,12 @@ import ziyue.tjmetro.Reference;
 import static ziyue.tjmetro.Main.LOGGER;
 
 /**
+ * Print info about <b>Tianjin Metro mod</b>, refresh configs at same time.<br>
+ * This mixin is for testing originally.
  * @author ZiYueCommentary
  * @since 1.0b
+ * @see Reference
+ * @see RenderSystem
  */
 
 @Mixin(RenderSystem.class)

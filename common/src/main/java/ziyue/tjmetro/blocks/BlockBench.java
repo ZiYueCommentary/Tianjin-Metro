@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
-@SuppressWarnings("developing")
 public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
     public BlockBench() {
@@ -22,7 +21,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        Entity seat = new Minecart(level, blockPos.getX(), blockPos.getY(), blockPos.getZ());
+       Entity seat = new Minecart(level, blockPos.getX(), blockPos.getY(), blockPos.getZ());
 
         return InteractionResult.SUCCESS;
     }

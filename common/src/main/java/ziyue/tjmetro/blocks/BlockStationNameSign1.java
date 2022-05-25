@@ -6,21 +6,24 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
 
 /**
+ * First variant for <b>Station Name Sign</b>.
  * @author ZiYueCommentary
  * @since 1.0b
+ * @see BlockStationNameSignBase
  */
 
 public class BlockStationNameSign1 extends BlockStationNameSignBase
 {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-
+        if(player.isHolding(Items.STICK)) return super.use(state, world, pos, player, interactionHand, blockHitResult);
         return IBlock.checkHoldingBrush(world, player, () -> {
             final boolean isWhite = IBlock.getStatePropertySafe(state, COLOR) == 0;
             final int newColorProperty = isWhite ? 2 : 0;
@@ -35,15 +38,10 @@ public class BlockStationNameSign1 extends BlockStationNameSignBase
         return new BlockStationNameSign1.TileEntityStationNameWall(pos, state);
     }
 
-    public static class TileEntityStationNameWall extends TileEntityStationNameBase
+    public static class TileEntityStationNameWall extends BlockStationNameSignBase.TileEntityStationNameWall
     {
         public TileEntityStationNameWall(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1.get(), pos, state, 0, 0.05f);
-        }
-
-        @Override
-        public boolean shouldRender() {
-            return true;
+            super(BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1.get(), pos, state);
         }
     }
 

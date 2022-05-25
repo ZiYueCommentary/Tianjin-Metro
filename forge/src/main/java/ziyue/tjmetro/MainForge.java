@@ -16,6 +16,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import ziyue.tjmetro.mappings.ForgeUtilities;
 
 @Mod(Reference.MOD_ID)
 public class MainForge
@@ -31,7 +32,7 @@ public class MainForge
 
 	public MainForge() {
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		net.tjmetro.mappings.ForgeUtilities.registerModEventBus(Reference.MOD_ID, eventBus);
+		ForgeUtilities.registerModEventBus(Reference.MOD_ID, eventBus);
 
 		ITEMS.register();
 		BLOCKS.register();

@@ -1,4 +1,4 @@
-package ziyue.tjmetro.mixin.stationnameentrance;
+package ziyue.tjmetro.mixin.mixins.entrance;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -19,7 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
-import ziyue.tjmetro.ShowNameProperty;
+import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 
 /**
  * Core of <i>No "station" of station name entrance</i> feature<br>
@@ -27,6 +27,7 @@ import ziyue.tjmetro.ShowNameProperty;
  * @author ZiYueCommentary
  * @since 1.0b
  * @see RenderStationNameEntrance
+ * @see BlockMixin
  */
 
 @Mixin(RenderStationNameEntrance.class)

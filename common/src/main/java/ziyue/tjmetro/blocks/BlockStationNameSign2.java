@@ -23,8 +23,10 @@ import ziyue.tjmetro.BlockEntityTypes;
 import java.util.List;
 
 /**
+ * Second variant for <b>Station Name Sign</b>.
  * @author ZiYueCommentary
  * @since 1.0b
+ * @see BlockStationNameSignBase
  */
 
 public class BlockStationNameSign2 extends BlockStationNameSignBase
@@ -33,7 +35,7 @@ public class BlockStationNameSign2 extends BlockStationNameSignBase
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if(player.getName().toString().equals("EnderkingIIII")) { //easter egg lol
             world.explode(player, DamageSource.MAGIC, new ExplosionDamageCalculator(), player.getX(), player.getY(), player.getZ(), 5f, true, Explosion.BlockInteraction.DESTROY);
-            LOGGER.info("EnderkingIIII found!");
+            LOGGER.warn("EnderkingIIII found!");
         }
         return super.use(state, world, pos, player, interactionHand, blockHitResult);
     }
@@ -49,15 +51,10 @@ public class BlockStationNameSign2 extends BlockStationNameSignBase
         tooltip.add(new TranslatableComponent("tooltip.tjmetro.station_name").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
     }
 
-    public static class TileEntityStationNameWall extends TileEntityStationNameBase
+    public static class TileEntityStationNameWall extends BlockStationNameSignBase.TileEntityStationNameWall
     {
         public TileEntityStationNameWall(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.STATION_NAME_SIGN_ENTITY_2.get(), pos, state, 0, 0.05f);
-        }
-
-        @Override
-        public boolean shouldRender() {
-            return true;
+            super(BlockEntityTypes.STATION_NAME_SIGN_ENTITY_2.get(), pos, state);
         }
     }
 }

@@ -1,14 +1,14 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "ziyue.tjmetro.mixin",
+  "package": "ziyue.tjmetro.mixin.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ConfigScreenMixin",
     "FallingBlockMixin",
     "FinishInitializationMixin",
-    "stationnameentrance.BlockMixin",
-    "stationnameentrance.RenderMixin"
+    "entrance.BlockMixin",
+    "entrance.RenderMixin"
   ],
   "client": [
   ],

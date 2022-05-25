@@ -20,13 +20,18 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import ziyue.tjmetro.blocks.BlockStationNameSignBase;
 
 /**
+ * Render content for <b>Station Name Sign Block</b>.<br>
+ * Support display <i>custom content</i>.
  * @author ZiYueCommentary
  * @since 1.0b
+ * @see ziyue.tjmetro.screen.CustomContentScreen
+ * @see BlockStationNameSignBase
  */
 
-public class RenderStationNameSign<T extends BlockStationNameBase.TileEntityStationNameBase> extends BlockEntityRendererMapper<T> implements IGui, IDrawing
+public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntityStationNameWall> extends BlockEntityRendererMapper<T> implements IGui, IDrawing
 {
     public RenderStationNameSign(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);
@@ -34,26 +39,15 @@ public class RenderStationNameSign<T extends BlockStationNameBase.TileEntityStat
 
     @Override
     public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
-        final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, entity.getBlockPos());
-        render(entity, tickDelta, matrices, vertexConsumers, light, overlay, station == null ? new TranslatableComponent("gui.mtr.untitled").getString() : station.name);
-    }
-
-    public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, String string) {
-        if (!entity.shouldRender()) {
-            return;
-        }
+        if (!entity.shouldRender()) return;
 
         final BlockGetter world = entity.getLevel();
-        if (world == null) {
-            return;
-        }
+        if (world == null) return;
 
         final BlockPos pos = entity.getBlockPos();
         final BlockState state = world.getBlockState(pos);
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
-        if (RenderTrains.shouldNotRender(pos, RenderTrains.maxTrainRenderDistance, facing)) {
-            return;
-        }
+        if (RenderTrains.shouldNotRender(pos, RenderTrains.maxTrainRenderDistance, facing)) return;
 
         final int color;
         switch (IBlock.getStatePropertySafe(state, BlockStationNameBase.COLOR)) {
@@ -74,12 +68,13 @@ public class RenderStationNameSign<T extends BlockStationNameBase.TileEntityStat
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-        drawStationName(entity, matrices, vertexConsumers, immediate, string, color, light);
+        final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, entity.getBlockPos());
+        drawStationName(entity, matrices, vertexConsumers, immediate, entity.content.equals("") ? station == null ? new TranslatableComponent("gui.mtr.untitled").getString() : station.name : entity.content, color, light);
         immediate.endBatch();
         matrices.popPose();
     }
 
-    protected void drawStationName(BlockStationNameBase.TileEntityStationNameBase entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int color, int light)
+    protected void drawStationName(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int color, int light)
     {
         IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -0.105f, 0.85F, 1F, 100, color, false, light, null);
     }

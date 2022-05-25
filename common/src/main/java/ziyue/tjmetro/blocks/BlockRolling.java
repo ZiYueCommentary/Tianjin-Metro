@@ -43,12 +43,10 @@ public class BlockRolling extends Block implements SimpleWaterloggedBlock
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        BlockPos pos = ctx.getClickedPos();
-        Direction direction = ctx.getHorizontalDirection();
         return defaultBlockState()
                 .setValue(FACING, ctx.getHorizontalDirection().getAxis() == Direction.Axis.X)
                 .setValue(CHANGED, false)
-                .setValue(BOTTOM, !(ctx.getLevel().getBlockState(pos.below()).getBlock() == BlockList.ROLLING.get()))
+                .setValue(BOTTOM, !(ctx.getLevel().getBlockState(ctx.getClickedPos().below()).getBlock() == BlockList.ROLLING.get()))
                 .setValue(WATERLOGGED, false);
     }
 
@@ -74,7 +72,7 @@ public class BlockRolling extends Block implements SimpleWaterloggedBlock
 
     @Override
     public void neighborChanged(BlockState blockState, Level level, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl) {
-        if(!blockState.getValue(CHANGED)){
+        if(!blockState.getValue(CHANGED)) {
             if(level.getBlockState(blockPos.below()).getBlock() == BlockList.ROLLING.get())
                 level.setBlockAndUpdate(blockPos, blockState.setValue(BOTTOM, false));
             else

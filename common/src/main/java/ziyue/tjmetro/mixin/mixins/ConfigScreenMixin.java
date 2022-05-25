@@ -1,4 +1,4 @@
-package ziyue.tjmetro.mixin;
+package ziyue.tjmetro.mixin.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.client.IDrawing;
@@ -21,8 +21,10 @@ import static ziyue.tjmetro.Configs.noFallingBlocks;
 import static ziyue.tjmetro.Configs.writeToFile;
 
 /**
+ * Mix with MTR config screen.
  * @author ZiYueCommentary
  * @since 1.0b
+ * @see ConfigScreen
  */
 
 @Mixin(ConfigScreen.class)
@@ -57,7 +59,6 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
         final int yStart1 = SQUARE_SIZE + TEXT_PADDING / 2;
         try{
             drawString(matrices, font, new TranslatableComponent("options.tjmetro.no_falling_blocks"), SQUARE_SIZE, BUTTON_HEIGHT * (pos++) + yStart1, ARGB_WHITE);
-
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -72,6 +73,4 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
         writeToFile();
         return noFallingBlocks;
     }
-
-
 }

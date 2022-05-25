@@ -31,8 +31,10 @@ import java.util.List;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
+ * Ceiling with station color, support using brush to set <i>light/no light</i>.
  * @author ZiYueCommentary
  * @since 1.0b
+ * @see BlockCeiling
  */
 
 public class BlockStationColorCeiling extends BlockCeiling implements SimpleWaterloggedBlock
@@ -50,8 +52,8 @@ public class BlockStationColorCeiling extends BlockCeiling implements SimpleWate
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(level, player, () -> level.setBlock(blockPos,
                 blockState.getBlock() == BlockList.STATION_COLOR_CEILING_LIGHT.get() ?
-                        BlockList.STATION_COLOR_CEILING_NO_LIGHT.get().defaultBlockState().setValue(WATERLOGGED, false) :
-                        BlockList.STATION_COLOR_CEILING_LIGHT.get().defaultBlockState().setValue(WATERLOGGED, false), 1));
+                        BlockList.STATION_COLOR_CEILING_NO_LIGHT.get().defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, blockState.getValue(FACING)) :
+                        BlockList.STATION_COLOR_CEILING_LIGHT.get().defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, blockState.getValue(FACING)), 1));
     }
 
     @Override

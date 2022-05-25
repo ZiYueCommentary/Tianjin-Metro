@@ -1,4 +1,4 @@
-package ziyue.tjmetro.mixin.stationnameentrance;
+package ziyue.tjmetro.mixin.mixins.entrance;
 
 import mtr.block.BlockStationNameBase;
 import mtr.block.BlockStationNameEntrance;
@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
-import ziyue.tjmetro.ShowNameProperty;
+import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 
 import static mtr.block.BlockStationNameEntrance.STYLE;
 
@@ -25,6 +25,7 @@ import static mtr.block.BlockStationNameEntrance.STYLE;
  * @author ZiYueCommentary
  * @since 1.0b
  * @see BlockStationNameEntrance
+ * @see RenderMixin
  */
 
 @Mixin(BlockStationNameEntrance.class)

@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
+ * Logo of <b>Tianjin Metro</b>.
  * @author ZiYueCommentary
  * @since 1.0b
  */
