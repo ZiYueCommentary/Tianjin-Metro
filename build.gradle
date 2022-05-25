@@ -1,5 +1,3 @@
-import org.apache.tools.ant.filters.ReplaceTokens
-
 plugins {
 	id "architectury-plugin" version "3.4-SNAPSHOT"
 	id "dev.architectury.loom" version "0.10.0-SNAPSHOT" apply false
@@ -58,28 +56,28 @@ task setupLibrary() {
 }
 
 task setupFiles() {
-	download {
-		src "https://github.com/jonafanho/Minecraft-Mappings/archive/refs/heads/${is_1_16 ? "1.16" : is_1_17 ? "1.17" : "1.18"}.zip"
-		dest "common/src/main/java/ziyue/tjmetro/mappings/files.zip"
-		overwrite true
-	}
-
-	copy {
-		outputs.upToDateWhen { false }
-		from(zipTree("common/src/main/java/ziyue/tjmetro/mappings/files.zip")) { eachFile { file -> file.relativePath = new RelativePath(true, file.relativePath.segments.drop(1) as String[]) } }
-		into "common/src/main/java/ziyue/tjmetro/mappings"
-		filter(ReplaceTokens, tokens: ["package": "ziyue.tjmetro.mappings; import mtr.mappings.*"])
-	}
-
-	ant.path { ant.fileset(dir: "common/src/main/java/ziyue/tjmetro/mappings", includes: "Fabric*.java") }.list().each {
-		ant.move(file: it, todir: "fabric/src/main/java/ziyue/tjmetro/mappings")
-	}
-
-	ant.path { ant.fileset(dir: "common/src/main/java/ziyue/tjmetro/mappings", includes: "Forge*.java") }.list().each {
-		ant.move(file: it, todir: "forge/src/main/java/ziyue/tjmetro/mappings")
-	}
-
-	ant.delete(dir: "common/src/main/java/ziyue/tjmetro/mappings")
+//	download {
+//		src "https://github.com/jonafanho/Minecraft-Mappings/archive/refs/heads/${is_1_16 ? "1.16" : is_1_17 ? "1.17" : "1.18"}.zip"
+//		dest "common/src/main/java/ziyue/tjmetro/mappings/files.zip"
+//		overwrite true
+//	}
+//
+//	copy {
+//		outputs.upToDateWhen { false }
+//		from(zipTree("common/src/main/java/ziyue/tjmetro/mappings/files.zip")) { eachFile { file -> file.relativePath = new RelativePath(true, file.relativePath.segments.drop(1) as String[]) } }
+//		into "common/src/main/java/ziyue/tjmetro/mappings"
+//		filter(ReplaceTokens, tokens: ["package": "ziyue.tjmetro.mappings; import mtr.mappings.*"])
+//	}
+//
+//	ant.path { ant.fileset(dir: "common/src/main/java/ziyue/tjmetro/mappings", includes: "Fabric*.java") }.list().each {
+//		ant.move(file: it, todir: "fabric/src/main/java/ziyue/tjmetro/mappings")
+//	}
+//
+//	ant.path { ant.fileset(dir: "common/src/main/java/ziyue/tjmetro/mappings", includes: "Forge*.java") }.list().each {
+//		ant.move(file: it, todir: "forge/src/main/java/ziyue/tjmetro/mappings")
+//	}
+//
+//	ant.delete(dir: "common/src/main/java/ziyue/tjmetro/mappings")
 
 	copy {
 		outputs.upToDateWhen { false }

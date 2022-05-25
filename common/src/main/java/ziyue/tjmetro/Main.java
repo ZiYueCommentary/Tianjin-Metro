@@ -37,6 +37,14 @@ public class Main
 		registerBlockItem.accept("rolling", BlockList.ROLLING, TAB);
 		registerBlockItem.accept("station_name_sign_2", BlockList.STATION_NAME_SIGN_2, TAB);
 		registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
+		registerBlockItem.accept("platform_tj_1", BlockList.PLATFORM_TJ_1, TAB);
+		registerBlockItem.accept("platform_tj_1_indented", BlockList.PLATFORM_TJ_1_INDENTED, TAB);
+		registerBlockItem.accept("marble_gray", BlockList.MARBLE_GRAY, TAB);
+		registerBlockItem.accept("marble_gray_slab", BlockList.MARBLE_GRAY_SLAB, TAB);
+		registerBlockItem.accept("platform_tj_2", BlockList.PLATFORM_TJ_2, TAB);
+		registerBlockItem.accept("platform_tj_2_indented", BlockList.PLATFORM_TJ_2_INDENTED, TAB);
+		registerBlockItem.accept("marble_yellow", BlockList.MARBLE_YELLOW, TAB);
+		registerBlockItem.accept("marble_yellow_slab", BlockList.MARBLE_YELLOW_SLAB, TAB);
 
 		registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
 		registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);

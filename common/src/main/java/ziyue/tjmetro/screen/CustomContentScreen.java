@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import ziyue.tjmetro.blocks.BlockStationNameSignBase;
+import ziyue.tjmetro.blocks.CustomContentBlockEntity;
 import ziyue.tjmetro.packet.PacketGuiClient;
 
 /**
@@ -37,8 +37,8 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
         final ClientLevel world = minecraft.level;
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof BlockStationNameSignBase.TileEntityStationNameWall)
-                content = ((BlockStationNameSignBase.TileEntityStationNameWall) entity).content;
+            if (entity instanceof CustomContentBlockEntity)
+                content = ((CustomContentBlockEntity)entity).content;
         } else {
             content = "";
         }
@@ -58,6 +58,7 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
             font.draw(matrices, new TranslatableComponent("gui.tjmetro.custom_content"), SQUARE_SIZE, TEXT_PADDING, ARGB_WHITE);
             IDrawing.setPositionAndWidth(textField, SQUARE_SIZE, SQUARE_SIZE, width);
             textField.setValue(textField.getValue());
+            textField.setWidth((int)(width /1.1));
             super.render(matrices, mouseX, mouseY, delta);
         } catch (Exception e) {
             e.printStackTrace();

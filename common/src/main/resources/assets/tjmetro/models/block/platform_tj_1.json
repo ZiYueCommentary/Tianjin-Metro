@@ -1,0 +1,7 @@
+{
+	"parent": "mtr:block/platform_base",
+	"textures": {
+		"main": "tjmetro:block/marble_gray",
+		"top": "tjmetro:block/marble_gray"
+	}
+}

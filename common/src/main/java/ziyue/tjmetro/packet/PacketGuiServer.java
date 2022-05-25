@@ -8,7 +8,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import ziyue.tjmetro.blocks.BlockStationNameSignBase;
+import ziyue.tjmetro.blocks.CustomContentBlockEntity;
 
 import static ziyue.tjmetro.packet.IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN;
 
@@ -27,8 +27,8 @@ public class PacketGuiServer
         final String content = packet.readUtf(SerializedDataBase.PACKET_STRING_READ_LENGTH);
         minecraftServer.execute(() -> {
             final BlockEntity entity = player.level.getBlockEntity(pos);
-            if (entity instanceof BlockStationNameSignBase.TileEntityStationNameWall) {
-                ((BlockStationNameSignBase.TileEntityStationNameWall) entity).setData(content);
+            if (entity instanceof CustomContentBlockEntity) {
+                ((CustomContentBlockEntity)entity).setData(content);
             }
         });
     }

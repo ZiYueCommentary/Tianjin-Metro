@@ -3,10 +3,8 @@ package ziyue.tjmetro.blocks;
 import mtr.Blocks;
 import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
-import mtr.mappings.BlockEntityClientSerializableMapper;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -87,40 +85,10 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 
-    public abstract static class TileEntityStationNameWall extends BlockEntityClientSerializableMapper
+    public abstract static class TileEntityStationNameWall extends CustomContentBlockEntity
     {
-        public final float yOffset;
-        public final float zOffset;
-
-        public final String CONTENT_ID = "content";
-        public String content = "";
-
         public TileEntityStationNameWall(BlockEntityType<?> entity, BlockPos pos, BlockState state) {
             super(entity, pos, state);
-            this.yOffset = 0;
-            this.zOffset = 0.05f;
-        }
-
-        @Override
-        public void readCompoundTag(CompoundTag compoundTag) {
-            content = compoundTag.getString(CONTENT_ID);
-            super.readCompoundTag(compoundTag);
-        }
-
-        @Override
-        public void writeCompoundTag(CompoundTag compoundTag) {
-            compoundTag.putString(CONTENT_ID, content);
-            super.writeCompoundTag(compoundTag);
-        }
-
-        public void setData(String content) {
-            this.content = content;
-            setChanged();
-            syncData();
-        }
-
-        public boolean shouldRender() {
-            return true;
         }
     }
 }

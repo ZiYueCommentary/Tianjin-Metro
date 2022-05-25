@@ -14,6 +14,10 @@ public class MainClient
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.STATION_NAME_SIGN_1.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.STATION_NAME_SIGN_2.get());
 		RegistryClient.registerBlockRenderType(RenderType.translucent(), BlockList.ROLLING.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PLATFORM_TJ_1.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PLATFORM_TJ_1_INDENTED.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PLATFORM_TJ_2.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PLATFORM_TJ_2_INDENTED.get());
 
 		RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING.get());
 		RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING_LIGHT.get());

@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import ziyue.tjmetro.blocks.BlockStationNameSignBase;
+import ziyue.tjmetro.blocks.CustomContentBlockEntity;
 import ziyue.tjmetro.screen.CustomContentScreen;
 
 import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_CONTENT;
@@ -19,7 +19,7 @@ public class PacketGuiClient
         minecraftClient.execute(() -> {
             if (minecraftClient.level != null && !(minecraftClient.screen instanceof CustomContentScreen)) {
                 final BlockEntity entity = minecraftClient.level.getBlockEntity(pos);
-                if (entity instanceof BlockStationNameSignBase.TileEntityStationNameWall) {
+                if (entity instanceof CustomContentBlockEntity) {
                     UtilitiesClient.setScreen(minecraftClient, new CustomContentScreen(pos));
                 }
             }
