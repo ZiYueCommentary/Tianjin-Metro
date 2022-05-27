@@ -37,6 +37,7 @@ public class Main
 		registerBlockItem.accept("rolling", BlockList.ROLLING, TAB);
 		registerBlockItem.accept("station_name_sign_2", BlockList.STATION_NAME_SIGN_2, TAB);
 		registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
+		registerBlockItem.accept("roadblock_sign", BlockList.ROADBLOCK_SIGN, TAB);
 		registerBlockItem.accept("platform_tj_1", BlockList.PLATFORM_TJ_1, TAB);
 		registerBlockItem.accept("platform_tj_1_indented", BlockList.PLATFORM_TJ_1_INDENTED, TAB);
 		registerBlockItem.accept("marble_gray", BlockList.MARBLE_GRAY, TAB);
@@ -54,6 +55,7 @@ public class Main
 
 		registerBlockEntityType.accept("station_name_sign_2", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_2);
 		registerBlockEntityType.accept("station_name_sign_1", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1);
+		registerBlockEntityType.accept("roadblock_sign", BlockEntityTypes.ROADBLOCK_SIGN_ENTITY);
 
 		Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
 	}

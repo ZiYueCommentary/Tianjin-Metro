@@ -51,7 +51,7 @@ public class BlockStationNameSign2 extends BlockStationNameSignBase
         tooltip.add(new TranslatableComponent("tooltip.tjmetro.station_name").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
     }
 
-    public static class TileEntityStationNameWall extends BlockStationNameSignBase.TileEntityStationNameWall
+    public static class TileEntityStationNameWall extends BlockStationNameSignBase.TileEntityStationNameBase
     {
         public TileEntityStationNameWall(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.STATION_NAME_SIGN_ENTITY_2.get(), pos, state);

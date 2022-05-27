@@ -52,8 +52,8 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         Runnable runnable = () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof TileEntityStationNameWall) {
-                ((TileEntityStationNameWall) entity).syncData();
+            if (entity instanceof TileEntityStationNameBase) {
+                ((TileEntityStationNameBase) entity).syncData();
                 PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
             }
         };
@@ -85,10 +85,13 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 
-    public abstract static class TileEntityStationNameWall extends CustomContentBlockEntity
+    /**
+     * @see CustomContentBlockEntity
+     */
+    public abstract static class TileEntityStationNameBase extends CustomContentBlockEntity
     {
-        public TileEntityStationNameWall(BlockEntityType<?> entity, BlockPos pos, BlockState state) {
-            super(entity, pos, state);
+        public TileEntityStationNameBase(BlockEntityType<?> entity, BlockPos pos, BlockState state) {
+            super(entity, pos, state, 0, 0.05f);
         }
     }
 }

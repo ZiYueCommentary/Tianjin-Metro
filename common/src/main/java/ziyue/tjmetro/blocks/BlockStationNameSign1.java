@@ -38,7 +38,7 @@ public class BlockStationNameSign1 extends BlockStationNameSignBase
         return new BlockStationNameSign1.TileEntityStationNameWall(pos, state);
     }
 
-    public static class TileEntityStationNameWall extends BlockStationNameSignBase.TileEntityStationNameWall
+    public static class TileEntityStationNameWall extends BlockStationNameSignBase.TileEntityStationNameBase
     {
         public TileEntityStationNameWall(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1.get(), pos, state);

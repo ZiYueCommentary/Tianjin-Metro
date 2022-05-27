@@ -48,7 +48,9 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
     @Override
     protected void init() {
         super.init();
+        IDrawing.setPositionAndWidth(textField, SQUARE_SIZE, SQUARE_SIZE, width);
         addDrawableChild(textField);
+        textField.setValue(textField.getValue());
     }
 
     @Override
@@ -56,8 +58,6 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
         try {
             renderBackground(matrices);
             font.draw(matrices, new TranslatableComponent("gui.tjmetro.custom_content"), SQUARE_SIZE, TEXT_PADDING, ARGB_WHITE);
-            IDrawing.setPositionAndWidth(textField, SQUARE_SIZE, SQUARE_SIZE, width);
-            textField.setValue(textField.getValue());
             textField.setWidth((int)(width /1.1));
             super.render(matrices, mouseX, mouseY, delta);
         } catch (Exception e) {

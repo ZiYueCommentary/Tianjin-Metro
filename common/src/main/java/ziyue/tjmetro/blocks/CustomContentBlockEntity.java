@@ -6,6 +6,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
 public abstract class CustomContentBlockEntity extends BlockEntityClientSerializableMapper
 {
     public final float yOffset;
@@ -14,10 +19,10 @@ public abstract class CustomContentBlockEntity extends BlockEntityClientSerializ
     public final String CONTENT_ID = "content";
     public String content = "";
 
-    public CustomContentBlockEntity(BlockEntityType<?> entity, BlockPos pos, BlockState state) {
+    public CustomContentBlockEntity(BlockEntityType<?> entity, BlockPos pos, BlockState state, float yOffset, float zOffset) {
         super(entity, pos, state);
-        this.yOffset = 0;
-        this.zOffset = 0.05f;
+        this.yOffset = yOffset;
+        this.zOffset = zOffset;
     }
 
     @Override

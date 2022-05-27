@@ -1,9 +1,9 @@
 {
 	"parent": "mtr:block/platform_base_indented",
 	"textures": {
-		"main": "tjmetro:block/marble_yellow",
-		"front": "tjmetro:block/marble_yellow",
-		"inner": "tjmetro:block/marble_yellow",
+		"main": "block/stone",
+		"front": "block/stone",
+		"inner": "block/stone_bricks",
 		"top": "tjmetro:block/marble_yellow"
 	}
 }

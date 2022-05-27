@@ -24,7 +24,7 @@ public interface IBlockExtension
             try {
                 world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
             } catch(Exception exception) {
-                LOGGER.error("Get " + WATERLOGGED.getName() + " status failed: replace with air");
+                LOGGER.warn("Get " + WATERLOGGED.getName() + " status failed: replace with air");
                 world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
             }
             final BlockState state = world.getBlockState(pos);
@@ -38,7 +38,7 @@ public interface IBlockExtension
                 if(world.getBlockState(pos).getBlock() == block)
                     world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
             } catch(Exception exception) {
-                LOGGER.error("Get " + WATERLOGGED.getName() + " status failed: replace with air");
+                LOGGER.warn("Get " + WATERLOGGED.getName() + " status failed: replace with air");
                 world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
             }
             final BlockState state = world.getBlockState(pos);
@@ -51,7 +51,7 @@ public interface IBlockExtension
             try {
                 world.setBlock(pos, world.getBlockState(pos).getValue(property) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
             } catch(Exception exception) {
-                LOGGER.error("Get " + property.getName() + " status failed: replace with air");
+                LOGGER.warn("Get " + property.getName() + " status failed: replace with air");
                 world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
             }
             final BlockState state = world.getBlockState(pos);
@@ -64,7 +64,7 @@ public interface IBlockExtension
             try {
                 world.setBlock(pos, world.getBlockState(pos).getValue(property) ? block.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
             } catch(Exception exception) {
-                LOGGER.error("Get " + property.getName() + " status failed: replace with air");
+                LOGGER.warn("Get " + property.getName() + " status failed: replace with air");
                 world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
             }
             final BlockState state = world.getBlockState(pos);
