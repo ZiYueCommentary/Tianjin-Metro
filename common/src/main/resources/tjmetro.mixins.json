@@ -7,8 +7,9 @@
     "ConfigScreenMixin",
     "FallingBlockMixin",
     "FinishInitializationMixin",
-    "entrance.BlockMixin",
-    "entrance.RenderMixin"
+    "entrance.EntranceMixin",
+    "entrance.RenderMixin",
+    "entrance.WallMixin"
   ],
   "client": [
   ],

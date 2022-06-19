@@ -26,7 +26,7 @@ public abstract class FinishInitializationMixin
     private static void init(CallbackInfo callbackInfo) {
         LOGGER.info("----------------" + Reference.NAME + "----------------");
         LOGGER.info("Hello from ZiYueCommentary!");
-        LOGGER.info("ModID: " + Reference.MOD_ID);
+        LOGGER.info("Mod ID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
         Configs.refreshProperties();
     }

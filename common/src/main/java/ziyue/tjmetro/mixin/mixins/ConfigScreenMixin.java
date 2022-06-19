@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.mappings.ScreenMapper;
+import mtr.mappings.Text;
 import mtr.screen.ConfigScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.Button;
@@ -53,19 +54,19 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
 
     @Inject(method = "render", at = @At("TAIL"))
     public void render(PoseStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        drawCenteredString(matrices, font, new TranslatableComponent("gui.tjmetro.options"), width / 2, TEXT_PADDING*32, ARGB_WHITE);
+        drawCenteredString(matrices, font, Text.translatable("gui.tjmetro.options"), width / 2, TEXT_PADDING*32, ARGB_WHITE);
 
         int pos = 13;
         final int yStart1 = SQUARE_SIZE + TEXT_PADDING / 2;
-        try{
-            drawString(matrices, font, new TranslatableComponent("options.tjmetro.no_falling_blocks"), SQUARE_SIZE, BUTTON_HEIGHT * (pos++) + yStart1, ARGB_WHITE);
-        }catch(Exception e){
+        try {
+            drawString(matrices, font, Text.translatable("options.tjmetro.no_falling_blocks"), SQUARE_SIZE, BUTTON_HEIGHT * (pos++) + yStart1, ARGB_WHITE);
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
     private static void setButtonText(Button button, boolean state) {
-        button.setMessage(new TranslatableComponent(state ? "options.mtr.on" : "options.mtr.off"));
+        button.setMessage(Text.translatable(state ? "options.mtr.on" : "options.mtr.off"));
     }
 
     private static boolean setNoFallingBlocks(boolean value) {

@@ -4,12 +4,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mtr.block.BlockStationNameBase;
 import mtr.block.BlockStationNameEntrance;
+import mtr.block.BlockStationNameWallBase;
 import mtr.block.IBlock;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.render.MoreRenderLayers;
 import mtr.render.RenderStationNameBase;
-import mtr.render.RenderStationNameEntrance;
+import mtr.render.RenderStationNameTiled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
@@ -17,7 +18,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 
@@ -26,44 +27,62 @@ import ziyue.tjmetro.mixin.properties.ShowNameProperty;
  * Inspired by <a href="https://github.com/jonafanho/Minecraft-Transit-Railway/issues/172">Issue #172: 奇怪的“站站”、“Station Station”</a>
  * @author ZiYueCommentary
  * @since 1.0b
- * @see RenderStationNameEntrance
- * @see BlockMixin
+ * @see mtr.render.RenderStationNameTiled
+ * @see EntranceMixin
  */
 
-@Mixin(RenderStationNameEntrance.class)
+@Mixin(RenderStationNameTiled.class)
 public abstract class RenderMixin extends RenderStationNameBase<BlockStationNameEntrance.TileEntityStationNameEntrance>
 {
-    public RenderMixin(BlockEntityRenderDispatcher dispatcher) {
+    public RenderMixin(BlockEntityRenderDispatcher dispatcher, boolean showLogo) {
         super(dispatcher);
+        this.showLogo = showLogo;
     }
+
+    private final boolean showLogo;
 
     @Override
     protected void drawStationName(BlockStationNameBase.TileEntityStationNameBase entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int color, int light) {
-        BlockGetter world = entity.getLevel();
-        BlockPos pos = entity.getBlockPos();
-        if (world != null) {
-            Direction facing = IBlock.getStatePropertySafe(world, pos, BlockStationNameBase.FACING);
-            int propagateProperty = IBlock.getStatePropertySafe(world, pos, BlockStationNameEntrance.STYLE);
-            float logoSize = propagateProperty % 2 == 0 ? 0.5F : 1.0F;
-            int length = this.getLength(world, pos);
-            String str = IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, stationName);
-            boolean showStation = ((ShowNameProperty)world.getBlockState(pos).getBlock()).getShowNameProperty(world.getBlockState(pos)); //need show "station"?
-            IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, showStation ? str : str.replaceFirst(" Station", "").replaceFirst("站", ""), HorizontalAlignment.LEFT, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, ((float)length + logoSize) / 2.0F - 0.5F, 0.0F, (float)length - logoSize, logoSize - 0.125F, 40.0F / logoSize, propagateProperty >= 2 && propagateProperty < 4 ? -16777216 : -1, false, 15728880, (x1, y1, x2, y2) -> {
-                VertexConsumer vertexConsumer = vertexConsumers.getBuffer(MoreRenderLayers.getInterior(new ResourceLocation("mtr:textures/sign/logo.png")));
-                IDrawing.drawTexture(matrices, vertexConsumer, x1 - logoSize, -logoSize / 2.0F, logoSize, logoSize, facing, 15728880);
-            });
+        final BlockGetter world = entity.getLevel();
+        final BlockPos pos = entity.getBlockPos();
+
+        if (world == null) {
+            return;
+        }
+
+        String displayContent = IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, stationName);
+        displayContent = ((ShowNameProperty)world.getBlockState(pos).getBlock()).getShowNameProperty(world.getBlockState(pos)) ? displayContent : stationName.replaceFirst(" Station", "").replaceFirst("站", "");
+        final int length = getLength(world, pos);
+        if (showLogo) {
+            final Direction facing = IBlock.getStatePropertySafe(world, pos, BlockStationNameBase.FACING);
+            final int propagateProperty = IBlock.getStatePropertySafe(world, pos, BlockStationNameEntrance.STYLE);
+            final float logoSize = propagateProperty % 2 == 0 ? 0.5F : 1;
+            IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, displayContent, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, (length + logoSize) / 2 - 0.5F, 0, length - logoSize, logoSize - 0.125F, 40 / logoSize, propagateProperty < 2 || propagateProperty >= 4 ? ARGB_WHITE : ARGB_BLACK, false, MAX_LIGHT_GLOWING, ((x1, y1, x2, y2) -> {
+                final VertexConsumer vertexConsumer = vertexConsumers.getBuffer(MoreRenderLayers.getInterior(new ResourceLocation("mtr:textures/sign/logo.png")));
+                IDrawing.drawTexture(matrices, vertexConsumer, x1 - logoSize, -logoSize / 2, logoSize, logoSize, facing, MAX_LIGHT_GLOWING);
+            }));
+        } else if (entity instanceof BlockStationNameWallBase.TileEntityStationNameWallBase) {
+            IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, displayContent, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, length / 2F - 0.5F, 0, length, 0.875F, 60, ((BlockStationNameWallBase.TileEntityStationNameWallBase) entity).color, false, light, null);
         }
     }
 
     private int getLength(BlockGetter world, BlockPos pos) {
-        if (world == null) return 1;
-        Direction facing = IBlock.getStatePropertySafe(world, pos, BlockStationNameEntrance.FACING);
-        int length = 1;
-
-        while(true) {
-            BlockState state = world.getBlockState(pos.relative(facing.getClockWise(), length));
-            if (!(state.getBlock() instanceof BlockStationNameEntrance)) return length;
-            ++length;
+        if (world == null) {
+            return 1;
         }
+        final Direction facing = IBlock.getStatePropertySafe(world, pos, BlockStationNameBase.FACING);
+        final Block thisBlock = world.getBlockState(pos).getBlock();
+
+        int length = 1;
+        while (true) {
+            final Block checkBlock = world.getBlockState(pos.relative(facing.getClockWise(), length)).getBlock();
+            if (checkBlock instanceof BlockStationNameBase && checkBlock == thisBlock) {
+                length++;
+            } else {
+                break;
+            }
+        }
+
+        return length;
     }
 }

@@ -21,8 +21,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-       Entity seat = new Minecart(level, blockPos.getX(), blockPos.getY(), blockPos.getZ());
-
+        Entity seat = new Minecart(level, blockPos.getX(), blockPos.getY(), blockPos.getZ());
         return InteractionResult.SUCCESS;
     }
 }

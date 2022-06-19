@@ -29,9 +29,9 @@ import static mtr.block.BlockStationNameEntrance.STYLE;
  */
 
 @Mixin(BlockStationNameEntrance.class)
-public abstract class BlockMixin extends BlockStationNameBase implements IBlock, ShowNameProperty
+public abstract class EntranceMixin extends BlockStationNameBase implements IBlock, ShowNameProperty
 {
-    protected BlockMixin(Properties settings) {
+    protected EntranceMixin(Properties settings) {
         super(settings);
     }
 

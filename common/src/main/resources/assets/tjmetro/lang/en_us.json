@@ -1,5 +1,6 @@
 {
     "itemGroup.tjmetro.tjmetro_tab": "Tianjin Metro",
+
     "block.tjmetro.rolling": "Rolling shutter",
     "block.tjmetro.logo": "Tianjin Metro Logo",
     "block.tjmetro.station_name_sign_1": "Station Name Sign",
@@ -15,11 +16,13 @@
     "block.tjmetro.platform_tj_2_indented": "Platform (Tianjin)",
     "block.tjmetro.marble_yellow": "Yellow Marble",
     "block.tjmetro.marble_yellow_slab": "Yellow Marble Slab",
+    "block.tjmetro.station_name_wall_legacy": "Station Name (Wall, Legacy)",
 
     "gui.tjmetro.options": "Tianjin Metro Options",
     "gui.tjmetro.custom_content": "Custom display content",
 
     "options.tjmetro.no_falling_blocks": "Prevent Falling Blocks",
+
     "tooltip.tjmetro.no_suggest": "This feature is not suggest.",
     "tooltip.tjmetro.station_name": "Text depends on the station"
 }

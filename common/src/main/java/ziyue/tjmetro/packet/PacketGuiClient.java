@@ -25,7 +25,7 @@ public class PacketGuiClient
             }
         });
     }
-    public static void sendTrainSensorC2S(BlockPos pos, String content) {
+    public static void sendCustomContentC2S(BlockPos pos, String content) {
         final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
         packet.writeBlockPos(pos);
         packet.writeUtf(content);

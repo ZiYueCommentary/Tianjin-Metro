@@ -52,7 +52,12 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
     public static class TileEntityRoadBlockSign extends CustomContentBlockEntity
     {
         public TileEntityRoadBlockSign(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.ROADBLOCK_SIGN_ENTITY.get(), pos, state, 0, 0.55f);
+            super(BlockEntityTypes.ROADBLOCK_SIGN_ENTITY.get(), pos, state, 0, 0.535f);
+        }
+
+        @Override
+        public boolean shouldRender() {
+            return true;
         }
     }
 }

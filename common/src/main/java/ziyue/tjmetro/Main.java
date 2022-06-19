@@ -46,6 +46,7 @@ public class Main
 		registerBlockItem.accept("platform_tj_2_indented", BlockList.PLATFORM_TJ_2_INDENTED, TAB);
 		registerBlockItem.accept("marble_yellow", BlockList.MARBLE_YELLOW, TAB);
 		registerBlockItem.accept("marble_yellow_slab", BlockList.MARBLE_YELLOW_SLAB, TAB);
+		registerBlockItem.accept("station_name_wall_legacy", BlockList.STATION_NAME_WALL_LEGACY, TAB);
 
 		registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
 		registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);

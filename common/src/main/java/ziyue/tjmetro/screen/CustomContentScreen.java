@@ -4,13 +4,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.mappings.ScreenMapper;
+import mtr.mappings.Text;
 import mtr.packet.IPacket;
 import mtr.screen.WidgetBetterTextField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.blocks.CustomContentBlockEntity;
 import ziyue.tjmetro.packet.PacketGuiClient;
@@ -26,7 +26,7 @@ import ziyue.tjmetro.packet.PacketGuiClient;
 public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
 {
     protected final BlockPos pos;
-    protected final WidgetBetterTextField textField = new WidgetBetterTextField(null, "");
+    protected final WidgetBetterTextField textField = new WidgetBetterTextField(null);
     protected String content;
 
     public CustomContentScreen(BlockPos pos) {
@@ -57,7 +57,7 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
     public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         try {
             renderBackground(matrices);
-            font.draw(matrices, new TranslatableComponent("gui.tjmetro.custom_content"), SQUARE_SIZE, TEXT_PADDING, ARGB_WHITE);
+            font.draw(matrices, Text.translatable("gui.tjmetro.custom_content"), SQUARE_SIZE, TEXT_PADDING, ARGB_WHITE);
             textField.setWidth((int)(width /1.1));
             super.render(matrices, mouseX, mouseY, delta);
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
 
     @Override
     public void onClose() {
-        PacketGuiClient.sendTrainSensorC2S(pos, textField.getValue());
+        PacketGuiClient.sendCustomContentC2S(pos, textField.getValue());
         if(!textField.getValue().equals("")) ziyue.tjmetro.Main.LOGGER.info("Use custom content!");
         super.onClose();
     }

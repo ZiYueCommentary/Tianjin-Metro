@@ -18,8 +18,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.blocks.BlockRoadblockSign;
 
-import static ziyue.tjmetro.blocks.BlockRoadblock.IS_RIGHT;
-
 /**
  * Render content for <b>Roadblock with Sign</b>.<br>
  * Support display <i>custom content</i>.
@@ -45,21 +43,27 @@ public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBloc
         final BlockPos pos = entity.getBlockPos();
         final BlockState state = world.getBlockState(pos);
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
-        if (RenderTrains.shouldNotRender(pos, RenderTrains.maxTrainRenderDistance, facing)) return;
+        if (RenderTrains.shouldNotRender(pos, RenderTrains.maxTrainRenderDistance, null)) return;
 
         matrices.pushPose();
         matrices.translate(0.5, 0.5 + entity.yOffset, 0.5);
         matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
-        matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-        if(!world.getBlockState(pos).getValue(IS_RIGHT)) drawStationName(entity, matrices, vertexConsumers, immediate, entity.content, light);
+        for (int i = 0; i < 2; i++) {
+            matrices.pushPose();
+            matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
+            if(i == 1) matrices.translate(-1, 0, 0);
+            drawStationName(entity, matrices, vertexConsumers, immediate, entity.content, light);
+            matrices.popPose();
+            matrices.mulPose(Vector3f.YP.rotationDegrees(180));
+        }
         immediate.endBatch();
         matrices.popPose();
     }
 
     protected void drawStationName(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String content, int light)
     {
-        IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, content, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0.5f, -0.15f, 0.85F*2 + 0.05f, 1F, 105, ARGB_WHITE, false, light, null);
+        IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, content, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0.5f, -0.15f, 0.85F*2 + 0.05f, 1F, 90, ARGB_WHITE, false, light, null);
     }
 }

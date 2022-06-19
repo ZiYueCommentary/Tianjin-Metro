@@ -1,11 +1,11 @@
 package ziyue.tjmetro.blocks;
 
 import mtr.mappings.BlockEntityMapper;
+import mtr.mappings.Text;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -48,7 +48,7 @@ public class BlockStationNameSign2 extends BlockStationNameSignBase
 
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter blockGetter, List<Component> tooltip, TooltipFlag tooltipFlag) {
-        tooltip.add(new TranslatableComponent("tooltip.tjmetro.station_name").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        tooltip.add(Text.translatable("tooltip.tjmetro.station_name").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
     }
 
     public static class TileEntityStationNameWall extends BlockStationNameSignBase.TileEntityStationNameBase
