@@ -9,21 +9,23 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
-import static ziyue.tjmetro.Main.LOGGER;
+import static ziyue.tjmetro.TianjinMetro.LOGGER;
 
 /**
+ * Some methods similar to methods in IBlock.
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see mtr.block.IBlock
+ * @since 1.0b
  */
 
-public interface IBlockExtension
+public interface IBlockExtends
 {
     static void onBreakCreative(Level world, Player player, BlockPos pos) {
         if (!world.isClientSide && player == null || player.isCreative()) {
             try {
                 world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
-            } catch(Exception exception) {
+            } catch (Exception exception) {
                 LOGGER.warn("Get " + WATERLOGGED.getName() + " status failed: replace with air");
                 world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
             }
@@ -35,9 +37,9 @@ public interface IBlockExtension
     static void onBreakCreative(Level world, Player player, BlockPos pos, Block block) {
         if (!world.isClientSide && player == null || player.isCreative()) {
             try {
-                if(world.getBlockState(pos).getBlock() == block)
+                if (world.getBlockState(pos).getBlock() == block)
                     world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
-            } catch(Exception exception) {
+            } catch (Exception exception) {
                 LOGGER.warn("Get " + WATERLOGGED.getName() + " status failed: replace with air");
                 world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
             }
@@ -50,7 +52,7 @@ public interface IBlockExtension
         if (!world.isClientSide && player == null || player.isCreative()) {
             try {
                 world.setBlock(pos, world.getBlockState(pos).getValue(property) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
-            } catch(Exception exception) {
+            } catch (Exception exception) {
                 LOGGER.warn("Get " + property.getName() + " status failed: replace with air");
                 world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
             }
@@ -63,7 +65,7 @@ public interface IBlockExtension
         if (!world.isClientSide && player == null || player.isCreative()) {
             try {
                 world.setBlock(pos, world.getBlockState(pos).getValue(property) ? block.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
-            } catch(Exception exception) {
+            } catch (Exception exception) {
                 LOGGER.warn("Get " + property.getName() + " status failed: replace with air");
                 world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
             }

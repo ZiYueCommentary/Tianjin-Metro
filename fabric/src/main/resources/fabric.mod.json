@@ -8,9 +8,10 @@
 		"ZiYueCommentary"
 	],
 	"contact": {
-		"sources": "https://github.com/ZiYueCommentary/Tianjin-Metro",
-		"issues": "https://github.com/ZiYueCommentary/Tianjin-Metro/issues"
-	},
+      "sources": "https://github.com/ZiYueCommentary/Tianjin-Metro",
+      "issues": "https://github.com/ZiYueCommentary/Tianjin-Metro/issues",
+      "email": "ziyuecommentary@gmail.com"
+    },
 	"license": "MIT",
 	"icon": "icon.png",
 	"environment": "*",

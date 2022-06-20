@@ -15,13 +15,15 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
+import ziyue.tjmetro.blocks.base.CustomContentBlockEntity;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 /**
  * Roadblock with content.
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see BlockRoadblock
+ * @since 1.0b
  */
 
 public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMapper

@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import ziyue.tjmetro.blocks.CustomContentBlockEntity;
+import ziyue.tjmetro.blocks.base.CustomContentBlockEntity;
 import ziyue.tjmetro.screen.CustomContentScreen;
 
 import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_CONTENT;
@@ -25,6 +25,7 @@ public class PacketGuiClient
             }
         });
     }
+
     public static void sendCustomContentC2S(BlockPos pos, String content) {
         final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
         packet.writeBlockPos(pos);

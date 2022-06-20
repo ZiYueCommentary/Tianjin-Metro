@@ -19,7 +19,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import ziyue.tjmetro.IBlockExtension;
+import ziyue.tjmetro.IBlockExtends;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
@@ -53,16 +53,16 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
         boolean isRight = state.getValue(IS_RIGHT);
         switch (state.getValue(FACING)) {
             case NORTH:
-                IBlockExtension.onBreakCreative(world, player, isRight ? pos.west() : pos.east(), this);
+                IBlockExtends.onBreakCreative(world, player, isRight ? pos.west() : pos.east(), this);
                 break;
             case WEST:
-                IBlockExtension.onBreakCreative(world, player, isRight ? pos.south() : pos.north(), this);
+                IBlockExtends.onBreakCreative(world, player, isRight ? pos.south() : pos.north(), this);
                 break;
             case SOUTH:
-                IBlockExtension.onBreakCreative(world, player, isRight ? pos.east() : pos.west(), this);
+                IBlockExtends.onBreakCreative(world, player, isRight ? pos.east() : pos.west(), this);
                 break;
             case EAST:
-                IBlockExtension.onBreakCreative(world, player, isRight ? pos.north() : pos.south(), this);
+                IBlockExtends.onBreakCreative(world, player, isRight ? pos.north() : pos.south(), this);
                 break;
         }
         super.playerWillDestroy(world, pos, state, player);
@@ -70,12 +70,12 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return IBlock.getVoxelShapeByDirection(0,0,5,16,17,11, blockState.getValue(FACING));
+        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, 17, 11, blockState.getValue(FACING));
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return IBlock.getVoxelShapeByDirection(0,0,5,16,24,11, blockState.getValue(FACING));
+        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, 24, 11, blockState.getValue(FACING));
     }
 
     @Override

@@ -5,8 +5,8 @@ import mtr.screen.WidgetColorSelector;
 
 /**
  * @author ZiYueCommentary
- * @since 1.0b
  * @see mtr.screen.WidgetColorSelector
+ * @since 1.0b
  */
 
 public class ColorPickerScreen extends WidgetColorSelector

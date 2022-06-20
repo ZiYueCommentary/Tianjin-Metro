@@ -20,7 +20,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.blocks.BlockStationNameSignBase;
+import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 
 /**
  * Render content for <b>Station Name Sign Block</b>.<br>

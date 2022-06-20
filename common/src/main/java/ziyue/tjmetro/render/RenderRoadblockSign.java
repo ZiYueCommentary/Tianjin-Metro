@@ -21,10 +21,11 @@ import ziyue.tjmetro.blocks.BlockRoadblockSign;
 /**
  * Render content for <b>Roadblock with Sign</b>.<br>
  * Support display <i>custom content</i>.
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see ziyue.tjmetro.screen.CustomContentScreen
  * @see ziyue.tjmetro.blocks.BlockRoadblockSign
+ * @since 1.0b
  */
 
 public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBlockSign> extends BlockEntityRendererMapper<T> implements IGui, IDrawing
@@ -52,8 +53,8 @@ public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBloc
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         for (int i = 0; i < 2; i++) {
             matrices.pushPose();
-            matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
-            if(i == 1) matrices.translate(-1, 0, 0);
+            matrices.translate(0, 0.02, 0.5 - entity.zOffset - SMALL_OFFSET);
+            if (i == 1) matrices.translate(-1, 0, 0);
             drawStationName(entity, matrices, vertexConsumers, immediate, entity.content, light);
             matrices.popPose();
             matrices.mulPose(Vector3f.YP.rotationDegrees(180));
@@ -62,8 +63,7 @@ public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBloc
         matrices.popPose();
     }
 
-    protected void drawStationName(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String content, int light)
-    {
-        IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, content, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0.5f, -0.15f, 0.85F*2 + 0.05f, 1F, 90, ARGB_WHITE, false, light, null);
+    protected void drawStationName(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String content, int light) {
+        IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, content, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0.5f, -0.15f, 0.85F * 2 + 0.05f, 1F, 90, ARGB_WHITE, false, light, null);
     }
 }

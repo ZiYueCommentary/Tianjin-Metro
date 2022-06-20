@@ -52,10 +52,10 @@ public class BlockRolling extends Block implements SimpleWaterloggedBlock
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        if(blockState.getValue(FACING))
-            return Block.box(6,0,0,10,16,16);
+        if (blockState.getValue(FACING))
+            return Block.box(6, 0, 0, 10, 16, 16);
         else
-            return Block.box(0,0,6,16,16,10);
+            return Block.box(0, 0, 6, 16, 16, 10);
     }
 
     @Override
@@ -72,8 +72,8 @@ public class BlockRolling extends Block implements SimpleWaterloggedBlock
 
     @Override
     public void neighborChanged(BlockState blockState, Level level, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl) {
-        if(!blockState.getValue(CHANGED)) {
-            if(level.getBlockState(blockPos.below()).getBlock() == BlockList.ROLLING.get())
+        if (!blockState.getValue(CHANGED)) {
+            if (level.getBlockState(blockPos.below()).getBlock() == BlockList.ROLLING.get())
                 level.setBlockAndUpdate(blockPos, blockState.setValue(BOTTOM, false));
             else
                 level.setBlockAndUpdate(blockPos, blockState.setValue(BOTTOM, true));

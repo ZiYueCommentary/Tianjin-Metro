@@ -11,19 +11,21 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
+import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 
 /**
  * First variant for <b>Station Name Sign</b>.
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see BlockStationNameSignBase
+ * @since 1.0b
  */
 
 public class BlockStationNameSign1 extends BlockStationNameSignBase
 {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if(player.isHolding(Items.STICK)) return super.use(state, world, pos, player, interactionHand, blockHitResult);
+        if (player.isHolding(Items.STICK)) return super.use(state, world, pos, player, interactionHand, blockHitResult);
         return IBlock.checkHoldingBrush(world, player, () -> {
             final boolean isWhite = IBlock.getStatePropertySafe(state, COLOR) == 0;
             final int newColorProperty = isWhite ? 2 : 0;
@@ -33,8 +35,7 @@ public class BlockStationNameSign1 extends BlockStationNameSignBase
     }
 
     @Override
-    public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state)
-    {
+    public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state) {
         return new BlockStationNameSign1.TileEntityStationNameWall(pos, state);
     }
 
@@ -45,8 +46,7 @@ public class BlockStationNameSign1 extends BlockStationNameSignBase
         }
     }
 
-    private static void updateProperties(Level world, BlockPos pos, int colorProperty)
-    {
+    private static void updateProperties(Level world, BlockPos pos, int colorProperty) {
         world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(COLOR, colorProperty));
     }
 }

@@ -6,10 +6,11 @@ import ziyue.tjmetro.mixin.mixins.entrance.RenderMixin;
 
 /**
  * Stores the method used for the <i>No "station" of station name entrance</i> feature
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see EntranceMixin
  * @see RenderMixin
+ * @since 1.0b
  */
 
 public interface ShowNameProperty

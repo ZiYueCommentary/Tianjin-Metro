@@ -19,21 +19,23 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
+import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 
 import java.util.List;
 
 /**
  * Second variant for <b>Station Name Sign</b>.
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see BlockStationNameSignBase
+ * @since 1.0b
  */
 
 public class BlockStationNameSign2 extends BlockStationNameSignBase
 {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if(player.getName().toString().equals("EnderkingIIII")) { //easter egg lol
+        if (player.getName().toString().equals("EnderkingIIII")) { //easter egg lol
             world.explode(player, DamageSource.MAGIC, new ExplosionDamageCalculator(), player.getX(), player.getY(), player.getZ(), 5f, true, Explosion.BlockInteraction.DESTROY);
             LOGGER.warn("EnderkingIIII found!");
         }
@@ -41,8 +43,7 @@ public class BlockStationNameSign2 extends BlockStationNameSignBase
     }
 
     @Override
-    public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state)
-    {
+    public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state) {
         return new BlockStationNameSign2.TileEntityStationNameWall(pos, state);
     }
 

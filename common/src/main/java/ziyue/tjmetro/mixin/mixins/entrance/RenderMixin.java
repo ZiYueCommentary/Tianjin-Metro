@@ -25,10 +25,11 @@ import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 /**
  * Core of <i>No "station" of station name entrance</i> feature<br>
  * Inspired by <a href="https://github.com/jonafanho/Minecraft-Transit-Railway/issues/172">Issue #172: 奇怪的“站站”、“Station Station”</a>
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see mtr.render.RenderStationNameTiled
  * @see EntranceMixin
+ * @since 1.0b
  */
 
 @Mixin(RenderStationNameTiled.class)
@@ -46,12 +47,10 @@ public abstract class RenderMixin extends RenderStationNameBase<BlockStationName
         final BlockGetter world = entity.getLevel();
         final BlockPos pos = entity.getBlockPos();
 
-        if (world == null) {
-            return;
-        }
+        if (world == null) return;
 
         String displayContent = IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, stationName);
-        displayContent = ((ShowNameProperty)world.getBlockState(pos).getBlock()).getShowNameProperty(world.getBlockState(pos)) ? displayContent : stationName.replaceFirst(" Station", "").replaceFirst("站", "");
+        displayContent = ((ShowNameProperty) world.getBlockState(pos).getBlock()).getShowNameProperty(world.getBlockState(pos)) ? displayContent : stationName.replaceFirst(" Station", "").replaceFirst("站", "");
         final int length = getLength(world, pos);
         if (showLogo) {
             final Direction facing = IBlock.getStatePropertySafe(world, pos, BlockStationNameBase.FACING);

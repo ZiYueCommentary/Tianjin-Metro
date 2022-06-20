@@ -32,9 +32,10 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 /**
  * Ceiling with station color, support using brush to set <i>light/no light</i>.
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see BlockCeilingAuto
+ * @since 1.0b
  */
 
 public class BlockStationColorCeilingAuto extends BlockCeilingAuto implements SimpleWaterloggedBlock

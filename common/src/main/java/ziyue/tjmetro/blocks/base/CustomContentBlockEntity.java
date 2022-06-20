@@ -1,4 +1,4 @@
-package ziyue.tjmetro.blocks;
+package ziyue.tjmetro.blocks.base;
 
 import mtr.mappings.BlockEntityClientSerializableMapper;
 import net.minecraft.core.BlockPos;

@@ -22,10 +22,11 @@ import static mtr.block.BlockStationNameEntrance.STYLE;
 /**
  * Made for <i>No "station" of station name entrance</i> feature<br>
  * Inspired by <a href="https://github.com/jonafanho/Minecraft-Transit-Railway/issues/172">Issue #172: 奇怪的“站站”、“Station Station”</a>
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see BlockStationNameEntrance
  * @see RenderMixin
+ * @since 1.0b
  */
 
 @Mixin(BlockStationNameEntrance.class)
@@ -44,7 +45,7 @@ public abstract class EntranceMixin extends BlockStationNameBase implements IBlo
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if(player.isHolding(Items.SHEARS)){
+        if (player.isHolding(Items.SHEARS)) {
             world.setBlockAndUpdate(pos, state.setValue(SHOW_NAME, !state.getValue(SHOW_NAME)));
             propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).getClockWise(), SHOW_NAME, 1);
             propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).getCounterClockWise(), SHOW_NAME, 1);

@@ -9,7 +9,13 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import ziyue.tjmetro.blocks.BlockStationNameWallLegacy;
 
-public class RenderStationNameWallLegacy extends RenderStationNameBase<BlockStationNameWallLegacy.TileEntityStationNameWall> {
+/**
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
+public class RenderStationNameWallLegacy extends RenderStationNameBase<BlockStationNameWallLegacy.TileEntityStationNameWall>
+{
 
     public RenderStationNameWallLegacy(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);

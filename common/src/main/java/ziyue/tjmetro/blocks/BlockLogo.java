@@ -20,21 +20,20 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 /**
  * Logo of <b>Tianjin Metro</b>.
+ *
  * @author ZiYueCommentary
  * @since 1.0b
  */
 
 public class BlockLogo extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
-    public BlockLogo()
-    {
+    public BlockLogo() {
         super(Properties.copy(Blocks.LOGO.get()).noCollission().lightLevel((state) -> 0));
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext)
-    {
-        return IBlock.getVoxelShapeByDirection(0,0,0,16,16,1, state.getValue(FACING));
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
+        return IBlock.getVoxelShapeByDirection(0, 0, 0, 16, 16, 1, state.getValue(FACING));
     }
 
     @Nullable

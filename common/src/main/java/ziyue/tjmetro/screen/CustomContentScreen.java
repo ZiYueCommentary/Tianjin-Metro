@@ -12,15 +12,18 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import ziyue.tjmetro.blocks.CustomContentBlockEntity;
+import ziyue.tjmetro.TianjinMetro;
+import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
+import ziyue.tjmetro.blocks.base.CustomContentBlockEntity;
 import ziyue.tjmetro.packet.PacketGuiClient;
 
 /**
  * Custom content to display for <b>Station Name Sign Block</b>.
+ *
  * @author ZiYueCommentary
- * @since 1.0b
- * @see ziyue.tjmetro.blocks.BlockStationNameSignBase
+ * @see BlockStationNameSignBase
  * @see ziyue.tjmetro.render.RenderStationNameSign
+ * @since 1.0b
  */
 
 public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
@@ -38,7 +41,7 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof CustomContentBlockEntity)
-                content = ((CustomContentBlockEntity)entity).content;
+                content = ((CustomContentBlockEntity) entity).content;
         } else {
             content = "";
         }
@@ -58,7 +61,7 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
         try {
             renderBackground(matrices);
             font.draw(matrices, Text.translatable("gui.tjmetro.custom_content"), SQUARE_SIZE, TEXT_PADDING, ARGB_WHITE);
-            textField.setWidth((int)(width /1.1));
+            textField.setWidth((int) (width / 1.1));
             super.render(matrices, mouseX, mouseY, delta);
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,7 +76,7 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
     @Override
     public void onClose() {
         PacketGuiClient.sendCustomContentC2S(pos, textField.getValue());
-        if(!textField.getValue().equals("")) ziyue.tjmetro.Main.LOGGER.info("Use custom content!");
+        if (!textField.getValue().equals("")) TianjinMetro.LOGGER.info("Use custom content!");
         super.onClose();
     }
 

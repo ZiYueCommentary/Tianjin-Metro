@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 
-import static ziyue.tjmetro.Main.LOGGER;
+import static ziyue.tjmetro.TianjinMetro.LOGGER;
 
 /**
  * @author ZiYueCommentary
@@ -41,7 +41,8 @@ public class Configs
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_FILE_PATH))).getAsJsonObject();
             try {
                 noFallingBlocks = jsonConfig.get(NO_FALLING_BLOCKS).getAsBoolean();
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         } catch (Exception e) {
             writeToFile();
             e.printStackTrace();

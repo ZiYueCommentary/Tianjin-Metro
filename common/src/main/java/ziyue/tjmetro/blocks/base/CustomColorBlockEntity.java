@@ -1,4 +1,4 @@
-package ziyue.tjmetro.blocks;
+package ziyue.tjmetro.blocks.base;
 
 import mtr.mappings.BlockEntityClientSerializableMapper;
 import net.minecraft.core.BlockPos;
@@ -7,7 +7,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * If color equals -1, then use station color.
+ * If color equals <code>-1</code>, then use station color.
+ *
+ * @author ZiYueCommentary
+ * @since 1.0b
  */
 
 public class CustomColorBlockEntity extends BlockEntityClientSerializableMapper

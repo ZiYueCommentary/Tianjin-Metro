@@ -8,13 +8,13 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import ziyue.tjmetro.blocks.CustomContentBlockEntity;
+import ziyue.tjmetro.blocks.base.CustomContentBlockEntity;
 
 import static ziyue.tjmetro.packet.IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN;
 
 public class PacketGuiServer
 {
-    private static final int PACKET_CHUNK_SIZE = (int)Math.pow(2, 14); // 16384
+    private static final int PACKET_CHUNK_SIZE = (int) Math.pow(2, 14); // 16384
 
     public static void openCustomContentScreenS2C(ServerPlayer player, BlockPos blockPos) {
         final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
@@ -28,7 +28,7 @@ public class PacketGuiServer
         minecraftServer.execute(() -> {
             final BlockEntity entity = player.level.getBlockEntity(pos);
             if (entity instanceof CustomContentBlockEntity) {
-                ((CustomContentBlockEntity)entity).setData(content);
+                ((CustomContentBlockEntity) entity).setData(content);
             }
         });
     }

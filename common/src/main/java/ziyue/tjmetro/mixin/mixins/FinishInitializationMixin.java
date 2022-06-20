@@ -8,15 +8,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.Configs;
 import ziyue.tjmetro.Reference;
 
-import static ziyue.tjmetro.Main.LOGGER;
+import static ziyue.tjmetro.TianjinMetro.LOGGER;
 
 /**
  * Print info about <b>Tianjin Metro mod</b>, refresh configs at same time.<br>
  * This mixin is for testing originally.
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see Reference
  * @see RenderSystem
+ * @since 1.0b
  */
 
 @Mixin(RenderSystem.class)

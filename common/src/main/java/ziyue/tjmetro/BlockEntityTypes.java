@@ -3,10 +3,7 @@ package ziyue.tjmetro;
 import mtr.RegistryObject;
 import mtr.mappings.RegistryUtilities;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import ziyue.tjmetro.blocks.BlockRoadblockSign;
-import ziyue.tjmetro.blocks.BlockStationNameSign1;
-import ziyue.tjmetro.blocks.BlockStationNameSign2;
-import ziyue.tjmetro.blocks.BlockStationNameWallLegacy;
+import ziyue.tjmetro.blocks.*;
 
 public interface BlockEntityTypes
 {
@@ -14,4 +11,5 @@ public interface BlockEntityTypes
     RegistryObject<BlockEntityType<BlockStationNameSign2.TileEntityStationNameWall>> STATION_NAME_SIGN_ENTITY_2 = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockStationNameSign2.TileEntityStationNameWall::new, BlockList.STATION_NAME_SIGN_2.get()));
     RegistryObject<BlockEntityType<BlockRoadblockSign.TileEntityRoadBlockSign>> ROADBLOCK_SIGN_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockRoadblockSign.TileEntityRoadBlockSign::new, BlockList.ROADBLOCK_SIGN.get()));
     RegistryObject<BlockEntityType<BlockStationNameWallLegacy.TileEntityStationNameWall>> STATION_NAME_WALL_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockStationNameWallLegacy.TileEntityStationNameWall::new, BlockList.STATION_NAME_WALL_LEGACY.get()));
+    RegistryObject<BlockEntityType<BlockCustomColorConcrete.CustomColorConcreteEntity>> STATION_COLOR_CONCRETE_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockCustomColorConcrete.CustomColorConcreteEntity::new, BlockList.CUSTOM_COLOR_CONCRETE.get()));
 }
