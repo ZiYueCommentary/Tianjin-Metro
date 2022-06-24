@@ -16,6 +16,7 @@ import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.function.BiConsumer;
 
+import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_COLOR;
 import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_CONTENT;
 
 public class TianjinMetro
@@ -40,10 +41,12 @@ public class TianjinMetro
         registerBlockItem.accept("platform_tj_1_indented", BlockList.PLATFORM_TJ_1_INDENTED, TAB);
         registerBlockItem.accept("marble_gray", BlockList.MARBLE_GRAY, TAB);
         registerBlockItem.accept("marble_gray_slab", BlockList.MARBLE_GRAY_SLAB, TAB);
+        registerBlockItem.accept("marble_gray_stairs", BlockList.MARBLE_GRAY_STAIRS, TAB);
         registerBlockItem.accept("platform_tj_2", BlockList.PLATFORM_TJ_2, TAB);
         registerBlockItem.accept("platform_tj_2_indented", BlockList.PLATFORM_TJ_2_INDENTED, TAB);
         registerBlockItem.accept("marble_yellow", BlockList.MARBLE_YELLOW, TAB);
         registerBlockItem.accept("marble_yellow_slab", BlockList.MARBLE_YELLOW_SLAB, TAB);
+        registerBlockItem.accept("marble_yellow_stairs", BlockList.MARBLE_YELLOW_STAIRS, TAB);
         registerBlockItem.accept("station_name_wall_legacy", BlockList.STATION_NAME_WALL_LEGACY, TAB);
         registerBlockItem.accept("bench", BlockList.BENCH, TAB);
 
@@ -59,5 +62,6 @@ public class TianjinMetro
         registerBlockEntityType.accept("custom_color_concrete", BlockEntityTypes.STATION_COLOR_CONCRETE_TILE_ENTITY);
 
         Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
+        Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);
     }
 }

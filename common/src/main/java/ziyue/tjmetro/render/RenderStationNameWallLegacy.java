@@ -16,7 +16,6 @@ import ziyue.tjmetro.blocks.BlockStationNameWallLegacy;
 
 public class RenderStationNameWallLegacy extends RenderStationNameBase<BlockStationNameWallLegacy.TileEntityStationNameWall>
 {
-
     public RenderStationNameWallLegacy(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);
     }

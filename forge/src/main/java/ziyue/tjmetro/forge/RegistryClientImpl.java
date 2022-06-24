@@ -8,7 +8,7 @@ import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.TianjinMetro;
-import ziyue.tjmetro.blocks.base.CustomColorBlockEntity;
+import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
 public class RegistryClientImpl
 {
@@ -21,7 +21,7 @@ public class RegistryClientImpl
         @Override
         public int getColor(BlockState blockState, BlockAndTintGetter blockAndTintGetter, BlockPos pos, int i) {
             try {
-                final int color = ((CustomColorBlockEntity) blockAndTintGetter.getBlockEntity(pos)).color;
+                final int color = ((BlockCustomColorBase.CustomColorBlockEntity) blockAndTintGetter.getBlockEntity(pos)).color;
                 if (color != -1) return color;
             } catch (NullPointerException ignored) {
             } catch (Exception e) {

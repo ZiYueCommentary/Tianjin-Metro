@@ -1,18 +1,11 @@
 package ziyue.tjmetro.blocks;
 
 import mtr.mappings.BlockEntityMapper;
-import mtr.mappings.Text;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
@@ -20,8 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
-
-import java.util.List;
 
 /**
  * Second variant for <b>Station Name Sign</b>.
@@ -45,11 +36,6 @@ public class BlockStationNameSign2 extends BlockStationNameSignBase
     @Override
     public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state) {
         return new BlockStationNameSign2.TileEntityStationNameWall(pos, state);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter blockGetter, List<Component> tooltip, TooltipFlag tooltipFlag) {
-        tooltip.add(Text.translatable("tooltip.tjmetro.station_name").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
     }
 
     public static class TileEntityStationNameWall extends BlockStationNameSignBase.TileEntityStationNameBase

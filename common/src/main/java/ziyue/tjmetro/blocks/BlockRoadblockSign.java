@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
-import ziyue.tjmetro.blocks.base.CustomContentBlockEntity;
+import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 /**
@@ -49,9 +49,9 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
     }
 
     /**
-     * @see CustomContentBlockEntity
+     * @see CustomContentBlockBase.CustomContentBlockEntity
      */
-    public static class TileEntityRoadBlockSign extends CustomContentBlockEntity
+    public static class TileEntityRoadBlockSign extends CustomContentBlockBase.CustomContentBlockEntity
     {
         public TileEntityRoadBlockSign(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.ROADBLOCK_SIGN_ENTITY.get(), pos, state, 0, 0.535f);

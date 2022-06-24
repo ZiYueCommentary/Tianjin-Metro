@@ -38,7 +38,7 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
     private final Button buttonNoFallingBlocks = new Button(0, 0, 0, BUTTON_HEIGHT, new TextComponent(""), button -> {
         noFallingBlocks = setNoFallingBlocks(!noFallingBlocks);
         setButtonText(button, noFallingBlocks);
-    }, (button, poseStack, i, j) -> renderTooltip(poseStack, Text.translatable("tooltip.tjmetro.no_suggest").setStyle(Style.EMPTY.withColor(ChatFormatting.YELLOW)), i, j));
+    }, (button, poseStack, i, j) -> renderTooltip(poseStack, Text.translatable("tooltip.tjmetro.not_suggest").setStyle(Style.EMPTY.withColor(ChatFormatting.YELLOW)), i, j));
 
     private static final int BUTTON_WIDTH = 60;
     private static final int BUTTON_HEIGHT = TEXT_HEIGHT + TEXT_PADDING;
@@ -54,12 +54,16 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
 
     @Inject(method = "render", at = @At("TAIL"))
     public void render(PoseStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        drawCenteredString(matrices, font, Text.translatable("gui.tjmetro.options"), width / 2, TEXT_PADDING * 32, ARGB_WHITE);
-
-        int pos = 13;
-        final int yStart1 = SQUARE_SIZE + TEXT_PADDING / 2;
         try {
-            drawString(matrices, font, Text.translatable("options.tjmetro.no_falling_blocks"), SQUARE_SIZE, BUTTON_HEIGHT * (pos++) + yStart1, ARGB_WHITE);
+            drawCenteredString(matrices, font, Text.translatable("gui.tjmetro.options"), width / 2, TEXT_PADDING * 32, ARGB_WHITE);
+
+            int pos = 13;
+            final int yStart1 = SQUARE_SIZE + TEXT_PADDING / 2;
+            try {
+                drawString(matrices, font, Text.translatable("options.tjmetro.no_falling_blocks"), SQUARE_SIZE, BUTTON_HEIGHT * (pos++) + yStart1, ARGB_WHITE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

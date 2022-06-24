@@ -53,7 +53,7 @@ public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBloc
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         for (int i = 0; i < 2; i++) {
             matrices.pushPose();
-            matrices.translate(0, 0.02, 0.5 - entity.zOffset - SMALL_OFFSET);
+            matrices.translate(0, 0.023, 0.5 - entity.zOffset - SMALL_OFFSET);
             if (i == 1) matrices.translate(-1, 0, 0);
             drawStationName(entity, matrices, vertexConsumers, immediate, entity.content, light);
             matrices.popPose();

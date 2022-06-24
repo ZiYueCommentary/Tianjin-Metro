@@ -26,12 +26,7 @@ public class BlockStationNameSign1 extends BlockStationNameSignBase
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if (player.isHolding(Items.STICK)) return super.use(state, world, pos, player, interactionHand, blockHitResult);
-        return IBlock.checkHoldingBrush(world, player, () -> {
-            final boolean isWhite = IBlock.getStatePropertySafe(state, COLOR) == 0;
-            final int newColorProperty = isWhite ? 2 : 0;
-
-            updateProperties(world, pos, newColorProperty);
-        });
+        return IBlock.checkHoldingBrush(world, player, () -> world.setBlockAndUpdate(pos, state.cycle(COLOR)));
     }
 
     @Override
@@ -44,9 +39,5 @@ public class BlockStationNameSign1 extends BlockStationNameSignBase
         public TileEntityStationNameWall(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1.get(), pos, state);
         }
-    }
-
-    private static void updateProperties(Level world, BlockPos pos, int colorProperty) {
-        world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(COLOR, colorProperty));
     }
 }

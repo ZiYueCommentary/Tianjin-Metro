@@ -17,12 +17,12 @@
     "block.tjmetro.marble_yellow": "Yellow Marble",
     "block.tjmetro.marble_yellow_slab": "Yellow Marble Slab",
     "block.tjmetro.station_name_wall_legacy": "Station Name (Wall, Legacy)",
-
+    "block.tjmetro.marble_gray_stairs": "Gray Marble Stairs",
+    "block.tjmetro.marble_yellow_stairs": "Yellow Marble Stairs",
     "gui.tjmetro.options": "Tianjin Metro Options",
     "gui.tjmetro.custom_content": "Custom display content",
-
     "options.tjmetro.no_falling_blocks": "Prevent Falling Blocks",
-
-    "tooltip.tjmetro.no_suggest": "This feature is not suggest.",
-    "tooltip.tjmetro.station_name": "Text depends on the station"
+    "tooltip.tjmetro.not_suggest": "This feature is not suggest.",
+    "tooltip.tjmetro.station_name": "Text depends on the station",
+    "tooltip.tjmetro.custom_content": "Support custom display content"
 }

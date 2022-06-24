@@ -10,11 +10,10 @@ import mtr.screen.WidgetBetterTextField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
-import ziyue.tjmetro.blocks.base.CustomContentBlockEntity;
+import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiClient;
 
 /**
@@ -33,15 +32,15 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
     protected String content;
 
     public CustomContentScreen(BlockPos pos) {
-        super(new TextComponent(""));
+        super(Text.literal(""));
         this.pos = pos;
 
         minecraft = Minecraft.getInstance();
         final ClientLevel world = minecraft.level;
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof CustomContentBlockEntity)
-                content = ((CustomContentBlockEntity) entity).content;
+            if (entity instanceof CustomContentBlockBase.CustomContentBlockEntity)
+                content = ((CustomContentBlockBase.CustomContentBlockEntity) entity).content;
         } else {
             content = "";
         }
