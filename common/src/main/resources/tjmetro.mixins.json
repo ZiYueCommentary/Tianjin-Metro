@@ -4,6 +4,8 @@
   "package": "ziyue.tjmetro.mixin.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BlockCeilingAutoMixin",
+    "BlockCeilingLightMixin",
     "FallingBlockMixin",
     "FinishInitializationMixin",
     "entrance.EntranceMixin",

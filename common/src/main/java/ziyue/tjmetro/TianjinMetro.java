@@ -5,6 +5,8 @@ import mtr.Registry;
 import mtr.RegistryObject;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,14 +25,16 @@ public class TianjinMetro
 {
     public static final Logger LOGGER = LogManager.getLogger(Reference.NAME);
 
-    static CreativeModeTab TAB = Registry.getItemGroup(new ResourceLocation(Reference.MOD_ID, "tjmetro_tab"), () -> new ItemStack(BlockList.LOGO.get()));
+    public static final CreativeModeTab TAB = Registry.getItemGroup(new ResourceLocation(Reference.MOD_ID, "tjmetro_tab"), () -> new ItemStack(BlockList.LOGO.get()));
+    //public static final GameRules.Key<GameRules.BooleanValue> PREVENT_BLOCK_FALLING = register("preventBlockFalling", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(false));
 
     public static void init(
             BiConsumer<String, RegistryObject<Item>> registerItem,
             BiConsumer<String, RegistryObject<Block>> registerBlock,
             MTR.RegisterBlockItem registerBlockItem,
             MTR.RegisterBlockItem registerEnchantedBlockItem,
-            BiConsumer<String, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>>> registerBlockEntityType
+            BiConsumer<String, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>>> registerBlockEntityType,
+            BiConsumer<String, RegistryObject<? extends EntityType<? extends Entity>>> registerEntityType
     ) {
         registerBlockItem.accept("logo", BlockList.LOGO, TAB);
         registerBlockItem.accept("rolling", BlockList.ROLLING, TAB);
@@ -49,6 +53,8 @@ public class TianjinMetro
         registerBlockItem.accept("marble_yellow_stairs", BlockList.MARBLE_YELLOW_STAIRS, TAB);
         registerBlockItem.accept("station_name_wall_legacy", BlockList.STATION_NAME_WALL_LEGACY, TAB);
         registerBlockItem.accept("bench", BlockList.BENCH, TAB);
+        registerBlockItem.accept("ceiling_not_lit", BlockList.CEILING_NOT_LIT, TAB);
+        registerBlockItem.accept("station_color_ceiling_not_lit", BlockList.STATION_COLOR_CEILING_NOT_LIT, TAB);
 
         registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
         registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);
@@ -60,6 +66,8 @@ public class TianjinMetro
         registerBlockEntityType.accept("station_name_sign_1", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1);
         registerBlockEntityType.accept("roadblock_sign", BlockEntityTypes.ROADBLOCK_SIGN_ENTITY);
         registerBlockEntityType.accept("custom_color_concrete", BlockEntityTypes.STATION_COLOR_CONCRETE_TILE_ENTITY);
+
+        registerEntityType.accept("bench",  EntityTypes.BENCH);
 
         Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
         Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);

@@ -73,7 +73,7 @@ public class BlockStationColorCeilingAuto extends BlockCeilingAuto implements Si
         list.add(Text.translatable("tooltip.mtr.station_color").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
     }
 
-    private static boolean hasLight(boolean facing, BlockPos pos) {
+    protected static boolean hasLight(boolean facing, BlockPos pos) {
         if (facing) return pos.getZ() % 3 == 0;
         else return pos.getX() % 3 == 0;
     }

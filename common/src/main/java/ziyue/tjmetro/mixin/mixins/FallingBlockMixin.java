@@ -31,7 +31,7 @@ public abstract class FallingBlockMixin extends Block
 
     @Override
     public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
-        if(!noFallingBlocks)
+        if(!noFallingBlocks/*level.getGameRules().getBoolean(TianjinMetro.PREVENT_BLOCK_FALLING)*/)
             level.getBlockTicks().scheduleTick(blockPos, this, 2);
     }
 
@@ -42,7 +42,7 @@ public abstract class FallingBlockMixin extends Block
      */
     @Overwrite
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
-        if(!noFallingBlocks) {
+        if(!noFallingBlocks/*level.getGameRules().getBoolean(TianjinMetro.PREVENT_BLOCK_FALLING)*/) {
             if (isFree(serverLevel.getBlockState(blockPos.below())) && blockPos.getY() >= 0) {
                 FallingBlockEntity fallingBlockEntity = new FallingBlockEntity(serverLevel, (double) blockPos.getX() + 0.5, (double) blockPos.getY(), (double) blockPos.getZ() + 0.5, serverLevel.getBlockState(blockPos));
                 serverLevel.addFreshEntity(fallingBlockEntity);

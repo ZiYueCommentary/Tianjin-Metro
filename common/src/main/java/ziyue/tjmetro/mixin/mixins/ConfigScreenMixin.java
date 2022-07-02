@@ -21,11 +21,12 @@ import static ziyue.tjmetro.Configs.noFallingBlocks;
 import static ziyue.tjmetro.Configs.writeToFile;
 
 /**
- * Mix with MTR config screen.
+ * Mix with MTR config screen. Deprecated temporary.
  *
  * @author ZiYueCommentary
  * @see ConfigScreen
  * @since 1.0b
+ * @deprecated
  */
 
 @Mixin(ConfigScreen.class)
@@ -46,10 +47,11 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
     @Inject(method = "init", at = @At("TAIL"))
     protected void init(CallbackInfo ci) {
         Configs.refreshProperties();
-        int pos = 13;
-        IDrawing.setPositionAndWidth(buttonNoFallingBlocks, width - SQUARE_SIZE - BUTTON_WIDTH, BUTTON_HEIGHT * (pos++) + SQUARE_SIZE, BUTTON_WIDTH);
+        int pos1 = 13;
+        IDrawing.setPositionAndWidth(buttonNoFallingBlocks, width - SQUARE_SIZE - BUTTON_WIDTH, BUTTON_HEIGHT * (pos1++) + SQUARE_SIZE, BUTTON_WIDTH);
         setButtonText(buttonNoFallingBlocks, noFallingBlocks);
         addDrawableChild(buttonNoFallingBlocks);
+        if(!minecraft.isLocalServer())buttonNoFallingBlocks.active = false;
     }
 
     @Inject(method = "render", at = @At("TAIL"))
@@ -57,10 +59,10 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
         try {
             drawCenteredString(matrices, font, Text.translatable("gui.tjmetro.options"), width / 2, TEXT_PADDING * 32, ARGB_WHITE);
 
-            int pos = 13;
+            int pos1 = 13;
             final int yStart1 = SQUARE_SIZE + TEXT_PADDING / 2;
             try {
-                drawString(matrices, font, Text.translatable("options.tjmetro.no_falling_blocks"), SQUARE_SIZE, BUTTON_HEIGHT * (pos++) + yStart1, ARGB_WHITE);
+                drawString(matrices, font, Text.translatable("options.tjmetro.no_falling_blocks"), SQUARE_SIZE, BUTTON_HEIGHT * (pos1++) + yStart1, ARGB_WHITE);
             } catch (Exception e) {
                 e.printStackTrace();
             }

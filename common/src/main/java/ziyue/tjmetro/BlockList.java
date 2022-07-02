@@ -35,4 +35,6 @@ public interface BlockList
     RegistryObject<Block> MARBLE_YELLOW_STAIRS = new RegistryObject<>(() -> new StairBlock(MARBLE_YELLOW.get()));
     RegistryObject<Block> STATION_NAME_WALL_LEGACY = new RegistryObject<>(() -> new BlockStationNameWallLegacy(BlockBehaviour.Properties.copy(Blocks.STATION_NAME_WALL_WHITE.get()).noCollission()));
     RegistryObject<Block> CUSTOM_COLOR_CONCRETE = new RegistryObject<>(BlockCustomColorConcrete::new);
+    RegistryObject<Block> CEILING_NOT_LIT = new RegistryObject<>(BlockCeilingNotLit::new);
+    RegistryObject<Block> STATION_COLOR_CEILING_NOT_LIT = new RegistryObject<>(BlockStationColorCeilingNotLit::new);
 }

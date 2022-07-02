@@ -5,7 +5,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import ziyue.tjmetro.Configs;
 import ziyue.tjmetro.Reference;
 
 import static ziyue.tjmetro.TianjinMetro.LOGGER;
@@ -29,6 +28,6 @@ public abstract class FinishInitializationMixin
         LOGGER.info("Hello from ZiYueCommentary!");
         LOGGER.info("Mod ID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
-        Configs.refreshProperties();
+        //Configs.refreshProperties();
     }
 }
