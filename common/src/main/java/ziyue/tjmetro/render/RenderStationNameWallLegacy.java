@@ -12,6 +12,7 @@ import ziyue.tjmetro.blocks.BlockStationNameWallLegacy;
 /**
  * @author ZiYueCommentary
  * @since 1.0b
+ * @see RenderStationNameBase
  */
 
 public class RenderStationNameWallLegacy extends RenderStationNameBase<BlockStationNameWallLegacy.TileEntityStationNameWall>

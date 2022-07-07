@@ -21,6 +21,8 @@
   "block.tjmetro.marble_yellow_stairs": "黄色大理石楼梯",
   "block.tjmetro.ceiling_not_lit": "天花板（未亮起）",
   "block.tjmetro.station_color_ceiling_not_lit": "天花板（未亮起）",
+  "block.tjmetro.bench": "长椅",
+  "block.tjmetro.apg_corner": "低站台门转角",
 
   "gui.tjmetro.options": "Tianjin Metro 设置",
   "gui.tjmetro.custom_content": "自定义显示内容",

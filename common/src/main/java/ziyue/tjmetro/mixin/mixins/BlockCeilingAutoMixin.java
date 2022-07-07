@@ -17,6 +17,15 @@ import static mtr.block.BlockCeiling.FACING;
 import static mtr.block.BlockCeilingAuto.LIGHT;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
+/**
+ * Use shears to switch lit of <b>BlockCeilingAuto</b>.
+ *
+ * @author ZiYueCommentary
+ * @see BlockCeilingAuto
+ * @see BlockCeilingLightMixin
+ * @since 1.0b
+ */
+
 @Mixin(BlockCeilingAuto.class)
 public class BlockCeilingAutoMixin extends BlockMapper
 {

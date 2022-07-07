@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import ziyue.tjmetro.blocks.*;
+import ziyue.tjmetro.blocks.base.StairBlock;
 
 public interface BlockList
 {
@@ -37,4 +38,5 @@ public interface BlockList
     RegistryObject<Block> CUSTOM_COLOR_CONCRETE = new RegistryObject<>(BlockCustomColorConcrete::new);
     RegistryObject<Block> CEILING_NOT_LIT = new RegistryObject<>(BlockCeilingNotLit::new);
     RegistryObject<Block> STATION_COLOR_CEILING_NOT_LIT = new RegistryObject<>(BlockStationColorCeilingNotLit::new);
+    RegistryObject<Block> APG_CORNER = new RegistryObject<>(BlockAPGCorner::new);
 }

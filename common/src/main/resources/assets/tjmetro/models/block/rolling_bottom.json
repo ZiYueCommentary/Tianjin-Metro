@@ -1,5 +1,5 @@
 {
-	"credit": "ZiYueCommentary, Made with Blockbench",
+	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "block/light_gray_concrete",
 		"2": "block/white_stained_glass",
@@ -43,8 +43,8 @@
 			}
 		},
 		{
-			"from": [1, 1, 6.3],
-			"to": [15, 6, 9.8],
+			"from": [1, 1, 6.55],
+			"to": [15, 6, 9.55],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
 				"east": {"uv": [0, 0, 2, 16], "texture": "#1"},

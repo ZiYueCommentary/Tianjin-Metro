@@ -1,42 +1,8 @@
 {
-	"multipart": [
-		{
-			"when": {
-				"facing": "false",
-				"bottom": "false"
-			},
-			"apply": {
-				"model": "tjmetro:block/rolling"
-			}
-		},
-		{
-			"when": {
-				"facing": "true",
-				"bottom": "false"
-			},
-			"apply": {
-				"model": "tjmetro:block/rolling",
-				"y": 90
-			}
-		},
-		{
-			"when": {
-				"facing": "false",
-				"bottom": "true"
-			},
-			"apply": {
-				"model": "tjmetro:block/rolling_bottom"
-			}
-		},
-		{
-			"when": {
-				"facing": "true",
-				"bottom": "true"
-			},
-			"apply": {
-				"model": "tjmetro:block/rolling_bottom",
-				"y": 90
-			}
-		}
-    ]
+	"variants": {
+		"facing=true,bottom=true": { "model": "tjmetro:block/rolling_bottom", "y":  90 },
+		"facing=false,bottom=true": { "model": "tjmetro:block/rolling_bottom" },
+		"facing=true,bottom=false": { "model": "tjmetro:block/rolling", "y":  90 },
+		"facing=false,bottom=false": { "model": "tjmetro:block/rolling" }
+	}
 }

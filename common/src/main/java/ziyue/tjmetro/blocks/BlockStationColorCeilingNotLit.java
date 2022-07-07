@@ -29,6 +29,13 @@ import java.util.List;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockCeilingNotLit
+ * @see BlockStationColorCeiling
+ * @since 1.0b
+ */
+
 public class BlockStationColorCeilingNotLit extends BlockCeilingNotLit implements SimpleWaterloggedBlock
 {
     @Override

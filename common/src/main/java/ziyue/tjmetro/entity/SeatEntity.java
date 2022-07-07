@@ -1,16 +1,12 @@
 package ziyue.tjmetro.entity;
 
+import mtr.Registry;
 import mtr.mappings.EntityRendererMapper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 import ziyue.tjmetro.EntityTypes;
 
@@ -46,11 +42,6 @@ public class SeatEntity extends Entity
     }
 
     @Override
-    public InteractionResult interact(Player player, InteractionHand interactionHand) {
-        return super.interact(player, interactionHand);
-    }
-
-    @Override
     public boolean isAttackable() {
         return false;
     }
@@ -63,7 +54,7 @@ public class SeatEntity extends Entity
 
     @Override
     public Packet<?> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this, Block.getId(this.getBlockStateOn()));
+        return Registry.createAddEntityPacket(this);
     }
 
     public static class RenderSeat extends EntityRendererMapper<SeatEntity>

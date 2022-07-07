@@ -7,5 +7,5 @@ import ziyue.tjmetro.entity.SeatEntity;
 
 public interface EntityTypes
 {
-    RegistryObject<EntityType<SeatEntity>> BENCH = new RegistryObject<>(() -> EntityType.Builder.<SeatEntity>of((type, level) -> new SeatEntity(level), MobCategory.MISC).sized(0.5f, 0.5f).clientTrackingRange(8).build("bench"));
+    RegistryObject<EntityType<SeatEntity>> BENCH = new RegistryObject<>(() -> EntityType.Builder.<SeatEntity>of((type, level) -> new SeatEntity(level), MobCategory.MISC).sized(0.0f, 0.0f).build("bench"));
 }

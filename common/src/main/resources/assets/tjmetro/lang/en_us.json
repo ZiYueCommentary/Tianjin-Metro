@@ -21,6 +21,8 @@
   "block.tjmetro.marble_yellow_stairs": "Yellow Marble Stairs",
   "block.tjmetro.ceiling_not_lit": "Ceiling (Not lit)",
   "block.tjmetro.station_color_ceiling_not_lit": "Ceiling (Not lit)",
+  "block.tjmetro.bench": "Bench",
+  "block.tjmetro.apg_corner": "APG Corner",
 
   "gui.tjmetro.options": "Tianjin Metro Options",
   "gui.tjmetro.custom_content": "Custom display content",

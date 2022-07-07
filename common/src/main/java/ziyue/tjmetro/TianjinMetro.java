@@ -26,6 +26,7 @@ public class TianjinMetro
     public static final Logger LOGGER = LogManager.getLogger(Reference.NAME);
 
     public static final CreativeModeTab TAB = Registry.getItemGroup(new ResourceLocation(Reference.MOD_ID, "tjmetro_tab"), () -> new ItemStack(BlockList.LOGO.get()));
+    //it says "GameRuleFactory not found" :((((
     //public static final GameRules.Key<GameRules.BooleanValue> PREVENT_BLOCK_FALLING = register("preventBlockFalling", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(false));
 
     public static void init(
@@ -55,6 +56,7 @@ public class TianjinMetro
         registerBlockItem.accept("bench", BlockList.BENCH, TAB);
         registerBlockItem.accept("ceiling_not_lit", BlockList.CEILING_NOT_LIT, TAB);
         registerBlockItem.accept("station_color_ceiling_not_lit", BlockList.STATION_COLOR_CEILING_NOT_LIT, TAB);
+        registerBlockItem.accept("apg_corner", BlockList.APG_CORNER, TAB);
 
         registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
         registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);

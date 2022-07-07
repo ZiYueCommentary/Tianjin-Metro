@@ -21,6 +21,7 @@ public class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PLATFORM_TJ_1_INDENTED.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PLATFORM_TJ_2.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PLATFORM_TJ_2_INDENTED.get());
+        RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.APG_CORNER.get());
 
         RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING.get());
         RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING_LIGHT.get());

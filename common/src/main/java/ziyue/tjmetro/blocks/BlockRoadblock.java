@@ -53,16 +53,16 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
         boolean isRight = state.getValue(IS_RIGHT);
         switch (state.getValue(FACING)) {
             case NORTH:
-                IBlockExtends.onBreakCreative(world, player, isRight ? pos.west() : pos.east(), this);
+                IBlockExtends.onBreak(world, isRight ? pos.west() : pos.east(), this);
                 break;
             case WEST:
-                IBlockExtends.onBreakCreative(world, player, isRight ? pos.south() : pos.north(), this);
+                IBlockExtends.onBreak(world, isRight ? pos.south() : pos.north(), this);
                 break;
             case SOUTH:
-                IBlockExtends.onBreakCreative(world, player, isRight ? pos.east() : pos.west(), this);
+                IBlockExtends.onBreak(world, isRight ? pos.east() : pos.west(), this);
                 break;
             case EAST:
-                IBlockExtends.onBreakCreative(world, player, isRight ? pos.north() : pos.south(), this);
+                IBlockExtends.onBreak(world, isRight ? pos.north() : pos.south(), this);
                 break;
         }
         super.playerWillDestroy(world, pos, state, player);

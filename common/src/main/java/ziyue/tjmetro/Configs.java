@@ -14,6 +14,7 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
 /**
  * @author ZiYueCommentary
  * @since 1.0b
+ * @deprecated
  */
 
 public class Configs

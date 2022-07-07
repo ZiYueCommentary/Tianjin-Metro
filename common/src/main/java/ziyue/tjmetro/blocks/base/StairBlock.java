@@ -1,4 +1,4 @@
-package ziyue.tjmetro.blocks;
+package ziyue.tjmetro.blocks.base;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
