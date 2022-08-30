@@ -56,18 +56,13 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
 
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        Runnable runnable = () -> {
+        return IBlock.checkHoldingItem(world, player, item -> {
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof TileEntityStationNameBase) {
                 ((TileEntityStationNameBase) entity).syncData();
                 PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
             }
-        };
-        //如果用if语句判断之后再执行就会导致崩溃，syncData和player转换都有问题
-        //所以为什么这个可以？？
-        //我特么为这破事折腾两天
-        //2022/5/25
-        return IBlock.checkHoldingItem(world, player, item -> runnable.run(), null, Items.STICK);
+        }, null, Items.STICK);
     }
 
     @Override

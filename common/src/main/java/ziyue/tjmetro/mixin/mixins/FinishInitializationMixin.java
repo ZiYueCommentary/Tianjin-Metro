@@ -10,7 +10,8 @@ import ziyue.tjmetro.Reference;
 import static ziyue.tjmetro.TianjinMetro.LOGGER;
 
 /**
- * Print info about <b>Tianjin Metro mod</b>, refresh configs at same time.<br>
+ * Print references about <b>Tianjin Metro mod</b>.
+ * <br>
  * This mixin is for testing originally.
  *
  * @author ZiYueCommentary
@@ -20,7 +21,7 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
  */
 
 @Mixin(RenderSystem.class)
-public abstract class FinishInitializationMixin
+public class FinishInitializationMixin
 {
     @Inject(at = @At("TAIL"), method = "finishInitialization")
     private static void init(CallbackInfo callbackInfo) {

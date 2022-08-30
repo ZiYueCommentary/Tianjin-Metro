@@ -9,6 +9,7 @@ import mtr.mappings.ScreenMapper;
 import mtr.mappings.Text;
 import mtr.mappings.UtilitiesClient;
 import mtr.packet.IPacket;
+import mtr.screen.WidgetBetterCheckbox;
 import mtr.screen.WidgetBetterTextField;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -38,6 +39,7 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
     protected final WidgetBetterTextField textFieldRed;
     protected final WidgetBetterTextField textFieldGreen;
     protected final WidgetBetterTextField textFieldBlue;
+    protected final WidgetBetterCheckbox defaultColorCheckBox;
     protected static final int RIGHT_WIDTH = 60;
 
     public ColorPickerScreen(BlockPos pos, int oldColor) {
@@ -48,13 +50,14 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
         textFieldRed = new WidgetBetterTextField(WidgetBetterTextField.TextFieldFilter.POSITIVE_INTEGER, Text.literal(String.valueOf((oldColor >> 16) & 0xFF)).getString(), 3);
         textFieldGreen = new WidgetBetterTextField(WidgetBetterTextField.TextFieldFilter.POSITIVE_INTEGER, Text.literal(String.valueOf((oldColor >> 8) & 0xFF)).getString(), 3);
         textFieldBlue = new WidgetBetterTextField(WidgetBetterTextField.TextFieldFilter.POSITIVE_INTEGER, Text.literal(String.valueOf(oldColor & 0xFF)).getString(), 3);
+        defaultColorCheckBox = new WidgetBetterCheckbox(0, 0, 10, 100, Text.translatable("gui.tjmetro.default_color"), button -> textFieldBlue.active = false);
     }
 
     @Override
     protected void init() {
         super.init();
-        final int startX = SQUARE_SIZE * 4 + getMainWidth();
-        final int startY = SQUARE_SIZE + TEXT_HEIGHT + TEXT_PADDING + TEXT_FIELD_PADDING / 2;
+        final int startX = SQUARE_SIZE * 4 + getMainWidth() + 2;
+        final int startY = SQUARE_SIZE + TEXT_HEIGHT + TEXT_PADDING + TEXT_FIELD_PADDING / 2 + 2;
         IDrawing.setPositionAndWidth(textFieldColor, startX + TEXT_FIELD_PADDING / 2, startY, RIGHT_WIDTH - TEXT_FIELD_PADDING);
         IDrawing.setPositionAndWidth(textFieldRed, startX + TEXT_FIELD_PADDING / 2, startY + SQUARE_SIZE * 2 + TEXT_FIELD_PADDING, RIGHT_WIDTH - TEXT_FIELD_PADDING);
         IDrawing.setPositionAndWidth(textFieldGreen, startX + TEXT_FIELD_PADDING / 2, startY + SQUARE_SIZE * 3 + TEXT_FIELD_PADDING * 2, RIGHT_WIDTH - TEXT_FIELD_PADDING);
@@ -83,7 +86,7 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
             final BufferBuilder buffer = tesselator.getBuilder();
             UtilitiesClient.beginDrawingRectangle(buffer);
             final int selectedColor = Color.HSBtoRGB(hue, saturation, brightness);
-            IDrawing.drawRectangle(buffer, SQUARE_SIZE * 4 + mainWidth + 1, SQUARE_SIZE * 7 + TEXT_FIELD_PADDING * 4 + 1, SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH - 1, mainHeight - 1, selectedColor);
+            IDrawing.drawRectangle(buffer, SQUARE_SIZE * 4 + mainWidth + 3, SQUARE_SIZE * 7 + TEXT_FIELD_PADDING * 4 + 1, SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH + 1, mainHeight - 1, selectedColor);
             for (int drawHue = 0; drawHue < mainHeight; drawHue++) {
                 final int color = Color.HSBtoRGB((float) drawHue / (mainHeight - 1), 1, 1);
                 IDrawing.drawRectangle(buffer, SQUARE_SIZE * 2 + mainWidth, SQUARE_SIZE + drawHue, SQUARE_SIZE * 3 + mainWidth, SQUARE_SIZE + drawHue + 1, color);

@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author ZiYueCommentary
@@ -30,7 +31,7 @@ public abstract class BlockCustomColorBase extends Block implements EntityBlockM
      * @author ZiYueCommentary
      * @since 1.0b
      */
-    public static class CustomColorBlockEntity extends BlockEntityClientSerializableMapper
+    public static class CustomColorBlockEntity extends BlockEntityClientSerializableMapper implements RenderAttachmentBlockEntity
     {
         final String COLOR_ID = "color";
         public int color = -1;
@@ -56,6 +57,10 @@ public abstract class BlockCustomColorBase extends Block implements EntityBlockM
             setChanged();
             syncData();
         }
-    }
 
+        @Override
+        public @Nullable Object getRenderAttachmentData() {
+            return this;
+        }
+    }
 }

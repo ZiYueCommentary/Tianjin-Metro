@@ -18,8 +18,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 
 /**
@@ -35,12 +35,15 @@ import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 @Mixin(RenderStationNameTiled.class)
 public abstract class RenderMixin extends RenderStationNameBase<BlockStationNameEntrance.TileEntityStationNameEntrance>
 {
+    final boolean showLogo;
+
+    @Shadow
+    protected abstract int getLength(BlockGetter world, BlockPos pos);
+
     public RenderMixin(BlockEntityRenderDispatcher dispatcher, boolean showLogo) {
         super(dispatcher);
         this.showLogo = showLogo;
     }
-
-    private final boolean showLogo;
 
     @Override
     protected void drawStationName(BlockStationNameBase.TileEntityStationNameBase entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int color, int light) {
@@ -63,25 +66,5 @@ public abstract class RenderMixin extends RenderStationNameBase<BlockStationName
         } else if (entity instanceof BlockStationNameWallBase.TileEntityStationNameWallBase) {
             IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, displayContent, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, length / 2F - 0.5F, 0, length, 0.875F, 60, ((BlockStationNameWallBase.TileEntityStationNameWallBase) entity).color, false, light, null);
         }
-    }
-
-    private int getLength(BlockGetter world, BlockPos pos) {
-        if (world == null) {
-            return 1;
-        }
-        final Direction facing = IBlock.getStatePropertySafe(world, pos, BlockStationNameBase.FACING);
-        final Block thisBlock = world.getBlockState(pos).getBlock();
-
-        int length = 1;
-        while (true) {
-            final Block checkBlock = world.getBlockState(pos.relative(facing.getClockWise(), length)).getBlock();
-            if (checkBlock instanceof BlockStationNameBase && checkBlock == thisBlock) {
-                length++;
-            } else {
-                break;
-            }
-        }
-
-        return length;
     }
 }

@@ -12,19 +12,18 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.TianjinMetro;
-import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiClient;
 
 /**
- * Custom content to display for <b>Station Name Sign Block</b>.
+ * Custom content to display for <b>Custom Content Block</b>.
  *
  * @author ZiYueCommentary
- * @see BlockStationNameSignBase
- * @see ziyue.tjmetro.render.RenderStationNameSign
+ * @see CustomContentBlockBase
  * @since 1.0b
  */
 
+//todo
 public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
 {
     protected final BlockPos pos;
@@ -75,7 +74,8 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
     @Override
     public void onClose() {
         PacketGuiClient.sendCustomContentC2S(pos, textField.getValue());
-        if (!textField.getValue().equals("")) TianjinMetro.LOGGER.info("Use custom content!");
+        if (!textField.getValue().equals(""))
+            TianjinMetro.LOGGER.info("[" + pos.toShortString() + "]: Use custom content!");
         super.onClose();
     }
 

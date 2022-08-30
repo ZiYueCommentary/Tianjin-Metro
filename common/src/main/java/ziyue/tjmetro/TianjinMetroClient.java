@@ -10,6 +10,10 @@ import ziyue.tjmetro.render.RenderRoadblockSign;
 import ziyue.tjmetro.render.RenderStationNameSign;
 import ziyue.tjmetro.render.RenderStationNameWallLegacy;
 
+/**
+ * @since 1.0b
+ */
+
 public class TianjinMetroClient
 {
     public static void init() {

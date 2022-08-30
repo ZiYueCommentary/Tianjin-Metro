@@ -24,7 +24,7 @@ public class MainFabric implements ModInitializer
 {
     @Override
     public void onInitialize() {
-        TianjinMetro.init(MainFabric::registerItem, MainFabric::registerBlock, MainFabric::registerBlock, MainFabric::registerEnchantedBlock, MainFabric::registerBlockEntityType, MainFabric::registerEntityType);
+        TianjinMetro.init(MainFabric::registerBlock, MainFabric::registerBlock, MainFabric::registerEnchantedBlock, MainFabric::registerBlockEntityType, MainFabric::registerEntityType);
     }
 
     public static void registerItem(String path, RegistryObject<Item> item) {

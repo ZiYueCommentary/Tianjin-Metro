@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "tjmetro:block/player_detector" },
+    "facing=east":  { "model": "tjmetro:block/player_detector", "y":  90},
+    "facing=south": { "model": "tjmetro:block/player_detector", "y": 180 },
+    "facing=west":  { "model": "tjmetro:block/player_detector", "y": 270 }
+  }
+}

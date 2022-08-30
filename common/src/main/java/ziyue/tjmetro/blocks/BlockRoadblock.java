@@ -53,16 +53,16 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
         boolean isRight = state.getValue(IS_RIGHT);
         switch (state.getValue(FACING)) {
             case NORTH:
-                IBlockExtends.onBreak(world, isRight ? pos.west() : pos.east(), this);
+                IBlockExtends.breakBlock(world, isRight ? pos.west() : pos.east(), this);
                 break;
             case WEST:
-                IBlockExtends.onBreak(world, isRight ? pos.south() : pos.north(), this);
+                IBlockExtends.breakBlock(world, isRight ? pos.south() : pos.north(), this);
                 break;
             case SOUTH:
-                IBlockExtends.onBreak(world, isRight ? pos.east() : pos.west(), this);
+                IBlockExtends.breakBlock(world, isRight ? pos.east() : pos.west(), this);
                 break;
             case EAST:
-                IBlockExtends.onBreak(world, isRight ? pos.north() : pos.south(), this);
+                IBlockExtends.breakBlock(world, isRight ? pos.north() : pos.south(), this);
                 break;
         }
         super.playerWillDestroy(world, pos, state, player);
@@ -70,12 +70,15 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, 17, 11, blockState.getValue(FACING));
+        if (blockState.getValue(IS_RIGHT))
+            return IBlock.getVoxelShapeByDirection(-16, 0, 5, 16, 17, 11, blockState.getValue(FACING));
+        else
+            return IBlock.getVoxelShapeByDirection(0, 0, 5, 32, 17, 11, blockState.getValue(FACING));
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, 24, 11, blockState.getValue(FACING));
+        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, IBlockExtends.FENCE_HEIGHT, 11, blockState.getValue(FACING));
     }
 
     @Override

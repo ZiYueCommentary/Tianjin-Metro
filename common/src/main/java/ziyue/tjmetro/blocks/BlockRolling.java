@@ -65,9 +65,7 @@ public class BlockRolling extends Block implements SimpleWaterloggedBlock
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingBrush(level, player, () ->
-                level.setBlockAndUpdate(blockPos, blockState.setValue(BOTTOM, !blockState.getValue(BOTTOM)).setValue(CHANGED, true))
-        );
+        return IBlock.checkHoldingBrush(level, player, () -> level.setBlockAndUpdate(blockPos, blockState.cycle(BOTTOM).setValue(CHANGED, true)));
     }
 
     @Override

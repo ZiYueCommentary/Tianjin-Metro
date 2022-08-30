@@ -10,6 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import ziyue.tjmetro.EntityTypes;
 
+//todo fix bug
 public class SeatEntity extends Entity
 {
     public SeatEntity(Level world) {
@@ -19,7 +20,7 @@ public class SeatEntity extends Entity
 
     public SeatEntity(Level level, double d, double e, double f) {
         this(level);
-        this.setPos(d, e + (double)((1.0F - this.getBbHeight()) / 2.0F), f);
+        this.setPos(d, e + (double) ((1.0F - this.getBbHeight()) / 2.0F), f);
         this.setDeltaMovement(Vec3.ZERO);
         this.xo = d;
         this.yo = e;
@@ -48,7 +49,7 @@ public class SeatEntity extends Entity
 
     @Override
     public void tick() {
-        if(this.getPassengers().isEmpty()) remove();
+        if (this.getPassengers().isEmpty()) remove();
         super.tick();
     }
 

@@ -23,7 +23,7 @@ import ziyue.tjmetro.IBlockExtends;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
- * Corner for <b>APG</b>.
+ * Corner for <b>Automatic Platform Gates</b>.
  *
  * @author ZiYueCommentary
  * @see mtr.block.BlockAPGGlass
@@ -32,10 +32,10 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockAPGCorner extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
-    static final BooleanProperty TOP = BooleanProperty.create("top");
+    public static final BooleanProperty TOP = BooleanProperty.create("top");
 
     public BlockAPGCorner() {
-        super(Properties.copy(Blocks.PSD_GLASS_1.get()));
+        super(Properties.copy(Blocks.APG_GLASS.get()));
     }
 
     @Nullable
@@ -49,8 +49,8 @@ public class BlockAPGCorner extends HorizontalDirectionalBlock implements Simple
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
         super.playerWillDestroy(level, blockPos, blockState, player);
-        if (blockState.getValue(TOP)) IBlockExtends.onBreak(level, blockPos.below(), this);
-        else IBlockExtends.onBreak(level, blockPos.above(), this);
+        if (blockState.getValue(TOP)) IBlockExtends.breakBlock(level, blockPos.below(), this);
+        else IBlockExtends.breakBlock(level, blockPos.above(), this);
     }
 
     @Override

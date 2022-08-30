@@ -23,13 +23,27 @@
   "block.tjmetro.station_color_ceiling_not_lit": "Ceiling (Not lit)",
   "block.tjmetro.bench": "Bench",
   "block.tjmetro.apg_corner": "APG Corner",
+  "block.tjmetro.player_detector": "Player Detector",
 
   "gui.tjmetro.options": "Tianjin Metro Options",
+  "gui.tjmetro.default_color": "Default Color",
   "gui.tjmetro.custom_content": "Custom display content",
+  "button.tjmetro.scroll_up": "Scroll Up",
+  "button.tjmetro.scroll_down": "Scroll Down",
+  "button.tjmetro.enable_all": "Enable All Filters",
+  "button.tjmetro.disable_all": "Disable All Filters",
 
   "options.tjmetro.no_falling_blocks": "Prevent Falling Blocks",
 
   "tooltip.tjmetro.not_suggest": "This feature is not suggest.",
   "tooltip.tjmetro.station_name": "Text depends on the station",
-  "tooltip.tjmetro.custom_content": "Support custom display content"
+  "tooltip.tjmetro.custom_content": "Support custom display content",
+
+  "filter.tjmetro.roadblocks": "Roadblocks",
+  "filter.tjmetro.building": "Buildings",
+  "filter.tjmetro.signs": "Station Name Signs",
+  "filter.tjmetro.decoration": "Decorations",
+  "filter.tjmetro.ceilings": "Ceilings",
+
+  "gamerule.preventBlockFalling": "Prevent Block Falling"
 }

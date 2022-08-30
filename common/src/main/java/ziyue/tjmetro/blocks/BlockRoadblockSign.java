@@ -30,7 +30,7 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
 {
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        Runnable runnable = () -> {
+        return IBlock.checkHoldingItem(world, player, item -> {
             Direction direction = blockState.getValue(FACING);
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof TileEntityRoadBlockSign) {
@@ -39,8 +39,7 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
                         direction == Direction.NORTH ? pos.west() : direction == Direction.SOUTH ? pos.east() : direction == Direction.WEST ? pos.south() : pos.north() :
                         pos);
             }
-        };
-        return IBlock.checkHoldingItem(world, player, item -> runnable.run(), null, Items.BRUSH.get());
+        }, null, Items.BRUSH.get());
     }
 
     @Override

@@ -23,12 +23,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 
 /**
- * Render content for <b>Station Name Sign Block</b>.<br>
+ * Render content for <b>Station Name Sign Block</b>.
+ * <br>
  * Support display <i>custom content</i>.
+ *
  * @author ZiYueCommentary
- * @since 1.0b
  * @see ziyue.tjmetro.screen.CustomContentScreen
  * @see BlockStationNameSignBase
+ * @since 1.0b
  */
 
 public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntityStationNameBase> extends BlockEntityRendererMapper<T> implements IGui, IDrawing
@@ -74,8 +76,7 @@ public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntity
         matrices.popPose();
     }
 
-    protected void drawStationName(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int color, int light)
-    {
+    protected void drawStationName(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int color, int light) {
         IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -0.105f, 0.85F, 1F, 100, color, false, light, null);
     }
 }

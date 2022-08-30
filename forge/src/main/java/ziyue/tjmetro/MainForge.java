@@ -36,7 +36,7 @@ public class MainForge
     public static final DeferredRegisterHolder<EntityType<?>> ENTITY_TYPES = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.ENTITY_TYPE_REGISTRY);
 
     static {
-        TianjinMetro.init(MainForge::registerItem, MainForge::registerBlock, MainForge::registerBlock, MainForge::registerEnchantedBlock, MainForge::registerBlockEntityType, MainForge::registerEntityType);
+        TianjinMetro.init(MainForge::registerBlock, MainForge::registerBlock, MainForge::registerEnchantedBlock, MainForge::registerBlockEntityType, MainForge::registerEntityType);
     }
 
     public MainForge() {

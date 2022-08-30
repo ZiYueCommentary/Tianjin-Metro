@@ -8,8 +8,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.apache.logging.log4j.LogManager;
@@ -21,16 +21,18 @@ import java.util.function.BiConsumer;
 import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_COLOR;
 import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_CONTENT;
 
+/**
+ * @since 1.0b
+ */
+
 public class TianjinMetro
 {
     public static final Logger LOGGER = LogManager.getLogger(Reference.NAME);
 
     public static final CreativeModeTab TAB = Registry.getItemGroup(new ResourceLocation(Reference.MOD_ID, "tjmetro_tab"), () -> new ItemStack(BlockList.LOGO.get()));
-    //it says "GameRuleFactory not found" :((((
-    //public static final GameRules.Key<GameRules.BooleanValue> PREVENT_BLOCK_FALLING = register("preventBlockFalling", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(false));
+    public static final GameRules.Key<GameRules.BooleanValue> PREVENT_BLOCK_FALLING = RegistryClient.registerBooleanGameRule("preventBlockFalling", false);
 
     public static void init(
-            BiConsumer<String, RegistryObject<Item>> registerItem,
             BiConsumer<String, RegistryObject<Block>> registerBlock,
             MTR.RegisterBlockItem registerBlockItem,
             MTR.RegisterBlockItem registerEnchantedBlockItem,
@@ -40,8 +42,6 @@ public class TianjinMetro
         registerBlockItem.accept("logo", BlockList.LOGO, TAB);
         registerBlockItem.accept("rolling", BlockList.ROLLING, TAB);
         registerBlockItem.accept("station_name_sign_2", BlockList.STATION_NAME_SIGN_2, TAB);
-        registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
-        registerBlockItem.accept("roadblock_sign", BlockList.ROADBLOCK_SIGN, TAB);
         registerBlockItem.accept("platform_tj_1", BlockList.PLATFORM_TJ_1, TAB);
         registerBlockItem.accept("platform_tj_1_indented", BlockList.PLATFORM_TJ_1_INDENTED, TAB);
         registerBlockItem.accept("marble_gray", BlockList.MARBLE_GRAY, TAB);
@@ -55,21 +55,25 @@ public class TianjinMetro
         registerBlockItem.accept("station_name_wall_legacy", BlockList.STATION_NAME_WALL_LEGACY, TAB);
         registerBlockItem.accept("bench", BlockList.BENCH, TAB);
         registerBlockItem.accept("ceiling_not_lit", BlockList.CEILING_NOT_LIT, TAB);
-        registerBlockItem.accept("station_color_ceiling_not_lit", BlockList.STATION_COLOR_CEILING_NOT_LIT, TAB);
         registerBlockItem.accept("apg_corner", BlockList.APG_CORNER, TAB);
+        registerBlockItem.accept("player_detector", BlockList.PLAYER_DETECTOR, TAB);
+
+        registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
+        registerBlockItem.accept("roadblock_sign", BlockList.ROADBLOCK_SIGN, TAB);
 
         registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
         registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);
         registerEnchantedBlockItem.accept("ceiling_no_light", BlockList.STATION_COLOR_CEILING_NO_LIGHT, TAB);
         registerEnchantedBlockItem.accept("station_name_sign_1", BlockList.STATION_NAME_SIGN_1, TAB);
         registerEnchantedBlockItem.accept("custom_color_concrete", BlockList.CUSTOM_COLOR_CONCRETE, TAB);
+        registerEnchantedBlockItem.accept("station_color_ceiling_not_lit", BlockList.STATION_COLOR_CEILING_NOT_LIT, TAB);
 
         registerBlockEntityType.accept("station_name_sign_2", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_2);
         registerBlockEntityType.accept("station_name_sign_1", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1);
         registerBlockEntityType.accept("roadblock_sign", BlockEntityTypes.ROADBLOCK_SIGN_ENTITY);
         registerBlockEntityType.accept("custom_color_concrete", BlockEntityTypes.STATION_COLOR_CONCRETE_TILE_ENTITY);
 
-        registerEntityType.accept("bench",  EntityTypes.BENCH);
+        registerEntityType.accept("bench", EntityTypes.BENCH);
 
         Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
         Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);

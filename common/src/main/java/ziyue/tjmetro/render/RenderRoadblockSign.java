@@ -19,7 +19,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.blocks.BlockRoadblockSign;
 
 /**
- * Render content for <b>Roadblock with Sign</b>.<br>
+ * Render content for <b>Roadblock with Sign</b>.
+ * <br>
  * Support display <i>custom content</i>.
  *
  * @author ZiYueCommentary

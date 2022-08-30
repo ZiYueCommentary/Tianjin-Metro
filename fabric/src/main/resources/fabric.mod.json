@@ -21,9 +21,6 @@
 		],
 		"client": [
           "ziyue.tjmetro.MainFabricClient"
-		],
-		"modmenu": [
-			"mtr.ModMenuConfig"
 		]
 	},
 	"mixins": [

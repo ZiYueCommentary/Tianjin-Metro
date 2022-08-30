@@ -74,5 +74,4 @@ public abstract class CustomContentBlockBase extends Block implements EntityBloc
             return true;
         }
     }
-
 }

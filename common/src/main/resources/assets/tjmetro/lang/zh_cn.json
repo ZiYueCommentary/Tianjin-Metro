@@ -23,13 +23,27 @@
   "block.tjmetro.station_color_ceiling_not_lit": "天花板（未亮起）",
   "block.tjmetro.bench": "长椅",
   "block.tjmetro.apg_corner": "低站台门转角",
+  "block.tjmetro.player_detector": "玩家侦测器",
 
   "gui.tjmetro.options": "Tianjin Metro 设置",
+  "gui.tjmetro.default_color": "默认颜色",
   "gui.tjmetro.custom_content": "自定义显示内容",
+  "button.tjmetro.scroll_up": "上滚",
+  "button.tjmetro.scroll_down": "下滚",
+  "button.tjmetro.enable_all": "启用全部",
+  "button.tjmetro.disable_all": "禁用全部",
 
   "options.tjmetro.no_falling_blocks": "禁用方块下落",
 
   "tooltip.tjmetro.not_suggest": "不建议启用此功能",
   "tooltip.tjmetro.station_name": "文字取决于车站",
-  "tooltip.tjmetro.custom_content": "支持自定义显示内容"
+  "tooltip.tjmetro.custom_content": "支持自定义显示内容",
+
+  "filter.tjmetro.roadblocks": "路障",
+  "filter.tjmetro.building": "建筑",
+  "filter.tjmetro.signs": "站名牌",
+  "filter.tjmetro.decoration": "装饰",
+  "filter.tjmetro.ceilings": "天花板",
+
+  "gamerule.preventBlockFalling": "禁用方块下落"
 }

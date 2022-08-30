@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -104,11 +103,11 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
         VoxelShape right = IBlock.getVoxelShapeByDirection(2.0, 0.0, 2.0, 4.0, 8.0, 14.0, blockState.getValue(FACING));
         switch (blockState.getValue(POS)) {
             case 0:
-                return Shapes.join(Shapes.join(top, left, BooleanOp.OR), right, BooleanOp.OR);
+                return Shapes.or(top, left, right);
             case 1:
-                return Shapes.join(top, left, BooleanOp.OR);
+                return Shapes.or(top, left);
             case 2:
-                return Shapes.join(top, right, BooleanOp.OR);
+                return Shapes.or(top, right);
             default:
                 return top;
         }
