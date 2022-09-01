@@ -24,6 +24,7 @@ import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.filters.Filter;
 import ziyue.tjmetro.filters.IconButton;
 
+import java.util.Comparator;
 import java.util.Map;
 
 /*
@@ -39,13 +40,15 @@ import java.util.Map;
  *
  * @author ZiYueCommentary
  * @see Filter
+ * @see <a href="https://github.com/MrCrayfish/Filters">Filters Mod</a>
+ * @see <a href="https://github.com/MrCrayfish/MrCrayfishFurnitureMod">MrCrayfish's Furniture Mod</a>
  * @since 1.0b
  */
 
 @Mixin(CreativeModeInventoryScreen.class)
 public abstract class CreativeScreenMixin extends EffectRenderingInventoryScreen<CreativeModeInventoryScreen.ItemPickerMenu>
 {
-    private static final ResourceLocation ICONS = new ResourceLocation(Reference.MOD_ID, "textures/gui/icons.png");
+    private static final ResourceLocation ICONS = new ResourceLocation(Reference.MOD_ID, "textures/gui/filters.png");
     private Button btnScrollUp, btnScrollDown, btnEnableAll, btnDisableAll;
     private static int filterIndex = 0;
 
@@ -59,6 +62,9 @@ public abstract class CreativeScreenMixin extends EffectRenderingInventoryScreen
     @Shadow
     protected abstract void renderTooltip(PoseStack poseStack, ItemStack itemStack, int i, int j);
 
+    @Shadow
+    private float scrollOffs;
+
     public CreativeScreenMixin(CreativeModeInventoryScreen.ItemPickerMenu abstractContainerMenu, Inventory inventory, Component component) {
         super(abstractContainerMenu, inventory, component);
     }
@@ -66,15 +72,7 @@ public abstract class CreativeScreenMixin extends EffectRenderingInventoryScreen
     @Inject(at = @At("HEAD"), method = "render")
     protected void beforeRender(PoseStack poseStack, int i, int j, float f, CallbackInfo ci) {
         if (this.getSelectedTab() == TianjinMetro.TAB.getId()) {
-            visibleTags.clear();
-            menu.items.clear(); //clear tab
-            Filter.FILTERS.forEach(
-                    filter -> {
-                        if (filter.enabled) menu.items.addAll(filter.filter); //add items
-                    }
-            );
-            this.menu.scrollTo(0.0f); //refresh (maybe?)
-
+            updateTabs();
             showButtons(true);
             for (int o = 0; o < Filter.FILTERS.size(); o++) {
                 if (o >= filterIndex && o < filterIndex + 4) {
@@ -125,5 +123,21 @@ public abstract class CreativeScreenMixin extends EffectRenderingInventoryScreen
         }
         btnEnableAll.visible = visible;
         btnDisableAll.visible = visible;
+    }
+
+    protected void updateTabs() {
+        visibleTags.clear();
+        menu.items.clear(); //clear tab
+        Filter.FILTERS.forEach(
+                filter -> {
+                    if (filter.enabled) menu.items.addAll(filter.filter); //add items
+                }
+        );
+        menu.items.sort(Comparator.comparingInt(o -> Item.getId(o.getItem()))); //sort items
+        float previousOffset = scrollOffs;
+        this.scrollOffs = 0.0f;
+        this.menu.scrollTo(0.0f); //refresh (maybe?)
+        this.scrollOffs = previousOffset;
+        this.menu.scrollTo(previousOffset);
     }
 }

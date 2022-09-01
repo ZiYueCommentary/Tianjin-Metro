@@ -1,6 +1,7 @@
 package ziyue.tjmetro;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -9,7 +10,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 import static ziyue.tjmetro.TianjinMetro.LOGGER;
 
 /**
- * Some methods similar to methods in IBlock.
+ * Some methods similar to methods in <b>IBlock</b>.
  *
  * @see mtr.block.IBlock
  * @since 1.0b
@@ -56,6 +57,90 @@ public interface IBlockExtends
         } catch (Exception exception) {
             LOGGER.warn("[" + pos.toShortString() + "] Property \"waterlogged\" not found - Replace with air");
             world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
+        }
+    }
+
+    /**
+     * Get left position of block.
+     *
+     * @param blockPos  Block's Position
+     * @param direction Block's Direction
+     * @return Left position of block.
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static BlockPos getLeftPos(BlockPos blockPos, Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return blockPos.west();
+            case SOUTH:
+                return blockPos.east();
+            case WEST:
+                return blockPos.south();
+            default:
+                return blockPos.north();
+        }
+    }
+
+    /**
+     * Get right position of block.
+     *
+     * @param blockPos  Block's Position
+     * @param direction Block's Direction
+     * @return Right position of block.
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static BlockPos getRightPos(BlockPos blockPos, Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return blockPos.east();
+            case SOUTH:
+                return blockPos.west();
+            case WEST:
+                return blockPos.north();
+            default:
+                return blockPos.south();
+        }
+    }
+
+    /**
+     * Get left direction of specified direction.
+     *
+     * @return Left direction.
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static Direction getLeftDirection(Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return Direction.WEST;
+            case SOUTH:
+                return Direction.EAST;
+            case WEST:
+                return Direction.SOUTH;
+            default:
+                return Direction.NORTH;
+        }
+    }
+
+    /**
+     * Get right direction of specified direction.
+     *
+     * @return Right direction.
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static Direction getRightDirection(Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return Direction.EAST;
+            case SOUTH:
+                return Direction.WEST;
+            case WEST:
+                return Direction.NORTH;
+            default:
+                return Direction.SOUTH;
         }
     }
 }

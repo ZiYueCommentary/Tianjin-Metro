@@ -1,11 +1,9 @@
 package ziyue.tjmetro.blocks;
 
-import mtr.Items;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.EntityBlockMapper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -15,6 +13,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
+import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
@@ -30,16 +29,13 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
 {
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingItem(world, player, item -> {
-            Direction direction = blockState.getValue(FACING);
+        return IBlock.checkHoldingBrush(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof TileEntityRoadBlockSign) {
                 ((TileEntityRoadBlockSign) entity).syncData();
-                PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, blockState.getValue(IS_RIGHT) ?
-                        direction == Direction.NORTH ? pos.west() : direction == Direction.SOUTH ? pos.east() : direction == Direction.WEST ? pos.south() : pos.north() :
-                        pos);
+                PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, blockState.getValue(IS_RIGHT) ? IBlockExtends.getLeftPos(pos, blockState.getValue(FACING)) : pos);
             }
-        }, null, Items.BRUSH.get());
+        });
     }
 
     @Override
@@ -57,8 +53,16 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
         }
 
         @Override
+        public void setData(String content) {
+            this.content = content;
+            ((TileEntityRoadBlockSign) level.getBlockEntity(IBlockExtends.getRightPos(getBlockPos(), getBlockState().getValue(FACING)))).content = content;
+            setChanged();
+            syncData();
+        }
+
+        @Override
         public boolean shouldRender() {
-            return true;
+            return !getBlockState().getValue(IS_RIGHT);
         }
     }
 }

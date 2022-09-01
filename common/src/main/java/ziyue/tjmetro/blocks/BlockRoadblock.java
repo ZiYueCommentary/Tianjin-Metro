@@ -3,7 +3,6 @@ package ziyue.tjmetro.blocks;
 import mtr.Blocks;
 import mtr.block.IBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -38,11 +37,9 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        BlockPos pos = ctx.getClickedPos();
         BlockState state = defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, ctx.getHorizontalDirection()).setValue(IS_RIGHT, false);
-        Direction direction = state.getValue(FACING);
-        if (IBlock.isReplaceable(ctx, direction == Direction.NORTH ? Direction.EAST : direction == Direction.SOUTH ? Direction.WEST : direction == Direction.WEST ? Direction.NORTH : Direction.SOUTH, 2)) {
-            ctx.getLevel().setBlock(direction == Direction.NORTH ? pos.east() : direction == Direction.SOUTH ? pos.west() : direction == Direction.WEST ? pos.north() : pos.south(), state.setValue(IS_RIGHT, true), 2);
+        if (IBlock.isReplaceable(ctx, IBlockExtends.getRightDirection(state.getValue(FACING)), 2)) {
+            ctx.getLevel().setBlock(IBlockExtends.getRightPos(ctx.getClickedPos(), ctx.getHorizontalDirection()), state.setValue(IS_RIGHT, true), 2);
             return state;
         }
         return null;
@@ -70,10 +67,7 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        if (blockState.getValue(IS_RIGHT))
-            return IBlock.getVoxelShapeByDirection(-16, 0, 5, 16, 17, 11, blockState.getValue(FACING));
-        else
-            return IBlock.getVoxelShapeByDirection(0, 0, 5, 32, 17, 11, blockState.getValue(FACING));
+        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, 17, 11, blockState.getValue(FACING));
     }
 
     @Override

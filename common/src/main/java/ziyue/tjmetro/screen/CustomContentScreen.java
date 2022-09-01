@@ -23,7 +23,6 @@ import ziyue.tjmetro.packet.PacketGuiClient;
  * @since 1.0b
  */
 
-//todo
 public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
 {
     protected final BlockPos pos;

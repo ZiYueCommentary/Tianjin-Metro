@@ -17,7 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import ziyue.tjmetro.BlockList;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 /*
@@ -81,7 +80,7 @@ public class Filter extends Button
                     BlockList.STATION_COLOR_CEILING_NO_LIGHT.get().asItem().getDefaultInstance()
             ));
 
-    public static final List<Filter> FILTERS = new LinkedList<>(Arrays.asList(ROADBLOCKS, DECORATION, CEILINGS, BUILDING, SIGNS));
+    public static final List<Filter> FILTERS = Arrays.asList(ROADBLOCKS, DECORATION, CEILINGS, BUILDING, SIGNS);
 
     private static final ResourceLocation TABS = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
 

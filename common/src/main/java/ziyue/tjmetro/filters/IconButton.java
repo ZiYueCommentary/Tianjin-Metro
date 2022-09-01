@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
  * Originally from <a href="https://github.com/MrCrayfish/Filters/blob/master/src/main/java/com/mrcrayfish/filters/gui/widget/button/IconButton.java">Filters Mod</a>.
  *
  * @author ZiYueCommentary
+ * @see <a href="https://github.com/MrCrayfish/Filters/blob/master/src/main/java/com/mrcrayfish/filters/gui/widget/button/IconButton.java">Filters Mod</a>
  * @since 1.0b
  */
 
