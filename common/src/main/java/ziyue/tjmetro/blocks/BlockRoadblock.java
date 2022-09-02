@@ -50,7 +50,7 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
         if (state.getValue(IS_RIGHT))
             IBlockExtends.breakBlock(world, IBlockExtends.getLeftPos(pos, state.getValue(FACING)), this);
         else
-            IBlockExtends.breakBlock(world, IBlockExtends.getRightPos(pos, state.getValue(FACING)));
+            IBlockExtends.breakBlock(world, IBlockExtends.getRightPos(pos, state.getValue(FACING)), this);
         super.playerWillDestroy(world, pos, state, player);
     }
 

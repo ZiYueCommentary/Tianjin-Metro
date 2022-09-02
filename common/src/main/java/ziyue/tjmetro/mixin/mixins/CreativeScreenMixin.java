@@ -2,12 +2,10 @@ package ziyue.tjmetro.mixin.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.mappings.Text;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.entity.player.Inventory;
@@ -102,10 +100,10 @@ public abstract class CreativeScreenMixin extends EffectRenderingInventoryScreen
 
     @Inject(at = @At("TAIL"), method = "init")
     protected void init(CallbackInfo ci) {
-        btnScrollUp = new IconButton(this.leftPos - 22, this.topPos - 12, Text.translatable("button.tjmetro.scroll_up").setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE)), button -> filterIndex--, ICONS, 0, 0);
-        btnScrollDown = new IconButton(this.leftPos - 22, this.topPos + 127, Text.translatable("button.tjmetro.scroll_down").setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE)), button -> filterIndex++, ICONS, 16, 0);
-        btnEnableAll = new IconButton(this.leftPos - 50, this.topPos + 10, Text.translatable("button.tjmetro.enable_all").setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE)), button -> Filter.FILTERS.forEach(filter -> filter.enabled = true), ICONS, 32, 0);
-        btnDisableAll = new IconButton(this.leftPos - 50, this.topPos + 32, Text.translatable("button.tjmetro.disable_all").setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE)), button -> Filter.FILTERS.forEach(filter -> filter.enabled = false), ICONS, 48, 0);
+        btnScrollUp = new IconButton(this.leftPos - 22, this.topPos - 12, Text.translatable("button.tjmetro.scroll_up"), button -> filterIndex--, ICONS, 0, 0);
+        btnScrollDown = new IconButton(this.leftPos - 22, this.topPos + 127, Text.translatable("button.tjmetro.scroll_down"), button -> filterIndex++, ICONS, 16, 0);
+        btnEnableAll = new IconButton(this.leftPos - 50, this.topPos + 10, Text.translatable("button.tjmetro.enable_all"), button -> Filter.FILTERS.forEach(filter -> filter.enabled = true), ICONS, 32, 0);
+        btnDisableAll = new IconButton(this.leftPos - 50, this.topPos + 32, Text.translatable("button.tjmetro.disable_all"), button -> Filter.FILTERS.forEach(filter -> filter.enabled = false), ICONS, 48, 0);
         addButton(btnScrollUp);
         addButton(btnScrollDown);
         addButton(btnEnableAll);

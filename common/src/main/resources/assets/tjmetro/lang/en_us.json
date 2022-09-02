@@ -24,6 +24,8 @@
   "block.tjmetro.bench": "Bench",
   "block.tjmetro.apg_corner": "APG Corner",
   "block.tjmetro.player_detector": "Player Detector",
+  "block.tjmetro.custom_color_concrete_stairs": "Concrete Stairs",
+  "block.tjmetro.custom_color_concrete_slab": "Concrete Slab",
 
   "gui.tjmetro.options": "Tianjin Metro Options",
   "gui.tjmetro.default_color": "Default Color",

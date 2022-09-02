@@ -2,12 +2,20 @@ package ziyue.tjmetro.blocks.base;
 
 import mtr.mappings.BlockEntityClientSerializableMapper;
 import mtr.mappings.EntityBlockMapper;
+import mtr.mappings.Text;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * @author ZiYueCommentary
@@ -23,6 +31,11 @@ public abstract class BlockCustomColorBase extends Block implements EntityBlockM
     @Override
     public String getDescriptionId() {
         return super.getDescriptionId().replace("block.tjmetro.custom_color_", "block.minecraft.");
+    }
+
+    @Override
+    public void appendHoverText(ItemStack itemStack, @Nullable BlockGetter blockGetter, List<Component> list, TooltipFlag tooltipFlag) {
+        list.add(Text.translatable("tooltip.tjmetro.custom_content").withStyle(ChatFormatting.GRAY));
     }
 
     /**

@@ -56,7 +56,9 @@ public class Filter extends Button
                     BlockList.MARBLE_YELLOW.get().asItem().getDefaultInstance(),
                     BlockList.MARBLE_YELLOW_SLAB.get().asItem().getDefaultInstance(),
                     BlockList.MARBLE_YELLOW_STAIRS.get().asItem().getDefaultInstance(),
-                    BlockList.CUSTOM_COLOR_CONCRETE.get().asItem().getDefaultInstance()
+                    BlockList.CUSTOM_COLOR_CONCRETE.get().asItem().getDefaultInstance(),
+                    BlockList.CUSTOM_COLOR_CONCRETE_STAIRS.get().asItem().getDefaultInstance(),
+                    BlockList.CUSTOM_COLOR_CONCRETE_SLAB.get().asItem().getDefaultInstance()
             ));
     public static final Filter SIGNS = new Filter(Text.translatable("filter.tjmetro.signs"), BlockList.STATION_NAME_SIGN_1.get().asItem().getDefaultInstance(),
             Arrays.asList(

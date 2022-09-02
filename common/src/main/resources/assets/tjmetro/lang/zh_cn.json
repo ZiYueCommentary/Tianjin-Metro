@@ -24,6 +24,8 @@
   "block.tjmetro.bench": "长椅",
   "block.tjmetro.apg_corner": "低站台门转角",
   "block.tjmetro.player_detector": "玩家侦测器",
+  "block.tjmetro.custom_color_concrete_stairs": "混凝土楼梯",
+  "block.tjmetro.custom_color_concrete_slab": "混凝土台阶",
 
   "gui.tjmetro.options": "Tianjin Metro 设置",
   "gui.tjmetro.default_color": "默认颜色",

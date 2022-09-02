@@ -34,6 +34,8 @@ public class TianjinMetroClient
         RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING_NOT_LIT.get());
 
         ziyue.tjmetro.RegistryClient.registerCustomColorBlock(BlockList.CUSTOM_COLOR_CONCRETE.get());
+        ziyue.tjmetro.RegistryClient.registerCustomColorBlock(BlockList.CUSTOM_COLOR_CONCRETE_STAIRS.get());
+        ziyue.tjmetro.RegistryClient.registerCustomColorBlock(BlockList.CUSTOM_COLOR_CONCRETE_SLAB.get());
 
         RegistryClient.registerEntityRenderer(EntityTypes.BENCH.get(), SeatEntity.RenderSeat::new);
 

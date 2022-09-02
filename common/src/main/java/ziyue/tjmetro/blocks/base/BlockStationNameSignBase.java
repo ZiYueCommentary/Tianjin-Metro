@@ -8,7 +8,6 @@ import mtr.mappings.Text;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -88,7 +87,7 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
 
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter blockGetter, List<Component> tooltip, TooltipFlag tooltipFlag) {
-        tooltip.add(Text.translatable("tooltip.tjmetro.custom_content").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        tooltip.add(Text.translatable("tooltip.tjmetro.custom_content").withStyle(ChatFormatting.GRAY));
     }
 
     /**

@@ -41,6 +41,8 @@ public interface BlockList
     RegistryObject<Block> MARBLE_YELLOW_STAIRS = new RegistryObject<>(() -> new StairBlock(MARBLE_YELLOW.get()));
     RegistryObject<Block> STATION_NAME_WALL_LEGACY = new RegistryObject<>(BlockStationNameWallLegacy::new);
     RegistryObject<Block> CUSTOM_COLOR_CONCRETE = new RegistryObject<>(BlockCustomColorConcrete::new);
+    RegistryObject<Block> CUSTOM_COLOR_CONCRETE_STAIRS = new RegistryObject<>(BlockCustomColorConcreteStairs::new);
+    RegistryObject<Block> CUSTOM_COLOR_CONCRETE_SLAB = new RegistryObject<>(BlockCustomColorConcreteSlab::new);
     RegistryObject<Block> APG_CORNER = new RegistryObject<>(BlockAPGCorner::new);
     RegistryObject<Block> PLAYER_DETECTOR = new RegistryObject<>(BlockPlayerDetector::new);
 }
