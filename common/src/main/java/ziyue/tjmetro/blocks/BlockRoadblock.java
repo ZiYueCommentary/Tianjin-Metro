@@ -47,21 +47,10 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-        boolean isRight = state.getValue(IS_RIGHT);
-        switch (state.getValue(FACING)) {
-            case NORTH:
-                IBlockExtends.breakBlock(world, isRight ? pos.west() : pos.east(), this);
-                break;
-            case WEST:
-                IBlockExtends.breakBlock(world, isRight ? pos.south() : pos.north(), this);
-                break;
-            case SOUTH:
-                IBlockExtends.breakBlock(world, isRight ? pos.east() : pos.west(), this);
-                break;
-            case EAST:
-                IBlockExtends.breakBlock(world, isRight ? pos.north() : pos.south(), this);
-                break;
-        }
+        if (state.getValue(IS_RIGHT))
+            IBlockExtends.breakBlock(world, IBlockExtends.getLeftPos(pos, state.getValue(FACING)), this);
+        else
+            IBlockExtends.breakBlock(world, IBlockExtends.getRightPos(pos, state.getValue(FACING)));
         super.playerWillDestroy(world, pos, state, player);
     }
 

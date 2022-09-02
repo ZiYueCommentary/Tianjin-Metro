@@ -28,7 +28,6 @@ import java.awt.*;
  * @since 1.0b
  */
 
-//todo
 public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
 {
     protected float hue;
