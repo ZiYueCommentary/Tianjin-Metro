@@ -5,8 +5,6 @@ import mtr.mappings.RegistryUtilities;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import ziyue.tjmetro.blocks.*;
 
-import java.util.Collections;
-
 /**
  * @since 1.0b
  */
@@ -20,5 +18,6 @@ public interface BlockEntityTypes
     RegistryObject<BlockEntityType<BlockCustomColorConcrete.CustomColorConcreteEntity>> STATION_COLOR_CONCRETE_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockCustomColorConcrete.CustomColorConcreteEntity::new, BlockList.CUSTOM_COLOR_CONCRETE.get()));
     RegistryObject<BlockEntityType<BlockCustomColorConcreteStairs.CustomColorConcreteStairsEntity>> STATION_COLOR_CONCRETE_STAIRS_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockCustomColorConcreteStairs.CustomColorConcreteStairsEntity::new, BlockList.CUSTOM_COLOR_CONCRETE_STAIRS.get()));
     RegistryObject<BlockEntityType<BlockCustomColorConcreteSlab.CustomColorConcreteSlabEntity>> STATION_COLOR_CONCRETE_SLAB_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockCustomColorConcreteSlab.CustomColorConcreteSlabEntity::new, BlockList.CUSTOM_COLOR_CONCRETE_SLAB.get()));
-    RegistryObject<BlockEntityType<BlockPlayerDetector.TileEntityPlayerDetector>> PLAYER_DETECTOR_TILE_ENTITY = new RegistryObject<>(() -> new BlockEntityType<>(BlockPlayerDetector.TileEntityPlayerDetector::new, Collections.singleton(BlockList.PLAYER_DETECTOR.get()), null));
+    RegistryObject<BlockEntityType<BlockPlayerDetector.TileEntityPlayerDetector>> PLAYER_DETECTOR_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockPlayerDetector.TileEntityPlayerDetector::new, BlockList.PLAYER_DETECTOR.get()));
+    RegistryObject<BlockEntityType<BlockDecorationLight.DecorationLightEntity>> DECORATION_LIGHT_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockDecorationLight.DecorationLightEntity::new, BlockList.DECORATION_LIGHT.get()));
 }

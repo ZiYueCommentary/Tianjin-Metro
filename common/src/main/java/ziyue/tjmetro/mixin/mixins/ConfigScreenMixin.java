@@ -6,10 +6,8 @@ import mtr.data.IGui;
 import mtr.mappings.ScreenMapper;
 import mtr.mappings.Text;
 import mtr.screen.ConfigScreen;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,16 +15,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.Configs;
 
-import static ziyue.tjmetro.Configs.noFallingBlocks;
+import static ziyue.tjmetro.Configs.noColoredLights;
 import static ziyue.tjmetro.Configs.writeToFile;
 
 /**
- * Mix with MTR config screen. Deprecated temporary.
+ * Mix with MTR config screen.
  *
  * @author ZiYueCommentary
  * @see ConfigScreen
  * @since 1.0b
- * @deprecated
  */
 
 @Mixin(ConfigScreen.class)
@@ -36,10 +33,10 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
         super(title);
     }
 
-    private final Button buttonNoFallingBlocks = new Button(0, 0, 0, BUTTON_HEIGHT, new TextComponent(""), button -> {
-        noFallingBlocks = setNoFallingBlocks(!noFallingBlocks);
-        setButtonText(button, noFallingBlocks);
-    }, (button, poseStack, i, j) -> renderTooltip(poseStack, Text.translatable("tooltip.tjmetro.not_suggest").setStyle(Style.EMPTY.withColor(ChatFormatting.YELLOW)), i, j));
+    private final Button buttonNoColoredLights = new Button(0, 0, 0, BUTTON_HEIGHT, new TextComponent(""), button -> {
+        noColoredLights = setNoFallingBlocks(!noColoredLights);
+        setButtonText(button, noColoredLights);
+    }, (button, poseStack, i, j) -> renderTooltip(poseStack, Text.translatable("tooltip.tjmetro.no_colored_lights"), i, j));
 
     private static final int BUTTON_WIDTH = 60;
     private static final int BUTTON_HEIGHT = TEXT_HEIGHT + TEXT_PADDING;
@@ -48,10 +45,9 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
     protected void init(CallbackInfo ci) {
         Configs.refreshProperties();
         int pos1 = 13;
-        IDrawing.setPositionAndWidth(buttonNoFallingBlocks, width - SQUARE_SIZE - BUTTON_WIDTH, BUTTON_HEIGHT * (pos1++) + SQUARE_SIZE, BUTTON_WIDTH);
-        setButtonText(buttonNoFallingBlocks, noFallingBlocks);
-        addDrawableChild(buttonNoFallingBlocks);
-        if(!minecraft.isLocalServer())buttonNoFallingBlocks.active = false;
+        IDrawing.setPositionAndWidth(buttonNoColoredLights, width - SQUARE_SIZE - BUTTON_WIDTH, BUTTON_HEIGHT * (pos1++) + SQUARE_SIZE, BUTTON_WIDTH);
+        setButtonText(buttonNoColoredLights, noColoredLights);
+        addDrawableChild(buttonNoColoredLights);
     }
 
     @Inject(method = "render", at = @At("TAIL"))
@@ -62,7 +58,7 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
             int pos1 = 13;
             final int yStart1 = SQUARE_SIZE + TEXT_PADDING / 2;
             try {
-                drawString(matrices, font, Text.translatable("options.tjmetro.no_falling_blocks"), SQUARE_SIZE, BUTTON_HEIGHT * (pos1++) + yStart1, ARGB_WHITE);
+                drawString(matrices, font, Text.translatable("options.tjmetro.no_colored_lights"), SQUARE_SIZE, BUTTON_HEIGHT * (pos1++) + yStart1, ARGB_WHITE);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -76,8 +72,8 @@ public class ConfigScreenMixin extends ScreenMapper implements IGui
     }
 
     private static boolean setNoFallingBlocks(boolean value) {
-        noFallingBlocks = value;
+        noColoredLights = value;
         writeToFile();
-        return noFallingBlocks;
+        return noColoredLights;
     }
 }

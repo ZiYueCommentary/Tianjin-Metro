@@ -35,11 +35,12 @@
   "button.tjmetro.enable_all": "Enable All Filters",
   "button.tjmetro.disable_all": "Disable All Filters",
 
-  "options.tjmetro.no_falling_blocks": "Prevent Falling Blocks",
+  "options.tjmetro.no_colored_lights": "No Colored Lights",
 
   "tooltip.tjmetro.not_suggest": "This feature is not suggest.",
   "tooltip.tjmetro.station_name": "Text depends on the station",
   "tooltip.tjmetro.custom_content": "Support custom display content",
+  "tooltip.tjmetro.no_colored_lights": "If you get crash with \"Decoration Lights\", please enable this option.",
 
   "filter.tjmetro.roadblocks": "Roadblocks",
   "filter.tjmetro.building": "Buildings",

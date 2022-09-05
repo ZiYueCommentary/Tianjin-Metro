@@ -6,7 +6,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -47,7 +46,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        Minecart seatEntity = new Minecart(world, pos.getX(), pos.getY(), pos.getZ());
+        SeatEntity seatEntity = new SeatEntity(world, pos.getX(), pos.getY(), pos.getZ());
         seatEntity.noCulling = true;
         seatEntity.setPos(pos.getX(), pos.getY(), pos.getZ());
         seatEntity.setInvisible(true);

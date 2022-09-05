@@ -56,12 +56,6 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
         defaultColorCheckBox.setChecked(oldColor == -1);
     }
 
-    protected void checkBoxClicked() {
-        if (defaultColorCheckBox.selected()) {
-            setHsb(ClientData.STATIONS.stream().filter(station1 -> station1.inArea(pos.getX(), pos.getZ())).findFirst().map(station2 -> station2.color).orElse(0x7F7F7F), true);
-        }
-    }
-
     @Override
     protected void init() {
         super.init();
@@ -224,6 +218,12 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
 
     protected int getMainHeight() {
         return height - SQUARE_SIZE * 2;
+    }
+
+    protected void checkBoxClicked() {
+        if (defaultColorCheckBox.selected()) {
+            setHsb(ClientData.STATIONS.stream().filter(station1 -> station1.inArea(pos.getX(), pos.getZ())).findFirst().map(station2 -> station2.color).orElse(0x7F7F7F), true);
+        }
     }
 
     protected enum DraggingState

@@ -71,7 +71,8 @@ public class Filter extends Button
                     BlockList.LOGO.get().asItem().getDefaultInstance(),
                     BlockList.APG_CORNER.get().asItem().getDefaultInstance(),
                     BlockList.BENCH.get().asItem().getDefaultInstance(),
-                    BlockList.PLAYER_DETECTOR.get().asItem().getDefaultInstance()
+                    BlockList.PLAYER_DETECTOR.get().asItem().getDefaultInstance(),
+                    BlockList.DECORATION_LIGHT.get().asItem().getDefaultInstance()
             ));
     public static final Filter CEILINGS = new Filter(Text.translatable("filter.tjmetro.ceilings"), BlockList.STATION_COLOR_CEILING.get().asItem().getDefaultInstance(),
             Arrays.asList(

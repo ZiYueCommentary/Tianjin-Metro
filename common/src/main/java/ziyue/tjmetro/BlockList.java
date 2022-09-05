@@ -45,4 +45,5 @@ public interface BlockList
     RegistryObject<Block> CUSTOM_COLOR_CONCRETE_SLAB = new RegistryObject<>(BlockCustomColorConcreteSlab::new);
     RegistryObject<Block> APG_CORNER = new RegistryObject<>(BlockAPGCorner::new);
     RegistryObject<Block> PLAYER_DETECTOR = new RegistryObject<>(BlockPlayerDetector::new);
+    RegistryObject<Block> DECORATION_LIGHT = new RegistryObject<>(BlockDecorationLight::new);
 }

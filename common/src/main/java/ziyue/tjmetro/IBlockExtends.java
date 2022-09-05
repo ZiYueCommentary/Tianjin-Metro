@@ -77,9 +77,10 @@ public interface IBlockExtends
                 return blockPos.east();
             case WEST:
                 return blockPos.south();
-            default:
+            case EAST:
                 return blockPos.north();
         }
+        throw new IllegalArgumentException("\"getLeftPos\" support horizontal direction only!");
     }
 
     /**
@@ -99,9 +100,10 @@ public interface IBlockExtends
                 return blockPos.west();
             case WEST:
                 return blockPos.north();
-            default:
+            case EAST:
                 return blockPos.south();
         }
+        throw new IllegalArgumentException("\"getRightPos\" support horizontal direction only!");
     }
 
     /**
@@ -119,9 +121,10 @@ public interface IBlockExtends
                 return Direction.EAST;
             case WEST:
                 return Direction.SOUTH;
-            default:
+            case EAST:
                 return Direction.NORTH;
         }
+        throw new IllegalArgumentException("\"getLeftDirection\" support horizontal direction only!");
     }
 
     /**
@@ -139,8 +142,19 @@ public interface IBlockExtends
                 return Direction.WEST;
             case WEST:
                 return Direction.NORTH;
-            default:
+            case EAST:
                 return Direction.SOUTH;
         }
+        throw new IllegalArgumentException("\"getRightDirection\" support horizontal direction only!");
+    }
+
+    /**
+     * Check the direction whether is horizontal direction.
+     *
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static boolean isHorizontalDirection(Direction direction) {
+        return direction == Direction.EAST || direction == Direction.WEST || direction == Direction.NORTH || direction == Direction.SOUTH;
     }
 }
