@@ -26,6 +26,7 @@
   "block.tjmetro.player_detector": "玩家侦测器",
   "block.tjmetro.custom_color_concrete_stairs": "混凝土楼梯",
   "block.tjmetro.custom_color_concrete_slab": "混凝土台阶",
+  "block.tjmetro.high_speed_repeater": "高速红石中继器",
 
   "gui.tjmetro.options": "Tianjin Metro 设置",
   "gui.tjmetro.default_color": "默认颜色",

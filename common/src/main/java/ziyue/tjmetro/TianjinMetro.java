@@ -57,6 +57,7 @@ public class TianjinMetro
         registerBlockItem.accept("ceiling_not_lit", BlockList.CEILING_NOT_LIT, TAB);
         registerBlockItem.accept("apg_corner", BlockList.APG_CORNER, TAB);
         registerBlockItem.accept("player_detector", BlockList.PLAYER_DETECTOR, TAB);
+        registerBlockItem.accept("high_speed_repeater", BlockList.HIGH_SPEED_REPEATER, TAB);
 
         registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
         registerBlockItem.accept("roadblock_sign", BlockList.ROADBLOCK_SIGN, TAB);
@@ -80,7 +81,6 @@ public class TianjinMetro
         registerBlockEntityType.accept("custom_color_concrete_slab", BlockEntityTypes.STATION_COLOR_CONCRETE_SLAB_TILE_ENTITY);
         registerBlockEntityType.accept("station_name_wall_legacy", BlockEntityTypes.STATION_NAME_WALL_TILE_ENTITY);
         registerBlockEntityType.accept("decoration_light", BlockEntityTypes.DECORATION_LIGHT_TILE_ENTITY);
-
 
         registerEntityType.accept("bench", EntityTypes.BENCH);
 
