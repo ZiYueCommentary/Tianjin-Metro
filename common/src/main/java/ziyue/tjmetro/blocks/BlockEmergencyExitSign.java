@@ -25,6 +25,11 @@ import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
+/**
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
 public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
     public BlockEmergencyExitSign() {
