@@ -27,6 +27,7 @@
   "block.tjmetro.custom_color_concrete_stairs": "混凝土楼梯",
   "block.tjmetro.custom_color_concrete_slab": "混凝土台阶",
   "block.tjmetro.high_speed_repeater": "高速红石中继器",
+  "block.tjmetro.time_display": "时间显示器",
 
   "gui.tjmetro.options": "Tianjin Metro 设置",
   "gui.tjmetro.default_color": "默认颜色",
@@ -41,6 +42,7 @@
   "tooltip.tjmetro.not_suggest": "不建议启用此功能",
   "tooltip.tjmetro.station_name": "文字取决于车站",
   "tooltip.tjmetro.custom_content": "支持自定义显示内容",
+  "tooltip.tjmetro.custom_color": "支持自定义显示颜色",
   "tooltip.tjmetro.no_colored_lights": "如果你遇到了有关“装饰灯”的崩溃问题，请启用此选项。",
 
   "filter.tjmetro.roadblocks": "路障",

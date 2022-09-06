@@ -7,7 +7,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -70,7 +69,7 @@ public class BlockStationColorCeilingAuto extends BlockCeilingAuto implements Si
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable BlockGetter blockGetter, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Text.translatable("tooltip.mtr.station_color").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+        list.add(Text.translatable("tooltip.mtr.station_color").withStyle(ChatFormatting.GRAY));
     }
 
     protected static boolean hasLight(boolean facing, BlockPos pos) {

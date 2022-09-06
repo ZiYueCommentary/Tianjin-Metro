@@ -3,6 +3,8 @@ package ziyue.tjmetro;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 
 import java.nio.file.Files;
@@ -16,6 +18,7 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
  * @since 1.0b
  */
 
+@Environment(EnvType.CLIENT)
 public class Configs
 {
     public static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");

@@ -88,6 +88,7 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter blockGetter, List<Component> tooltip, TooltipFlag tooltipFlag) {
         tooltip.add(Text.translatable("tooltip.tjmetro.custom_content").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Text.translatable("tooltip.tjmetro.station_name").withStyle(ChatFormatting.GRAY));
     }
 
     /**

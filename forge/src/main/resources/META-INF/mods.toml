@@ -7,7 +7,7 @@ modId = "tjmetro"
 version = "${version}"
 displayName = "Tianjin Metro"
 authors = "ZiYueCommentary"
-description = "A small Addon for the Minecraft Transit Railway Mod"
+description = "A small addon for the Minecraft Transit Railway Mod"
 logoFile = "icon.png"
 
 [[dependencies.tjmetro]]

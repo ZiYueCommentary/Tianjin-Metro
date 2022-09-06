@@ -20,4 +20,5 @@ public interface BlockEntityTypes
     RegistryObject<BlockEntityType<BlockCustomColorConcreteSlab.CustomColorConcreteSlabEntity>> STATION_COLOR_CONCRETE_SLAB_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockCustomColorConcreteSlab.CustomColorConcreteSlabEntity::new, BlockList.CUSTOM_COLOR_CONCRETE_SLAB.get()));
     RegistryObject<BlockEntityType<BlockPlayerDetector.TileEntityPlayerDetector>> PLAYER_DETECTOR_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockPlayerDetector.TileEntityPlayerDetector::new, BlockList.PLAYER_DETECTOR.get()));
     RegistryObject<BlockEntityType<BlockDecorationLight.DecorationLightEntity>> DECORATION_LIGHT_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockDecorationLight.DecorationLightEntity::new, BlockList.DECORATION_LIGHT.get()));
+    RegistryObject<BlockEntityType<BlockTimeDisplay.TileEntityTimeDisplay>> TIME_DISPLAY_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockTimeDisplay.TileEntityTimeDisplay::new, BlockList.TIME_DISPLAY.get()));
 }

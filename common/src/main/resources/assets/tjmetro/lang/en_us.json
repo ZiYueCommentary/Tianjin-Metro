@@ -27,6 +27,7 @@
   "block.tjmetro.custom_color_concrete_stairs": "Concrete Stairs",
   "block.tjmetro.custom_color_concrete_slab": "Concrete Slab",
   "block.tjmetro.high_speed_repeater": "High Speed Repeater",
+  "block.tjmetro.time_display": "Time Display",
 
   "gui.tjmetro.options": "Tianjin Metro Options",
   "gui.tjmetro.default_color": "Default Color",
@@ -41,6 +42,7 @@
   "tooltip.tjmetro.not_suggest": "This feature is not suggest.",
   "tooltip.tjmetro.station_name": "Text depends on the station",
   "tooltip.tjmetro.custom_content": "Support custom display content",
+  "tooltip.tjmetro.custom_color": "Support custom display color",
   "tooltip.tjmetro.no_colored_lights": "If you get crash with \"Decoration Lights\", please enable this option.",
 
   "filter.tjmetro.roadblocks": "Roadblocks",

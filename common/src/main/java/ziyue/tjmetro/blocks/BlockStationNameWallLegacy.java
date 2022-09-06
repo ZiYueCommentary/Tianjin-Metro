@@ -3,11 +3,16 @@ package ziyue.tjmetro.blocks;
 import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
+import mtr.mappings.Text;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -25,6 +30,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import ziyue.tjmetro.BlockEntityTypes;
+
+import java.util.List;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
@@ -88,6 +95,11 @@ public class BlockStationNameWallLegacy extends BlockStationNameBase implements 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(COLOR, FACING, WATERLOGGED);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack itemStack, BlockGetter blockGetter, List<Component> tooltip, TooltipFlag tooltipFlag) {
+        tooltip.add(Text.translatable("tooltip.tjmetro.station_name").withStyle(ChatFormatting.GRAY));
     }
 
     @Override

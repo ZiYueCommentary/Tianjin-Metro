@@ -3,7 +3,7 @@
 	"id": "tjmetro",
 	"version": "${version}",
 	"name": "Tianjin Metro",
-	"description": "A small Addon for the Minecraft Transit Railway Mod",
+	"description": "A small addon for the Minecraft Transit Railway Mod",
 	"authors": [
 		"ZiYueCommentary"
 	],

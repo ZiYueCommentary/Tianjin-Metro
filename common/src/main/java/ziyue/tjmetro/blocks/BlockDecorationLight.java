@@ -7,11 +7,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
-//todo so i must make this because this placeholder has exist for half year
+//todo so i must make this because this placeholder has existed for half year
 public class BlockDecorationLight extends BlockCustomColorBase
 {
     public BlockDecorationLight() {
-        super(Properties.copy(Blocks.MARBLE_BLUE.get()).noCollission().lightLevel((state) -> 15));
+        super(Properties.copy(Blocks.CEILING_LIGHT.get()).noCollission().lightLevel((state) -> 15));
     }
 
     @Override
@@ -22,7 +22,7 @@ public class BlockDecorationLight extends BlockCustomColorBase
     public static class DecorationLightEntity extends CustomColorBlockEntity
     {
         public DecorationLightEntity(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.STATION_COLOR_CONCRETE_TILE_ENTITY.get(), pos, state);
+            super(BlockEntityTypes.DECORATION_LIGHT_TILE_ENTITY.get(), pos, state);
         }
     }
 }
