@@ -28,6 +28,7 @@
   "block.tjmetro.custom_color_concrete_slab": "混凝土台阶",
   "block.tjmetro.high_speed_repeater": "高速红石中继器",
   "block.tjmetro.time_display": "时间显示器",
+  "block.tjmetro.emergency_exit_sign": "安全出口标志",
 
   "gui.tjmetro.options": "Tianjin Metro 设置",
   "gui.tjmetro.default_color": "默认颜色",
@@ -51,5 +52,6 @@
   "filter.tjmetro.decoration": "装饰",
   "filter.tjmetro.ceilings": "天花板",
 
-  "gamerule.preventBlockFalling": "禁用方块下落"
+  "gamerule.preventBlockFalling": "禁用方块下落",
+  "gamerule.preventBlockFalling.description": "阻止可下落的方块下落，例如沙子和铁砧。该规则由天津地铁模组添加。"
 }

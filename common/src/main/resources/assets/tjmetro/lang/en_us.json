@@ -28,6 +28,7 @@
   "block.tjmetro.custom_color_concrete_slab": "Concrete Slab",
   "block.tjmetro.high_speed_repeater": "High Speed Repeater",
   "block.tjmetro.time_display": "Time Display",
+  "block.tjmetro.emergency_exit_sign": "Emergency Exit Sign",
 
   "gui.tjmetro.options": "Tianjin Metro Options",
   "gui.tjmetro.default_color": "Default Color",
@@ -51,5 +52,6 @@
   "filter.tjmetro.decoration": "Decorations",
   "filter.tjmetro.ceilings": "Ceilings",
 
-  "gamerule.preventBlockFalling": "Prevent Block Falling"
+  "gamerule.preventBlockFalling": "Prevent Block Falling",
+  "gamerule.preventBlockFalling.description": "Prevent Fall-able blocks to falling, such as sands and anvils. This rule was added by Tianjin Metro mod."
 }

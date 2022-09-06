@@ -59,9 +59,9 @@ public class TianjinMetro
         registerBlockItem.accept("player_detector", BlockList.PLAYER_DETECTOR, TAB);
         registerBlockItem.accept("high_speed_repeater", BlockList.HIGH_SPEED_REPEATER, TAB);
         registerBlockItem.accept("time_display", BlockList.TIME_DISPLAY, TAB);
-
         registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
         registerBlockItem.accept("roadblock_sign", BlockList.ROADBLOCK_SIGN, TAB);
+        registerBlockItem.accept("emergency_exit_sign", BlockList.EMERGENCY_EXIT_SIGN, TAB);
 
         registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
         registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);
