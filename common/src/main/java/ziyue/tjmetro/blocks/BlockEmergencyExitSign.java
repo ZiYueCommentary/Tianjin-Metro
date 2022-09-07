@@ -32,8 +32,8 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
-    public BlockEmergencyExitSign() {
-        super(Properties.copy(Blocks.STATION_COLOR_POLE.get()).lightLevel(state -> 5));
+    public BlockEmergencyExitSign(Properties properties) {
+        super(properties);
     }
 
     public static final EnumProperty<STYLES> STYLE = EnumProperty.create("style", STYLES.class);

@@ -34,8 +34,8 @@ public class BlockAPGCorner extends HorizontalDirectionalBlock implements Simple
 {
     public static final BooleanProperty TOP = BooleanProperty.create("top");
 
-    public BlockAPGCorner() {
-        super(Properties.copy(Blocks.APG_GLASS.get()));
+    public BlockAPGCorner(Properties properties) {
+        super(properties);
     }
 
     @Nullable
@@ -60,7 +60,8 @@ public class BlockAPGCorner extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        if (blockState.getValue(TOP)) return IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 9, 4, blockState.getValue(FACING));
+        if (blockState.getValue(TOP))
+            return IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 9, 4, blockState.getValue(FACING));
         else return IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 16, 4, blockState.getValue(FACING));
     }
 

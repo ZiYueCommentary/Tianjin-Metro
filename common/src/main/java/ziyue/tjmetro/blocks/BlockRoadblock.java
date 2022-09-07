@@ -31,8 +31,8 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 {
     public static final BooleanProperty IS_RIGHT = BooleanProperty.create("is_right");
 
-    public BlockRoadblock() {
-        super(Properties.copy(Blocks.LOGO.get()).lightLevel((state) -> 0));
+    public BlockRoadblock(Properties properties) {
+        super(properties);
     }
 
     @Override

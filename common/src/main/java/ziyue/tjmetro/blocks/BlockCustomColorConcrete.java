@@ -15,8 +15,8 @@ import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
 public class BlockCustomColorConcrete extends BlockCustomColorBase
 {
-    public BlockCustomColorConcrete() {
-        super(Properties.copy(Blocks.STATION_COLOR_CONCRETE.get()));
+    public BlockCustomColorConcrete(Properties properties) {
+        super(properties);
     }
 
     @Override

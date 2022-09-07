@@ -31,6 +31,10 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockStationColorCeilingNotLit extends BlockCeilingNotLit implements SimpleWaterloggedBlock
 {
+    public BlockStationColorCeilingNotLit(Properties properties) {
+        super(properties);
+    }
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         final boolean facing = ctx.getHorizontalDirection().getAxis() == Direction.Axis.X;

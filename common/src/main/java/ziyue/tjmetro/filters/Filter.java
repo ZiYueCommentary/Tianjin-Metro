@@ -59,7 +59,8 @@ public class Filter extends Button
                     BlockList.CUSTOM_COLOR_CONCRETE.get().asItem().getDefaultInstance(),
                     BlockList.CUSTOM_COLOR_CONCRETE_STAIRS.get().asItem().getDefaultInstance(),
                     BlockList.CUSTOM_COLOR_CONCRETE_SLAB.get().asItem().getDefaultInstance(),
-                    BlockList.HIGH_SPEED_REPEATER.get().asItem().getDefaultInstance()
+                    BlockList.HIGH_SPEED_REPEATER.get().asItem().getDefaultInstance(),
+                    BlockList.METAL_DETECTION_DOOR.get().asItem().getDefaultInstance()
             ));
     public static final Filter SIGNS = new Filter(Text.translatable("filter.tjmetro.signs"), BlockList.STATION_NAME_SIGN_1.get().asItem().getDefaultInstance(),
             Arrays.asList(
@@ -85,8 +86,17 @@ public class Filter extends Button
                     BlockList.STATION_COLOR_CEILING_NOT_LIT.get().asItem().getDefaultInstance(),
                     BlockList.STATION_COLOR_CEILING_NO_LIGHT.get().asItem().getDefaultInstance()
             ));
+    public static final Filter RAILWAYS = new Filter(Text.translatable("filter.tjmetro.railways"), BlockList.RAILWAY_SIGN_WALL_2.get().asItem().getDefaultInstance(),
+            Arrays.asList(
+                    BlockList.RAILWAY_SIGN_WALL_2.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_WALL_3.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_WALL_4.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_WALL_5.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_WALL_6.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_WALL_7.get().asItem().getDefaultInstance()
+            ));
 
-    public static final List<Filter> FILTERS = Arrays.asList(ROADBLOCKS, DECORATION, CEILINGS, BUILDING, SIGNS);
+    public static final List<Filter> FILTERS = Arrays.asList(ROADBLOCKS, DECORATION, CEILINGS, BUILDING, SIGNS, RAILWAYS);
 
     private static final ResourceLocation TABS = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
 

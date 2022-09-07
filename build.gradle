@@ -14,7 +14,7 @@ def is_1_16 = (minecraft_version as String).startsWith("1.16")
 def is_1_17 = (minecraft_version as String).startsWith("1.17")
 def is_1_18 = (minecraft_version as String).startsWith("1.18")
 
-rootProject.ext.fabric_loader_version = new JsonSlurper().parse(("https://meta.fabricmc.net/v2/versions/loader/" + minecraft_version).toURL())[0]["loader"]["version"]
+//rootProject.ext.fabric_loader_version = new JsonSlurper().parse(("https://meta.fabricmc.net/v2/versions/loader/" + minecraft_version).toURL())[0]["loader"]["version"]
 rootProject.ext.forge_version = minecraft_version + "-" + new JsonSlurper().parse(("https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json").toURL())["promos"][minecraft_version + "-latest"]
 rootProject.ext.fabric_api_version = getModrinthVersion("fabric", minecraft_version, "fabric-api")
 rootProject.ext.mod_menu_version = getModrinthVersion("fabric", minecraft_version, "modmenu")
@@ -68,28 +68,28 @@ task setupFiles() {
 	System.out.println("Mod Menu: " + rootProject.mod_menu_version)
 	System.out.println("Architectury: " + rootProject.architectury_version)
 
-	download {
-		src "https://github.com/jonafanho/Minecraft-Mappings/archive/refs/heads/${is_1_16 ? "1.16" : is_1_17 ? "1.17" : is_1_18 ? "1.18" : "1.19"}.zip"
-		dest "common/src/main/java/ziyue/tjmetro/mappings/files.zip"
-		overwrite true
-	}
-
-	copy {
-		outputs.upToDateWhen { false }
-		from(zipTree("common/src/main/java/ziyue/tjmetro/mappings/files.zip")) { eachFile { file -> file.relativePath = new RelativePath(true, file.relativePath.segments.drop(1) as String[]) } }
-		into "common/src/main/java/ziyue/tjmetro/mappings"
-		filter(ReplaceTokens, tokens: ["package": "ziyue.tjmetro.mappings; import mtr.mappings.*"])
-	}
-
-	ant.path { ant.fileset(dir: "common/src/main/java/ziyue/tjmetro/mappings", includes: "Fabric*.java") }.list().each {
-		ant.move(file: it, todir: "fabric/src/main/java/ziyue/tjmetro/mappings")
-	}
-
-	ant.path { ant.fileset(dir: "common/src/main/java/ziyue/tjmetro/mappings", includes: "Forge*.java") }.list().each {
-		ant.move(file: it, todir: "forge/src/main/java/ziyue/tjmetro/mappings")
-	}
-
-	ant.delete(dir: "common/src/main/java/ziyue/tjmetro/mappings")
+//	download {
+//		src "https://github.com/jonafanho/Minecraft-Mappings/archive/refs/heads/${is_1_16 ? "1.16" : is_1_17 ? "1.17" : is_1_18 ? "1.18" : "1.19"}.zip"
+//		dest "common/src/main/java/ziyue/tjmetro/mappings/files.zip"
+//		overwrite true
+//	}
+//
+//	copy {
+//		outputs.upToDateWhen { false }
+//		from(zipTree("common/src/main/java/ziyue/tjmetro/mappings/files.zip")) { eachFile { file -> file.relativePath = new RelativePath(true, file.relativePath.segments.drop(1) as String[]) } }
+//		into "common/src/main/java/ziyue/tjmetro/mappings"
+//		filter(ReplaceTokens, tokens: ["package": "ziyue.tjmetro.mappings; import mtr.mappings.*"])
+//	}
+//
+//	ant.path { ant.fileset(dir: "common/src/main/java/ziyue/tjmetro/mappings", includes: "Fabric*.java") }.list().each {
+//		ant.move(file: it, todir: "fabric/src/main/java/ziyue/tjmetro/mappings")
+//	}
+//
+//	ant.path { ant.fileset(dir: "common/src/main/java/ziyue/tjmetro/mappings", includes: "Forge*.java") }.list().each {
+//		ant.move(file: it, todir: "forge/src/main/java/ziyue/tjmetro/mappings")
+//	}
+//
+//	ant.delete(dir: "common/src/main/java/ziyue/tjmetro/mappings")
 
 	copy {
 		outputs.upToDateWhen { false }

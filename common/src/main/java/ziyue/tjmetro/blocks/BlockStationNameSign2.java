@@ -24,6 +24,10 @@ import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 
 public class BlockStationNameSign2 extends BlockStationNameSignBase
 {
+    public BlockStationNameSign2(Properties properties) {
+        super(properties);
+    }
+
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if (player.getName().toString().equals("EnderkingIIII")) { //easter egg lol

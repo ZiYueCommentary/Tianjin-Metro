@@ -32,8 +32,8 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockPlayerDetector extends Block implements SimpleWaterloggedBlock, EntityBlockMapper
 {
-    public BlockPlayerDetector() {
-        super(Properties.copy(Blocks.STONE_PRESSURE_PLATE));
+    public BlockPlayerDetector(Properties properties) {
+        super(properties);
     }
 
     @Nullable

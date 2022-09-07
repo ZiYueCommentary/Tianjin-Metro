@@ -1,6 +1,5 @@
 package ziyue.tjmetro.blocks.base;
 
-import mtr.Blocks;
 import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
 import mtr.mappings.EntityBlockMapper;
@@ -44,8 +43,8 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public abstract class BlockStationNameSignBase extends BlockStationNameBase implements SimpleWaterloggedBlock, EntityBlockMapper
 {
-    public BlockStationNameSignBase() {
-        super(Properties.copy(Blocks.STATION_NAME_TALL_WALL.get()));
+    public BlockStationNameSignBase(Properties properties) {
+        super(properties);
     }
 
     @Override

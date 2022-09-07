@@ -35,8 +35,8 @@ import java.util.List;
 
 public class BlockCustomColorConcreteSlab extends SlabBlock implements EntityBlockMapper
 {
-    public BlockCustomColorConcreteSlab() {
-        super(Properties.copy(Blocks.STATION_COLOR_CONCRETE.get()));
+    public BlockCustomColorConcreteSlab(Properties properties) {
+        super(properties);
     }
 
     @Override

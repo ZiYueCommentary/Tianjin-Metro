@@ -23,6 +23,10 @@ import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 
 public class BlockStationNameSign1 extends BlockStationNameSignBase
 {
+    public BlockStationNameSign1(Properties properties) {
+        super(properties);
+    }
+
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if (player.isHolding(Items.STICK)) return super.use(state, world, pos, player, interactionHand, blockHitResult);

@@ -7,7 +7,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RepeaterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -20,10 +19,11 @@ import java.util.Random;
  * @author ZiYueCommentary
  * @since 1.0b
  */
+
 public class BlockHighSpeedRepeater extends RepeaterBlock
 {
-    public BlockHighSpeedRepeater() {
-        super(Properties.copy(Blocks.REPEATER));
+    public BlockHighSpeedRepeater(Properties properties) {
+        super(properties);
     }
 
     @Override

@@ -32,8 +32,8 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockTimeDisplay extends HorizontalDirectionalBlock implements EntityBlockMapper, SimpleWaterloggedBlock
 {
-    public BlockTimeDisplay() {
-        super(Properties.copy(Blocks.CLOCK.get()).lightLevel(state -> 5));
+    public BlockTimeDisplay(Properties properties) {
+        super(properties);
     }
 
     @Nullable

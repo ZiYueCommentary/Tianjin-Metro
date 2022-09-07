@@ -40,8 +40,8 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
 {
     public static final IntegerProperty POS = IntegerProperty.create("pos", 0, 3);
 
-    public BlockBench() {
-        super(Properties.copy(Blocks.OAK_PLANKS));
+    public BlockBench(Properties properties) {
+        super(properties);
     }
 
     @Override

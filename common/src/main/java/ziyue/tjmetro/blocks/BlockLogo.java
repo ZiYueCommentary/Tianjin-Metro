@@ -27,8 +27,8 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockLogo extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
-    public BlockLogo() {
-        super(Properties.copy(Blocks.LOGO.get()).noCollission().lightLevel((state) -> 0));
+    public BlockLogo(Properties properties) {
+        super(properties);
     }
 
     @Override

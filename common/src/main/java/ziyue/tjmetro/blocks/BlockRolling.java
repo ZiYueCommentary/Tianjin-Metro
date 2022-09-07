@@ -32,8 +32,8 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockRolling extends Block implements SimpleWaterloggedBlock
 {
-    public BlockRolling() {
-        super(Properties.copy(Blocks.IRON_BARS));
+    public BlockRolling(Properties properties) {
+        super(properties);
     }
 
     public static final BooleanProperty FACING = BooleanProperty.create("facing");

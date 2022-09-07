@@ -36,6 +36,10 @@ import java.util.List;
 
 public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMapper
 {
+    public BlockRoadblockSign(Properties properties) {
+        super(properties);
+    }
+
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(world, player, () -> {

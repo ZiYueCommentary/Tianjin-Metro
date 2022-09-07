@@ -24,8 +24,8 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockCeilingNotLit extends BlockCeiling implements SimpleWaterloggedBlock
 {
-    public BlockCeilingNotLit() {
-        super(BlockBehaviour.Properties.copy(Blocks.CEILING.get()).lightLevel((state) -> 0));
+    public BlockCeilingNotLit(Properties properties) {
+        super(properties);
     }
 
     @Override

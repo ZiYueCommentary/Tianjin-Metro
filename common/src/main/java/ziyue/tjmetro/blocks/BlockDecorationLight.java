@@ -10,8 +10,8 @@ import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 //todo so i must make this because this placeholder has existed for half year
 public class BlockDecorationLight extends BlockCustomColorBase
 {
-    public BlockDecorationLight() {
-        super(Properties.copy(Blocks.CEILING_LIGHT.get()).noCollission().lightLevel((state) -> 15));
+    public BlockDecorationLight(Properties properties) {
+        super(properties);
     }
 
     @Override

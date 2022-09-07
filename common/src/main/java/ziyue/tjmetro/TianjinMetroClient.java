@@ -1,15 +1,13 @@
 package ziyue.tjmetro;
 
 import mtr.RegistryClient;
+import mtr.render.RenderRailwaySign;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import ziyue.tjmetro.entity.SeatEntity;
 import ziyue.tjmetro.packet.IPacket;
 import ziyue.tjmetro.packet.PacketGuiClient;
-import ziyue.tjmetro.render.RenderRoadblockSign;
-import ziyue.tjmetro.render.RenderStationNameSign;
-import ziyue.tjmetro.render.RenderStationNameWallLegacy;
-import ziyue.tjmetro.render.RenderTimeDisplay;
+import ziyue.tjmetro.render.*;
 
 /**
  * @since 1.0b
@@ -48,6 +46,12 @@ public class TianjinMetroClient
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.ROADBLOCK_SIGN_ENTITY.get(), RenderRoadblockSign::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_WALL_TILE_ENTITY.get(), RenderStationNameWallLegacy::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.TIME_DISPLAY_TILE_ENTITY.get(), RenderTimeDisplay::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_2_TILE_ENTITY.get(), RenderRailwaySign::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_3_TILE_ENTITY.get(), RenderRailwaySign::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_4_TILE_ENTITY.get(), RenderRailwaySign::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_5_TILE_ENTITY.get(), RenderRailwaySign::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY.get(), RenderRailwaySign::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_7_TILE_ENTITY.get(), RenderRailwaySign::new);
 
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN, packet -> PacketGuiClient.openCustomContentScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_COLOR_SCREEN, packet -> PacketGuiClient.openCustomColorScreenS2C(Minecraft.getInstance(), packet));
