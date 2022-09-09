@@ -1,13 +1,12 @@
 package ziyue.tjmetro.blocks;
 
-import mtr.Blocks;
-import mtr.Items;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityClientSerializableMapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -19,7 +18,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.Nullable;
-import ziyue.tjmetro.IBlockExtends;
+import ziyue.tjmetro.BlockList;
+import ziyue.tjmetro.IExtends;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
@@ -46,12 +46,15 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
     @Override
     public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
         if (blockState.getValue(TOP)) return;
+        if (!(entity instanceof Player)) return;
+        Inventory inventory = ((Player) entity).inventory;
+        inventory.removeItem(BlockList.BENCH.get().asItem().getDefaultInstance());
     }
 
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
-        if (blockState.getValue(TOP)) IBlockExtends.breakBlock(level, blockPos.below());
-        else IBlockExtends.breakBlock(level, blockPos.above());
+        if (blockState.getValue(TOP)) IExtends.breakBlock(level, blockPos.below());
+        else IExtends.breakBlock(level, blockPos.above());
         super.playerWillDestroy(level, blockPos, blockState, player);
     }
 
@@ -66,23 +69,17 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
             super(type, pos, state);
         }
 
-        public boolean playerOnly;
-        public static final String PLAYER_ONLY_ID = "player_only";
-
         @Override
         public void readCompoundTag(CompoundTag compoundTag) {
-            playerOnly = compoundTag.getBoolean(PLAYER_ONLY_ID);
             super.readCompoundTag(compoundTag);
         }
 
         @Override
         public void writeCompoundTag(CompoundTag compoundTag) {
-            compoundTag.putBoolean(PLAYER_ONLY_ID, playerOnly);
             super.writeCompoundTag(compoundTag);
         }
 
-        public void setData(boolean playerOnly) {
-            this.playerOnly = playerOnly;
+        public void setData() {
             setChanged();
             syncData();
         }

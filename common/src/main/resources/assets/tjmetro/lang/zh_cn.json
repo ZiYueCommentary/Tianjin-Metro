@@ -51,6 +51,7 @@
   "filter.tjmetro.signs": "站名牌",
   "filter.tjmetro.decoration": "装饰",
   "filter.tjmetro.ceilings": "天花板",
+  "filter.tjmetro.railway_signs": "指示牌",
 
   "gamerule.preventBlockFalling": "禁用方块下落",
   "gamerule.preventBlockFalling.description": "阻止可下落的方块下落，例如沙子和铁砧。该规则由天津地铁模组添加。"

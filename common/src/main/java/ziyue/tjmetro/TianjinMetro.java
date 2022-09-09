@@ -3,6 +3,7 @@ package ziyue.tjmetro;
 import mtr.MTR;
 import mtr.Registry;
 import mtr.RegistryObject;
+import mtr.client.CustomResources;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -18,8 +19,8 @@ import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.function.BiConsumer;
 
-import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_COLOR;
-import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_CONTENT;
+import static mtr.client.CustomResources.CUSTOM_SIGNS;
+import static ziyue.tjmetro.packet.IPacket.*;
 
 /**
  * @since 1.0b
@@ -63,11 +64,11 @@ public class TianjinMetro
         registerBlockItem.accept("roadblock_sign", BlockList.ROADBLOCK_SIGN, TAB);
         registerBlockItem.accept("emergency_exit_sign", BlockList.EMERGENCY_EXIT_SIGN, TAB);
         registerBlockItem.accept("railway_sign_wall_2", BlockList.RAILWAY_SIGN_WALL_2, TAB);
-        registerBlockItem.accept("railway_sign_wall_3", BlockList.RAILWAY_SIGN_WALL_3, TAB);
         registerBlockItem.accept("railway_sign_wall_4", BlockList.RAILWAY_SIGN_WALL_4, TAB);
-        registerBlockItem.accept("railway_sign_wall_5", BlockList.RAILWAY_SIGN_WALL_5, TAB);
         registerBlockItem.accept("railway_sign_wall_6", BlockList.RAILWAY_SIGN_WALL_6, TAB);
-        registerBlockItem.accept("railway_sign_wall_7", BlockList.RAILWAY_SIGN_WALL_7, TAB);
+        registerBlockItem.accept("railway_sign_wall_8", BlockList.RAILWAY_SIGN_WALL_8, TAB);
+        registerBlockItem.accept("railway_sign_wall_10", BlockList.RAILWAY_SIGN_WALL_10, TAB);
+        registerBlockItem.accept("railway_sign_wall_middle", BlockList.RAILWAY_SIGN_WALL_MIDDLE, TAB);
         registerBlockItem.accept("metal_detection_door", BlockList.METAL_DETECTION_DOOR, TAB);
 
         registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
@@ -91,15 +92,15 @@ public class TianjinMetro
         registerBlockEntityType.accept("decoration_light", BlockEntityTypes.DECORATION_LIGHT_TILE_ENTITY);
         registerBlockEntityType.accept("time_display", BlockEntityTypes.TIME_DISPLAY_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_2", BlockEntityTypes.RAILWAY_SIGN_WALL_2_TILE_ENTITY);
-        registerBlockEntityType.accept("railway_sign_wall_3", BlockEntityTypes.RAILWAY_SIGN_WALL_3_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_4", BlockEntityTypes.RAILWAY_SIGN_WALL_4_TILE_ENTITY);
-        registerBlockEntityType.accept("railway_sign_wall_5", BlockEntityTypes.RAILWAY_SIGN_WALL_5_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_6", BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY);
-        registerBlockEntityType.accept("railway_sign_wall_7", BlockEntityTypes.RAILWAY_SIGN_WALL_7_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_8", BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_10", BlockEntityTypes.RAILWAY_SIGN_WALL_10_TILE_ENTITY);
 
         registerEntityType.accept("bench", EntityTypes.BENCH);
 
         Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
         Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);
+        Registry.registerNetworkReceiver(PACKET_SIGN_TYPES, PacketGuiServer::receiveSignIdsC2S);
     }
 }

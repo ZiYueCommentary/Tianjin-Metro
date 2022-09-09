@@ -1,6 +1,5 @@
 package ziyue.tjmetro.blocks;
 
-import mtr.Blocks;
 import mtr.block.IBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;

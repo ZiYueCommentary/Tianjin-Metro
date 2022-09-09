@@ -1,6 +1,5 @@
 package ziyue.tjmetro.blocks;
 
-import mtr.Blocks;
 import mtr.block.IBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +17,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import ziyue.tjmetro.IBlockExtends;
+import ziyue.tjmetro.IExtends;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
@@ -49,8 +48,8 @@ public class BlockAPGCorner extends HorizontalDirectionalBlock implements Simple
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
         super.playerWillDestroy(level, blockPos, blockState, player);
-        if (blockState.getValue(TOP)) IBlockExtends.breakBlock(level, blockPos.below(), this);
-        else IBlockExtends.breakBlock(level, blockPos.above(), this);
+        if (blockState.getValue(TOP)) IExtends.breakBlock(level, blockPos.below(), this);
+        else IExtends.breakBlock(level, blockPos.above(), this);
     }
 
     @Override

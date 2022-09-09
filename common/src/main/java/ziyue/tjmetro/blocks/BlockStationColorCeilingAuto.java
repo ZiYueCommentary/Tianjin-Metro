@@ -24,6 +24,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockList;
+import ziyue.tjmetro.PrivateInSuper;
 
 import java.util.List;
 
@@ -72,6 +73,7 @@ public class BlockStationColorCeilingAuto extends BlockCeilingAuto implements Si
         list.add(Text.translatable("tooltip.mtr.station_color").withStyle(ChatFormatting.GRAY));
     }
 
+    @PrivateInSuper
     protected static boolean hasLight(boolean facing, BlockPos pos) {
         if (facing) return pos.getZ() % 3 == 0;
         else return pos.getX() % 3 == 0;

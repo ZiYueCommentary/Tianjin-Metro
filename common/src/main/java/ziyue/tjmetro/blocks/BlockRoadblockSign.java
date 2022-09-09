@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
-import ziyue.tjmetro.IBlockExtends;
+import ziyue.tjmetro.IExtends;
 import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
@@ -46,7 +46,7 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof TileEntityRoadBlockSign) {
                 ((TileEntityRoadBlockSign) entity).syncData();
-                PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, blockState.getValue(IS_RIGHT) ? IBlockExtends.getLeftPos(pos, blockState.getValue(FACING)) : pos);
+                PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, blockState.getValue(IS_RIGHT) ? pos.relative(blockState.getValue(FACING).getCounterClockWise()) : pos);
             }
         });
     }
@@ -73,7 +73,7 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
         @Override
         public void setData(String content) {
             this.content = content;
-            ((TileEntityRoadBlockSign) level.getBlockEntity(IBlockExtends.getRightPos(getBlockPos(), getBlockState().getValue(FACING)))).content = content;
+            ((TileEntityRoadBlockSign) level.getBlockEntity(getBlockPos().relative(getBlockState().getValue(FACING).getClockWise()))).content = content;
             setChanged();
             syncData();
         }

@@ -1,6 +1,5 @@
 package ziyue.tjmetro.blocks;
 
-import mtr.Blocks;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;

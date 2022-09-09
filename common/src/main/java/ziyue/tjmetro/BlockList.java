@@ -50,11 +50,10 @@ public interface BlockList
     RegistryObject<Block> TIME_DISPLAY = new RegistryObject<>(() -> new BlockTimeDisplay(BlockBehaviour.Properties.copy(Blocks.CLOCK.get()).lightLevel(state -> 5)));
     RegistryObject<Block> EMERGENCY_EXIT_SIGN = new RegistryObject<>(() -> new BlockEmergencyExitSign(BlockBehaviour.Properties.copy(Blocks.STATION_COLOR_POLE.get()).lightLevel(state -> 5)));
     RegistryObject<Block> RAILWAY_SIGN_WALL_2 = new RegistryObject<>(() -> new BlockRailwaySignWall(2));
-    RegistryObject<Block> RAILWAY_SIGN_WALL_3 = new RegistryObject<>(() -> new BlockRailwaySignWall(3));
     RegistryObject<Block> RAILWAY_SIGN_WALL_4 = new RegistryObject<>(() -> new BlockRailwaySignWall(4));
-    RegistryObject<Block> RAILWAY_SIGN_WALL_5 = new RegistryObject<>(() -> new BlockRailwaySignWall(5));
     RegistryObject<Block> RAILWAY_SIGN_WALL_6 = new RegistryObject<>(() -> new BlockRailwaySignWall(6));
-    RegistryObject<Block> RAILWAY_SIGN_WALL_7 = new RegistryObject<>(() -> new BlockRailwaySignWall(7));
+    RegistryObject<Block> RAILWAY_SIGN_WALL_8 = new RegistryObject<>(() -> new BlockRailwaySignWall(8));
+    RegistryObject<Block> RAILWAY_SIGN_WALL_10 = new RegistryObject<>(() -> new BlockRailwaySignWall(10));
     RegistryObject<Block> RAILWAY_SIGN_WALL_MIDDLE = new RegistryObject<>(() -> new BlockRailwaySignWall(0));
     RegistryObject<Block> METAL_DETECTION_DOOR = new RegistryObject<>(() -> new BlockMetalDetectionDoor(BlockBehaviour.Properties.copy(Blocks.LOGO.get()).noCollission()));
 }

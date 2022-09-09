@@ -11,9 +11,11 @@ import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 import ziyue.tjmetro.screen.ColorPickerScreen;
 import ziyue.tjmetro.screen.CustomContentScreen;
+import ziyue.tjmetro.screen.RailwaySignScreen;
 
-import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_COLOR;
-import static ziyue.tjmetro.packet.IPacket.PACKET_UPDATE_CUSTOM_CONTENT;
+import java.util.Set;
+
+import static ziyue.tjmetro.packet.IPacket.*;
 
 public class PacketGuiClient
 {
@@ -54,5 +56,26 @@ public class PacketGuiClient
         packet.writeBlockPos(pos);
         packet.writeInt(color);
         RegistryClient.sendToServer(PACKET_UPDATE_CUSTOM_COLOR, packet);
+    }
+
+    public static void openRailwaySignScreenS2C(Minecraft minecraftClient, FriendlyByteBuf packet) {
+        final BlockPos pos = packet.readBlockPos();
+        minecraftClient.execute(() -> {
+            if (!(minecraftClient.screen instanceof RailwaySignScreen)) {
+                UtilitiesClient.setScreen(minecraftClient, new RailwaySignScreen(pos));
+            }
+        });
+    }
+
+    public static void sendSignIdsC2S(BlockPos signPos, Set<Long> selectedIds, String[] signIds) {
+        final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
+        packet.writeBlockPos(signPos);
+        packet.writeInt(selectedIds.size());
+        selectedIds.forEach(packet::writeLong);
+        packet.writeInt(signIds.length);
+        for (final String signType : signIds) {
+            packet.writeUtf(signType == null ? "" : signType);
+        }
+        RegistryClient.sendToServer(PACKET_SIGN_TYPES, packet);
     }
 }

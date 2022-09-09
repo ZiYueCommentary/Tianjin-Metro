@@ -8,7 +8,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.TickableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,7 +18,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
-import ziyue.tjmetro.IBlockExtends;
+import ziyue.tjmetro.IExtends;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.*;
 
@@ -62,7 +61,7 @@ public class BlockPlayerDetector extends Block implements SimpleWaterloggedBlock
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        if (IBlockExtends.isHorizontalDirection(blockState.getValue(FACING)))
+        if (IExtends.isHorizontalDirection(blockState.getValue(FACING)))
             return IBlock.getVoxelShapeByDirection(1.7, 2, 14.8, 14.3, 4, 17, blockState.getValue(FACING));
         else if (blockState.getValue(FACING) == Direction.UP)
             return Block.box(6, 0, 6, 10, 1, 10);

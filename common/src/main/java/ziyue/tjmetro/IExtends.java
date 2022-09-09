@@ -3,22 +3,84 @@ package ziyue.tjmetro;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.data.IGui;
 import mtr.mappings.Text;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
+import static ziyue.tjmetro.TianjinMetro.LOGGER;
+
 /**
+ * Some methods similar to methods in <b>IBlock</b> and <b>IDrawing</b>.
+ *
+ * @see mtr.block.IBlock
  * @see mtr.client.IDrawing
  * @since 1.0b
  */
 
-public interface IDrawingExtends
+public interface IExtends
 {
+    /**
+     * Fence's collision height.
+     *
+     * @since 1.0b
+     */
+    byte FENCE_HEIGHT = 24;
+
+    /**
+     * Replace block with air.
+     *
+     * @param pos Block's Position
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static void breakBlock(Level world, BlockPos pos) {
+        try {
+            world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
+        } catch (Exception exception) {
+            LOGGER.warn("[" + pos.toShortString() + "] Property \"waterlogged\" not found - Replace with air");
+            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
+        }
+    }
+
+    /**
+     * Specify a block, if block in pos is specified block, then replace it with air.
+     *
+     * @param pos   Block's Position
+     * @param block Specified Block
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static void breakBlock(Level world, BlockPos pos, Block block) {
+        try {
+            if (world.getBlockState(pos).getBlock() == block) {
+                world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
+            }
+        } catch (Exception exception) {
+            LOGGER.warn("[" + pos.toShortString() + "] Property \"waterlogged\" not found - Replace with air");
+            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
+        }
+    }
+
+    /**
+     * Check the direction whether is horizontal direction.
+     *
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static boolean isHorizontalDirection(Direction direction) {
+        return direction == Direction.EAST || direction == Direction.WEST || direction == Direction.NORTH || direction == Direction.SOUTH;
+    }
+
     /**
      * Drawing string with minecraft font.
      *

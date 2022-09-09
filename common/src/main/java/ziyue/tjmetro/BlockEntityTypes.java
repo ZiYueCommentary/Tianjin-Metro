@@ -1,7 +1,6 @@
 package ziyue.tjmetro;
 
 import mtr.RegistryObject;
-import mtr.block.BlockRailwaySign;
 import mtr.mappings.RegistryUtilities;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import ziyue.tjmetro.blocks.*;
@@ -23,9 +22,8 @@ public interface BlockEntityTypes
     RegistryObject<BlockEntityType<BlockDecorationLight.DecorationLightEntity>> DECORATION_LIGHT_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockDecorationLight.DecorationLightEntity::new, BlockList.DECORATION_LIGHT.get()));
     RegistryObject<BlockEntityType<BlockTimeDisplay.TileEntityTimeDisplay>> TIME_DISPLAY_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockTimeDisplay.TileEntityTimeDisplay::new, BlockList.TIME_DISPLAY.get()));
     RegistryObject<BlockEntityType<BlockRailwaySignWall.TileEntityRailwaySignWall>> RAILWAY_SIGN_WALL_2_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignWall.TileEntityRailwaySignWall(2, pos, state), BlockList.RAILWAY_SIGN_WALL_2.get()));
-    RegistryObject<BlockEntityType<BlockRailwaySignWall.TileEntityRailwaySignWall>> RAILWAY_SIGN_WALL_3_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignWall.TileEntityRailwaySignWall(3, pos, state), BlockList.RAILWAY_SIGN_WALL_3.get()));
     RegistryObject<BlockEntityType<BlockRailwaySignWall.TileEntityRailwaySignWall>> RAILWAY_SIGN_WALL_4_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignWall.TileEntityRailwaySignWall(4, pos, state), BlockList.RAILWAY_SIGN_WALL_4.get()));
-    RegistryObject<BlockEntityType<BlockRailwaySignWall.TileEntityRailwaySignWall>> RAILWAY_SIGN_WALL_5_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignWall.TileEntityRailwaySignWall(5, pos, state), BlockList.RAILWAY_SIGN_WALL_5.get()));
     RegistryObject<BlockEntityType<BlockRailwaySignWall.TileEntityRailwaySignWall>> RAILWAY_SIGN_WALL_6_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignWall.TileEntityRailwaySignWall(6, pos, state), BlockList.RAILWAY_SIGN_WALL_6.get()));
-    RegistryObject<BlockEntityType<BlockRailwaySignWall.TileEntityRailwaySignWall>> RAILWAY_SIGN_WALL_7_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignWall.TileEntityRailwaySignWall(7, pos, state), BlockList.RAILWAY_SIGN_WALL_7.get()));
+    RegistryObject<BlockEntityType<BlockRailwaySignWall.TileEntityRailwaySignWall>> RAILWAY_SIGN_WALL_8_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignWall.TileEntityRailwaySignWall(8, pos, state), BlockList.RAILWAY_SIGN_WALL_8.get()));
+    RegistryObject<BlockEntityType<BlockRailwaySignWall.TileEntityRailwaySignWall>> RAILWAY_SIGN_WALL_10_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignWall.TileEntityRailwaySignWall(10, pos, state), BlockList.RAILWAY_SIGN_WALL_10.get()));
 }

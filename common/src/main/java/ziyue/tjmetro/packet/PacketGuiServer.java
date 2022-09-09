@@ -9,10 +9,13 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
+import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
 import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 
-import static ziyue.tjmetro.packet.IPacket.PACKET_OPEN_CUSTOM_COLOR_SCREEN;
-import static ziyue.tjmetro.packet.IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN;
+import java.util.HashSet;
+import java.util.Set;
+
+import static ziyue.tjmetro.packet.IPacket.*;
 
 public class PacketGuiServer
 {
@@ -46,6 +49,34 @@ public class PacketGuiServer
             final BlockEntity entity = player.level.getBlockEntity(pos);
             if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity) {
                 ((BlockCustomColorBase.CustomColorBlockEntity) entity).setData(color);
+            }
+        });
+    }
+
+    public static void openRailwaySignScreenS2C(ServerPlayer player, BlockPos signPos) {
+        final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
+        packet.writeBlockPos(signPos);
+        Registry.sendToPlayer(player, PACKET_OPEN_RAILWAY_SIGN_SCREEN, packet);
+    }
+
+    public static void receiveSignIdsC2S(MinecraftServer minecraftServer, ServerPlayer player, FriendlyByteBuf packet) {
+        final BlockPos signPos = packet.readBlockPos();
+        final int selectedIdsLength = packet.readInt();
+        final Set<Long> selectedIds = new HashSet<>();
+        for (int i = 0; i < selectedIdsLength; i++) {
+            selectedIds.add(packet.readLong());
+        }
+        final int signLength = packet.readInt();
+        final String[] signIds = new String[signLength];
+        for (int i = 0; i < signLength; i++) {
+            final String signId = packet.readUtf(SerializedDataBase.PACKET_STRING_READ_LENGTH);
+            signIds[i] = signId.isEmpty() ? null : signId;
+        }
+
+        minecraftServer.execute(() -> {
+            final BlockEntity entity = player.level.getBlockEntity(signPos);
+            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign) {
+                ((BlockRailwaySignBase.TileEntityRailwaySign) entity).setData(selectedIds, signIds);
             }
         });
     }

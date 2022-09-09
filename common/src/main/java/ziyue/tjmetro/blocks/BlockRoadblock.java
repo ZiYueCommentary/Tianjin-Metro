@@ -1,6 +1,5 @@
 package ziyue.tjmetro.blocks;
 
-import mtr.Blocks;
 import mtr.block.IBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +17,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import ziyue.tjmetro.IBlockExtends;
+import ziyue.tjmetro.IExtends;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
@@ -38,8 +37,8 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         BlockState state = defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, ctx.getHorizontalDirection()).setValue(IS_RIGHT, false);
-        if (IBlock.isReplaceable(ctx, IBlockExtends.getRightDirection(state.getValue(FACING)), 2)) {
-            ctx.getLevel().setBlock(IBlockExtends.getRightPos(ctx.getClickedPos(), ctx.getHorizontalDirection()), state.setValue(IS_RIGHT, true), 2);
+        if (IBlock.isReplaceable(ctx, state.getValue(FACING).getClockWise(), 2)) {
+            ctx.getLevel().setBlock(ctx.getClickedPos().relative(state.getValue(FACING).getClockWise()), state.setValue(IS_RIGHT, true), 2);
             return state;
         }
         return null;
@@ -48,9 +47,9 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
     @Override
     public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         if (state.getValue(IS_RIGHT))
-            IBlockExtends.breakBlock(world, IBlockExtends.getLeftPos(pos, state.getValue(FACING)), this);
+            IExtends.breakBlock(world, pos.relative(state.getValue(FACING).getCounterClockWise()), this);
         else
-            IBlockExtends.breakBlock(world, IBlockExtends.getRightPos(pos, state.getValue(FACING)), this);
+            IExtends.breakBlock(world, pos.relative(state.getValue(FACING).getClockWise()), this);
         super.playerWillDestroy(world, pos, state, player);
     }
 
@@ -61,7 +60,7 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public VoxelShape getCollisionShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, IBlockExtends.FENCE_HEIGHT, 11, blockState.getValue(FACING));
+        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, IExtends.FENCE_HEIGHT, 11, blockState.getValue(FACING));
     }
 
     @Override

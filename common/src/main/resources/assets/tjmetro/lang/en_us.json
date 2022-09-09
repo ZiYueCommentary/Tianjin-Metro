@@ -51,6 +51,7 @@
   "filter.tjmetro.signs": "Station Name Signs",
   "filter.tjmetro.decoration": "Decorations",
   "filter.tjmetro.ceilings": "Ceilings",
+  "filter.tjmetro.railway_signs": "Railway Signs",
 
   "gamerule.preventBlockFalling": "Prevent Block Falling",
   "gamerule.preventBlockFalling.description": "Prevent Fall-able blocks to falling, such as sands and anvils. This rule was added by Tianjin Metro mod."
