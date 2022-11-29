@@ -1,5 +1,6 @@
 package ziyue.tjmetro.blocks;
 
+import mtr.Blocks;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.EntityBlockMapper;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
@@ -34,6 +36,10 @@ import java.util.List;
 
 public class BlockCustomColorConcreteSlab extends SlabBlock implements EntityBlockMapper
 {
+    public BlockCustomColorConcreteSlab() {
+        this(BlockBehaviour.Properties.copy(Blocks.STATION_COLOR_CONCRETE.get()));
+    }
+
     public BlockCustomColorConcreteSlab(Properties properties) {
         super(properties);
     }
@@ -52,8 +58,8 @@ public class BlockCustomColorConcreteSlab extends SlabBlock implements EntityBlo
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity) {
-                ((BlockCustomColorBase.CustomColorBlockEntity) entity).syncData();
+            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity entity1) {
+                entity1.syncData();
                 PacketGuiServer.openCustomColorScreenS2C((ServerPlayer) player, pos);
             }
         });

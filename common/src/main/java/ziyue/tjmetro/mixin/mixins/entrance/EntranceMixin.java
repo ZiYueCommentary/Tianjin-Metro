@@ -20,8 +20,8 @@ import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 import static mtr.block.BlockStationNameEntrance.STYLE;
 
 /**
- * Made for <i>No "station" of station name entrance</i> feature<br>
- * Inspired by <a href="https://github.com/jonafanho/Minecraft-Transit-Railway/issues/172">Issue #172: 奇怪的“站站”、“Station Station”</a>
+ * Made for <b>No "station" of station name entrance</b> feature.
+ * Inspired by <a href="https://github.com/jonafanho/Minecraft-Transit-Railway/issues/172">Issue #172: 奇怪的“站站”、“Station Station”</a>.
  *
  * @author ZiYueCommentary
  * @see BlockStationNameEntrance

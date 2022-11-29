@@ -12,23 +12,21 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
-import static net.minecraft.world.level.GameRules.register;
-
 public class RegistryClientImpl
 {
     public static void registerCustomColorBlock(Block block) {
-        RegistryUtilitiesClient.registerBlockColors(new StationColor(), block);
+        RegistryUtilitiesClient.registerBlockColors(new CustomColor(), block);
     }
 
     public static GameRules.Key<GameRules.BooleanValue> registerBooleanGameRule(String name, GameRules.Category category, boolean defaultValue) {
-        return register(name, category, GameRuleFactory.createBooleanRule(defaultValue));
+        return GameRules.register(name, category, GameRuleFactory.createBooleanRule(defaultValue));
     }
 
     public static GameRules.Key<GameRules.IntegerValue> registerIntegerGameRule(String name, GameRules.Category category, int defaultValue) {
-        return register(name, category, GameRuleFactory.createIntRule(defaultValue));
+        return GameRules.register(name, category, GameRuleFactory.createIntRule(defaultValue));
     }
 
-    private static class StationColor implements BlockColor
+    private static class CustomColor implements BlockColor
     {
         @Override
         public int getColor(BlockState blockState, BlockAndTintGetter blockAndTintGetter, BlockPos pos, int i) {

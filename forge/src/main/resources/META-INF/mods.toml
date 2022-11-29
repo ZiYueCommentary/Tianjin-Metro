@@ -37,7 +37,3 @@ mandatory = true
 versionRange = "1.0"
 ordering = "AFTER"
 side = "BOTH"
-
-[modproperties.tjmetro]
-catalogueItemIcon="tjmetro:logo"
-configuredBackground="minecraft:textures/block/dirt.png"

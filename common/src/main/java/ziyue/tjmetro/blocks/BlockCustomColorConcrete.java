@@ -1,7 +1,9 @@
 package ziyue.tjmetro.blocks;
 
+import mtr.Blocks;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
@@ -14,6 +16,10 @@ import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
 public class BlockCustomColorConcrete extends BlockCustomColorBase
 {
+    public BlockCustomColorConcrete() {
+        this(BlockBehaviour.Properties.copy(Blocks.STATION_COLOR_CONCRETE.get()));
+    }
+
     public BlockCustomColorConcrete(Properties properties) {
         super(properties);
     }

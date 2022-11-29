@@ -20,8 +20,8 @@ import ziyue.tjmetro.packet.PacketGuiClient;
 import java.awt.*;
 
 /**
- * Color Picker, based on <i>Widget Color Selector</i>.<br>
- * All methods are <b>protected</b>, different with <b>private</b> in <i>Widget Color Selector</i>.
+ * Color Picker, based on <b>Widget Color Selector</b>.
+ * All methods are <i>protected</i>, different with <i>private</i> in <b>Widget Color Selector</b>.
  *
  * @author ZiYueCommentary
  * @see mtr.screen.WidgetColorSelector
@@ -172,15 +172,15 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
         final int mainWidth = getMainWidth();
         final int mainHeight = getMainHeight();
         switch (draggingState) {
-            case SATURATION_BRIGHTNESS:
+            case SATURATION_BRIGHTNESS -> {
                 saturation = (float) Mth.clamp((mouseX - SQUARE_SIZE) / mainWidth, 0, 1);
                 brightness = 1 - (float) Mth.clamp((mouseY - SQUARE_SIZE) / mainHeight, 0, 1);
                 setColorText(Color.HSBtoRGB(hue, saturation, brightness), true);
-                break;
-            case HUE:
+            }
+            case HUE -> {
                 hue = (float) Mth.clamp((mouseY - SQUARE_SIZE) / mainHeight, 0, 1);
                 setColorText(Color.HSBtoRGB(hue, saturation, brightness), true);
-                break;
+            }
         }
     }
 

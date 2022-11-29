@@ -11,7 +11,6 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
 
 /**
  * Print references about <b>Tianjin Metro mod</b>.
- * <br>
  * This mixin is for testing originally.
  *
  * @author ZiYueCommentary

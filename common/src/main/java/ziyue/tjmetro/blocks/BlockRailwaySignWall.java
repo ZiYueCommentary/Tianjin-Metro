@@ -41,6 +41,7 @@ import java.util.List;
  * Railway Sign Wall, must be even.
  *
  * @author ZiYueCommentary
+ * @see BlockRailwaySignBase
  * @since 1.0b
  */
 
@@ -53,12 +54,13 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
     public BlockRailwaySignWall(Properties properties, int length, boolean isOdd) {
         super(properties, length, isOdd);
     }
+
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult hit) {
         if (player.isHolding(Items.SHEARS)) {
             final Direction facing = IBlock.getStatePropertySafe(state, FACING);
             final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
-            final TileEntityRailwaySignWall entity = ((TileEntityRailwaySignWall)world.getBlockEntity(checkPos));
+            final TileEntityRailwaySignWall entity = ((TileEntityRailwaySignWall) world.getBlockEntity(checkPos));
             entity.isBig = !entity.isBig;
             return InteractionResult.SUCCESS;
         }
@@ -171,20 +173,14 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
         }
 
         protected static BlockEntityType<?> getType(int length) {
-            switch (length) {
-                case 2:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_2_TILE_ENTITY.get();
-                case 4:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_4_TILE_ENTITY.get();
-                case 6:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY.get();
-                case 8:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY.get();
-                case 10:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_10_TILE_ENTITY.get();
-                default:
-                    return null;
-            }
+            return switch (length) {
+                case 2 -> BlockEntityTypes.RAILWAY_SIGN_WALL_2_TILE_ENTITY.get();
+                case 4 -> BlockEntityTypes.RAILWAY_SIGN_WALL_4_TILE_ENTITY.get();
+                case 6 -> BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY.get();
+                case 8 -> BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY.get();
+                case 10 -> BlockEntityTypes.RAILWAY_SIGN_WALL_10_TILE_ENTITY.get();
+                default -> null;
+            };
         }
     }
 }

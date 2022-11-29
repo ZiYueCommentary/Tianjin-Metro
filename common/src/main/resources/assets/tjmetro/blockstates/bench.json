@@ -1,20 +1,20 @@
 {
   "variants": {
-    "facing=north,pos=0": { "model": "tjmetro:block/bench" },
-    "facing=east,pos=0":  { "model": "tjmetro:block/bench", "y":  90},
-    "facing=south,pos=0": { "model": "tjmetro:block/bench", "y": 180 },
-    "facing=west,pos=0":  { "model": "tjmetro:block/bench", "y": 270 },
-    "facing=north,pos=1": { "model": "tjmetro:block/bench_left" },
-    "facing=east,pos=1":  { "model": "tjmetro:block/bench_left", "y":  90},
-    "facing=south,pos=1": { "model": "tjmetro:block/bench_left", "y": 180 },
-    "facing=west,pos=1":  { "model": "tjmetro:block/bench_left", "y": 270 },
-    "facing=north,pos=2": { "model": "tjmetro:block/bench_right" },
-    "facing=east,pos=2":  { "model": "tjmetro:block/bench_right", "y":  90},
-    "facing=south,pos=2": { "model": "tjmetro:block/bench_right", "y": 180 },
-    "facing=west,pos=2":  { "model": "tjmetro:block/bench_right", "y": 270 },
-    "facing=north,pos=3": { "model": "tjmetro:block/bench_middle" },
-    "facing=east,pos=3":  { "model": "tjmetro:block/bench_middle", "y":  90},
-    "facing=south,pos=3": { "model": "tjmetro:block/bench_middle", "y": 180 },
-    "facing=west,pos=3":  { "model": "tjmetro:block/bench_middle", "y": 270 }
+    "facing=north,pos=single": { "model": "tjmetro:block/bench" },
+    "facing=east,pos=single":  { "model": "tjmetro:block/bench", "y":  90},
+    "facing=south,pos=single": { "model": "tjmetro:block/bench", "y": 180 },
+    "facing=west,pos=single":  { "model": "tjmetro:block/bench", "y": 270 },
+    "facing=north,pos=left": { "model": "tjmetro:block/bench_left" },
+    "facing=east,pos=left":  { "model": "tjmetro:block/bench_left", "y":  90},
+    "facing=south,pos=left": { "model": "tjmetro:block/bench_left", "y": 180 },
+    "facing=west,pos=left":  { "model": "tjmetro:block/bench_left", "y": 270 },
+    "facing=north,pos=right": { "model": "tjmetro:block/bench_right" },
+    "facing=east,pos=right":  { "model": "tjmetro:block/bench_right", "y":  90},
+    "facing=south,pos=right": { "model": "tjmetro:block/bench_right", "y": 180 },
+    "facing=west,pos=right":  { "model": "tjmetro:block/bench_right", "y": 270 },
+    "facing=north,pos=middle": { "model": "tjmetro:block/bench_middle" },
+    "facing=east,pos=middle":  { "model": "tjmetro:block/bench_middle", "y":  90},
+    "facing=south,pos=middle": { "model": "tjmetro:block/bench_middle", "y": 180 },
+    "facing=west,pos=middle":  { "model": "tjmetro:block/bench_middle", "y": 270 }
   }
 }

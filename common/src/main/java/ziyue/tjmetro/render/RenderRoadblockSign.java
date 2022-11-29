@@ -20,8 +20,7 @@ import ziyue.tjmetro.blocks.BlockRoadblockSign;
 
 /**
  * Render content for <b>Roadblock with Sign</b>.
- * <br>
- * Support display <i>custom content</i>.
+ * Support display <b>custom content</b>.
  *
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.screen.CustomContentScreen

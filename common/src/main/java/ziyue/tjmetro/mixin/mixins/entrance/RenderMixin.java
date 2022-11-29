@@ -23,9 +23,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 
 /**
- * Core of <i>No "station" of station name entrance</i> feature<br>
- * Inspired by <a href="https://github.com/jonafanho/Minecraft-Transit-Railway/issues/172">Issue #172: 奇怪的“站站”、“Station Station”</a>
- *
  * @author ZiYueCommentary
  * @see mtr.render.RenderStationNameTiled
  * @see EntranceMixin
@@ -35,7 +32,8 @@ import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 @Mixin(RenderStationNameTiled.class)
 public abstract class RenderMixin extends RenderStationNameBase<BlockStationNameEntrance.TileEntityStationNameEntrance>
 {
-    @Shadow protected abstract int getLength(BlockGetter world, BlockPos pos, boolean lookRight);
+    @Shadow
+    protected abstract int getLength(BlockGetter world, BlockPos pos, boolean lookRight);
 
     final boolean showLogo;
 

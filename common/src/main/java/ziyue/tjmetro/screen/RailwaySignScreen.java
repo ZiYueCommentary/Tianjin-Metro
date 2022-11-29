@@ -29,6 +29,13 @@ import ziyue.tjmetro.packet.PacketGuiClient;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * @author ZiYueCommentary
+ * @see mtr.screen.RailwaySignScreen
+ * @see BlockRailwaySignBase
+ * @since 1.0b
+ */
+
 public class RailwaySignScreen extends ScreenMapper implements IGui
 {
     protected int editingIndex;
@@ -97,9 +104,9 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
 
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(signPos);
-            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign) {
-                signIds = ((BlockRailwaySignBase.TileEntityRailwaySign) entity).getSignIds();
-                selectedIds = ((BlockRailwaySignBase.TileEntityRailwaySign) entity).getSelectedIds();
+            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign entity1) {
+                signIds = entity1.getSignIds();
+                selectedIds = entity1.getSelectedIds();
                 isRailwaySign = true;
             } else {
                 signIds = new String[0];

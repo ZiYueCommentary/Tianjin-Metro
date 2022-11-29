@@ -8,6 +8,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FluidState;
@@ -27,6 +28,10 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockLogo extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
+    public BlockLogo() {
+        this(BlockBehaviour.Properties.copy(Blocks.LOGO.get()).noCollission().lightLevel((state) -> 0));
+    }
+
     public BlockLogo(Properties properties) {
         super(properties);
     }

@@ -33,7 +33,6 @@ import java.util.Map;
 
 /**
  * A beautiful filter, maybe this is the most technical content feature for me.
- * <br>
  * Inspired by <a href="https://github.com/MrCrayfish/Filters">Filters Mod</a> and <a href="https://github.com/MrCrayfish/MrCrayfishFurnitureMod">MrCrayfish's Furniture Mod</a>.
  *
  * @author ZiYueCommentary

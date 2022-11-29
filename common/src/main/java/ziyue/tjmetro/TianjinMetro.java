@@ -23,6 +23,8 @@ import static mtr.client.CustomResources.CUSTOM_SIGNS;
 import static ziyue.tjmetro.packet.IPacket.*;
 
 /**
+ * Entry of <b>Tianjin Metro Mod</b>.
+ *
  * @since 1.0b
  */
 
@@ -68,8 +70,23 @@ public class TianjinMetro
         registerBlockItem.accept("railway_sign_wall_6", BlockList.RAILWAY_SIGN_WALL_6, TAB);
         registerBlockItem.accept("railway_sign_wall_8", BlockList.RAILWAY_SIGN_WALL_8, TAB);
         registerBlockItem.accept("railway_sign_wall_10", BlockList.RAILWAY_SIGN_WALL_10, TAB);
-        registerBlockItem.accept("railway_sign_wall_middle", BlockList.RAILWAY_SIGN_WALL_MIDDLE, TAB);
         registerBlockItem.accept("metal_detection_door", BlockList.METAL_DETECTION_DOOR, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_2_odd", BlockList.RAILWAY_SIGN_TIANJIN_2_ODD, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_3_odd", BlockList.RAILWAY_SIGN_TIANJIN_3_ODD, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_4_odd", BlockList.RAILWAY_SIGN_TIANJIN_4_ODD, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_5_odd", BlockList.RAILWAY_SIGN_TIANJIN_5_ODD, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_6_odd", BlockList.RAILWAY_SIGN_TIANJIN_6_ODD, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_7_odd", BlockList.RAILWAY_SIGN_TIANJIN_7_ODD, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_2_even", BlockList.RAILWAY_SIGN_TIANJIN_2_EVEN, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_3_even", BlockList.RAILWAY_SIGN_TIANJIN_3_EVEN, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_4_even", BlockList.RAILWAY_SIGN_TIANJIN_4_EVEN, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_5_even", BlockList.RAILWAY_SIGN_TIANJIN_5_EVEN, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_6_even", BlockList.RAILWAY_SIGN_TIANJIN_6_EVEN, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_7_even", BlockList.RAILWAY_SIGN_TIANJIN_7_EVEN, TAB);
+        registerBlockItem.accept("railway_sign_tianjin_pole", BlockList.RAILWAY_SIGN_TIANJIN_POLE, TAB);
+
+        registerBlock.accept("railway_sign_wall_middle", BlockList.RAILWAY_SIGN_WALL_MIDDLE);
+        registerBlock.accept("railway_sign_tianjin_middle", BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE);
 
         registerEnchantedBlockItem.accept("ceiling", BlockList.STATION_COLOR_CEILING, TAB);
         registerEnchantedBlockItem.accept("ceiling_light", BlockList.STATION_COLOR_CEILING_LIGHT, TAB);
@@ -96,6 +113,18 @@ public class TianjinMetro
         registerBlockEntityType.accept("railway_sign_wall_6", BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_8", BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_10", BlockEntityTypes.RAILWAY_SIGN_WALL_10_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_2_odd", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_2_ODD_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_3_odd", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_3_ODD_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_4_odd", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_4_ODD_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_5_odd", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_5_ODD_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_6_odd", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_6_ODD_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_7_odd", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_7_ODD_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_2_even", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_2_EVEN_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_3_even", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_3_EVEN_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_4_even", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_4_EVEN_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_5_even", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_5_EVEN_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_6_even", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_6_EVEN_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_tianjin_7_even", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_7_EVEN_TILE_ENTITY);
 
         registerEntityType.accept("bench", EntityTypes.BENCH);
 

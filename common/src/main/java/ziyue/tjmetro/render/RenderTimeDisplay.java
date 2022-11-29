@@ -43,7 +43,7 @@ public class RenderTimeDisplay<T extends BlockTimeDisplay.TileEntityTimeDisplay>
         if (RenderTrains.shouldNotRender(pos, RenderTrains.maxTrainRenderDistance, null)) return;
 
         matrices.pushPose();
-        matrices.translate(0.51, 0.5 + entity.yOffset, 0.5);
+        matrices.translate(0.5, 0.5 + entity.yOffset, 0.5);
         matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());

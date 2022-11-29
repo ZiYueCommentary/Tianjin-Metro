@@ -144,16 +144,12 @@ public abstract class BlockRailwaySignBase extends BlockDirectionalMapper implem
     }
 
     public int getXStart() {
-        switch (length % 4) {
-            default:
-                return isOdd ? 8 : 16;
-            case 1:
-                return isOdd ? 4 : 12;
-            case 2:
-                return isOdd ? 16 : 8;
-            case 3:
-                return isOdd ? 12 : 4;
-        }
+        return switch (length % 4) {
+            default -> isOdd ? 8 : 16;
+            case 1 -> isOdd ? 4 : 12;
+            case 2 -> isOdd ? 16 : 8;
+            case 3 -> isOdd ? 12 : 4;
+        };
     }
 
     protected int getMiddleLength() {

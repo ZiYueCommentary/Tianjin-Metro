@@ -1,5 +1,6 @@
 package ziyue.tjmetro.blocks;
 
+import mtr.Blocks;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.EntityBlockMapper;
@@ -35,6 +36,10 @@ import java.util.List;
 
 public class BlockCustomColorConcreteStairs extends StairBlock implements EntityBlockMapper
 {
+    public BlockCustomColorConcreteStairs() {
+        this(Blocks.STATION_COLOR_CONCRETE.get());
+    }
+
     public BlockCustomColorConcreteStairs(Block block) {
         super(block);
     }
@@ -53,8 +58,8 @@ public class BlockCustomColorConcreteStairs extends StairBlock implements Entity
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity) {
-                ((BlockCustomColorBase.CustomColorBlockEntity) entity).syncData();
+            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity entity1) {
+                entity1.syncData();
                 PacketGuiServer.openCustomColorScreenS2C((ServerPlayer) player, pos);
             }
         });

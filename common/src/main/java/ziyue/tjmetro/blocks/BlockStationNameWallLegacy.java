@@ -48,6 +48,10 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockStationNameWallLegacy extends BlockStationNameBase implements SimpleWaterloggedBlock
 {
+    public BlockStationNameWallLegacy() {
+        this(BlockBehaviour.Properties.copy(mtr.Blocks.STATION_NAME_WALL_WHITE.get()).noCollission());
+    }
+
     public BlockStationNameWallLegacy(Properties properties) {
         super(properties);
     }

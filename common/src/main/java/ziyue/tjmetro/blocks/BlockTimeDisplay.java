@@ -1,6 +1,7 @@
 package ziyue.tjmetro.blocks;
 
 import mtr.Blocks;
+import mtr.block.IBlock;
 import mtr.mappings.BlockEntityClientSerializableMapper;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.EntityBlockMapper;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FluidState;
@@ -32,6 +34,10 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockTimeDisplay extends HorizontalDirectionalBlock implements EntityBlockMapper, SimpleWaterloggedBlock
 {
+    public BlockTimeDisplay() {
+        this(BlockBehaviour.Properties.copy(Blocks.CLOCK.get()).lightLevel(state -> 5));
+    }
+
     public BlockTimeDisplay(Properties properties) {
         super(properties);
     }
@@ -59,10 +65,7 @@ public class BlockTimeDisplay extends HorizontalDirectionalBlock implements Enti
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        if (blockState.getValue(FACING).getAxis() == Direction.Axis.X)
-            return Block.box(6, 8.5, -3, 10, 16, 18);
-        else
-            return Block.box(-3, 8.5, 6, 18, 16, 10);
+        return IBlock.getVoxelShapeByDirection(-3, 8.5, 6, 18, 16, 10, blockState.getValue(FACING));
     }
 
     public static class TileEntityTimeDisplay extends BlockEntityClientSerializableMapper
@@ -71,7 +74,7 @@ public class BlockTimeDisplay extends HorizontalDirectionalBlock implements Enti
         public final float zOffset;
 
         public TileEntityTimeDisplay(BlockPos pos, BlockState state) {
-            this(BlockEntityTypes.TIME_DISPLAY_TILE_ENTITY.get(), pos, state, 0.21f, 0.64f);
+            this(BlockEntityTypes.TIME_DISPLAY_TILE_ENTITY.get(), pos, state, 0.21f, 0.63f);
         }
 
         public TileEntityTimeDisplay(BlockEntityType<?> entityType, BlockPos pos, BlockState state, float yOffset, float zOffset) {

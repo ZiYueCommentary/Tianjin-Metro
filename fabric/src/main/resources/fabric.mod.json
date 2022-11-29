@@ -1,34 +1,34 @@
 {
-	"schemaVersion": 1,
-	"id": "tjmetro",
-	"version": "${version}",
-	"name": "Tianjin Metro",
-	"description": "A small addon for the Minecraft Transit Railway Mod",
-	"authors": [
-		"ZiYueCommentary"
-	],
-	"contact": {
-      "sources": "https://github.com/ZiYueCommentary/Tianjin-Metro",
-      "issues": "https://github.com/ZiYueCommentary/Tianjin-Metro/issues",
-      "email": "ziyuecommentary@gmail.com"
+    "schemaVersion": 1,
+    "id": "tjmetro",
+    "version": "${version}",
+    "name": "Tianjin Metro",
+    "description": "A small addon for the Minecraft Transit Railway Mod",
+    "authors": [
+        "ZiYueCommentary"
+    ],
+    "contact": {
+        "sources": "https://github.com/ZiYueCommentary/Tianjin-Metro",
+        "issues": "https://github.com/ZiYueCommentary/Tianjin-Metro/issues",
+        "email": "ziyuecommentary@gmail.com"
     },
-	"license": "MIT",
-	"icon": "icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-          "ziyue.tjmetro.MainFabric"
-		],
-		"client": [
-          "ziyue.tjmetro.MainFabricClient"
-		]
-	},
-	"mixins": [
-		"tjmetro.mixins.json"
-	],
-	"depends": {
-		"fabric": "*",
-		"minecraft": "*",
-		"mtr": "*"
-	}
+    "license": "MIT",
+    "icon": "icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "ziyue.tjmetro.MainFabric"
+        ],
+        "client": [
+            "ziyue.tjmetro.MainFabricClient"
+        ]
+    },
+    "mixins": [
+        "tjmetro.mixins.json"
+    ],
+    "depends": {
+        "fabric": "*",
+        "minecraft": "*",
+        "mtr": "*"
+    }
 }

@@ -28,23 +28,17 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.blocks.BlockRailwaySignWall;
+import ziyue.tjmetro.blocks.BlockRailwaySignTianjin;
 import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * @author ZiYueCommentary
- * @see RenderRailwaySign
- * @since 1.0b
- */
-
-public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRailwaySignWall> extends BlockEntityRendererMapper<T> implements IBlock, IGui, IDrawing
+public class RenderRailwaySignTianjin<T extends BlockRailwaySignTianjin.TileEntityRailwaySignTianjin> extends BlockEntityRendererMapper<T> implements IBlock, IGui, IDrawing
 {
     public static final int HEIGHT_TO_SCALE = 27;
 
-    public RenderRailwaySignWall(BlockEntityRenderDispatcher dispatcher) {
+    public RenderRailwaySignTianjin(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);
     }
 
@@ -61,34 +55,15 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRail
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
         final String[] signIds = entity.getSignIds();
 
-        int backgroundColor = 0;
-        for (final String signId : signIds) {
-            if (signId != null) {
-                final CustomResources.CustomSign sign = RenderRailwaySign.getSign(signId);
-                if (sign != null) {
-                    if (sign.backgroundColor != 0) {
-                        backgroundColor = sign.backgroundColor;
-                        break;
-                    }
-                }
-            }
-        }
-
         matrices.pushPose();
         matrices.translate(0.5, 0.53125, 0.5);
         matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
-        matrices.translate(block.getXStart() / 16F - 0.5, -0.25, 0.493);
-        if (entity.isBig) {
-            matrices.translate(0, -0.2, -0.03);
-            matrices.scale(2, 2, 2);
-        }
+        matrices.translate(block.getXStart() / 16F - 0.5, 0, -0.0625 - SMALL_OFFSET * 3 - 0.33);
 
-        final VertexConsumer vertexConsumer = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("mtr:textures/block/white.png"), false));
-        IDrawing.drawTexture(matrices, vertexConsumer, 0, 0, SMALL_OFFSET * 2, 0.5F * (signIds.length), 0.5F, SMALL_OFFSET * 2, facing, backgroundColor | ARGB_BLACK, MAX_LIGHT_GLOWING);
         for (int i = 0; i < signIds.length; i++) {
             if (signIds[i] != null) {
-                drawSign(matrices, vertexConsumers, Minecraft.getInstance().font, pos, signIds[i], 0.5F * i, 0, 0.5F, RenderRailwaySign.getMaxWidth(signIds, i, false), RenderRailwaySign.getMaxWidth(signIds, i, true), entity.getSelectedIds(), facing, backgroundColor | ARGB_BLACK, (textureId, x, y, size, flipTexture) -> {
+                drawSign(matrices, vertexConsumers, Minecraft.getInstance().font, pos, signIds[i], 0.5F * i, 0, 0.5F, RenderRailwaySign.getMaxWidth(signIds, i, false), RenderRailwaySign.getMaxWidth(signIds, i, true), entity.getSelectedIds(), facing, ARGB_BLACK, (textureId, x, y, size, flipTexture) -> {
                     final VertexConsumer vertexConsumer1 = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation(textureId.toString()), true));
                     IDrawing.drawTexture(matrices, vertexConsumer1, x, y, size, size, flipTexture ? 1 : 0, 0, flipTexture ? 0 : 1, 1, facing, -1, MAX_LIGHT_GLOWING);
                 });

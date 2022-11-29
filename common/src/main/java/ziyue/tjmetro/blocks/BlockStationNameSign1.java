@@ -1,5 +1,6 @@
 package ziyue.tjmetro.blocks;
 
+import mtr.Blocks;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.core.BlockPos;
@@ -8,6 +9,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
@@ -23,6 +25,10 @@ import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 
 public class BlockStationNameSign1 extends BlockStationNameSignBase
 {
+    public BlockStationNameSign1() {
+        this(BlockBehaviour.Properties.copy(Blocks.STATION_NAME_TALL_WALL.get()));
+    }
+
     public BlockStationNameSign1(Properties properties) {
         super(properties);
     }

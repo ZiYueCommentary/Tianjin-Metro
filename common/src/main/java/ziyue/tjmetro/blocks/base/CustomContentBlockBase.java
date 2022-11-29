@@ -46,8 +46,8 @@ public abstract class CustomContentBlockBase extends Block implements EntityBloc
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity) {
-                ((BlockCustomColorBase.CustomColorBlockEntity) entity).syncData();
+            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity entity1) {
+                entity1.syncData();
                 PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
             }
         });

@@ -17,6 +17,10 @@ import java.util.Set;
 
 import static ziyue.tjmetro.packet.IPacket.*;
 
+/**
+ * @since 1.0b
+ */
+
 public class PacketGuiClient
 {
     public static void openCustomContentScreenS2C(Minecraft minecraftClient, FriendlyByteBuf packet) {
@@ -44,8 +48,8 @@ public class PacketGuiClient
         minecraftClient.execute(() -> {
             if (minecraftClient.level != null && !(minecraftClient.screen instanceof CustomContentScreen)) {
                 final BlockEntity entity = minecraftClient.level.getBlockEntity(pos);
-                if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity) {
-                    UtilitiesClient.setScreen(minecraftClient, new ColorPickerScreen(pos, ((BlockCustomColorBase.CustomColorBlockEntity) entity).color));
+                if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity entity1) {
+                    UtilitiesClient.setScreen(minecraftClient, new ColorPickerScreen(pos, entity1.color));
                 }
             }
         });

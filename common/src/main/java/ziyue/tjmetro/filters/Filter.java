@@ -89,7 +89,20 @@ public class Filter extends Button
                     BlockList.RAILWAY_SIGN_WALL_4.get().asItem().getDefaultInstance(),
                     BlockList.RAILWAY_SIGN_WALL_6.get().asItem().getDefaultInstance(),
                     BlockList.RAILWAY_SIGN_WALL_8.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_WALL_10.get().asItem().getDefaultInstance()
+                    BlockList.RAILWAY_SIGN_WALL_10.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_2_EVEN.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_3_EVEN.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_4_EVEN.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_5_EVEN.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_6_EVEN.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_7_EVEN.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_2_ODD.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_3_ODD.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_4_ODD.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_5_ODD.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_6_ODD.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_7_ODD.get().asItem().getDefaultInstance(),
+                    BlockList.RAILWAY_SIGN_TIANJIN_POLE.get().asItem().getDefaultInstance()
             ));
 
     public static final List<Filter> FILTERS = Arrays.asList(DECORATION, CEILINGS, BUILDING, SIGNS, RAILWAYS);

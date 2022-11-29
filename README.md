@@ -4,7 +4,7 @@ A small addon for [Minecraft Transit Railway](https://github.com/jonafanho/Minec
 
 ## How to build
 
-- Re-enable commented codes in `build.gradle` when you build at first time.
+- Uncomment codes in `build.gradle` before you build at first time.
 - Sync Gradle.
 
 # 天津地铁模组
@@ -13,8 +13,8 @@ A small addon for [Minecraft Transit Railway](https://github.com/jonafanho/Minec
 
 ## 构建步骤
 
-- 把`build.gradle`内注释掉的代码重新启用
-- 重新加载Gradle项目
-- 如果你开发时不会一直开着梯子，请把`build.gradle`之前注释掉的代码再注释掉
+- 取消注释`build.gradle`里的代码。
+- 重新加载Gradle项目。
+- 如果你开发时不会一直开着梯子，请把`build.gradle`之前注释掉的代码再注释掉。
 
 ~~不是我这workflows咋老运行失败啊~~

@@ -9,7 +9,6 @@ import net.minecraft.resources.ResourceLocation;
 
 /**
  * Button with icon.
- * <br>
  * Originally from <a href="https://github.com/MrCrayfish/Filters/blob/master/src/main/java/com/mrcrayfish/filters/gui/widget/button/IconButton.java">Filters Mod</a>.
  *
  * @author ZiYueCommentary

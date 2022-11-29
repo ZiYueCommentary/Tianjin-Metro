@@ -1,5 +1,6 @@
 package ziyue.tjmetro.blocks;
 
+import mtr.Blocks;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.EntityBlockMapper;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
@@ -36,6 +38,10 @@ import java.util.List;
 
 public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMapper
 {
+    public BlockRoadblockSign() {
+        this(BlockBehaviour.Properties.copy(Blocks.LOGO.get()).lightLevel((state) -> 0));
+    }
+
     public BlockRoadblockSign(Properties properties) {
         super(properties);
     }
@@ -44,8 +50,8 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof TileEntityRoadBlockSign) {
-                ((TileEntityRoadBlockSign) entity).syncData();
+            if (entity instanceof TileEntityRoadBlockSign entity1) {
+                entity1.syncData();
                 PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, blockState.getValue(IS_RIGHT) ? pos.relative(blockState.getValue(FACING).getCounterClockWise()) : pos);
             }
         });

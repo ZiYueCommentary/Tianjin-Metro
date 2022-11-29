@@ -1,8 +1,11 @@
 package ziyue.tjmetro.packet;
 
-import mtr.MTR;
 import net.minecraft.resources.ResourceLocation;
 import ziyue.tjmetro.Reference;
+
+/**
+ * @since 1.0b
+ */
 
 public interface IPacket
 {

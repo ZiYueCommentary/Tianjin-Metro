@@ -1,5 +1,6 @@
 package ziyue.tjmetro.blocks;
 
+import mtr.Blocks;
 import mtr.mappings.Text;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FluidState;
@@ -31,6 +33,10 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockStationColorCeilingNotLit extends BlockCeilingNotLit implements SimpleWaterloggedBlock
 {
+    public BlockStationColorCeilingNotLit() {
+        this(BlockBehaviour.Properties.copy(Blocks.CEILING_NO_LIGHT.get()));
+    }
+
     public BlockStationColorCeilingNotLit(Properties properties) {
         super(properties);
     }

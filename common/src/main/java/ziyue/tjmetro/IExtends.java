@@ -3,18 +3,24 @@ package ziyue.tjmetro;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.data.IGui;
 import mtr.mappings.Text;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 import static ziyue.tjmetro.TianjinMetro.LOGGER;
@@ -162,5 +168,111 @@ public interface IExtends
             final float y1 = verticalAlignment.getOffset(y, totalHeight / scale);
             drawingCallback.drawingCallback(x1, y1, x1 + totalWidthScaled / scale, y1 + totalHeight / scale);
         }
+    }
+
+    /**
+     * Get multi-line components by split a component.
+     *
+     * @param component A string that wait for split.
+     * @param regex     the delimiting regular expression
+     * @param limit     the result threshold, as described above
+     * @return Multi-line component
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static List<MutableComponent> getComponentLines(MutableComponent component, String regex, int limit) {
+        String[] lines = component.getString().split(regex, limit);
+        ArrayList<MutableComponent> components = new ArrayList<>();
+        for (String line : lines) components.add(Text.literal(line).withStyle(component.getStyle()));
+        return components;
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @see #getComponentLines(MutableComponent, String, int)
+     * @since 1.0b
+     */
+    static List<MutableComponent> getComponentLines(MutableComponent component, String regex) {
+        return getComponentLines(component, regex, 0);
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @see #getComponentLines(MutableComponent, String, int)
+     * @since 1.0b
+     */
+    static List<MutableComponent> getComponentLines(MutableComponent component) {
+        return getComponentLines(component, "\n", 0);
+    }
+
+    /**
+     * Add a <b>hold shift tooltip</b> to a tooltip, no need to re-assignment.
+     *
+     * @param list      Hover Text List, just like pointer in C/C++.
+     * @param component A component that wait for split.
+     * @param regex     the delimiting regular expression
+     * @param limit     the result threshold, as described above
+     * @return Hover Text List
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean canWarp, String regex, int limit) {
+        if (Screen.hasShiftDown()) {
+            if (canWarp)
+                getComponentLines(component, regex, limit).forEach(component1 -> Minecraft.getInstance().font.getSplitter().splitLines(component1, 150, component.getStyle()).forEach(component2 -> list.add(Text.literal(component2.getString()).withStyle(component.getStyle()))));
+            else
+                list.addAll(getComponentLines(component, regex, limit));
+        } else {
+            list.add(Text.translatable("tooltip.tjmetro.shift").withStyle(ChatFormatting.YELLOW));
+        }
+        return list;
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @see #addHoldShiftTooltip(List, MutableComponent, boolean, String, int)
+     * @since 1.0b
+     */
+    static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean canWarp, String regex) {
+        return addHoldShiftTooltip(list, component, canWarp, regex, 0);
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @see #addHoldShiftTooltip(List, MutableComponent, boolean, String, int)
+     * @since 1.0b
+     */
+    static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean canWarp) {
+        return addHoldShiftTooltip(list, component, canWarp, "\n", 0);
+    }
+
+    /**
+     * A string formatter.
+     *
+     * @return formatted string
+     * @apiNote This method support format with <b>{0}, {1}...</b> only, not support <b>{}, {}...</b> to format string.
+     * This is more like a "replacer" for string.
+     * <pre>
+     * For example:
+     *      {@code
+     *          IExtends.format("Hello! {0}, {1}, {0}, {}, {2}, {3}!", "foo", "bar", 114514, null)
+     *      }
+     * Will return:
+     *     <b>Hello! foo, bar, foo, {}, 114514, !</b>
+     * </pre>
+     * @author ZiYueCommentary
+     * @since 1.0b
+     */
+    static String format(String fmt, @Nullable Object... args) {
+        StringBuilder builder = new StringBuilder(fmt);
+        for (int num = 0; num < args.length; num++) {
+            if (args[num] == null) args[num] = "";
+            String arg = "{" + num + "}";
+            while (builder.indexOf(arg) != -1) {
+                int index = builder.indexOf(arg);
+                builder.replace(index, index + arg.length(), args[num].toString());
+            }
+        }
+        return builder.toString();
     }
 }

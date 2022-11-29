@@ -17,6 +17,10 @@ import java.util.Set;
 
 import static ziyue.tjmetro.packet.IPacket.*;
 
+/**
+ * @since 1.0b
+ */
+
 public class PacketGuiServer
 {
     public static void openCustomContentScreenS2C(ServerPlayer player, BlockPos blockPos) {
@@ -30,8 +34,8 @@ public class PacketGuiServer
         final String content = packet.readUtf(SerializedDataBase.PACKET_STRING_READ_LENGTH);
         minecraftServer.execute(() -> {
             final BlockEntity entity = player.level.getBlockEntity(pos);
-            if (entity instanceof CustomContentBlockBase.CustomContentBlockEntity) {
-                ((CustomContentBlockBase.CustomContentBlockEntity) entity).setData(content);
+            if (entity instanceof CustomContentBlockBase.CustomContentBlockEntity entity1) {
+                entity1.setData(content);
             }
         });
     }
@@ -47,8 +51,8 @@ public class PacketGuiServer
         final int color = packet.readInt();
         minecraftServer.execute(() -> {
             final BlockEntity entity = player.level.getBlockEntity(pos);
-            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity) {
-                ((BlockCustomColorBase.CustomColorBlockEntity) entity).setData(color);
+            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity entity1) {
+                entity1.setData(color);
             }
         });
     }
@@ -75,8 +79,8 @@ public class PacketGuiServer
 
         minecraftServer.execute(() -> {
             final BlockEntity entity = player.level.getBlockEntity(signPos);
-            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign) {
-                ((BlockRailwaySignBase.TileEntityRailwaySign) entity).setData(selectedIds, signIds);
+            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign entity1) {
+                entity1.setData(selectedIds, signIds);
             }
         });
     }

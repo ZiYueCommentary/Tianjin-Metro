@@ -17,6 +17,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 
+/**
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
 @Mixin(BlockStationNameWallBase.class)
 public abstract class WallMixin extends BlockStationNameBase implements ShowNameProperty, IBlock
 {

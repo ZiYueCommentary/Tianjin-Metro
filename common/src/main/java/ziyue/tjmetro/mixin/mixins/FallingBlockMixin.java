@@ -15,7 +15,7 @@ import java.util.Random;
 import static net.minecraft.world.level.block.FallingBlock.isFree;
 
 /**
- * Made for <i>No Falling Blocks</i> feature.
+ * Made for <b>No Falling Blocks</b> feature.
  *
  * @author ZiYueCommentary
  * @see FallingBlock

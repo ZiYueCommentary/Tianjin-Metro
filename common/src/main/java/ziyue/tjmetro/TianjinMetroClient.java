@@ -9,6 +9,9 @@ import ziyue.tjmetro.packet.PacketGuiClient;
 import ziyue.tjmetro.render.*;
 
 /**
+ * Client Entry of <b>Tianjin Metro Mod</b>.
+ *
+ * @see TianjinMetro
  * @since 1.0b
  */
 
@@ -25,7 +28,6 @@ public class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PLATFORM_TJ_2_INDENTED.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.APG_CORNER.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.HIGH_SPEED_REPEATER.get());
-        RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.TIME_DISPLAY.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.EMERGENCY_EXIT_SIGN.get());
 
         RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING.get());
@@ -50,6 +52,18 @@ public class TianjinMetroClient
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY.get(), RenderRailwaySignWall::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY.get(), RenderRailwaySignWall::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_10_TILE_ENTITY.get(), RenderRailwaySignWall::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_2_EVEN_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_3_EVEN_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_4_EVEN_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_5_EVEN_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_6_EVEN_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_7_EVEN_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_2_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_3_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_4_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_5_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_6_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_7_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
 
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN, packet -> PacketGuiClient.openCustomContentScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_COLOR_SCREEN, packet -> PacketGuiClient.openCustomColorScreenS2C(Minecraft.getInstance(), packet));
