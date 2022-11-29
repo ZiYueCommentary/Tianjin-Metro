@@ -49,7 +49,6 @@
     "tooltip.tjmetro.custom_content": "支持自定义显示内容",
     "tooltip.tjmetro.custom_color": "支持自定义显示颜色",
     "tooltip.tjmetro.no_colored_lights": "如果你遇到了有关“装饰灯”的崩溃问题，请启用此选项。",
-    "tooltip.tjmetro.emergency_exit_sign": "一个泛着微弱灯光的紧急出口标志，可以放在头上当眼罩用。",
     "tooltip.tjmetro.station_name_sign": "一个小站名牌，可以用木棒修改牌子的显示内容。",
     "tooltip.tjmetro.shift": "长按 Shift 显示更多信息",
 

@@ -72,9 +72,9 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
     @Override
     public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
         if (blockState.getValue(TOP)) return;
-        if (!(entity instanceof Player)) return;
-        Player player = ((Player) entity);
+        if (entity instanceof Player player) {
 
+        }
     }
 
     @Override

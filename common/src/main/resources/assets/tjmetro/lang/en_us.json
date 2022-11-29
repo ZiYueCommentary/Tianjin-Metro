@@ -49,7 +49,6 @@
     "tooltip.tjmetro.custom_content": "Support custom display content",
     "tooltip.tjmetro.custom_color": "Support custom display color",
     "tooltip.tjmetro.no_colored_lights": "If you get crash with \"Decoration Lights\", please enable this option.",
-    "tooltip.tjmetro.emergency_exit_sign": "A emergency exit sign with weak light, you can wear it on your head like a head-shade.",
     "tooltip.tjmetro.station_name_sign": "A small station name sign, you can change display content with stick.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
 

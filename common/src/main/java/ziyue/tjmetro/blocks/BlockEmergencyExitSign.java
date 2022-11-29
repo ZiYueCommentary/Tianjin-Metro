@@ -67,11 +67,6 @@ public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implement
         return IBlock.getVoxelShapeByDirection(2, 5, 0, 14, 10, 0.25, blockState.getValue(FACING));
     }
 
-    @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable BlockGetter blockGetter, List<Component> list, TooltipFlag tooltipFlag) {
-        IExtends.addHoldShiftTooltip(list, Text.translatable("tooltip.tjmetro.emergency_exit_sign").withStyle(ChatFormatting.GRAY), true);
-    }
-
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
