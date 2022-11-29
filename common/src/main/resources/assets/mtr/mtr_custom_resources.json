@@ -1,0 +1,74 @@
+{
+    "custom_signs": {
+        "tianjin_metro_logo_sign": {
+            "texture_id": "tjmetro:textures/block/logo.png",
+            "flip_texture": false,
+            "custom_text": "天津地铁|Tianjin Metro",
+            "flip_custom_text": false,
+            "small": false
+        },
+        "tianjin_metro_logo_sign_flip": {
+            "texture_id": "tjmetro:textures/block/logo.png",
+            "flip_texture": false,
+            "custom_text": "天津地铁|Tianjin Metro",
+            "flip_custom_text": true,
+            "small": false
+        },
+        "tianjin_metro_logo": {
+            "texture_id": "tjmetro:textures/block/logo.png",
+            "flip_texture": false,
+            "small": false
+        },
+        "tianjin_metro_logo_1_sign": {
+            "texture_id": "tjmetro:icon.png",
+            "flip_texture": false,
+            "custom_text": "天津地铁|Tianjin Metro",
+            "flip_custom_text": false,
+            "small": true
+        },
+        "tianjin_metro_logo_1_sign_flip": {
+            "texture_id": "tjmetro:icon.png",
+            "flip_texture": false,
+            "custom_text": "天津地铁|Tianjin Metro",
+            "flip_custom_text": true,
+            "small": true
+        },
+        "train_tianjin_metro_sign": {
+            "texture_id": "tjmetro:icon.png",
+            "custom_text": "列车|Train",
+            "flip_texture": false,
+            "small": true
+        },
+        "train_tianjin_metro_sign_flip": {
+            "texture_id": "tjmetro:icon.png",
+            "flip_texture": false,
+            "custom_text": "列车|Train",
+            "flip_custom_text": true,
+            "small": true
+        },
+        "emergency_exit_sign": {
+            "texture_id": "tjmetro:textures/sign/emergency_exit.png",
+            "flip_texture": false,
+            "custom_text": "紧急出口|Emergency Exit",
+            "flip_custom_text": false,
+            "small": true
+        },
+        "emergency_exit_sign_flip": {
+            "texture_id": "tjmetro:textures/sign/emergency_exit.png",
+            "flip_texture": true,
+            "custom_text": "紧急出口|Emergency Exit",
+            "flip_custom_text": true,
+            "small": true
+        },
+        "emergency_exit": {
+            "texture_id": "tjmetro:textures/sign/emergency_exit.png",
+            "flip_texture": false,
+            "small": true
+        },
+        "emergency_exit_flip": {
+            "texture_id": "tjmetro:textures/sign/emergency_exit.png",
+            "flip_texture": true,
+            "small": true
+        }
+    }
+}
