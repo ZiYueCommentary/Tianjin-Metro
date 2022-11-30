@@ -25,6 +25,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
@@ -47,6 +49,8 @@ import java.util.List;
 
 public class BlockRailwaySignWall extends BlockRailwaySignBase
 {
+    public static final BooleanProperty EOS = BooleanProperty.create("eos"); // end of sign
+
     public BlockRailwaySignWall(int length) {
         this(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(2).lightLevel(state -> 15).noCollission(), length, false);
     }
@@ -76,7 +80,7 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         final Direction facing = ctx.getHorizontalDirection();
-        return IBlock.isReplaceable(ctx, facing.getClockWise(), getMiddleLength() + 1) ? defaultBlockState().setValue(FACING, facing) : null;
+        return IBlock.isReplaceable(ctx, facing.getClockWise(), getMiddleLength() + 1) ? defaultBlockState().setValue(FACING, facing).setValue(EOS, false) : null;
     }
 
     @Override
@@ -88,9 +92,10 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, Block middleBlock) {
         if (!world.isClientSide) {
             final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-            for (int i = 1; i <= getMiddleLength(); i++) {
-                world.setBlock(pos.relative(facing.getClockWise(), i), middleBlock.defaultBlockState().setValue(FACING, facing), 3);
+            for (int i = 1; i < getMiddleLength(); i++) {
+                world.setBlock(pos.relative(facing.getClockWise(), i), middleBlock.defaultBlockState().setValue(FACING, facing).setValue(EOS, false), 3);
             }
+            world.setBlock(pos.relative(facing.getClockWise(), getMiddleLength()), middleBlock.defaultBlockState().setValue(FACING, facing).setValue(EOS, true), 3);
             world.updateNeighborsAt(pos, Blocks.AIR);
             state.updateNeighbourShapes(world, pos, 3);
         }
@@ -104,8 +109,7 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor world, BlockPos pos, BlockPos posFrom, Block middleBlock) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-        final boolean isNext = direction == facing.getClockWise() || state.is(middleBlock) && direction == facing.getCounterClockWise();
-
+        final boolean isNext = (!state.getValue(EOS) && direction == facing.getClockWise()) || state.is(middleBlock) && direction == facing.getCounterClockWise();
         if (isNext && !(newState.getBlock() instanceof BlockRailwaySignBase)) {
             return Blocks.AIR.defaultBlockState();
         } else {
@@ -149,6 +153,12 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
     @Override
     protected BlockPos findEndWithDirection(Level world, BlockPos startPos, Direction direction, boolean allowOpposite) {
         return super.findEndWithDirection(world, startPos, direction, allowOpposite, BlockList.RAILWAY_SIGN_WALL_MIDDLE.get());
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(EOS);
     }
 
     public static class TileEntityRailwaySignWall extends TileEntityRailwaySign
