@@ -1,6 +1,7 @@
 package ziyue.tjmetro.mixin.mixins;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import mtr.Registry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,6 +29,7 @@ public class FinishInitializationMixin
         LOGGER.info("Hello from ZiYueCommentary!");
         LOGGER.info("Mod ID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
+        LOGGER.info("Modloader: " + (Registry.isFabric() ? "Fabric" : "Forge"));
         //Configs.refreshProperties();
     }
 }
