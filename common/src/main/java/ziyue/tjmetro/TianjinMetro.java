@@ -1,5 +1,6 @@
 package ziyue.tjmetro;
 
+import mtr.CreativeModeTabs;
 import mtr.MTR;
 import mtr.Registry;
 import mtr.RegistryObject;
@@ -32,7 +33,7 @@ public class TianjinMetro
 {
     public static final Logger LOGGER = LogManager.getLogger(Reference.NAME);
 
-    public static final CreativeModeTab TAB = Registry.getItemGroup(new ResourceLocation(Reference.MOD_ID, "tjmetro_tab"), () -> new ItemStack(BlockList.LOGO.get()));
+    public static final CreativeModeTabs.Wrapper TAB = new CreativeModeTabs.Wrapper(new ResourceLocation(Reference.MOD_ID, "tjmetro_tab"), () -> new ItemStack(BlockList.LOGO.get()));
     public static final GameRules.Key<GameRules.BooleanValue> PREVENT_BLOCK_FALLING = RegistryClient.registerBooleanGameRule("preventBlockFalling", false);
 
     public static void init(

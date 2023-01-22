@@ -1,5 +1,6 @@
 package ziyue.tjmetro;
 
+import mtr.CreativeModeTabs;
 import mtr.RegistryObject;
 import mtr.item.ItemBlockEnchanted;
 import mtr.mappings.BlockEntityMapper;
@@ -35,14 +36,14 @@ public class MainFabric implements ModInitializer
         Registry.register(Registry.BLOCK, new ResourceLocation(Reference.MOD_ID, path), block.get());
     }
 
-    public static void registerBlock(String path, RegistryObject<Block> block, CreativeModeTab itemGroup) {
+    public static void registerBlock(String path, RegistryObject<Block> block, CreativeModeTabs.Wrapper itemGroup) {
         Registry.register(Registry.BLOCK, new ResourceLocation(Reference.MOD_ID, path), block.get());
-        Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
+        Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), new BlockItem(block.get(), new Item.Properties().tab(itemGroup.get())));
     }
 
-    public static void registerEnchantedBlock(String path, RegistryObject<Block> block, CreativeModeTab itemGroup) {
+    public static void registerEnchantedBlock(String path, RegistryObject<Block> block, CreativeModeTabs.Wrapper itemGroup) {
         registerBlock(path, block);
-        Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), new ItemBlockEnchanted(block.get(), new Item.Properties().tab(itemGroup)));
+        Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), new ItemBlockEnchanted(block.get(), new Item.Properties().tab(itemGroup.get())));
     }
 
     public static void registerEntityType(String path, RegistryObject<? extends EntityType<? extends Entity>> entityType) {

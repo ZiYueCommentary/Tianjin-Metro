@@ -68,7 +68,7 @@ public abstract class CreativeScreenMixin extends EffectRenderingInventoryScreen
 
     @Inject(at = @At("HEAD"), method = "render")
     protected void beforeRender(PoseStack poseStack, int i, int j, float f, CallbackInfo ci) {
-        if (this.getSelectedTab() == TianjinMetro.TAB.getId()) {
+        if (this.getSelectedTab() == TianjinMetro.TAB.get().getId()) {
             updateTabs();
             showButtons(true);
             for (int o = 0; o < Filter.FILTERS.size(); o++) {
