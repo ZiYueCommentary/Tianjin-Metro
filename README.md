@@ -4,8 +4,12 @@ A small addon for [Minecraft Transit Railway](https://github.com/jonafanho/Minec
 
 ## How to build
 
-- Uncomment codes in `build.gradle` before you build at first time.
-- Sync Gradle.
+1. Clone this repository
+2. Sync the Gradle project
+3. To switch Minecraft versions or on first run:
+   1. Sync the Gradle Project
+   2. In the root project, run the Gradle `setupLibrary` task
+   3. Sync the Gradle Project again
 
 # 天津地铁模组
 
@@ -13,8 +17,9 @@ A small addon for [Minecraft Transit Railway](https://github.com/jonafanho/Minec
 
 ## 构建步骤
 
-- 取消注释`build.gradle`里的代码。
-- 重新加载Gradle项目。
-- 如果你开发时不会一直开着梯子，请把`build.gradle`之前注释掉的代码再注释掉。
-
-~~不是我这workflows咋老运行失败啊~~
+1. 克隆仓库
+2. 同步 Gradle 项目
+3. 切换 Minecraft 版本 / 初次运行时：
+   1. 同步 Gradle 项目
+   2. 运行根项目 Gradle 的 `setupLibrary` 任务
+   3. 再次同步 Gradle 项目
