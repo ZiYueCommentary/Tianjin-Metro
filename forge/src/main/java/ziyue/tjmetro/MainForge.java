@@ -1,6 +1,7 @@
 package ziyue.tjmetro;
 
 import me.shedaniel.architectury.platform.forge.EventBuses;
+import mtr.CreativeModeTabs;
 import mtr.RegistryObject;
 import mtr.item.ItemBlockEnchanted;
 import mtr.mappings.BlockEntityMapper;
@@ -52,29 +53,29 @@ public class MainForge
     }
 
     public static void registerItem(String path, RegistryObject<Item> item) {
-        ITEMS.register(path, item::register);
+        ITEMS.register(path, item::get);
     }
 
     public static void registerBlock(String path, RegistryObject<Block> block) {
-        BLOCKS.register(path, block::register);
+        BLOCKS.register(path, block::get);
     }
 
-    public static void registerBlock(String path, RegistryObject<Block> block, CreativeModeTab itemGroup) {
+    public static void registerBlock(String path, RegistryObject<Block> block, CreativeModeTabs.Wrapper itemGroup) {
         registerBlock(path, block);
-        ITEMS.register(path, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
+        ITEMS.register(path, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup.get())));
     }
 
     public static <T extends BlockEntityMapper> void registerBlockEntityType(String path, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>> blockEntityType) {
-        BLOCK_ENTITY_TYPES.register(path, blockEntityType::register);
+        BLOCK_ENTITY_TYPES.register(path, blockEntityType::get);
     }
 
-    public static void registerEnchantedBlock(String path, RegistryObject<Block> block, CreativeModeTab itemGroup) {
+    public static void registerEnchantedBlock(String path, RegistryObject<Block> block, CreativeModeTabs.Wrapper itemGroup) {
         registerBlock(path, block);
-        ITEMS.register(path, () -> new ItemBlockEnchanted(block.get(), new Item.Properties().tab(itemGroup)));
+        ITEMS.register(path, () -> new ItemBlockEnchanted(block.get(), new Item.Properties().tab(itemGroup.get())));
     }
 
     public static void registerEntityType(String path, RegistryObject<? extends EntityType<? extends Entity>> entityType) {
-        ENTITY_TYPES.register(path, entityType::register);
+        ENTITY_TYPES.register(path, entityType::get);
     }
 
     public static class ForgeRegistry
