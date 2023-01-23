@@ -2,12 +2,11 @@ package ziyue.tjmetro.blocks;
 
 import me.shedaniel.architectury.extensions.BlockEntityExtension;
 import mtr.Blocks;
+import mtr.Items;
 import mtr.block.IBlock;
-import mtr.mappings.BlockEntityClientSerializableMapper;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.EntityBlockMapper;
 import mtr.mappings.Text;
-import net.minecraft.commands.arguments.item.ItemPredicateArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -20,33 +19,23 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
-import ziyue.tjmetro.BlockList;
 import ziyue.tjmetro.IExtends;
-
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
+import ziyue.tjmetro.entity.base.RandomizableContainerBlockEntityMapper;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 //todo too complex
-public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlock
+public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlockMapper
 {
     public BlockMetalDetectionDoor() {
         this(BlockBehaviour.Properties.copy(Blocks.LOGO.get()).noCollission());
@@ -73,7 +62,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
     public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
         if (blockState.getValue(TOP)) return;
         if (entity instanceof Player player) {
-
+            player.inventory.clearOrCountMatchingItems(itemStack -> itemStack.getItem() == Items.BRUSH.get(), -1, player.inventoryMenu.getCraftSlots());
         }
     }
 
@@ -90,22 +79,22 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockGetter blockGetter) {
-        return new TileEntityMetalDetectionDoor();
+    public BlockEntityMapper createBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new TileEntityMetalDetectionDoor(blockPos, blockState);
     }
 
-    public static class TileEntityMetalDetectionDoor extends RandomizableContainerBlockEntity implements BlockEntityExtension
+    public static class TileEntityMetalDetectionDoor extends RandomizableContainerBlockEntityMapper implements BlockEntityExtension
     {
-        public TileEntityMetalDetectionDoor() {
-            super(BlockEntityTypes.METAL_DETECTION_DOOR_TILE_ENTITY.get());
+        public TileEntityMetalDetectionDoor(BlockPos pos, BlockState state) {
+            super(BlockEntityTypes.METAL_DETECTION_DOOR_TILE_ENTITY.get(), pos, state);
             this.items = NonNullList.withSize(27, ItemStack.EMPTY);
         }
 
-        private NonNullList<ItemStack> items;
+        protected NonNullList<ItemStack> items;
 
         @Override
-        public final void load(BlockState blockState, CompoundTag compoundTag) {
-            super.load(blockState, compoundTag);
+        public void readCompoundTag(CompoundTag compoundTag) {
+            super.readCompoundTag(compoundTag);
             this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
             if (!this.tryLoadLootTable(compoundTag)) {
                 ContainerHelper.loadAllItems(compoundTag, this.items);
@@ -113,9 +102,8 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
         }
 
         @Override
-        public final CompoundTag save(CompoundTag compoundTag) {
-            super.save(compoundTag);
-            return compoundTag;
+        public void writeCompoundTag(CompoundTag compoundTag) {
+            super.writeCompoundTag(compoundTag);
         }
 
         @Override

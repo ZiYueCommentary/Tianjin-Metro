@@ -29,7 +29,7 @@ import ziyue.tjmetro.packet.PacketGuiServer;
 import java.util.List;
 
 /**
- * Roadblock with content.
+ * Roadblock with signs.
  *
  * @author ZiYueCommentary
  * @see BlockRoadblock

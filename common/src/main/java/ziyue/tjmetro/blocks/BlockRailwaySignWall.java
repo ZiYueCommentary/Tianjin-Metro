@@ -52,25 +52,23 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
     public static final BooleanProperty EOS = BooleanProperty.create("eos"); // end of sign
 
     public BlockRailwaySignWall(int length) {
-        this(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(2).lightLevel(state -> 15).noCollission(), length, false);
+        this(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(2).lightLevel(state -> 15).noCollission(), length);
     }
 
-    public BlockRailwaySignWall(Properties properties, int length, boolean isOdd) {
-        super(properties, length, isOdd);
+    public BlockRailwaySignWall(Properties properties, int length) {
+        super(properties, length, false);
     }
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult hit) {
+        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
         if (player.isHolding(Items.SHEARS)) {
-            final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-            final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
             final TileEntityRailwaySignWall entity = ((TileEntityRailwaySignWall) world.getBlockEntity(checkPos));
             entity.isBig = !entity.isBig;
             return InteractionResult.SUCCESS;
         }
         return IBlock.checkHoldingBrush(world, player, () -> {
-            final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-            final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
             if (checkPos != null) {
                 PacketGuiServer.openRailwaySignScreenS2C((ServerPlayer) player, checkPos);
             }
