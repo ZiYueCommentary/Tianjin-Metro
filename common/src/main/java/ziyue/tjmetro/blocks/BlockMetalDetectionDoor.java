@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
-import ziyue.tjmetro.IExtends;
+import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.entity.base.RandomizableContainerBlockEntityMapper;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
@@ -68,8 +68,8 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
 
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
-        if (blockState.getValue(TOP)) IExtends.breakBlock(level, blockPos.below(), this);
-        else IExtends.breakBlock(level, blockPos.above(), this);
+        if (blockState.getValue(TOP)) IBlockExtends.breakBlock(level, blockPos.below(), this);
+        else IBlockExtends.breakBlock(level, blockPos.above(), this);
         super.playerWillDestroy(level, blockPos, blockState, player);
     }
 

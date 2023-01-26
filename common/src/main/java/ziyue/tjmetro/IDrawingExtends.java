@@ -9,84 +9,22 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
-
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
-import static ziyue.tjmetro.TianjinMetro.LOGGER;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Some methods similar to methods in <b>IBlock</b> and <b>IDrawing</b>.
+ * Some methods similar to methods in <b>IDrawing</b>.
  *
- * @see mtr.block.IBlock
  * @see mtr.client.IDrawing
  * @since 1.0b
  */
 
-public interface IExtends
+public interface IDrawingExtends
 {
-    /**
-     * Fence's collision height.
-     *
-     * @since 1.0b
-     */
-    byte FENCE_HEIGHT = 24;
-
-    /**
-     * Replace block with air.
-     *
-     * @param pos Block's Position
-     * @author ZiYueCommentary
-     * @since 1.0b
-     */
-    static void breakBlock(Level world, BlockPos pos) {
-        try {
-            world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
-        } catch (Exception exception) {
-            LOGGER.warn("[" + pos.toShortString() + "] Property \"waterlogged\" not found - Replace with air");
-            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
-        }
-    }
-
-    /**
-     * Specify a block, if block in pos is specified block, then replace it with air.
-     *
-     * @param pos   Block's Position
-     * @param block Specified Block
-     * @author ZiYueCommentary
-     * @since 1.0b
-     */
-    static void breakBlock(Level world, BlockPos pos, Block block) {
-        try {
-            if (world.getBlockState(pos).getBlock() == block) {
-                world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
-            }
-        } catch (Exception exception) {
-            LOGGER.warn("[" + pos.toShortString() + "] Property \"waterlogged\" not found - Replace with air");
-            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
-        }
-    }
-
-    /**
-     * Check the direction whether is horizontal direction.
-     *
-     * @author ZiYueCommentary
-     * @since 1.0b
-     */
-    static boolean isHorizontalDirection(Direction direction) {
-        return direction == Direction.EAST || direction == Direction.WEST || direction == Direction.NORTH || direction == Direction.SOUTH;
-    }
-
     /**
      * Drawing string with minecraft font.
      *
@@ -244,35 +182,5 @@ public interface IExtends
      */
     static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean canWarp) {
         return addHoldShiftTooltip(list, component, canWarp, "\n", 0);
-    }
-
-    /**
-     * A string formatter.
-     *
-     * @return formatted string
-     * @apiNote This method support format with <b>{0}, {1}...</b> only, not support <b>{}, {}...</b> to format string.
-     * This is more like a "replacer" for string.
-     * <pre>
-     * For example:
-     *      {@code
-     *          IExtends.format("Hello! {0}, {1}, {0}, {}, {2}, {3}!", "foo", "bar", 114514, null)
-     *      }
-     * Will return:
-     *     <b>Hello! foo, bar, foo, {}, 114514, !</b>
-     * </pre>
-     * @author ZiYueCommentary
-     * @since 1.0b
-     */
-    static String format(String fmt, @Nullable Object... args) {
-        StringBuilder builder = new StringBuilder(fmt);
-        for (int num = 0; num < args.length; num++) {
-            if (args[num] == null) args[num] = "";
-            String arg = "{" + num + "}";
-            while (builder.indexOf(arg) != -1) {
-                int index = builder.indexOf(arg);
-                builder.replace(index, index + arg.length(), args[num].toString());
-            }
-        }
-        return builder.toString();
     }
 }

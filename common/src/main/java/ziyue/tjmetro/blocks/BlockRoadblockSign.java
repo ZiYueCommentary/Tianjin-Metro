@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
-import ziyue.tjmetro.IExtends;
 import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiServer;
 

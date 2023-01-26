@@ -15,7 +15,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.IExtends;
+import ziyue.tjmetro.IDrawingExtends;
 import ziyue.tjmetro.blocks.BlockTimeDisplay;
 
 /**
@@ -59,7 +59,7 @@ public class RenderTimeDisplay<T extends BlockTimeDisplay.TileEntityTimeDisplay>
     }
 
     protected void drawTime(BlockTimeDisplay.TileEntityTimeDisplay entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int light) {
-        IExtends.drawString(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0, -1, -1, 30, -3276781, false, light, null);
+        IDrawingExtends.drawString(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0, -1, -1, 30, -3276781, false, light, null);
     }
 
     public static String getFormattedTime(long ticks) {

@@ -19,7 +19,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import ziyue.tjmetro.IExtends;
+import ziyue.tjmetro.IBlockExtends;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
@@ -53,9 +53,9 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
     @Override
     public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         if (state.getValue(IS_RIGHT))
-            IExtends.breakBlock(world, pos.relative(state.getValue(FACING).getCounterClockWise()), this);
+            IBlockExtends.breakBlock(world, pos.relative(state.getValue(FACING).getCounterClockWise()), this);
         else
-            IExtends.breakBlock(world, pos.relative(state.getValue(FACING).getClockWise()), this);
+            IBlockExtends.breakBlock(world, pos.relative(state.getValue(FACING).getClockWise()), this);
         super.playerWillDestroy(world, pos, state, player);
     }
 
@@ -66,7 +66,7 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public VoxelShape getCollisionShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, IExtends.FENCE_HEIGHT, 11, blockState.getValue(FACING));
+        return IBlock.getVoxelShapeByDirection(0, 0, 5, 16, IBlockExtends.FENCE_HEIGHT, 11, blockState.getValue(FACING));
     }
 
     @Override
