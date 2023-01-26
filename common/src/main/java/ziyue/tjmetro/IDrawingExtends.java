@@ -154,9 +154,9 @@ public interface IDrawingExtends
      * @author ZiYueCommentary
      * @since 1.0b
      */
-    static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean canWarp, String regex, int limit) {
+    static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean wordWarp, String regex, int limit) {
         if (Screen.hasShiftDown()) {
-            if (canWarp)
+            if (wordWarp)
                 getComponentLines(component, regex, limit).forEach(component1 -> Minecraft.getInstance().font.getSplitter().splitLines(component1, 150, component.getStyle()).forEach(component2 -> list.add(Text.literal(component2.getString()).withStyle(component.getStyle()))));
             else
                 list.addAll(getComponentLines(component, regex, limit));
@@ -171,8 +171,8 @@ public interface IDrawingExtends
      * @see #addHoldShiftTooltip(List, MutableComponent, boolean, String, int)
      * @since 1.0b
      */
-    static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean canWarp, String regex) {
-        return addHoldShiftTooltip(list, component, canWarp, regex, 0);
+    static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean wordWarp, String regex) {
+        return addHoldShiftTooltip(list, component, wordWarp, regex, 0);
     }
 
     /**
@@ -180,7 +180,7 @@ public interface IDrawingExtends
      * @see #addHoldShiftTooltip(List, MutableComponent, boolean, String, int)
      * @since 1.0b
      */
-    static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean canWarp) {
-        return addHoldShiftTooltip(list, component, canWarp, "\n", 0);
+    static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean wordWarp) {
+        return addHoldShiftTooltip(list, component, wordWarp, "\n", 0);
     }
 }
