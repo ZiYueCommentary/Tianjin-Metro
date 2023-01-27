@@ -1,63 +1,63 @@
 {
   "variants": {
     "facing=east,locked=false,powered=false": {
-      "model": "tjmetro:block/repeater",
+      "model": "tjmetro:block/high_speed_repeater",
       "y": 270
     },
     "facing=east,locked=false,powered=true": {
-      "model": "tjmetro:block/repeater_on",
+      "model": "tjmetro:block/high_speed_repeater_on",
       "y": 270
     },
     "facing=east,locked=true,powered=false": {
-      "model": "tjmetro:block/repeater_locked",
+      "model": "tjmetro:block/high_speed_repeater_locked",
       "y": 270
     },
     "facing=east,locked=true,powered=true": {
-      "model": "tjmetro:block/repeater_on_locked",
+      "model": "tjmetro:block/high_speed_repeater_on_locked",
       "y": 270
     },
     "facing=north,locked=false,powered=false": {
-      "model": "tjmetro:block/repeater",
+      "model": "tjmetro:block/high_speed_repeater",
       "y": 180
     },
     "facing=north,locked=false,powered=true": {
-      "model": "tjmetro:block/repeater_on",
+      "model": "tjmetro:block/high_speed_repeater_on",
       "y": 180
     },
     "facing=north,locked=true,powered=false": {
-      "model": "tjmetro:block/repeater_locked",
+      "model": "tjmetro:block/high_speed_repeater_locked",
       "y": 180
     },
     "facing=north,locked=true,powered=true": {
-      "model": "tjmetro:block/repeater_on_locked",
+      "model": "tjmetro:block/high_speed_repeater_on_locked",
       "y": 180
     },
     "facing=south,locked=false,powered=false": {
-      "model": "tjmetro:block/repeater"
+      "model": "tjmetro:block/high_speed_repeater"
     },
     "facing=south,locked=false,powered=true": {
-      "model": "tjmetro:block/repeater_on"
+      "model": "tjmetro:block/high_speed_repeater_on"
     },
     "facing=south,locked=true,powered=false": {
-      "model": "tjmetro:block/repeater_locked"
+      "model": "tjmetro:block/high_speed_repeater_locked"
     },
     "facing=south,locked=true,powered=true": {
-      "model": "tjmetro:block/repeater_on_locked"
+      "model": "tjmetro:block/high_speed_repeater_on_locked"
     },
     "facing=west,locked=false,powered=false": {
-      "model": "tjmetro:block/repeater",
+      "model": "tjmetro:block/high_speed_repeater",
       "y": 90
     },
     "facing=west,locked=false,powered=true": {
-      "model": "tjmetro:block/repeater_on",
+      "model": "tjmetro:block/high_speed_repeater_on",
       "y": 90
     },
     "facing=west,locked=true,powered=false": {
-      "model": "tjmetro:block/repeater_locked",
+      "model": "tjmetro:block/high_speed_repeater_locked",
       "y": 90
     },
     "facing=west,locked=true,powered=true": {
-      "model": "tjmetro:block/repeater_on_locked",
+      "model": "tjmetro:block/high_speed_repeater_on_locked",
       "y": 90
     }
   }

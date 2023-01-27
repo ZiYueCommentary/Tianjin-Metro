@@ -3,10 +3,9 @@
 	"ambientocclusion": false,
 	"textures": {
 		"3": "block/soul_torch",
-		"4": "block/repeater",
-		"slab": "block/smooth_stone",
-		"particle": "block/bedrock",
-		"lock": "block/bedrock"
+		"4": "tjmetro:block/high_speed_repeater",
+		"particle": "tjmetro:block/high_speed_repeater",
+		"slab": "block/smooth_stone"
 	},
 	"elements": [
 		{
@@ -34,15 +33,15 @@
 			}
 		},
 		{
-			"from": [2, 2, 6],
-			"to": [14, 4, 8],
+			"from": [7, 2, 12],
+			"to": [9, 7, 14],
 			"faces": {
-				"north": {"uv": [2, 7, 14, 9], "texture": "#lock"},
-				"east": {"uv": [6, 7, 8, 9], "texture": "#lock"},
-				"south": {"uv": [2, 7, 14, 9], "texture": "#lock"},
-				"west": {"uv": [6, 7, 8, 9], "texture": "#lock"},
-				"up": {"uv": [7, 2, 9, 14], "rotation": 90, "texture": "#lock"},
-				"down": {"uv": [7, 2, 9, 14], "rotation": 90, "texture": "#lock"}
+				"north": {"uv": [7, 6, 9, 11], "texture": "#3"},
+				"east": {"uv": [7, 6, 9, 11], "texture": "#3"},
+				"south": {"uv": [7, 6, 9, 11], "texture": "#3"},
+				"west": {"uv": [7, 6, 9, 11], "texture": "#3"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#3"},
+				"down": {"uv": [7, 13, 9, 15], "texture": "#3"}
 			}
 		}
 	]

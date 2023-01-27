@@ -3,9 +3,9 @@
 	"ambientocclusion": false,
 	"textures": {
 		"2": "tjmetro:block/soul_torch_lit",
-		"3": "block/repeater_on",
-		"slab": "block/smooth_stone",
-		"particle": "block/repeater_on"
+		"3": "tjmetro:block/high_speed_repeater_on",
+		"particle": "tjmetro:block/high_speed_repeater_on",
+		"slab": "block/smooth_stone"
 	},
 	"elements": [
 		{
@@ -23,6 +23,30 @@
 		{
 			"from": [7, 7, 2],
 			"to": [9, 7, 4],
+			"faces": {
+				"north": {"uv": [0, 0, 0, 0], "texture": "#2"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#2"}
+			}
+		},
+		{
+			"from": [6, 2, 12],
+			"to": [10, 8, 14],
+			"faces": {
+				"north": {"uv": [6, 5, 10, 11], "texture": "#2"},
+				"south": {"uv": [6, 5, 10, 11], "texture": "#2"}
+			}
+		},
+		{
+			"from": [7, 2, 11],
+			"to": [9, 8, 15],
+			"faces": {
+				"east": {"uv": [6, 5, 10, 11], "texture": "#2"},
+				"west": {"uv": [6, 5, 10, 11], "texture": "#2"}
+			}
+		},
+		{
+			"from": [7, 7, 12],
+			"to": [9, 7, 14],
 			"faces": {
 				"north": {"uv": [0, 0, 0, 0], "texture": "#2"},
 				"up": {"uv": [7, 6, 9, 8], "texture": "#2"}
