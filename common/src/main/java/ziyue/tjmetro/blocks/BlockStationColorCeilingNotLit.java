@@ -23,7 +23,7 @@ import java.util.List;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
- * A ceiling with custom color, light is not lit. Support use shears to lit.
+ * A ceiling with custom color, the light is not lit.
  *
  * @author ZiYueCommentary
  * @see BlockCeilingNotLit

@@ -15,7 +15,7 @@ import net.minecraft.world.level.material.Fluids;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
- * A ceiling, light is not lit. Support use shears to lit.
+ * A ceiling, the light is not lit.
  *
  * @author ZiYueCommentary
  * @see BlockCeiling

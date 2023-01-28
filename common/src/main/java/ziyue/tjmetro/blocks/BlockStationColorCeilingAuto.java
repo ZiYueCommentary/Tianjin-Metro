@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -33,7 +34,7 @@ import java.util.List;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
- * Ceiling with station color, support using brush to set <i>light/no light</i>.
+ * Ceiling with station color.
  *
  * @author ZiYueCommentary
  * @see BlockCeilingAuto
@@ -54,14 +55,6 @@ public class BlockStationColorCeilingAuto extends BlockCeilingAuto implements Si
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         final boolean facing = ctx.getHorizontalDirection().getAxis() == Direction.Axis.X;
         return defaultBlockState().setValue(FACING, facing).setValue(LIGHT, hasLight(facing, ctx.getClickedPos())).setValue(WATERLOGGED, false);
-    }
-
-    @Override
-    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingBrush(level, player, () -> level.setBlock(blockPos,
-                blockState.getValue(LIGHT) ?
-                        BlockList.STATION_COLOR_CEILING_NO_LIGHT.get().defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, blockState.getValue(FACING)) :
-                        BlockList.STATION_COLOR_CEILING_LIGHT.get().defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, blockState.getValue(FACING)), 1));
     }
 
     @Override
