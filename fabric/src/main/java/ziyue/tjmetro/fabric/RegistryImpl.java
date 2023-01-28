@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
-public class RegistryClientImpl
+public class RegistryImpl
 {
     public static void registerCustomColorBlock(Block block) {
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {

@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
-public class RegistryClientImpl
+public class RegistryImpl
 {
     public static void registerCustomColorBlock(Block block) {
         RegistryUtilitiesClient.registerBlockColors(new CustomColor(), block);

@@ -2,14 +2,11 @@ package ziyue.tjmetro;
 
 import mtr.CreativeModeTabs;
 import mtr.MTR;
-import mtr.Registry;
 import mtr.RegistryObject;
-import mtr.client.CustomResources;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
@@ -20,7 +17,6 @@ import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.function.BiConsumer;
 
-import static mtr.client.CustomResources.CUSTOM_SIGNS;
 import static ziyue.tjmetro.packet.IPacket.*;
 
 /**
@@ -34,7 +30,7 @@ public class TianjinMetro
     public static final Logger LOGGER = LogManager.getLogger(Reference.NAME);
 
     public static final CreativeModeTabs.Wrapper TAB = new CreativeModeTabs.Wrapper(new ResourceLocation(Reference.MOD_ID, "tjmetro_tab"), () -> new ItemStack(BlockList.LOGO.get()));
-    public static final GameRules.Key<GameRules.BooleanValue> PREVENT_BLOCK_FALLING = RegistryClient.registerBooleanGameRule("preventBlockFalling", false);
+    public static final GameRules.Key<GameRules.BooleanValue> PREVENT_BLOCK_FALLING = Registry.registerBooleanGameRule("preventBlockFalling", false);
 
     public static void init(
             BiConsumer<String, RegistryObject<Block>> registerBlock,
@@ -130,8 +126,8 @@ public class TianjinMetro
 
         registerEntityType.accept("bench", EntityTypes.BENCH);
 
-        Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
-        Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);
-        Registry.registerNetworkReceiver(PACKET_SIGN_TYPES, PacketGuiServer::receiveSignIdsC2S);
+        mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
+        mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);
+        mtr.Registry.registerNetworkReceiver(PACKET_SIGN_TYPES, PacketGuiServer::receiveSignIdsC2S);
     }
 }

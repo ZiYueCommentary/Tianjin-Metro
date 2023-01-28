@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
  * @since 1.0b
  */
 
-public class RegistryClient
+public class Registry
 {
     /**
      * Register block that can custom block color.
