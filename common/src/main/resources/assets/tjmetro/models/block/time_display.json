@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"0": "tjmetro:block/gray",
+		"0": "tjmetro:block/black",
 		"1": "block/gray_concrete",
 		"2": "block/air",
-		"particle": "tjmetro:block/gray"
+		"particle": "tjmetro:block/black"
 	},
 	"elements": [
 		{
