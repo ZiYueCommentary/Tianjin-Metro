@@ -15,6 +15,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.mixin.properties.ShowNameProperty;
 
 /**
@@ -33,17 +36,16 @@ public abstract class WallMixin extends BlockStationNameBase implements ShowName
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if (player.isHolding(Items.SHEARS)) {
+        return IBlock.checkHoldingItem(world, player, item -> {
             world.setBlockAndUpdate(pos, state.setValue(SHOW_NAME, !state.getValue(SHOW_NAME)));
             propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).getClockWise(), SHOW_NAME, 1);
             propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).getCounterClockWise(), SHOW_NAME, 1);
-            return InteractionResult.SUCCESS;
-        } else return InteractionResult.FAIL;
+        }, null, Items.SHEARS);
     }
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, SHOW_NAME);
+    @Inject(method = "createBlockStateDefinition", at = @At("TAIL"))
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder, CallbackInfo ci) {
+        builder.add(SHOW_NAME);
     }
 
     @Override

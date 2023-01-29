@@ -8,6 +8,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.TianjinMetro;
 
 import java.util.Random;
@@ -29,20 +32,13 @@ public class FallingBlockMixin extends Block
         super(properties);
     }
 
-    @Override
-    public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
-        if (!level.getGameRules().getBoolean(TianjinMetro.PREVENT_BLOCK_FALLING)) {
-            level.getBlockTicks().scheduleTick(blockPos, this, 2);
-        }
+    @Inject(method = "onPlace", at = @At("HEAD"), cancellable = true)
+    public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl, CallbackInfo ci) {
+        if (level.getGameRules().getBoolean(TianjinMetro.PREVENT_BLOCK_FALLING)) ci.cancel();
     }
 
-    @Override
-    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
-        if (!serverLevel.getGameRules().getBoolean(TianjinMetro.PREVENT_BLOCK_FALLING)) {
-            if (isFree(serverLevel.getBlockState(blockPos.below())) && blockPos.getY() >= 0) {
-                FallingBlockEntity fallingBlockEntity = new FallingBlockEntity(serverLevel, blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5, serverLevel.getBlockState(blockPos));
-                serverLevel.addFreshEntity(fallingBlockEntity);
-            }
-        }
+    @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
+    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random, CallbackInfo ci) {
+        if (serverLevel.getGameRules().getBoolean(TianjinMetro.PREVENT_BLOCK_FALLING)) ci.cancel();
     }
 }

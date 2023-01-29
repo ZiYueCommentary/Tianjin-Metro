@@ -15,9 +15,11 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import ziyue.tjmetro.mixin.properties.ShowNameProperty;
-
-import static mtr.block.BlockStationNameEntrance.STYLE;
 
 /**
  * Made for <b>No "station" of station name entrance</b> feature.
@@ -38,24 +40,19 @@ public abstract class EntranceMixin extends BlockStationNameBase implements IBlo
 
     private static final BooleanProperty SHOW_NAME = BooleanProperty.create("show_name");
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, STYLE, SHOW_NAME);
+    @Inject(method = "createBlockStateDefinition", at = @At("TAIL"))
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder, CallbackInfo ci) {
+        builder.add(SHOW_NAME);
     }
 
-    @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+    @Inject(method = "use", at = @At("HEAD"), cancellable = true)
+    public void use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
         if (player.isHolding(Items.SHEARS)) {
             world.setBlockAndUpdate(pos, state.setValue(SHOW_NAME, !state.getValue(SHOW_NAME)));
             propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).getClockWise(), SHOW_NAME, 1);
             propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).getCounterClockWise(), SHOW_NAME, 1);
-            return InteractionResult.SUCCESS;
+            cir.setReturnValue(InteractionResult.SUCCESS);
         }
-        return IBlock.checkHoldingBrush(world, player, () -> {
-            world.setBlockAndUpdate(pos, state.cycle(STYLE));
-            propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).getClockWise(), STYLE, 1);
-            propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).getCounterClockWise(), STYLE, 1);
-        });
     }
 
     @Override
