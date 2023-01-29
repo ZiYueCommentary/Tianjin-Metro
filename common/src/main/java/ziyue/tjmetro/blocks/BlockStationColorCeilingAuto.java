@@ -2,21 +2,15 @@ package ziyue.tjmetro.blocks;
 
 import mtr.Blocks;
 import mtr.block.BlockCeilingAuto;
-import mtr.block.IBlock;
 import mtr.mappings.Text;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -24,10 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
-import ziyue.tjmetro.BlockList;
-import ziyue.tjmetro.PrivateInSuper;
 
 import java.util.List;
 
@@ -72,7 +63,6 @@ public class BlockStationColorCeilingAuto extends BlockCeilingAuto implements Si
         list.add(Text.translatable("tooltip.mtr.station_color").withStyle(ChatFormatting.GRAY));
     }
 
-    @PrivateInSuper
     protected static boolean hasLight(boolean facing, BlockPos pos) {
         if (facing) return pos.getZ() % 3 == 0;
         else return pos.getX() % 3 == 0;

@@ -54,8 +54,8 @@ public class BlockHighSpeedRepeater extends RepeaterBlock
     protected void update(Level level, BlockPos blockPos, BlockState blockState) {
         if (isLocked(level, blockPos, blockState)) return;
         BlockPos blockPos1 = blockPos.relative(blockState.getValue(FACING));
-        boolean b = level.getSignal(blockPos1, blockState.getValue(FACING)) > 0;
-        level.setBlockAndUpdate(blockPos, blockState.setValue(POWERED, b));
+        boolean powered = level.getSignal(blockPos1, blockState.getValue(FACING)) > 0;
+        level.setBlockAndUpdate(blockPos, blockState.setValue(POWERED, powered));
     }
 
     @Override
@@ -64,22 +64,22 @@ public class BlockHighSpeedRepeater extends RepeaterBlock
 
     @Environment(EnvType.CLIENT)
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, Random random) {
-        if (blockState.getValue(POWERED)) {
-            double d = (double) blockPos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.2;
-            double e = (double) blockPos.getY() + 0.4 + (random.nextDouble() - 0.5) * 0.2;
-            double f = (double) blockPos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.2;
-            float g = -5.0F;
-            if (random.nextBoolean()) {
-                g = 1.0F;
-            }
-            g /= 16.0F;
+        if (!blockState.getValue(POWERED)) return;
 
-            Direction direction = blockState.getValue(FACING);
-            double h = g * (float) direction.getStepX();
-            double i = g * (float) direction.getStepZ();
-            DustParticleOptions blueParticle = new DustParticleOptions(0.196F, 0.909F, 0.933F, 1.0F); // 50, 232, 238
-            level.addParticle(blueParticle, d + h, e, f + i, 0.0, 0.0, 0.0);
+        double d = (double) blockPos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.2;
+        double e = (double) blockPos.getY() + 0.4 + (random.nextDouble() - 0.5) * 0.2;
+        double f = (double) blockPos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.2;
+        float g = -5.0F;
+        if (random.nextBoolean()) {
+            g = 1.0F;
         }
+        g /= 16.0F;
+
+        Direction direction = blockState.getValue(FACING);
+        double h = g * (float) direction.getStepX();
+        double i = g * (float) direction.getStepZ();
+        DustParticleOptions blueParticle = new DustParticleOptions(0.196F, 0.909F, 0.933F, 1.0F); // 50, 232, 238
+        level.addParticle(blueParticle, d + h, e, f + i, 0.0, 0.0, 0.0);
     }
 
     @Override
