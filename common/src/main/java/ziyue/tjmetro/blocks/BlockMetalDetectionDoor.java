@@ -2,7 +2,6 @@ package ziyue.tjmetro.blocks;
 
 import me.shedaniel.architectury.extensions.BlockEntityExtension;
 import mtr.Blocks;
-import mtr.Items;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.EntityBlockMapper;
@@ -13,12 +12,18 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
@@ -26,56 +31,118 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.IBlockExtends;
+import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.blocks.base.ContainerMenu;
 import ziyue.tjmetro.entity.base.RandomizableContainerBlockEntityMapper;
+
+import java.util.HashSet;
+import java.util.List;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
-//todo too complex
+/**
+ * A device for clearing specify items from players' inventory.
+ *
+ * @author ZiYueCommentary
+ * @since 1.0b
+ */
+
 public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlockMapper
 {
     public BlockMetalDetectionDoor() {
-        this(BlockBehaviour.Properties.copy(Blocks.LOGO.get()).noCollission());
+        this(BlockBehaviour.Properties.copy(Blocks.LOGO.get()));
     }
 
     public BlockMetalDetectionDoor(Properties properties) {
         super(properties);
     }
 
-    public static final BooleanProperty TOP = BooleanProperty.create("top");
+    public static final EnumProperty<IBlock.EnumThird> POS = EnumProperty.create("pos", IBlock.EnumThird.class);
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         BlockState blockState = defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, blockPlaceContext.getHorizontalDirection());
-        if (IBlock.isReplaceable(blockPlaceContext, Direction.UP, 2)) {
-            blockPlaceContext.getLevel().setBlockAndUpdate(blockPlaceContext.getClickedPos().above(), blockState.setValue(TOP, true));
-            return blockState.setValue(TOP, false);
+        BlockPos clickPos = blockPlaceContext.getClickedPos();
+        Level level = blockPlaceContext.getLevel();
+        if (IBlock.isReplaceable(blockPlaceContext, Direction.UP, 3)) {
+            level.setBlockAndUpdate(clickPos.above(1), blockState.setValue(POS, IBlock.EnumThird.MIDDLE));
+            level.setBlockAndUpdate(clickPos.above(2), blockState.setValue(POS, IBlock.EnumThird.UPPER));
+            return blockState.setValue(POS, IBlock.EnumThird.LOWER);
         }
         return null;
     }
 
     @Override
+    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        return IBlock.checkHoldingBrush(level, player, () -> {
+                    BlockPos posMenuEntity = switch (blockState.getValue(POS)) {
+                        case LOWER -> blockPos;
+                        case MIDDLE -> blockPos.below(1);
+                        case UPPER -> blockPos.below(2);
+                    };
+                    TileEntityMetalDetectionDoor entityDoorUpper = (TileEntityMetalDetectionDoor) level.getBlockEntity(posMenuEntity.above(2));
+                    TileEntityMetalDetectionDoor entityDoorMiddle = (TileEntityMetalDetectionDoor) level.getBlockEntity(posMenuEntity.above(1));
+                    TileEntityMetalDetectionDoor entityDoorLower = (TileEntityMetalDetectionDoor) level.getBlockEntity(posMenuEntity);
+                    player.openMenu(entityDoorLower);
+                    entityDoorUpper.setItems(entityDoorLower.getItems());
+                    entityDoorMiddle.setItems(entityDoorLower.getItems());
+                }
+        );
+    }
+
+    @Override
     public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
-        if (blockState.getValue(TOP)) return;
+        if (blockState.getValue(POS) != IBlock.EnumThird.LOWER) return;
         if (entity instanceof Player player) {
-            player.inventory.clearOrCountMatchingItems(itemStack -> itemStack.getItem() == Items.BRUSH.get(), -1, player.inventoryMenu.getCraftSlots());
+            TileEntityMetalDetectionDoor entityMetalDetectionDoor = (TileEntityMetalDetectionDoor) level.getBlockEntity(blockPos);
+            HashSet<Item> itemHashSet = entityMetalDetectionDoor.getItemHashSet();
+            player.inventory.clearOrCountMatchingItems(itemStack -> itemHashSet.contains(itemStack.getItem()), -1, player.inventoryMenu.getCraftSlots());
+        }
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+        if (blockState.getValue(POS) == IBlock.EnumThird.UPPER) {
+            return IBlock.getVoxelShapeByDirection(0, 0, 1, 16, 6, 15, blockState.getValue(FACING));
+        } else {
+            VoxelShape left = IBlock.getVoxelShapeByDirection(0, 0, 1, 1, 16, 15, blockState.getValue(FACING));
+            VoxelShape right = IBlock.getVoxelShapeByDirection(15, 0, 1, 16, 16, 15, blockState.getValue(FACING));
+            return Shapes.or(left, right);
         }
     }
 
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
-        if (blockState.getValue(TOP)) IBlockExtends.breakBlock(level, blockPos.below(), this);
-        else IBlockExtends.breakBlock(level, blockPos.above(), this);
+        switch (blockState.getValue(POS)) {
+            case UPPER -> {
+                IBlockExtends.breakBlock(level, blockPos.below(1), this);
+                IBlockExtends.breakBlock(level, blockPos.below(2), this);
+            }
+            case MIDDLE -> {
+                IBlockExtends.breakBlock(level, blockPos.above(), this);
+                IBlockExtends.breakBlock(level, blockPos.below(), this);
+            }
+            case LOWER -> {
+                IBlockExtends.breakBlock(level, blockPos.above(1), this);
+                IBlockExtends.breakBlock(level, blockPos.above(2), this);
+            }
+        }
         super.playerWillDestroy(level, blockPos, blockState, player);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, TOP, WATERLOGGED);
+        builder.add(FACING, POS, WATERLOGGED);
     }
 
     @Override
@@ -83,11 +150,21 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
         return new TileEntityMetalDetectionDoor(blockPos, blockState);
     }
 
+    @Override
+    public boolean isPathfindable(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, PathComputationType pathComputationType) {
+        return false;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack itemStack, @Nullable BlockGetter blockGetter, List<Component> list, TooltipFlag tooltipFlag) {
+        IDrawingExtends.addHoldShiftTooltip(list, Text.translatable("tooltip.tjmetro.metal_detection_door"), true);
+    }
+
     public static class TileEntityMetalDetectionDoor extends RandomizableContainerBlockEntityMapper implements BlockEntityExtension
     {
         public TileEntityMetalDetectionDoor(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.METAL_DETECTION_DOOR_TILE_ENTITY.get(), pos, state);
-            this.items = NonNullList.withSize(27, ItemStack.EMPTY);
+            this.items = NonNullList.withSize(9, ItemStack.EMPTY);
         }
 
         protected NonNullList<ItemStack> items;
@@ -104,6 +181,9 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
         @Override
         public void writeCompoundTag(CompoundTag compoundTag) {
             super.writeCompoundTag(compoundTag);
+            if (!this.trySaveLootTable(compoundTag)) {
+                ContainerHelper.saveAllItems(compoundTag, this.items);
+            }
         }
 
         @Override
@@ -113,11 +193,11 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
 
         @Override
         protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
-            return null;
+            return new ContainerMenu(MenuType.GENERIC_9x1, i, inventory, this, 1, 1);
         }
 
         public int getContainerSize() {
-            return 27;
+            return 9;
         }
 
         @Override
@@ -131,14 +211,15 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
             return tag;
         }
 
-        public void setData() {
-            setChanged();
-            syncData();
-        }
-
         @Override
         protected NonNullList<ItemStack> getItems() {
             return items;
+        }
+
+        public HashSet<Item> getItemHashSet() {
+            HashSet<Item> itemHashSet = new HashSet<>();
+            items.forEach(itemStack -> itemHashSet.add(itemStack.getItem()));
+            return itemHashSet;
         }
 
         @Override

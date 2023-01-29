@@ -50,6 +50,7 @@
     "tooltip.tjmetro.custom_color": "支持自定义显示颜色",
     "tooltip.tjmetro.no_colored_lights": "如果你遇到了有关“装饰灯”的崩溃问题，请启用此选项。",
     "tooltip.tjmetro.station_name_sign": "一个小站名牌，可以用木棒修改牌子的显示内容。",
+    "tooltip.tjmetro.metal_detection_door": "一个从玩家背包栏中清除特定的物品的装置。注意，这将直接删除物品，而不是取出物品。",
     "tooltip.tjmetro.shift": "长按 Shift 显示更多信息",
 
     "filter.tjmetro.roadblocks": "路障",

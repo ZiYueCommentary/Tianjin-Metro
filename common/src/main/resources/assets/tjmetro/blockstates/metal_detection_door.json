@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north,pos=upper": { "model": "tjmetro:block/metal_detection_door_upper" },
+        "facing=east,pos=upper":  { "model": "tjmetro:block/metal_detection_door_upper", "y":  90 },
+        "facing=south,pos=upper": { "model": "tjmetro:block/metal_detection_door_upper", "y": 180 },
+        "facing=west,pos=upper":  { "model": "tjmetro:block/metal_detection_door_upper", "y": 270 },
+        "facing=north,pos=middle": { "model": "tjmetro:block/metal_detection_door_lower_middle" },
+        "facing=east,pos=middle":  { "model": "tjmetro:block/metal_detection_door_lower_middle", "y":  90 },
+        "facing=south,pos=middle": { "model": "tjmetro:block/metal_detection_door_lower_middle", "y": 180 },
+        "facing=west,pos=middle":  { "model": "tjmetro:block/metal_detection_door_lower_middle", "y": 270 },
+        "facing=north,pos=lower": { "model": "tjmetro:block/metal_detection_door_lower_middle" },
+        "facing=east,pos=lower":  { "model": "tjmetro:block/metal_detection_door_lower_middle", "y":  90 },
+        "facing=south,pos=lower": { "model": "tjmetro:block/metal_detection_door_lower_middle", "y": 180 },
+        "facing=west,pos=lower":  { "model": "tjmetro:block/metal_detection_door_lower_middle", "y": 270 }
+    }
+}

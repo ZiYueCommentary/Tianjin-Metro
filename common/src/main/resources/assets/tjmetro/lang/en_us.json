@@ -50,6 +50,7 @@
     "tooltip.tjmetro.custom_color": "Support custom display color",
     "tooltip.tjmetro.no_colored_lights": "If you get crash with \"Decoration Lights\", please enable this option.",
     "tooltip.tjmetro.station_name_sign": "A small station name sign, you can change display content with stick.",
+    "tooltip.tjmetro.metal_detection_door": "A device for clearing items from players' inventory. Note this device will deleting item directly, instead of taking out item.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
 
     "filter.tjmetro.roadblocks": "Roadblocks",
