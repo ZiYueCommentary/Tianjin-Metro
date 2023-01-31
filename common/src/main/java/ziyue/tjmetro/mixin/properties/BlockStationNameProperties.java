@@ -1,19 +1,19 @@
 package ziyue.tjmetro.mixin.properties;
 
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.mixin.mixins.entrance.EntranceMixin;
-import ziyue.tjmetro.mixin.mixins.entrance.RenderMixin;
+import ziyue.tjmetro.mixin.mixins.BlockStationNameEntranceMixin;
+import ziyue.tjmetro.mixin.mixins.RenderStationNameTiledMixin;
 
 /**
  * Stores the method used for the <b>No "station" of Station Name Entrance</b> feature
  *
  * @author ZiYueCommentary
- * @see EntranceMixin
- * @see RenderMixin
- * @since 1.0b
+ * @see BlockStationNameEntranceMixin
+ * @see RenderStationNameTiledMixin
+ * @since beta-1
  */
 
-public interface ShowNameProperty
+public interface BlockStationNameProperties
 {
     boolean getShowNameProperty(BlockState state);
 }

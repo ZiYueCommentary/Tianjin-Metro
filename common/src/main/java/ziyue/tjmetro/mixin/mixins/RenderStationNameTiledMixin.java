@@ -1,42 +1,38 @@
-package ziyue.tjmetro.mixin.mixins.entrance;
+package ziyue.tjmetro.mixin.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import mtr.block.BlockStationNameEntrance;
 import mtr.block.IBlock;
 import mtr.client.ClientData;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.render.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import ziyue.tjmetro.mixin.properties.ShowNameProperty;
+import ziyue.tjmetro.mixin.properties.BlockStationNameProperties;
 
 /**
  * @author ZiYueCommentary
  * @see mtr.render.RenderStationNameTiled
- * @see EntranceMixin
- * @since 1.0b
+ * @see BlockStationNameEntranceMixin
+ * @since beta-1
  */
 
 @Mixin(RenderStationNameTiled.class)
-public abstract class RenderMixin extends RenderStationNameBase<BlockStationNameEntrance.TileEntityStationNameEntrance>
+public abstract class RenderStationNameTiledMixin extends RenderStationNameBase<BlockStationNameEntrance.TileEntityStationNameEntrance>
 {
     @Shadow
     protected abstract int getLength(BlockGetter world, BlockPos pos, boolean lookRight);
 
     final boolean showLogo;
 
-    public RenderMixin(BlockEntityRenderDispatcher dispatcher, boolean showLogo) {
+    public RenderStationNameTiledMixin(BlockEntityRenderDispatcher dispatcher, boolean showLogo) {
         super(dispatcher);
         this.showLogo = showLogo;
     }
@@ -51,7 +47,7 @@ public abstract class RenderMixin extends RenderStationNameBase<BlockStationName
         if (world == null) return;
 
         String displayContent = IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, stationName);
-        displayContent = ((ShowNameProperty) world.getBlockState(pos).getBlock()).getShowNameProperty(world.getBlockState(pos)) ? displayContent : stationName.replaceFirst(" Station", "").replaceFirst("站", "");
+        displayContent = ((BlockStationNameProperties) world.getBlockState(pos).getBlock()).getShowNameProperty(world.getBlockState(pos)) ? displayContent : stationName.replaceFirst(" Station", "").replaceFirst("站", "");
         final int totalLength = lengthLeft + lengthRight - 1;
         if (showLogo) {
             final int propagateProperty = IBlock.getStatePropertySafe(world, pos, BlockStationNameEntrance.STYLE);

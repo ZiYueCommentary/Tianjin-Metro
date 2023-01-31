@@ -30,6 +30,5 @@ public class FinishInitializationMixin
         LOGGER.info("Mod ID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
         LOGGER.info("Modloader: " + (Registry.isFabric() ? "Fabric" : "Forge"));
-        //Configs.refreshProperties();
     }
 }
