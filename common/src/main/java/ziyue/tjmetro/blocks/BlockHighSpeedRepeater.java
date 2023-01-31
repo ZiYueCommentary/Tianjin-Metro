@@ -23,7 +23,7 @@ import java.util.Random;
  * Repeater without delay.
  *
  * @author ZiYueCommentary
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockHighSpeedRepeater extends RepeaterBlock

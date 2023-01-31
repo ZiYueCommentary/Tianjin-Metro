@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
  * A fabric interface.
  *
  * @author FabricMC
- * @since 1.0b
+ * @since beta-1
  */
 
 @FunctionalInterface

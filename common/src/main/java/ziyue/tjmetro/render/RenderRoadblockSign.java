@@ -25,7 +25,7 @@ import ziyue.tjmetro.blocks.BlockRoadblockSign;
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.screen.CustomContentScreen
  * @see ziyue.tjmetro.blocks.BlockRoadblockSign
- * @since 1.0b
+ * @since beta-1
  */
 
 public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBlockSign> extends BlockEntityRendererMapper<T> implements IGui, IDrawing

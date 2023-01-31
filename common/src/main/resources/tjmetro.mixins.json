@@ -6,9 +6,9 @@
   "mixins": [
     "FallingBlockMixin",
     "FinishInitializationMixin",
-    "entrance.EntranceMixin",
-    "entrance.RenderMixin",
-    "entrance.WallMixin"
+    "BlockStationNameEntranceMixin",
+    "RenderStationNameTiledMixin",
+    "BlockStationNameWallBaseMixin"
   ],
   "injectors": {
     "defaultRequire": 1

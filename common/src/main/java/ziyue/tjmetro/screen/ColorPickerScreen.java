@@ -25,7 +25,7 @@ import java.awt.*;
  *
  * @author ZiYueCommentary
  * @see mtr.screen.WidgetColorSelector
- * @since 1.0b
+ * @since beta-1
  */
 
 public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket

@@ -10,6 +10,7 @@ import mtr.data.*;
 import mtr.mappings.ScreenMapper;
 import mtr.mappings.Text;
 import mtr.mappings.UtilitiesClient;
+import mtr.packet.PacketTrainDataGuiClient;
 import mtr.render.RenderRailwaySign;
 import mtr.screen.DashboardListSelectorScreen;
 import net.minecraft.client.Minecraft;
@@ -33,7 +34,7 @@ import java.util.stream.Collectors;
  * @author ZiYueCommentary
  * @see mtr.screen.RailwaySignScreen
  * @see BlockRailwaySignBase
- * @since 1.0b
+ * @since beta-1
  */
 
 public class RailwaySignScreen extends ScreenMapper implements IGui
@@ -229,7 +230,7 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
 
     @Override
     public void onClose() {
-        PacketGuiClient.sendSignIdsC2S(signPos, selectedIds, signIds);
+        PacketTrainDataGuiClient.sendSignIdsC2S(signPos, selectedIds, signIds);
         super.onClose();
     }
 

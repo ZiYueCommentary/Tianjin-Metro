@@ -30,7 +30,7 @@ import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.screen.CustomContentScreen
  * @see BlockStationNameSignBase
- * @since 1.0b
+ * @since beta-1
  */
 
 public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntityStationNameBase> extends BlockEntityRendererMapper<T> implements IGui, IDrawing

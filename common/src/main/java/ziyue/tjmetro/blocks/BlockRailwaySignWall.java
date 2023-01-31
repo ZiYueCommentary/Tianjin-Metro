@@ -44,7 +44,7 @@ import java.util.List;
  *
  * @author ZiYueCommentary
  * @see BlockRailwaySignBase
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockRailwaySignWall extends BlockRailwaySignBase
@@ -88,15 +88,14 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
 
     @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, Block middleBlock) {
-        if (!world.isClientSide) {
-            final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-            for (int i = 1; i < getMiddleLength(); i++) {
-                world.setBlock(pos.relative(facing.getClockWise(), i), middleBlock.defaultBlockState().setValue(FACING, facing).setValue(EOS, false), 3);
-            }
-            world.setBlock(pos.relative(facing.getClockWise(), getMiddleLength()), middleBlock.defaultBlockState().setValue(FACING, facing).setValue(EOS, true), 3);
-            world.updateNeighborsAt(pos, Blocks.AIR);
-            state.updateNeighbourShapes(world, pos, 3);
+        if (world.isClientSide) return;
+        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        for (int i = 1; i < getMiddleLength(); i++) {
+            world.setBlock(pos.relative(facing.getClockWise(), i), middleBlock.defaultBlockState().setValue(FACING, facing).setValue(EOS, false), 3);
         }
+        world.setBlock(pos.relative(facing.getClockWise(), getMiddleLength()), middleBlock.defaultBlockState().setValue(FACING, facing).setValue(EOS, true), 3);
+        world.updateNeighborsAt(pos, Blocks.AIR);
+        state.updateNeighbourShapes(world, pos, 3);
     }
 
     @Override

@@ -53,7 +53,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
  * A device for clearing specify items from players' inventory.
  *
  * @author ZiYueCommentary
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlockMapper

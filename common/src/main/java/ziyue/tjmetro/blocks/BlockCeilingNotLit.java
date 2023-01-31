@@ -19,7 +19,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
  *
  * @author ZiYueCommentary
  * @see BlockCeiling
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockCeilingNotLit extends BlockCeiling implements SimpleWaterloggedBlock

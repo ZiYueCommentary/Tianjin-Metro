@@ -13,23 +13,17 @@ import net.minecraft.resources.ResourceLocation;
  *
  * @author ZiYueCommentary
  * @see <a href="https://github.com/MrCrayfish/Filters/blob/master/src/main/java/com/mrcrayfish/filters/gui/widget/button/IconButton.java">Filters Mod</a>
- * @since 1.0b
+ * @since beta-1
  */
 
 public class IconButton extends Button
 {
-    private ResourceLocation iconResource;
-    private int iconU;
-    private int iconV;
+    protected ResourceLocation iconResource;
+    protected int iconU;
+    protected int iconV;
 
     public IconButton(int x, int y, Component component, OnPress onPress, ResourceLocation iconResource, int iconU, int iconV) {
         super(x, y, 20, 20, component, onPress);
-        this.iconResource = iconResource;
-        this.iconU = iconU;
-        this.iconV = iconV;
-    }
-
-    public void setIcon(ResourceLocation iconResource, int iconU, int iconV) {
         this.iconResource = iconResource;
         this.iconU = iconU;
         this.iconV = iconV;

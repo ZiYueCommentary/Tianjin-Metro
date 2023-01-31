@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  * @author ZiYueCommentary
- * @since 1.0b
+ * @since beta-1
  */
 
 public abstract class CustomContentBlockBase extends Block implements EntityBlockMapper
@@ -55,7 +55,7 @@ public abstract class CustomContentBlockBase extends Block implements EntityBloc
 
     /**
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     public abstract static class CustomContentBlockEntity extends BlockEntityClientSerializableMapper
     {

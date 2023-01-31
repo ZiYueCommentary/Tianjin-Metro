@@ -27,7 +27,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
  * Player detector.
  *
  * @author ZiYueCommentary
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockPlayerDetector extends Block implements SimpleWaterloggedBlock, EntityBlockMapper

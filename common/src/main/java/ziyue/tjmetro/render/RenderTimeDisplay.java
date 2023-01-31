@@ -21,7 +21,7 @@ import ziyue.tjmetro.blocks.BlockTimeDisplay;
 /**
  * @author ZiYueCommentary
  * @see BlockTimeDisplay
- * @since 1.0b
+ * @since beta-1
  */
 
 public class RenderTimeDisplay<T extends BlockTimeDisplay.TileEntityTimeDisplay> extends BlockEntityRendererMapper<T> implements IGui, IDrawing

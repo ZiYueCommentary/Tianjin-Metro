@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
  * @author ZiYueCommentary
  * @see net.minecraft.world.level.block.entity.BaseContainerBlockEntity
  * @see BlockEntityClientSerializableMapper
- * @since 1.0b
+ * @since beta-1
  */
 
 public abstract class BaseContainerBlockEntityMapper extends BlockEntityClientSerializableMapper implements Container, MenuProvider, Nameable

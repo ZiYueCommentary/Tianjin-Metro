@@ -22,7 +22,7 @@ import static net.minecraft.world.level.block.FallingBlock.isFree;
  *
  * @author ZiYueCommentary
  * @see FallingBlock
- * @since 1.0b
+ * @since beta-1
  */
 
 @Mixin(FallingBlock.class)

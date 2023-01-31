@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
  *
  * @author ZiYueCommentary
  * @see net.minecraft.world.level.block.StairBlock
- * @since 1.0b
+ * @since beta-1
  */
 
 public class StairBlock extends net.minecraft.world.level.block.StairBlock

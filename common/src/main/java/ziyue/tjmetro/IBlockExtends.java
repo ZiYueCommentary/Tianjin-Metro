@@ -13,7 +13,7 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
  * Some methods similar to methods in <b>IBlock</b>.
  *
  * @see mtr.block.IBlock
- * @since 1.0b
+ * @since beta-1
  */
 
 public interface IBlockExtends
@@ -21,7 +21,7 @@ public interface IBlockExtends
     /**
      * Fence's collision height.
      *
-     * @since 1.0b
+     * @since beta-1
      */
     byte FENCE_HEIGHT = 24;
 
@@ -30,7 +30,7 @@ public interface IBlockExtends
      *
      * @param pos Block's Position
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     static void breakBlock(Level world, BlockPos pos) {
         try {
@@ -47,7 +47,7 @@ public interface IBlockExtends
      * @param pos   Block's Position
      * @param block Specified Block
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     static void breakBlock(Level world, BlockPos pos, Block block) {
         try {
@@ -64,7 +64,7 @@ public interface IBlockExtends
      * Check the direction whether is horizontal direction.
      *
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     static boolean isHorizontalDirection(Direction direction) {
         return direction == Direction.EAST || direction == Direction.WEST || direction == Direction.NORTH || direction == Direction.SOUTH;

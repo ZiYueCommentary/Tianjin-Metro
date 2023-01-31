@@ -11,7 +11,7 @@ import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 /**
  * @author ZiYueCommentary
  * @see BlockCustomColorBase
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockCustomColorConcrete extends BlockCustomColorBase

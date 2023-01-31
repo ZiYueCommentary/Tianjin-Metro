@@ -12,7 +12,7 @@ import ziyue.tjmetro.blocks.*;
 import ziyue.tjmetro.blocks.base.StairBlock;
 
 /**
- * @since 1.0b
+ * @since beta-1
  */
 
 public interface BlockList

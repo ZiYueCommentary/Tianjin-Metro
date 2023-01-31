@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
  *
  * @author ZiYueCommentary
  * @see net.minecraft.world.inventory.ChestMenu
- * @since 1.0b
+ * @since beta-1
  */
 
 public class ContainerMenu extends AbstractContainerMenu

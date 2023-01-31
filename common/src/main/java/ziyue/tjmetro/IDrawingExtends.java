@@ -20,7 +20,7 @@ import java.util.List;
  * Some methods similar to methods in <b>IDrawing</b>.
  *
  * @see mtr.client.IDrawing
- * @since 1.0b
+ * @since beta-1
  */
 
 public interface IDrawingExtends
@@ -29,7 +29,7 @@ public interface IDrawingExtends
      * Drawing string with minecraft font.
      *
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     static void drawString(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, mtr.client.IDrawing.DrawingCallback drawingCallback) {
         while (text.contains("||")) {
@@ -116,7 +116,7 @@ public interface IDrawingExtends
      * @param limit     the result threshold, as described above
      * @return Multi-line component
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     static List<MutableComponent> getComponentLines(MutableComponent component, String regex, int limit) {
         String[] lines = component.getString().split(regex, limit);
@@ -128,7 +128,7 @@ public interface IDrawingExtends
     /**
      * @author ZiYueCommentary
      * @see #getComponentLines(MutableComponent, String, int)
-     * @since 1.0b
+     * @since beta-1
      */
     static List<MutableComponent> getComponentLines(MutableComponent component, String regex) {
         return getComponentLines(component, regex, 0);
@@ -137,7 +137,7 @@ public interface IDrawingExtends
     /**
      * @author ZiYueCommentary
      * @see #getComponentLines(MutableComponent, String, int)
-     * @since 1.0b
+     * @since beta-1
      */
     static List<MutableComponent> getComponentLines(MutableComponent component) {
         return getComponentLines(component, "\n", 0);
@@ -152,7 +152,7 @@ public interface IDrawingExtends
      * @param limit     the result threshold, as described above
      * @return Hover Text List
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean wordWarp, String regex, int limit) {
         if (Screen.hasShiftDown()) {
@@ -169,7 +169,7 @@ public interface IDrawingExtends
     /**
      * @author ZiYueCommentary
      * @see #addHoldShiftTooltip(List, MutableComponent, boolean, String, int)
-     * @since 1.0b
+     * @since beta-1
      */
     static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean wordWarp, String regex) {
         return addHoldShiftTooltip(list, component, wordWarp, regex, 0);
@@ -178,7 +178,7 @@ public interface IDrawingExtends
     /**
      * @author ZiYueCommentary
      * @see #addHoldShiftTooltip(List, MutableComponent, boolean, String, int)
-     * @since 1.0b
+     * @since beta-1
      */
     static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean wordWarp) {
         return addHoldShiftTooltip(list, component, wordWarp, "\n", 0);

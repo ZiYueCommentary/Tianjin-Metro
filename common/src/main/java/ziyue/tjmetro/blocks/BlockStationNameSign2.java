@@ -21,7 +21,7 @@ import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
  *
  * @author ZiYueCommentary
  * @see BlockStationNameSignBase
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockStationNameSign2 extends BlockStationNameSignBase

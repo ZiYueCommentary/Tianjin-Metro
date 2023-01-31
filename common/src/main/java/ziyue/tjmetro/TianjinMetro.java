@@ -22,7 +22,7 @@ import static ziyue.tjmetro.packet.IPacket.*;
 /**
  * Entry of <b>Tianjin Metro Mod</b>.
  *
- * @since 1.0b
+ * @since beta-1
  */
 
 public class TianjinMetro
@@ -128,6 +128,5 @@ public class TianjinMetro
 
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);
-        mtr.Registry.registerNetworkReceiver(PACKET_SIGN_TYPES, PacketGuiServer::receiveSignIdsC2S);
     }
 }

@@ -43,7 +43,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
  * @see mtr.block.BlockStationNameWallWhite
  * @see mtr.block.BlockStationNameWallGray
  * @see mtr.block.BlockStationNameWallBlack
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockStationNameWallLegacy extends BlockStationNameBase implements SimpleWaterloggedBlock

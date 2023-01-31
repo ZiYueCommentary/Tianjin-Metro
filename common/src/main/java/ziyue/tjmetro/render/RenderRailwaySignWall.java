@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 /**
  * @author ZiYueCommentary
  * @see RenderRailwaySign
- * @since 1.0b
+ * @since beta-1
  */
 
 public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRailwaySignWall> extends BlockEntityRendererMapper<T> implements IBlock, IGui, IDrawing

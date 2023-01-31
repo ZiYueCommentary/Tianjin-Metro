@@ -8,7 +8,7 @@ import ziyue.tjmetro.blocks.*;
 import java.util.Collections;
 
 /**
- * @since 1.0b
+ * @since beta-1
  */
 
 public interface BlockEntityTypes

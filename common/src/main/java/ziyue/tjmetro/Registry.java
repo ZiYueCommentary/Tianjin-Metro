@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.Block;
  * Register for some methods that have different implement ways.
  *
  * @see mtr.RegistryClient
- * @since 1.0b
+ * @since beta-1
  */
 
 public class Registry
@@ -17,7 +17,7 @@ public class Registry
      * Register block that can custom block color.
      *
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     @ExpectPlatform
     public static void registerCustomColorBlock(Block block) {
@@ -32,7 +32,7 @@ public class Registry
      * @param defaultValue Default value of game rule.
      * @return A boolean value game rule.
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     @ExpectPlatform
     public static GameRules.Key<GameRules.BooleanValue> registerBooleanGameRule(String name, GameRules.Category category, boolean defaultValue) {
@@ -47,7 +47,7 @@ public class Registry
      * @param defaultValue Default value of game rule.
      * @return A integer value game rule.
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     @ExpectPlatform
     public static GameRules.Key<GameRules.IntegerValue> registerIntegerGameRule(String name, GameRules.Category category, int defaultValue) {
@@ -57,7 +57,7 @@ public class Registry
     /**
      * @author ZiYueCommentary
      * @see #registerBooleanGameRule(String, GameRules.Category, boolean)
-     * @since 1.0b
+     * @since beta-1
      */
     public static GameRules.Key<GameRules.BooleanValue> registerBooleanGameRule(String name, boolean defaultValue) {
         return registerBooleanGameRule(name, GameRules.Category.MISC, defaultValue);
@@ -66,7 +66,7 @@ public class Registry
     /**
      * @author ZiYueCommentary
      * @see #registerIntegerGameRule(String, GameRules.Category, int)
-     * @since 1.0b
+     * @since beta-1
      */
     public static GameRules.Key<GameRules.IntegerValue> registerIntegerGameRule(String name, int defaultValue) {
         return registerIntegerGameRule(name, GameRules.Category.MISC, defaultValue);

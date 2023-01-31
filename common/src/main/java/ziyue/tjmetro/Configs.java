@@ -15,7 +15,7 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
 
 /**
  * @author ZiYueCommentary
- * @since 1.0b
+ * @since beta-1
  */
 
 @Environment(EnvType.CLIENT)

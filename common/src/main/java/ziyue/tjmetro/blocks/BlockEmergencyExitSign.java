@@ -28,7 +28,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 /**
  * @author ZiYueCommentary
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
@@ -74,7 +74,7 @@ public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implement
      *
      * @author ZiYueCommentary
      * @see BlockEmergencyExitSign
-     * @since 1.0b
+     * @since beta-1
      */
     protected enum Styles implements StringRepresentable
     {

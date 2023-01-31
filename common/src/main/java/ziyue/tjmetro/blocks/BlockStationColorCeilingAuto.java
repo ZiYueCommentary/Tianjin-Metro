@@ -29,7 +29,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
  *
  * @author ZiYueCommentary
  * @see BlockCeilingAuto
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockStationColorCeilingAuto extends BlockCeilingAuto implements SimpleWaterloggedBlock

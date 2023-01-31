@@ -33,7 +33,7 @@ import java.util.List;
  *
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.mixin.mixins.CreativeScreenMixin
- * @since 1.0b
+ * @since beta-1
  */
 
 public class Filter extends Button

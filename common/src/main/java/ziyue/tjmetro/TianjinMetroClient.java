@@ -12,7 +12,7 @@ import ziyue.tjmetro.render.*;
  * Client Entry of <b>Tianjin Metro Mod</b>.
  *
  * @see TianjinMetro
- * @since 1.0b
+ * @since beta-1
  */
 
 public class TianjinMetroClient

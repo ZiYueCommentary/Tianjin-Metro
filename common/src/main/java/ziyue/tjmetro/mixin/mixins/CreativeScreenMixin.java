@@ -39,7 +39,7 @@ import java.util.Map;
  * @see Filter
  * @see <a href="https://github.com/MrCrayfish/Filters">Filters Mod</a>
  * @see <a href="https://github.com/MrCrayfish/MrCrayfishFurnitureMod">MrCrayfish's Furniture Mod</a>
- * @since 1.0b
+ * @since beta-1
  */
 
 @Mixin(CreativeModeInventoryScreen.class)

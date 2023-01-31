@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * @author ZiYueCommentary
- * @since 1.0b
+ * @since beta-1
  */
 
 public abstract class BlockCustomColorBase extends Block implements EntityBlockMapper
@@ -62,7 +62,7 @@ public abstract class BlockCustomColorBase extends Block implements EntityBlockM
      * If color equals <code>-1</code>, then use station color.
      *
      * @author ZiYueCommentary
-     * @since 1.0b
+     * @since beta-1
      */
     public static class CustomColorBlockEntity extends BlockEntityClientSerializableMapper implements RenderAttachmentBlockEntity
     {

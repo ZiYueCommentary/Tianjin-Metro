@@ -29,7 +29,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
  * A time display, require better model.
  *
  * @author ZiYueCommentary
- * @since 1.0b
+ * @since beta-1
  */
 
 public class BlockTimeDisplay extends HorizontalDirectionalBlock implements EntityBlockMapper, SimpleWaterloggedBlock

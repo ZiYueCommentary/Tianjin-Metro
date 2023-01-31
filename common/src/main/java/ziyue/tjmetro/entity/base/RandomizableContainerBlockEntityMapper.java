@@ -32,7 +32,7 @@ import java.util.Random;
  * @author ZiYueCommentary
  * @see BaseContainerBlockEntityMapper
  * @see RandomizableContainerBlockEntity
- * @since 1.0b
+ * @since beta-1
  */
 
 public abstract class RandomizableContainerBlockEntityMapper extends BaseContainerBlockEntityMapper

@@ -6,19 +6,20 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import ziyue.tjmetro.EntityTypes;
 
 //todo fix bug
 public class SeatEntity extends Entity
 {
-    public SeatEntity(Level world) {
-        super(EntityTypes.BENCH.get(), world);
+    public SeatEntity(EntityType<?> entityType, Level world) {
+        super(entityType, world);
         this.noCulling = true;
     }
 
     public SeatEntity(Level level, double d, double e, double f) {
-        this(level);
+        this(EntityTypes.BENCH.get(), level);
         this.setPos(d, e + (double) ((1.0F - this.getBbHeight()) / 2.0F), f);
         this.xo = d;
         this.yo = e;

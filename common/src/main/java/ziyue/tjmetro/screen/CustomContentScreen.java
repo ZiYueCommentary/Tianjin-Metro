@@ -20,7 +20,7 @@ import ziyue.tjmetro.packet.PacketGuiClient;
  *
  * @author ZiYueCommentary
  * @see CustomContentBlockBase
- * @since 1.0b
+ * @since beta-1
  */
 
 public class CustomContentScreen extends ScreenMapper implements IGui, IPacket

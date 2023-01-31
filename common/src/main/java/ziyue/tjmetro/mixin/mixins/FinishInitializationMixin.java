@@ -17,7 +17,7 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
  * @author ZiYueCommentary
  * @see Reference
  * @see RenderSystem
- * @since 1.0b
+ * @since beta-1
  */
 
 @Mixin(RenderSystem.class)

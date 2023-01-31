@@ -39,7 +39,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 /**
  * @author ZiYueCommentary
- * @since 1.0b
+ * @since beta-1
  */
 
 public abstract class BlockStationNameSignBase extends BlockStationNameBase implements SimpleWaterloggedBlock, EntityBlockMapper
@@ -61,7 +61,7 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
                 ((TileEntityStationNameBase) entity).syncData();
                 PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
             }
-        }, null, Items.STICK);
+        }, null, Items.SHEARS);
     }
 
     @Override

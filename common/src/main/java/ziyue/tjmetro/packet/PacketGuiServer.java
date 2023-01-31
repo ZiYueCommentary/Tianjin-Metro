@@ -18,7 +18,7 @@ import java.util.Set;
 import static ziyue.tjmetro.packet.IPacket.*;
 
 /**
- * @since 1.0b
+ * @since beta-1
  */
 
 public class PacketGuiServer

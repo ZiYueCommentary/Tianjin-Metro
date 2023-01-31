@@ -18,7 +18,7 @@ import java.util.Set;
 import static ziyue.tjmetro.packet.IPacket.*;
 
 /**
- * @since 1.0b
+ * @since beta-1
  */
 
 public class PacketGuiClient
@@ -69,17 +69,5 @@ public class PacketGuiClient
                 UtilitiesClient.setScreen(minecraftClient, new RailwaySignScreen(pos));
             }
         });
-    }
-
-    public static void sendSignIdsC2S(BlockPos signPos, Set<Long> selectedIds, String[] signIds) {
-        final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
-        packet.writeBlockPos(signPos);
-        packet.writeInt(selectedIds.size());
-        selectedIds.forEach(packet::writeLong);
-        packet.writeInt(signIds.length);
-        for (final String signType : signIds) {
-            packet.writeUtf(signType == null ? "" : signType);
-        }
-        RegistryClient.sendToServer(PACKET_SIGN_TYPES, packet);
     }
 }
