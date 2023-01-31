@@ -65,7 +65,7 @@ public abstract class BlockStationNameEntranceMixin extends BlockStationNameBase
 
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter blockGetter, List<Component> tooltip, TooltipFlag tooltipFlag) {
-        IDrawingExtends.addHoldShiftTooltip(tooltip, Text.literal("放在地铁站入口的大型站名牌，可以用剪刀隐藏/显示站名牌的“站Station”。该功能由天津地铁模组添加。"), true);
+        IDrawingExtends.addHoldShiftTooltip(tooltip, Text.translatable("tooltip.tjmetro.station_name_entrance"), true);
     }
 
     @Override
