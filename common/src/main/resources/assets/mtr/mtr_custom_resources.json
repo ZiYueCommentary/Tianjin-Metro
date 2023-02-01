@@ -14,11 +14,6 @@
             "flip_custom_text": true,
             "small": false
         },
-        "tjmetro:tianjin_metro_logo": {
-            "texture_id": "tjmetro:textures/block/logo.png",
-            "flip_texture": false,
-            "small": false
-        },
         "tjmetro:tianjin_metro_logo_1_sign": {
             "texture_id": "tjmetro:icon.png",
             "flip_texture": false,
@@ -28,6 +23,20 @@
         },
         "tjmetro:tianjin_metro_logo_1_sign_flip": {
             "texture_id": "tjmetro:icon.png",
+            "flip_texture": false,
+            "custom_text": "天津地铁|Tianjin Metro",
+            "flip_custom_text": true,
+            "small": true
+        },
+        "tjmetro:tianjin_metro_logo_old_sign": {
+            "texture_id": "tjmetro:textures/sign/tianjin_metro_logo_old.png",
+            "flip_texture": false,
+            "custom_text": "天津地铁|Tianjin Metro",
+            "flip_custom_text": false,
+            "small": true
+        },
+        "tjmetro:tianjin_metro_logo_old_sign_flip": {
+            "texture_id": "tjmetro:textures/sign/tianjin_metro_logo_old.png",
             "flip_texture": false,
             "custom_text": "天津地铁|Tianjin Metro",
             "flip_custom_text": true,
@@ -58,6 +67,22 @@
             "flip_texture": true,
             "custom_text": "紧急出口|Emergency Exit",
             "flip_custom_text": true,
+            "small": true
+        },
+
+        "tjmetro:tianjin_metro_logo": {
+            "texture_id": "tjmetro:textures/block/logo.png",
+            "flip_texture": false,
+            "small": false
+        },
+        "tjmetro:tianjin_metro_logo_1": {
+            "texture_id": "tjmetro:icon.png",
+            "flip_texture": false,
+            "small": false
+        },
+        "tjmetro:tianjin_metro_logo_old": {
+            "texture_id": "tjmetro:textures/sign/tianjin_metro_logo_old.png",
+            "flip_texture": false,
             "small": true
         },
         "tjmetro:emergency_exit": {
