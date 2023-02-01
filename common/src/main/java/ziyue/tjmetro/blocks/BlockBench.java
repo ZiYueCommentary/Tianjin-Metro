@@ -39,7 +39,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
-    public static final EnumProperty<BenchPosition> POS = EnumProperty.create("pos", BenchPosition.class);
+    public static final EnumProperty<BlockBenchPosition> POS = EnumProperty.create("pos", BlockBenchPosition.class);
 
     public BlockBench() {
         this(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.OAK_PLANKS));
@@ -74,12 +74,12 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
         level.setBlockAndUpdate(blockPos, blockState.setValue(POS, getPos(blockState.getValue(FACING), blockPos, level)));
     }
 
-    public BenchPosition getPos(Direction direction, BlockPos blockPos, Level world) {
+    public BlockBenchPosition getPos(Direction direction, BlockPos blockPos, Level world) {
         boolean[] blockSame = {
                 (world.getBlockState(blockPos.relative(direction.getCounterClockWise())).getBlock() == BlockList.BENCH.get()) && (world.getBlockState(blockPos.relative(direction.getCounterClockWise())).getValue(FACING) == direction),
                 (world.getBlockState(blockPos.relative(direction.getClockWise())).getBlock() == BlockList.BENCH.get()) && (world.getBlockState(blockPos.relative(direction.getClockWise())).getValue(FACING) == direction)
         };
-        return blockSame[0] && blockSame[1] ? BenchPosition.MIDDLE : blockSame[0] ? BenchPosition.LEFT : blockSame[1] ? BenchPosition.RIGHT : BenchPosition.SINGLE;
+        return blockSame[0] && blockSame[1] ? BlockBenchPosition.MIDDLE : blockSame[0] ? BlockBenchPosition.LEFT : blockSame[1] ? BlockBenchPosition.RIGHT : BlockBenchPosition.SINGLE;
     }
 
     @Override
@@ -112,7 +112,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
      * @see BlockBench
      * @since beta-1
      */
-    protected enum BenchPosition implements StringRepresentable
+    protected enum BlockBenchPosition implements StringRepresentable
     {
         LEFT("left"),
         MIDDLE("middle"),
@@ -121,7 +121,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
 
         final String name;
 
-        BenchPosition(String name) {
+        BlockBenchPosition(String name) {
             this.name = name;
         }
 

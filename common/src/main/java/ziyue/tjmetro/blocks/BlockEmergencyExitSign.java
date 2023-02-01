@@ -33,6 +33,8 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
+    public static final EnumProperty<BlockEmergencyExitSignStyle> STYLE = EnumProperty.create("style", BlockEmergencyExitSignStyle.class);
+
     public BlockEmergencyExitSign() {
         this(BlockBehaviour.Properties.copy(Blocks.STATION_COLOR_POLE.get()).lightLevel(state -> 5));
     }
@@ -40,8 +42,6 @@ public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implement
     public BlockEmergencyExitSign(Properties properties) {
         super(properties);
     }
-
-    public static final EnumProperty<Styles> STYLE = EnumProperty.create("style", Styles.class);
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -56,7 +56,7 @@ public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implement
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        return defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, blockPlaceContext.getHorizontalDirection()).setValue(STYLE, Styles.LEFT);
+        return defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, blockPlaceContext.getHorizontalDirection()).setValue(STYLE, BlockEmergencyExitSignStyle.LEFT);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implement
      * @see BlockEmergencyExitSign
      * @since beta-1
      */
-    protected enum Styles implements StringRepresentable
+    protected enum BlockEmergencyExitSignStyle implements StringRepresentable
     {
         LEFT("left"),
         RIGHT("right"),
@@ -84,7 +84,7 @@ public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implement
 
         final String name;
 
-        Styles(String name) {
+        BlockEmergencyExitSignStyle(String name) {
             this.name = name;
         }
 

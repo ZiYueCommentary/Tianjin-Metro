@@ -31,7 +31,6 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -47,6 +46,7 @@ import ziyue.tjmetro.entity.base.RandomizableContainerBlockEntityMapper;
 import java.util.HashSet;
 import java.util.List;
 
+import static mtr.block.IBlock.THIRD;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
@@ -57,7 +57,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
  */
 
 public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlockMapper
-{
+{    
     public BlockMetalDetectionDoor() {
         this(BlockBehaviour.Properties.copy(Blocks.LOGO.get()));
     }
@@ -66,8 +66,6 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
         super(properties);
     }
 
-    public static final EnumProperty<IBlock.EnumThird> POS = EnumProperty.create("pos", IBlock.EnumThird.class);
-
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
@@ -75,9 +73,9 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
         BlockPos clickPos = blockPlaceContext.getClickedPos();
         Level level = blockPlaceContext.getLevel();
         if (IBlock.isReplaceable(blockPlaceContext, Direction.UP, 3)) {
-            level.setBlockAndUpdate(clickPos.above(1), blockState.setValue(POS, IBlock.EnumThird.MIDDLE));
-            level.setBlockAndUpdate(clickPos.above(2), blockState.setValue(POS, IBlock.EnumThird.UPPER));
-            return blockState.setValue(POS, IBlock.EnumThird.LOWER);
+            level.setBlockAndUpdate(clickPos.above(1), blockState.setValue(THIRD, IBlock.EnumThird.MIDDLE));
+            level.setBlockAndUpdate(clickPos.above(2), blockState.setValue(THIRD, IBlock.EnumThird.UPPER));
+            return blockState.setValue(THIRD, IBlock.EnumThird.LOWER);
         }
         return null;
     }
@@ -85,7 +83,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(level, player, () -> {
-                    BlockPos posMenuEntity = switch (blockState.getValue(POS)) {
+                    BlockPos posMenuEntity = switch (blockState.getValue(THIRD)) {
                         case LOWER -> blockPos;
                         case MIDDLE -> blockPos.below(1);
                         case UPPER -> blockPos.below(2);
@@ -102,7 +100,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
 
     @Override
     public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
-        if (blockState.getValue(POS) != IBlock.EnumThird.LOWER) return;
+        if (blockState.getValue(THIRD) != IBlock.EnumThird.LOWER) return;
         if (entity instanceof Player player) {
             TileEntityMetalDetectionDoor entityMetalDetectionDoor = (TileEntityMetalDetectionDoor) level.getBlockEntity(blockPos);
             HashSet<Item> itemHashSet = entityMetalDetectionDoor.getItemHashSet();
@@ -112,7 +110,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        if (blockState.getValue(POS) == IBlock.EnumThird.UPPER) {
+        if (blockState.getValue(THIRD) == IBlock.EnumThird.UPPER) {
             return IBlock.getVoxelShapeByDirection(0, 0, 1, 16, 6, 15, blockState.getValue(FACING));
         } else {
             VoxelShape left = IBlock.getVoxelShapeByDirection(0, 0, 1, 1, 16, 15, blockState.getValue(FACING));
@@ -123,7 +121,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
 
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
-        switch (blockState.getValue(POS)) {
+        switch (blockState.getValue(THIRD)) {
             case UPPER -> {
                 IBlockExtends.breakBlock(level, blockPos.below(1), this);
                 IBlockExtends.breakBlock(level, blockPos.below(2), this);
@@ -142,7 +140,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, POS, WATERLOGGED);
+        builder.add(FACING, THIRD, WATERLOGGED);
     }
 
     @Override
