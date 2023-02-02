@@ -1,27 +1,27 @@
 {
     "custom_signs": {
         "tjmetro:tianjin_metro_logo_sign": {
-            "texture_id": "tjmetro:textures/block/logo.png",
+            "texture_id": "tjmetro:textures/sign/tianjin_metro_logo.png",
             "flip_texture": false,
             "custom_text": "天津地铁|Tianjin Metro",
             "flip_custom_text": false,
-            "small": false
+            "small": true
         },
         "tjmetro:tianjin_metro_logo_sign_flip": {
-            "texture_id": "tjmetro:textures/block/logo.png",
+            "texture_id": "tjmetro:textures/sign/tianjin_metro_logo.png",
             "flip_texture": false,
             "custom_text": "天津地铁|Tianjin Metro",
             "flip_custom_text": true,
-            "small": false
+            "small": true
         },
-        "tjmetro:tianjin_metro_logo_1_sign": {
+        "tjmetro:tianjin_metro_mod_logo_sign": {
             "texture_id": "tjmetro:icon.png",
             "flip_texture": false,
             "custom_text": "天津地铁|Tianjin Metro",
             "flip_custom_text": false,
             "small": true
         },
-        "tjmetro:tianjin_metro_logo_1_sign_flip": {
+        "tjmetro:tianjin_metro_mod_logo_sign_flip": {
             "texture_id": "tjmetro:icon.png",
             "flip_texture": false,
             "custom_text": "天津地铁|Tianjin Metro",
@@ -55,6 +55,19 @@
             "flip_custom_text": true,
             "small": true
         },
+        "tjmetro:train_sign": {
+            "texture_id": "tjmetro:textures/sign/train.png",
+            "custom_text": "列车|Train",
+            "flip_texture": false,
+            "small": true
+        },
+        "tjmetro:train_sign_flip": {
+            "texture_id": "tjmetro:textures/sign/train.png",
+            "flip_texture": false,
+            "custom_text": "列车|Train",
+            "flip_custom_text": true,
+            "small": true
+        },
         "tjmetro:emergency_exit_sign": {
             "texture_id": "tjmetro:textures/sign/emergency_exit.png",
             "flip_texture": false,
@@ -71,17 +84,22 @@
         },
 
         "tjmetro:tianjin_metro_logo": {
-            "texture_id": "tjmetro:textures/block/logo.png",
+            "texture_id": "tjmetro:textures/sign/tianjin_metro_logo.png",
             "flip_texture": false,
-            "small": false
+            "small": true
         },
-        "tjmetro:tianjin_metro_logo_1": {
+        "tjmetro:tianjin_metro_mod_logo": {
             "texture_id": "tjmetro:icon.png",
             "flip_texture": false,
             "small": true
         },
         "tjmetro:tianjin_metro_logo_old": {
             "texture_id": "tjmetro:textures/sign/tianjin_metro_logo_old.png",
+            "flip_texture": false,
+            "small": true
+        },
+        "tjmetro:train": {
+            "texture_id": "tjmetro:textures/sign/train.png",
             "flip_texture": false,
             "small": true
         },
