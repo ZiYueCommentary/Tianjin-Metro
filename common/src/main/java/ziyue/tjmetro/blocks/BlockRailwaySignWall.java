@@ -181,7 +181,6 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
 
         protected static BlockEntityType<?> getType(int length) {
             return switch (length) {
-                case 2 -> BlockEntityTypes.RAILWAY_SIGN_WALL_2_TILE_ENTITY.get();
                 case 4 -> BlockEntityTypes.RAILWAY_SIGN_WALL_4_TILE_ENTITY.get();
                 case 6 -> BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY.get();
                 case 8 -> BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY.get();

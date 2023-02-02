@@ -49,7 +49,6 @@ public interface BlockList
     RegistryObject<Block> HIGH_SPEED_REPEATER = new RegistryObject<>(BlockHighSpeedRepeater::new);
     RegistryObject<Block> TIME_DISPLAY = new RegistryObject<>(BlockTimeDisplay::new);
     RegistryObject<Block> EMERGENCY_EXIT_SIGN = new RegistryObject<>(BlockEmergencyExitSign::new);
-    RegistryObject<Block> RAILWAY_SIGN_WALL_2 = new RegistryObject<>(() -> new BlockRailwaySignWall(2));
     RegistryObject<Block> RAILWAY_SIGN_WALL_4 = new RegistryObject<>(() -> new BlockRailwaySignWall(4));
     RegistryObject<Block> RAILWAY_SIGN_WALL_6 = new RegistryObject<>(() -> new BlockRailwaySignWall(6));
     RegistryObject<Block> RAILWAY_SIGN_WALL_8 = new RegistryObject<>(() -> new BlockRailwaySignWall(8));

@@ -78,7 +78,7 @@
         "tjmetro:tianjin_metro_logo_1": {
             "texture_id": "tjmetro:icon.png",
             "flip_texture": false,
-            "small": false
+            "small": true
         },
         "tjmetro:tianjin_metro_logo_old": {
             "texture_id": "tjmetro:textures/sign/tianjin_metro_logo_old.png",

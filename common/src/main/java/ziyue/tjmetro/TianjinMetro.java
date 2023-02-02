@@ -62,7 +62,6 @@ public class TianjinMetro
         registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, TAB);
         registerBlockItem.accept("roadblock_sign", BlockList.ROADBLOCK_SIGN, TAB);
         registerBlockItem.accept("emergency_exit_sign", BlockList.EMERGENCY_EXIT_SIGN, TAB);
-        registerBlockItem.accept("railway_sign_wall_2", BlockList.RAILWAY_SIGN_WALL_2, TAB);
         registerBlockItem.accept("railway_sign_wall_4", BlockList.RAILWAY_SIGN_WALL_4, TAB);
         registerBlockItem.accept("railway_sign_wall_6", BlockList.RAILWAY_SIGN_WALL_6, TAB);
         registerBlockItem.accept("railway_sign_wall_8", BlockList.RAILWAY_SIGN_WALL_8, TAB);
@@ -105,7 +104,6 @@ public class TianjinMetro
         registerBlockEntityType.accept("station_name_wall_legacy", BlockEntityTypes.STATION_NAME_WALL_TILE_ENTITY);
         registerBlockEntityType.accept("decoration_light", BlockEntityTypes.DECORATION_LIGHT_TILE_ENTITY);
         registerBlockEntityType.accept("time_display", BlockEntityTypes.TIME_DISPLAY_TILE_ENTITY);
-        registerBlockEntityType.accept("railway_sign_wall_2", BlockEntityTypes.RAILWAY_SIGN_WALL_2_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_4", BlockEntityTypes.RAILWAY_SIGN_WALL_4_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_6", BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_8", BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY);

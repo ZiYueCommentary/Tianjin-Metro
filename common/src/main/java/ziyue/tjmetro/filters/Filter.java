@@ -83,9 +83,8 @@ public class Filter extends Button
                     BlockList.STATION_COLOR_CEILING_NOT_LIT.get().asItem().getDefaultInstance(),
                     BlockList.STATION_COLOR_CEILING_NO_LIGHT.get().asItem().getDefaultInstance()
             ));
-    public static final Filter RAILWAYS = new Filter(Text.translatable("filter.tjmetro.railway_signs"), BlockList.RAILWAY_SIGN_WALL_2.get().asItem().getDefaultInstance(),
+    public static final Filter RAILWAYS = new Filter(Text.translatable("filter.tjmetro.railway_signs"), BlockList.RAILWAY_SIGN_WALL_4.get().asItem().getDefaultInstance(),
             Arrays.asList(
-                    BlockList.RAILWAY_SIGN_WALL_2.get().asItem().getDefaultInstance(),
                     BlockList.RAILWAY_SIGN_WALL_4.get().asItem().getDefaultInstance(),
                     BlockList.RAILWAY_SIGN_WALL_6.get().asItem().getDefaultInstance(),
                     BlockList.RAILWAY_SIGN_WALL_8.get().asItem().getDefaultInstance(),
