@@ -15,6 +15,8 @@ import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiClient;
 
+import java.util.logging.Logger;
+
 /**
  * Custom content to display for <b>Custom Content Block</b>.
  *
@@ -61,7 +63,7 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
             textField.setWidth((int) (width / 1.1));
             super.render(matrices, mouseX, mouseY, delta);
         } catch (Exception e) {
-            e.printStackTrace();
+            TianjinMetro.LOGGER.error(e);
         }
     }
 
@@ -73,8 +75,6 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
     @Override
     public void onClose() {
         PacketGuiClient.sendCustomContentC2S(pos, textField.getValue());
-        if (!textField.getValue().equals(""))
-            TianjinMetro.LOGGER.info("[" + pos.toShortString() + "] Use custom content!");
         super.onClose();
     }
 

@@ -22,12 +22,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
+import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.List;
-
-import static mtr.block.IBlock.SIDE;
 
 /**
  * Roadblock with signs.
@@ -53,7 +52,7 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof TileEntityRoadBlockSign entity1) {
                 entity1.syncData();
-                PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, (blockState.getValue(SIDE) == IBlock.EnumSide.RIGHT) ? pos.relative(blockState.getValue(FACING).getCounterClockWise()) : pos);
+                PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
             }
         });
     }
@@ -80,14 +79,17 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
         @Override
         public void setData(String content) {
             this.content = content;
-            ((TileEntityRoadBlockSign) level.getBlockEntity(getBlockPos().relative(getBlockState().getValue(FACING).getClockWise()))).content = content;
+            BlockPos blockPos = getBlockPos().relative(getBlockState().getValue(FACING).getClockWise());
+            BlockEntity blockEntity = level.getBlockEntity(blockPos);
+            if (blockEntity instanceof TileEntityRoadBlockSign entityRoadBlockSign) {
+                entityRoadBlockSign.content = this.content;
+                entityRoadBlockSign.setChanged();
+                entityRoadBlockSign.syncData();
+            } else {
+                TianjinMetro.LOGGER.error("TileEntityRoadBlockSign: Unable to set data for block entity at " + blockPos.toShortString());
+            }
             setChanged();
             syncData();
-        }
-
-        @Override
-        public boolean shouldRender() {
-            return getBlockState().getValue(SIDE) != IBlock.EnumSide.RIGHT;
         }
     }
 }

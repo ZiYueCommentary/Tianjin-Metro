@@ -67,6 +67,6 @@ public interface IBlockExtends
      * @since beta-1
      */
     static boolean isHorizontalDirection(Direction direction) {
-        return direction == Direction.EAST || direction == Direction.WEST || direction == Direction.NORTH || direction == Direction.SOUTH;
+        return (direction == Direction.EAST) || (direction == Direction.WEST) || (direction == Direction.NORTH) || (direction == Direction.SOUTH);
     }
 }

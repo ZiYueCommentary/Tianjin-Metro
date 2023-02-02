@@ -51,14 +51,8 @@ public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBloc
         matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-        for (int i = 0; i < 2; i++) {
-            matrices.pushPose();
-            matrices.translate(0, 0.023, 0.5 - entity.zOffset - SMALL_OFFSET);
-            if (i == 1) matrices.translate(-1, 0, 0);
-            drawStationName(entity, matrices, vertexConsumers, immediate, entity.content, light);
-            matrices.popPose();
-            matrices.mulPose(Vector3f.YP.rotationDegrees(180));
-        }
+        matrices.translate(0, 0.023, 0.5 - entity.zOffset - SMALL_OFFSET);
+        drawStationName(entity, matrices, vertexConsumers, immediate, entity.content, light);
         immediate.endBatch();
         matrices.popPose();
     }
