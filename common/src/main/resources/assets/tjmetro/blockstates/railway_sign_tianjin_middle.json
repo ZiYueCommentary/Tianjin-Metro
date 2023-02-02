@@ -1,8 +1,8 @@
 {
-  "variants": {
-    "facing=north": { "model": "tjmetro:block/railway_sign_tianjin_middle" },
-    "facing=east":  { "model": "tjmetro:block/railway_sign_tianjin_middle", "y":  90 },
-    "facing=south": { "model": "tjmetro:block/railway_sign_tianjin_middle", "y": 180 },
-    "facing=west":  { "model": "tjmetro:block/railway_sign_tianjin_middle", "y": 270 }
-  }
+    "variants": {
+        "facing=north": { "model": "tjmetro:block/railway_sign_tianjin_middle" },
+        "facing=east":  { "model": "tjmetro:block/railway_sign_tianjin_middle", "y":  90 },
+        "facing=south": { "model": "tjmetro:block/railway_sign_tianjin_middle", "y": 180 },
+        "facing=west":  { "model": "tjmetro:block/railway_sign_tianjin_middle", "y": 270 }
+    }
 }

@@ -1,5 +1,5 @@
 {
-	"variants": {
-		"": { "model": "tjmetro:block/marble_gray" }
-	}
+    "variants": {
+        "": { "model": "tjmetro:block/marble_gray" }
+    }
 }

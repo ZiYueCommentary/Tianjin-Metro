@@ -1,13 +1,13 @@
 {
-	"variants": {
-		"type=bottom": {
-			"model": "tjmetro:block/marble_yellow_slab_bottom"
-		},
-		"type=double": {
-			"model": "tjmetro:block/marble_yellow"
-		},
-		"type=top": {
-			"model": "tjmetro:block/marble_yellow_slab_top"
-		}
-	}
+    "variants": {
+        "type=bottom": {
+            "model": "tjmetro:block/marble_yellow_slab_bottom"
+        },
+        "type=double": {
+            "model": "tjmetro:block/marble_yellow"
+        },
+        "type=top": {
+            "model": "tjmetro:block/marble_yellow_slab_top"
+        }
+    }
 }

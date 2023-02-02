@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "mtr:block/station_color_concrete"
+    "variants": {
+        "": {
+            "model": "mtr:block/station_color_concrete"
+        }
     }
-  }
 }

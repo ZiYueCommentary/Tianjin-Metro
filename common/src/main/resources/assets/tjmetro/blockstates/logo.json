@@ -1,8 +1,8 @@
 {
-  "variants": {
-    "facing=north": { "model": "tjmetro:block/logo" },
-    "facing=east":  { "model": "tjmetro:block/logo", "y":  90 },
-    "facing=south": { "model": "tjmetro:block/logo", "y": 180 },
-    "facing=west":  { "model": "tjmetro:block/logo", "y": 270 }
-  }
+    "variants": {
+        "facing=north": { "model": "tjmetro:block/logo" },
+        "facing=east":  { "model": "tjmetro:block/logo", "y":  90 },
+        "facing=south": { "model": "tjmetro:block/logo", "y": 180 },
+        "facing=west":  { "model": "tjmetro:block/logo", "y": 270 }
+    }
 }

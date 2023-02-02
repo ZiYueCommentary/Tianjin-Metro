@@ -1,61 +1,61 @@
 {
-	"credit": "Made with Blockbench",
-	"ambientocclusion": false,
-	"textures": {
-		"3": "block/soul_torch",
-		"4": "tjmetro:block/high_speed_repeater",
-		"slab": "block/smooth_stone",
-		"particle": "block/bedrock",
-		"lock": "block/bedrock"
-	},
-	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [16, 2, 16],
-			"faces": {
-				"north": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "north"},
-				"east": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "east"},
-				"south": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "south"},
-				"west": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "west"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#4"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#slab", "cullface": "down"}
-			}
-		},
-		{
-			"from": [7, 2, 2],
-			"to": [9, 7, 4],
-			"faces": {
-				"north": {"uv": [7, 6, 9, 11], "texture": "#3"},
-				"east": {"uv": [7, 6, 9, 11], "texture": "#3"},
-				"south": {"uv": [7, 6, 9, 11], "texture": "#3"},
-				"west": {"uv": [7, 6, 9, 11], "texture": "#3"},
-				"up": {"uv": [7, 6, 9, 8], "texture": "#3"},
-				"down": {"uv": [7, 13, 9, 15], "texture": "#3"}
-			}
-		},
-		{
-			"from": [7, 2, 12],
-			"to": [9, 7, 14],
-			"faces": {
-				"north": {"uv": [7, 6, 9, 11], "texture": "#3"},
-				"east": {"uv": [7, 6, 9, 11], "texture": "#3"},
-				"south": {"uv": [7, 6, 9, 11], "texture": "#3"},
-				"west": {"uv": [7, 6, 9, 11], "texture": "#3"},
-				"up": {"uv": [7, 6, 9, 8], "texture": "#3"},
-				"down": {"uv": [7, 13, 9, 15], "texture": "#3"}
-			}
-		},
-		{
-			"from": [2, 2, 6],
-			"to": [14, 4, 8],
-			"faces": {
-				"north": {"uv": [2, 7, 14, 9], "texture": "#lock"},
-				"east": {"uv": [6, 7, 8, 9], "texture": "#lock"},
-				"south": {"uv": [2, 7, 14, 9], "texture": "#lock"},
-				"west": {"uv": [6, 7, 8, 9], "texture": "#lock"},
-				"up": {"uv": [7, 2, 9, 14], "rotation": 90, "texture": "#lock"},
-				"down": {"uv": [7, 2, 9, 14], "rotation": 90, "texture": "#lock"}
-			}
-		}
-	]
+    "credit": "Made by ZiYueCommentary, made with Blockbench.",
+    "ambientocclusion": false,
+    "textures": {
+        "3": "block/soul_torch",
+        "4": "tjmetro:block/high_speed_repeater",
+        "slab": "block/smooth_stone",
+        "particle": "block/bedrock",
+        "lock": "block/bedrock"
+    },
+    "elements": [
+        {
+            "from": [0, 0, 0],
+            "to": [16, 2, 16],
+            "faces": {
+                "north": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "north"},
+                "east": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "east"},
+                "south": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "south"},
+                "west": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "west"},
+                "up": {"uv": [0, 0, 16, 16], "texture": "#4"},
+                "down": {"uv": [0, 0, 16, 16], "texture": "#slab", "cullface": "down"}
+            }
+        },
+        {
+            "from": [7, 2, 2],
+            "to": [9, 7, 4],
+            "faces": {
+                "north": {"uv": [7, 6, 9, 11], "texture": "#3"},
+                "east": {"uv": [7, 6, 9, 11], "texture": "#3"},
+                "south": {"uv": [7, 6, 9, 11], "texture": "#3"},
+                "west": {"uv": [7, 6, 9, 11], "texture": "#3"},
+                "up": {"uv": [7, 6, 9, 8], "texture": "#3"},
+                "down": {"uv": [7, 13, 9, 15], "texture": "#3"}
+            }
+        },
+        {
+            "from": [7, 2, 12],
+            "to": [9, 7, 14],
+            "faces": {
+                "north": {"uv": [7, 6, 9, 11], "texture": "#3"},
+                "east": {"uv": [7, 6, 9, 11], "texture": "#3"},
+                "south": {"uv": [7, 6, 9, 11], "texture": "#3"},
+                "west": {"uv": [7, 6, 9, 11], "texture": "#3"},
+                "up": {"uv": [7, 6, 9, 8], "texture": "#3"},
+                "down": {"uv": [7, 13, 9, 15], "texture": "#3"}
+            }
+        },
+        {
+            "from": [2, 2, 6],
+            "to": [14, 4, 8],
+            "faces": {
+                "north": {"uv": [2, 7, 14, 9], "texture": "#lock"},
+                "east": {"uv": [6, 7, 8, 9], "texture": "#lock"},
+                "south": {"uv": [2, 7, 14, 9], "texture": "#lock"},
+                "west": {"uv": [6, 7, 8, 9], "texture": "#lock"},
+                "up": {"uv": [7, 2, 9, 14], "rotation": 90, "texture": "#lock"},
+                "down": {"uv": [7, 2, 9, 14], "rotation": 90, "texture": "#lock"}
+            }
+        }
+    ]
 }

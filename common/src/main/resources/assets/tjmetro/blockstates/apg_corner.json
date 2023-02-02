@@ -1,12 +1,12 @@
 {
-  "variants": {
-    "facing=north,top=true": { "model": "tjmetro:block/apg_corner_top" },
-    "facing=east,top=true":  { "model": "tjmetro:block/apg_corner_top", "y":  90},
-    "facing=south,top=true": { "model": "tjmetro:block/apg_corner_top", "y": 180 },
-    "facing=west,top=true":  { "model": "tjmetro:block/apg_corner_top", "y": 270 },
-    "facing=north,top=false": { "model": "tjmetro:block/apg_corner_bottom" },
-    "facing=east,top=false":  { "model": "tjmetro:block/apg_corner_bottom", "y":  90},
-    "facing=south,top=false": { "model": "tjmetro:block/apg_corner_bottom", "y": 180 },
-    "facing=west,top=false":  { "model": "tjmetro:block/apg_corner_bottom", "y": 270 }
-  }
+    "variants": {
+        "facing=north,top=true": { "model": "tjmetro:block/apg_corner_top" },
+        "facing=east,top=true":  { "model": "tjmetro:block/apg_corner_top", "y":  90},
+        "facing=south,top=true": { "model": "tjmetro:block/apg_corner_top", "y": 180 },
+        "facing=west,top=true":  { "model": "tjmetro:block/apg_corner_top", "y": 270 },
+        "facing=north,top=false": { "model": "tjmetro:block/apg_corner_bottom" },
+        "facing=east,top=false":  { "model": "tjmetro:block/apg_corner_bottom", "y":  90},
+        "facing=south,top=false": { "model": "tjmetro:block/apg_corner_bottom", "y": 180 },
+        "facing=west,top=false":  { "model": "tjmetro:block/apg_corner_bottom", "y": 270 }
+    }
 }
