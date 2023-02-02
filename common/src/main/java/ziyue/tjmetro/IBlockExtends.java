@@ -36,7 +36,7 @@ public interface IBlockExtends
         try {
             world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
         } catch (Exception exception) {
-            LOGGER.warn("[" + pos.toShortString() + "] Property \"waterlogged\" not found - Replace with air");
+            LOGGER.warn("IBlockExtends.breakBlock: Property \"waterlogged\" at {} not found", pos.toShortString());
             world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
         }
     }
@@ -55,7 +55,7 @@ public interface IBlockExtends
                 world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
             }
         } catch (Exception exception) {
-            LOGGER.warn("[" + pos.toShortString() + "] Property \"waterlogged\" not found - Replace with air");
+            LOGGER.warn("IBlockExtends.breakBlock: Property \"waterlogged\" at {} not found", pos.toShortString());
             world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
         }
     }

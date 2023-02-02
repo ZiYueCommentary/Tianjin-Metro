@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -21,6 +21,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.IBlockExtends;
 
+import static mtr.block.IBlock.HALF;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
@@ -33,8 +34,6 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockAPGCorner extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
-    public static final BooleanProperty TOP = BooleanProperty.create("top");
-
     public BlockAPGCorner() {
         this(BlockBehaviour.Properties.copy(Blocks.APG_GLASS.get()));
     }
@@ -47,27 +46,29 @@ public class BlockAPGCorner extends HorizontalDirectionalBlock implements Simple
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         BlockState blockState = defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, blockPlaceContext.getHorizontalDirection());
-        blockPlaceContext.getLevel().setBlock(blockPlaceContext.getClickedPos().above(), blockState.setValue(TOP, true), 1);
-        return blockState.setValue(TOP, false);
+        blockPlaceContext.getLevel().setBlock(blockPlaceContext.getClickedPos().above(), blockState.setValue(HALF, DoubleBlockHalf.UPPER), 1);
+        return blockState.setValue(HALF, DoubleBlockHalf.LOWER);
     }
 
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
         super.playerWillDestroy(level, blockPos, blockState, player);
-        if (blockState.getValue(TOP)) IBlockExtends.breakBlock(level, blockPos.below(), this);
+        if (blockState.getValue(HALF) ==DoubleBlockHalf.UPPER) IBlockExtends.breakBlock(level, blockPos.below(), this);
         else IBlockExtends.breakBlock(level, blockPos.above(), this);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, TOP, WATERLOGGED);
+        builder.add(FACING, HALF, WATERLOGGED);
     }
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        if (blockState.getValue(TOP))
+        if (blockState.getValue(HALF) == DoubleBlockHalf.UPPER) {
             return IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 9, 4, blockState.getValue(FACING));
-        else return IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 16, 4, blockState.getValue(FACING));
+        } else {
+            return IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 16, 4, blockState.getValue(FACING));
+        }
     }
 
     @Override

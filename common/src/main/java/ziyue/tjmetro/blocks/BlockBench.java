@@ -74,9 +74,11 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
     }
 
     public IBlock.EnumSide getPos(Direction direction, BlockPos blockPos, Level world) {
+        BlockState counterClockWiseState = world.getBlockState(blockPos.relative(direction.getCounterClockWise()));
+        BlockState clockWiseState = world.getBlockState(blockPos.relative(direction.getClockWise()));
         boolean[] blockSame = {
-                (world.getBlockState(blockPos.relative(direction.getCounterClockWise())).getBlock() == BlockList.BENCH.get()) && (world.getBlockState(blockPos.relative(direction.getCounterClockWise())).getValue(FACING) == direction),
-                (world.getBlockState(blockPos.relative(direction.getClockWise())).getBlock() == BlockList.BENCH.get()) && (world.getBlockState(blockPos.relative(direction.getClockWise())).getValue(FACING) == direction)
+                (counterClockWiseState.getBlock() == BlockList.BENCH.get()) && (counterClockWiseState.getValue(FACING) == direction),
+                (clockWiseState.getBlock() == BlockList.BENCH.get()) && (clockWiseState.getValue(FACING) == direction)
         };
         return blockSame[0] && blockSame[1] ? IBlock.EnumSide.MIDDLE : blockSame[0] ? IBlock.EnumSide.LEFT : blockSame[1] ? IBlock.EnumSide.RIGHT : IBlock.EnumSide.SINGLE;
     }
