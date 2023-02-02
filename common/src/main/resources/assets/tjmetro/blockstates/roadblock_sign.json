@@ -1,12 +1,12 @@
 {
   "variants": {
-    "facing=north,is_right=false": { "model": "tjmetro:block/roadblock_sign_left" },
-    "facing=east,is_right=false":  { "model": "tjmetro:block/roadblock_sign_left", "y":  90},
-    "facing=south,is_right=false": { "model": "tjmetro:block/roadblock_sign_left", "y": 180 },
-    "facing=west,is_right=false":  { "model": "tjmetro:block/roadblock_sign_left", "y": 270 },
-    "facing=north,is_right=true": { "model": "tjmetro:block/roadblock_sign_right" },
-    "facing=east,is_right=true":  { "model": "tjmetro:block/roadblock_sign_right", "y":  90},
-    "facing=south,is_right=true": { "model": "tjmetro:block/roadblock_sign_right", "y": 180 },
-    "facing=west,is_right=true":  { "model": "tjmetro:block/roadblock_sign_right", "y": 270 }
+    "facing=north,side=left": { "model": "tjmetro:block/roadblock_sign_left" },
+    "facing=east,side=left":  { "model": "tjmetro:block/roadblock_sign_left", "y":  90},
+    "facing=south,side=left": { "model": "tjmetro:block/roadblock_sign_left", "y": 180 },
+    "facing=west,side=left":  { "model": "tjmetro:block/roadblock_sign_left", "y": 270 },
+    "facing=north,side=right": { "model": "tjmetro:block/roadblock_sign_right" },
+    "facing=east,side=right":  { "model": "tjmetro:block/roadblock_sign_right", "y":  90},
+    "facing=south,side=right": { "model": "tjmetro:block/roadblock_sign_right", "y": 180 },
+    "facing=west,side=right":  { "model": "tjmetro:block/roadblock_sign_right", "y": 270 }
   }
 }

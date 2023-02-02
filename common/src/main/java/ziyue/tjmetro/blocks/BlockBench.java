@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockList;
 import ziyue.tjmetro.entity.SeatEntity;
 
+import static mtr.block.IBlock.SIDE_EXTENDED;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
@@ -39,8 +40,6 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
-    public static final EnumProperty<BlockBenchPosition> POS = EnumProperty.create("pos", BlockBenchPosition.class);
-
     public BlockBench() {
         this(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.OAK_PLANKS));
     }
@@ -66,25 +65,25 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
         Direction direction = blockPlaceContext.getHorizontalDirection();
         BlockPos blockPos = blockPlaceContext.getClickedPos();
         Level world = blockPlaceContext.getLevel();
-        return defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, direction).setValue(POS, getPos(direction, blockPos, world));
+        return defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, direction).setValue(SIDE_EXTENDED, getPos(direction, blockPos, world));
     }
 
     @Override
     public void neighborChanged(BlockState blockState, Level level, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl) {
-        level.setBlockAndUpdate(blockPos, blockState.setValue(POS, getPos(blockState.getValue(FACING), blockPos, level)));
+        level.setBlockAndUpdate(blockPos, blockState.setValue(SIDE_EXTENDED, getPos(blockState.getValue(FACING), blockPos, level)));
     }
 
-    public BlockBenchPosition getPos(Direction direction, BlockPos blockPos, Level world) {
+    public IBlock.EnumSide getPos(Direction direction, BlockPos blockPos, Level world) {
         boolean[] blockSame = {
                 (world.getBlockState(blockPos.relative(direction.getCounterClockWise())).getBlock() == BlockList.BENCH.get()) && (world.getBlockState(blockPos.relative(direction.getCounterClockWise())).getValue(FACING) == direction),
                 (world.getBlockState(blockPos.relative(direction.getClockWise())).getBlock() == BlockList.BENCH.get()) && (world.getBlockState(blockPos.relative(direction.getClockWise())).getValue(FACING) == direction)
         };
-        return blockSame[0] && blockSame[1] ? BlockBenchPosition.MIDDLE : blockSame[0] ? BlockBenchPosition.LEFT : blockSame[1] ? BlockBenchPosition.RIGHT : BlockBenchPosition.SINGLE;
+        return blockSame[0] && blockSame[1] ? IBlock.EnumSide.MIDDLE : blockSame[0] ? IBlock.EnumSide.LEFT : blockSame[1] ? IBlock.EnumSide.RIGHT : IBlock.EnumSide.SINGLE;
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, FACING, POS);
+        builder.add(WATERLOGGED, FACING, SIDE_EXTENDED);
     }
 
     @Override
@@ -92,7 +91,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
         VoxelShape top = IBlock.getVoxelShapeByDirection(0.0, 8.0, 1.0, 16.0, 9.5, 15.0, blockState.getValue(FACING));
         VoxelShape left = IBlock.getVoxelShapeByDirection(12.0, 0.0, 2.0, 14.0, 8.0, 14.0, blockState.getValue(FACING));
         VoxelShape right = IBlock.getVoxelShapeByDirection(2.0, 0.0, 2.0, 4.0, 8.0, 14.0, blockState.getValue(FACING));
-        return switch (blockState.getValue(POS)) {
+        return switch (blockState.getValue(SIDE_EXTENDED)) {
             case SINGLE -> Shapes.or(top, left, right);
             case LEFT -> Shapes.or(top, left);
             case RIGHT -> Shapes.or(top, right);
@@ -103,31 +102,5 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
     @Override
     public FluidState getFluidState(BlockState blockState) {
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
-    }
-
-    /**
-     * Positions of <b>bench</b>.
-     *
-     * @author ZiYueCommentary
-     * @see BlockBench
-     * @since beta-1
-     */
-    protected enum BlockBenchPosition implements StringRepresentable
-    {
-        LEFT("left"),
-        MIDDLE("middle"),
-        RIGHT("right"),
-        SINGLE("single");
-
-        final String name;
-
-        BlockBenchPosition(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String getSerializedName() {
-            return name;
-        }
     }
 }

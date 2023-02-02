@@ -21,6 +21,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import ziyue.tjmetro.IBlockExtends;
 
+import static mtr.block.IBlock.SIDE;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
@@ -30,8 +31,6 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class BlockRoadblock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
-    public static final BooleanProperty IS_RIGHT = BooleanProperty.create("is_right");
-
     public BlockRoadblock() {
         this(BlockBehaviour.Properties.copy(Blocks.LOGO.get()).lightLevel((state) -> 0));
     }
@@ -42,9 +41,9 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        BlockState state = defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, ctx.getHorizontalDirection()).setValue(IS_RIGHT, false);
+        BlockState state = defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, ctx.getHorizontalDirection()).setValue(SIDE, IBlock.EnumSide.LEFT);
         if (IBlock.isReplaceable(ctx, state.getValue(FACING).getClockWise(), 2)) {
-            ctx.getLevel().setBlock(ctx.getClickedPos().relative(state.getValue(FACING).getClockWise()), state.setValue(IS_RIGHT, true), 2);
+            ctx.getLevel().setBlock(ctx.getClickedPos().relative(state.getValue(FACING).getClockWise()), state.setValue(SIDE, IBlock.EnumSide.RIGHT), 2);
             return state;
         }
         return null;
@@ -52,7 +51,7 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-        if (state.getValue(IS_RIGHT))
+        if (state.getValue(SIDE) == IBlock.EnumSide.RIGHT)
             IBlockExtends.breakBlock(world, pos.relative(state.getValue(FACING).getCounterClockWise()), this);
         else
             IBlockExtends.breakBlock(world, pos.relative(state.getValue(FACING).getClockWise()), this);
@@ -71,7 +70,7 @@ public class BlockRoadblock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, IS_RIGHT, WATERLOGGED);
+        builder.add(FACING, SIDE, WATERLOGGED);
     }
 
     @Override

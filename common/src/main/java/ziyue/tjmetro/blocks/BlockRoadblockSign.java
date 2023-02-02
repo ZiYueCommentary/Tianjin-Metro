@@ -27,6 +27,8 @@ import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.List;
 
+import static mtr.block.IBlock.SIDE;
+
 /**
  * Roadblock with signs.
  *
@@ -51,7 +53,7 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof TileEntityRoadBlockSign entity1) {
                 entity1.syncData();
-                PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, blockState.getValue(IS_RIGHT) ? pos.relative(blockState.getValue(FACING).getCounterClockWise()) : pos);
+                PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, (blockState.getValue(SIDE) == IBlock.EnumSide.RIGHT) ? pos.relative(blockState.getValue(FACING).getCounterClockWise()) : pos);
             }
         });
     }
@@ -85,7 +87,7 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
 
         @Override
         public boolean shouldRender() {
-            return !getBlockState().getValue(IS_RIGHT);
+            return getBlockState().getValue(SIDE) != IBlock.EnumSide.RIGHT;
         }
     }
 }
