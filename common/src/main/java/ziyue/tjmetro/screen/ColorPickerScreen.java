@@ -172,15 +172,15 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
         final int mainWidth = getMainWidth();
         final int mainHeight = getMainHeight();
         switch (draggingState) {
-            case SATURATION_BRIGHTNESS -> {
+            case SATURATION_BRIGHTNESS:
                 saturation = (float) Mth.clamp((mouseX - SQUARE_SIZE) / mainWidth, 0, 1);
                 brightness = 1 - (float) Mth.clamp((mouseY - SQUARE_SIZE) / mainHeight, 0, 1);
                 setColorText(Color.HSBtoRGB(hue, saturation, brightness), true);
-            }
-            case HUE -> {
+                break;
+            case HUE:
                 hue = (float) Mth.clamp((mouseY - SQUARE_SIZE) / mainHeight, 0, 1);
                 setColorText(Color.HSBtoRGB(hue, saturation, brightness), true);
-            }
+                break;
         }
     }
 

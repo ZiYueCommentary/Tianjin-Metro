@@ -51,11 +51,18 @@ public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntity
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
         if (RenderTrains.shouldNotRender(pos, RenderTrains.maxTrainRenderDistance, facing)) return;
 
-        final int color = switch (IBlock.getStatePropertySafe(state, BlockStationNameBase.COLOR)) {
-            case 1 -> ARGB_LIGHT_GRAY;
-            case 2 -> ARGB_BLACK;
-            default -> ARGB_WHITE;
-        };
+        final int color;
+        switch (IBlock.getStatePropertySafe(state, BlockStationNameBase.COLOR)) {
+            case 1:
+                color = ARGB_LIGHT_GRAY;
+                break;
+            case 2:
+                color = ARGB_BLACK;
+                break;
+            default:
+                color = ARGB_WHITE;
+                break;
+        }
 
         matrices.pushPose();
         matrices.translate(0.5, 0.5 + entity.yOffset, 0.5);

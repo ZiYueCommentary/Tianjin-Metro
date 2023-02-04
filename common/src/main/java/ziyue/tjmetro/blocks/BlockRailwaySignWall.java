@@ -180,13 +180,18 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
         }
 
         protected static BlockEntityType<?> getType(int length) {
-            return switch (length) {
-                case 4 -> BlockEntityTypes.RAILWAY_SIGN_WALL_4_TILE_ENTITY.get();
-                case 6 -> BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY.get();
-                case 8 -> BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY.get();
-                case 10 -> BlockEntityTypes.RAILWAY_SIGN_WALL_10_TILE_ENTITY.get();
-                default -> null;
-            };
+            switch (length) {
+                case 4:
+                    return BlockEntityTypes.RAILWAY_SIGN_WALL_4_TILE_ENTITY.get();
+                case 6:
+                    return BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY.get();
+                case 8:
+                    return BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY.get();
+                case 10:
+                    return BlockEntityTypes.RAILWAY_SIGN_WALL_10_TILE_ENTITY.get();
+                default:
+                    return null;
+            }
         }
     }
 }

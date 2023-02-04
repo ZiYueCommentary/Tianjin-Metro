@@ -51,7 +51,8 @@ public abstract class BlockCustomColorBase extends Block implements EntityBlockM
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof CustomColorBlockEntity entity1) {
+            if (entity instanceof CustomColorBlockEntity) {
+                CustomColorBlockEntity entity1 = (CustomColorBlockEntity) entity;
                 entity1.syncData();
                 PacketGuiServer.openCustomColorScreenS2C((ServerPlayer) player, pos);
             }

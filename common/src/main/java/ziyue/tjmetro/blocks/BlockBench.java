@@ -93,12 +93,16 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
         VoxelShape top = IBlock.getVoxelShapeByDirection(0.0, 8.0, 1.0, 16.0, 9.5, 15.0, blockState.getValue(FACING));
         VoxelShape left = IBlock.getVoxelShapeByDirection(12.0, 0.0, 2.0, 14.0, 8.0, 14.0, blockState.getValue(FACING));
         VoxelShape right = IBlock.getVoxelShapeByDirection(2.0, 0.0, 2.0, 4.0, 8.0, 14.0, blockState.getValue(FACING));
-        return switch (blockState.getValue(SIDE_EXTENDED)) {
-            case SINGLE -> Shapes.or(top, left, right);
-            case LEFT -> Shapes.or(top, left);
-            case RIGHT -> Shapes.or(top, right);
-            default -> top;
-        };
+        switch (blockState.getValue(SIDE_EXTENDED)) {
+            case SINGLE:
+                return Shapes.or(top, left, right);
+            case LEFT:
+                return Shapes.or(top, left);
+            case RIGHT:
+                return Shapes.or(top, right);
+            default:
+                return top;
+        }
     }
 
     @Override

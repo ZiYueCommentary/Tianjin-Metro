@@ -50,7 +50,8 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof TileEntityRoadBlockSign entity1) {
+            if (entity instanceof TileEntityRoadBlockSign) {
+                TileEntityRoadBlockSign entity1 = (TileEntityRoadBlockSign) entity;
                 entity1.syncData();
                 PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
             }
@@ -81,7 +82,8 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
             this.content = content;
             BlockPos blockPos = getBlockPos().relative(getBlockState().getValue(FACING).getClockWise());
             BlockEntity blockEntity = level.getBlockEntity(blockPos);
-            if (blockEntity instanceof TileEntityRoadBlockSign entityRoadBlockSign) {
+            if (blockEntity instanceof TileEntityRoadBlockSign) {
+                TileEntityRoadBlockSign entityRoadBlockSign = (TileEntityRoadBlockSign) blockEntity;
                 entityRoadBlockSign.content = this.content;
                 entityRoadBlockSign.setChanged();
                 entityRoadBlockSign.syncData();

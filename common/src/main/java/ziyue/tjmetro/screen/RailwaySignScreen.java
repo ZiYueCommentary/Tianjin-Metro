@@ -105,9 +105,10 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
 
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(signPos);
-            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign entity1) {
-                signIds = entity1.getSignIds();
-                selectedIds = entity1.getSelectedIds();
+            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign) {
+                BlockRailwaySignBase.TileEntityRailwaySign entityRailwaySign = (BlockRailwaySignBase.TileEntityRailwaySign) entity;
+                signIds = entityRailwaySign.getSignIds();
+                selectedIds = entityRailwaySign.getSelectedIds();
                 isRailwaySign = true;
             } else {
                 signIds = new String[0];

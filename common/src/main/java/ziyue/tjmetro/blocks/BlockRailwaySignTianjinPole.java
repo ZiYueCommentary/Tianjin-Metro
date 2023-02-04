@@ -21,7 +21,8 @@ public class BlockRailwaySignTianjinPole extends BlockRailwaySignPole
     protected BlockState placeWithState(BlockState stateBelow) {
         final int type;
         final Block block = stateBelow.getBlock();
-        if (block instanceof BlockRailwaySignTianjin block1) {
+        if (block instanceof BlockRailwaySignTianjin) {
+            BlockRailwaySignTianjin block1 = (BlockRailwaySignTianjin) block;
             type = (block1.length + (block1.isOdd ? 2 : 0)) % 4;
         } else {
             type = IBlock.getStatePropertySafe(stateBelow, TYPE);
