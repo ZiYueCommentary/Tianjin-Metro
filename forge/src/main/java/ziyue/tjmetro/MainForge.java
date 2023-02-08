@@ -23,9 +23,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import ziyue.tjmetro.filters.Filter;
 
 /**
- * All register methods are <b>public</b>.
- *
  * @see TianjinMetro
+ * @see TianjinMetroClient
+ * @since beta-1
  */
 
 @Mod(Reference.MOD_ID)

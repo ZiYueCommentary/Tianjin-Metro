@@ -12,6 +12,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
+/**
+ * @see ziyue.tjmetro.Registry
+ * @since beta-1
+ */
+
 public class RegistryImpl
 {
     public static void registerCustomColorBlock(Block block) {
@@ -34,7 +39,7 @@ public class RegistryImpl
             if (pos != null) {
                 try {
                     BlockEntity entity = blockAndTintGetter.getBlockEntity(pos);
-                    int color = entity != null ? ((BlockCustomColorBase.CustomColorBlockEntity)(((BlockCustomColorBase.CustomColorBlockEntity)entity).getRenderAttachmentData())).color : -1;
+                    int color = entity != null ? ((BlockCustomColorBase.CustomColorBlockEntity) (((BlockCustomColorBase.CustomColorBlockEntity) entity).getRenderAttachmentData())).color : -1;
                     return color != -1 ? color : ClientData.STATIONS.stream().filter(station1 -> station1.inArea(pos.getX(), pos.getZ())).findFirst().map(station2 -> station2.color).orElse(defaultColor);
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -9,6 +9,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
+/**
+ * @see ziyue.tjmetro.Registry
+ * @since beta-1
+ */
+
 public class RegistryImpl
 {
     public static void registerCustomColorBlock(Block block) {

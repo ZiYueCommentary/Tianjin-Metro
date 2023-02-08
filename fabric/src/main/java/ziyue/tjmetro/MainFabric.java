@@ -16,9 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import ziyue.tjmetro.filters.Filter;
 
 /**
- * All register methods are <b>public</b>.
- *
  * @see TianjinMetro
+ * @since beta-1
  */
 
 public class MainFabric implements ModInitializer
