@@ -40,7 +40,7 @@ import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.IDrawingExtends;
-import ziyue.tjmetro.blocks.base.ContainerMenu;
+import ziyue.tjmetro.inventory.ContainerMenu;
 import ziyue.tjmetro.entity.base.RandomizableContainerBlockEntityMapper;
 
 import java.util.HashSet;

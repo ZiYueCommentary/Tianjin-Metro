@@ -1,4 +1,4 @@
-package ziyue.tjmetro.blocks.base;
+package ziyue.tjmetro.inventory;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

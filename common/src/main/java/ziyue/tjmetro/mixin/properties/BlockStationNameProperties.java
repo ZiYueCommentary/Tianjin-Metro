@@ -5,7 +5,7 @@ import ziyue.tjmetro.mixin.mixins.BlockStationNameEntranceMixin;
 import ziyue.tjmetro.mixin.mixins.RenderStationNameTiledMixin;
 
 /**
- * Stores the method used for the <b>No "station" of Station Name Entrance</b> feature
+ * Methods for the <b>No "station" of Station Name Entrance</b> feature.
  *
  * @author ZiYueCommentary
  * @see BlockStationNameEntranceMixin

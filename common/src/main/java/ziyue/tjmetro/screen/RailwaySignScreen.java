@@ -25,7 +25,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
-import ziyue.tjmetro.packet.PacketGuiClient;
 
 import java.util.*;
 import java.util.stream.Collectors;
