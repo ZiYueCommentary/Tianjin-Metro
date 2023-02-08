@@ -1,19 +1,20 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "ziyue.tjmetro.mixin.mixins",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "FallingBlockMixin",
-    "FinishInitializationMixin",
-    "BlockStationNameEntranceMixin",
-    "RenderStationNameTiledMixin",
-    "BlockStationNameWallBaseMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  },
-  "client": [
-    "CreativeScreenMixin"
+    "required": true,
+    "minVersion": "0.8",
+    "package": "ziyue.tjmetro.mixin.mixins",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "BlockStationNameEntranceMixin",
+        "BlockStationNameWallBaseMixin",
+        "FallingBlockMixin",
+        "FinishInitializationMixin",
+        "RenderStationNameTiledMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "client": [
+        "CreativeModeInventoryScreenMixin",
+        "EffectRenderingInventoryScreenMixin"
   ]
 }

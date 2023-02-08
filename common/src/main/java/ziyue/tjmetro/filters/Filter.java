@@ -7,115 +7,48 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.math.Matrix4f;
-import mtr.mappings.Text;
+import mtr.CreativeModeTabs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import ziyue.tjmetro.BlockList;
+import ziyue.tjmetro.mixin.mixins.CreativeModeInventoryScreenMixin;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-/*
- * MrCrayfish的Filters模组和家具模组的物品栏分类依靠物品标签
- * 然而Fabric似乎没有像Forge那样直观地获取标签列表的方法，所以要换个思路
- * 这里的方法是创建一个FILTERS列表，里面有指定创造物品栏里的所有分类
- * 该类继承了按钮类是因为按下分类按钮会改变enabled参数
- * 如果把按钮单独列为一个类，那么按钮就需要存储属于它的分类，而java也没有指针这么个东西，所以按下去之后也没用（改变的是按钮里的分类而不是物品栏显示的分类）
- * 所以这里干脆就把按钮和分类合并了
- */
+import java.util.function.Supplier;
 
 /**
- * Filter, contains filters list.
+ * Filter for creative mode tab.
+ * This filter support register for any creative mode tabs, including vanilla tabs.
+ * Inspired by <a href="https://github.com/MrCrayfish/Filters">Filters Mod</a> and <a href="https://github.com/MrCrayfish/MrCrayfishFurnitureMod">MrCrayfish's Furniture Mod</a>.
  *
  * @author ZiYueCommentary
- * @see ziyue.tjmetro.mixin.mixins.CreativeScreenMixin
+ * @see CreativeModeInventoryScreenMixin
+ * @see ziyue.tjmetro.mixin.mixins.EffectRenderingInventoryScreenMixin
+ * @see ziyue.tjmetro.mixin.properties.CreativeModeInventoryScreenProperties
+ * @see <a href="https://github.com/MrCrayfish/Filters">Filters Mod</a>
+ * @see <a href="https://github.com/MrCrayfish/MrCrayfishFurnitureMod">MrCrayfish's Furniture Mod</a>
  * @since beta-1
  */
 
 public class Filter extends Button
 {
-    public static final Filter BUILDING = new Filter(Text.translatable("filter.tjmetro.building"), BlockList.ROLLING.get().asItem().getDefaultInstance(),
-            Arrays.asList(
-                    BlockList.ROLLING.get().asItem().getDefaultInstance(),
-                    BlockList.PLATFORM_TJ_1.get().asItem().getDefaultInstance(),
-                    BlockList.PLATFORM_TJ_1_INDENTED.get().asItem().getDefaultInstance(),
-                    BlockList.PLATFORM_TJ_2.get().asItem().getDefaultInstance(),
-                    BlockList.PLATFORM_TJ_2_INDENTED.get().asItem().getDefaultInstance(),
-                    BlockList.MARBLE_GRAY.get().asItem().getDefaultInstance(),
-                    BlockList.MARBLE_GRAY_SLAB.get().asItem().getDefaultInstance(),
-                    BlockList.MARBLE_GRAY_STAIRS.get().asItem().getDefaultInstance(),
-                    BlockList.MARBLE_YELLOW.get().asItem().getDefaultInstance(),
-                    BlockList.MARBLE_YELLOW_SLAB.get().asItem().getDefaultInstance(),
-                    BlockList.MARBLE_YELLOW_STAIRS.get().asItem().getDefaultInstance(),
-                    BlockList.CUSTOM_COLOR_CONCRETE.get().asItem().getDefaultInstance(),
-                    BlockList.CUSTOM_COLOR_CONCRETE_STAIRS.get().asItem().getDefaultInstance(),
-                    BlockList.CUSTOM_COLOR_CONCRETE_SLAB.get().asItem().getDefaultInstance(),
-                    BlockList.HIGH_SPEED_REPEATER.get().asItem().getDefaultInstance(),
-                    BlockList.METAL_DETECTION_DOOR.get().asItem().getDefaultInstance(),
-                    BlockList.ROADBLOCK.get().asItem().getDefaultInstance(),
-                    BlockList.ROADBLOCK_SIGN.get().asItem().getDefaultInstance()
-            ));
-    public static final Filter SIGNS = new Filter(Text.translatable("filter.tjmetro.signs"), BlockList.STATION_NAME_SIGN_1.get().asItem().getDefaultInstance(),
-            Arrays.asList(
-                    BlockList.STATION_NAME_SIGN_1.get().asItem().getDefaultInstance(),
-                    BlockList.STATION_NAME_SIGN_2.get().asItem().getDefaultInstance(),
-                    BlockList.STATION_NAME_WALL_LEGACY.get().asItem().getDefaultInstance()
-            ));
-    public static final Filter DECORATION = new Filter(Text.translatable("filter.tjmetro.decoration"), BlockList.LOGO.get().asItem().getDefaultInstance(),
-            Arrays.asList(
-                    BlockList.LOGO.get().asItem().getDefaultInstance(),
-                    BlockList.APG_CORNER.get().asItem().getDefaultInstance(),
-                    BlockList.BENCH.get().asItem().getDefaultInstance(),
-                    BlockList.PLAYER_DETECTOR.get().asItem().getDefaultInstance(),
-                    BlockList.DECORATION_LIGHT.get().asItem().getDefaultInstance(),
-                    BlockList.TIME_DISPLAY.get().asItem().getDefaultInstance(),
-                    BlockList.EMERGENCY_EXIT_SIGN.get().asItem().getDefaultInstance()
-            ));
-    public static final Filter CEILINGS = new Filter(Text.translatable("filter.tjmetro.ceilings"), BlockList.STATION_COLOR_CEILING.get().asItem().getDefaultInstance(),
-            Arrays.asList(
-                    BlockList.CEILING_NOT_LIT.get().asItem().getDefaultInstance(),
-                    BlockList.STATION_COLOR_CEILING_LIGHT.get().asItem().getDefaultInstance(),
-                    BlockList.STATION_COLOR_CEILING.get().asItem().getDefaultInstance(),
-                    BlockList.STATION_COLOR_CEILING_NOT_LIT.get().asItem().getDefaultInstance(),
-                    BlockList.STATION_COLOR_CEILING_NO_LIGHT.get().asItem().getDefaultInstance()
-            ));
-    public static final Filter RAILWAYS = new Filter(Text.translatable("filter.tjmetro.railway_signs"), BlockList.RAILWAY_SIGN_WALL_4.get().asItem().getDefaultInstance(),
-            Arrays.asList(
-                    BlockList.RAILWAY_SIGN_WALL_4.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_WALL_6.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_WALL_8.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_WALL_10.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_2_EVEN.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_3_EVEN.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_4_EVEN.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_5_EVEN.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_6_EVEN.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_7_EVEN.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_2_ODD.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_3_ODD.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_4_ODD.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_5_ODD.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_6_ODD.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_7_ODD.get().asItem().getDefaultInstance(),
-                    BlockList.RAILWAY_SIGN_TIANJIN_POLE.get().asItem().getDefaultInstance()
-            ));
+    public static final HashMap<Integer, FilterList> FILTERS = new HashMap<>();
 
-    public static final List<Filter> FILTERS = Arrays.asList(DECORATION, CEILINGS, BUILDING, SIGNS, RAILWAYS);
+    protected static final ResourceLocation TABS = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
 
-    private static final ResourceLocation TABS = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
-
-    public final ItemStack itemStack;
-    public final List<ItemStack> filter;
+    public Supplier<ItemStack> icon;
+    public final List<ItemStack> items;
     public boolean enabled = true;
 
-    public Filter(Component component, ItemStack itemStack, List<ItemStack> filter) {
+    protected Filter(Component component, Supplier<ItemStack> icon, List<ItemStack> items) {
         super(0, 0, 32, 28, component, Button::onPress);
-        this.itemStack = itemStack;
-        this.filter = filter;
+        this.icon = icon;
+        this.items = items;
     }
 
     @Override
@@ -137,17 +70,17 @@ public class Filter extends Button
         int width = this.enabled ? 32 : 28;
         int textureX = 28;
         int textureY = this.enabled ? 32 : 0;
-        this.drawRotatedTexture(poseStack.last().pose(), x, y, textureX, textureY, width, 28);
+        this.drawRotatedTexture(poseStack.last().pose(), x, y, textureX, textureY, width);
 
         RenderSystem.enableRescaleNormal();
         ItemRenderer renderer = mc.getItemRenderer();
         renderer.blitOffset = 100f;
-        renderer.renderAndDecorateItem(itemStack, x + 8, y + 6);
-        renderer.renderGuiItemDecorations(mc.font, itemStack, x + 8, y + 6);
+        renderer.renderAndDecorateItem(icon.get(), x + 8, y + 6);
+        renderer.renderGuiItemDecorations(mc.font, icon.get(), x + 8, y + 6);
         renderer.blitOffset = 0f;
     }
 
-    private void drawRotatedTexture(Matrix4f pose, int x, int y, int textureX, int textureY, int width, int i) {
+    protected void drawRotatedTexture(Matrix4f pose, int x, int y, int textureX, int textureY, int width) {
         float scaleX = 0.00390625F;
         float scaleY = 0.00390625F;
         Tesselator tesselator = Tesselator.getInstance();
@@ -158,5 +91,41 @@ public class Filter extends Button
         bufferBuilder.vertex(pose, x + width, y, 0f).uv(((float) (textureX) * scaleX), ((float) (textureY + width) * scaleY)).endVertex();
         bufferBuilder.vertex(pose, x, y, 0f).uv(((float) (textureX) * scaleX), ((float) (textureY) * scaleY)).endVertex();
         tesselator.end();
+    }
+
+    /**
+     * Register a filter for specific creative mode tab.
+     *
+     * @param creativeModeTab Specific creative mode tab
+     * @param filterName      Name of the filter
+     * @param filterIcon      Icon for filter
+     * @return Filter instance
+     * @author ZiYueCommentary
+     * @since beta-1
+     */
+    public static Filter registerFilter(CreativeModeTabs.Wrapper creativeModeTab, Component filterName, Supplier<ItemStack> filterIcon) {
+        Filter filter = new Filter(filterName, filterIcon, new ArrayList<>());
+        FilterList filterList = FILTERS.getOrDefault(creativeModeTab.get().getId(), FilterList.empty());
+        filterList.add(filter);
+        FILTERS.put(creativeModeTab.get().getId(), filterList);
+        return filter;
+    }
+
+    /**
+     * Filter list for creative mode tabs.
+     * This list including unique buttons and index of tabs. This feature can separate button states and scrolling states with other tabs.
+     *
+     * @author ZiYueCommentary
+     * @see ArrayList
+     * @since beta-1
+     */
+    public static class FilterList extends ArrayList<Filter>
+    {
+        public Button btnScrollUp, btnScrollDown, btnEnableAll, btnDisableAll;
+        public int filterIndex = 0;
+
+        public static FilterList empty() {
+            return new FilterList();
+        }
     }
 }
