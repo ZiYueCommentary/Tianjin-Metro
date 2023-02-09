@@ -48,13 +48,13 @@ public abstract class BlockStationNameEntranceMixin extends BlockStationNameBase
 
     private static final BooleanProperty SHOW_NAME = BooleanProperty.create("show_name");
 
-    @Inject(method = "createBlockStateDefinition", at = @At("TAIL"))
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder, CallbackInfo ci) {
+    @Inject(at = @At("TAIL"), method = "createBlockStateDefinition")
+    protected void afterCreateBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder, CallbackInfo ci) {
         builder.add(SHOW_NAME);
     }
 
-    @Inject(method = "use", at = @At("HEAD"), cancellable = true)
-    public void use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
+    @Inject(at = @At("HEAD"), method = "use", cancellable = true)
+    public void beforeUse(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
         if (player.isHolding(Items.SHEARS)) {
             world.setBlockAndUpdate(pos, state.setValue(SHOW_NAME, !state.getValue(SHOW_NAME)));
             propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).getClockWise(), SHOW_NAME, 1);

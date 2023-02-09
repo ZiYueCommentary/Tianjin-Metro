@@ -13,6 +13,8 @@ import ziyue.tjmetro.Filters;
 import ziyue.tjmetro.Reference;
 import ziyue.tjmetro.filters.Filter;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static ziyue.tjmetro.TianjinMetro.LOGGER;
 
 /**
@@ -29,8 +31,8 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
 public class FinishInitializationMixin
 {
     @Inject(at = @At("TAIL"), method = "finishInitialization")
-    private static void init(CallbackInfo callbackInfo) {
-        LOGGER.info("----------------" + Reference.NAME + "----------------");
+    private static void afterFinishInitialization(CallbackInfo callbackInfo) {
+        LOGGER.info("--------------- " + Reference.NAME + " ---------------");
         LOGGER.info("Hello from ZiYueCommentary!");
         LOGGER.info("Mod ID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
@@ -41,6 +43,9 @@ public class FinishInitializationMixin
         registerMTREscalatorsLiftsFilters();
         registerMTRStationBuildingBlocksFilters();
 
+        AtomicInteger uncategorizedItems = new AtomicInteger(0);
+        AtomicInteger uncategorizedFilters = new AtomicInteger(0);
+
         // collecting uncategorized items
         Registry.ITEM.forEach(item -> {
             CreativeModeTab itemCategory = item.getItemCategory();
@@ -49,6 +54,7 @@ public class FinishInitializationMixin
                     Filter.FilterList filters = Filter.FILTERS.get(itemCategory.getId());
                     if ((filters.uncategorizedItems != null) && (!Filter.isItemCategorized(itemCategory.getId(), item))) {
                         filters.uncategorizedItems.items.add(item);
+                        uncategorizedItems.getAndIncrement();
                     }
                 }
             }
@@ -58,8 +64,11 @@ public class FinishInitializationMixin
         Filter.FILTERS.forEach((tabId, filterList) -> {
             if ((filterList.uncategorizedItems != null) && (filterList.uncategorizedItems.items.size() != 0)) {
                 filterList.add(filterList.uncategorizedItems);
+                uncategorizedFilters.getAndIncrement();
             }
         });
+
+        LOGGER.info("Found {} uncategorized items, added {} filters to the filter lists", uncategorizedItems.get(), uncategorizedFilters.get());
     }
 
     private static void registerMTRCoreFilters() {

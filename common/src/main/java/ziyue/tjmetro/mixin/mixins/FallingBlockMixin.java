@@ -32,13 +32,13 @@ public class FallingBlockMixin extends Block
         super(properties);
     }
 
-    @Inject(method = "onPlace", at = @At("HEAD"), cancellable = true)
-    public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl, CallbackInfo ci) {
+    @Inject(at = @At("HEAD"), method = "onPlace", cancellable = true)
+    public void beforeOnPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl, CallbackInfo ci) {
         if (level.getGameRules().getBoolean(TianjinMetro.PREVENT_BLOCK_FALLING)) ci.cancel();
     }
 
-    @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
-    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random, CallbackInfo ci) {
+    @Inject(at = @At("HEAD"), method = "tick", cancellable = true)
+    public void beforeTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random, CallbackInfo ci) {
         if (serverLevel.getGameRules().getBoolean(TianjinMetro.PREVENT_BLOCK_FALLING)) ci.cancel();
     }
 }

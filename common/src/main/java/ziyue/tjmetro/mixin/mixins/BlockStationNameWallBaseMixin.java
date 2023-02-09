@@ -52,8 +52,8 @@ public abstract class BlockStationNameWallBaseMixin extends BlockStationNameBase
         }, null, Items.SHEARS);
     }
 
-    @Inject(method = "createBlockStateDefinition", at = @At("TAIL"))
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder, CallbackInfo ci) {
+    @Inject(at = @At("TAIL"), method = "createBlockStateDefinition")
+    protected void afterCreateBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder, CallbackInfo ci) {
         builder.add(SHOW_NAME);
     }
 
