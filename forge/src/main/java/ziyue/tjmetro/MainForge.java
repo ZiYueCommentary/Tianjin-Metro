@@ -60,13 +60,13 @@ public class MainForge
     public static void registerBlock(String path, RegistryObject<Block> block, Filter filter) {
         registerBlock(path, block);
         ITEMS.register(path, () -> new BlockItem(block.get(), new Item.Properties()));
-        filter.items.add(new ItemStack(block.get()));
+        filter.addItems(block.get().asItem());
     }
 
     public static void registerEnchantedBlock(String path, RegistryObject<Block> block, Filter filter) {
         registerBlock(path, block);
         ITEMS.register(path, () -> new ItemBlockEnchanted(block.get(), new Item.Properties()));
-        filter.items.add(new ItemStack(block.get()));
+        filter.addItems(block.get().asItem());
     }
 
     public static void registerBlockEntityType(String path, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>> blockEntityType) {

@@ -34,13 +34,13 @@ public class MainFabric implements ModInitializer
     public static void registerBlock(String path, RegistryObject<Block> block, Filter filter) {
         Registry.register(Registry.BLOCK, new ResourceLocation(Reference.MOD_ID, path), block.get());
         Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), new BlockItem(block.get(), new FabricItemSettings()));
-        filter.items.add(new ItemStack(block.get()));
+        filter.addItems(block.get().asItem());
     }
 
     public static void registerEnchantedBlock(String path, RegistryObject<Block> block, Filter filter) {
         registerBlock(path, block);
         Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), new ItemBlockEnchanted(block.get(), new FabricItemSettings()));
-        filter.items.add(new ItemStack(block.get()));
+        filter.addItems(block.get().asItem());
     }
 
     public static void registerEntityType(String path, RegistryObject<? extends EntityType<? extends Entity>> entityType) {

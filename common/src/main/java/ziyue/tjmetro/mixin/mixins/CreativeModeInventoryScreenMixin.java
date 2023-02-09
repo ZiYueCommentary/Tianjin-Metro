@@ -123,7 +123,9 @@ public abstract class CreativeModeInventoryScreenMixin extends EffectRenderingIn
         menu.items.clear(); //clear tab
         Filter.FILTERS.get(getSelectedTab()).forEach(
                 filter -> {
-                    if (filter.enabled) menu.items.addAll(filter.items); //add items
+                    if (filter.enabled) {
+                        filter.items.forEach(item -> menu.items.add(new ItemStack(item))); //add items
+                    }
                 }
         );
         menu.items.sort(Comparator.comparingInt(o -> Item.getId(o.getItem()))); //sort items
