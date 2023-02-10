@@ -1,18 +1,16 @@
 package ziyue.tjmetro;
 
 import me.shedaniel.architectury.platform.forge.EventBuses;
-import mtr.CreativeModeTabs;
 import mtr.RegistryObject;
 import mtr.item.ItemBlockEnchanted;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.DeferredRegisterHolder;
 import net.minecraft.core.Registry;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,6 +19,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import ziyue.tjmetro.filters.Filter;
+
+import java.util.ArrayList;
 
 /**
  * @see TianjinMetro
@@ -34,8 +34,8 @@ public class MainForge
     public static final DeferredRegisterHolder<Item> ITEMS = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.ITEM_REGISTRY);
     public static final DeferredRegisterHolder<Block> BLOCKS = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.BLOCK_REGISTRY);
     public static final DeferredRegisterHolder<BlockEntityType<?>> BLOCK_ENTITY_TYPES = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
-    public static final DeferredRegisterHolder<SoundEvent> SOUND_EVENTS = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.SOUND_EVENT_REGISTRY);
     public static final DeferredRegisterHolder<EntityType<?>> ENTITY_TYPES = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.ENTITY_TYPE_REGISTRY);
+    public static final ArrayList<Tuple<Filter, RegistryObject<Block>>> FILTER_ITEMS = new ArrayList<>();
 
     static {
         TianjinMetro.init(MainForge::registerBlock, MainForge::registerBlock, MainForge::registerEnchantedBlock, MainForge::registerBlockEntityType, MainForge::registerEntityType);
@@ -48,7 +48,6 @@ public class MainForge
         ITEMS.register();
         BLOCKS.register();
         BLOCK_ENTITY_TYPES.register();
-        SOUND_EVENTS.register();
 
         eventBus.register(ForgeRegistry.class);
     }
@@ -60,13 +59,13 @@ public class MainForge
     public static void registerBlock(String path, RegistryObject<Block> block, Filter filter) {
         registerBlock(path, block);
         ITEMS.register(path, () -> new BlockItem(block.get(), new Item.Properties()));
-        filter.addItems(block.get().asItem());
+        FILTER_ITEMS.add(new Tuple<>(filter, block));
     }
 
     public static void registerEnchantedBlock(String path, RegistryObject<Block> block, Filter filter) {
         registerBlock(path, block);
         ITEMS.register(path, () -> new ItemBlockEnchanted(block.get(), new Item.Properties()));
-        filter.addItems(block.get().asItem());
+        FILTER_ITEMS.add(new Tuple<>(filter, block));
     }
 
     public static void registerBlockEntityType(String path, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>> blockEntityType) {
@@ -82,6 +81,9 @@ public class MainForge
         @SubscribeEvent
         public static void onClientSetupEvent(FMLClientSetupEvent event) {
             TianjinMetroClient.init();
+
+            // initialize filters
+            FILTER_ITEMS.forEach(tuple -> tuple.getA().addItems(tuple.getB().get().asItem()));
         }
     }
 }
