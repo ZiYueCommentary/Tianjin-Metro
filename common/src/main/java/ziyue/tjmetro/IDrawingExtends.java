@@ -111,7 +111,7 @@ public interface IDrawingExtends
     /**
      * Get multi-line components by split a component.
      *
-     * @param component A string that wait for split.
+     * @param component a string that wait for split
      * @param regex     the delimiting regular expression
      * @param limit     the result threshold, as described above
      * @return Multi-line component
@@ -146,11 +146,11 @@ public interface IDrawingExtends
     /**
      * Add a <b>hold shift tooltip</b> to a tooltip, no need to re-assignment.
      *
-     * @param list      Hover Text List, just like pointer in C/C++.
-     * @param component A component that wait for split.
+     * @param list      hover Text List, just like pointer in C/C++
+     * @param component a component that wait for split.
      * @param regex     the delimiting regular expression
      * @param limit     the result threshold, as described above
-     * @return Hover Text List
+     * @return hover text list
      * @author ZiYueCommentary
      * @since beta-1
      */

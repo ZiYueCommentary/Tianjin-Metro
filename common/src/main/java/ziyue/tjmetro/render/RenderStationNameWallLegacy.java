@@ -1,7 +1,5 @@
 package ziyue.tjmetro.render;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.Tesselator;
 import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
 import mtr.client.ClientData;
@@ -9,7 +7,6 @@ import mtr.client.IDrawing;
 import mtr.render.RenderStationNameBase;
 import mtr.render.RenderTrains;
 import mtr.render.StoredMatrixTransformations;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
@@ -45,9 +42,7 @@ public class RenderStationNameWallLegacy extends RenderStationNameBase<BlockStat
     }
 
     private int getLength(BlockGetter world, BlockPos pos, boolean lookRight) {
-        if (world == null) {
-            return 1;
-        }
+        if (world == null) return 1;
         final Direction facing = IBlock.getStatePropertySafe(world, pos, BlockStationNameBase.FACING);
         final Block thisBlock = world.getBlockState(pos).getBlock();
 

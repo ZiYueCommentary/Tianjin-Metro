@@ -22,7 +22,7 @@ public class RegistryImpl
             if (pos != null) {
                 try {
                     BlockEntity entity = world.getBlockEntity(pos);
-                    int color = entity != null ? ((BlockCustomColorBase.CustomColorBlockEntity)(((BlockCustomColorBase.CustomColorBlockEntity)entity).getRenderAttachmentData())).color : -1;
+                    int color = entity != null ? ((BlockCustomColorBase.CustomColorBlockEntity) (((BlockCustomColorBase.CustomColorBlockEntity) entity).getRenderAttachmentData())).color : -1;
                     return color != -1 ? color : (ClientData.STATIONS.stream().filter(station1 -> station1.inArea(pos.getX(), pos.getZ())).findFirst().map(station2 -> station2.color).orElse(defaultColor));
                 } catch (Exception ignored) {
                 }

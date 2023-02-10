@@ -27,10 +27,10 @@ public class Registry
     /**
      * Register a boolean value game rule.
      *
-     * @param name         Name of game rule.
-     * @param category     Category of game rule in <b>Create New World</b>'s <b>Edit Game Rules</b>.
-     * @param defaultValue Default value of game rule.
-     * @return A boolean value game rule.
+     * @param name         name of game rule.
+     * @param category     category of game rule in <b>Create New World</b>'s <b>Edit Game Rules</b>
+     * @param defaultValue default value of game rule
+     * @return a boolean value game rule
      * @author ZiYueCommentary
      * @since beta-1
      */
@@ -42,10 +42,10 @@ public class Registry
     /**
      * Register a integer value game rule.
      *
-     * @param name         Name of game rule.
-     * @param category     Category of game rule in <b>Create New World</b>'s <b>Edit Game Rules</b>.
-     * @param defaultValue Default value of game rule.
-     * @return A integer value game rule.
+     * @param name         name of game rule
+     * @param category     category of game rule in <b>Create New World</b>'s <b>Edit Game Rules</b>
+     * @param defaultValue default value of game rule
+     * @return a integer value game rule
      * @author ZiYueCommentary
      * @since beta-1
      */

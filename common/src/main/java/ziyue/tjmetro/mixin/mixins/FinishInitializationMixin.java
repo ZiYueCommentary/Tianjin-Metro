@@ -38,6 +38,7 @@ public class FinishInitializationMixin
         LOGGER.info("Version: " + Reference.VERSION);
         LOGGER.info("Modloader: " + (mtr.Registry.isFabric() ? "Fabric" : "Forge"));
 
+        // register filters before collect uncategorized items
         registerMTRCoreFilters();
         registerMTRRailwayFacilitiesFilters();
         registerMTREscalatorsLiftsFilters();
@@ -53,7 +54,7 @@ public class FinishInitializationMixin
                 if (Filter.FILTERS.containsKey(itemCategory.getId())) {
                     Filter.FilterList filters = Filter.FILTERS.get(itemCategory.getId());
                     if ((filters.uncategorizedItems != null) && (!Filter.isItemCategorized(itemCategory.getId(), item))) {
-                        filters.uncategorizedItems.items.add(item);
+                        filters.uncategorizedItems.addItems(item);
                         uncategorizedItems.getAndIncrement();
                     }
                 }
@@ -62,7 +63,7 @@ public class FinishInitializationMixin
 
         // adding uncategorized items filter to filter list
         Filter.FILTERS.forEach((tabId, filterList) -> {
-            if ((filterList.uncategorizedItems != null) && (filterList.uncategorizedItems.items.size() != 0)) {
+            if ((filterList.uncategorizedItems != null) && (filterList.uncategorizedItems.items.size() > 0)) {
                 filterList.add(filterList.uncategorizedItems);
                 uncategorizedFilters.getAndIncrement();
             }

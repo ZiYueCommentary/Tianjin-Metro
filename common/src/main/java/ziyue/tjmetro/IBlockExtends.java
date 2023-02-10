@@ -28,7 +28,7 @@ public interface IBlockExtends
     /**
      * Replace block with air.
      *
-     * @param pos Block's Position
+     * @param pos block's position
      * @author ZiYueCommentary
      * @since beta-1
      */
@@ -44,8 +44,8 @@ public interface IBlockExtends
     /**
      * Specify a block, if block in pos is specified block, then replace it with air.
      *
-     * @param pos   Block's Position
-     * @param block Specified Block
+     * @param pos   block's position
+     * @param block specified block
      * @author ZiYueCommentary
      * @since beta-1
      */
