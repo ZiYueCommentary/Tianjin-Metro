@@ -13,6 +13,4 @@ package ziyue.tjmetro.mixin.properties;
 public interface CreativeModeInventoryScreenProperties
 {
     int getSelectedTab();
-
-    boolean hasFilters(int tabId);
 }

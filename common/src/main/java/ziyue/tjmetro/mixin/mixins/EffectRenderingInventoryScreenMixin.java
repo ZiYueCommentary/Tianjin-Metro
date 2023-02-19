@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ziyue.tjmetro.filters.Filter;
 import ziyue.tjmetro.mixin.properties.CreativeModeInventoryScreenProperties;
 
 /**
@@ -34,8 +35,8 @@ public abstract class EffectRenderingInventoryScreenMixin<T extends AbstractCont
     private void beforeRenderEffects(PoseStack poseStack, CallbackInfo ci) {
         if (minecraft.screen instanceof CreativeModeInventoryScreen) {
             CreativeModeInventoryScreenProperties itemPickerMenu = (CreativeModeInventoryScreenProperties) minecraft.screen;
-            if (itemPickerMenu.hasFilters(itemPickerMenu.getSelectedTab())) {
-                this.leftPos = this.leftPos - 55;
+            if (Filter.isTabHasFilters(itemPickerMenu.getSelectedTab())) {
+                this.leftPos = this.leftPos - 55; // move effect labels to avoid overlap with filters
             }
         }
     }
@@ -44,7 +45,7 @@ public abstract class EffectRenderingInventoryScreenMixin<T extends AbstractCont
     private void afterRenderEffects(PoseStack poseStack, CallbackInfo ci) {
         if (minecraft.screen instanceof CreativeModeInventoryScreen) {
             CreativeModeInventoryScreenProperties itemPickerMenu = (CreativeModeInventoryScreenProperties) minecraft.screen;
-            if (itemPickerMenu.hasFilters(itemPickerMenu.getSelectedTab())) {
+            if (Filter.isTabHasFilters(itemPickerMenu.getSelectedTab())) {
                 this.leftPos = this.leftPos + 55;
             }
         }

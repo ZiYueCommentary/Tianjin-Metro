@@ -54,10 +54,6 @@ public class Filter extends Button
         this.items = items;
     }
 
-    public void addItems(Item... items) {
-        this.items.addAll(Arrays.asList(items));
-    }
-
     @Override
     public void onPress() {
         enabled = !enabled;
@@ -98,6 +94,17 @@ public class Filter extends Button
         bufferBuilder.vertex(pose, x + width, y, 0f).uv(((float) (textureX) * scaleX), ((float) (textureY + width) * scaleY)).endVertex();
         bufferBuilder.vertex(pose, x, y, 0f).uv(((float) (textureX) * scaleX), ((float) (textureY) * scaleY)).endVertex();
         tesselator.end();
+    }
+
+    /**
+     * Adding items to the filter.
+     *
+     * @param items items
+     * @author ZiYueCommentary
+     * @since beta-1
+     */
+    public void addItems(Item... items) {
+        this.items.addAll(Arrays.asList(items));
     }
 
     /**
@@ -153,6 +160,10 @@ public class Filter extends Button
         return false;
     }
 
+    public static boolean isTabHasFilters(int creativeModeTabId) {
+        return (Filter.FILTERS.containsKey(creativeModeTabId) && (Filter.FILTERS.get(creativeModeTabId).enabled));
+    }
+
     /**
      * Filter list for creative mode tabs.
      * This list including unique buttons and index of tabs. This feature can separate button states and scrolling states with other tabs.
@@ -163,8 +174,9 @@ public class Filter extends Button
      */
     public static class FilterList extends ArrayList<Filter>
     {
-        public Button btnScrollUp, btnScrollDown, btnEnableAll, btnDisableAll;
+        public Button btnScrollUp, btnScrollDown, btnEnableAll, btnDisableAll, btnOptions;
         public int filterIndex = 0;
+        public boolean enabled = true;
 
         public Filter uncategorizedItems = null;
 

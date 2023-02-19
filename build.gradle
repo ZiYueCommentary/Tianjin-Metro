@@ -86,7 +86,7 @@ task setupFiles() {
 
     copy {
         outputs.upToDateWhen { false }
-        from "common/src/main/latest-lu-addon.json"
+        from "common/src/main/latest-tjmetro.json"
         into "build/latest"
         filter(ReplaceTokens, tokens: ["version": rootProject.mod_version])
     }

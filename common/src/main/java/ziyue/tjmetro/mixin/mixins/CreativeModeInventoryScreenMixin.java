@@ -21,6 +21,7 @@ import ziyue.tjmetro.Reference;
 import ziyue.tjmetro.filters.Filter;
 import ziyue.tjmetro.filters.IconButton;
 import ziyue.tjmetro.mixin.properties.CreativeModeInventoryScreenProperties;
+import ziyue.tjmetro.screen.OptionsScreen;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -61,12 +62,13 @@ public abstract class CreativeModeInventoryScreenMixin extends EffectRenderingIn
     protected void beforeRender(PoseStack poseStack, int i, int j, float f, CallbackInfo ci) {
         Filter.FILTERS.forEach((map, filter1) -> showButtons(filter1, false));
         Filter.FILTERS.forEach((map, filter) -> filter.forEach(button -> button.visible = false));
-        if (!hasFilters(getSelectedTab())) return;
-        updateTab();
+
+        if (!Filter.isTabHasFilters(getSelectedTab())) return;
+        updateItems();
         Filter.FilterList filter = Filter.FILTERS.get(getSelectedTab());
         showButtons(filter, true);
         for (int o = 0; o < filter.size(); o++) {
-            if (o >= filter.filterIndex && o < filter.filterIndex + 4) {
+            if ((o >= filter.filterIndex) && (o < filter.filterIndex + 4)) {
                 filter.get(o).x = leftPos - 28;
                 filter.get(o).y = topPos + 29 * (o - filter.filterIndex) + 10;
                 filter.get(o).visible = true;
@@ -78,12 +80,14 @@ public abstract class CreativeModeInventoryScreenMixin extends EffectRenderingIn
 
     @Inject(at = @At("TAIL"), method = "render")
     protected void afterRender(PoseStack poseStack, int i, int j, float f, CallbackInfo ci) {
-        if (!hasFilters(getSelectedTab())) return;
+        if (!Filter.isTabHasFilters(getSelectedTab())) return;
+
         Filter.FilterList filter = Filter.FILTERS.get(getSelectedTab());
         if (filter.btnScrollUp.isHovered()) renderTooltip(poseStack, filter.btnScrollUp.getMessage(), i, j);
         if (filter.btnScrollDown.isHovered()) renderTooltip(poseStack, filter.btnScrollDown.getMessage(), i, j);
         if (filter.btnEnableAll.isHovered()) renderTooltip(poseStack, filter.btnEnableAll.getMessage(), i, j);
         if (filter.btnDisableAll.isHovered()) renderTooltip(poseStack, filter.btnDisableAll.getMessage(), i, j);
+        if (filter.btnOptions.isHovered()) renderTooltip(poseStack, filter.btnOptions.getMessage(), i, j);
         filter.forEach(filter1 -> {
             if (filter1.isHovered()) renderTooltip(poseStack, filter1.getMessage(), i, j);
         });
@@ -96,10 +100,12 @@ public abstract class CreativeModeInventoryScreenMixin extends EffectRenderingIn
             filter.btnScrollDown = new IconButton(this.leftPos - 22, this.topPos + 127, Text.translatable("button.tjmetro.scroll_down").withStyle(ChatFormatting.WHITE), button -> filter.filterIndex++, ICONS, 16, 0);
             filter.btnEnableAll = new IconButton(this.leftPos - 50, this.topPos + 10, Text.translatable("button.tjmetro.enable_all").withStyle(ChatFormatting.WHITE), button -> Filter.FILTERS.get(getSelectedTab()).forEach(filter1 -> filter1.enabled = true), ICONS, 32, 0);
             filter.btnDisableAll = new IconButton(this.leftPos - 50, this.topPos + 32, Text.translatable("button.tjmetro.disable_all").withStyle(ChatFormatting.WHITE), button -> Filter.FILTERS.get(getSelectedTab()).forEach(filter1 -> filter1.enabled = false), ICONS, 48, 0);
+            filter.btnOptions = new IconButton(this.leftPos - 50, this.topPos + 54, Text.translatable("button.tjmetro.tianjin_metro_options").withStyle(ChatFormatting.WHITE), button -> minecraft.setScreen(new OptionsScreen()), ICONS, 64, 0);
             addButton(filter.btnScrollUp);
             addButton(filter.btnScrollDown);
             addButton(filter.btnEnableAll);
             addButton(filter.btnDisableAll);
+            addButton(filter.btnOptions);
 
             filter.forEach(this::addButton);
         });
@@ -115,22 +121,22 @@ public abstract class CreativeModeInventoryScreenMixin extends EffectRenderingIn
         }
         list.btnEnableAll.visible = visible;
         list.btnDisableAll.visible = visible;
+        list.btnOptions.visible = visible;
     }
 
-    protected void updateTab() {
-        if (!hasFilters(getSelectedTab())) return;
+    protected void updateItems() {
         visibleTags.clear();
-        menu.items.clear(); //clear tab
+        menu.items.clear(); // clear the tab
         Filter.FILTERS.get(getSelectedTab()).forEach(
                 filter -> {
                     if (filter.enabled) {
-                        filter.items.forEach(item -> menu.items.add(new ItemStack(item))); //add items
+                        filter.items.forEach(item -> menu.items.add(new ItemStack(item))); // add items
                     }
                 }
         );
-        menu.items.sort(Comparator.comparingInt(o -> Item.getId(o.getItem()))); //sort items
+        menu.items.sort(Comparator.comparingInt(o -> Item.getId(o.getItem()))); // sort items
         float previousOffset = this.scrollOffs;
-        this.menu.scrollTo(0.0f); //refresh (maybe?)
+        this.menu.scrollTo(0.0f); // refresh (maybe?)
         this.scrollOffs = previousOffset;
         this.menu.scrollTo(previousOffset);
     }
@@ -138,10 +144,5 @@ public abstract class CreativeModeInventoryScreenMixin extends EffectRenderingIn
     @Override
     public int getSelectedTab() {
         return selectedTab;
-    }
-
-    @Override
-    public boolean hasFilters(int tabId) {
-        return Filter.FILTERS.containsKey(tabId);
     }
 }

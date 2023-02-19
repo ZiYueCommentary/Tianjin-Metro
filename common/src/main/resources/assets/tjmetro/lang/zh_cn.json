@@ -33,7 +33,7 @@
     "block.tjmetro.railway_sign_tianjin": "指示牌 （天津）",
 
     "gui.tjmetro.metal_detection_door": "安检门",
-    "gui.tjmetro.options": "Tianjin Metro 设置",
+    "gui.tjmetro.options": "天津地铁设置",
     "gui.tjmetro.default_color": "默认颜色",
     "gui.tjmetro.custom_content": "自定义显示内容",
 
@@ -41,8 +41,10 @@
     "button.tjmetro.scroll_down": "下滚",
     "button.tjmetro.enable_all": "启用全部",
     "button.tjmetro.disable_all": "禁用全部",
+    "button.tjmetro.tianjin_metro_options": "天津地铁设置",
 
     "options.tjmetro.no_colored_lights": "不渲染彩色光照",
+    "options.tjmetro.enable_mtr_filters": "启用 MTR 筛选器",
 
     "tooltip.tjmetro.not_suggest": "不建议启用此功能",
     "tooltip.tjmetro.station_name": "文字取决于车站",

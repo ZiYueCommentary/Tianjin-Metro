@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import ziyue.tjmetro.filters.Filter;
 
 /**
+ * Entry of fabric mod.
+ *
  * @see TianjinMetro
  * @since beta-1
  */

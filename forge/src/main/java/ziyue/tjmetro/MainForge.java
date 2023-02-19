@@ -23,8 +23,9 @@ import ziyue.tjmetro.filters.Filter;
 import java.util.ArrayList;
 
 /**
+ * Entry of forge mod.
+ *
  * @see TianjinMetro
- * @see TianjinMetroClient
  * @since beta-1
  */
 
@@ -76,6 +77,12 @@ public class MainForge
         ENTITY_TYPES.register(path, entityType::get);
     }
 
+    /**
+     * Client entry of forge mod.
+     *
+     * @see TianjinMetroClient
+     * @since beta-1
+     */
     public static class ForgeRegistry
     {
         @SubscribeEvent
