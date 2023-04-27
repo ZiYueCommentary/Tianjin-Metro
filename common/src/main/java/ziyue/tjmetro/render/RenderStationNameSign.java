@@ -18,7 +18,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
@@ -71,12 +70,12 @@ public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntity
         matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, entity.getBlockPos());
-        drawStationName(entity, matrices, vertexConsumers, immediate, entity.content.equals("") ? station == null ? Text.translatable("gui.mtr.untitled").getString() : station.name : entity.content, color, light);
+        drawStationName(matrices, immediate, entity.content.equals("") ? station == null ? Text.translatable("gui.mtr.untitled").getString() : station.name : entity.content, color, light);
         immediate.endBatch();
         matrices.popPose();
     }
 
-    protected void drawStationName(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int color, int light) {
+    protected void drawStationName(PoseStack matrices, MultiBufferSource.BufferSource immediate, String stationName, int color, int light) {
         IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -0.105f, 0.85F, 1F, 100, color, false, light, null);
     }
 }

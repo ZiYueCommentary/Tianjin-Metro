@@ -206,7 +206,9 @@ public class FinishInitializationMixin
                 Blocks.PIDS_1.get().asItem(),
                 Blocks.PIDS_2.get().asItem(),
                 Blocks.PIDS_3.get().asItem(),
-                Blocks.PIDS_POLE.get().asItem()
+                Blocks.PIDS_4.get().asItem(),
+                Blocks.PIDS_POLE.get().asItem(),
+                Blocks.PIDS_SINGLE_ARRIVAL_1.get().asItem()
         );
         Filters.MTR_RAILWAY_FACILITIES_CEILINGS.addItems(
                 Blocks.CEILING.get().asItem(),

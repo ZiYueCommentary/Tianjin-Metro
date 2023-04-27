@@ -93,7 +93,7 @@ public class BlockStationNameWallLegacy extends BlockStationNameBase implements 
 
     @Override
     public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state) {
-        return new TileEntityStationNameWall(pos, state);
+        return new TileEntityStationNameLegacy(pos, state);
     }
 
     @Override
@@ -111,10 +111,10 @@ public class BlockStationNameWallLegacy extends BlockStationNameBase implements 
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 
-    public static class TileEntityStationNameWall extends TileEntityStationNameBase
+    public static class TileEntityStationNameLegacy extends TileEntityStationNameBase
     {
-        public TileEntityStationNameWall(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.STATION_NAME_WALL_TILE_ENTITY.get(), pos, state, 0, 0, false);
+        public TileEntityStationNameLegacy(BlockPos pos, BlockState state) {
+            super(BlockEntityTypes.STATION_NAME_WALL_LEGACY_TILE_ENTITY.get(), pos, state, 0, 0, false);
         }
 
         @Override
