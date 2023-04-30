@@ -93,9 +93,9 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
     }
 
     /**
-     * @see CustomContentBlockBase.CustomContentBlockEntity
+     * @see BlockCustomContentBlockBase.CustomContentBlockEntity
      */
-    public abstract static class TileEntityStationNameBase extends CustomContentBlockBase.CustomContentBlockEntity
+    public abstract static class TileEntityStationNameBase extends BlockCustomContentBlockBase.CustomContentBlockEntity
     {
         public TileEntityStationNameBase(BlockEntityType<?> entity, BlockPos pos, BlockState state) {
             super(entity, pos, state, 0, 0.05f);

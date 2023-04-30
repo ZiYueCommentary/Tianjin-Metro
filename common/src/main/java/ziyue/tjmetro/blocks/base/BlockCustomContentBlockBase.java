@@ -30,9 +30,9 @@ import java.util.List;
  * @since beta-1
  */
 
-public abstract class CustomContentBlockBase extends Block implements EntityBlockMapper
+public abstract class BlockCustomContentBlockBase extends Block implements EntityBlockMapper
 {
-    public CustomContentBlockBase(Properties properties) {
+    public BlockCustomContentBlockBase(Properties properties) {
         super(properties);
     }
 
@@ -46,8 +46,8 @@ public abstract class CustomContentBlockBase extends Block implements EntityBloc
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity) {
-                BlockCustomColorBase.CustomColorBlockEntity entity1 = (BlockCustomColorBase.CustomColorBlockEntity) entity;
+            if (entity instanceof CustomContentBlockEntity) {
+                CustomContentBlockEntity entity1 = (CustomContentBlockEntity) entity;
                 entity1.syncData();
                 PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
             }
