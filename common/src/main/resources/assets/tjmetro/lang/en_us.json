@@ -35,7 +35,7 @@
     "gui.tjmetro.metal_detection_door": "Metal Detection Door",
     "gui.tjmetro.options": "Tianjin Metro Options",
     "gui.tjmetro.default_color": "Default Color",
-    "gui.tjmetro.custom_content": "Custom display content",
+    "gui.tjmetro.custom_content": "Display content",
 
     "button.tjmetro.scroll_up": "Scroll Up",
     "button.tjmetro.scroll_down": "Scroll Down",

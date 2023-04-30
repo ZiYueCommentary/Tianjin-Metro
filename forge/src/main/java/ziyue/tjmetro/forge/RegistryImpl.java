@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
 /**
+ * Methods implements of forge mod.
+ *
  * @see ziyue.tjmetro.Registry
  * @since beta-1
  */
@@ -31,7 +33,7 @@ public class RegistryImpl
         return GameRules.register(name, category, GameRuleFactory.createIntRule(defaultValue));
     }
 
-    private static class CustomColor implements BlockColor
+    protected static class CustomColor implements BlockColor
     {
         @Override
         public int getColor(BlockState blockState, BlockAndTintGetter blockAndTintGetter, BlockPos pos, int i) {

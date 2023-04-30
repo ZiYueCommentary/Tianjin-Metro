@@ -35,7 +35,7 @@
     "gui.tjmetro.metal_detection_door": "安检门",
     "gui.tjmetro.options": "天津地铁设置",
     "gui.tjmetro.default_color": "默认颜色",
-    "gui.tjmetro.custom_content": "自定义显示内容",
+    "gui.tjmetro.custom_content": "显示内容",
 
     "button.tjmetro.scroll_up": "上滚",
     "button.tjmetro.scroll_down": "下滚",

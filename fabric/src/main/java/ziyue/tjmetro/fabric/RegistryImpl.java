@@ -10,6 +10,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
 /**
+ * Methods implements of fabric mod.
+ *
  * @see ziyue.tjmetro.Registry
  * @since beta-1
  */
