@@ -8,12 +8,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
-import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
+import ziyue.tjmetro.blocks.base.BlockCustomContentBlockBase;
 import ziyue.tjmetro.screen.ColorPickerScreen;
 import ziyue.tjmetro.screen.CustomContentScreen;
 import ziyue.tjmetro.screen.RailwaySignScreen;
-
-import java.util.Set;
 
 import static ziyue.tjmetro.packet.IPacket.*;
 
@@ -28,7 +26,7 @@ public class PacketGuiClient
         minecraftClient.execute(() -> {
             if (minecraftClient.level != null && !(minecraftClient.screen instanceof CustomContentScreen)) {
                 final BlockEntity entity = minecraftClient.level.getBlockEntity(pos);
-                if (entity instanceof CustomContentBlockBase.CustomContentBlockEntity) {
+                if (entity instanceof BlockCustomContentBlockBase.CustomContentBlockEntity) {
                     UtilitiesClient.setScreen(minecraftClient, new CustomContentScreen(pos));
                 }
             }

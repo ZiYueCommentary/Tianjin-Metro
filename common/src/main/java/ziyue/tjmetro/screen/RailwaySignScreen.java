@@ -25,6 +25,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
+import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -230,7 +231,7 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
 
     @Override
     public void onClose() {
-        PacketTrainDataGuiClient.sendSignIdsC2S(signPos, selectedIds, signIds);
+        PacketGuiServer.sendSignIdsC2S(signPos, selectedIds, signIds);
         super.onClose();
     }
 

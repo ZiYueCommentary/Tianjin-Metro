@@ -12,16 +12,14 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.TianjinMetro;
-import ziyue.tjmetro.blocks.base.CustomContentBlockBase;
+import ziyue.tjmetro.blocks.base.BlockCustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiClient;
-
-import java.util.logging.Logger;
 
 /**
  * Custom content to display for <b>Custom Content Block</b>.
  *
  * @author ZiYueCommentary
- * @see CustomContentBlockBase
+ * @see BlockCustomContentBlockBase
  * @since beta-1
  */
 
@@ -39,8 +37,8 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
         final ClientLevel world = minecraft.level;
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof CustomContentBlockBase.CustomContentBlockEntity) {
-                CustomContentBlockBase.CustomContentBlockEntity entity1 = (CustomContentBlockBase.CustomContentBlockEntity) entity;
+            if (entity instanceof BlockCustomContentBlockBase.CustomContentBlockEntity) {
+                BlockCustomContentBlockBase.CustomContentBlockEntity entity1 = (BlockCustomContentBlockBase.CustomContentBlockEntity) entity;
                 content = entity1.content;
             }
         } else {
