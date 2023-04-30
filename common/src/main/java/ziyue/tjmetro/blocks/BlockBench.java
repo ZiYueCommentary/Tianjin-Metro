@@ -1,22 +1,25 @@
 package ziyue.tjmetro.blocks;
 
 import mtr.block.IBlock;
+import mtr.mappings.BlockEntityMapper;
+import mtr.mappings.EntityBlockMapper;
+import mtr.mappings.Text;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.entity.TickableBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -24,8 +27,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.BlockList;
-import ziyue.tjmetro.entity.SeatEntity;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static mtr.block.IBlock.SIDE_EXTENDED;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
@@ -34,12 +40,13 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
  * Oak bench, model based on <b>Adorn mod</b>.
  *
  * @author ZiYueCommentary
- * @see SeatEntity
  * @since beta-1
  */
 
-public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
+public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlockMapper
 {
+    public static final Set<Minecart> SeatSet = new HashSet<>();
+
     public BlockBench() {
         this(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.OAK_PLANKS));
     }
@@ -50,13 +57,13 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        SeatEntity seatEntity = new SeatEntity(world, pos.getX(), pos.getY(), pos.getZ());
-        seatEntity.noCulling = true;
-        seatEntity.setPos(pos.getX(), pos.getY(), pos.getZ());
-        seatEntity.setInvisible(true);
-        world.addFreshEntity(seatEntity);
-        player.startRiding(seatEntity, true);
-        return InteractionResult.SUCCESS;
+        TileEntityBench entityBench = (TileEntityBench) world.getBlockEntity(pos);
+        if (entityBench.seat == null) {
+            entityBench.ride(world, pos, player);
+            return InteractionResult.SUCCESS;
+        } else {
+            return InteractionResult.FAIL;
+        }
     }
 
     @Nullable
@@ -106,7 +113,54 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
     }
 
     @Override
+    public BlockEntityMapper createBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new TileEntityBench(blockPos, blockState);
+    }
+
+    @Override
     public FluidState getFluidState(BlockState blockState) {
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
+    }
+
+    public static class TileEntityBench extends BlockEntityMapper implements TickableBlockEntity
+    {
+        Minecart seat;
+
+        public TileEntityBench(BlockPos pos, BlockState state) {
+            super(BlockEntityTypes.BENCH_TILE_ENTITY.get(), pos, state);
+        }
+
+        @Override
+        public void tick() {
+            if ((seat != null) && (seat.getPassengers().isEmpty())) {
+                SeatSet.remove(seat);
+                seat.kill();
+                seat = null;
+            }
+        }
+
+        /**
+         * Create a minecart as the seat.
+         * For some unknown reason, Fabric 1.16.5 was unable to register entities properly.
+         * The minecart will be the seat of the bench so that players can sit down.
+         *
+         * @see ziyue.tjmetro.mixin.mixins.EntityRenderDispatcherMixin
+         * @see ziyue.tjmetro.mixin.mixins.MinecartRendererMixin
+         * @see ziyue.tjmetro.mixin.mixins.MinecraftServerMixin
+         */
+        public void ride(Level world, BlockPos pos, Player player) {
+            seat = new Minecart(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)
+            {
+                @Override
+                public boolean isPushable() {
+                    return false;
+                }
+            };
+            seat.setCustomName(Text.literal("BenchSeat"));
+            seat.setNoGravity(true);
+            world.addFreshEntity(seat);
+            SeatSet.add(seat);
+            player.startRiding(seat);
+        }
     }
 }

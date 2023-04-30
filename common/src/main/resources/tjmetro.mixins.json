@@ -8,6 +8,7 @@
         "BlockStationNameWallBaseMixin",
         "FallingBlockMixin",
         "FinishInitializationMixin",
+        "MinecraftServerMixin",
         "RenderStationNameTiledMixin"
     ],
     "injectors": {
@@ -15,6 +16,8 @@
     },
     "client": [
         "CreativeModeInventoryScreenMixin",
-        "EffectRenderingInventoryScreenMixin"
-  ]
+        "EffectRenderingInventoryScreenMixin",
+        "EntityRenderDispatcherMixin",
+        "MinecartRendererMixin"
+    ]
 }

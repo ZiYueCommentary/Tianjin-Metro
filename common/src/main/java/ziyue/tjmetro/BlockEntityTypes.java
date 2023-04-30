@@ -5,8 +5,6 @@ import mtr.mappings.RegistryUtilities;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import ziyue.tjmetro.blocks.*;
 
-import java.util.Collections;
-
 /**
  * @since beta-1
  */
@@ -40,4 +38,5 @@ public interface BlockEntityTypes
     RegistryObject<BlockEntityType<BlockRailwaySignTianjin.TileEntityRailwaySignTianjin>> RAILWAY_SIGN_TIANJIN_6_ODD_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignTianjin.TileEntityRailwaySignTianjin(6, true, pos, state), BlockList.RAILWAY_SIGN_TIANJIN_6_ODD.get()));
     RegistryObject<BlockEntityType<BlockRailwaySignTianjin.TileEntityRailwaySignTianjin>> RAILWAY_SIGN_TIANJIN_7_ODD_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignTianjin.TileEntityRailwaySignTianjin(7, true, pos, state), BlockList.RAILWAY_SIGN_TIANJIN_7_ODD.get()));
     RegistryObject<BlockEntityType<BlockMetalDetectionDoor.TileEntityMetalDetectionDoor>> METAL_DETECTION_DOOR_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockMetalDetectionDoor.TileEntityMetalDetectionDoor::new, BlockList.METAL_DETECTION_DOOR.get()));
+    RegistryObject<BlockEntityType<BlockBench.TileEntityBench>> BENCH_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockBench.TileEntityBench::new, BlockList.BENCH.get()));
 }

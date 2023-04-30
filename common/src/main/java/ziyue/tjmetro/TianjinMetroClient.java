@@ -3,7 +3,6 @@ package ziyue.tjmetro;
 import mtr.RegistryClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
-import ziyue.tjmetro.entity.SeatEntity;
 import ziyue.tjmetro.packet.IPacket;
 import ziyue.tjmetro.packet.PacketGuiClient;
 import ziyue.tjmetro.render.*;
@@ -39,8 +38,6 @@ public class TianjinMetroClient
         Registry.registerCustomColorBlock(BlockList.CUSTOM_COLOR_CONCRETE.get());
         Registry.registerCustomColorBlock(BlockList.CUSTOM_COLOR_CONCRETE_STAIRS.get());
         Registry.registerCustomColorBlock(BlockList.CUSTOM_COLOR_CONCRETE_SLAB.get());
-
-        RegistryClient.registerEntityRenderer(EntityTypes.BENCH.get(), SeatEntity.RenderSeat::new);
 
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1.get(), RenderStationNameSign::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_ENTITY_2.get(), RenderStationNameSign::new);
