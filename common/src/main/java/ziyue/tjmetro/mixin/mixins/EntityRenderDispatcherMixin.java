@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ziyue.tjmetro.blocks.BlockBench;
 
 /**
  * Prevent render shadows for Bench Seats.
@@ -25,7 +26,7 @@ public class EntityRenderDispatcherMixin
     @Inject(at = @At("HEAD"), method = "renderShadow", cancellable = true)
     private static void beforeRenderShadow(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, float f, float g, LevelReader levelReader, float h, CallbackInfo ci) {
         if (entity.getCustomName() != null) {
-            if (entity.getCustomName().getContents().equals("BenchSeat")) ci.cancel();
+            if (entity.getCustomName().getContents().equals(BlockBench.ENTITY_SEAT_NAME)) ci.cancel();
         }
     }
 }

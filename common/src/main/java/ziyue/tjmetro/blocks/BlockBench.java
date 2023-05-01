@@ -46,6 +46,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlockMapper
 {
     public static final Set<Minecart> SeatSet = new HashSet<>();
+    public static final String ENTITY_SEAT_NAME = "RW50aXR5VGlhbmppbk1ldHJvU2VhdA==";
 
     public BlockBench() {
         this(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.OAK_PLANKS));
@@ -156,7 +157,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
                     return false;
                 }
             };
-            seat.setCustomName(Text.literal("BenchSeat"));
+            seat.setCustomName(Text.literal(ENTITY_SEAT_NAME));
             seat.setNoGravity(true);
             world.addFreshEntity(seat);
             SeatSet.add(seat);

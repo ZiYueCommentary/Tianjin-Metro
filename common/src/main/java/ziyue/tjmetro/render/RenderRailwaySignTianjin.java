@@ -109,7 +109,7 @@ public class RenderRailwaySignTianjin<T extends BlockRailwaySignTianjin.TileEnti
             final float exitWidth = signSize * selectedExitsSorted.size();
             matrices.scale(Math.min(1, maxWidth / exitWidth), 1, 1);
 
-            final VertexConsumer vertexConsumer = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("mtr:textures/sign/exit_letter_blank.png"), true));
+            final VertexConsumer vertexConsumer = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("mtr:textures/block/sign/exit_letter_blank.png"), true));
 
             for (int i = 0; i < selectedExitsSorted.size(); i++) {
                 final String selectedExit = selectedExitsSorted.get(flipCustomText ? selectedExitsSorted.size() - i - 1 : i);

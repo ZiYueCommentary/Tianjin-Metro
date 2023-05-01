@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ziyue.tjmetro.blocks.BlockBench;
 
 /**
  * Prevent render bench-seat-minecart.
@@ -30,7 +31,7 @@ public abstract class MinecartRendererMixin<T extends AbstractMinecart> extends 
     @Inject(at = @At("HEAD"), method = "render(Lnet/minecraft/world/entity/vehicle/AbstractMinecart;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", cancellable = true)
     private void beforeRender(T abstractMinecart, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
         if (abstractMinecart.getCustomName() != null) {
-            if (abstractMinecart.getCustomName().getContents().equals("BenchSeat")) ci.cancel();
+            if (abstractMinecart.getCustomName().getContents().equals(BlockBench.ENTITY_SEAT_NAME)) ci.cancel();
         }
     }
 }
