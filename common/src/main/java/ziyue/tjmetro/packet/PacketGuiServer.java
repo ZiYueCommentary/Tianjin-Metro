@@ -41,8 +41,7 @@ public class PacketGuiServer
         final String content = packet.readUtf(SerializedDataBase.PACKET_STRING_READ_LENGTH);
         minecraftServer.execute(() -> {
             final BlockEntity entity = player.level.getBlockEntity(pos);
-            if (entity instanceof BlockCustomContentBlockBase.CustomContentBlockEntity) {
-                BlockCustomContentBlockBase.CustomContentBlockEntity entity1 = (BlockCustomContentBlockBase.CustomContentBlockEntity) entity;
+            if (entity instanceof BlockCustomContentBlockBase.CustomContentBlockEntity entity1) {
                 entity1.setData(content);
             }
         });
@@ -59,8 +58,7 @@ public class PacketGuiServer
         final int color = packet.readInt();
         minecraftServer.execute(() -> {
             final BlockEntity entity = player.level.getBlockEntity(pos);
-            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity) {
-                BlockCustomColorBase.CustomColorBlockEntity entity1 = (BlockCustomColorBase.CustomColorBlockEntity) entity;
+            if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity entity1) {
                 entity1.setData(color);
             }
         });

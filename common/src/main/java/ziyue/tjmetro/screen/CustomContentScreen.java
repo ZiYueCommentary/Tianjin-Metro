@@ -37,8 +37,7 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
         final ClientLevel world = minecraft.level;
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof BlockCustomContentBlockBase.CustomContentBlockEntity) {
-                BlockCustomContentBlockBase.CustomContentBlockEntity entity1 = (BlockCustomContentBlockBase.CustomContentBlockEntity) entity;
+            if (entity instanceof BlockCustomContentBlockBase.CustomContentBlockEntity entity1) {
                 content = entity1.content;
             }
         } else {

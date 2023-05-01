@@ -57,8 +57,8 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingItem(world, player, item -> {
             final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof TileEntityStationNameBase) {
-                ((TileEntityStationNameBase) entity).syncData();
+            if (entity instanceof TileEntityStationNameBase entity1) {
+                entity1.syncData();
                 PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
             }
         }, null, Items.SHEARS);

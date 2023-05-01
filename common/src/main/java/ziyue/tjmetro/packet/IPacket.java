@@ -15,6 +15,5 @@ public interface IPacket
     ResourceLocation PACKET_OPEN_CUSTOM_COLOR_SCREEN = new ResourceLocation(Reference.MOD_ID, "packet_open_custom_color_screen");
     ResourceLocation PACKET_UPDATE_CUSTOM_COLOR = new ResourceLocation(Reference.MOD_ID, "packet_update_custom_color_screen");
     ResourceLocation PACKET_OPEN_RAILWAY_SIGN_SCREEN = new ResourceLocation(Reference.MOD_ID, "packet_open_railway_sign_screen");
-
     ResourceLocation PACKET_SIGN_TYPES = new ResourceLocation(MTR.MOD_ID, "packet_sign_types");
 }

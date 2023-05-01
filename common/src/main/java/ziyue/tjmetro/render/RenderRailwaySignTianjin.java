@@ -49,8 +49,7 @@ public class RenderRailwaySignTianjin<T extends BlockRailwaySignTianjin.TileEnti
 
         final BlockPos pos = entity.getBlockPos();
         final BlockState state = world.getBlockState(pos);
-        if (!(state.getBlock() instanceof BlockRailwaySignBase)) return;
-        final BlockRailwaySignBase block = (BlockRailwaySignBase) state.getBlock();
+        if (!(state.getBlock() instanceof final BlockRailwaySignBase block)) return;
         if (entity.getSignIds().length != block.length) return;
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
         final String[] signIds = entity.getSignIds();

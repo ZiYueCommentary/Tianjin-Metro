@@ -83,18 +83,11 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return IBlock.checkHoldingBrush(level, player, () -> {
-                    final BlockPos posMenuEntity;
-                    switch (blockState.getValue(THIRD)) {
-                        case LOWER:
-                            posMenuEntity = blockPos;
-                            break;
-                        case MIDDLE:
-                            posMenuEntity = blockPos.below(1);
-                            break;
-                        default:
-                            posMenuEntity = blockPos.below(2);
-                            break;
-                    }
+                    final BlockPos posMenuEntity = switch (blockState.getValue(THIRD)) {
+                        case LOWER -> blockPos;
+                        case MIDDLE -> blockPos.below(1);
+                        default -> blockPos.below(2);
+                    };
                     TileEntityMetalDetectionDoor entityDoorUpper = (TileEntityMetalDetectionDoor) level.getBlockEntity(posMenuEntity.above(2));
                     TileEntityMetalDetectionDoor entityDoorMiddle = (TileEntityMetalDetectionDoor) level.getBlockEntity(posMenuEntity.above(1));
                     TileEntityMetalDetectionDoor entityDoorLower = (TileEntityMetalDetectionDoor) level.getBlockEntity(posMenuEntity);
@@ -108,8 +101,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
     @Override
     public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
         if (blockState.getValue(THIRD) != IBlock.EnumThird.LOWER) return;
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
+        if (entity instanceof Player player) {
             TileEntityMetalDetectionDoor entityMetalDetectionDoor = (TileEntityMetalDetectionDoor) level.getBlockEntity(blockPos);
             HashSet<Item> itemHashSet = entityMetalDetectionDoor.getItemHashSet();
             player.inventory.clearOrCountMatchingItems(itemStack -> itemHashSet.contains(itemStack.getItem()), -1, player.inventoryMenu.getCraftSlots());
@@ -130,18 +122,18 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
         switch (blockState.getValue(THIRD)) {
-            case UPPER:
+            case UPPER -> {
                 IBlockExtends.breakBlock(level, blockPos.below(1), this);
                 IBlockExtends.breakBlock(level, blockPos.below(2), this);
-                break;
-            case MIDDLE:
+            }
+            case MIDDLE -> {
                 IBlockExtends.breakBlock(level, blockPos.above(), this);
                 IBlockExtends.breakBlock(level, blockPos.below(), this);
-                break;
-            case LOWER:
+            }
+            case LOWER -> {
                 IBlockExtends.breakBlock(level, blockPos.above(1), this);
                 IBlockExtends.breakBlock(level, blockPos.above(2), this);
-                break;
+            }
         }
         super.playerWillDestroy(level, blockPos, blockState, player);
     }

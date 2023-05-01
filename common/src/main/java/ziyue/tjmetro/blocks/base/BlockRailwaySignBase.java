@@ -88,12 +88,10 @@ public abstract class BlockRailwaySignBase extends BlockDirectionalMapper implem
     @Override
     public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-
         final BlockPos checkPos = findEndWithDirection(world, pos, facing, true);
         if (checkPos != null) {
             IBlock.onBreakCreative(world, player, checkPos);
         }
-
         super.playerWillDestroy(world, pos, state, player);
     }
 
@@ -144,16 +142,12 @@ public abstract class BlockRailwaySignBase extends BlockDirectionalMapper implem
     }
 
     public int getXStart() {
-        switch (length % 4) {
-            case 1:
-                return isOdd ? 4 : 12;
-            case 2:
-                return isOdd ? 16 : 8;
-            case 3:
-                return isOdd ? 12 : 4;
-            default:
-                return isOdd ? 8 : 16;
-        }
+        return switch (length % 4) {
+            case 1 -> isOdd ? 4 : 12;
+            case 2 -> isOdd ? 16 : 8;
+            case 3 -> isOdd ? 12 : 4;
+            default -> isOdd ? 8 : 16;
+        };
     }
 
     protected int getMiddleLength() {

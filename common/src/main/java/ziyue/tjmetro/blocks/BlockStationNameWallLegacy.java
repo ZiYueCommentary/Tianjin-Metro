@@ -119,14 +119,11 @@ public class BlockStationNameWallLegacy extends BlockStationNameBase implements 
 
         @Override
         public int getColor(BlockState state) {
-            switch (getBlockState().getValue(COLOR)) {
-                case 0:
-                    return ARGB_WHITE;
-                case 1:
-                    return ARGB_GRAY;
-                default:
-                    return ARGB_BLACK;
-            }
+            return switch (getBlockState().getValue(COLOR)) {
+                case 0 -> ARGB_WHITE;
+                case 1 -> ARGB_GRAY;
+                default -> ARGB_BLACK;
+            };
         }
     }
 }

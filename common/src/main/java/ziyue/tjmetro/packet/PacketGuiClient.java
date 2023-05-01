@@ -46,8 +46,7 @@ public class PacketGuiClient
         minecraftClient.execute(() -> {
             if (minecraftClient.level != null && !(minecraftClient.screen instanceof CustomContentScreen)) {
                 final BlockEntity entity = minecraftClient.level.getBlockEntity(pos);
-                if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity) {
-                    BlockCustomColorBase.CustomColorBlockEntity entity1 = (BlockCustomColorBase.CustomColorBlockEntity) entity;
+                if (entity instanceof BlockCustomColorBase.CustomColorBlockEntity entity1) {
                     UtilitiesClient.setScreen(minecraftClient, new ColorPickerScreen(pos, entity1.color));
                 }
             }

@@ -10,7 +10,6 @@ import mtr.data.*;
 import mtr.mappings.ScreenMapper;
 import mtr.mappings.Text;
 import mtr.mappings.UtilitiesClient;
-import mtr.packet.PacketTrainDataGuiClient;
 import mtr.render.RenderRailwaySign;
 import mtr.screen.DashboardListSelectorScreen;
 import net.minecraft.client.Minecraft;
@@ -105,8 +104,7 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
 
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(signPos);
-            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign) {
-                BlockRailwaySignBase.TileEntityRailwaySign entityRailwaySign = (BlockRailwaySignBase.TileEntityRailwaySign) entity;
+            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign entityRailwaySign) {
                 signIds = entityRailwaySign.getSignIds();
                 selectedIds = entityRailwaySign.getSelectedIds();
                 isRailwaySign = true;

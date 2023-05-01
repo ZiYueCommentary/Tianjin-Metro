@@ -11,6 +11,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 
+/**
+ * @author ZiYueCommentary
+ * @since beta-1
+ * @see ziyue.tjmetro.screen.OptionsScreen
+ */
+
 public class Options
 {
     protected static boolean enableMTRFilters;

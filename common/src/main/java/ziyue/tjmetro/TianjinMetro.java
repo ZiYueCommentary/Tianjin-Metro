@@ -1,12 +1,9 @@
 package ziyue.tjmetro;
 
 import mtr.CreativeModeTabs;
-import mtr.MTR;
 import mtr.RegistryObject;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
@@ -38,8 +35,7 @@ public class TianjinMetro
             BiConsumer<String, RegistryObject<Block>> registerBlock,
             RegisterBlockItem registerBlockItem,
             RegisterBlockItem registerEnchantedBlockItem,
-            BiConsumer<String, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>>> registerBlockEntityType,
-            BiConsumer<String, RegistryObject<? extends EntityType<? extends Entity>>> registerEntityType
+            BiConsumer<String, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>>> registerBlockEntityType
     ) {
         /* BUILDING */
         registerBlockItem.accept("rolling", BlockList.ROLLING, BUILDING);
