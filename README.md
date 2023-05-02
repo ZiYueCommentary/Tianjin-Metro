@@ -1,6 +1,6 @@
 # Tianjin Metro
 
-![Requires Java 16](https://user-images.githubusercontent.com/63241389/235601070-87355c3d-1430-42c7-94fb-bbee3fb01fb4.png)
+<img alt="Requires Java 16" height="30%" src="https://user-images.githubusercontent.com/63241389/235600700-20920db6-9677-41f6-8215-ba3f5f728213.svg" width="30%"/>
 
 A small addon for [Minecraft Transit Railway](https://github.com/jonafanho/Minecraft-Transit-Railway), in developing stage.
 
