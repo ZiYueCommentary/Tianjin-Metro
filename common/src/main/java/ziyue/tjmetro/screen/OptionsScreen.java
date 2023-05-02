@@ -9,6 +9,12 @@ import mtr.mappings.UtilitiesClient;
 import net.minecraft.client.gui.components.Button;
 import ziyue.tjmetro.Options;
 
+/**
+ * @author ZiYueCommentary
+ * @see Options
+ * @since beta-1
+ */
+
 public class OptionsScreen extends ScreenMapper implements IGui
 {
     protected boolean enableMTRFilters;

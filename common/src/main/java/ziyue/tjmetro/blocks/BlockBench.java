@@ -146,7 +146,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
          * @see ziyue.tjmetro.mixin.mixins.MinecraftServerMixin
          */
         public void ride(Level world, BlockPos pos, Player player) {
-            seat = new Minecart(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)
+            seat = new Minecart(world, pos.getX() + 0.5, pos.getY() + 0.35, pos.getZ() + 0.5)
             {
                 @Override
                 public boolean isPushable() {
