@@ -1,5 +1,7 @@
 # Tianjin Metro
 
+![Requires Java 16](https://user-images.githubusercontent.com/63241389/235601070-87355c3d-1430-42c7-94fb-bbee3fb01fb4.png)
+
 A small addon for [Minecraft Transit Railway](https://github.com/jonafanho/Minecraft-Transit-Railway), in developing stage.
 
 ## How to build
