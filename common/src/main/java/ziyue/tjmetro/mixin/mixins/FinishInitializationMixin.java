@@ -280,15 +280,13 @@ public class FinishInitializationMixin
                 Blocks.STATION_NAME_WALL_GRAY.get().asItem(),
                 Blocks.STATION_NAME_TALL_BLOCK.get().asItem(),
                 Blocks.STATION_NAME_TALL_BLOCK_DOUBLE_SIDED.get().asItem(),
-                Blocks.STATION_NAME_TALL_WALL.get().asItem(),
-                Blocks.STATION_COLOR_POLE.get().asItem()
+                Blocks.STATION_NAME_TALL_WALL.get().asItem()
         );
         Filters.MTR_RAILWAY_FACILITIES_TICKETS.addItems(
                 Blocks.TICKET_BARRIER_ENTRANCE_1.get().asItem(),
                 Blocks.TICKET_BARRIER_EXIT_1.get().asItem(),
                 Blocks.TICKET_MACHINE.get().asItem(),
                 Blocks.TICKET_PROCESSOR.get().asItem(),
-                Blocks.TICKET_PROCESSOR_ENQUIRY.get().asItem(),
                 Blocks.TICKET_PROCESSOR_ENTRANCE.get().asItem(),
                 Blocks.TICKET_PROCESSOR_EXIT.get().asItem(),
                 Blocks.TICKET_PROCESSOR_ENQUIRY.get().asItem()

@@ -78,7 +78,7 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRail
         matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         matrices.translate(block.getXStart() / 16F - 0.5, -0.25, 0.493);
-        if (entity.isBig) {
+        if (entity.isBig()) {
             matrices.translate(0, -0.2, -0.03);
             matrices.scale(2, 2, 2);
         }

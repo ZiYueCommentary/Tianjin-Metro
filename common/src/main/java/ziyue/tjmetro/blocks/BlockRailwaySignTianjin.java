@@ -17,6 +17,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.BlockList;
 import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
+import ziyue.tjmetro.blocks.base.IRailwaySign;
 
 public class BlockRailwaySignTianjin extends BlockRailwaySignBase
 {
@@ -30,17 +31,22 @@ public class BlockRailwaySignTianjin extends BlockRailwaySignBase
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor world, BlockPos pos, BlockPos posFrom) {
-        return super.updateShape(state, direction, newState, world, pos, posFrom, BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get());
+        return IRailwaySign.updateShape(state, direction, newState, BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get());
     }
 
     @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        super.setPlacedBy(world, pos, state, placer, itemStack, BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get());
+        IRailwaySign.setPlacedBy(world, pos, state, BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get(), getMiddleLength());
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
-        return super.getShape(state, blockGetter, pos, collisionContext, BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get());
+        return IRailwaySign.getShape(state, getXStart(), BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get());
+    }
+
+    @Override
+    protected BlockPos findEndWithDirection(Level world, BlockPos startPos, Direction direction, boolean allowOpposite) {
+        return IRailwaySign.findEndWithDirection(world, startPos, direction, allowOpposite, BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get());
     }
 
     @Override
@@ -50,12 +56,11 @@ public class BlockRailwaySignTianjin extends BlockRailwaySignBase
 
     @Override
     public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state) {
-        return this == BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get() ? null : new TileEntityRailwaySignTianjin(length, isOdd, pos, state);
-    }
-
-    @Override
-    protected BlockPos findEndWithDirection(Level world, BlockPos startPos, Direction direction, boolean allowOpposite) {
-        return super.findEndWithDirection(world, startPos, direction, allowOpposite, BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get());
+        if (this == BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get()) {
+            return null;
+        } else {
+            return new TileEntityRailwaySignTianjin(length, isOdd, pos, state);
+        }
     }
 
     public static class TileEntityRailwaySignTianjin extends TileEntityRailwaySign

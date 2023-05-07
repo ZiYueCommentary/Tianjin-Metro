@@ -69,6 +69,15 @@ public class TianjinMetro
         registerBlockItem.accept("railway_sign_wall_6", BlockList.RAILWAY_SIGN_WALL_6, RAILWAYS);
         registerBlockItem.accept("railway_sign_wall_8", BlockList.RAILWAY_SIGN_WALL_8, RAILWAYS);
         registerBlockItem.accept("railway_sign_wall_10", BlockList.RAILWAY_SIGN_WALL_10, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_big_2", BlockList.RAILWAY_SIGN_WALL_BIG_2, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_big_3", BlockList.RAILWAY_SIGN_WALL_BIG_3, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_big_4", BlockList.RAILWAY_SIGN_WALL_BIG_4, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_big_5", BlockList.RAILWAY_SIGN_WALL_BIG_5, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_big_6", BlockList.RAILWAY_SIGN_WALL_BIG_6, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_big_7", BlockList.RAILWAY_SIGN_WALL_BIG_7, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_big_8", BlockList.RAILWAY_SIGN_WALL_BIG_8, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_big_9", BlockList.RAILWAY_SIGN_WALL_BIG_9, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_big_10", BlockList.RAILWAY_SIGN_WALL_BIG_10, RAILWAYS);
         registerBlockItem.accept("railway_sign_tianjin_2_odd", BlockList.RAILWAY_SIGN_TIANJIN_2_ODD, RAILWAYS);
         registerBlockItem.accept("railway_sign_tianjin_3_odd", BlockList.RAILWAY_SIGN_TIANJIN_3_ODD, RAILWAYS);
         registerBlockItem.accept("railway_sign_tianjin_4_odd", BlockList.RAILWAY_SIGN_TIANJIN_4_ODD, RAILWAYS);
@@ -98,6 +107,7 @@ public class TianjinMetro
         registerEnchantedBlockItem.accept("station_color_ceiling_not_lit", BlockList.STATION_COLOR_CEILING_NOT_LIT, CEILINGS);
 
         registerBlock.accept("railway_sign_wall_middle", BlockList.RAILWAY_SIGN_WALL_MIDDLE);
+        registerBlock.accept("railway_sign_wall_big_middle", BlockList.RAILWAY_SIGN_WALL_BIG_MIDDLE);
         registerBlock.accept("railway_sign_tianjin_middle", BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE);
 
         registerBlockEntityType.accept("station_name_sign_2", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_2);
@@ -114,6 +124,15 @@ public class TianjinMetro
         registerBlockEntityType.accept("railway_sign_wall_6", BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_8", BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_10", BlockEntityTypes.RAILWAY_SIGN_WALL_10_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_big_2", BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_2_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_big_3", BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_3_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_big_4", BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_4_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_big_5", BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_5_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_big_6", BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_6_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_big_7", BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_7_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_big_8", BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_8_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_big_9", BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_9_TILE_ENTITY);
+        registerBlockEntityType.accept("railway_sign_wall_big_10", BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_10_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_tianjin_2_odd", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_2_ODD_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_tianjin_3_odd", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_3_ODD_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_tianjin_4_odd", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_4_ODD_TILE_ENTITY);
