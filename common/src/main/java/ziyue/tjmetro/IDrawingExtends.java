@@ -11,6 +11,8 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public interface IDrawingExtends
             final boolean isCJK = IGui.isCjk(stringSplitPart);
             isCJKList.add(isCJK);
 
-            final FormattedCharSequence orderedText = Text.literal(stringSplitPart).getVisualOrderText();
+            final FormattedCharSequence orderedText = Text.literal(stringSplitPart).withStyle(Style.EMPTY.withFont(new ResourceLocation(Reference.MOD_ID, "tjmetro"))).getVisualOrderText();
             orderedTexts.add(orderedText);
 
             totalHeight += IGui.LINE_HEIGHT * (isCJK ? 2 : 1);

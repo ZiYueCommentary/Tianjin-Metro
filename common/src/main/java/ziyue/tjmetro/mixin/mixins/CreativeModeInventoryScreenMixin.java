@@ -17,11 +17,11 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ziyue.tjmetro.Options;
 import ziyue.tjmetro.Reference;
 import ziyue.tjmetro.filters.Filter;
 import ziyue.tjmetro.filters.IconButton;
 import ziyue.tjmetro.mixin.properties.CreativeModeInventoryScreenProperties;
-import ziyue.tjmetro.screen.OptionsScreen;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -100,7 +100,7 @@ public abstract class CreativeModeInventoryScreenMixin extends EffectRenderingIn
             filter.btnScrollDown = new IconButton(this.leftPos - 22, this.topPos + 127, Text.translatable("button.tjmetro.scroll_down").withStyle(ChatFormatting.WHITE), button -> filter.filterIndex++, ICONS, 16, 0);
             filter.btnEnableAll = new IconButton(this.leftPos - 50, this.topPos + 10, Text.translatable("button.tjmetro.enable_all").withStyle(ChatFormatting.WHITE), button -> Filter.FILTERS.get(getSelectedTab()).forEach(filter1 -> filter1.enabled = true), ICONS, 32, 0);
             filter.btnDisableAll = new IconButton(this.leftPos - 50, this.topPos + 32, Text.translatable("button.tjmetro.disable_all").withStyle(ChatFormatting.WHITE), button -> Filter.FILTERS.get(getSelectedTab()).forEach(filter1 -> filter1.enabled = false), ICONS, 48, 0);
-            filter.btnOptions = new IconButton(this.leftPos - 50, this.topPos + 54, Text.translatable("button.tjmetro.tianjin_metro_options").withStyle(ChatFormatting.WHITE), button -> minecraft.setScreen(new OptionsScreen()), ICONS, 64, 0);
+            filter.btnOptions = new IconButton(this.leftPos - 50, this.topPos + 54, Text.translatable("button.tjmetro.tianjin_metro_options").withStyle(ChatFormatting.WHITE), button -> minecraft.setScreen(Options.getOptionScreen()), ICONS, 64, 0);
             addButton(filter.btnScrollUp);
             addButton(filter.btnScrollDown);
             addButton(filter.btnEnableAll);

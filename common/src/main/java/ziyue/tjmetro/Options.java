@@ -2,9 +2,15 @@ package ziyue.tjmetro;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import me.shedaniel.clothconfig2.api.ConfigBuilder;
+import me.shedaniel.clothconfig2.api.ConfigCategory;
+import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
 import mtr.CreativeModeTabs;
 import mtr.data.RailwayData;
+import mtr.mappings.Text;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import ziyue.tjmetro.filters.Filter;
 
 import java.nio.file.Files;
@@ -14,7 +20,6 @@ import java.util.Collections;
 /**
  * @author ZiYueCommentary
  * @since beta-1
- * @see ziyue.tjmetro.screen.OptionsScreen
  */
 
 public class Options
@@ -23,8 +28,16 @@ public class Options
     protected static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");
     protected static final String ENABLE_MTR_FILTERS_KEY = "enable_mtr_filters";
 
-    public static boolean enableMTRFilters() {
-        return enableMTRFilters;
+    public static Screen getOptionScreen() {
+        ConfigBuilder builder = ConfigBuilder.create().setTitle(Text.translatable("gui.tjmetro.options")).transparentBackground();
+        ConfigCategory category = builder.getOrCreateCategory(Text.translatable("gui.tjmetro.options"));
+        ConfigEntryBuilder entryBuilder = builder.entryBuilder();
+        BooleanListEntry enableMTR = entryBuilder.startBooleanToggle(Text.translatable("options.tjmetro.enable_mtr_filters"), enableMTRFilters).setTooltip().build();
+        category.addEntry(enableMTR);
+        builder.setSavingRunnable(() -> {
+            enableMTRFilters(enableMTR.getValue());
+        });
+        return builder.build();
     }
 
     public static boolean enableMTRFilters(boolean value) {

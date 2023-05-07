@@ -16,6 +16,9 @@
     "icon": "icon.png",
     "environment": "*",
     "entrypoints": {
+        "modmenu": [
+            "ziyue.tjmetro.ModMenuConfig"
+        ],
         "main": [
             "ziyue.tjmetro.MainFabric"
         ],
