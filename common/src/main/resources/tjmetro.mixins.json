@@ -4,12 +4,9 @@
     "package": "ziyue.tjmetro.mixin.mixins",
     "compatibilityLevel": "JAVA_16",
     "mixins": [
-        "BlockStationNameEntranceMixin",
-        "BlockStationNameWallBaseMixin",
         "FallingBlockMixin",
         "FinishInitializationMixin",
-        "MinecraftServerMixin",
-        "RenderStationNameTiledMixin"
+        "MinecraftServerMixin"
     ],
     "injectors": {
         "defaultRequire": 1
