@@ -1,6 +1,9 @@
 package ziyue.tjmetro;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import mtr.MTR;
+import mtr.client.Config;
+import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.mappings.Text;
 import net.minecraft.ChatFormatting;
@@ -28,12 +31,24 @@ import java.util.List;
 public interface IDrawingExtends
 {
     /**
-     * Drawing string with minecraft font.
+     * Drawing string with Tianjin Metro Font.
      *
      * @author ZiYueCommentary
      * @since beta-1
      */
-    static void drawString(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, mtr.client.IDrawing.DrawingCallback drawingCallback) {
+    static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, boolean useMinecraftFont, IDrawing.DrawingCallback drawingCallback) {
+        final Style style;
+        if (useMinecraftFont) {
+            style = Style.EMPTY;
+        } else if (Options.getUseTianjinMetroFont()) {
+            style = Style.EMPTY.withFont(new ResourceLocation(Reference.MOD_ID, "tjmetro"));
+            y += 0.05f;
+        } else if (Config.useMTRFont()) {
+            style = Style.EMPTY.withFont(new ResourceLocation(MTR.MOD_ID, "mtr"));
+        } else {
+            style = Style.EMPTY;
+        }
+
         while (text.contains("||")) {
             text = text.replace("||", "|");
         }
@@ -46,7 +61,7 @@ public interface IDrawingExtends
             final boolean isCJK = IGui.isCjk(stringSplitPart);
             isCJKList.add(isCJK);
 
-            final FormattedCharSequence orderedText = Text.literal(stringSplitPart).withStyle(Style.EMPTY.withFont(new ResourceLocation(Reference.MOD_ID, "tjmetro"))).getVisualOrderText();
+            final FormattedCharSequence orderedText = Text.literal(stringSplitPart).withStyle(style).getVisualOrderText();
             orderedTexts.add(orderedText);
 
             totalHeight += IGui.LINE_HEIGHT * (isCJK ? 2 : 1);
@@ -98,7 +113,7 @@ public interface IDrawingExtends
                 matrices.popPose();
             }
 
-            offset += IGui.LINE_HEIGHT * extraScale;
+            offset += IGui.LINE_HEIGHT * (Options.getUseTianjinMetroFont() ? 0.8 : 1) * extraScale;
         }
 
         matrices.popPose();
@@ -108,6 +123,27 @@ public interface IDrawingExtends
             final float y1 = verticalAlignment.getOffset(y, totalHeight / scale);
             drawingCallback.drawingCallback(x1, y1, x1 + totalWidthScaled / scale, y1 + totalHeight / scale);
         }
+    }
+
+    /**
+     * @see #drawStringWithFont(PoseStack, Font, MultiBufferSource.BufferSource, String, IGui.HorizontalAlignment, IGui.VerticalAlignment, IGui.HorizontalAlignment, float, float, float, float, float, int, boolean, int, boolean, IDrawing.DrawingCallback)
+     */
+    static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, float x, float y, int light) {
+        drawStringWithFont(matrices, textRenderer, immediate, text, IGui.HorizontalAlignment.CENTER, IGui.VerticalAlignment.CENTER, x, y, -1.0F, -1.0F, 1.0F, -1, true, light, null);
+    }
+
+    /**
+     * @see #drawStringWithFont(PoseStack, Font, MultiBufferSource.BufferSource, String, IGui.HorizontalAlignment, IGui.VerticalAlignment, IGui.HorizontalAlignment, float, float, float, float, float, int, boolean, int, boolean, IDrawing.DrawingCallback)
+     */
+    static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, IDrawing.DrawingCallback drawingCallback) {
+        drawStringWithFont(matrices, textRenderer, immediate, text, horizontalAlignment, verticalAlignment, horizontalAlignment, x, y, maxWidth, maxHeight, scale, textColor, shadow, light, drawingCallback);
+    }
+
+    /**
+     * @see #drawStringWithFont(PoseStack, Font, MultiBufferSource.BufferSource, String, IGui.HorizontalAlignment, IGui.VerticalAlignment, IGui.HorizontalAlignment, float, float, float, float, float, int, boolean, int, boolean, IDrawing.DrawingCallback)
+     */
+    static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, IDrawing.DrawingCallback drawingCallback) {
+        drawStringWithFont(matrices, textRenderer, immediate, text, horizontalAlignment, verticalAlignment, xAlignment, x, y, maxWidth, maxHeight, scale, textColor, shadow, light, false, drawingCallback);
     }
 
     /**

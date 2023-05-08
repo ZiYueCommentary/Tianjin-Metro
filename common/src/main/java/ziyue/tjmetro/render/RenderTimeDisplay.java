@@ -59,7 +59,7 @@ public class RenderTimeDisplay<T extends BlockTimeDisplay.TileEntityTimeDisplay>
     }
 
     protected void drawTime(BlockTimeDisplay.TileEntityTimeDisplay entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int light) {
-        IDrawingExtends.drawString(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0, -1, -1, 30, -3276781, false, light, null);
+        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0, -1, -1, 30, -3276781, false, light, true, null);
     }
 
     public static String getFormattedTime(long ticks) {

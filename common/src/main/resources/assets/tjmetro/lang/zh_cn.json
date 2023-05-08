@@ -46,14 +46,17 @@
 
     "options.tjmetro.no_colored_lights": "不渲染彩色光照",
     "options.tjmetro.enable_mtr_filters": "启用 MTR 筛选器",
+    "options.tjmetro.use_tianjin_metro_font": "使用天津地铁字体",
 
     "tooltip.tjmetro.not_suggest": "不建议启用此功能",
+    "tooltip.tjmetro.experimental": "此设置为实验性功能",
     "tooltip.tjmetro.station_name": "文字取决于车站",
     "tooltip.tjmetro.custom_content": "支持自定义显示内容",
     "tooltip.tjmetro.custom_color": "支持自定义显示颜色",
     "tooltip.tjmetro.no_colored_lights": "如果你遇到了有关“装饰灯”的崩溃问题，请启用此选项。",
     "tooltip.tjmetro.station_name_sign": "一个小站名牌，可以用剪刀修改牌子的显示内容。",
     "tooltip.tjmetro.metal_detection_door": "一个从玩家背包栏中清除特定的物品的装置。注意，这将直接删除物品，而不是取出物品。",
+    "tooltip.tjmetro.use_tianjin_metro_font": "在某些地方上使用模组自定字体渲染文字。",
     "tooltip.tjmetro.shift": "长按 Shift 显示更多信息",
 
     "filter.tjmetro.roadblocks": "路障",

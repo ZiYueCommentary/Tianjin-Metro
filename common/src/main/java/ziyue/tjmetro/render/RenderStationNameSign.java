@@ -20,6 +20,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import ziyue.tjmetro.IDrawingExtends;
 import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 
 /**
@@ -69,6 +70,6 @@ public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntity
     }
 
     protected void drawStationName(PoseStack matrices, MultiBufferSource.BufferSource immediate, String stationName, int color, int light) {
-        IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -0.105f, 0.85F, 1F, 100, color, false, light, null);
+        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -0.105f, 0.85F, 1F, 100, color, false, light, null);
     }
 }

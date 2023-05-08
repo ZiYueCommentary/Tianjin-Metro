@@ -6,9 +6,11 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
+import me.shedaniel.clothconfig2.gui.entries.EnumListEntry;
 import mtr.CreativeModeTabs;
 import mtr.data.RailwayData;
 import mtr.mappings.Text;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import ziyue.tjmetro.filters.Filter;
@@ -25,30 +27,44 @@ import java.util.Collections;
 public class Options
 {
     protected static boolean enableMTRFilters;
+    protected static boolean useTianjinMetroFont;
     protected static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");
     protected static final String ENABLE_MTR_FILTERS_KEY = "enable_mtr_filters";
+    protected static final String USE_TIANJIN_METRO_FONT_KEY = "use_tianjin_metro_font";
 
     public static Screen getOptionScreen() {
         ConfigBuilder builder = ConfigBuilder.create().setTitle(Text.translatable("gui.tjmetro.options")).transparentBackground();
         ConfigCategory category = builder.getOrCreateCategory(Text.translatable("gui.tjmetro.options"));
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
-        BooleanListEntry enableMTR = entryBuilder.startBooleanToggle(Text.translatable("options.tjmetro.enable_mtr_filters"), enableMTRFilters).setTooltip().build();
-        category.addEntry(enableMTR);
+        BooleanListEntry booleanMTRFilters = entryBuilder.startBooleanToggle(Text.translatable("options.tjmetro.enable_mtr_filters"), getEnableMTRFilters()).setDefaultValue(true).build();
+        BooleanListEntry booleanUseTianjinMetroFont = entryBuilder.startBooleanToggle(Text.translatable("options.tjmetro.use_tianjin_metro_font"), getUseTianjinMetroFont()).setTooltip(Text.translatable("tooltip.tjmetro.use_tianjin_metro_font"), Text.translatable("tooltip.tjmetro.experimental").withStyle(ChatFormatting.YELLOW)).setDefaultValue(false).build();
+        category.addEntry(booleanMTRFilters).addEntry(booleanUseTianjinMetroFont);
         builder.setSavingRunnable(() -> {
-            enableMTRFilters(enableMTR.getValue());
+            setEnableMTRFilters(booleanMTRFilters.getValue());
+            setUseTianjinMetroFont(booleanUseTianjinMetroFont.getValue());
+            writeToFile();
         });
         return builder.build();
     }
 
-    public static boolean enableMTRFilters(boolean value) {
+    public static boolean getEnableMTRFilters() {
+        return enableMTRFilters;
+    }
+
+    public static void setEnableMTRFilters(boolean value) {
         enableMTRFilters = value;
         Filter.FILTERS.get(CreativeModeTabs.CORE.get().getId()).enabled = value;
         Filter.FILTERS.get(CreativeModeTabs.ESCALATORS_LIFTS.get().getId()).enabled = value;
         Filter.FILTERS.get(CreativeModeTabs.RAILWAY_FACILITIES.get().getId()).enabled = value;
         Filter.FILTERS.get(CreativeModeTabs.STATION_BUILDING_BLOCKS.get().getId()).enabled = value;
+    }
 
-        writeToFile();
-        return enableMTRFilters;
+    public static boolean getUseTianjinMetroFont() {
+        return useTianjinMetroFont;
+    }
+
+    public static void setUseTianjinMetroFont(boolean value) {
+        useTianjinMetroFont = value;
     }
 
     public static void refreshProperties() {
@@ -56,7 +72,8 @@ public class Options
         try {
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_FILE_PATH))).getAsJsonObject();
             try {
-                enableMTRFilters(jsonConfig.get(ENABLE_MTR_FILTERS_KEY).getAsBoolean());
+                setEnableMTRFilters(jsonConfig.get(ENABLE_MTR_FILTERS_KEY).getAsBoolean());
+                setUseTianjinMetroFont(jsonConfig.get(USE_TIANJIN_METRO_FONT_KEY).getAsBoolean());
             } catch (Exception ignored) {
             }
         } catch (Exception e) {
@@ -69,6 +86,7 @@ public class Options
         TianjinMetro.LOGGER.info("Wrote Tianjin Metro options to file");
         final JsonObject jsonConfig = new JsonObject();
         jsonConfig.addProperty(ENABLE_MTR_FILTERS_KEY, enableMTRFilters);
+        jsonConfig.addProperty(USE_TIANJIN_METRO_FONT_KEY, useTianjinMetroFont);
 
         try {
             Files.write(CONFIG_FILE_PATH, Collections.singleton(RailwayData.prettyPrint(jsonConfig)));

@@ -16,6 +16,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import ziyue.tjmetro.IDrawingExtends;
 import ziyue.tjmetro.blocks.BlockRoadblockSign;
 
 /**
@@ -58,6 +59,6 @@ public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBloc
     }
 
     protected void drawStationName(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String content, int light) {
-        IDrawing.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, content, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0.5f, -0.15f, 0.85F * 2 + 0.05f, 1F, 90, ARGB_WHITE, false, light, null);
+        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, content, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0.5f, -0.13f, 0.85F * 2 + 0.05f, 1f, 80, ARGB_WHITE, false, light, null);
     }
 }
