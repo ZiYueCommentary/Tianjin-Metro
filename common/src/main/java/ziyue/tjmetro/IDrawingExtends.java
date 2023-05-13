@@ -2,7 +2,6 @@ package ziyue.tjmetro;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.MTR;
-import mtr.client.Config;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.mappings.Text;
@@ -15,11 +14,15 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 /**
  * Some methods similar to methods in <b>IDrawing</b>.
@@ -40,10 +43,10 @@ public interface IDrawingExtends
         final Style style;
         if (useMinecraftFont) {
             style = Style.EMPTY;
-        } else if (Options.getUseTianjinMetroFont()) {
+        } else if (Config.getUseTianjinMetroFont()) {
             style = Style.EMPTY.withFont(new ResourceLocation(Reference.MOD_ID, "tjmetro"));
             y += 0.05f;
-        } else if (Config.useMTRFont()) {
+        } else if (mtr.client.Config.useMTRFont()) {
             style = Style.EMPTY.withFont(new ResourceLocation(MTR.MOD_ID, "mtr"));
         } else {
             style = Style.EMPTY;
@@ -113,7 +116,7 @@ public interface IDrawingExtends
                 matrices.popPose();
             }
 
-            offset += IGui.LINE_HEIGHT * (Options.getUseTianjinMetroFont() ? 0.8 : 1) * extraScale;
+            offset += IGui.LINE_HEIGHT * (Config.getUseTianjinMetroFont() ? 0.8 : 1) * extraScale;
         }
 
         matrices.popPose();
@@ -147,7 +150,7 @@ public interface IDrawingExtends
     }
 
     /**
-     * Get multi-line components by split a component.
+     * Get multiple lines components by split a component.
      *
      * @param component a string that wait for split
      * @param regex     the delimiting regular expression
@@ -185,7 +188,7 @@ public interface IDrawingExtends
      * Add a <b>hold shift tooltip</b> to a tooltip, no need to re-assignment.
      *
      * @param list      hover Text List, just like pointer in C/C++
-     * @param component a component that wait for split.
+     * @param component a component that wait for split
      * @param regex     the delimiting regular expression
      * @param limit     the result threshold, as described above
      * @return hover text list
@@ -220,5 +223,52 @@ public interface IDrawingExtends
      */
     static List<Component> addHoldShiftTooltip(List<Component> list, MutableComponent component, boolean wordWarp) {
         return addHoldShiftTooltip(list, component, wordWarp, "\n", 0);
+    }
+
+    /**
+     * Formatting the component with specific styles.
+     * A valid format-able string should like this: {@code Hello! <1>This is an example!</>}
+     */
+    static MutableComponent format(Component component, Style... styles) {
+        Style componentStyle = component.getStyle();
+        MutableComponent result = new TextComponent("");
+        String contents = component.getString();
+        int firstTagBegin = contents.indexOf('<');
+        while (firstTagBegin != -1) {
+            if (firstTagBegin != 0) {
+                result.append(Text.literal(contents.substring(0, firstTagBegin)).withStyle(componentStyle));
+                contents = contents.substring(firstTagBegin);
+            } else {
+                int firstTagEnd = contents.indexOf('>');
+                int tagId = Integer.parseInt(contents.substring(firstTagBegin + 1, firstTagEnd));
+                contents = contents.substring(firstTagEnd + 1);
+                int lastTagBegin = contents.indexOf("</>");
+                result.append(Text.literal(contents.substring(0, lastTagBegin)).withStyle(styles[tagId - 1]));
+                contents = contents.substring(lastTagBegin + 3);
+            }
+            firstTagBegin = contents.indexOf('<');
+        }
+        result.append(Text.literal(contents).withStyle(componentStyle));
+        return result;
+    }
+
+    class FormatSupplier
+    {
+        final Supplier<Component> componentSupplier;
+        final Style[] styles;
+
+        @SafeVarargs
+        public FormatSupplier(Supplier<Component> componentSupplier, UnaryOperator<Style>... styles) {
+            List<Style> styleList = new ArrayList<>();
+            Style[] styles1 = new Style[styles.length];
+            Arrays.stream(styles).forEach(style1 -> styleList.add(style1.apply(componentSupplier.get().getStyle())));
+            styleList.toArray(styles1);
+            this.componentSupplier = componentSupplier;
+            this.styles = styles1;
+        }
+
+        public MutableComponent get() {
+            return format(componentSupplier.get(), styles);
+        }
     }
 }

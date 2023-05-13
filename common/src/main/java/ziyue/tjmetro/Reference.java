@@ -11,4 +11,7 @@ public interface Reference
     String MOD_ID = "tjmetro";
     String NAME = "Tianjin Metro";
     String VERSION = "beta-1";
+
+    String GITHUB_REPO = "https://github.com/ZiYueCommentary/Tianjin-Metro";
+    String CONTRIBUTORS = "https://github.com/ZiYueCommentary/Tianjin-Metro/graphs/contributors";
 }

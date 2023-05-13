@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.Filters;
-import ziyue.tjmetro.Options;
+import ziyue.tjmetro.Config;
 import ziyue.tjmetro.Reference;
 import ziyue.tjmetro.filters.Filter;
 
@@ -72,7 +72,7 @@ public class FinishInitializationMixin
 
         LOGGER.info("Found {} uncategorized items, added {} filters to the filter lists", uncategorizedItems.get(), uncategorizedFilters.get());
 
-        Options.refreshProperties();
+        Config.refreshProperties();
     }
 
     private static void registerMTRCoreFilters() {

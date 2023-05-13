@@ -44,20 +44,21 @@
     "button.tjmetro.disable_all": "Disable All Filters",
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Settings",
 
-    "options.tjmetro.no_colored_lights": "No Colored Lights",
-    "options.tjmetro.enable_mtr_filters": "Enable MTR Filters",
-    "options.tjmetro.use_tianjin_metro_font": "Enable Tianjin Metro Font",
+    "config.tjmetro.enable_mtr_filters": "Enable MTR Filters",
+    "config.tjmetro.use_tianjin_metro_font": "Enable Tianjin Metro Font",
 
     "tooltip.tjmetro.not_suggest": "This feature is not suggest.",
     "tooltip.tjmetro.experimental": "This feature is experimental.",
     "tooltip.tjmetro.station_name": "Text depends on the station",
     "tooltip.tjmetro.custom_content": "Support custom display content",
     "tooltip.tjmetro.custom_color": "Support custom display color",
-    "tooltip.tjmetro.no_colored_lights": "If you get crash with \"Decoration Lights\", please enable this option.",
     "tooltip.tjmetro.station_name_sign": "A small station name sign, you can change display content with shears.",
     "tooltip.tjmetro.metal_detection_door": "A device for clearing items from players' inventory. Note this device will deleting item directly, instead of taking out item.",
     "tooltip.tjmetro.use_tianjin_metro_font": "Render texts with mod font in some blocks.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
+
+    "footer.tjmetro.sources": "Wanna see source code? <1>Click here!</>",
+    "footer.tjmetro.contributors": "Tianjin Metro is a community work, <1>click here</> to see contributors!",
 
     "filter.tjmetro.roadblocks": "Roadblocks",
     "filter.tjmetro.building": "Buildings",

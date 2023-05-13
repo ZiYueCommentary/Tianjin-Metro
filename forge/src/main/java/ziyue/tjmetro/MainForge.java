@@ -45,7 +45,7 @@ public class MainForge
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         EventBuses.registerModEventBus(Reference.MOD_ID, eventBus);
 
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (client, parent) -> Options.getOptionScreen());
+        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (client, parent) -> Config.getConfigScreen());
 
         ITEMS.register();
         BLOCKS.register();
