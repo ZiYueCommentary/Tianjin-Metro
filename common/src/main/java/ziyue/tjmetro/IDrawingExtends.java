@@ -11,17 +11,14 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 /**
@@ -33,6 +30,13 @@ import java.util.function.UnaryOperator;
 
 public interface IDrawingExtends
 {
+    /**
+     * Get the super link style.
+     *
+     * @since beta-1
+     */
+    Function<String, Style> SUPER_LINK_STYLE = link -> Style.EMPTY.withBold(true).withUnderlined(true).withColor(ChatFormatting.BLUE).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link)).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(link)));
+
     /**
      * Drawing string with Tianjin Metro Font.
      *
@@ -228,6 +232,9 @@ public interface IDrawingExtends
     /**
      * Formatting the component with specific styles.
      * A valid format-able string should like this: {@code Hello! <1>This is an example!</>}
+     *
+     * @author ZiYueCommentary
+     * @since beta-1
      */
     static MutableComponent format(Component component, Style... styles) {
         Style componentStyle = component.getStyle();
@@ -252,23 +259,17 @@ public interface IDrawingExtends
         return result;
     }
 
-    class FormatSupplier
-    {
-        final Supplier<Component> componentSupplier;
-        final Style[] styles;
-
-        @SafeVarargs
-        public FormatSupplier(Supplier<Component> componentSupplier, UnaryOperator<Style>... styles) {
-            List<Style> styleList = new ArrayList<>();
-            Style[] styles1 = new Style[styles.length];
-            Arrays.stream(styles).forEach(style1 -> styleList.add(style1.apply(componentSupplier.get().getStyle())));
-            styleList.toArray(styles1);
-            this.componentSupplier = componentSupplier;
-            this.styles = styles1;
-        }
-
-        public MutableComponent get() {
-            return format(componentSupplier.get(), styles);
-        }
+    /**
+     * @author ZiYueCommentary
+     * @see #format(Component, Style...)
+     * @since beta-1
+     */
+    @SafeVarargs
+    static MutableComponent format(Component component, UnaryOperator<Style>... styles) {
+        List<Style> styleList = new ArrayList<>();
+        Style[] styles1 = new Style[styles.length];
+        Arrays.stream(styles).forEach(style1 -> styleList.add(style1.apply(component.getStyle())));
+        styleList.toArray(styles1);
+        return format(component, styles1);
     }
 }

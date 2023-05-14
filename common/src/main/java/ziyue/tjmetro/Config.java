@@ -13,9 +13,7 @@ import mtr.mappings.Text;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.MutableComponent;
 import ziyue.tjmetro.filters.Filter;
 
 import java.nio.file.Files;
@@ -24,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 
 /**
  * @author ZiYueCommentary
@@ -37,9 +36,9 @@ public class Config
     protected static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");
     protected static final String ENABLE_MTR_FILTERS_KEY = "enable_mtr_filters";
     protected static final String USE_TIANJIN_METRO_FONT_KEY = "use_tianjin_metro_font";
-    protected static final List<IDrawingExtends.FormatSupplier> FOOTERS = Arrays.asList(
-            new IDrawingExtends.FormatSupplier(() -> Text.translatable("footer.tjmetro.sources").withStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Reference.GITHUB_REPO))), style -> style.withBold(true).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(Reference.GITHUB_REPO)))),
-            new IDrawingExtends.FormatSupplier(() -> Text.translatable("footer.tjmetro.contributors").withStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Reference.CONTRIBUTORS))), style -> style.withBold(true).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(Reference.CONTRIBUTORS))))
+    protected static final List<Supplier<MutableComponent>> FOOTERS = Arrays.asList(
+            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.sources"), style -> IDrawingExtends.SUPER_LINK_STYLE.apply(Reference.GITHUB_REPO).applyTo(style)),
+            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.contributors"), style -> IDrawingExtends.SUPER_LINK_STYLE.apply(Reference.CONTRIBUTORS).applyTo(style))
     );
 
     public static Screen getConfigScreen() {
