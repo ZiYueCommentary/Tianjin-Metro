@@ -31,11 +31,11 @@ import java.util.function.UnaryOperator;
 public interface IDrawingExtends
 {
     /**
-     * Get the super link style.
+     * Get the link style.
      *
      * @since beta-1
      */
-    Function<String, Style> SUPER_LINK_STYLE = link -> Style.EMPTY.withBold(true).withUnderlined(true).withColor(ChatFormatting.BLUE).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link)).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(link)));
+    Function<String, Style> LINK_STYLE = link -> Style.EMPTY.withUnderlined(true).withColor(ChatFormatting.BLUE).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link)).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(link)));
 
     /**
      * Drawing string with Tianjin Metro Font.
@@ -47,7 +47,7 @@ public interface IDrawingExtends
         final Style style;
         if (useMinecraftFont) {
             style = Style.EMPTY;
-        } else if (Config.getUseTianjinMetroFont()) {
+        } else if (Config.USE_TIANJIN_METRO_FONT.getValue()) {
             style = Style.EMPTY.withFont(new ResourceLocation(Reference.MOD_ID, "tjmetro"));
             y += 0.05f;
         } else if (mtr.client.Config.useMTRFont()) {
@@ -120,7 +120,7 @@ public interface IDrawingExtends
                 matrices.popPose();
             }
 
-            offset += IGui.LINE_HEIGHT * (Config.getUseTianjinMetroFont() ? 0.8 : 1) * extraScale;
+            offset += IGui.LINE_HEIGHT * (Config.USE_TIANJIN_METRO_FONT.getValue() ? 0.8 : 1) * extraScale;
         }
 
         matrices.popPose();
