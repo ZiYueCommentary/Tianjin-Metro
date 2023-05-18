@@ -59,7 +59,7 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
         try {
             renderBackground(matrices);
             font.draw(matrices, Text.translatable("gui.tjmetro.custom_content"), SQUARE_SIZE, TEXT_PADDING, ARGB_WHITE);
-            textField.setWidth((int) (width / 1.1));
+            textField.setWidth(width - (SQUARE_SIZE * 2));
             super.render(matrices, mouseX, mouseY, delta);
         } catch (Exception e) {
             TianjinMetro.LOGGER.error(e);
