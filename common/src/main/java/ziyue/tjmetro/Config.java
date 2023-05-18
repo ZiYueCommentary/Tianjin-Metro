@@ -72,8 +72,8 @@ public class Config
         try {
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_FILE_PATH))).getAsJsonObject();
             try {
-                ENABLE_MTR_FILTERS.setValue(jsonConfig.get(ENABLE_MTR_FILTERS.getKey()).getAsBoolean());
-                USE_TIANJIN_METRO_FONT.setValue(jsonConfig.get(USE_TIANJIN_METRO_FONT.getKey()).getAsBoolean());
+                ENABLE_MTR_FILTERS.setValue(jsonConfig.get(ENABLE_MTR_FILTERS.getId()).getAsBoolean());
+                USE_TIANJIN_METRO_FONT.setValue(jsonConfig.get(USE_TIANJIN_METRO_FONT.getId()).getAsBoolean());
             } catch (Exception ignored) {
                 ENABLE_MTR_FILTERS.setValue(ENABLE_MTR_FILTERS.getDefaultValue());
                 USE_TIANJIN_METRO_FONT.setValue(USE_TIANJIN_METRO_FONT.getDefaultValue());
@@ -87,8 +87,8 @@ public class Config
     protected static void writeToFile() {
         TianjinMetro.LOGGER.info("Wrote Tianjin Metro config to file");
         final JsonObject jsonConfig = new JsonObject();
-        jsonConfig.addProperty(ENABLE_MTR_FILTERS.getKey(), ENABLE_MTR_FILTERS.getValue());
-        jsonConfig.addProperty(USE_TIANJIN_METRO_FONT.getKey(), USE_TIANJIN_METRO_FONT.getValue());
+        jsonConfig.addProperty(ENABLE_MTR_FILTERS.getId(), ENABLE_MTR_FILTERS.getValue());
+        jsonConfig.addProperty(USE_TIANJIN_METRO_FONT.getId(), USE_TIANJIN_METRO_FONT.getValue());
 
         try {
             Files.write(CONFIG_FILE_PATH, Collections.singleton(RailwayData.prettyPrint(jsonConfig)));
@@ -108,16 +108,16 @@ public class Config
     {
         protected T value;
         protected final T defaultValue;
-        protected final String key;
+        protected final String id;
 
-        public Key(String key, T defaultValue) {
-            this.key = key;
+        public Key(String id, T defaultValue) {
+            this.id = id;
             this.value = defaultValue;
             this.defaultValue = defaultValue;
         }
 
-        public String getKey() {
-            return key;
+        public String getId() {
+            return id;
         }
 
         public T getValue() {
