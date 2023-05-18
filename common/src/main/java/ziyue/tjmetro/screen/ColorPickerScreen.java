@@ -12,6 +12,7 @@ import mtr.mappings.UtilitiesClient;
 import mtr.packet.IPacket;
 import mtr.screen.WidgetBetterCheckbox;
 import mtr.screen.WidgetBetterTextField;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import org.apache.commons.lang3.StringUtils;
@@ -41,6 +42,7 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
     protected final WidgetBetterTextField textFieldGreen;
     protected final WidgetBetterTextField textFieldBlue;
     protected final WidgetBetterCheckbox defaultColorCheckBox;
+    protected final Button buttonReset;
     protected static final int RIGHT_WIDTH = 60;
 
     public ColorPickerScreen(BlockPos pos, int oldColor) {
@@ -54,6 +56,10 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
         defaultColorCheckBox = new WidgetBetterCheckbox(0, 0, 100, 20, Text.translatable("gui.tjmetro.default_color"), button -> {
         });
         defaultColorCheckBox.setChecked(oldColor == -1);
+        this.buttonReset = UtilitiesClient.newButton(Text.translatable("gui.mtr.reset_sign"), (button) -> {
+            this.setHsb(oldColor, true);
+            button.active = false;
+        });
     }
 
     @Override
@@ -67,6 +73,7 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
         IDrawing.setPositionAndWidth(textFieldGreen, startX + TEXT_FIELD_PADDING / 2, startY + SQUARE_SIZE * 3 + TEXT_FIELD_PADDING * 2 + 20 + 5, RIGHT_WIDTH - TEXT_FIELD_PADDING);
         IDrawing.setPositionAndWidth(textFieldBlue, startX + TEXT_FIELD_PADDING / 2, startY + SQUARE_SIZE * 4 + TEXT_FIELD_PADDING * 3 + 20 + 5, RIGHT_WIDTH - TEXT_FIELD_PADDING);
         IDrawing.setPositionAndWidth(defaultColorCheckBox, SQUARE_SIZE * 4 + getMainWidth() + 3, SQUARE_SIZE, RIGHT_WIDTH - TEXT_FIELD_PADDING);
+        IDrawing.setPositionAndWidth(buttonReset, startX, getMainHeight(), 60);
 
         setHsb(oldColor, true);
 
@@ -81,6 +88,7 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
         addDrawableChild(textFieldGreen);
         addDrawableChild(textFieldBlue);
         addDrawableChild(defaultColorCheckBox);
+        addDrawableChild(buttonReset);
     }
 
     @Override
@@ -100,7 +108,7 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
             UtilitiesClient.beginDrawingRectangle(buffer);
 
             final int selectedColor = Color.HSBtoRGB(hue, saturation, brightness);
-            IDrawing.drawRectangle(buffer, SQUARE_SIZE * 4 + mainWidth + 3, SQUARE_SIZE * 7 + TEXT_FIELD_PADDING * 4 + 1 + 20 + 5, SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH + 1, mainHeight - 1 + 20, selectedColor);
+            IDrawing.drawRectangle(buffer, SQUARE_SIZE * 4 + mainWidth + 3, SQUARE_SIZE * 7 + TEXT_FIELD_PADDING * 4 + 1 + 20 + 5, SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH + 1, mainHeight - 1, selectedColor);
 
             for (int drawHue = 0; drawHue < mainHeight; drawHue++) {
                 final int color = Color.HSBtoRGB((float) drawHue / (mainHeight - 1), 1, 1);
@@ -198,6 +206,7 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
         textFieldRed.setValue(String.valueOf((color >> 16) & 0xFF));
         textFieldGreen.setValue(String.valueOf((color >> 8) & 0xFF));
         textFieldBlue.setValue(String.valueOf(color & 0xFF));
+        buttonReset.active = (color & 16777215) != this.oldColor;
     }
 
     protected void textCallback(String text, int shift) {
