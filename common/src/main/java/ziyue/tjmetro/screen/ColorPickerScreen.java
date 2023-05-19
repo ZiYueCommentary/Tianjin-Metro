@@ -18,7 +18,7 @@ import net.minecraft.util.Mth;
 import org.apache.commons.lang3.StringUtils;
 import ziyue.tjmetro.packet.PacketGuiClient;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Color Picker, based on <b>Widget Color Selector</b>.
@@ -206,7 +206,7 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
         textFieldRed.setValue(String.valueOf((color >> 16) & 0xFF));
         textFieldGreen.setValue(String.valueOf((color >> 8) & 0xFF));
         textFieldBlue.setValue(String.valueOf(color & 0xFF));
-        buttonReset.active = (color & 16777215) != this.oldColor;
+        buttonReset.active = !defaultColorCheckBox.selected() && (color & 16777215) != this.oldColor;
     }
 
     protected void textCallback(String text, int shift) {
