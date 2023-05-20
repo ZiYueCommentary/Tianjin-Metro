@@ -14,4 +14,5 @@ public interface Reference
 
     String GITHUB_REPO = "https://github.com/ZiYueCommentary/Tianjin-Metro";
     String CONTRIBUTORS = "https://github.com/ZiYueCommentary/Tianjin-Metro/graphs/contributors";
+    String FORUM = "https://forum.ziyuesinicization.site/t/tianjin-metro";
 }

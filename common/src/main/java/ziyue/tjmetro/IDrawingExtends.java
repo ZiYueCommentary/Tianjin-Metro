@@ -47,7 +47,7 @@ public interface IDrawingExtends
         final Style style;
         if (useMinecraftFont) {
             style = Style.EMPTY;
-        } else if (Config.USE_TIANJIN_METRO_FONT.getValue()) {
+        } else if (Config.USE_TIANJIN_METRO_FONT.get()) {
             style = Style.EMPTY.withFont(new ResourceLocation(Reference.MOD_ID, "tjmetro"));
             y += 0.05f;
         } else if (mtr.client.Config.useMTRFont()) {
@@ -120,7 +120,7 @@ public interface IDrawingExtends
                 matrices.popPose();
             }
 
-            offset += IGui.LINE_HEIGHT * (Config.USE_TIANJIN_METRO_FONT.getValue() ? 0.8 : 1) * extraScale;
+            offset += IGui.LINE_HEIGHT * (Config.USE_TIANJIN_METRO_FONT.get() ? 0.8 : 1) * extraScale;
         }
 
         matrices.popPose();

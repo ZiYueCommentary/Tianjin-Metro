@@ -14,6 +14,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import ziyue.tjmetro.filters.Filter;
 
 import java.nio.file.Files;
@@ -35,12 +37,12 @@ public class Config
     public static final Key<Boolean> ENABLE_MTR_FILTERS = new Key<>("enable_mtr_filters", true)
     {
         @Override
-        public void setValue(Boolean value) {
+        public void set(Boolean value) {
             Filter.FILTERS.get(CreativeModeTabs.CORE.get().getId()).enabled = value;
             Filter.FILTERS.get(CreativeModeTabs.ESCALATORS_LIFTS.get().getId()).enabled = value;
             Filter.FILTERS.get(CreativeModeTabs.RAILWAY_FACILITIES.get().getId()).enabled = value;
             Filter.FILTERS.get(CreativeModeTabs.STATION_BUILDING_BLOCKS.get().getId()).enabled = value;
-            super.setValue(value);
+            super.set(value);
         }
     };
     public static final Key<Boolean> USE_TIANJIN_METRO_FONT = new Key<>("use_tianjin_metro_font", false);
@@ -48,20 +50,21 @@ public class Config
     protected static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");
     public static final List<Supplier<MutableComponent>> FOOTERS = Arrays.asList(
             () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.sources"), style -> IDrawingExtends.LINK_STYLE.apply(Reference.GITHUB_REPO).applyTo(style)),
-            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.contributors"), style -> IDrawingExtends.LINK_STYLE.apply(Reference.CONTRIBUTORS).applyTo(style))
+            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.contributors"), style -> IDrawingExtends.LINK_STYLE.apply(Reference.CONTRIBUTORS).applyTo(style)),
+            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.forum"), style -> IDrawingExtends.LINK_STYLE.apply(Reference.FORUM).applyTo(style).withColor(TextColor.fromRgb(15946322)))
     );
 
     public static Screen getConfigScreen() {
         ConfigBuilder builder = ConfigBuilder.create().setTitle(Text.translatable("gui.tjmetro.options")).transparentBackground();
         ConfigCategory category = builder.getOrCreateCategory(Text.translatable("gui.tjmetro.options"));
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
-        BooleanListEntry booleanMTRFilters = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.enable_mtr_filters"), ENABLE_MTR_FILTERS.getValue()).setDefaultValue(ENABLE_MTR_FILTERS.getDefaultValue()).build();
-        BooleanListEntry booleanUseTianjinMetroFont = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.use_tianjin_metro_font"), USE_TIANJIN_METRO_FONT.getValue()).setTooltip(Text.translatable("tooltip.tjmetro.use_tianjin_metro_font"), Text.translatable("tooltip.tjmetro.experimental").withStyle(ChatFormatting.YELLOW)).build();
+        BooleanListEntry booleanMTRFilters = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.enable_mtr_filters"), ENABLE_MTR_FILTERS.get()).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
+        BooleanListEntry booleanUseTianjinMetroFont = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.use_tianjin_metro_font"), USE_TIANJIN_METRO_FONT.get()).setTooltip(Text.translatable("tooltip.tjmetro.use_tianjin_metro_font"), Text.translatable("tooltip.tjmetro.experimental").withStyle(ChatFormatting.YELLOW)).build();
         TextListEntry textFooter = entryBuilder.startTextDescription(FOOTERS.get(new Random().nextInt(FOOTERS.size())).get()).build();
         category.addEntry(booleanMTRFilters).addEntry(booleanUseTianjinMetroFont).addEntry(textFooter);
         builder.setSavingRunnable(() -> {
-            ENABLE_MTR_FILTERS.setValue(booleanMTRFilters.getValue());
-            USE_TIANJIN_METRO_FONT.setValue(booleanUseTianjinMetroFont.getValue());
+            ENABLE_MTR_FILTERS.set(booleanMTRFilters.getValue());
+            USE_TIANJIN_METRO_FONT.set(booleanUseTianjinMetroFont.getValue());
             writeToFile();
         });
         return builder.build();
@@ -72,11 +75,11 @@ public class Config
         try {
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_FILE_PATH))).getAsJsonObject();
             try {
-                ENABLE_MTR_FILTERS.setValue(jsonConfig.get(ENABLE_MTR_FILTERS.getId()).getAsBoolean());
-                USE_TIANJIN_METRO_FONT.setValue(jsonConfig.get(USE_TIANJIN_METRO_FONT.getId()).getAsBoolean());
+                ENABLE_MTR_FILTERS.set(jsonConfig.get(ENABLE_MTR_FILTERS.getId()).getAsBoolean());
+                USE_TIANJIN_METRO_FONT.set(jsonConfig.get(USE_TIANJIN_METRO_FONT.getId()).getAsBoolean());
             } catch (Exception ignored) {
-                ENABLE_MTR_FILTERS.setValue(ENABLE_MTR_FILTERS.getDefaultValue());
-                USE_TIANJIN_METRO_FONT.setValue(USE_TIANJIN_METRO_FONT.getDefaultValue());
+                ENABLE_MTR_FILTERS.set(ENABLE_MTR_FILTERS.getDefault());
+                USE_TIANJIN_METRO_FONT.set(USE_TIANJIN_METRO_FONT.getDefault());
             }
         } catch (Exception e) {
             writeToFile();
@@ -87,8 +90,8 @@ public class Config
     protected static void writeToFile() {
         TianjinMetro.LOGGER.info("Wrote Tianjin Metro config to file");
         final JsonObject jsonConfig = new JsonObject();
-        jsonConfig.addProperty(ENABLE_MTR_FILTERS.getId(), ENABLE_MTR_FILTERS.getValue());
-        jsonConfig.addProperty(USE_TIANJIN_METRO_FONT.getId(), USE_TIANJIN_METRO_FONT.getValue());
+        jsonConfig.addProperty(ENABLE_MTR_FILTERS.getId(), ENABLE_MTR_FILTERS.get());
+        jsonConfig.addProperty(USE_TIANJIN_METRO_FONT.getId(), USE_TIANJIN_METRO_FONT.get());
 
         try {
             Files.write(CONFIG_FILE_PATH, Collections.singleton(RailwayData.prettyPrint(jsonConfig)));
@@ -120,15 +123,15 @@ public class Config
             return id;
         }
 
-        public T getValue() {
+        public T get() {
             return value;
         }
 
-        public void setValue(T value) {
+        public void set(T value) {
             this.value = value;
         }
 
-        public T getDefaultValue() {
+        public T getDefault() {
             return defaultValue;
         }
     }
