@@ -93,49 +93,45 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
 
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
-        try {
-            renderBackground(matrices);
-            super.render(matrices, mouseX, mouseY, delta);
+        renderBackground(matrices);
+        super.render(matrices, mouseX, mouseY, delta);
 
-            final int mainWidth = getMainWidth();
-            final int mainHeight = getMainHeight();
+        final int mainWidth = getMainWidth();
+        final int mainHeight = getMainHeight();
 
-            drawCenteredString(matrices, font, Text.translatable("gui.mtr.color"), SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH / 2, SQUARE_SIZE + 20 + 5, ARGB_WHITE);
-            drawCenteredString(matrices, font, "RGB", SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH / 2, SQUARE_SIZE * 3 + TEXT_FIELD_PADDING + 20 + 5, ARGB_WHITE);
+        drawCenteredString(matrices, font, Text.translatable("gui.mtr.color"), SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH / 2, SQUARE_SIZE + 20 + 5, ARGB_WHITE);
+        drawCenteredString(matrices, font, "RGB", SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH / 2, SQUARE_SIZE * 3 + TEXT_FIELD_PADDING + 20 + 5, ARGB_WHITE);
 
-            final Tesselator tesselator = Tesselator.getInstance();
-            final BufferBuilder buffer = tesselator.getBuilder();
-            UtilitiesClient.beginDrawingRectangle(buffer);
+        final Tesselator tesselator = Tesselator.getInstance();
+        final BufferBuilder buffer = tesselator.getBuilder();
+        UtilitiesClient.beginDrawingRectangle(buffer);
 
-            final int selectedColor = Color.HSBtoRGB(hue, saturation, brightness);
-            IDrawing.drawRectangle(buffer, SQUARE_SIZE * 4 + mainWidth + 3, SQUARE_SIZE * 7 + TEXT_FIELD_PADDING * 4 + 1 + 20 + 5, SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH + 1, mainHeight - 1, selectedColor);
+        final int selectedColor = Color.HSBtoRGB(hue, saturation, brightness);
+        IDrawing.drawRectangle(buffer, SQUARE_SIZE * 4 + mainWidth + 3, SQUARE_SIZE * 7 + TEXT_FIELD_PADDING * 4 + 1 + 20 + 5, SQUARE_SIZE * 4 + mainWidth + RIGHT_WIDTH + 1, mainHeight - 1, selectedColor);
 
-            for (int drawHue = 0; drawHue < mainHeight; drawHue++) {
-                final int color = Color.HSBtoRGB((float) drawHue / (mainHeight - 1), 1, 1);
-                IDrawing.drawRectangle(buffer, SQUARE_SIZE * 2 + mainWidth, SQUARE_SIZE + drawHue, SQUARE_SIZE * 3 + mainWidth, SQUARE_SIZE + drawHue + 1, color);
-            }
-
-            for (int drawSaturation = 0; drawSaturation < mainWidth; drawSaturation++) {
-                for (int drawBrightness = 0; drawBrightness < mainHeight; drawBrightness++) {
-                    final int color = Color.HSBtoRGB(hue, (float) drawSaturation / (mainWidth - 1), (float) drawBrightness / (mainHeight - 1));
-                    IDrawing.drawRectangle(buffer, SQUARE_SIZE + drawSaturation, SQUARE_SIZE + mainHeight - drawBrightness - 1, SQUARE_SIZE + drawSaturation + 1, SQUARE_SIZE + mainHeight - drawBrightness, color);
-                }
-            }
-
-            final int selectedHueInt = Math.round(hue * (mainHeight - 1));
-            final int selectedSaturationInt = Math.round(saturation * (mainWidth - 1));
-            final int selectedBrightnessInt = Math.round(brightness * (mainHeight - 1));
-            IDrawing.drawRectangle(buffer, SQUARE_SIZE * 2 + mainWidth, SQUARE_SIZE + selectedHueInt - 1, SQUARE_SIZE * 3 + mainWidth, SQUARE_SIZE + selectedHueInt + 2, ARGB_BLACK);
-            IDrawing.drawRectangle(buffer, SQUARE_SIZE * 2 + mainWidth, SQUARE_SIZE + selectedHueInt, SQUARE_SIZE * 3 + mainWidth, SQUARE_SIZE + selectedHueInt + 1, ARGB_WHITE);
-            IDrawing.drawRectangle(buffer, SQUARE_SIZE + selectedSaturationInt - 1, SQUARE_SIZE + mainHeight - selectedBrightnessInt - 1, SQUARE_SIZE + selectedSaturationInt + 2, SQUARE_SIZE + mainHeight - selectedBrightnessInt, ARGB_BLACK);
-            IDrawing.drawRectangle(buffer, SQUARE_SIZE + selectedSaturationInt, SQUARE_SIZE + mainHeight - selectedBrightnessInt - 2, SQUARE_SIZE + selectedSaturationInt + 1, SQUARE_SIZE + mainHeight - selectedBrightnessInt + 1, ARGB_BLACK);
-            IDrawing.drawRectangle(buffer, SQUARE_SIZE + selectedSaturationInt, SQUARE_SIZE + mainHeight - selectedBrightnessInt - 1, SQUARE_SIZE + selectedSaturationInt + 1, SQUARE_SIZE + mainHeight - selectedBrightnessInt, ARGB_WHITE);
-
-            tesselator.end();
-            UtilitiesClient.finishDrawingRectangle();
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int drawHue = 0; drawHue < mainHeight; drawHue++) {
+            final int color = Color.HSBtoRGB((float) drawHue / (mainHeight - 1), 1, 1);
+            IDrawing.drawRectangle(buffer, SQUARE_SIZE * 2 + mainWidth, SQUARE_SIZE + drawHue, SQUARE_SIZE * 3 + mainWidth, SQUARE_SIZE + drawHue + 1, color);
         }
+
+        for (int drawSaturation = 0; drawSaturation < mainWidth; drawSaturation++) {
+            for (int drawBrightness = 0; drawBrightness < mainHeight; drawBrightness++) {
+                final int color = Color.HSBtoRGB(hue, (float) drawSaturation / (mainWidth - 1), (float) drawBrightness / (mainHeight - 1));
+                IDrawing.drawRectangle(buffer, SQUARE_SIZE + drawSaturation, SQUARE_SIZE + mainHeight - drawBrightness - 1, SQUARE_SIZE + drawSaturation + 1, SQUARE_SIZE + mainHeight - drawBrightness, color);
+            }
+        }
+
+        final int selectedHueInt = Math.round(hue * (mainHeight - 1));
+        final int selectedSaturationInt = Math.round(saturation * (mainWidth - 1));
+        final int selectedBrightnessInt = Math.round(brightness * (mainHeight - 1));
+        IDrawing.drawRectangle(buffer, SQUARE_SIZE * 2 + mainWidth, SQUARE_SIZE + selectedHueInt - 1, SQUARE_SIZE * 3 + mainWidth, SQUARE_SIZE + selectedHueInt + 2, ARGB_BLACK);
+        IDrawing.drawRectangle(buffer, SQUARE_SIZE * 2 + mainWidth, SQUARE_SIZE + selectedHueInt, SQUARE_SIZE * 3 + mainWidth, SQUARE_SIZE + selectedHueInt + 1, ARGB_WHITE);
+        IDrawing.drawRectangle(buffer, SQUARE_SIZE + selectedSaturationInt - 1, SQUARE_SIZE + mainHeight - selectedBrightnessInt - 1, SQUARE_SIZE + selectedSaturationInt + 2, SQUARE_SIZE + mainHeight - selectedBrightnessInt, ARGB_BLACK);
+        IDrawing.drawRectangle(buffer, SQUARE_SIZE + selectedSaturationInt, SQUARE_SIZE + mainHeight - selectedBrightnessInt - 2, SQUARE_SIZE + selectedSaturationInt + 1, SQUARE_SIZE + mainHeight - selectedBrightnessInt + 1, ARGB_BLACK);
+        IDrawing.drawRectangle(buffer, SQUARE_SIZE + selectedSaturationInt, SQUARE_SIZE + mainHeight - selectedBrightnessInt - 1, SQUARE_SIZE + selectedSaturationInt + 1, SQUARE_SIZE + mainHeight - selectedBrightnessInt, ARGB_WHITE);
+
+        tesselator.end();
+        UtilitiesClient.finishDrawingRectangle();
     }
 
     @Override
@@ -210,14 +206,11 @@ public class ColorPickerScreen extends ScreenMapper implements IGui, IPacket
     }
 
     protected void textCallback(String text, int shift) {
-        try {
-            final boolean isHex = shift < 0;
-            final int compare = Integer.parseInt(text, isHex ? 16 : 10);
-            final int currentColor = Color.HSBtoRGB(hue, saturation, brightness) & RGB_WHITE;
-            if ((isHex ? currentColor : ((currentColor >> shift) & 0xFF)) != compare) {
-                setHsb(isHex ? compare : (currentColor & ~(0xFF << shift)) + (compare << shift), !isHex);
-            }
-        } catch (Exception ignored) {
+        final boolean isHex = shift < 0;
+        final int compare = Integer.parseInt(text, isHex ? 16 : 10);
+        final int currentColor = Color.HSBtoRGB(hue, saturation, brightness) & RGB_WHITE;
+        if ((isHex ? currentColor : ((currentColor >> shift) & 0xFF)) != compare) {
+            setHsb(isHex ? compare : (currentColor & ~(0xFF << shift)) + (compare << shift), !isHex);
         }
     }
 

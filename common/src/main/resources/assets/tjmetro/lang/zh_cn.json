@@ -42,10 +42,16 @@
     "button.tjmetro.scroll_down": "下滚",
     "button.tjmetro.enable_all": "启用全部",
     "button.tjmetro.disable_all": "禁用全部",
-    "button.tjmetro.tianjin_metro_options": "天津地铁设置",
+    "button.tjmetro.tianjin_metro_options": "天津地铁设置", 
 
-    "config.tjmetro.enable_mtr_filters": "启用 MTR 筛选器",
+    "config.category.mtr": "我的世界铁路",
+    "config.category.tjmetro": "天津地铁",
+
+    "config.tjmetro.enable_mtr_filters": "启用MTR筛选器",
     "config.tjmetro.use_tianjin_metro_font": "使用天津地铁字体",
+
+    "config.gui.mtr.experimental": "此设置页面为实验性功能。",
+    "config.gui.mtr.supporters": "赞助者列表",
 
     "tooltip.tjmetro.not_suggest": "不建议启用此功能",
     "tooltip.tjmetro.experimental": "此设置为实验性功能",

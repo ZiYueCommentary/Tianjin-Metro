@@ -99,7 +99,7 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
             if (ClientData.DATA_CACHE.stationIdToRoutes.get(RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, signPos).id) == null)
                 TianjinMetro.LOGGER.warn("Position [" + signPos.toShortString() + "] has no station/routes!");
             else
-                e.printStackTrace();
+                TianjinMetro.LOGGER.error(e);
         }
 
         if (world != null) {
@@ -217,7 +217,7 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
                 Gui.drawCenteredString(matrices, font, String.format("%s/%s", page + 1, totalPages), (width - PANEL_WIDTH - SQUARE_SIZE * 4) / 2 + PANEL_WIDTH + SQUARE_SIZE * 2, height - SQUARE_SIZE * 2 + TEXT_PADDING, ARGB_WHITE);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            TianjinMetro.LOGGER.error(e);
         }
     }
 

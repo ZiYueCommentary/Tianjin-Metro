@@ -32,16 +32,11 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
     public CustomContentScreen(BlockPos pos) {
         super(Text.literal(""));
         this.pos = pos;
-
         minecraft = Minecraft.getInstance();
         final ClientLevel world = minecraft.level;
-        if (world != null) {
-            final BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof BlockCustomContentBlockBase.CustomContentBlockEntity entity1) {
-                content = entity1.content;
-            }
-        } else {
-            content = "";
+        final BlockEntity entity = world.getBlockEntity(pos);
+        if (entity instanceof BlockCustomContentBlockBase.CustomContentBlockEntity entity1) {
+            content = entity1.content;
         }
         textField.setValue(content);
     }
@@ -56,14 +51,10 @@ public class CustomContentScreen extends ScreenMapper implements IGui, IPacket
 
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
-        try {
-            renderBackground(matrices);
-            font.draw(matrices, Text.translatable("gui.tjmetro.custom_content"), SQUARE_SIZE, TEXT_PADDING, ARGB_WHITE);
-            textField.setWidth(width - (SQUARE_SIZE * 2));
-            super.render(matrices, mouseX, mouseY, delta);
-        } catch (Exception e) {
-            TianjinMetro.LOGGER.error(e);
-        }
+        renderBackground(matrices);
+        font.draw(matrices, Text.translatable("gui.tjmetro.custom_content"), SQUARE_SIZE, TEXT_PADDING, ARGB_WHITE);
+        textField.setWidth(width - (SQUARE_SIZE * 2));
+        super.render(matrices, mouseX, mouseY, delta);
     }
 
     @Override
