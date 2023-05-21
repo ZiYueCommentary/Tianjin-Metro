@@ -47,13 +47,16 @@
     "config.category.mtr": "我的世界铁路",
     "config.category.tjmetro": "天津地铁",
 
-    "config.tjmetro.enable_mtr_filters": "启用MTR筛选器",
-    "config.tjmetro.use_tianjin_metro_font": "使用天津地铁字体",
-
     "config.gui.mtr.experimental": "此设置页面为实验性功能。",
     "config.gui.mtr.supporters": "赞助者列表",
+    "config.gui.mtr.no_supporters": "暂无赞助者信息。",
+
+    "config.tjmetro.enable_mtr_filters": "启用MTR筛选器",
+    "config.tjmetro.use_tianjin_metro_font": "使用天津地铁字体",
+    "config.tjmetro.experimental_mtr_config_screen": "新MTR配置界面",
 
     "tooltip.tjmetro.not_suggest": "不建议启用此功能",
+    "tooltip.tjmetro.mtr_config_screen": "使用新的配置界面替代原先的MTR配置界面。",
     "tooltip.tjmetro.experimental": "此设置为实验性功能",
     "tooltip.tjmetro.station_name": "文字取决于车站",
     "tooltip.tjmetro.custom_content": "支持自定义显示内容",

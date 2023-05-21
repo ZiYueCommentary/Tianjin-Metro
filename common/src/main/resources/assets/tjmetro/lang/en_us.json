@@ -49,11 +49,14 @@
 
     "config.gui.mtr.experimental": "This config screen is experimental.",
     "config.gui.mtr.supporters": "Supporters List",
+    "config.gui.mtr.no_supporters": "Supporters information not found.",
 
     "config.tjmetro.enable_mtr_filters": "Enable MTR Filters",
     "config.tjmetro.use_tianjin_metro_font": "Enable Tianjin Metro Font",
+    "config.tjmetro.experimental_mtr_config_screen": "Experimental MTR Config Screen",
 
     "tooltip.tjmetro.not_suggest": "This feature is not suggest.",
+    "tooltip.tjmetro.mtr_config_screen": "Use the new config screen instead of the original.",
     "tooltip.tjmetro.experimental": "This feature is experimental.",
     "tooltip.tjmetro.station_name": "Text depends on the station",
     "tooltip.tjmetro.custom_content": "Support custom display content",

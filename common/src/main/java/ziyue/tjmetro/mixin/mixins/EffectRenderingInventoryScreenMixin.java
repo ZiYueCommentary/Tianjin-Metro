@@ -33,8 +33,7 @@ public abstract class EffectRenderingInventoryScreenMixin<T extends AbstractCont
 
     @Inject(at = @At("HEAD"), method = "renderEffects")
     private void beforeRenderEffects(PoseStack poseStack, CallbackInfo ci) {
-        if (minecraft.screen instanceof CreativeModeInventoryScreen) {
-            CreativeModeInventoryScreenProperties itemPickerMenu = (CreativeModeInventoryScreenProperties) minecraft.screen;
+        if (minecraft.screen instanceof CreativeModeInventoryScreen itemPickerMenu) {
             if (Filter.isTabHasFilters(itemPickerMenu.getSelectedTab())) {
                 this.leftPos = this.leftPos - 55; // move effect labels to avoid overlap with filters
             }
@@ -43,8 +42,7 @@ public abstract class EffectRenderingInventoryScreenMixin<T extends AbstractCont
 
     @Inject(at = @At("RETURN"), method = "renderEffects")
     private void afterRenderEffects(PoseStack poseStack, CallbackInfo ci) {
-        if (minecraft.screen instanceof CreativeModeInventoryScreen) {
-            CreativeModeInventoryScreenProperties itemPickerMenu = (CreativeModeInventoryScreenProperties) minecraft.screen;
+        if (minecraft.screen instanceof CreativeModeInventoryScreen itemPickerMenu) {
             if (Filter.isTabHasFilters(itemPickerMenu.getSelectedTab())) {
                 this.leftPos = this.leftPos + 55;
             }

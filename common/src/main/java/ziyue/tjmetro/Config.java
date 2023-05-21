@@ -2,6 +2,7 @@ package ziyue.tjmetro;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import io.netty.buffer.Unpooled;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
@@ -12,12 +13,14 @@ import me.shedaniel.clothconfig2.gui.entries.TextListEntry;
 import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import mtr.CreativeModeTabs;
 import mtr.Patreon;
+import mtr.RegistryClient;
 import mtr.client.ClientData;
 import mtr.data.RailwayData;
 import mtr.mappings.Text;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
@@ -28,6 +31,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.function.Supplier;
+
+import static mtr.packet.IPacket.PACKET_USE_TIME_AND_WIND_SYNC;
 
 /**
  * @author ZiYueCommentary
@@ -49,6 +54,7 @@ public class Config
         }
     };
     public static final Key<Boolean> USE_TIANJIN_METRO_FONT = new Key<>("use_tianjin_metro_font", false);
+    public static final Key<Boolean> EXPERIMENTAL_MTR_CONFIG_SCREEN = new Key<>("experimental_mtr_config_screen", false);
 
     protected static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");
     public static final List<Supplier<MutableComponent>> FOOTERS = Arrays.asList(
@@ -58,68 +64,101 @@ public class Config
     );
 
     public static Screen getConfigScreen() {
+        return getConfigScreen(false, false, true);
+    }
+
+    public static Screen getConfigScreen(boolean hasTimeAndWindControls, boolean useTimeAndWindSync, boolean tianjinMetroConfig) {
         ConfigBuilder builder = ConfigBuilder.create().setTitle(Text.translatable("gui.tjmetro.options")).transparentBackground();
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
         // Category: Minecraft Transit Railway
-        ConfigCategory categoryMTR = builder.getOrCreateCategory(Text.translatable("config.category.mtr"));
-        TextListEntry textHeader = entryBuilder.startTextDescription(Text.translatable("config.gui.mtr.experimental").withStyle(ChatFormatting.YELLOW)).build();
-        BooleanListEntry booleanUseMTRFont = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.use_mtr_font"), mtr.client.Config.useMTRFont()).build();
-        BooleanListEntry booleanShowAnnouncementMessages = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.show_announcement_messages"), mtr.client.Config.showAnnouncementMessages()).build();
-        BooleanListEntry booleanUseTTSAnnouncements = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.use_tts_announcements"), mtr.client.Config.useTTSAnnouncements()).build();
-        BooleanListEntry booleanHideSpecialRailColors = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.hide_special_rail_colors"), mtr.client.Config.hideSpecialRailColors()).build();
-        BooleanListEntry booleanHideTranslucentParts = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.hide_translucent_parts"), mtr.client.Config.hideTranslucentParts()).build();
-        BooleanListEntry booleanShiftToToggleSitting = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.shift_to_toggle_sitting", Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage()), mtr.client.Config.shiftToToggleSitting()).build();
-        EnumListEntry<LanguageOptions> enumLanguageOptions = entryBuilder.startEnumSelector(Text.translatable("options.mtr.language_options"), LanguageOptions.class, LanguageOptions.getEnum(mtr.client.Config.languageOptions())).build();
-        BooleanListEntry booleanUseDynamicFPS = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.use_dynamic_fps"), mtr.client.Config.useDynamicFPS()).build();
-        IntegerSliderEntry sliderTrackTextureOffset = entryBuilder.startIntSlider(Text.translatable("options.mtr.track_texture_offset"), mtr.client.Config.trackTextureOffset(), 0, mtr.client.Config.TRACK_OFFSET_COUNT - 1).build();
-        IntegerSliderEntry sliderDynamicTextureResolution = entryBuilder.startIntSlider(Text.translatable("options.mtr.dynamic_texture_resolution"), mtr.client.Config.dynamicTextureResolution(), 0, mtr.client.Config.DYNAMIC_RESOLUTION_COUNT - 1).build();
-        IntegerSliderEntry sliderTrainRenderDistanceRatio = entryBuilder.startIntSlider(Text.translatable("options.mtr.vehicle_render_distance_ratio"), mtr.client.Config.trainRenderDistanceRatio(), 0, mtr.client.Config.TRAIN_RENDER_DISTANCE_RATIO_COUNT - 1).build();
-        SubCategoryBuilder subCategorySupporter = entryBuilder.startSubCategory(Text.translatable("config.gui.mtr.supporters"));
-        String tierTitle = "";
-        List<SubCategoryBuilder> listSupporters = new ArrayList<>();
-        SubCategoryBuilder current = null;
-        for (final Patreon patreon : mtr.client.Config.PATREON_LIST) {
-            if (!patreon.tierTitle.equals(tierTitle)) {
-                final Component text = Text.literal(patreon.tierTitle);
-                if (current != null) listSupporters.add(current);
-                current = entryBuilder.startSubCategory(text);
+        Runnable MTRCallback;
+        if (EXPERIMENTAL_MTR_CONFIG_SCREEN.get()) {
+            ConfigCategory categoryMTR = builder.getOrCreateCategory(Text.translatable("config.category.mtr"));
+            TextListEntry textHeader = entryBuilder.startTextDescription(Text.translatable("config.gui.mtr.experimental").withStyle(ChatFormatting.YELLOW)).build();
+            categoryMTR.addEntry(textHeader);
+            BooleanListEntry booleanUseTimeAndWindSync;
+            if (hasTimeAndWindControls) {
+                booleanUseTimeAndWindSync = entryBuilder.startBooleanToggle(Text.translatable("gui.mtr.use_time_and_wind_sync").withStyle(ChatFormatting.BOLD), useTimeAndWindSync).build();
+                categoryMTR.addEntry(booleanUseTimeAndWindSync);
+            } else {
+                booleanUseTimeAndWindSync = null;
             }
-            tierTitle = patreon.tierTitle;
-            final Component text = patreon.tierAmount < 1000 ? Text.translatable("options.mtr.anonymous") : Text.literal(patreon.name);
-            current.add(entryBuilder.startTextDescription(Text.literal(text.getString()).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(patreon.tierColor)))).build());
+            BooleanListEntry booleanUseMTRFont = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.use_mtr_font"), mtr.client.Config.useMTRFont()).build();
+            BooleanListEntry booleanShowAnnouncementMessages = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.show_announcement_messages"), mtr.client.Config.showAnnouncementMessages()).build();
+            BooleanListEntry booleanUseTTSAnnouncements = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.use_tts_announcements"), mtr.client.Config.useTTSAnnouncements()).build();
+            BooleanListEntry booleanHideSpecialRailColors = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.hide_special_rail_colors"), mtr.client.Config.hideSpecialRailColors()).build();
+            BooleanListEntry booleanHideTranslucentParts = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.hide_translucent_parts"), mtr.client.Config.hideTranslucentParts()).build();
+            BooleanListEntry booleanShiftToToggleSitting = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.shift_to_toggle_sitting", Minecraft.getInstance().options.keyShift.getTranslatedKeyMessage()), mtr.client.Config.shiftToToggleSitting()).build();
+            EnumListEntry<LanguageOptions> enumLanguageOptions = entryBuilder.startEnumSelector(Text.translatable("options.mtr.language_options"), LanguageOptions.class, LanguageOptions.getEnum(mtr.client.Config.languageOptions())).build();
+            BooleanListEntry booleanUseDynamicFPS = entryBuilder.startBooleanToggle(Text.translatable("options.mtr.use_dynamic_fps"), mtr.client.Config.useDynamicFPS()).build();
+            IntegerSliderEntry sliderTrackTextureOffset = entryBuilder.startIntSlider(Text.translatable("options.mtr.track_texture_offset"), mtr.client.Config.trackTextureOffset(), 0, mtr.client.Config.TRACK_OFFSET_COUNT - 1).build();
+            IntegerSliderEntry sliderDynamicTextureResolution = entryBuilder.startIntSlider(Text.translatable("options.mtr.dynamic_texture_resolution"), mtr.client.Config.dynamicTextureResolution(), 0, mtr.client.Config.DYNAMIC_RESOLUTION_COUNT - 1).build();
+            IntegerSliderEntry sliderTrainRenderDistanceRatio = entryBuilder.startIntSlider(Text.translatable("options.mtr.vehicle_render_distance_ratio"), mtr.client.Config.trainRenderDistanceRatio(), 0, mtr.client.Config.TRAIN_RENDER_DISTANCE_RATIO_COUNT - 1).build();
+            SubCategoryBuilder subCategorySupporter = entryBuilder.startSubCategory(Text.translatable("config.gui.mtr.supporters"));
+            String tierTitle = "";
+            List<SubCategoryBuilder> listSupporters = new ArrayList<>();
+            SubCategoryBuilder current = null;
+            for (final Patreon patreon : mtr.client.Config.PATREON_LIST) {
+                if (!patreon.tierTitle.equals(tierTitle)) {
+                    final Component text = Text.literal(patreon.tierTitle);
+                    if (current != null) listSupporters.add(current);
+                    current = entryBuilder.startSubCategory(text);
+                }
+                tierTitle = patreon.tierTitle;
+                final Component text = patreon.tierAmount < 1000 ? Text.translatable("options.mtr.anonymous") : Text.literal(patreon.name);
+                current.add(entryBuilder.startTextDescription(Text.literal(text.getString()).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(patreon.tierColor)))).build());
+            }
+            listSupporters.add(current);
+            for (final SubCategoryBuilder patreon : listSupporters) {
+                if (patreon == null) {
+                    subCategorySupporter.add(entryBuilder.startTextDescription(Text.translatable("config.gui.mtr.no_supporters").withStyle(ChatFormatting.RED)).build());
+                    break;
+                }
+                subCategorySupporter.add(patreon.build());
+            }
+            TextListEntry textMTRFooter = entryBuilder.startTextDescription(Text.translatable("options.mtr.support_patreon").withStyle(IDrawingExtends.LINK_STYLE.apply("https://www.patreon.com/minecraft_transit_railway"))).build();
+            categoryMTR.addEntry(booleanUseMTRFont).addEntry(booleanShowAnnouncementMessages).addEntry(booleanUseTTSAnnouncements).addEntry(booleanHideSpecialRailColors).addEntry(booleanHideTranslucentParts).addEntry(booleanShiftToToggleSitting).addEntry(enumLanguageOptions).addEntry(booleanUseDynamicFPS).addEntry(sliderTrackTextureOffset).addEntry(sliderDynamicTextureResolution).addEntry(sliderTrainRenderDistanceRatio).addEntry(subCategorySupporter.build()).addEntry(textMTRFooter);
+            MTRCallback = () -> {
+                if (hasTimeAndWindControls) {
+                    final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
+                    packet.writeBoolean(booleanUseTimeAndWindSync.getValue());
+                    RegistryClient.sendToServer(PACKET_USE_TIME_AND_WIND_SYNC, packet);
+                }
+                mtr.client.Config.setUseMTRFont(booleanUseMTRFont.getValue());
+                mtr.client.Config.setShowAnnouncementMessages(booleanShowAnnouncementMessages.getValue());
+                mtr.client.Config.setUseTTSAnnouncements(booleanUseTTSAnnouncements.getValue());
+                mtr.client.Config.setHideSpecialRailColors(booleanHideSpecialRailColors.getValue());
+                mtr.client.Config.setHideTranslucentParts(booleanHideTranslucentParts.getValue());
+                mtr.client.Config.setShiftToToggleSitting(booleanShiftToToggleSitting.getValue());
+                mtr.client.Config.setLanguageOptions(enumLanguageOptions.getValue().id);
+                mtr.client.Config.setUseDynamicFPS(booleanUseDynamicFPS.getValue());
+                mtr.client.Config.setTrackTextureOffset(sliderTrackTextureOffset.getValue());
+                mtr.client.Config.setDynamicTextureResolution(sliderDynamicTextureResolution.getValue());
+                mtr.client.Config.setTrainRenderDistanceRatio(sliderTrainRenderDistanceRatio.getValue());
+                ClientData.DATA_CACHE.sync();
+                ClientData.DATA_CACHE.refreshDynamicResources();
+                ClientData.SIGNAL_BLOCKS.writeCache();
+            };
+        } else {
+            MTRCallback = () -> {
+            };
         }
-        listSupporters.add(current);
-        for (final SubCategoryBuilder patreon : listSupporters) {
-            subCategorySupporter.add(patreon.build());
-        }
-        TextListEntry textMTRFooter = entryBuilder.startTextDescription(Text.translatable("options.mtr.support_patreon").withStyle(IDrawingExtends.LINK_STYLE.apply("https://www.patreon.com/minecraft_transit_railway"))).build();
-        categoryMTR.addEntry(textHeader).addEntry(booleanUseMTRFont).addEntry(booleanShowAnnouncementMessages).addEntry(booleanUseTTSAnnouncements).addEntry(booleanHideSpecialRailColors).addEntry(booleanHideTranslucentParts).addEntry(booleanShiftToToggleSitting).addEntry(enumLanguageOptions).addEntry(booleanUseDynamicFPS).addEntry(sliderTrackTextureOffset).addEntry(sliderDynamicTextureResolution).addEntry(sliderTrainRenderDistanceRatio).addEntry(subCategorySupporter.build()).addEntry(textMTRFooter);
         // Category: Tianjin Metro
         ConfigCategory categoryTianjinMetro = builder.getOrCreateCategory(Text.translatable("config.category.tjmetro"));
         BooleanListEntry booleanMTRFilters = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.enable_mtr_filters"), ENABLE_MTR_FILTERS.get()).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
         BooleanListEntry booleanUseTianjinMetroFont = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.use_tianjin_metro_font"), USE_TIANJIN_METRO_FONT.get()).setTooltip(Text.translatable("tooltip.tjmetro.use_tianjin_metro_font"), Text.translatable("tooltip.tjmetro.experimental").withStyle(ChatFormatting.YELLOW)).build();
+        BooleanListEntry booleanExperimentalMTRConfigScreen = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.experimental_mtr_config_screen"), EXPERIMENTAL_MTR_CONFIG_SCREEN.get()).setTooltip(Text.translatable("tooltip.tjmetro.mtr_config_screen"), Text.translatable("tooltip.tjmetro.experimental").withStyle(ChatFormatting.YELLOW)).build();
         TextListEntry textFooter = entryBuilder.startTextDescription(FOOTERS.get(new Random().nextInt(FOOTERS.size())).get()).build();
-        categoryTianjinMetro.addEntry(booleanMTRFilters).addEntry(booleanUseTianjinMetroFont).addEntry(textFooter);
+        categoryTianjinMetro.addEntry(booleanMTRFilters).addEntry(booleanUseTianjinMetroFont).addEntry(booleanExperimentalMTRConfigScreen).addEntry(textFooter);
 
-        builder.setFallbackCategory(categoryTianjinMetro);
+        if (tianjinMetroConfig) builder.setFallbackCategory(categoryTianjinMetro);
+
         builder.setSavingRunnable(() -> {
-            mtr.client.Config.setUseMTRFont(booleanUseMTRFont.getValue());
-            mtr.client.Config.setShowAnnouncementMessages(booleanShowAnnouncementMessages.getValue());
-            mtr.client.Config.setUseTTSAnnouncements(booleanUseTTSAnnouncements.getValue());
-            mtr.client.Config.setHideSpecialRailColors(booleanHideSpecialRailColors.getValue());
-            mtr.client.Config.setHideTranslucentParts(booleanHideTranslucentParts.getValue());
-            mtr.client.Config.setShiftToToggleSitting(booleanShiftToToggleSitting.getValue());
-            mtr.client.Config.setLanguageOptions(enumLanguageOptions.getValue().id);
-            mtr.client.Config.setUseDynamicFPS(booleanUseDynamicFPS.getValue());
-            mtr.client.Config.setTrackTextureOffset(sliderTrackTextureOffset.getValue());
-            mtr.client.Config.setDynamicTextureResolution(sliderDynamicTextureResolution.getValue());
-            mtr.client.Config.setTrainRenderDistanceRatio(sliderTrainRenderDistanceRatio.getValue());
-            ClientData.DATA_CACHE.sync();
-            ClientData.DATA_CACHE.refreshDynamicResources();
-            ClientData.SIGNAL_BLOCKS.writeCache();
+            MTRCallback.run();
 
             ENABLE_MTR_FILTERS.set(booleanMTRFilters.getValue());
             USE_TIANJIN_METRO_FONT.set(booleanUseTianjinMetroFont.getValue());
+            EXPERIMENTAL_MTR_CONFIG_SCREEN.set(booleanExperimentalMTRConfigScreen.getValue());
         });
         return builder.build();
     }
@@ -131,9 +170,11 @@ public class Config
             try {
                 ENABLE_MTR_FILTERS.set(jsonConfig.get(ENABLE_MTR_FILTERS.getId()).getAsBoolean());
                 USE_TIANJIN_METRO_FONT.set(jsonConfig.get(USE_TIANJIN_METRO_FONT.getId()).getAsBoolean());
+                EXPERIMENTAL_MTR_CONFIG_SCREEN.set(jsonConfig.get(EXPERIMENTAL_MTR_CONFIG_SCREEN.getId()).getAsBoolean());
             } catch (Exception ignored) {
                 ENABLE_MTR_FILTERS.set(ENABLE_MTR_FILTERS.getDefault());
                 USE_TIANJIN_METRO_FONT.set(USE_TIANJIN_METRO_FONT.getDefault());
+                EXPERIMENTAL_MTR_CONFIG_SCREEN.set(EXPERIMENTAL_MTR_CONFIG_SCREEN.getDefault());
             }
         } catch (Exception e) {
             writeToFile();
@@ -146,6 +187,7 @@ public class Config
         final JsonObject jsonConfig = new JsonObject();
         jsonConfig.addProperty(ENABLE_MTR_FILTERS.getId(), ENABLE_MTR_FILTERS.get());
         jsonConfig.addProperty(USE_TIANJIN_METRO_FONT.getId(), USE_TIANJIN_METRO_FONT.get());
+        jsonConfig.addProperty(EXPERIMENTAL_MTR_CONFIG_SCREEN.getId(), EXPERIMENTAL_MTR_CONFIG_SCREEN.get());
 
         try {
             Files.write(CONFIG_FILE_PATH, Collections.singleton(RailwayData.prettyPrint(jsonConfig)));
