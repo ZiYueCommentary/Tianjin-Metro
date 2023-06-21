@@ -47,8 +47,8 @@ public abstract class RandomizableContainerBlockEntityMapper extends BaseContain
 
     public static void setLootTable(BlockGetter blockGetter, Random random, BlockPos blockPos, ResourceLocation resourceLocation) {
         BlockEntity blockEntity = blockGetter.getBlockEntity(blockPos);
-        if (blockEntity instanceof RandomizableContainerBlockEntity) {
-            ((RandomizableContainerBlockEntity) blockEntity).setLootTable(resourceLocation, random.nextLong());
+        if (blockEntity instanceof RandomizableContainerBlockEntityMapper entityMapper) {
+            entityMapper.setLootTable(resourceLocation, random.nextLong());
         }
 
     }
@@ -110,7 +110,7 @@ public abstract class RandomizableContainerBlockEntityMapper extends BaseContain
     }
 
     public ItemStack removeItem(int i, int j) {
-        this.unpackLootTable((Player) null);
+        this.unpackLootTable(null);
         ItemStack itemStack = ContainerHelper.removeItem(this.getItems(), i, j);
         if (!itemStack.isEmpty()) {
             this.setChanged();

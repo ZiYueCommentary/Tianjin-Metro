@@ -9,6 +9,7 @@ package ziyue.tjmetro.mixin.properties;
  * @see ziyue.tjmetro.Config
  * @since beta-1
  */
+
 public interface ConfigScreenProperties
 {
     boolean hasTimeAndWindControls();

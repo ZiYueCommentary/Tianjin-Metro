@@ -18,15 +18,16 @@ import ziyue.tjmetro.mixin.properties.ConfigScreenProperties;
  * @see MinecraftMixin
  * @since beta-1
  */
+
 @Mixin(ConfigScreen.class)
 public abstract class ConfigScreenMixin extends ScreenMapper implements IGui, ConfigScreenProperties
 {
-    @Shadow
     @Final
+    @Shadow
     private boolean hasTimeAndWindControls;
 
-    @Shadow
     @Final
+    @Shadow
     private boolean useTimeAndWindSync;
 
     protected ConfigScreenMixin(Component title) {
@@ -35,11 +36,11 @@ public abstract class ConfigScreenMixin extends ScreenMapper implements IGui, Co
 
     @Override
     public boolean hasTimeAndWindControls() {
-        return this.hasTimeAndWindControls;
+        return hasTimeAndWindControls;
     }
 
     @Override
     public boolean useTimeAndWindSync() {
-        return this.useTimeAndWindSync;
+        return useTimeAndWindSync;
     }
 }
