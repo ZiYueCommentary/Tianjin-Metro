@@ -23,11 +23,11 @@ import ziyue.tjmetro.mixin.properties.ConfigScreenProperties;
 public abstract class ConfigScreenMixin extends ScreenMapper implements IGui, ConfigScreenProperties
 {
     @Final
-    @Shadow
+    @Shadow(remap = false)
     private boolean hasTimeAndWindControls;
 
     @Final
-    @Shadow
+    @Shadow(remap = false)
     private boolean useTimeAndWindSync;
 
     protected ConfigScreenMixin(Component title) {

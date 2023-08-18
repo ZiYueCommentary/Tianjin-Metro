@@ -64,7 +64,7 @@ public class FinishInitializationMixin
 
         // adding uncategorized items filter to filter list
         Filter.FILTERS.forEach((tabId, filterList) -> {
-            if ((filterList.uncategorizedItems != null) && (filterList.uncategorizedItems.items.size() > 0)) {
+            if ((filterList.uncategorizedItems != null) && (!filterList.uncategorizedItems.items.isEmpty())) {
                 filterList.add(filterList.uncategorizedItems);
                 uncategorizedFilters.getAndIncrement();
             }
