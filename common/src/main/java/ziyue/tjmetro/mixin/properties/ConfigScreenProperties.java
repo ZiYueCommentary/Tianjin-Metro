@@ -12,7 +12,7 @@ package ziyue.tjmetro.mixin.properties;
 
 public interface ConfigScreenProperties
 {
-    boolean hasTimeAndWindControls();
+    boolean tianjin_Metro$hasTimeAndWindControls();
 
-    boolean useTimeAndWindSync();
+    boolean tianjin_Metro$useTimeAndWindSync();
 }

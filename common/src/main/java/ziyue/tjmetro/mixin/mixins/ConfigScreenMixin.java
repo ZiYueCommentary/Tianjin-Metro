@@ -35,12 +35,12 @@ public abstract class ConfigScreenMixin extends ScreenMapper implements IGui, Co
     }
 
     @Override
-    public boolean hasTimeAndWindControls() {
+    public boolean tianjin_Metro$hasTimeAndWindControls() {
         return hasTimeAndWindControls;
     }
 
     @Override
-    public boolean useTimeAndWindSync() {
+    public boolean tianjin_Metro$useTimeAndWindSync() {
         return useTimeAndWindSync;
     }
 }

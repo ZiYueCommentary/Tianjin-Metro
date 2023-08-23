@@ -23,6 +23,8 @@ import ziyue.tjmetro.mixin.properties.ConfigScreenProperties;
  * @see ConfigScreenProperties
  * @since beta-1
  */
+
+@Deprecated
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin extends ReentrantBlockableEventLoop<Runnable> implements SnooperPopulator, WindowEventHandler
 {
@@ -37,7 +39,7 @@ public abstract class MinecraftMixin extends ReentrantBlockableEventLoop<Runnabl
     private void beforeSetScreen(Screen screen, CallbackInfo ci) {
         if (Config.EXPERIMENTAL_MTR_CONFIG_SCREEN.get()) {
             if (screen instanceof ConfigScreenProperties properties) {
-                this.setScreen(Config.getConfigScreen(properties.hasTimeAndWindControls(), properties.useTimeAndWindSync(), false));
+                this.setScreen(Config.getConfigScreen(properties.tianjin_Metro$hasTimeAndWindControls(), properties.tianjin_Metro$useTimeAndWindSync(), false));
                 ci.cancel();
             }
         }

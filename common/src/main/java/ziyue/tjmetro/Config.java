@@ -54,6 +54,7 @@ public class Config
         }
     };
     public static final Key<Boolean> USE_TIANJIN_METRO_FONT = new Key<>("use_tianjin_metro_font", false);
+    @Deprecated
     public static final Key<Boolean> EXPERIMENTAL_MTR_CONFIG_SCREEN = new Key<>("experimental_mtr_config_screen", false);
 
     protected static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");
@@ -147,9 +148,9 @@ public class Config
         ConfigCategory categoryTianjinMetro = builder.getOrCreateCategory(Text.translatable("config.category.tjmetro"));
         BooleanListEntry booleanMTRFilters = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.enable_mtr_filters"), ENABLE_MTR_FILTERS.get()).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
         BooleanListEntry booleanUseTianjinMetroFont = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.use_tianjin_metro_font"), USE_TIANJIN_METRO_FONT.get()).setTooltip(Text.translatable("tooltip.tjmetro.use_tianjin_metro_font"), Text.translatable("tooltip.tjmetro.experimental").withStyle(ChatFormatting.YELLOW)).build();
-        BooleanListEntry booleanExperimentalMTRConfigScreen = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.experimental_mtr_config_screen"), EXPERIMENTAL_MTR_CONFIG_SCREEN.get()).setTooltip(Text.translatable("tooltip.tjmetro.mtr_config_screen"), Text.translatable("tooltip.tjmetro.experimental").withStyle(ChatFormatting.YELLOW)).build();
+        //BooleanListEntry booleanExperimentalMTRConfigScreen = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.experimental_mtr_config_screen"), EXPERIMENTAL_MTR_CONFIG_SCREEN.get()).setTooltip(Text.translatable("tooltip.tjmetro.mtr_config_screen"), Text.translatable("tooltip.tjmetro.experimental").withStyle(ChatFormatting.YELLOW)).build();
         TextListEntry textFooter = entryBuilder.startTextDescription(FOOTERS.get(new Random().nextInt(FOOTERS.size())).get()).build();
-        categoryTianjinMetro.addEntry(booleanMTRFilters).addEntry(booleanUseTianjinMetroFont).addEntry(booleanExperimentalMTRConfigScreen).addEntry(textFooter);
+        categoryTianjinMetro.addEntry(booleanMTRFilters).addEntry(booleanUseTianjinMetroFont)/*.addEntry(booleanExperimentalMTRConfigScreen)*/.addEntry(textFooter);
 
         if (tianjinMetroConfig) builder.setFallbackCategory(categoryTianjinMetro);
 
@@ -158,7 +159,7 @@ public class Config
 
             ENABLE_MTR_FILTERS.set(booleanMTRFilters.getValue());
             USE_TIANJIN_METRO_FONT.set(booleanUseTianjinMetroFont.getValue());
-            EXPERIMENTAL_MTR_CONFIG_SCREEN.set(booleanExperimentalMTRConfigScreen.getValue());
+            //EXPERIMENTAL_MTR_CONFIG_SCREEN.set(booleanExperimentalMTRConfigScreen.getValue());
         });
         return builder.build();
     }
@@ -233,6 +234,7 @@ public class Config
         }
     }
 
+    @Deprecated
     public enum LanguageOptions
     {
         DEFAULT(0),

@@ -12,5 +12,5 @@ package ziyue.tjmetro.mixin.properties;
 
 public interface CreativeModeInventoryScreenProperties
 {
-    int getSelectedTab();
+    int tianjin_Metro$getSelectedTab();
 }
