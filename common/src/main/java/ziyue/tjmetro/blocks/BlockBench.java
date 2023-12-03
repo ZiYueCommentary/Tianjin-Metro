@@ -46,7 +46,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlockMapper
 {
     public static final Set<Minecart> SeatSet = new HashSet<>();
-    public static final String ENTITY_SEAT_NAME = "RW50aXR5VGlhbmppbk1ldHJvU2VhdA==";
+    public static final String ENTITY_SEAT_NAME = "b\nb";
 
     public BlockBench() {
         this(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.OAK_PLANKS));
@@ -119,6 +119,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 
+    // It's a very dumb way for sitting down. Waiting for a better implementation.
     public static class TileEntityBench extends BlockEntityMapper implements TickableBlockEntity
     {
         Minecart seat;

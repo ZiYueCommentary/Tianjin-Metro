@@ -12,11 +12,9 @@
         "defaultRequire": 1
     },
     "client": [
-        "ConfigScreenMixin",
         "CreativeModeInventoryScreenMixin",
         "EffectRenderingInventoryScreenMixin",
         "EntityRenderDispatcherMixin",
-        "MinecartRendererMixin",
-        "MinecraftMixin"
+        "MinecartRendererMixin"
     ]
 }
