@@ -120,7 +120,7 @@ public interface IDrawingExtends
                 matrices.popPose();
             }
 
-            offset += IGui.LINE_HEIGHT * (Config.USE_TIANJIN_METRO_FONT.get() ? 0.8 : 1) * extraScale;
+            offset += (float) (IGui.LINE_HEIGHT * (Config.USE_TIANJIN_METRO_FONT.get() ? 0.8 : 1) * extraScale);
         }
 
         matrices.popPose();

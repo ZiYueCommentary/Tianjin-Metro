@@ -1,6 +1,5 @@
 package ziyue.tjmetro.blocks;
 
-import mtr.Blocks;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityClientSerializableMapper;
 import mtr.mappings.BlockEntityMapper;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FluidState;
@@ -21,23 +19,22 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
+import ziyue.tjmetro.BlockList;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 /**
- * A time display, require better model.
- *
  * @author ZiYueCommentary
  * @since beta-1
  */
 
-public class BlockTimeDisplay extends HorizontalDirectionalBlock implements EntityBlockMapper, SimpleWaterloggedBlock
+public class BlockServiceCorridorSign extends HorizontalDirectionalBlock implements EntityBlockMapper, SimpleWaterloggedBlock
 {
-    public BlockTimeDisplay() {
-        this(BlockBehaviour.Properties.copy(Blocks.CLOCK.get()).lightLevel(state -> 5));
+    public BlockServiceCorridorSign() {
+        this(Properties.copy(BlockList.LOGO.get()));
     }
 
-    public BlockTimeDisplay(Properties properties) {
+    public BlockServiceCorridorSign(Properties properties) {
         super(properties);
     }
 
@@ -58,25 +55,25 @@ public class BlockTimeDisplay extends HorizontalDirectionalBlock implements Enti
     }
 
     @Override
-    public BlockEntityMapper createBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new TileEntityTimeDisplay(blockPos, blockState);
+    public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+        return IBlock.getVoxelShapeByDirection(1f, 3.5f, 0f, 15f, 14.5f, 0.5f, IBlock.getStatePropertySafe(blockState, FACING));
     }
 
     @Override
-    public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return IBlock.getVoxelShapeByDirection(-3, 8.5, 6, 18, 16, 10, blockState.getValue(FACING));
+    public BlockEntityMapper createBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new TileEntityServiceCorridorSign(blockPos, blockState);
     }
 
-    public static class TileEntityTimeDisplay extends BlockEntityClientSerializableMapper
+    public static class TileEntityServiceCorridorSign extends BlockEntityClientSerializableMapper
     {
         public final float yOffset;
         public final float zOffset;
 
-        public TileEntityTimeDisplay(BlockPos pos, BlockState state) {
-            this(BlockEntityTypes.TIME_DISPLAY_TILE_ENTITY.get(), pos, state, 0.21f, 0.63f);
+        public TileEntityServiceCorridorSign(BlockPos pos, BlockState state) {
+            this(BlockEntityTypes.SERVICE_CORRIDOR_SIGN_TILE_ENTITY.get(), pos, state, 0, 0.05f);
         }
 
-        public TileEntityTimeDisplay(BlockEntityType<?> entityType, BlockPos pos, BlockState state, float yOffset, float zOffset) {
+        public TileEntityServiceCorridorSign(BlockEntityType<?> entityType, BlockPos pos, BlockState state, float yOffset, float zOffset) {
             super(entityType, pos, state);
             this.yOffset = yOffset;
             this.zOffset = zOffset;

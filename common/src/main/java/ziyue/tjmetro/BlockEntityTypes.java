@@ -48,4 +48,5 @@ public interface BlockEntityTypes
     RegistryObject<BlockEntityType<BlockRailwaySignTianjin.TileEntityRailwaySignTianjin>> RAILWAY_SIGN_TIANJIN_7_ODD_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType((pos, state) -> new BlockRailwaySignTianjin.TileEntityRailwaySignTianjin(7, true, pos, state), BlockList.RAILWAY_SIGN_TIANJIN_7_ODD.get()));
     RegistryObject<BlockEntityType<BlockMetalDetectionDoor.TileEntityMetalDetectionDoor>> METAL_DETECTION_DOOR_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockMetalDetectionDoor.TileEntityMetalDetectionDoor::new, BlockList.METAL_DETECTION_DOOR.get()));
     RegistryObject<BlockEntityType<BlockBench.TileEntityBench>> BENCH_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockBench.TileEntityBench::new, BlockList.BENCH.get()));
+    RegistryObject<BlockEntityType<BlockServiceCorridorSign.TileEntityServiceCorridorSign>> SERVICE_CORRIDOR_SIGN_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockServiceCorridorSign.TileEntityServiceCorridorSign::new, BlockList.SERVICE_CORRIDOR_SIGN.get()));
 }

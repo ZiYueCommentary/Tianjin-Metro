@@ -63,6 +63,7 @@ public class TianjinMetro
         registerBlockItem.accept("player_detector", BlockList.PLAYER_DETECTOR, DECORATION);
         registerBlockItem.accept("time_display", BlockList.TIME_DISPLAY, DECORATION);
         registerBlockItem.accept("emergency_exit_sign", BlockList.EMERGENCY_EXIT_SIGN, DECORATION);
+        registerBlockItem.accept("service_corridor_sign", BlockList.SERVICE_CORRIDOR_SIGN, DECORATION);
         registerBlockItem.accept("ceiling_not_lit", BlockList.CEILING_NOT_LIT, CEILINGS);
         /* RAILWAYS */
         registerBlockItem.accept("railway_sign_wall_4", BlockList.RAILWAY_SIGN_WALL_4, RAILWAYS);
@@ -147,6 +148,7 @@ public class TianjinMetro
         registerBlockEntityType.accept("railway_sign_tianjin_7_even", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_7_EVEN_TILE_ENTITY);
         registerBlockEntityType.accept("metal_detection_door", BlockEntityTypes.METAL_DETECTION_DOOR_TILE_ENTITY);
         registerBlockEntityType.accept("bench", BlockEntityTypes.BENCH_TILE_ENTITY);
+        registerBlockEntityType.accept("service_corridor_sign", BlockEntityTypes.SERVICE_CORRIDOR_SIGN_TILE_ENTITY);
 
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);

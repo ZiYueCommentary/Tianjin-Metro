@@ -28,6 +28,7 @@ public class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.APG_CORNER.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.HIGH_SPEED_REPEATER.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.EMERGENCY_EXIT_SIGN.get());
+        RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.SERVICE_CORRIDOR_SIGN.get());
 
         RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING.get());
         RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING_LIGHT.get());
@@ -69,6 +70,7 @@ public class TianjinMetroClient
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_5_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_6_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_7_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SERVICE_CORRIDOR_SIGN_TILE_ENTITY.get(), RenderServiceCorridorSign::new);
 
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN, packet -> PacketGuiClient.openCustomContentScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_COLOR_SCREEN, packet -> PacketGuiClient.openCustomColorScreenS2C(Minecraft.getInstance(), packet));

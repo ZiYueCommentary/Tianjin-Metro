@@ -32,6 +32,9 @@
     "block.tjmetro.emergency_exit_sign": "安全出口标志",
     "block.tjmetro.metal_detection_door": "安检门",
     "block.tjmetro.railway_sign_tianjin": "指示牌 （天津）",
+    "block.tjmetro.service_corridor_sign": "“暖行服务连廊”标志",
+    "sign.tjmetro.service_corridor_sign": "暖行服务连廊",
+    "sign.tjmetro.contact_station_for_help": "如需帮助请联系车站|Please contact the station for help.",
 
     "gui.tjmetro.metal_detection_door": "安检门",
     "gui.tjmetro.options": "天津地铁设置",
@@ -42,14 +45,9 @@
     "button.tjmetro.scroll_down": "下滚",
     "button.tjmetro.enable_all": "启用全部",
     "button.tjmetro.disable_all": "禁用全部",
-    "button.tjmetro.tianjin_metro_options": "天津地铁设置", 
+    "button.tjmetro.tianjin_metro_options": "天津地铁设置",
 
-    "config.category.mtr": "我的世界铁路",
     "config.category.tjmetro": "天津地铁",
-
-    "config.gui.mtr.experimental": "此设置页面为实验性功能。",
-    "config.gui.mtr.supporters": "赞助者列表",
-    "config.gui.mtr.no_supporters": "暂无赞助者信息。",
 
     "config.tjmetro.enable_mtr_filters": "启用MTR筛选器",
     "config.tjmetro.use_tianjin_metro_font": "使用天津地铁字体",
