@@ -4,7 +4,7 @@
     "textures": {
         "0": "tjmetro:block/black",
         "1": "block/gray_concrete",
-        "2": "block/air",
+		"2": "tjmetro:block/air",
         "particle": "tjmetro:block/black"
     },
     "elements": [

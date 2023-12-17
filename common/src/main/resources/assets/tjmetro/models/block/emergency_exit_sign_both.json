@@ -4,8 +4,8 @@
         "0": "mtr:block/metal",
         "1": "tjmetro:sign/emergency_exit",
         "2": "tjmetro:sign/arrow_green",
-        "3": "tjmetro:block/logo",
-        "4": "block/air",
+        "3": "tjmetro:block/air",
+        "4": "tjmetro:block/air",
         "particle": "mtr:block/metal"
     },
     "elements": [
