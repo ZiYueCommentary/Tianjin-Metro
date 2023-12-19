@@ -50,16 +50,12 @@ public class RenderTimeDisplay<T extends BlockTimeDisplay.TileEntityTimeDisplay>
         for (int i = 0; i < 2; i++) {
             matrices.pushPose();
             matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
-            drawTime(entity, matrices, vertexConsumers, immediate, getFormattedTime(entity.getLevel().getDayTime()), light);
+            IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, getFormattedTime(entity.getLevel().getDayTime()), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0, -1, -1, 30, -3276781, false, light, true, null);
             matrices.popPose();
             matrices.mulPose(Vector3f.YP.rotationDegrees(180));
         }
         immediate.endBatch();
         matrices.popPose();
-    }
-
-    protected void drawTime(BlockTimeDisplay.TileEntityTimeDisplay entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String stationName, int light) {
-        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0, -1, -1, 30, -3276781, false, light, true, null);
     }
 
     public static String getFormattedTime(long ticks) {

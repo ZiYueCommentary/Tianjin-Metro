@@ -2,37 +2,28 @@ package ziyue.tjmetro;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import io.netty.buffer.Unpooled;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
-import me.shedaniel.clothconfig2.gui.entries.EnumListEntry;
-import me.shedaniel.clothconfig2.gui.entries.IntegerSliderEntry;
 import me.shedaniel.clothconfig2.gui.entries.TextListEntry;
-import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import mtr.CreativeModeTabs;
-import mtr.Patreon;
-import mtr.RegistryClient;
-import mtr.client.ClientData;
 import mtr.data.RailwayData;
 import mtr.mappings.Text;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
 import ziyue.tjmetro.filters.Filter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
-
-import static mtr.packet.IPacket.PACKET_USE_TIME_AND_WIND_SYNC;
 
 /**
  * @author ZiYueCommentary
@@ -142,34 +133,6 @@ public class Config
 
         public T getDefault() {
             return defaultValue;
-        }
-    }
-
-    @Deprecated
-    public enum LanguageOptions
-    {
-        DEFAULT(0),
-        CJK(1),
-        NOT_CJK(2);
-
-        public final int id;
-
-        LanguageOptions(int id) {
-            this.id = id;
-        }
-
-        @Override
-        public String toString() {
-            return Text.translatable("options.mtr.language_options_" + id).getString();
-        }
-
-        public static LanguageOptions getEnum(int id) {
-            return switch (id) {
-                case 0 -> DEFAULT;
-                case 1 -> CJK;
-                case 2 -> NOT_CJK;
-                default -> throw new AssertionError();
-            };
         }
     }
 }
