@@ -230,8 +230,8 @@ public interface IDrawingExtends
     }
 
     /**
-     * Formatting the component with specific styles.
-     * A valid format-able string should like this: {@code Hello! <1>This is an example!</>}
+     * A simple formatter for formatting the component with specific styles. Not compatible with tag-nesting.
+     * A valid format-able string should be like this: {@code Hello! <1>This is an example!</>}
      *
      * @author ZiYueCommentary
      * @since beta-1
@@ -239,23 +239,23 @@ public interface IDrawingExtends
     static MutableComponent format(Component component, Style... styles) {
         Style componentStyle = component.getStyle();
         MutableComponent result = new TextComponent("");
-        String contents = component.getString();
-        int firstTagBegin = contents.indexOf('<');
+        StringBuilder contents = new StringBuilder(component.getString());
+        int firstTagBegin = contents.indexOf("<");
         while (firstTagBegin != -1) {
             if (firstTagBegin != 0) {
                 result.append(Text.literal(contents.substring(0, firstTagBegin)).withStyle(componentStyle));
-                contents = contents.substring(firstTagBegin);
+                contents.delete(0, firstTagBegin);
             } else {
-                int firstTagEnd = contents.indexOf('>');
+                int firstTagEnd = contents.indexOf(">");
                 int tagId = Integer.parseInt(contents.substring(firstTagBegin + 1, firstTagEnd));
-                contents = contents.substring(firstTagEnd + 1);
+                contents.delete(0, firstTagEnd + 1);
                 int lastTagBegin = contents.indexOf("</>");
                 result.append(Text.literal(contents.substring(0, lastTagBegin)).withStyle(styles[tagId - 1]));
-                contents = contents.substring(lastTagBegin + 3);
+                contents.delete(0, lastTagBegin + 3);
             }
-            firstTagBegin = contents.indexOf('<');
+            firstTagBegin = contents.indexOf("<");
         }
-        result.append(Text.literal(contents).withStyle(componentStyle));
+        result.append(Text.literal(contents.toString()).withStyle(componentStyle));
         return result;
     }
 
@@ -263,7 +263,9 @@ public interface IDrawingExtends
      * @author ZiYueCommentary
      * @see #format(Component, Style...)
      * @since beta-1
+     * @deprecated
      */
+    @Deprecated
     @SafeVarargs
     static MutableComponent format(Component component, UnaryOperator<Style>... styles) {
         List<Style> styleList = new ArrayList<>();

@@ -74,6 +74,24 @@ task setupFiles() {
     System.out.println("Mod Menu: " + rootProject.mod_menu_version)
     System.out.println("Architectury: " + rootProject.architectury_version)
 
+    download {
+        src "https://weblate.ziyuesinicization.site/api/components/tianjin-metro/en-us-json/file/"
+        dest "lang.zip"
+        overwrite true
+        retries -1
+    }
+    copy {
+        outputs.upToDateWhen { false }
+        from(zipTree("lang.zip"))
+        into "temp_lang"
+    }
+    copy {
+        outputs.upToDateWhen { false }
+        from "temp_lang/tianjin-metro/en-us-json/"
+        into "/"
+    }
+    delete("lang.zip", "temp_lang")
+
     copy {
         outputs.upToDateWhen { false }
         from "checkouts/mtr-fabric.jar"

@@ -48,9 +48,10 @@ public class Config
 
     protected static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");
     public static final List<Supplier<MutableComponent>> FOOTERS = Arrays.asList(
-            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.sources"), style -> IDrawingExtends.LINK_STYLE.apply(Reference.GITHUB_REPO).applyTo(style)),
-            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.contributors"), style -> IDrawingExtends.LINK_STYLE.apply(Reference.CONTRIBUTORS).applyTo(style)),
-            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.forum"), style -> IDrawingExtends.LINK_STYLE.apply(Reference.FORUM).applyTo(style).withColor(TextColor.fromRgb(15946322)))
+            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.sources"), IDrawingExtends.LINK_STYLE.apply(Reference.GITHUB_REPO)),
+            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.contributors"), IDrawingExtends.LINK_STYLE.apply(Reference.CONTRIBUTORS)),
+            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.forum"), IDrawingExtends.LINK_STYLE.apply(Reference.FORUM).withColor(TextColor.fromRgb(15946322))),
+            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.weblate"), IDrawingExtends.LINK_STYLE.apply(Reference.WEBLATE))
     );
 
     public static Screen getConfigScreen() {
