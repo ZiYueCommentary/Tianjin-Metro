@@ -165,9 +165,5 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase
                 default -> null;
             };
         }
-
-        public boolean isBig() {
-            return false;
-        }
     }
 }

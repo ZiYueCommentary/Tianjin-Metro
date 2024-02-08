@@ -29,6 +29,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.blocks.BlockRailwaySignWall;
+import ziyue.tjmetro.blocks.BlockRailwaySignWallBig;
 import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
 
 import java.util.*;
@@ -78,7 +79,7 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRail
         matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         matrices.translate(block.getXStart() / 16F - 0.5, -0.25, 0.493);
-        if (entity.isBig()) {
+        if (entity instanceof BlockRailwaySignWallBig.TileEntityRailwaySignWallBig) {
             matrices.translate(0, -0.218, -0.007);
             matrices.scale(2, 2, 2);
         }

@@ -131,10 +131,5 @@ public class BlockRailwaySignWallBig extends BlockRailwaySignWall
                 default -> null;
             };
         }
-
-        @Override
-        public boolean isBig() {
-            return true;
-        }
     }
 }

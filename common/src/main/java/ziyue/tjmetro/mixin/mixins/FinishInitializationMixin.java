@@ -6,6 +6,7 @@ import mtr.Items;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.CreativeModeTab;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -40,10 +41,10 @@ public class FinishInitializationMixin
         LOGGER.info("Modloader: " + (mtr.Registry.isFabric() ? "Fabric" : "Forge"));
 
         // register filters before collect uncategorized items
-        registerMTRCoreFilters();
-        registerMTRRailwayFacilitiesFilters();
-        registerMTREscalatorsLiftsFilters();
-        registerMTRStationBuildingBlocksFilters();
+        tianjin_Metro$registerMTRCoreFilters();
+        tianjin_Metro$registerMTRRailwayFacilitiesFilters();
+        tianjin_Metro$registerMTREscalatorsLiftsFilters();
+        tianjin_Metro$registerMTRStationBuildingBlocksFilters();
 
         AtomicInteger uncategorizedItems = new AtomicInteger(0);
         AtomicInteger uncategorizedFilters = new AtomicInteger(0);
@@ -75,7 +76,8 @@ public class FinishInitializationMixin
         Config.refreshProperties();
     }
 
-    private static void registerMTRCoreFilters() {
+    @Unique
+    private static void tianjin_Metro$registerMTRCoreFilters() {
         Filters.MTR_CORE_DASHBOARDS.addItems(
                 Items.RAILWAY_DASHBOARD.get(),
                 Items.CABLE_CAR_DASHBOARD.get(),
@@ -187,7 +189,8 @@ public class FinishInitializationMixin
         );
     }
 
-    private static void registerMTRRailwayFacilitiesFilters() {
+    @Unique
+    private static void tianjin_Metro$registerMTRRailwayFacilitiesFilters() {
         Filters.MTR_RAILWAY_FACILITIES_GATES.addItems(
                 Blocks.APG_DOOR.get().asItem(),
                 Blocks.APG_GLASS.get().asItem(),
@@ -293,7 +296,8 @@ public class FinishInitializationMixin
         );
     }
 
-    private static void registerMTREscalatorsLiftsFilters() {
+    @Unique
+    private static void tianjin_Metro$registerMTREscalatorsLiftsFilters() {
         Filters.MTR_ESCALATORS_LIFTS_ESCALATORS.addItems(
                 Items.ESCALATOR.get()
         );
@@ -313,7 +317,8 @@ public class FinishInitializationMixin
         );
     }
 
-    private static void registerMTRStationBuildingBlocksFilters() {
+    @Unique
+    private static void tianjin_Metro$registerMTRStationBuildingBlocksFilters() {
         Filters.MTR_STATION_BUILDING_BLOCKS_MISCELLANEOUS.addItems(
                 Blocks.LOGO.get().asItem(),
                 Blocks.METAL.get().asItem(),

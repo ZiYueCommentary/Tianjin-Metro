@@ -31,6 +31,8 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -156,6 +158,11 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable BlockGetter blockGetter, List<Component> list, TooltipFlag tooltipFlag) {
         IDrawingExtends.addHoldShiftTooltip(list, Text.translatable("tooltip.tjmetro.metal_detection_door"), true);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState blockState) {
+        return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 
     public static class TileEntityMetalDetectionDoor extends RandomizableContainerBlockEntityMapper implements BlockEntityExtension

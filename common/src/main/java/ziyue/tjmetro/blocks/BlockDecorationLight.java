@@ -19,7 +19,13 @@ import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 
-//todo so I must make this because this placeholder has existed for half year
+/**
+ * @author ZiYueCommentary
+ * @since beta-1
+ * @deprecated
+ */
+
+@Deprecated
 public class BlockDecorationLight extends BlockCustomColorBase
 {
     public static final IntegerProperty LIGHT_LEVEL = IntegerProperty.create("level", 1, 15);
