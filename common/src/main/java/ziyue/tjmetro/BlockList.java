@@ -54,6 +54,11 @@ public interface BlockList
     RegistryObject<Block> RAILWAY_SIGN_WALL_8 = new RegistryObject<>(() -> new BlockRailwaySignWall(8));
     RegistryObject<Block> RAILWAY_SIGN_WALL_10 = new RegistryObject<>(() -> new BlockRailwaySignWall(10));
     RegistryObject<Block> RAILWAY_SIGN_WALL_MIDDLE = new RegistryObject<>(() -> new BlockRailwaySignWall(0));
+    RegistryObject<Block> RAILWAY_SIGN_WALL_DOUBLE_4 = new RegistryObject<>(() -> new BlockRailwaySignWallDouble(4));
+    RegistryObject<Block> RAILWAY_SIGN_WALL_DOUBLE_6 = new RegistryObject<>(() -> new BlockRailwaySignWallDouble(6));
+    RegistryObject<Block> RAILWAY_SIGN_WALL_DOUBLE_8 = new RegistryObject<>(() -> new BlockRailwaySignWallDouble(8));
+    RegistryObject<Block> RAILWAY_SIGN_WALL_DOUBLE_10 = new RegistryObject<>(() -> new BlockRailwaySignWallDouble(10));
+    RegistryObject<Block> RAILWAY_SIGN_WALL_DOUBLE_MIDDLE = new RegistryObject<>(() -> new BlockRailwaySignWallDouble(0));
     RegistryObject<Block> RAILWAY_SIGN_WALL_BIG_2 = new RegistryObject<>(() -> new BlockRailwaySignWallBig(2));
     RegistryObject<Block> RAILWAY_SIGN_WALL_BIG_3 = new RegistryObject<>(() -> new BlockRailwaySignWallBig(3));
     RegistryObject<Block> RAILWAY_SIGN_WALL_BIG_4 = new RegistryObject<>(() -> new BlockRailwaySignWallBig(4));

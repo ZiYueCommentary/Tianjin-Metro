@@ -49,6 +49,10 @@ public class TianjinMetroClient
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY.get(), RenderRailwaySignWall::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_8_TILE_ENTITY.get(), RenderRailwaySignWall::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_10_TILE_ENTITY.get(), RenderRailwaySignWall::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_4_TILE_ENTITY.get(), RenderRailwaySignWallDouble::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_6_TILE_ENTITY.get(), RenderRailwaySignWallDouble::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_8_TILE_ENTITY.get(), RenderRailwaySignWallDouble::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_10_TILE_ENTITY.get(), RenderRailwaySignWallDouble::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_2_TILE_ENTITY.get(), RenderRailwaySignWall::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_3_TILE_ENTITY.get(), RenderRailwaySignWall::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_4_TILE_ENTITY.get(), RenderRailwaySignWall::new);
@@ -75,5 +79,6 @@ public class TianjinMetroClient
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN, packet -> PacketGuiClient.openCustomContentScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_COLOR_SCREEN, packet -> PacketGuiClient.openCustomColorScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_RAILWAY_SIGN_SCREEN, packet -> PacketGuiClient.openRailwaySignScreenS2C(Minecraft.getInstance(), packet));
+        RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_RAILWAY_SIGN_WALL_DOUBLE_SCREEN, packet -> PacketGuiClient.openRailwaySignWallDoubleScreenS2C(Minecraft.getInstance(), packet));
     }
 }

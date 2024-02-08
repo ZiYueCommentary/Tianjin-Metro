@@ -14,11 +14,14 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import ziyue.tjmetro.blocks.BlockRailwaySignWallDouble;
 import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
 import ziyue.tjmetro.blocks.base.BlockCustomContentBlockBase;
 import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -98,19 +101,68 @@ public class PacketGuiServer
 
         minecraftServer.execute(() -> {
             final BlockEntity entity = player.level.getBlockEntity(signPos);
-            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign) {
-                setTileEntityDataAndWriteUpdate(player, entity2 -> entity2.setData(selectedIds, signIds), (BlockRailwaySignBase.TileEntityRailwaySign) entity);
-            } else if (entity instanceof BlockRouteSignBase.TileEntityRouteSignBase) {
+            if (entity instanceof BlockRailwaySignBase.TileEntityRailwaySign entity1) {
+                setTileEntityDataAndWriteUpdate(player, entity2 -> entity2.setData(selectedIds, signIds), entity1);
+            } else if (entity instanceof BlockRouteSignBase.TileEntityRouteSignBase entity1) {
                 final long platformId = selectedIds.isEmpty() ? 0 : (long) selectedIds.toArray()[0];
                 final BlockEntity entityAbove = player.level.getBlockEntity(signPos.above());
-                if (entityAbove instanceof BlockRouteSignBase.TileEntityRouteSignBase) {
-                    setTileEntityDataAndWriteUpdate(player, entity2 -> entity2.setPlatformId(platformId), ((BlockRouteSignBase.TileEntityRouteSignBase) entityAbove), (BlockRouteSignBase.TileEntityRouteSignBase) entity);
+                if (entityAbove instanceof BlockRouteSignBase.TileEntityRouteSignBase entity2) {
+                    setTileEntityDataAndWriteUpdate(player, entity3 -> entity3.setPlatformId(platformId), entity2, entity1);
                 } else {
-                    setTileEntityDataAndWriteUpdate(player, entity2 -> entity2.setPlatformId(platformId), (BlockRouteSignBase.TileEntityRouteSignBase) entity);
+                    setTileEntityDataAndWriteUpdate(player, entity2 -> entity2.setPlatformId(platformId), entity1);
                 }
             }
         });
     }
+
+    public static void openRailwaySignWallDoubleScreenS2C(ServerPlayer player, BlockPos signPos) {
+        final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
+        packet.writeBlockPos(signPos);
+        Registry.sendToPlayer(player, PACKET_OPEN_RAILWAY_SIGN_WALL_DOUBLE_SCREEN, packet);
+    }
+
+    public static void sendSignIdsDoubleC2S(BlockPos signPos, List<Set<Long>> selectedIds, String[][] signIds) {
+        final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
+        packet.writeBlockPos(signPos);
+        packet.writeInt(selectedIds.get(0).size());
+        selectedIds.forEach(line -> line.forEach(packet::writeLong));
+        packet.writeInt(signIds[0].length);
+        for (int i = 0; i < 2; i++) {
+            for (final String signType : signIds[i]) {
+                packet.writeUtf(signType == null ? "" : signType);
+            }
+        }
+        RegistryClient.sendToServer(PACKET_SIGN_TYPES_DOUBLE, packet);
+    }
+
+    public static void receiveSignIdsDoubleC2S(MinecraftServer minecraftServer, ServerPlayer player, FriendlyByteBuf packet) {
+        final BlockPos signPos = packet.readBlockPos();
+        final int selectedIdsLength = packet.readInt();
+        final List<Set<Long>> selectedIds = new ArrayList<>();
+        selectedIds.add(new HashSet<>());
+        selectedIds.add(new HashSet<>());
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < selectedIdsLength; j++) {
+                selectedIds.get(i).add(packet.readLong());
+            }
+        }
+        final int signLength = packet.readInt();
+        final String[][] signIds = new String[2][signLength];
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < signLength; j++) {
+                final String signId = packet.readUtf(SerializedDataBase.PACKET_STRING_READ_LENGTH);
+                signIds[i][j] = signId.isEmpty() ? null : signId;
+            }
+        }
+
+        minecraftServer.execute(() -> {
+            final BlockEntity entity = player.level.getBlockEntity(signPos);
+            if (entity instanceof BlockRailwaySignWallDouble.TileEntityRailwaySignWallDouble sign) {
+                setTileEntityDataAndWriteUpdate(player, entity2 -> entity2.setData(selectedIds, signIds), sign);
+            }
+        });
+    }
+
 
     @SafeVarargs
     public static <T extends BlockEntityMapper> void setTileEntityDataAndWriteUpdate(ServerPlayer player, Consumer<T> setData, T... entities) {

@@ -7,6 +7,7 @@
     "block.tjmetro.station_name_sign_2": "Station Name Sign",
     "block.tjmetro.railway_sign_wall": "Railway Sign (Wall)",
     "block.tjmetro.railway_sign_wall_big": "Railway Sign (Wall, Big)",
+    "block.tjmetro.railway_sign_wall_double": "Railway Sign (Wall, Double)",
     "block.tjmetro.roadblock": "Roadblock",
     "block.tjmetro.roadblock_sign": "Roadblock",
     "block.tjmetro.platform_tj_1": "Platform (Tianjin)",
@@ -33,6 +34,7 @@
     "block.tjmetro.metal_detection_door": "Metal Detection Door",
     "block.tjmetro.railway_sign_tianjin": "Railway Sign (Tianjin)",
     "block.tjmetro.service_corridor_sign": "\"Serivce Corridor\" Sign",
+
     "sign.tjmetro.service_corridor_sign": "Service Corridor",
     "sign.tjmetro.contact_station_for_help": "Please contact the station for help.",
 
@@ -51,9 +53,8 @@
 
     "config.tjmetro.enable_mtr_filters": "Enable MTR Filters",
     "config.tjmetro.use_tianjin_metro_font": "Enable Tianjin Metro Font",
-    "config.tjmetro.experimental_mtr_config_screen": "Experimental MTR Config Screen",
 
-    "tooltip.tjmetro.not_suggest": "This feature is not suggest.",
+    "tooltip.tjmetro.not_suggest": "This feature is not suggested.",
     "tooltip.tjmetro.mtr_config_screen": "Use the new config screen instead of the original.",
     "tooltip.tjmetro.experimental": "This feature is experimental.",
     "tooltip.tjmetro.station_name": "Text depends on the station",
