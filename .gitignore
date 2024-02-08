@@ -34,3 +34,5 @@ bin/
 run/
 mappings
 .architectury-transformer
+**/lang/*.json
+!en_us.json
