@@ -124,8 +124,10 @@ public class PacketGuiServer
     public static void sendSignIdsDoubleC2S(BlockPos signPos, List<Set<Long>> selectedIds, String[][] signIds) {
         final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
         packet.writeBlockPos(signPos);
-        packet.writeInt(selectedIds.get(0).size());
-        selectedIds.forEach(line -> line.forEach(packet::writeLong));
+        selectedIds.forEach(line -> {
+            packet.writeInt(line.size());
+            line.forEach(packet::writeLong);
+        });
         packet.writeInt(signIds[0].length);
         for (int i = 0; i < 2; i++) {
             for (final String signType : signIds[i]) {
@@ -137,11 +139,11 @@ public class PacketGuiServer
 
     public static void receiveSignIdsDoubleC2S(MinecraftServer minecraftServer, ServerPlayer player, FriendlyByteBuf packet) {
         final BlockPos signPos = packet.readBlockPos();
-        final int selectedIdsLength = packet.readInt();
         final List<Set<Long>> selectedIds = new ArrayList<>();
         selectedIds.add(new HashSet<>());
         selectedIds.add(new HashSet<>());
         for (int i = 0; i < 2; i++) {
+            final int selectedIdsLength = packet.readInt();
             for (int j = 0; j < selectedIdsLength; j++) {
                 selectedIds.get(i).add(packet.readLong());
             }

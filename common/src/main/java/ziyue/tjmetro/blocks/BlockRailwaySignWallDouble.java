@@ -141,7 +141,7 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
         }
 
         public void setData(List<Set<Long>> selectedIds, String[][] signTypes) {
-            this.selectedIds.forEach(Set::clear);
+            this.selectedIds.clear();
             this.selectedIds.addAll(selectedIds);
             if (signIds[0].length == signTypes[0].length) { // Both lines have the same length
                 System.arraycopy(signTypes, 0, signIds, 0, signTypes.length);
