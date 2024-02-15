@@ -35,9 +35,8 @@
     "block.tjmetro.railway_sign_tianjin": "Railway Sign (Tianjin)",
     "block.tjmetro.service_corridor_sign": "\"Serivce Corridor\" Sign",
 
-    "sign.tjmetro.service_corridor_sign": "Service Corridor",
-    "sign.tjmetro.contact_station_for_help": "Please contact the station for help.",
-
+    "gui.tjmetro.service_corridor_sign": "Service Corridor",
+    "gui.tjmetro.contact_station_for_help": "Please contact the station for help.",
     "gui.tjmetro.metal_detection_door": "Metal Detection Door",
     "gui.tjmetro.options": "Tianjin Metro Options",
     "gui.tjmetro.default_color": "Default Color",

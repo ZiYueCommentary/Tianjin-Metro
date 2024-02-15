@@ -52,8 +52,8 @@ public class RenderServiceCorridorSign<T extends BlockServiceCorridorSign.TileEn
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, Text.translatable("sign.tjmetro.service_corridor_sign").getString(), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -0.12f, 0.85F, 1F, 150, ARGB_BLACK, false, light, null);
-        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, Text.translatable("sign.tjmetro.contact_station_for_help").getString(), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0.02f, 0.85F, 1F, 270, ARGB_BLACK, false, light, null);
+        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, Text.translatable("gui.tjmetro.service_corridor_sign").getString(), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -0.12f, 0.85F, 1F, 150, ARGB_BLACK, false, light, null);
+        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, Text.translatable("gui.tjmetro.contact_station_for_help").getString(), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0.02f, 0.85F, 1F, 270, ARGB_BLACK, false, light, null);
         immediate.endBatch();
         matrices.popPose();
     }

@@ -38,6 +38,29 @@ public interface IDrawingExtends
     Function<String, Style> LINK_STYLE = link -> Style.EMPTY.withUnderlined(true).withColor(ChatFormatting.BLUE).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link)).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(link)));
 
     /**
+     * Remains the language string that the language option specified.
+     *
+     * @return filtered string
+     * @author ZiYueCommentary
+     * @see mtr.client.Config#languageOptions()
+     * @since beta-1
+     */
+    static String filterLanguage(String text) {
+        final StringBuilder noCommentString = new StringBuilder(text);
+        final int commentIndex = noCommentString.indexOf("||");
+        final int separatorIndex = noCommentString.indexOf("|");
+        if (commentIndex != -1)
+            noCommentString.delete(commentIndex, noCommentString.length());
+        if (separatorIndex != -1) {
+            switch (mtr.client.Config.languageOptions()) {
+                case 1 -> noCommentString.delete(separatorIndex, noCommentString.length());
+                case 2 -> noCommentString.delete(0, separatorIndex);
+            }
+        }
+        return noCommentString.toString();
+    }
+
+    /**
      * Drawing string with Tianjin Metro Font.
      *
      * @author ZiYueCommentary
@@ -56,9 +79,7 @@ public interface IDrawingExtends
             style = Style.EMPTY;
         }
 
-        while (text.contains("||")) {
-            text = text.replace("||", "|");
-        }
+        text = IDrawingExtends.filterLanguage(text);
         final String[] stringSplit = text.split("\\|");
 
         final List<Boolean> isCJKList = new ArrayList<>();

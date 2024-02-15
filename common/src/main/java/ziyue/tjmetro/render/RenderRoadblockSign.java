@@ -53,12 +53,12 @@ public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBloc
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         matrices.translate(0, 0.023, 0.5 - entity.zOffset - SMALL_OFFSET);
-        drawStationName(entity, matrices, vertexConsumers, immediate, entity.content, light);
+        drawString(entity, matrices, vertexConsumers, immediate, IDrawingExtends.filterLanguage(entity.content), light);
         immediate.endBatch();
         matrices.popPose();
     }
 
-    protected void drawStationName(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String content, int light) {
+    protected void drawString(T entity, PoseStack matrices, MultiBufferSource vertexConsumers, MultiBufferSource.BufferSource immediate, String content, int light) {
         IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, content, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0.5f, -0.13f, 0.85F * 2 + 0.05f, 1f, 80, ARGB_WHITE, false, light, null);
     }
 }

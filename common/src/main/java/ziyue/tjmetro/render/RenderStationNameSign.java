@@ -64,7 +64,7 @@ public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntity
         matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, entity.getBlockPos());
-        drawStationName(matrices, immediate, entity.content.equals("") ? station == null ? Text.translatable("gui.mtr.untitled").getString() : station.name : entity.content, color, light);
+        drawStationName(matrices, immediate, entity.content.isEmpty() ? station == null ? Text.translatable("gui.mtr.untitled").getString() : IDrawingExtends.filterLanguage(station.name) : IDrawingExtends.filterLanguage(entity.content), color, light);
         immediate.endBatch();
         matrices.popPose();
     }
