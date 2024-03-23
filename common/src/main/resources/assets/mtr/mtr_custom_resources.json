@@ -82,6 +82,62 @@
             "flip_custom_text": true,
             "small": true
         },
+        "tjmetro:no_throughfare_sign": {
+            "texture_id": "tjmetro:textures/sign/no_throughfare.png",
+            "flip_texture": false,
+            "custom_text": "禁止通行|No Throughfare",
+            "flip_custom_text": false,
+            "small": true
+        },
+        "tjmetro:no_throughfare_sign_flip": {
+            "texture_id": "tjmetro:textures/sign/no_throughfare.png",
+            "flip_texture": false,
+            "custom_text": "禁止通行|No Throughfare",
+            "flip_custom_text": true,
+            "small": true
+        },
+        "tjmetro:accessible_elevator_sign": {
+            "texture_id": "tjmetro:textures/sign/accessible_elevator.png",
+            "flip_texture": false,
+            "custom_text": "无障碍电梯|Accessible Elevator",
+            "flip_custom_text": false,
+            "small": true
+        },
+        "tjmetro:accessible_elevator_sign_flip": {
+            "texture_id": "tjmetro:textures/sign/accessible_elevator.png",
+            "flip_texture": false,
+            "custom_text": "无障碍电梯|Accessible Elevator",
+            "flip_custom_text": true,
+            "small": true
+        },
+        "tjmetro:security_check_sign": {
+            "texture_id": "tjmetro:textures/sign/security_check.png",
+            "flip_texture": false,
+            "custom_text": "安全检查|Security Check",
+            "flip_custom_text": false,
+            "small": true
+        },
+        "tjmetro:security_check_sign_flip": {
+            "texture_id": "tjmetro:textures/sign/security_check.png",
+            "flip_texture": false,
+            "custom_text": "安全检查|Security Check",
+            "flip_custom_text": true,
+            "small": true
+        },
+        "tjmetro:automatic_ticket_sign": {
+            "texture_id": "tjmetro:textures/sign/automatic_ticket.png",
+            "flip_texture": false,
+            "custom_text": "自动售票|Automatic Ticket",
+            "flip_custom_text": false,
+            "small": true
+        },
+        "tjmetro:automatic_ticket_sign_flip": {
+            "texture_id": "tjmetro:textures/sign/automatic_ticket.png",
+            "flip_texture": false,
+            "custom_text": "自动售票|Automatic Ticket",
+            "flip_custom_text": true,
+            "small": true
+        },
 
         "tjmetro:tianjin_metro_logo": {
             "texture_id": "tjmetro:textures/sign/tianjin_metro_logo.png",
@@ -111,6 +167,26 @@
         "tjmetro:emergency_exit_flip": {
             "texture_id": "tjmetro:textures/sign/emergency_exit.png",
             "flip_texture": true,
+            "small": true
+        },
+        "tjmetro:no_throughfare": {
+            "texture_id": "tjmetro:textures/sign/no_throughfare.png",
+            "flip_texture": false,
+            "small": true
+        },
+        "tjmetro:accessible_elevator": {
+            "texture_id": "tjmetro:textures/sign/accessible_elevator.png",
+            "flip_texture": false,
+            "small": true
+        },
+        "tjmetro:security_check": {
+            "texture_id": "tjmetro:textures/sign/security_check.png",
+            "flip_texture": false,
+            "small": true
+        },
+        "tjmetro:automatic_ticket": {
+            "texture_id": "tjmetro:textures/sign/automatic_ticket.png",
+            "flip_texture": false,
             "small": true
         }
     }
