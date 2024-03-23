@@ -25,7 +25,6 @@ import ziyue.tjmetro.blocks.base.BlockStationNameSignBase;
 
 /**
  * Render content for <b>Station Name Sign Block</b>.
- * Support display <b>custom content</b>.
  *
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.screen.CustomContentScreen
@@ -61,7 +60,7 @@ public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntity
         matrices.translate(0.5, 0.5 + entity.yOffset, 0.5);
         matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
-        matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
+        matrices.translate(0, 0, 0.515 - entity.zOffset);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, entity.getBlockPos());
         drawStationName(matrices, immediate, entity.content.isEmpty() ? station == null ? Text.translatable("gui.mtr.untitled").getString() : IDrawingExtends.filterLanguage(station.name) : IDrawingExtends.filterLanguage(entity.content), color, light);
