@@ -60,6 +60,14 @@ public interface IDrawingExtends
         return noCommentString.toString();
     }
 
+    static String mergeTranslation(String keyCJK, String key) {
+        return switch (mtr.client.Config.languageOptions()) {
+            case 1 -> Text.translatable(keyCJK).getString();
+            case 2 -> Text.translatable(key).getString();
+            default -> Text.translatable(keyCJK).getString() + "|" + Text.translatable(key).getString();
+        };
+    }
+
     /**
      * Drawing string with Tianjin Metro Font.
      *
