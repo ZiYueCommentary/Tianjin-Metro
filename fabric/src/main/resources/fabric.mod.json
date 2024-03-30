@@ -34,6 +34,7 @@
     "depends": {
         "fabric": "*",
         "minecraft": "*",
-        "mtr": "*"
+        "mtr": "*",
+        "java": ">=16"
     }
 }
