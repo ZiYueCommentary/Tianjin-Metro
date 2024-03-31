@@ -1,7 +1,6 @@
 package ziyue.tjmetro.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
 import mtr.block.BlockPSDAPGDoorBase;
 import mtr.block.BlockPSDAPGGlassEndBase;
 import mtr.block.BlockPSDTop;
@@ -17,17 +16,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.util.Tuple;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.blocks.BlockPSDTopTianjin;
+import ziyue.tjmetro.block.BlockPSDTopTianjin;
 import ziyue.tjmetro.client.ClientCache;
-import ziyue.tjmetro.client.RouteMapGenerator;
-
-import java.util.Objects;
 
 import static mtr.render.RenderRouteBase.getShadingColor;
 

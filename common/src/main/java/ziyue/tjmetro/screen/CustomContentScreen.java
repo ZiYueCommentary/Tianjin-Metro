@@ -11,8 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import ziyue.tjmetro.TianjinMetro;
-import ziyue.tjmetro.blocks.base.BlockCustomContentBlockBase;
+import ziyue.tjmetro.block.base.BlockCustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiClient;
 
 /**

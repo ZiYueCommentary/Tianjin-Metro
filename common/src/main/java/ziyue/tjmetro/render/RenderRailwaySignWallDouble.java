@@ -28,9 +28,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.blocks.BlockRailwaySignWall;
-import ziyue.tjmetro.blocks.BlockRailwaySignWallDouble;
-import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
+import ziyue.tjmetro.block.BlockRailwaySignWallDouble;
+import ziyue.tjmetro.block.base.BlockRailwaySignBase;
 
 import java.util.*;
 import java.util.stream.Collectors;

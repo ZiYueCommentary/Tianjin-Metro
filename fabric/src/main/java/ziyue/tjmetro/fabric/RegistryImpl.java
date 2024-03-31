@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
+import ziyue.tjmetro.block.base.BlockCustomColorBase;
 
 /**
  * Methods implements of fabric mod.

@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import ziyue.tjmetro.blocks.*;
-import ziyue.tjmetro.blocks.base.StairBlock;
+import ziyue.tjmetro.block.*;
+import ziyue.tjmetro.block.base.StairBlock;
 
 /**
  * @since beta-1

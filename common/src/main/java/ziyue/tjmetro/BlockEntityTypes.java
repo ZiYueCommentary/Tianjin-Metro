@@ -3,7 +3,7 @@ package ziyue.tjmetro;
 import mtr.RegistryObject;
 import mtr.mappings.RegistryUtilities;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import ziyue.tjmetro.blocks.*;
+import ziyue.tjmetro.block.*;
 
 /**
  * @since beta-1

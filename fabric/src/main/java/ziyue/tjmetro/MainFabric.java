@@ -11,7 +11,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import ziyue.tjmetro.filters.Filter;
+import ziyue.tjmetro.filter.Filter;
 
 /**
  * Entry of fabric mod.

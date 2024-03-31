@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ziyue.tjmetro.filters.Filter;
+import ziyue.tjmetro.filter.Filter;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.function.BiConsumer;

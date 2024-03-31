@@ -10,7 +10,7 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
+import ziyue.tjmetro.block.base.BlockCustomColorBase;
 
 /**
  * Methods implements of forge mod.

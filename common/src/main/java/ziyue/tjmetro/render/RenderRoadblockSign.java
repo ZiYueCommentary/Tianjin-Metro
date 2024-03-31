@@ -17,7 +17,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.IDrawingExtends;
-import ziyue.tjmetro.blocks.BlockRoadblockSign;
+import ziyue.tjmetro.block.BlockRoadblockSign;
 
 /**
  * Render content for <b>Roadblock with Sign</b>.
@@ -25,7 +25,7 @@ import ziyue.tjmetro.blocks.BlockRoadblockSign;
  *
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.screen.CustomContentScreen
- * @see ziyue.tjmetro.blocks.BlockRoadblockSign
+ * @see ziyue.tjmetro.block.BlockRoadblockSign
  * @since beta-1
  */
 

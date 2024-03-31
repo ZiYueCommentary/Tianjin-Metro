@@ -5,7 +5,7 @@ import mtr.Items;
 import mtr.mappings.Text;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import ziyue.tjmetro.filters.Filter;
+import ziyue.tjmetro.filter.Filter;
 
 /**
  * @see Filter

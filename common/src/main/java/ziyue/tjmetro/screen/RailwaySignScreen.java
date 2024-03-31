@@ -23,7 +23,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.TianjinMetro;
-import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
+import ziyue.tjmetro.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.*;

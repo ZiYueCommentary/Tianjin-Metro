@@ -18,7 +18,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import ziyue.tjmetro.filters.Filter;
+import ziyue.tjmetro.filter.Filter;
 
 import java.util.ArrayList;
 

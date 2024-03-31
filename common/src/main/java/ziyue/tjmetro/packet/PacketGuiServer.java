@@ -14,10 +14,10 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import ziyue.tjmetro.blocks.BlockRailwaySignWallDouble;
-import ziyue.tjmetro.blocks.base.BlockCustomColorBase;
-import ziyue.tjmetro.blocks.base.BlockCustomContentBlockBase;
-import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
+import ziyue.tjmetro.block.BlockRailwaySignWallDouble;
+import ziyue.tjmetro.block.base.BlockCustomColorBase;
+import ziyue.tjmetro.block.base.BlockCustomContentBlockBase;
+import ziyue.tjmetro.block.base.BlockRailwaySignBase;
 
 import java.util.ArrayList;
 import java.util.HashSet;

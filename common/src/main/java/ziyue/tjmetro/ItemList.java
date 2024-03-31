@@ -3,7 +3,7 @@ package ziyue.tjmetro;
 import mtr.RegistryObject;
 import mtr.item.ItemWithCreativeTabBase;
 import net.minecraft.world.item.Item;
-import ziyue.tjmetro.items.ItemPSDTianjinBase;
+import ziyue.tjmetro.item.ItemPSDTianjinBase;
 
 /**
  * @since beta-1

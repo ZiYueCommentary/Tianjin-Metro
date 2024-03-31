@@ -16,7 +16,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import ziyue.tjmetro.client.ClientCache;
-import ziyue.tjmetro.filters.Filter;
+import ziyue.tjmetro.filter.Filter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
