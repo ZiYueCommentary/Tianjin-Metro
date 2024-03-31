@@ -1,6 +1,7 @@
 package ziyue.tjmetro.screen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import mtr.MTR;
 import mtr.block.BlockRailwaySign;
 import mtr.client.ClientCache;
 import mtr.client.ClientData;
@@ -85,7 +86,7 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
                 exitParents.sort(String::compareTo);
                 exitParents.forEach(exitParent -> {
                     final List<String> destinations = exits.get(exitParent);
-                    exitsForList.add(new DataConverter(Station.serializeExit(exitParent), exitParent + " " + (destinations.size() > 0 ? destinations.get(0) : ""), 0));
+                    exitsForList.add(new DataConverter(Station.serializeExit(exitParent), exitParent + " " + (!destinations.isEmpty() ? destinations.get(0) : ""), 0));
                 });
 
                 final List<Platform> platforms = new ArrayList<>(ClientData.DATA_CACHE.requestStationIdToPlatforms(station.id).values());
@@ -138,8 +139,8 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
         }
 
         buttonClear = new Button(0, 0, 0, SQUARE_SIZE, Text.translatable("gui.mtr.reset_sign"), button -> setNewSignId(null));
-        buttonPrevPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation("mtr:textures/gui/icon_left.png"), 20, 40, button -> setPage(page - 1));
-        buttonNextPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation("mtr:textures/gui/icon_right.png"), 20, 40, button -> setPage(page + 1));
+        buttonPrevPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation(MTR.MOD_ID, "textures/gui/icon_left.png"), 20, 40, button -> setPage(page - 1));
+        buttonNextPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation(MTR.MOD_ID, "textures/gui/icon_right.png"), 20, 40, button -> setPage(page + 1));
     }
 
     @Override
@@ -178,7 +179,7 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
         addDrawableChild(buttonNextPage);
 
         if (!isRailwaySign && minecraft != null) {
-            UtilitiesClient.setScreen(minecraft, new DashboardListSelectorScreen(this::onClose, platformsForList, selectedIds, true, false));
+            UtilitiesClient.setScreen(minecraft, new DashboardListSelectorScreen(this::onClose, exitsForList, selectedIds, true, false));
         }
     }
 

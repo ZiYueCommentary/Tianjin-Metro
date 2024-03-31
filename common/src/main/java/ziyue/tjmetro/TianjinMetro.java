@@ -41,6 +41,8 @@ public class TianjinMetro
     ) {
         /* MISCELLANEOUS */
         registerItem.accept("wrench", ItemList.WRENCH, MISCELLANEOUS);
+        registerBlockItem.accept("high_speed_repeater", BlockList.HIGH_SPEED_REPEATER, MISCELLANEOUS);
+        registerBlockItem.accept("player_detector", BlockList.PLAYER_DETECTOR, MISCELLANEOUS);
         /* BUILDING */
         registerBlockItem.accept("rolling", BlockList.ROLLING, BUILDING);
         registerBlockItem.accept("platform_tj_1", BlockList.PLATFORM_TJ_1, BUILDING);
@@ -53,7 +55,6 @@ public class TianjinMetro
         registerBlockItem.accept("marble_yellow", BlockList.MARBLE_YELLOW, BUILDING);
         registerBlockItem.accept("marble_yellow_slab", BlockList.MARBLE_YELLOW_SLAB, BUILDING);
         registerBlockItem.accept("marble_yellow_stairs", BlockList.MARBLE_YELLOW_STAIRS, BUILDING);
-        registerBlockItem.accept("high_speed_repeater", BlockList.HIGH_SPEED_REPEATER, BUILDING);
         registerBlockItem.accept("metal_detection_door", BlockList.METAL_DETECTION_DOOR, BUILDING);
         registerBlockItem.accept("roadblock", BlockList.ROADBLOCK, BUILDING);
         registerBlockItem.accept("roadblock_sign", BlockList.ROADBLOCK_SIGN, BUILDING);
@@ -72,7 +73,6 @@ public class TianjinMetro
         registerBlockItem.accept("logo", BlockList.LOGO, DECORATION);
         registerBlockItem.accept("apg_corner", BlockList.APG_CORNER, DECORATION);
         registerBlockItem.accept("bench", BlockList.BENCH, DECORATION);
-        registerBlockItem.accept("player_detector", BlockList.PLAYER_DETECTOR, DECORATION);
         registerBlockItem.accept("time_display", BlockList.TIME_DISPLAY, DECORATION);
         registerBlockItem.accept("emergency_exit_sign", BlockList.EMERGENCY_EXIT_SIGN, DECORATION);
         registerBlockItem.accept("service_corridor_sign", BlockList.SERVICE_CORRIDOR_SIGN, DECORATION);

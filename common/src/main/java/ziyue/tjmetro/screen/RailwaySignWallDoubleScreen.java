@@ -1,6 +1,7 @@
 package ziyue.tjmetro.screen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import mtr.MTR;
 import mtr.block.BlockRailwaySign;
 import mtr.client.ClientCache;
 import mtr.client.ClientData;
@@ -148,8 +149,8 @@ public class RailwaySignWallDoubleScreen extends ScreenMapper implements IGui
         }
 
         buttonClear = new Button(0, 0, 0, SQUARE_SIZE, Text.translatable("gui.mtr.reset_sign"), button -> setNewSignId(null));
-        buttonPrevPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation("mtr:textures/gui/icon_left.png"), 20, 40, button -> setPage(page - 1));
-        buttonNextPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation("mtr:textures/gui/icon_right.png"), 20, 40, button -> setPage(page + 1));
+        buttonPrevPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation(MTR.MOD_ID, "textures/gui/icon_left.png"), 20, 40, button -> setPage(page - 1));
+        buttonNextPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation(MTR.MOD_ID, "textures/gui/icon_right.png"), 20, 40, button -> setPage(page + 1));
     }
 
     @Override

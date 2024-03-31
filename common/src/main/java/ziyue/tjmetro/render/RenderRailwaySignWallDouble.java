@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
+import mtr.MTR;
 import mtr.block.BlockRailwaySign;
 import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
@@ -32,7 +33,6 @@ import ziyue.tjmetro.block.BlockRailwaySignWallDouble;
 import ziyue.tjmetro.block.base.BlockRailwaySignBase;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author ZiYueCommentary
@@ -80,7 +80,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Ti
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         matrices.translate(block.getXStart() / 16F - 0.5, -0.468, 0.493);
 
-        final VertexConsumer vertexConsumer = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("mtr:textures/block/white.png"), false));
+        final VertexConsumer vertexConsumer = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation(MTR.MOD_ID, "textures/block/white.png"), false));
         IDrawing.drawTexture(matrices, vertexConsumer, 0, 0F, SMALL_OFFSET * 2, 0.5F * (signIds[0].length), 0.5F, SMALL_OFFSET * 2, facing, backgroundColor[0] | ARGB_BLACK, MAX_LIGHT_GLOWING);
         IDrawing.drawTexture(matrices, vertexConsumer, 0, 0.5F, SMALL_OFFSET * 2, 0.5F * (signIds[1].length), 1F, SMALL_OFFSET * 2, facing, backgroundColor[1] | ARGB_BLACK, MAX_LIGHT_GLOWING);
         for (int i = 0; i < 2; i++) {
@@ -126,7 +126,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Ti
             if (station == null) return;
 
             final Map<String, List<String>> exits = station.getGeneratedExits();
-            final List<String> selectedExitsSorted = selectedIds.stream().map(Station::deserializeExit).filter(exits::containsKey).sorted(String::compareTo).collect(Collectors.toList());
+            final List<String> selectedExitsSorted = selectedIds.stream().map(Station::deserializeExit).filter(exits::containsKey).sorted(String::compareTo).toList();
 
             matrices.pushPose();
             matrices.translate(x + margin + (flipCustomText ? signSize : 0), y + margin, 0);
@@ -163,7 +163,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Ti
 
             final Map<Integer, ClientCache.ColorNameTuple> routesInStation = ClientData.DATA_CACHE.stationIdToRoutes.get(station.id);
             if (routesInStation != null) {
-                final List<ClientCache.ColorNameTuple> selectedIdsSorted = selectedIds.stream().filter(selectedId -> RailwayData.isBetween(selectedId, Integer.MIN_VALUE, Integer.MAX_VALUE)).map(Math::toIntExact).filter(routesInStation::containsKey).map(routesInStation::get).sorted(Comparator.comparingInt(route -> route.color)).collect(Collectors.toList());
+                final List<ClientCache.ColorNameTuple> selectedIdsSorted = selectedIds.stream().filter(selectedId -> RailwayData.isBetween(selectedId, Integer.MIN_VALUE, Integer.MAX_VALUE)).map(Math::toIntExact).filter(routesInStation::containsKey).map(routesInStation::get).sorted(Comparator.comparingInt(route -> route.color)).toList();
 
                 final float maxWidth = Math.max(0, ((flipCustomText ? maxWidthLeft : maxWidthRight) + 1) * size - margin * 2);
                 final float height = size - margin * 2;
@@ -202,7 +202,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Ti
 
             final Map<Long, Platform> platformPositions = ClientData.DATA_CACHE.requestStationIdToPlatforms(station.id);
             if (platformPositions != null) {
-                final List<Long> selectedIdsSorted = selectedIds.stream().filter(platformPositions::containsKey).sorted(Comparator.comparing(platformPositions::get)).collect(Collectors.toList());
+                final List<Long> selectedIdsSorted = selectedIds.stream().filter(platformPositions::containsKey).sorted(Comparator.comparing(platformPositions::get)).toList();
                 final int selectedCount = selectedIdsSorted.size();
 
                 final float extraMargin = margin - margin / selectedCount;

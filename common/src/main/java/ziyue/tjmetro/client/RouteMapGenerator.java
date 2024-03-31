@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.Tuple;
 import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.Reference;
 import ziyue.tjmetro.TianjinMetro;
 
 import java.io.IOException;
@@ -37,8 +38,8 @@ public class RouteMapGenerator implements IGui
 
     protected static final int MIN_VERTICAL_SIZE = 5;
     protected static final String TEMP_CIRCULAR_MARKER = "temp_circular_marker";
-    protected static final String ARROW_RESOURCE = "textures/block/sign/arrow.png";
-    protected static final String CIRCLE_RESOURCE = "textures/block/sign/circle.png";
+    protected static final ResourceLocation ARROW_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/arrow.png");
+    protected static final ResourceLocation CIRCLE_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/circle.png");
 
     public static void setConstants() {
         scale = (int) Math.pow(2, Config.dynamicTextureResolution() + 5);
@@ -563,8 +564,8 @@ public class RouteMapGenerator implements IGui
         return routes.stream().toList();
     }
 
-    protected static void drawResource(NativeImage nativeImage, String resource, int x, int y, int width, int height, boolean flipX, float v1, float v2, int color, boolean useActualColor) throws IOException {
-        final NativeImage nativeImageResource = NativeImage.read(NativeImage.Format.RGBA, Utilities.getInputStream(Minecraft.getInstance().getResourceManager().getResource(new ResourceLocation(MTR.MOD_ID, resource))));
+    protected static void drawResource(NativeImage nativeImage, ResourceLocation resource, int x, int y, int width, int height, boolean flipX, float v1, float v2, int color, boolean useActualColor) throws IOException {
+        final NativeImage nativeImageResource = NativeImage.read(NativeImage.Format.RGBA, Utilities.getInputStream(Minecraft.getInstance().getResourceManager().getResource(resource)));
         final int resourceWidth = nativeImageResource.getWidth();
         final int resourceHeight = nativeImageResource.getHeight();
         for (int drawX = 0; drawX < width; drawX++) {
