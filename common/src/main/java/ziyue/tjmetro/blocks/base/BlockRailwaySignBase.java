@@ -28,6 +28,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.*;
@@ -56,7 +57,7 @@ public abstract class BlockRailwaySignBase extends BlockDirectionalMapper implem
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult hit) {
-        return IBlock.checkHoldingBrush(world, player, () -> {
+        return IBlockExtends.checkHoldingBrushOrWrench(world, player, () -> {
             final Direction facing = IBlock.getStatePropertySafe(state, FACING);
             final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
             if (checkPos != null) {

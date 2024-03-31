@@ -23,6 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import ziyue.tjmetro.IBlockExtends;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
@@ -61,7 +62,7 @@ public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implement
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingBrush(level, player, () -> level.setBlockAndUpdate(blockPos, blockState.cycle(STYLE)));
+        return IBlockExtends.checkHoldingBrushOrWrench(level, player, () -> level.setBlockAndUpdate(blockPos, blockState.cycle(STYLE)));
     }
 
     @Override
@@ -76,7 +77,7 @@ public class BlockEmergencyExitSign extends HorizontalDirectionalBlock implement
      * @see BlockEmergencyExitSign
      * @since beta-1
      */
-    protected enum BlockEmergencyExitSignStyle implements StringRepresentable
+    public enum BlockEmergencyExitSignStyle implements StringRepresentable
     {
         LEFT("left"),
         RIGHT("right"),

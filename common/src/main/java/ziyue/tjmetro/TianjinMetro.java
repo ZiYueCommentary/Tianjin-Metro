@@ -4,6 +4,7 @@ import mtr.CreativeModeTabs;
 import mtr.RegistryObject;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
@@ -34,9 +35,12 @@ public class TianjinMetro
     public static void init(
             BiConsumer<String, RegistryObject<Block>> registerBlock,
             RegisterBlockItem registerBlockItem,
+            RegisterItem registerItem,
             RegisterBlockItem registerEnchantedBlockItem,
             BiConsumer<String, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>>> registerBlockEntityType
     ) {
+        /* MISCELLANEOUS */
+        registerItem.accept("wrench", ItemList.WRENCH, MISCELLANEOUS);
         /* BUILDING */
         registerBlockItem.accept("rolling", BlockList.ROLLING, BUILDING);
         registerBlockItem.accept("platform_tj_1", BlockList.PLATFORM_TJ_1, BUILDING);
@@ -165,5 +169,11 @@ public class TianjinMetro
     public interface RegisterBlockItem
     {
         void accept(String string, RegistryObject<Block> block, Filter filter);
+    }
+
+    @FunctionalInterface
+    public interface RegisterItem
+    {
+        void accept(String string, RegistryObject<Item> item, Filter filter);
     }
 }

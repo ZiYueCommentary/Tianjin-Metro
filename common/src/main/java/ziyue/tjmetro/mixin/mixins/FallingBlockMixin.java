@@ -26,7 +26,7 @@ import static net.minecraft.world.level.block.FallingBlock.isFree;
  */
 
 @Mixin(FallingBlock.class)
-public class FallingBlockMixin extends Block
+public abstract class FallingBlockMixin extends Block
 {
     public FallingBlockMixin(Properties properties) {
         super(properties);

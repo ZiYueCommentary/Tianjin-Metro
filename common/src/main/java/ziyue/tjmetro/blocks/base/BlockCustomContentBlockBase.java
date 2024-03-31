@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public abstract class BlockCustomContentBlockBase extends Block implements Entit
 
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingBrush(world, player, () -> {
+        return IBlockExtends.checkHoldingBrushOrWrench(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof CustomContentBlockEntity entity1) {
                 entity1.syncData();

@@ -23,6 +23,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockList;
+import ziyue.tjmetro.IBlockExtends;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
@@ -70,7 +71,7 @@ public class BlockRolling extends Block implements SimpleWaterloggedBlock
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingBrush(level, player, () -> level.setBlockAndUpdate(blockPos, blockState.cycle(BOTTOM).setValue(CHANGED, true)));
+        return IBlockExtends.checkHoldingBrushOrWrench(level, player, () -> level.setBlockAndUpdate(blockPos, blockState.cycle(BOTTOM).setValue(CHANGED, true)));
     }
 
     @Override

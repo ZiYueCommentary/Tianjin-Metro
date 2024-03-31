@@ -30,6 +30,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import ziyue.tjmetro.BlockEntityTypes;
+import ziyue.tjmetro.IBlockExtends;
 
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class BlockStationNameWallLegacy extends BlockStationNameBase implements 
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingBrush(world, player, () -> world.setBlockAndUpdate(pos, state.cycle(COLOR)));
+        return IBlockExtends.checkHoldingBrushOrWrench(world, player, () -> world.setBlockAndUpdate(pos, state.cycle(COLOR)));
     }
 
     @Override

@@ -30,6 +30,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.IDrawingExtends;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
@@ -55,13 +56,13 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
 
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingItem(world, player, item -> {
+        return IBlockExtends.checkHoldingWrench(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof TileEntityStationNameBase entity1) {
                 entity1.syncData();
                 PacketGuiServer.openCustomContentScreenS2C((ServerPlayer) player, pos);
             }
-        }, null, Items.SHEARS);
+        });
     }
 
     @Override

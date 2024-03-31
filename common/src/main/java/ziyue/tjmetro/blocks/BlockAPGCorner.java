@@ -53,7 +53,7 @@ public class BlockAPGCorner extends HorizontalDirectionalBlock implements Simple
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
         super.playerWillDestroy(level, blockPos, blockState, player);
-        if (blockState.getValue(HALF) ==DoubleBlockHalf.UPPER) IBlockExtends.breakBlock(level, blockPos.below(), this);
+        if (blockState.getValue(HALF) == DoubleBlockHalf.UPPER) IBlockExtends.breakBlock(level, blockPos.below(), this);
         else IBlockExtends.breakBlock(level, blockPos.above(), this);
     }
 

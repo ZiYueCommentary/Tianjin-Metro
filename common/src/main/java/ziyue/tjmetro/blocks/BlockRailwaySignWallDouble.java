@@ -29,6 +29,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.BlockList;
+import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.blocks.base.BlockRailwaySignBase;
 import ziyue.tjmetro.blocks.base.IRailwaySign;
 import ziyue.tjmetro.packet.PacketGuiServer;
@@ -55,7 +56,7 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult hit) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
         final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
-        return IBlock.checkHoldingBrush(world, player, () -> {
+        return IBlockExtends.checkHoldingBrushOrWrench(world, player, () -> {
             if (checkPos != null) {
                 PacketGuiServer.openRailwaySignWallDoubleScreenS2C((ServerPlayer) player, checkPos);
             }

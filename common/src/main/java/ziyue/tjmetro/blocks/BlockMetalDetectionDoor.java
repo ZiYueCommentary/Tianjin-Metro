@@ -84,7 +84,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingBrush(level, player, () -> {
+        return IBlockExtends.checkHoldingBrushOrWrench(level, player, () -> {
                     final BlockPos posMenuEntity = switch (blockState.getValue(THIRD)) {
                         case LOWER -> blockPos;
                         case MIDDLE -> blockPos.below(1);

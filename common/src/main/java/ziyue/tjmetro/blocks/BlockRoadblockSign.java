@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
+import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.blocks.base.BlockCustomContentBlockBase;
 import ziyue.tjmetro.packet.PacketGuiServer;
@@ -48,7 +49,7 @@ public class BlockRoadblockSign extends BlockRoadblock implements EntityBlockMap
 
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        return IBlock.checkHoldingBrush(world, player, () -> {
+        return IBlockExtends.checkHoldingBrushOrWrench(world, player, () -> {
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof TileEntityRoadBlockSign entity1) {
                 entity1.syncData();

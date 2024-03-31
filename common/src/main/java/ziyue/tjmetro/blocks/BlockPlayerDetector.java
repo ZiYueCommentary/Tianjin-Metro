@@ -90,11 +90,6 @@ public class BlockPlayerDetector extends Block implements SimpleWaterloggedBlock
         return new TileEntityPlayerDetector(pos, state);
     }
 
-    /*
-     * 方块的tick方法不会在每刻都调用，animateTick方法虽然每刻都调用，但是个客户端方法，所以没法用setBlock方法
-     * 方块实体的tick方法会在实现TickableBlockEntity接口后在每刻被调用
-     * 此外，实体的tick方法也会在每刻被调用
-     */
     public static class TileEntityPlayerDetector extends BlockEntityMapper implements TickableBlockEntity
     {
         public TileEntityPlayerDetector(BlockPos pos, BlockState state) {

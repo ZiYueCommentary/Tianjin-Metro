@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import ziyue.tjmetro.filters.Filter;
@@ -23,7 +24,7 @@ public class MainFabric implements ModInitializer
 {
     @Override
     public void onInitialize() {
-        TianjinMetro.init(MainFabric::registerBlock, MainFabric::registerBlock, MainFabric::registerEnchantedBlock, MainFabric::registerBlockEntityType);
+        TianjinMetro.init(MainFabric::registerBlock, MainFabric::registerBlock, MainFabric::registerItem, MainFabric::registerEnchantedBlock, MainFabric::registerBlockEntityType);
     }
 
     public static void registerBlock(String path, RegistryObject<Block> block) {
@@ -34,6 +35,11 @@ public class MainFabric implements ModInitializer
         Registry.register(Registry.BLOCK, new ResourceLocation(Reference.MOD_ID, path), block.get());
         Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), new BlockItem(block.get(), new FabricItemSettings()));
         filter.addItems(block.get().asItem());
+    }
+
+    public static void registerItem(String path, RegistryObject<Item> item, Filter filter) {
+        Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), item.get());
+        filter.addItems(item.get());
     }
 
     public static void registerEnchantedBlock(String path, RegistryObject<Block> block, Filter filter) {

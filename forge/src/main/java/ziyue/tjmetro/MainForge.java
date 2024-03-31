@@ -35,10 +35,10 @@ public class MainForge
     public static final DeferredRegisterHolder<Item> ITEMS = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.ITEM_REGISTRY);
     public static final DeferredRegisterHolder<Block> BLOCKS = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.BLOCK_REGISTRY);
     public static final DeferredRegisterHolder<BlockEntityType<?>> BLOCK_ENTITY_TYPES = new DeferredRegisterHolder<>(Reference.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
-    public static final ArrayList<Tuple<Filter, RegistryObject<Block>>> FILTER_ITEMS = new ArrayList<>();
+    public static final ArrayList<Tuple<Filter, RegistryObject<Item>>> FILTER_ITEMS = new ArrayList<>();
 
     static {
-        TianjinMetro.init(MainForge::registerBlock, MainForge::registerBlock, MainForge::registerEnchantedBlock, MainForge::registerBlockEntityType);
+        TianjinMetro.init(MainForge::registerBlock, MainForge::registerBlock, MainForge::registerItem, MainForge::registerEnchantedBlock, MainForge::registerBlockEntityType);
     }
 
     public MainForge() {
@@ -61,13 +61,18 @@ public class MainForge
     public static void registerBlock(String path, RegistryObject<Block> block, Filter filter) {
         registerBlock(path, block);
         ITEMS.register(path, () -> new BlockItem(block.get(), new Item.Properties()));
-        FILTER_ITEMS.add(new Tuple<>(filter, block));
+        FILTER_ITEMS.add(new Tuple<>(filter, new RegistryObject<>(() -> block.get().asItem())));
+    }
+
+    public static void registerItem(String path, RegistryObject<Item> item, Filter filter) {
+        ITEMS.register(path, item::get);
+        FILTER_ITEMS.add(new Tuple<>(filter, item));
     }
 
     public static void registerEnchantedBlock(String path, RegistryObject<Block> block, Filter filter) {
         registerBlock(path, block);
         ITEMS.register(path, () -> new ItemBlockEnchanted(block.get(), new Item.Properties()));
-        FILTER_ITEMS.add(new Tuple<>(filter, block));
+        FILTER_ITEMS.add(new Tuple<>(filter, new RegistryObject<>(() -> block.get().asItem())));
     }
 
     public static void registerBlockEntityType(String path, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>> blockEntityType) {
@@ -87,7 +92,7 @@ public class MainForge
             TianjinMetroClient.init();
 
             // initialize filters
-            FILTER_ITEMS.forEach(tuple -> tuple.getA().addItems(tuple.getB().get().asItem()));
+            FILTER_ITEMS.forEach(tuple -> tuple.getA().addItems(tuple.getB().get()));
         }
     }
 }

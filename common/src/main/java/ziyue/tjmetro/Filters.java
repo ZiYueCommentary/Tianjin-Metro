@@ -14,6 +14,7 @@ import ziyue.tjmetro.filters.Filter;
 
 public interface Filters
 {
+    Filter MISCELLANEOUS = Filter.registerFilter(TianjinMetro.CREATIVE_MODE_TAB, Text.translatable("filter.tjmetro.miscellaneous"), () -> new ItemStack(ItemList.WRENCH.get()));
     Filter BUILDING = Filter.registerFilter(TianjinMetro.CREATIVE_MODE_TAB, Text.translatable("filter.tjmetro.building"), () -> new ItemStack(BlockList.ROLLING.get()));
     Filter SIGNS = Filter.registerFilter(TianjinMetro.CREATIVE_MODE_TAB, Text.translatable("filter.tjmetro.signs"), () -> new ItemStack(BlockList.STATION_NAME_SIGN_1.get()));
     Filter DECORATION = Filter.registerFilter(TianjinMetro.CREATIVE_MODE_TAB, Text.translatable("filter.tjmetro.decoration"), () -> new ItemStack(BlockList.LOGO.get()));

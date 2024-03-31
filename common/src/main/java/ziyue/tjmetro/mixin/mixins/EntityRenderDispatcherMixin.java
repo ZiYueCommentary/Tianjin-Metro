@@ -21,7 +21,7 @@ import ziyue.tjmetro.blocks.BlockBench;
  */
 
 @Mixin(EntityRenderDispatcher.class)
-public class EntityRenderDispatcherMixin
+public abstract class EntityRenderDispatcherMixin
 {
     @Inject(at = @At("HEAD"), method = "renderShadow", cancellable = true)
     private static void beforeRenderShadow(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, float f, float g, LevelReader levelReader, float h, CallbackInfo ci) {
