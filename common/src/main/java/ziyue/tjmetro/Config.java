@@ -15,6 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
+import ziyue.tjmetro.client.ClientCache;
 import ziyue.tjmetro.filters.Filter;
 
 import java.nio.file.Files;
@@ -66,6 +67,7 @@ public class Config
         builder.setSavingRunnable(() -> {
             ENABLE_MTR_FILTERS.set(booleanMTRFilters.getValue());
             USE_TIANJIN_METRO_FONT.set(booleanUseTianjinMetroFont.getValue());
+            ClientCache.DATA_CACHE.resetFonts();
         });
         return builder.build();
     }
@@ -101,7 +103,7 @@ public class Config
     }
 
     /**
-     * A class for settings.
+     * A wrapper for settings.
      *
      * @author ZiYueCommentary
      * @see Config

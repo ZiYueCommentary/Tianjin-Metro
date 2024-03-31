@@ -64,6 +64,10 @@ public class TianjinMetro
         registerBlockItem.accept("station_name_sign_2", BlockList.STATION_NAME_SIGN_2, SIGNS);
         registerBlockItem.accept("station_name_wall_legacy", BlockList.STATION_NAME_WALL_LEGACY, SIGNS);
         registerEnchantedBlockItem.accept("station_name_sign_1", BlockList.STATION_NAME_SIGN_1, SIGNS);
+        /* PLATFORM GATES */
+        registerItem.accept("psd_door_tianjin", ItemList.PSD_DOOR_TIANJIN, GATES);
+        registerItem.accept("psd_glass_tianjin", ItemList.PSD_GLASS_TIANJIN, GATES);
+        registerItem.accept("psd_glass_end_tianjin", ItemList.PSD_GLASS_END_TIANJIN, GATES);
         /* DECORATION */
         registerBlockItem.accept("logo", BlockList.LOGO, DECORATION);
         registerBlockItem.accept("apg_corner", BlockList.APG_CORNER, DECORATION);
@@ -80,41 +84,45 @@ public class TianjinMetro
         registerEnchantedBlockItem.accept("ceiling_no_light", BlockList.STATION_COLOR_CEILING_NO_LIGHT, CEILINGS);
         registerEnchantedBlockItem.accept("station_color_ceiling_not_lit", BlockList.STATION_COLOR_CEILING_NOT_LIT, CEILINGS);
         /* RAILWAYS */
-        registerBlockItem.accept("railway_sign_wall_4", BlockList.RAILWAY_SIGN_WALL_4, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_6", BlockList.RAILWAY_SIGN_WALL_6, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_8", BlockList.RAILWAY_SIGN_WALL_8, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_10", BlockList.RAILWAY_SIGN_WALL_10, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_double_4", BlockList.RAILWAY_SIGN_WALL_DOUBLE_4, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_double_6", BlockList.RAILWAY_SIGN_WALL_DOUBLE_6, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_double_8", BlockList.RAILWAY_SIGN_WALL_DOUBLE_8, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_double_10", BlockList.RAILWAY_SIGN_WALL_DOUBLE_10, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_big_2", BlockList.RAILWAY_SIGN_WALL_BIG_2, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_big_3", BlockList.RAILWAY_SIGN_WALL_BIG_3, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_big_4", BlockList.RAILWAY_SIGN_WALL_BIG_4, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_big_5", BlockList.RAILWAY_SIGN_WALL_BIG_5, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_big_6", BlockList.RAILWAY_SIGN_WALL_BIG_6, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_big_7", BlockList.RAILWAY_SIGN_WALL_BIG_7, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_big_8", BlockList.RAILWAY_SIGN_WALL_BIG_8, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_big_9", BlockList.RAILWAY_SIGN_WALL_BIG_9, RAILWAYS);
-        registerBlockItem.accept("railway_sign_wall_big_10", BlockList.RAILWAY_SIGN_WALL_BIG_10, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_2_odd", BlockList.RAILWAY_SIGN_TIANJIN_2_ODD, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_3_odd", BlockList.RAILWAY_SIGN_TIANJIN_3_ODD, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_4_odd", BlockList.RAILWAY_SIGN_TIANJIN_4_ODD, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_5_odd", BlockList.RAILWAY_SIGN_TIANJIN_5_ODD, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_6_odd", BlockList.RAILWAY_SIGN_TIANJIN_6_ODD, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_7_odd", BlockList.RAILWAY_SIGN_TIANJIN_7_ODD, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_2_even", BlockList.RAILWAY_SIGN_TIANJIN_2_EVEN, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_3_even", BlockList.RAILWAY_SIGN_TIANJIN_3_EVEN, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_4_even", BlockList.RAILWAY_SIGN_TIANJIN_4_EVEN, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_5_even", BlockList.RAILWAY_SIGN_TIANJIN_5_EVEN, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_6_even", BlockList.RAILWAY_SIGN_TIANJIN_6_EVEN, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_7_even", BlockList.RAILWAY_SIGN_TIANJIN_7_EVEN, RAILWAYS);
-        registerBlockItem.accept("railway_sign_tianjin_pole", BlockList.RAILWAY_SIGN_TIANJIN_POLE, RAILWAYS);
+        registerBlockItem.accept("railway_sign_wall_4", BlockList.RAILWAY_SIGN_WALL_4, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_6", BlockList.RAILWAY_SIGN_WALL_6, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_8", BlockList.RAILWAY_SIGN_WALL_8, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_10", BlockList.RAILWAY_SIGN_WALL_10, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_double_4", BlockList.RAILWAY_SIGN_WALL_DOUBLE_4, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_double_6", BlockList.RAILWAY_SIGN_WALL_DOUBLE_6, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_double_8", BlockList.RAILWAY_SIGN_WALL_DOUBLE_8, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_double_10", BlockList.RAILWAY_SIGN_WALL_DOUBLE_10, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_big_2", BlockList.RAILWAY_SIGN_WALL_BIG_2, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_big_3", BlockList.RAILWAY_SIGN_WALL_BIG_3, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_big_4", BlockList.RAILWAY_SIGN_WALL_BIG_4, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_big_5", BlockList.RAILWAY_SIGN_WALL_BIG_5, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_big_6", BlockList.RAILWAY_SIGN_WALL_BIG_6, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_big_7", BlockList.RAILWAY_SIGN_WALL_BIG_7, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_big_8", BlockList.RAILWAY_SIGN_WALL_BIG_8, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_big_9", BlockList.RAILWAY_SIGN_WALL_BIG_9, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_wall_big_10", BlockList.RAILWAY_SIGN_WALL_BIG_10, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_2_odd", BlockList.RAILWAY_SIGN_TIANJIN_2_ODD, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_3_odd", BlockList.RAILWAY_SIGN_TIANJIN_3_ODD, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_4_odd", BlockList.RAILWAY_SIGN_TIANJIN_4_ODD, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_5_odd", BlockList.RAILWAY_SIGN_TIANJIN_5_ODD, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_6_odd", BlockList.RAILWAY_SIGN_TIANJIN_6_ODD, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_7_odd", BlockList.RAILWAY_SIGN_TIANJIN_7_ODD, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_2_even", BlockList.RAILWAY_SIGN_TIANJIN_2_EVEN, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_3_even", BlockList.RAILWAY_SIGN_TIANJIN_3_EVEN, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_4_even", BlockList.RAILWAY_SIGN_TIANJIN_4_EVEN, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_5_even", BlockList.RAILWAY_SIGN_TIANJIN_5_EVEN, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_6_even", BlockList.RAILWAY_SIGN_TIANJIN_6_EVEN, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_7_even", BlockList.RAILWAY_SIGN_TIANJIN_7_EVEN, RAILWAY_SIGNS);
+        registerBlockItem.accept("railway_sign_tianjin_pole", BlockList.RAILWAY_SIGN_TIANJIN_POLE, RAILWAY_SIGNS);
 
         registerBlock.accept("railway_sign_wall_middle", BlockList.RAILWAY_SIGN_WALL_MIDDLE);
         registerBlock.accept("railway_sign_wall_big_middle", BlockList.RAILWAY_SIGN_WALL_BIG_MIDDLE);
         registerBlock.accept("railway_sign_wall_double_middle", BlockList.RAILWAY_SIGN_WALL_DOUBLE_MIDDLE);
         registerBlock.accept("railway_sign_tianjin_middle", BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE);
+        registerBlock.accept("psd_door_tianjin", BlockList.PSD_DOOR_TIANJIN);
+        registerBlock.accept("psd_glass_tianjin", BlockList.PSD_GLASS_TIANJIN);
+        registerBlock.accept("psd_glass_end_tianjin", BlockList.PSD_GLASS_END_TIANJIN);
+        registerBlock.accept("psd_top_tianjin", BlockList.PSD_TOP_TIANJIN);
 
         registerBlockEntityType.accept("station_name_sign_2", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_2);
         registerBlockEntityType.accept("station_name_sign_1", BlockEntityTypes.STATION_NAME_SIGN_ENTITY_1);
@@ -158,6 +166,8 @@ public class TianjinMetro
         registerBlockEntityType.accept("metal_detection_door", BlockEntityTypes.METAL_DETECTION_DOOR_TILE_ENTITY);
         registerBlockEntityType.accept("bench", BlockEntityTypes.BENCH_TILE_ENTITY);
         registerBlockEntityType.accept("service_corridor_sign", BlockEntityTypes.SERVICE_CORRIDOR_SIGN_TILE_ENTITY);
+        registerBlockEntityType.accept("psd_door_tianjin", BlockEntityTypes.PSD_DOOR_TIANJIN_TILE_ENTITY);
+        registerBlockEntityType.accept("psd_top_tianjin", BlockEntityTypes.PSD_TOP_TIANJIN_TILE_ENTITY);
 
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);

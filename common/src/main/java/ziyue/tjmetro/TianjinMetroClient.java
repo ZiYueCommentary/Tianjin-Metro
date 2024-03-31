@@ -1,8 +1,12 @@
 package ziyue.tjmetro;
 
 import mtr.RegistryClient;
+import mtr.render.RenderPSDAPGDoor;
+import mtr.render.RenderPSDTop;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
+import ziyue.tjmetro.client.ClientCache;
+import ziyue.tjmetro.client.RouteMapGenerator;
 import ziyue.tjmetro.packet.IPacket;
 import ziyue.tjmetro.packet.PacketGuiClient;
 import ziyue.tjmetro.render.*;
@@ -28,6 +32,9 @@ public class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.HIGH_SPEED_REPEATER.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.EMERGENCY_EXIT_SIGN.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.SERVICE_CORRIDOR_SIGN.get());
+        RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PSD_DOOR_TIANJIN.get());
+        RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PSD_GLASS_TIANJIN.get());
+        RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PSD_GLASS_END_TIANJIN.get());
         RegistryClient.registerBlockRenderType(RenderType.translucent(), BlockList.ROLLING.get());
 
         RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING.get());
@@ -75,6 +82,8 @@ public class TianjinMetroClient
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_6_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_7_ODD_TILE_ENTITY.get(), RenderRailwaySignTianjin::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SERVICE_CORRIDOR_SIGN_TILE_ENTITY.get(), RenderServiceCorridorSign::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PSD_DOOR_TIANJIN_TILE_ENTITY.get(), dispatcher -> new RenderPSDAPGDoor<>(dispatcher, 0));
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PSD_TOP_TIANJIN_TILE_ENTITY.get(), RenderPSDTopTianjin::new);
 
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN, packet -> PacketGuiClient.openCustomContentScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_COLOR_SCREEN, packet -> PacketGuiClient.openCustomColorScreenS2C(Minecraft.getInstance(), packet));

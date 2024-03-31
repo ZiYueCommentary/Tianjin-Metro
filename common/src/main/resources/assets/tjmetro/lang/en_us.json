@@ -39,6 +39,7 @@
     "block.tjmetro.metal_detection_door": "Metal Detection Door",
     "block.tjmetro.railway_sign_tianjin": "Railway Sign (Tianjin)",
     "block.tjmetro.service_corridor_sign": "\"Serivce Corridor\" Sign",
+    "block.tjmetro.psd_tianjin": "Platform Screen Doors (Tianjin)",
 
     "gui.tjmetro.service_corridor_sign": "Service Corridor",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
@@ -47,6 +48,10 @@
     "gui.tjmetro.options": "Tianjin Metro Options",
     "gui.tjmetro.default_color": "Default Color",
     "gui.tjmetro.custom_content": "Display content",
+    "gui.tjmetro.terminus_cjk": "终点站",
+    "gui.tjmetro.terminus": "Terminus Station",
+    "gui.tjmetro.next_station_cjk": "下一站",
+    "gui.tjmetro.next_station": "Next Station",
 
     "button.tjmetro.scroll_up": "Scroll Up",
     "button.tjmetro.scroll_down": "Scroll Down",
@@ -78,6 +83,7 @@
     "filter.tjmetro.miscellaneous": "Miscellaneous",
     "filter.tjmetro.building": "Buildings",
     "filter.tjmetro.signs": "Station Name Signs",
+    "filter.tjmetro.gates": "Platform Gates",
     "filter.tjmetro.decoration": "Decorations",
     "filter.tjmetro.ceilings": "Ceilings",
     "filter.tjmetro.railway_signs": "Railway Signs",

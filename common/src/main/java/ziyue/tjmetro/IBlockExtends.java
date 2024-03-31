@@ -1,10 +1,20 @@
 package ziyue.tjmetro;
 
+import mtr.Items;
+import mtr.block.IBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 import static ziyue.tjmetro.TianjinMetro.LOGGER;
@@ -68,5 +78,28 @@ public interface IBlockExtends
      */
     static boolean isHorizontalDirection(Direction direction) {
         return (direction == Direction.EAST) || (direction == Direction.WEST) || (direction == Direction.NORTH) || (direction == Direction.SOUTH);
+    }
+
+    static <T extends Comparable<T>> BlockState cycleBlockState(BlockState state, Property<T> property, Predicate<T> includes) {
+        return cycleBlockState(state, property, property.getPossibleValues().stream().filter(includes).toList());
+    }
+
+    @SafeVarargs
+    static <T extends Comparable<T>> BlockState cycleBlockState(BlockState state, Property<T> property, T... includes) {
+        return cycleBlockState(state, property, Arrays.asList(includes));
+    }
+
+    static <T extends Comparable<T>> BlockState cycleBlockState(BlockState state, Property<T> property, List<T> includes) {
+        int index = includes.indexOf(state.getValue(property));
+        if (index < 0 || (index == includes.size() - 1)) index = -1;
+        return state.setValue(property, includes.get(index + 1));
+    }
+
+    static InteractionResult checkHoldingWrench(Level world, Player player, Runnable callback) {
+        return IBlock.checkHoldingItem(world, player, item -> callback.run(), null, ItemList.WRENCH.get());
+    }
+
+    static InteractionResult checkHoldingBrushOrWrench(Level world, Player player, Runnable callback) {
+        return IBlock.checkHoldingItem(world, player, item -> callback.run(), null, ItemList.WRENCH.get(), Items.BRUSH.get());
     }
 }

@@ -85,4 +85,8 @@ public interface BlockList
     RegistryObject<Block> RAILWAY_SIGN_TIANJIN_POLE = new RegistryObject<>(BlockRailwaySignTianjinPole::new);
     RegistryObject<Block> METAL_DETECTION_DOOR = new RegistryObject<>(BlockMetalDetectionDoor::new);
     RegistryObject<Block> SERVICE_CORRIDOR_SIGN = new RegistryObject<>(BlockServiceCorridorSign::new);
+    RegistryObject<Block> PSD_DOOR_TIANJIN = new RegistryObject<>(BlockPSDDoorTianjin::new);
+    RegistryObject<Block> PSD_GLASS_TIANJIN = new RegistryObject<>(BlockPSDGlassTianjin::new);
+    RegistryObject<Block> PSD_GLASS_END_TIANJIN = new RegistryObject<>(BlockPSDGlassEndTianjin::new);
+    RegistryObject<Block> PSD_TOP_TIANJIN = new RegistryObject<>(BlockPSDTopTianjin::new);
 }

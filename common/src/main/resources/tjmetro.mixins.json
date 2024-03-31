@@ -1,20 +1,24 @@
 {
-    "required": true,
-    "minVersion": "0.8",
-    "package": "ziyue.tjmetro.mixin.mixins",
-    "compatibilityLevel": "JAVA_16",
-    "mixins": [
-        "FallingBlockMixin",
-        "FinishInitializationMixin",
-        "MinecraftServerMixin"
-    ],
-    "injectors": {
-        "defaultRequire": 1
-    },
-    "client": [
-        "CreativeModeInventoryScreenMixin",
-        "EffectRenderingInventoryScreenMixin",
-        "EntityRenderDispatcherMixin",
-        "MinecartRendererMixin"
-    ]
+	"required": true,
+	"minVersion": "0.8",
+	"package": "ziyue.tjmetro.mixin.mixins",
+	"compatibilityLevel": "JAVA_16",
+	"mixins": [
+		"ClientDataMixin",
+		"CustomResourcesMixin",
+		"FallingBlockMixin",
+		"FinishInitializationMixin",
+		"MinecraftServerMixin",
+		"PacketTrainDataGuiClientMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"client": [
+		"ConfigScreenMixin",
+		"CreativeModeInventoryScreenMixin",
+		"EffectRenderingInventoryScreenMixin",
+		"EntityRenderDispatcherMixin",
+		"MinecartRendererMixin"
+	]
 }

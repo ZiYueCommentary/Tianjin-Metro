@@ -53,4 +53,6 @@ public interface BlockEntityTypes
     RegistryObject<BlockEntityType<BlockMetalDetectionDoor.TileEntityMetalDetectionDoor>> METAL_DETECTION_DOOR_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockMetalDetectionDoor.TileEntityMetalDetectionDoor::new, BlockList.METAL_DETECTION_DOOR.get()));
     RegistryObject<BlockEntityType<BlockBench.TileEntityBench>> BENCH_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockBench.TileEntityBench::new, BlockList.BENCH.get()));
     RegistryObject<BlockEntityType<BlockServiceCorridorSign.TileEntityServiceCorridorSign>> SERVICE_CORRIDOR_SIGN_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockServiceCorridorSign.TileEntityServiceCorridorSign::new, BlockList.SERVICE_CORRIDOR_SIGN.get()));
+    RegistryObject<BlockEntityType<BlockPSDDoorTianjin.TileEntityPSDTianjinDoor>> PSD_DOOR_TIANJIN_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockPSDDoorTianjin.TileEntityPSDTianjinDoor::new, BlockList.PSD_DOOR_TIANJIN.get()));
+    RegistryObject<BlockEntityType<BlockPSDTopTianjin.TileEntityPSDTopTianjin>> PSD_TOP_TIANJIN_TILE_ENTITY = new RegistryObject<>(() -> RegistryUtilities.getBlockEntityType(BlockPSDTopTianjin.TileEntityPSDTopTianjin::new, BlockList.PSD_TOP_TIANJIN.get()));
 }

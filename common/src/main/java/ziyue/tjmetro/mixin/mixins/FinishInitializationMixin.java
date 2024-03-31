@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.Filters;
 import ziyue.tjmetro.Config;
 import ziyue.tjmetro.Reference;
+import ziyue.tjmetro.client.RouteMapGenerator;
 import ziyue.tjmetro.filters.Filter;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -30,7 +31,7 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
  */
 
 @Mixin(RenderSystem.class)
-public class FinishInitializationMixin
+public abstract class FinishInitializationMixin
 {
     @Inject(at = @At("TAIL"), method = "finishInitialization")
     private static void afterFinishInitialization(CallbackInfo callbackInfo) {
@@ -74,6 +75,7 @@ public class FinishInitializationMixin
         LOGGER.info("Found {} uncategorized items, added {} filters to the filter lists", uncategorizedItems.get(), uncategorizedFilters.get());
 
         Config.refreshProperties();
+        RouteMapGenerator.setConstants();
     }
 
     @Unique
