@@ -1,4 +1,7 @@
 {
+    "modmenu.nameTranslation.tjmetro": "天津地铁",
+    "modmenu.descriptionTranslation.tjmetro": "一个 Minecraft Transit Railway 的附属模组",
+
     "itemGroup.tjmetro.tjmetro_tab": "Tianjin Metro",
 
     "block.tjmetro.rolling": "Rolling shutter",
@@ -36,6 +39,7 @@
     "block.tjmetro.service_corridor_sign": "\"Serivce Corridor\" Sign",
 
     "gui.tjmetro.service_corridor_sign": "Service Corridor",
+    "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
     "gui.tjmetro.contact_station_for_help": "Please contact the station for help.",
     "gui.tjmetro.metal_detection_door": "Metal Detection Door",
     "gui.tjmetro.options": "Tianjin Metro Options",
@@ -64,12 +68,11 @@
     "tooltip.tjmetro.use_tianjin_metro_font": "Render texts with mod font in some blocks.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
 
-    "footer.tjmetro.sources": "Wanna see source code? <1>Click here!</>",
+    "footer.tjmetro.sources": "Wanna see the source code? <1>Click here!</>",
     "footer.tjmetro.contributors": "Tianjin Metro is a community work, <1>click here</> to see contributors!",
-    "footer.tjmetro.forum": "Would you like to visit our <1>forum</>?",
-    "footer.tjmetro.weblate": "<1>Get involved in Tianjin Metro!</>",
+    "footer.tjmetro.forum": "Would you like to join our <1>forum</>?",
+    "footer.tjmetro.weblate": "<1>Get involved in Tianjin Metro localization!</>",
 
-    "filter.tjmetro.roadblocks": "Roadblocks",
     "filter.tjmetro.building": "Buildings",
     "filter.tjmetro.signs": "Station Name Signs",
     "filter.tjmetro.decoration": "Decorations",
