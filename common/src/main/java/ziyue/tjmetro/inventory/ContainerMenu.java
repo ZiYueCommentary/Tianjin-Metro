@@ -31,10 +31,8 @@ public class ContainerMenu extends AbstractContainerMenu
         container.startOpen(inventory.player);
         int k = (this.containerRows - 4) * 18;
 
-        int l;
-        int m;
-        for (l = 0; l < this.containerRows; ++l) {
-            for (m = 0; m < 9; ++m) {
+        for (int l = 0; l < this.containerRows; ++l) {
+            for (int m = 0; m < 9; ++m) {
                 this.addSlot(new Slot(container, m + l * 9, 8 + m * 18, 18 + l * 18)
                 {
                     @Override
@@ -45,13 +43,13 @@ public class ContainerMenu extends AbstractContainerMenu
             }
         }
 
-        for (l = 0; l < 3; ++l) {
-            for (m = 0; m < 9; ++m) {
+        for (int l = 0; l < 3; ++l) {
+            for (int m = 0; m < 9; ++m) {
                 this.addSlot(new Slot(inventory, m + l * 9 + 9, 8 + m * 18, 103 + l * 18 + k));
             }
         }
 
-        for (l = 0; l < 9; ++l) {
+        for (int l = 0; l < 9; ++l) {
             this.addSlot(new Slot(inventory, l, 8 + l * 18, 161 + k));
         }
 

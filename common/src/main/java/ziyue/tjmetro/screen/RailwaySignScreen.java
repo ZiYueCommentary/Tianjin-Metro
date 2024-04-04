@@ -24,6 +24,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.TianjinMetro;
+import ziyue.tjmetro.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
@@ -113,9 +114,12 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
                 signIds = new String[0];
                 selectedIds = new HashSet<>();
                 isRailwaySign = false;
+                if (entity instanceof BlockStationNameEntranceTianjin.TileEntityStationNameEntranceTianjin entityStationNameEntranceTianjin) {
+                    selectedIds.add(entityStationNameEntranceTianjin.getSelectedId());
+                }
             }
-            if (world.getBlockState(signPos).getBlock() instanceof BlockRailwaySignBase) {
-                length = ((BlockRailwaySignBase) world.getBlockState(signPos).getBlock()).length;
+            if (world.getBlockState(signPos).getBlock() instanceof BlockRailwaySignBase block) {
+                length = block.length;
             } else {
                 length = 0;
             }

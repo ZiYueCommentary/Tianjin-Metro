@@ -143,6 +143,10 @@ public class ClientCache extends DataCache implements IGui
         return getResource(String.format("tjmetro_route_map_%s_%s_%s_%s_%s", platformId, vertical, flip, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMap(platformId, vertical, flip, aspectRatio, transparentWhite), transparentWhite ? ClientCache.DefaultRenderingColor.TRANSPARENT : ClientCache.DefaultRenderingColor.WHITE);
     }
 
+    public DynamicResource getStationNameEntrance(long stationId, long selectedId, int style, String stationName, float aspectRatio) {
+        return getResource(String.format("tjmetro_station_name_entrance_%s_%s_%s_%s_%s", stationId, selectedId, style, stationName, aspectRatio), () -> RouteMapGenerator.generateStationNameEntrance(stationId, selectedId, style, stationName, aspectRatio), ClientCache.DefaultRenderingColor.TRANSPARENT);
+    }
+
     protected DynamicResource getResource(String key, Supplier<NativeImage> supplier, DefaultRenderingColor defaultRenderingColor) {
         final Minecraft minecraftClient = Minecraft.getInstance();
         if (font == null || fontCjk == null) {

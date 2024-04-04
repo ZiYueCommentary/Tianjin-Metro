@@ -22,7 +22,7 @@ import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
  *
  * @author ZiYueCommentary
  * @see BlockRailwaySignBase
- * @since 1.0b
+ * @since beta-1
  */
 
 public interface IRailwaySign

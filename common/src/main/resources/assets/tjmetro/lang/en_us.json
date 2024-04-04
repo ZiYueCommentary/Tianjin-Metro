@@ -40,6 +40,8 @@
     "block.tjmetro.railway_sign_tianjin": "Railway Sign (Tianjin)",
     "block.tjmetro.service_corridor_sign": "\"Serivce Corridor\" Sign",
     "block.tjmetro.psd_tianjin": "Platform Screen Doors (Tianjin)",
+    "block.tjmetro.station_name_entrance_tianjin": "Station Name (Entrance, Tianjin)",
+    "block.tjmetro.station_name_entrance_tianjin_pinyin": "Station Name (Entrance, Tianjin, Pinyin)",
 
     "gui.tjmetro.service_corridor_sign": "Service Corridor",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
@@ -52,6 +54,7 @@
     "gui.tjmetro.terminus": "Terminus Station",
     "gui.tjmetro.next_station_cjk": "下一站",
     "gui.tjmetro.next_station": "Next Station",
+    "gui.tjmetro.station_pinyin": "%s ZHAN",
 
     "button.tjmetro.scroll_up": "Scroll Up",
     "button.tjmetro.scroll_down": "Scroll Down",

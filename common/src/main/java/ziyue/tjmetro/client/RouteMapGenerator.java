@@ -14,11 +14,13 @@ import net.minecraft.util.Tuple;
 import ziyue.tjmetro.IDrawingExtends;
 import ziyue.tjmetro.Reference;
 import ziyue.tjmetro.TianjinMetro;
+import ziyue.tjmetro.block.base.BlockRailwaySignBase;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 import static mtr.client.ClientCache.LINE_HEIGHT_MULTIPLIER;
 
@@ -38,6 +40,7 @@ public class RouteMapGenerator implements IGui
 
     protected static final int MIN_VERTICAL_SIZE = 5;
     protected static final String TEMP_CIRCULAR_MARKER = "temp_circular_marker";
+    protected static final ResourceLocation TRAIN_LOGO_RESOURCE = new ResourceLocation(Reference.MOD_ID, "textures/sign/train.png");
     protected static final ResourceLocation ARROW_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/arrow.png");
     protected static final ResourceLocation CIRCLE_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/circle.png");
 
@@ -141,13 +144,11 @@ public class RouteMapGenerator implements IGui
             final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, width, height, false);
             nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
 
-            final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, ClientData.DATA_CACHE.platformIdMap.get(platformId).getMidPos());
-
             final int tilePadding = tileSize / 4;
             final int leftSize = ((leftToRight ? 1 : 0)) * (tileSize + tilePadding);
             final int rightSize = ((leftToRight ? 0 : 1)) * (tileSize + tilePadding);
 
-            final ClientCache.Text destination = ClientCache.DATA_CACHE.getText(station.name, width - leftSize - rightSize - padding, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
+            final ClientCache.Text destination = ClientCache.DATA_CACHE.getText(getStationName(platformId), width - leftSize - rightSize - padding, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
             drawString(nativeImage, destination, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
 
             if (transparentColor != 0) {
@@ -413,6 +414,63 @@ public class RouteMapGenerator implements IGui
 
                 return nativeImage;
             }
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage());
+        }
+
+        return null;
+    }
+
+    public static NativeImage generateStationNameEntrance(long stationId, long selectedId, int style, String stationName, float aspectRatio) {
+        if (aspectRatio <= 0) return null;
+
+        try {
+            final boolean customFont = ziyue.tjmetro.Config.USE_TIANJIN_METRO_FONT.get();
+
+            final int size = scale * 2;
+            final int width = Math.round(size * aspectRatio);
+            final int padding = scale / 16;
+            final ClientCache.Text text = ClientCache.DATA_CACHE.getText(stationName, width - size - padding, size - padding * 2, fontSizeBig * 3, fontSizeSmall * 3, padding, HorizontalAlignment.CENTER);
+            final ClientCache.Text exit = ClientCache.DATA_CACHE.getText(Station.deserializeExit(selectedId), width - size - padding, size - padding * 2, fontSizeBig * 3, fontSizeBig * 7, padding, HorizontalAlignment.CENTER);
+            final int iconOffset = (int) (size * (1 - BlockRailwaySignBase.SMALL_SIGN_PERCENTAGE) / 2);
+            final int iconSize = (int) (size * BlockRailwaySignBase.SMALL_SIGN_PERCENTAGE);
+            final int backgroundColor = 0;
+
+            final AtomicInteger totalWidth = new AtomicInteger(iconOffset * 2 + iconSize + text.width());
+            final List<Tuple<ClientCache.Text, Integer>> routes = new ArrayList<>();
+            switch (style) {
+                case 0, 1, 4, 5 -> {
+                    final Map<Integer, mtr.client.ClientCache.ColorNameTuple> routeMap = ClientData.DATA_CACHE.stationIdToRoutes.get(stationId);
+                    if (routeMap == null) break;
+                    routeMap.forEach((color, route) -> {
+                        final ClientCache.Text routeName = ClientCache.DATA_CACHE.getText(route.name, Integer.MAX_VALUE, iconSize, (int) (fontSizeBig * 2.5F), (int) (fontSizeSmall * 2.5F), padding, HorizontalAlignment.LEFT);
+                        routes.add(new Tuple<>(routeName, route.color));
+                        totalWidth.addAndGet(padding * 5 + routeName.width());
+                    });
+                    totalWidth.addAndGet(padding * (routeMap.isEmpty() ? -5 : -2));
+                }
+            }
+            if (selectedId != -1) {
+                totalWidth.addAndGet(iconOffset * 2 + exit.width());
+            }
+
+            final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, Math.max(width, totalWidth.get()), size, false);
+            nativeImage.fillRect(0, 0, width, size, backgroundColor);
+
+            final AtomicInteger currentX = new AtomicInteger(iconOffset * 2 + iconSize);
+            routes.forEach(route -> {
+                nativeImage.fillRect(currentX.get(), iconOffset, padding * 3 + route.getA().width(), iconSize, invertColor(ARGB_BLACK | route.getB()));
+                drawString(nativeImage, route.getA(), currentX.get() + padding, size / 2 - (customFont ? 8 : 0), HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+                currentX.addAndGet(padding * 5 + route.getA().width());
+            });
+            currentX.addAndGet(padding * -5);
+            drawResource(nativeImage, TRAIN_LOGO_RESOURCE, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
+            drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get() - iconOffset - ((selectedId != -1) ? exit.width() - padding * 2 : 0)) / 2, size / 2 - (customFont ? 10 : 0), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+            if (selectedId != -1)
+                drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2 - (customFont ? 20 : 0), HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+            clearColor(nativeImage, invertColor(backgroundColor));
+
+            return nativeImage;
         } catch (Exception e) {
             TianjinMetro.LOGGER.error(e.getMessage());
         }
