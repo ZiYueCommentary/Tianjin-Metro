@@ -33,7 +33,6 @@ import static mtr.render.RenderRouteBase.getShadingColor;
 
 public abstract class RenderRouteBase<T extends BlockPSDTop.TileEntityRouteBase> extends BlockEntityRendererMapper<T> implements IGui, IBlock
 {
-
     protected final float topPadding;
     protected final float bottomPadding;
     protected final float sidePadding;

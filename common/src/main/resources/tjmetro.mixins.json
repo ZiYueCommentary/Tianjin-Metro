@@ -20,5 +20,6 @@
 		"EffectRenderingInventoryScreenMixin",
 		"EntityRenderDispatcherMixin",
 		"MinecartRendererMixin"
-	]
+	],
+	"refmap": "tjmetro-refmap.json"
 }
