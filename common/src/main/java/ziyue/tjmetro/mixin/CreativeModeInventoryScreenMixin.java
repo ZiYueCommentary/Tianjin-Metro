@@ -102,7 +102,7 @@ public abstract class CreativeModeInventoryScreenMixin extends EffectRenderingIn
             filter.btnScrollDown = new IconButton(this.leftPos - 22, this.topPos + 127, Text.translatable("button.tjmetro.scroll_down").withStyle(ChatFormatting.WHITE), button -> filter.filterIndex++, tianjin_Metro$ICONS, 16, 0);
             filter.btnEnableAll = new IconButton(this.leftPos - 50, this.topPos + 10, Text.translatable("button.tjmetro.enable_all").withStyle(ChatFormatting.WHITE), button -> Filter.FILTERS.get(tianjin_Metro$getSelectedTab()).forEach(filter1 -> filter1.enabled = true), tianjin_Metro$ICONS, 32, 0);
             filter.btnDisableAll = new IconButton(this.leftPos - 50, this.topPos + 32, Text.translatable("button.tjmetro.disable_all").withStyle(ChatFormatting.WHITE), button -> Filter.FILTERS.get(tianjin_Metro$getSelectedTab()).forEach(filter1 -> filter1.enabled = false), tianjin_Metro$ICONS, 48, 0);
-            filter.btnOptions = new IconButton(this.leftPos - 50, this.topPos + 54, Text.translatable("button.tjmetro.tianjin_metro_options").withStyle(ChatFormatting.WHITE), button -> minecraft.setScreen(Config.getConfigScreen()), tianjin_Metro$ICONS, 64, 0);
+            filter.btnOptions = new IconButton(this.leftPos - 50, this.topPos + 54, Text.translatable("button.tjmetro.tianjin_metro_options").withStyle(ChatFormatting.WHITE), button -> minecraft.setScreen(Config.getConfigScreen(this)), tianjin_Metro$ICONS, 64, 0);
             addButton(filter.btnScrollUp);
             addButton(filter.btnScrollDown);
             addButton(filter.btnEnableAll);

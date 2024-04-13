@@ -55,8 +55,8 @@ public class Config
             () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.weblate"), IDrawingExtends.LINK_STYLE.apply(Reference.WEBLATE))
     );
 
-    public static Screen getConfigScreen() {
-        ConfigBuilder builder = ConfigBuilder.create().setTitle(Text.translatable("gui.tjmetro.options")).transparentBackground();
+    public static Screen getConfigScreen(Screen parent) {
+        ConfigBuilder builder = ConfigBuilder.create().setParentScreen(parent).setTitle(Text.translatable("gui.tjmetro.options")).transparentBackground();
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
         ConfigCategory categoryTianjinMetro = builder.getOrCreateCategory(Text.translatable("config.category.tjmetro"));
         BooleanListEntry booleanMTRFilters = entryBuilder.startBooleanToggle(Text.translatable("config.tjmetro.enable_mtr_filters"), ENABLE_MTR_FILTERS.get()).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
