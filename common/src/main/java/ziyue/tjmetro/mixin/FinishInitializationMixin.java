@@ -3,20 +3,19 @@ package ziyue.tjmetro.mixin;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mtr.Blocks;
 import mtr.Items;
-import net.minecraft.core.Registry;
-import net.minecraft.world.item.CreativeModeTab;
+import mtr.mappings.Text;
+import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import ziyue.tjmetro.Filters;
+import ziyue.filters.FilterBuilder;
 import ziyue.tjmetro.Config;
+import ziyue.tjmetro.Filters;
 import ziyue.tjmetro.Reference;
+import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.client.RouteMapGenerator;
-import ziyue.tjmetro.filter.Filter;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static ziyue.tjmetro.TianjinMetro.LOGGER;
 
@@ -33,46 +32,21 @@ import static ziyue.tjmetro.TianjinMetro.LOGGER;
 @Mixin(RenderSystem.class)
 public abstract class FinishInitializationMixin
 {
-    @Inject(at = @At("TAIL"), method = "finishInitialization")
-    private static void afterFinishInitialization(CallbackInfo callbackInfo) {
+    @Inject(at = @At("HEAD"), method = "finishInitialization")
+    private static void beforeFinishInitialization(CallbackInfo callbackInfo) {
         LOGGER.info("--------------- " + Reference.NAME + " ---------------");
         LOGGER.info("Hello from ZiYueCommentary!");
         LOGGER.info("Mod ID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
         LOGGER.info("Modloader: " + (mtr.Registry.isFabric() ? "Fabric" : "Forge"));
 
+        FilterBuilder.setReservedButton(TianjinMetro.CREATIVE_MODE_TAB.get(), Text.translatable("button.tjmetro.tianjin_metro_options"), button -> Minecraft.getInstance().setScreen(Config.getConfigScreen(Minecraft.getInstance().screen)));
+
         // register filters before collect uncategorized items
         tianjin_Metro$registerMTRCoreFilters();
         tianjin_Metro$registerMTRRailwayFacilitiesFilters();
         tianjin_Metro$registerMTREscalatorsLiftsFilters();
         tianjin_Metro$registerMTRStationBuildingBlocksFilters();
-
-        AtomicInteger uncategorizedItems = new AtomicInteger(0);
-        AtomicInteger uncategorizedFilters = new AtomicInteger(0);
-
-        // collecting uncategorized items
-        Registry.ITEM.forEach(item -> {
-            CreativeModeTab itemCategory = item.getItemCategory();
-            if (itemCategory != null) {
-                if (Filter.FILTERS.containsKey(itemCategory.getId())) {
-                    Filter.FilterList filters = Filter.FILTERS.get(itemCategory.getId());
-                    if ((filters.uncategorizedItems != null) && (!Filter.isItemCategorized(itemCategory.getId(), item))) {
-                        filters.uncategorizedItems.addItems(item);
-                        uncategorizedItems.getAndIncrement();
-                    }
-                }
-            }
-        });
-
-        // adding uncategorized items filter to filter list
-        Filter.FILTERS.forEach((tabId, filterList) -> {
-            if ((filterList.uncategorizedItems != null) && (!filterList.uncategorizedItems.items.isEmpty())) {
-                filterList.add(filterList.uncategorizedItems);
-                uncategorizedFilters.getAndIncrement();
-            }
-        });
-
-        LOGGER.info("Found {} uncategorized items, added {} filters to the filter lists", uncategorizedItems.get(), uncategorizedFilters.get());
 
         Config.refreshProperties();
         RouteMapGenerator.setConstants();

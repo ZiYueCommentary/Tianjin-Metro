@@ -11,7 +11,6 @@ plugins {
 def default_minecraft_version = "1.16.5"
 def minecraft_version = project.properties.containsKey("buildVersion") ? project.getProperties().get("buildVersion") : default_minecraft_version
 def minecraft_main_version = minecraft_version.split("\\.")[1] as int
-def is_1_19_3 = minecraft_version == "1.19.3"
 def minecraft_mod_api_tools_version = new JsonSlurper().parse(("https://api.github.com/repos/jonafanho/Minecraft-Mod-API-Tools/git/refs/heads/master").toURL())["object"]["sha"]
 
 rootProject.ext.fabric_loader_version = new JsonSlurper().parse(("https://meta.fabricmc.net/v2/versions/loader/" + minecraft_version).toURL())[0]["loader"]["version"]
@@ -20,6 +19,7 @@ rootProject.ext.fabric_api_version = getModrinthVersion("fabric", minecraft_vers
 rootProject.ext.mod_menu_version = getModrinthVersion("fabric", minecraft_version, "modmenu")
 rootProject.ext.cloth_config_fabric_version = getModrinthVersion("fabric", minecraft_version, "cloth-config")
 rootProject.ext.cloth_config_forge_version = getModrinthVersion("forge", minecraft_version, "cloth-config")
+rootProject.ext.filters_api_version = getModrinthVersion("fabric", minecraft_version, "filters-api")
 rootProject.ext.architectury_version = getModrinthVersion("forge", minecraft_version, "architectury-api").split("\\+")[0]
 rootProject.ext.architectury_id = minecraft_main_version == 16 ? "me.shedaniel" : "dev.architectury"
 
@@ -77,6 +77,7 @@ task setupFiles() {
     System.out.println("Fabric API: " + rootProject.fabric_api_version)
     System.out.println("Mod Menu: " + rootProject.mod_menu_version)
     System.out.println("Architectury: " + rootProject.architectury_version)
+    System.out.println("Filters API: " + rootProject.filters_api_version)
 
 //    download {
 //        src "https://weblate.ziyuesinicization.site/api/components/tianjin-metro/en-us-json/file/"
@@ -126,6 +127,7 @@ allprojects {
         maven { url = "https://jitpack.io/" }
         maven { url = "https://maven.terraformersmc.com/" }
         maven { url = "https://maven.shedaniel.me/" }
+        maven { url = "https://maven.ziyuesinicization.site/" }
     }
 
     tasks.withType(JavaCompile) {

@@ -56,10 +56,6 @@
     "gui.tjmetro.next_station": "Next Station",
     "gui.tjmetro.station_pinyin": "%s ZHAN",
 
-    "button.tjmetro.scroll_up": "Scroll Up",
-    "button.tjmetro.scroll_down": "Scroll Down",
-    "button.tjmetro.enable_all": "Enable All Filters",
-    "button.tjmetro.disable_all": "Disable All Filters",
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Options",
 
     "config.category.tjmetro": "Tianjin Metro",

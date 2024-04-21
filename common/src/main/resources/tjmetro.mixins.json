@@ -16,8 +16,6 @@
 	},
 	"client": [
 		"ConfigScreenMixin",
-		"CreativeModeInventoryScreenMixin",
-		"EffectRenderingInventoryScreenMixin",
 		"EntityRenderDispatcherMixin",
 		"MinecartRendererMixin"
 	],

@@ -15,8 +15,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
+import ziyue.filters.FilterBuilder;
 import ziyue.tjmetro.client.ClientCache;
-import ziyue.tjmetro.filter.Filter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,10 +38,10 @@ public class Config
     {
         @Override
         public void set(Boolean value) {
-            Filter.FILTERS.get(CreativeModeTabs.CORE.get().getId()).enabled = value;
-            Filter.FILTERS.get(CreativeModeTabs.ESCALATORS_LIFTS.get().getId()).enabled = value;
-            Filter.FILTERS.get(CreativeModeTabs.RAILWAY_FACILITIES.get().getId()).enabled = value;
-            Filter.FILTERS.get(CreativeModeTabs.STATION_BUILDING_BLOCKS.get().getId()).enabled = value;
+            FilterBuilder.filtersVisibility(CreativeModeTabs.CORE.get(), value);
+            FilterBuilder.filtersVisibility(CreativeModeTabs.ESCALATORS_LIFTS.get(), value);
+            FilterBuilder.filtersVisibility(CreativeModeTabs.RAILWAY_FACILITIES.get(), value);
+            FilterBuilder.filtersVisibility(CreativeModeTabs.STATION_BUILDING_BLOCKS.get(), value);
             super.set(value);
         }
     };
