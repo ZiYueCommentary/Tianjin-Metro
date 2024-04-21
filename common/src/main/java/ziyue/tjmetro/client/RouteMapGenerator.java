@@ -436,12 +436,13 @@ public class RouteMapGenerator implements IGui
             final int iconSize = (int) (size * BlockRailwaySignBase.SMALL_SIGN_PERCENTAGE);
             final int backgroundColor = 0;
 
-            final AtomicInteger totalWidth = new AtomicInteger(iconOffset * 2 + iconSize + text.width());
+            final AtomicInteger totalWidth = new AtomicInteger(iconOffset + iconSize + text.width());
             final List<Tuple<ClientCache.Text, Integer>> routes = new ArrayList<>();
             switch (style) {
                 case 0, 1, 4, 5 -> {
                     final Map<Integer, mtr.client.ClientCache.ColorNameTuple> routeMap = ClientData.DATA_CACHE.stationIdToRoutes.get(stationId);
                     if (routeMap == null) break;
+                    totalWidth.addAndGet(iconOffset);
                     routeMap.forEach((color, route) -> {
                         final ClientCache.Text routeName = ClientCache.DATA_CACHE.getText(route.name, Integer.MAX_VALUE, iconSize, (int) (fontSizeBig * 2.5F), (int) (fontSizeSmall * 2.5F), padding, HorizontalAlignment.LEFT);
                         routes.add(new Tuple<>(routeName, route.color));
@@ -451,21 +452,23 @@ public class RouteMapGenerator implements IGui
                 }
             }
             if (selectedId != -1) {
-                totalWidth.addAndGet(iconOffset * 2 + exit.width());
+                totalWidth.addAndGet(iconOffset + exit.width());
             }
 
             final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, Math.max(width, totalWidth.get()), size, false);
             nativeImage.fillRect(0, 0, width, size, backgroundColor);
 
-            final AtomicInteger currentX = new AtomicInteger(iconOffset * 2 + iconSize);
+            final AtomicInteger currentX = new AtomicInteger(iconOffset + iconSize);
+            if (!routes.isEmpty()) currentX.addAndGet(iconOffset);
             routes.forEach(route -> {
                 nativeImage.fillRect(currentX.get(), iconOffset, padding * 3 + route.getA().width(), iconSize, invertColor(ARGB_BLACK | route.getB()));
                 drawString(nativeImage, route.getA(), currentX.get() + padding, size / 2 - (customFont ? 8 : 0), HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
                 currentX.addAndGet(padding * 5 + route.getA().width());
             });
-            currentX.addAndGet(padding * -5);
+            if (!routes.isEmpty()) currentX.addAndGet(padding * -3);
+            if (selectedId != -1) currentX.addAndGet(-iconOffset - exit.width());
             drawResource(nativeImage, TRAIN_LOGO_RESOURCE, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
-            drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get() - iconOffset - ((selectedId != -1) ? exit.width() - padding * 2 : 0)) / 2, size / 2 - (customFont ? 10 : 0), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+            drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get()) / 2, size / 2 - (customFont ? 10 : 0), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             if (selectedId != -1)
                 drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2 - (customFont ? 20 : 0), HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             clearColor(nativeImage, invertColor(backgroundColor));
