@@ -59,9 +59,12 @@ public abstract class BlockRailwaySignBase extends BlockDirectionalMapper implem
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult hit) {
         return IBlockExtends.checkHoldingBrushOrWrench(world, player, () -> {
             final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-            final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
-            if (checkPos != null) {
-                PacketGuiServer.openRailwaySignScreenS2C((ServerPlayer) player, checkPos);
+            final Direction hitSide = hit.getDirection();
+            if (hitSide == facing || hitSide == facing.getOpposite()) {
+                final BlockPos checkPos = findEndWithDirection(world, pos, hitSide.getOpposite(), false);
+                if (checkPos != null) {
+                    PacketGuiServer.openRailwaySignScreenS2C((ServerPlayer) player, checkPos);
+                }
             }
         });
     }

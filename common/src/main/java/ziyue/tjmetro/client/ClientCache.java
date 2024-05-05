@@ -4,11 +4,11 @@ import com.mojang.blaze3d.platform.NativeImage;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
 import mtr.MTR;
+import mtr.client.ClientCache.ColorNameTuple;
+import mtr.client.ClientCache.PlatformRouteDetails;
 import mtr.client.Config;
 import mtr.data.*;
 import mtr.mappings.Utilities;
-import mtr.client.ClientCache.PlatformRouteDetails;
-import mtr.client.ClientCache.ColorNameTuple;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -16,7 +16,6 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.Tuple;
 import ziyue.tjmetro.Reference;
 import ziyue.tjmetro.TianjinMetro;
 
@@ -141,6 +140,14 @@ public class ClientCache extends DataCache implements IGui
 
     public DynamicResource getRouteMap(long platformId, boolean vertical, boolean flip, float aspectRatio, boolean transparentWhite) {
         return getResource(String.format("tjmetro_route_map_%s_%s_%s_%s_%s", platformId, vertical, flip, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMap(platformId, vertical, flip, aspectRatio, transparentWhite), transparentWhite ? ClientCache.DefaultRenderingColor.TRANSPARENT : ClientCache.DefaultRenderingColor.WHITE);
+    }
+
+    public DynamicResource getRouteSquare(int color, String routeName, IGui.HorizontalAlignment horizontalAlignment) {
+        return getResource(String.format("tjmetro_route_square_%s_%s_%s", color, routeName, horizontalAlignment), () -> RouteMapGenerator.generateRouteSquare(color, routeName, horizontalAlignment), DefaultRenderingColor.TRANSPARENT);
+    }
+
+    public DynamicResource getSignText(String string, HorizontalAlignment horizontalAlignment, float paddingScale, int backgroundColor, int textColor) {
+        return getResource(String.format("tjmetro_sign_text_%s_%s_%s_%s_%s", string, horizontalAlignment, paddingScale, backgroundColor, textColor), () -> RouteMapGenerator.generateSignText(string, horizontalAlignment, paddingScale, backgroundColor, textColor), DefaultRenderingColor.TRANSPARENT);
     }
 
     public DynamicResource getStationNameEntrance(long stationId, long selectedId, int style, String stationName, float aspectRatio) {

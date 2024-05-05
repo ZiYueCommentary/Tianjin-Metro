@@ -69,7 +69,6 @@ public interface BlockList
     RegistryObject<Block> RAILWAY_SIGN_WALL_BIG_9 = new RegistryObject<>(() -> new BlockRailwaySignWallBig(9));
     RegistryObject<Block> RAILWAY_SIGN_WALL_BIG_10 = new RegistryObject<>(() -> new BlockRailwaySignWallBig(10));
     RegistryObject<Block> RAILWAY_SIGN_WALL_BIG_MIDDLE = new RegistryObject<>(() -> new BlockRailwaySignWallBig(0));
-    RegistryObject<Block> RAILWAY_SIGN_TIANJIN_2_ODD = new RegistryObject<>(() -> new BlockRailwaySignTianjin(2, true));
     RegistryObject<Block> RAILWAY_SIGN_TIANJIN_3_ODD = new RegistryObject<>(() -> new BlockRailwaySignTianjin(3, true));
     RegistryObject<Block> RAILWAY_SIGN_TIANJIN_4_ODD = new RegistryObject<>(() -> new BlockRailwaySignTianjin(4, true));
     RegistryObject<Block> RAILWAY_SIGN_TIANJIN_5_ODD = new RegistryObject<>(() -> new BlockRailwaySignTianjin(5, true));

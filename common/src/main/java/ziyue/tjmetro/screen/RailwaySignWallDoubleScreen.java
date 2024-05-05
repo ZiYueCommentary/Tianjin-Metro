@@ -267,7 +267,7 @@ public class RailwaySignWallDoubleScreen extends ScreenMapper implements IGui
         editingIndex = -1;
     }
 
-    protected int loopSigns(LoopSignsCallback loopSignsCallback, boolean ignorePage) {
+    protected int loopSigns(RailwaySignScreen.LoopSignsCallback loopSignsCallback, boolean ignorePage) {
         int pageCount = rows * columns;
         int indexSmall = 0;
         int indexBig = 0;
@@ -349,11 +349,5 @@ public class RailwaySignWallDoubleScreen extends ScreenMapper implements IGui
         page = Mth.clamp(newPage, 0, totalPages - 1);
         buttonPrevPage.visible = editingIndex >= 0 && page > 0;
         buttonNextPage.visible = editingIndex >= 0 && page < totalPages - 1;
-    }
-
-    @FunctionalInterface
-    protected interface LoopSignsCallback
-    {
-        void loopSignsCallback(int index, int x, int y, boolean isBig);
     }
 }

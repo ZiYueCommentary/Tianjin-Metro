@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "tjmetro:block/railway_sign_tianjin_end_one_and_a_half"
+		},
+		"facing=east": {
+			"model": "tjmetro:block/railway_sign_tianjin_end_one_and_a_half",
+			"y": 90
+		},
+		"facing=south": {
+			"model": "tjmetro:block/railway_sign_tianjin_end_one_and_a_half",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "tjmetro:block/railway_sign_tianjin_end_one_and_a_half",
+			"y": 270
+		}
+	}
+}

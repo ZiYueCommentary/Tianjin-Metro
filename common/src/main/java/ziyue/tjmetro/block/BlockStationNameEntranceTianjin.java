@@ -44,14 +44,14 @@ import java.util.function.Consumer;
 
 public class BlockStationNameEntranceTianjin extends BlockStationNameBase implements IBlock
 {
-    /**
-     * 0 - short<br>
-     * 1 - tall<br>
-     * 2 - short, no routes<br>
-     * 3 - tall, no routes<br>
-     * 4 - short, no background<br>
-     * 5 - tall, no background<br>
-     * 6 - short, no routes, no background<br>
+    /*
+     * 0 - short
+     * 1 - tall
+     * 2 - short, no routes
+     * 3 - tall, no routes
+     * 4 - short, no background
+     * 5 - tall, no background
+     * 6 - short, no routes, no background
      * 7 - tall, no routes, no background
      */
     public static final IntegerProperty STYLE = IntegerProperty.create("style", 0, 7);

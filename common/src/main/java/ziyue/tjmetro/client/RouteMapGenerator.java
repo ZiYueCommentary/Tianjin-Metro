@@ -416,6 +416,49 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
+    public static NativeImage generateRouteSquare(int color, String routeName, HorizontalAlignment horizontalAlignment) {
+        try {
+            final int padding = scale / 32;
+            final ClientCache.Text text = ClientCache.DATA_CACHE.getText(routeName, Integer.MAX_VALUE, (int) ((fontSizeBig + fontSizeSmall) * mtr.client.ClientCache.LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, padding, horizontalAlignment);
+
+            final int width = text.renderWidth() + padding * 2;
+            final int height = text.height() + padding * 2;
+            final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, width, height, false);
+            nativeImage.fillRect(0, 0, width, height, invertColor(ARGB_BLACK | color));
+            drawString(nativeImage, text, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage());
+        }
+
+        return null;
+    }
+
+    public static NativeImage generateSignText(String string, HorizontalAlignment horizontalAlignment, float paddingScale, int backgroundColor, int textColor) {
+        try {
+            final int height = scale;
+            final int padding = Math.round(height * paddingScale);
+            final int tileSize = height - padding * 2;
+            final int tilePadding = tileSize / 4;
+
+            final ClientCache.Text text = ClientCache.DATA_CACHE.getText(string, Integer.MAX_VALUE, (int) (tileSize * mtr.client.ClientCache.LINE_HEIGHT_MULTIPLIER), tileSize * 3 / 5, tileSize * 3 / 10, tilePadding, horizontalAlignment);
+            final int width = text.renderWidth() - tilePadding * 2;
+
+            if (width <= 0 || height <= 0) return null;
+
+            final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, width, height, false);
+            nativeImage.fillRect(0, 0, width, height, 0);
+            drawString(nativeImage, text, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+            clearColor(nativeImage, invertColor(backgroundColor));
+
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage());
+        }
+
+        return null;
+    }
+
     public static NativeImage generateStationNameEntrance(long stationId, long selectedId, int style, String stationName, float aspectRatio) {
         if (aspectRatio <= 0) return null;
 

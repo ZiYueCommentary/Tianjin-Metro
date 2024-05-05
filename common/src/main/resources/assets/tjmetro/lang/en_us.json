@@ -10,6 +10,8 @@
     "block.tjmetro.logo": "Tianjin Metro Logo",
     "block.tjmetro.station_name_sign_1": "Station Name Sign",
     "block.tjmetro.station_name_sign_2": "Station Name Sign",
+    "block.tjmetro.railway_sign_tianjin": "Railway Sign (Tianjin)",
+    "block.tjmetro.railway_sign_tianjin_pole": "Railway Sign Pole (Tianjin)",
     "block.tjmetro.railway_sign_wall": "Railway Sign (Wall)",
     "block.tjmetro.railway_sign_wall_big": "Railway Sign (Wall, Big)",
     "block.tjmetro.railway_sign_wall_double": "Railway Sign (Wall, Double)",
@@ -37,7 +39,6 @@
     "block.tjmetro.time_display": "Time Display",
     "block.tjmetro.emergency_exit_sign": "Emergency Exit Sign",
     "block.tjmetro.metal_detection_door": "Metal Detection Door",
-    "block.tjmetro.railway_sign_tianjin": "Railway Sign (Tianjin)",
     "block.tjmetro.service_corridor_sign": "\"Serivce Corridor\" Sign",
     "block.tjmetro.psd_tianjin": "Platform Screen Doors (Tianjin)",
     "block.tjmetro.station_name_entrance_tianjin": "Station Name (Entrance, Tianjin)",
@@ -112,5 +113,5 @@
     "filter.tjmetro.mtr_uncategorized": "Uncategorized",
 
     "gamerule.preventBlockFalling": "Prevent Block Falling",
-    "gamerule.preventBlockFalling.description": "Prevent blocks to falling, such as sands and anvils. This rule was added by Tianjin Metro mod."
+    "gamerule.preventBlockFalling.description": "Prevent blocks to fall, such as sands and anvils. This rule was added by Tianjin Metro mod."
 }
