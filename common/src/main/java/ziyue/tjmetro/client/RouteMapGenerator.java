@@ -5,7 +5,6 @@ import mtr.MTR;
 import mtr.client.ClientData;
 import mtr.client.Config;
 import mtr.data.*;
-import mtr.mappings.Text;
 import mtr.mappings.Utilities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +19,6 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
-import java.util.stream.Collectors;
 
 import static mtr.client.ClientCache.LINE_HEIGHT_MULTIPLIER;
 
@@ -75,8 +73,6 @@ public class RouteMapGenerator implements IGui
             final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, width, height, false);
             nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
 
-            final boolean customFont = ziyue.tjmetro.Config.USE_TIANJIN_METRO_FONT.get();
-
             final int circleX;
             if (isTerminating) {
                 circleX = (int) horizontalAlignment.getOffset(0, tileSize - width);
@@ -112,8 +108,8 @@ public class RouteMapGenerator implements IGui
 
             final Platform platform = ClientCache.DATA_CACHE.platformIdMap.get(platformId);
             if (platform != null) {
-                final ClientCache.Text platformNumber = ClientCache.DATA_CACHE.getText(platform.name, tileSize, (int) (tileSize * LINE_HEIGHT_MULTIPLIER * 3 / 4), tileSize * 3 / (customFont ? 1 : 4), tileSize * 3 / (customFont ? 1 : 4), 0, HorizontalAlignment.CENTER);
-                drawString(nativeImage, platformNumber, circleX + tileSize / 2, padding + tileSize / 2 - (customFont ? 8 : 0), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+                final ClientCache.Text platformNumber = ClientCache.DATA_CACHE.getText(platform.name, tileSize, (int) (tileSize * LINE_HEIGHT_MULTIPLIER * 3 / 4), tileSize * 3, tileSize * 3, 0, HorizontalAlignment.CENTER);
+                drawString(nativeImage, platformNumber, circleX + tileSize / 2, padding + tileSize / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
             }
 
             if (transparentColor != 0) {
@@ -188,10 +184,9 @@ public class RouteMapGenerator implements IGui
             final int leftSize = tileSize + tilePadding;
 
             if (isTerminating) {
-                final boolean customFont = ziyue.tjmetro.Config.USE_TIANJIN_METRO_FONT.get();
                 nativeImage = new NativeImage(NativeImage.Format.RGBA, width, height, false);
                 nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
-                final ClientCache.Text destination = ClientCache.DATA_CACHE.getText(IDrawingExtends.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3 / (customFont ? 1 : 5), tileSize * 3 / 2 / (customFont ? 1 : 5), tilePadding, HorizontalAlignment.CENTER);
+                final ClientCache.Text destination = ClientCache.DATA_CACHE.getText(IDrawingExtends.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
                 drawString(nativeImage, destination, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
             } else {
                 final int arrowSizeAndPadding = switch (arrowDirection) {
@@ -425,8 +420,6 @@ public class RouteMapGenerator implements IGui
         if (aspectRatio <= 0) return null;
 
         try {
-            final boolean customFont = ziyue.tjmetro.Config.USE_TIANJIN_METRO_FONT.get();
-
             final int size = scale * 2;
             final int width = Math.round(size * aspectRatio);
             final int padding = scale / 16;
@@ -462,15 +455,15 @@ public class RouteMapGenerator implements IGui
             if (!routes.isEmpty()) currentX.addAndGet(iconOffset);
             routes.forEach(route -> {
                 nativeImage.fillRect(currentX.get(), iconOffset, padding * 3 + route.getA().width(), iconSize, invertColor(ARGB_BLACK | route.getB()));
-                drawString(nativeImage, route.getA(), currentX.get() + padding, size / 2 - (customFont ? 8 : 0), HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+                drawString(nativeImage, route.getA(), currentX.get() + padding, size / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
                 currentX.addAndGet(padding * 5 + route.getA().width());
             });
             if (!routes.isEmpty()) currentX.addAndGet(padding * -3);
             if (selectedId != -1) currentX.addAndGet(-iconOffset - exit.width());
             drawResource(nativeImage, TRAIN_LOGO_RESOURCE, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
-            drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get()) / 2, size / 2 - (customFont ? 10 : 0), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+            drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get()) / 2, size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             if (selectedId != -1)
-                drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2 - (customFont ? 20 : 0), HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+                drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             clearColor(nativeImage, invertColor(backgroundColor));
 
             return nativeImage;

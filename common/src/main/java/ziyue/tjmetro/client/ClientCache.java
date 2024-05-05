@@ -218,6 +218,7 @@ public class ClientCache extends DataCache implements IGui
             return new Text(new byte[0], 0, 0, 0);
         }
 
+        final boolean customFont = ziyue.tjmetro.Config.USE_TIANJIN_METRO_FONT.get();
         final boolean oneRow = horizontalAlignment == null;
         final String[] defaultTextSplit = IGui.textOrUntitled(text).split("\\|");
         final String[] textSplit;
@@ -284,7 +285,7 @@ public class ClientCache extends DataCache implements IGui
         int realWidth = 0;
         for (int index = 0; index < textSplit.length; index++) {
             if (oneRow) {
-                graphics2D.drawString(attributedStrings[index].getIterator(), textOffset, height / LINE_HEIGHT_MULTIPLIER);
+                graphics2D.drawString(attributedStrings[index].getIterator(), textOffset, height / LINE_HEIGHT_MULTIPLIER - (customFont ? height * 0.035F : 0));
                 textOffset += textWidths[index] + padding;
             } else {
                 final float scaleY = (float) imageHeight / height;
@@ -293,7 +294,7 @@ public class ClientCache extends DataCache implements IGui
                 final AffineTransform stretch = new AffineTransform();
                 stretch.concatenate(AffineTransform.getScaleInstance(scaleX, scaleY));
                 graphics2D.setTransform(stretch);
-                graphics2D.drawString(attributedStrings[index].getIterator(), horizontalAlignment.getOffset(0, textWidth - width) / scaleY + padding / scaleX, textOffset + fontSizes[index] + padding / scaleY);
+                graphics2D.drawString(attributedStrings[index].getIterator(), horizontalAlignment.getOffset(0, textWidth - width) / scaleY + padding / scaleX, textOffset + fontSizes[index] + padding / scaleY - (customFont ? height * 0.035F : 0));
                 textOffset += (int) (fontSizes[index] * LINE_HEIGHT_MULTIPLIER);
                 realWidth = Math.max(realWidth, (int) textWidth);
             }
