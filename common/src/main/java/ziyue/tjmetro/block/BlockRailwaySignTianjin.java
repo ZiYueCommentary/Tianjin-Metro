@@ -22,6 +22,14 @@ import ziyue.tjmetro.BlockList;
 import ziyue.tjmetro.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.block.base.IRailwaySign;
 
+/**
+ * Railway Sign Tianjin.
+ *
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignBase
+ * @since beta-1
+ */
+
 public class BlockRailwaySignTianjin extends BlockRailwaySignBase
 {
     public BlockRailwaySignTianjin(int length, boolean isOdd) {
@@ -98,8 +106,7 @@ public class BlockRailwaySignTianjin extends BlockRailwaySignBase
 
         public static BlockEntityType<?> getType(int length, boolean isOdd) {
             return switch (length) {
-                case 2 ->
-                        isOdd ? null : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_2_EVEN_TILE_ENTITY.get();
+                case 2 -> isOdd ? null : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_2_EVEN_TILE_ENTITY.get();
                 case 3 ->
                         isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_3_ODD_TILE_ENTITY.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_3_EVEN_TILE_ENTITY.get();
                 case 4 ->

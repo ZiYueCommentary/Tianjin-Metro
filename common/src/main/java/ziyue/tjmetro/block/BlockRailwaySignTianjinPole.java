@@ -13,6 +13,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignTianjin
+ * @see BlockRailwaySignPole
+ * @since beta-1
+ */
+
 public class BlockRailwaySignTianjinPole extends BlockRailwaySignPole
 {
     public BlockRailwaySignTianjinPole() {
