@@ -24,6 +24,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.TianjinMetro;
+import ziyue.tjmetro.block.BlockRailwaySignTianjinDouble;
 import ziyue.tjmetro.block.BlockRailwaySignWallDouble;
 import ziyue.tjmetro.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.packet.PacketGuiServer;
@@ -38,7 +39,7 @@ import java.util.stream.Collectors;
  * @since beta-1
  */
 
-public class RailwaySignWallDoubleScreen extends ScreenMapper implements IGui
+public class RailwaySignDoubleScreen extends ScreenMapper implements IGui
 {
     protected int line;
     protected int editingIndex;
@@ -67,7 +68,7 @@ public class RailwaySignWallDoubleScreen extends ScreenMapper implements IGui
     protected static final int SIGN_BUTTON_SIZE = 16;
     protected static final int BUTTON_Y_START = (SQUARE_SIZE + SIGN_SIZE) * 2 + SIGN_BUTTON_SIZE / 2;
 
-    public RailwaySignWallDoubleScreen(BlockPos signPos) {
+    public RailwaySignDoubleScreen(BlockPos signPos) {
         super(Text.literal(""));
         editingIndex = -1;
         this.signPos = signPos;
@@ -111,6 +112,10 @@ public class RailwaySignWallDoubleScreen extends ScreenMapper implements IGui
                 signIds = entityRailwaySign.getSignIds();
                 selectedIds = entityRailwaySign.getSelectedIds();
                 isRailwaySign = true;
+            } else if (entity instanceof BlockRailwaySignTianjinDouble.TileEntityRailwaySignTianjinDouble entityRailwaySign) {
+                signIds = entityRailwaySign.getSignIds();
+                selectedIds = entityRailwaySign.getSelectedIds();
+                isRailwaySign = true;
             } else {
                 signIds = new String[0][0];
                 selectedIds = new ArrayList<>();
@@ -119,6 +124,8 @@ public class RailwaySignWallDoubleScreen extends ScreenMapper implements IGui
                 isRailwaySign = false;
             }
             if (world.getBlockState(signPos).getBlock() instanceof BlockRailwaySignWallDouble block) {
+                length = block.length;
+            } else if (world.getBlockState(signPos).getBlock() instanceof BlockRailwaySignTianjinDouble block) {
                 length = block.length;
             } else {
                 length = 0;
@@ -200,9 +207,7 @@ public class RailwaySignWallDoubleScreen extends ScreenMapper implements IGui
         try {
             renderBackground(matrices);
             super.render(matrices, mouseX, mouseY, delta);
-            if (minecraft == null) {
-                return;
-            }
+            if (minecraft == null) return;
 
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < signIds[i].length; j++) {

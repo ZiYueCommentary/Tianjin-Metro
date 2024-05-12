@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "tjmetro:item/railway_sign_tianjin_double_4_even"
+	}
+}

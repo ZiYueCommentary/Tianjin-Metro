@@ -14,6 +14,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import ziyue.tjmetro.block.BlockRailwaySignTianjinDouble;
 import ziyue.tjmetro.block.BlockRailwaySignWallDouble;
 import ziyue.tjmetro.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.block.base.BlockCustomColorBase;
@@ -165,6 +166,8 @@ public class PacketGuiServer
             final BlockEntity entity = player.level.getBlockEntity(signPos);
             if (entity instanceof BlockRailwaySignWallDouble.TileEntityRailwaySignWallDouble sign) {
                 setTileEntityDataAndWriteUpdate(player, entity2 -> entity2.setData(selectedIds, signIds), sign);
+            } else if (entity instanceof BlockRailwaySignTianjinDouble.TileEntityRailwaySignTianjinDouble sign1) {
+                setTileEntityDataAndWriteUpdate(player, entity2 -> entity2.setData(selectedIds, signIds), sign1);
             }
         });
     }

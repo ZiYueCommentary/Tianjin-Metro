@@ -56,6 +56,6 @@ public class BlockRailwaySignTianjinPole extends BlockRailwaySignPole
 
     @Override
     protected boolean isBlock(Block block) {
-        return (block instanceof BlockRailwaySignTianjin && ((BlockRailwaySignTianjin) block).length > 0) || block instanceof BlockRailwaySignTianjinPole;
+        return (block instanceof BlockRailwaySignTianjin && ((BlockRailwaySignTianjin) block).length > 0) || block instanceof BlockRailwaySignTianjinPole || block instanceof BlockRailwaySignTianjinDouble;
     }
 }
