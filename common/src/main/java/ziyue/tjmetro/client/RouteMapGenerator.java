@@ -36,11 +36,12 @@ public class RouteMapGenerator implements IGui
     protected static int fontSizeBig;
     protected static int fontSizeSmall;
 
-    protected static final int MIN_VERTICAL_SIZE = 5;
-    protected static final String TEMP_CIRCULAR_MARKER = "temp_circular_marker";
-    protected static final ResourceLocation TRAIN_LOGO_RESOURCE = new ResourceLocation(Reference.MOD_ID, "textures/sign/train.png");
-    protected static final ResourceLocation ARROW_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/arrow.png");
-    protected static final ResourceLocation CIRCLE_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/circle.png");
+    public static final int MIN_VERTICAL_SIZE = 5;
+    public static final String TEMP_CIRCULAR_MARKER = "temp_circular_marker";
+    public static final ResourceLocation TRAIN_LOGO_RESOURCE = new ResourceLocation(Reference.MOD_ID, "textures/sign/train.png");
+    public static final ResourceLocation EXIT_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/exit_letter_blank.png");
+    public static final ResourceLocation ARROW_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/arrow.png");
+    public static final ResourceLocation CIRCLE_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/circle.png");
 
     public static void setConstants() {
         scale = (int) Math.pow(2, Config.dynamicTextureResolution() + 5);
@@ -433,6 +434,30 @@ public class RouteMapGenerator implements IGui
 
         return null;
     }
+
+    public static NativeImage generateExitSignLetter(String exitLetter, String exitNumber, int backgroundColor) {
+        try {
+            final int size = scale / 2;
+            final boolean noNumber = exitNumber.isEmpty();
+            final int textSize = size * 7 / 8;
+            final ClientCache.Text letter = ClientCache.DATA_CACHE.getText(exitLetter, noNumber ? textSize : textSize * 2 / 3, textSize, textSize, size, size, HorizontalAlignment.CENTER);
+            final ClientCache.Text number = noNumber ? null : ClientCache.DATA_CACHE.getText(exitNumber, textSize / 3, textSize, textSize / 2, textSize / 2, size, HorizontalAlignment.CENTER);
+
+            final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, size, size, false);
+            nativeImage.fillRect(0, 0, size, size, backgroundColor);
+            drawResource(nativeImage, EXIT_RESOURCE, 0, 0, size, size, false, 0, 1, 0, true);
+            drawString(nativeImage,  letter, size / 2 - (noNumber ? 0 : textSize / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+            if (!noNumber) {
+                drawString(nativeImage, number, size / 2 + textSize / 3 - size / 32, size / 2 + textSize / 8, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+            }
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage());
+        }
+
+        return null;
+    }
+
 
     public static NativeImage generateSignText(String string, HorizontalAlignment horizontalAlignment, float paddingScale, int backgroundColor, int textColor) {
         try {

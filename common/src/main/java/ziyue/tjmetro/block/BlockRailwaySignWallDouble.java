@@ -49,7 +49,7 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
         final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
         return IBlockExtends.checkHoldingBrushOrWrench(world, player, () -> {
             if (checkPos != null) {
-                PacketGuiServer.openRailwaySignWallDoubleScreenS2C((ServerPlayer) player, checkPos);
+                PacketGuiServer.openRailwaySignDoubleScreenS2C((ServerPlayer) player, checkPos);
             }
         });
     }

@@ -70,7 +70,7 @@ public class PacketGuiClient
         });
     }
 
-    public static void openRailwaySignWallDoubleScreenS2C(Minecraft minecraftClient, FriendlyByteBuf packet) {
+    public static void openRailwaySignDoubleScreenS2C(Minecraft minecraftClient, FriendlyByteBuf packet) {
         final BlockPos pos = packet.readBlockPos();
         minecraftClient.execute(() -> {
             if (!(minecraftClient.screen instanceof RailwaySignScreen)) {

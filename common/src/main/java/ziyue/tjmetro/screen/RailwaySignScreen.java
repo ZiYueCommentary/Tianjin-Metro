@@ -54,6 +54,7 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
     protected final List<NameColorDataBase> exitsForList = new ArrayList<>();
     protected final List<NameColorDataBase> platformsForList = new ArrayList<>();
     protected final List<NameColorDataBase> routesForList = new ArrayList<>();
+    protected final List<NameColorDataBase> stationsForList = new ArrayList<>();
     protected final List<String> allSignIds = new ArrayList<>();
 
     protected final Button[] buttonsEdit;
@@ -94,8 +95,8 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
                 Collections.sort(platforms);
                 platforms.stream().map(platform -> new DataConverter(platform.id, platform.name + " " + IGui.mergeStations(ClientData.DATA_CACHE.requestPlatformIdToRoutes(platform.id).stream().map(route -> route.stationDetails.get(route.stationDetails.size() - 1).stationName).collect(Collectors.toList())), 0)).forEach(platformsForList::add);
 
-                final Map<Integer, ClientCache.ColorNameTuple> routeMap = ClientData.DATA_CACHE.stationIdToRoutes.get(station.id);
-                routeMap.forEach((color, route) -> routesForList.add(new DataConverter(route.color, route.name, route.color)));
+                ClientData.DATA_CACHE.getAllRoutesIncludingConnectingStations(station).forEach((color, route) -> routesForList.add(new DataConverter(route.color, route.name, route.color)));
+                ClientData.DATA_CACHE.getConnectingStationsIncludingThisOne(station).forEach(connectingStation -> stationsForList.add(new DataConverter(connectingStation.id, connectingStation.name, connectingStation.color)));
             }
         } catch (Exception e) {
             if (ClientData.DATA_CACHE.stationIdToRoutes.get(RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, signPos).id) == null)
@@ -133,16 +134,16 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
         buttonsEdit = new Button[length];
         for (int i = 0; i < buttonsEdit.length; i++) {
             final int index = i;
-            buttonsEdit[i] = new Button(0, 0, 0, SQUARE_SIZE, Text.translatable("selectWorld.edit"), button -> edit(index));
+            buttonsEdit[i] = UtilitiesClient.newButton(Text.translatable("selectWorld.edit"), button -> edit(index));
         }
 
         buttonsSelection = new Button[allSignIds.size()];
         for (int i = 0; i < allSignIds.size(); i++) {
             final int index = i;
-            buttonsSelection[i] = new Button(0, 0, 0, SIGN_BUTTON_SIZE, Text.literal(""), button -> setNewSignId(allSignIds.get(index)));
+            buttonsSelection[i] = UtilitiesClient.newButton(SIGN_BUTTON_SIZE, Text.literal(""), button -> setNewSignId(allSignIds.get(index)));
         }
 
-        buttonClear = new Button(0, 0, 0, SQUARE_SIZE, Text.translatable("gui.mtr.reset_sign"), button -> setNewSignId(null));
+        buttonClear = UtilitiesClient.newButton(Text.translatable("gui.mtr.reset_sign"), button -> setNewSignId(null));
         buttonPrevPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation(MTR.MOD_ID, "textures/gui/icon_left.png"), 20, 40, button -> setPage(page - 1));
         buttonNextPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation(MTR.MOD_ID, "textures/gui/icon_right.png"), 20, 40, button -> setPage(page + 1));
     }
@@ -324,8 +325,9 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
             final boolean isExitLetter = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.EXIT_LETTER.toString()) || newSignId.equals(BlockRailwaySign.SignType.EXIT_LETTER_FLIPPED.toString()));
             final boolean isPlatform = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.PLATFORM.toString()) || newSignId.equals(BlockRailwaySign.SignType.PLATFORM_FLIPPED.toString()));
             final boolean isLine = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.LINE.toString()) || newSignId.equals(BlockRailwaySign.SignType.LINE_FLIPPED.toString()));
-            if ((isExitLetter || isPlatform || isLine) && minecraft != null) {
-                UtilitiesClient.setScreen(minecraft, new DashboardListSelectorScreen(this, isExitLetter ? exitsForList : isPlatform ? platformsForList : routesForList, selectedIds, false, false));
+            final boolean isStation = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.STATION.toString()) || newSignId.equals(BlockRailwaySign.SignType.STATION_FLIPPED.toString()));
+            if ((isExitLetter || isPlatform || isLine || isStation) && minecraft != null) {
+                UtilitiesClient.setScreen(minecraft, new DashboardListSelectorScreen(this, isExitLetter ? exitsForList : isPlatform ? platformsForList : isLine ? routesForList : stationsForList, selectedIds, false, false));
             }
         }
     }

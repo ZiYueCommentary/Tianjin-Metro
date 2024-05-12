@@ -2,12 +2,8 @@ package ziyue.tjmetro;
 
 import mtr.RegistryClient;
 import mtr.render.RenderPSDAPGDoor;
-import mtr.render.RenderPSDTop;
-import mtr.render.RenderStationNameTiled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
-import ziyue.tjmetro.client.ClientCache;
-import ziyue.tjmetro.client.RouteMapGenerator;
 import ziyue.tjmetro.packet.IPacket;
 import ziyue.tjmetro.packet.PacketGuiClient;
 import ziyue.tjmetro.render.*;
@@ -90,6 +86,6 @@ public class TianjinMetroClient
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN, packet -> PacketGuiClient.openCustomContentScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_COLOR_SCREEN, packet -> PacketGuiClient.openCustomColorScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_RAILWAY_SIGN_SCREEN, packet -> PacketGuiClient.openRailwaySignScreenS2C(Minecraft.getInstance(), packet));
-        RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_RAILWAY_SIGN_WALL_DOUBLE_SCREEN, packet -> PacketGuiClient.openRailwaySignWallDoubleScreenS2C(Minecraft.getInstance(), packet));
+        RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_RAILWAY_SIGN_DOUBLE_SCREEN, packet -> PacketGuiClient.openRailwaySignDoubleScreenS2C(Minecraft.getInstance(), packet));
     }
 }

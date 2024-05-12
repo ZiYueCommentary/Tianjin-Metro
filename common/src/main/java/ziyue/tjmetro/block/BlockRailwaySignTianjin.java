@@ -47,14 +47,7 @@ public class BlockRailwaySignTianjin extends BlockRailwaySignBase
 
     @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        if (world.isClientSide) return;
-        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-        for (int i = 1; i <= getMiddleLength(); i++) {
-            world.setBlock(pos.relative(facing.getClockWise(), i), BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get().defaultBlockState().setValue(FACING, facing), 3);
-        }
-        world.setBlock(pos.relative(facing.getClockWise(), getMiddleLength() + 1), state.getBlock().defaultBlockState().setValue(FACING, facing.getOpposite()), 3);
-        world.updateNeighborsAt(pos, Blocks.AIR);
-        state.updateNeighbourShapes(world, pos, 3);
+        IRailwaySign.setPlacedBy(world, pos, state, BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get(), getMiddleLength());
     }
 
     @Override
@@ -91,11 +84,10 @@ public class BlockRailwaySignTianjin extends BlockRailwaySignBase
 
     @Override
     public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state) {
-        if (this == BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get()) {
+        if (this == BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get())
             return null;
-        } else {
+        else
             return new TileEntityRailwaySignTianjin(length, isOdd, pos, state);
-        }
     }
 
     public static class TileEntityRailwaySignTianjin extends TileEntityRailwaySign

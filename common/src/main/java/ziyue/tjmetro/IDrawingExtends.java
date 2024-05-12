@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
+import static mtr.data.IGui.MAX_LIGHT_GLOWING;
+
 /**
  * Some methods similar to methods in <b>IDrawing</b>.
  *
@@ -135,7 +137,7 @@ public interface IDrawingExtends
 
             final float xOffset = horizontalAlignment.getOffset(xAlignment.getOffset(x * scaleX, totalWidth), textRenderer.width(orderedTexts.get(i)) * extraScale - totalWidth);
 
-            final float shade = light == IGui.MAX_LIGHT_GLOWING ? 1 : Math.min(LightTexture.block(light) / 16F * 0.1F + 0.7F, 1);
+            final float shade = light == MAX_LIGHT_GLOWING ? 1 : Math.min(LightTexture.block(light) / 16F * 0.1F + 0.7F, 1);
             final int a = (textColor >> 24) & 0xFF;
             final int r = (int) (((textColor >> 16) & 0xFF) * shade);
             final int g = (int) (((textColor >> 8) & 0xFF) * shade);

@@ -119,10 +119,10 @@ public class PacketGuiServer
         });
     }
 
-    public static void openRailwaySignWallDoubleScreenS2C(ServerPlayer player, BlockPos signPos) {
+    public static void openRailwaySignDoubleScreenS2C(ServerPlayer player, BlockPos signPos) {
         final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
         packet.writeBlockPos(signPos);
-        Registry.sendToPlayer(player, PACKET_OPEN_RAILWAY_SIGN_WALL_DOUBLE_SCREEN, packet);
+        Registry.sendToPlayer(player, PACKET_OPEN_RAILWAY_SIGN_DOUBLE_SCREEN, packet);
     }
 
     public static void sendSignIdsDoubleC2S(BlockPos signPos, List<Set<Long>> selectedIds, String[][] signIds) {
