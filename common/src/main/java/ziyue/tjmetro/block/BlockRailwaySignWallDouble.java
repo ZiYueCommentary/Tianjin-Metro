@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.BlockList;
-import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.block.base.IRailwaySign;
 import ziyue.tjmetro.packet.PacketGuiServer;

@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.BlockList;
-import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.ItemList;
 
 import java.util.function.Consumer;

@@ -1,4 +1,4 @@
-package ziyue.tjmetro;
+package ziyue.tjmetro.client;
 
 import mtr.CreativeModeTabs;
 import mtr.Items;
@@ -7,6 +7,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import ziyue.filters.Filter;
 import ziyue.filters.FilterBuilder;
+import ziyue.tjmetro.BlockList;
+import ziyue.tjmetro.ItemList;
+import ziyue.tjmetro.TianjinMetro;
 
 /**
  * @see Filter

@@ -20,7 +20,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.client.IDrawingExtends;
+import ziyue.tjmetro.data.IGuiExtends;
 import ziyue.tjmetro.block.base.BlockStationNameSignBase;
 
 /**
@@ -63,7 +64,7 @@ public class RenderStationNameSign<T extends BlockStationNameSignBase.TileEntity
         matrices.translate(0, 0, 0.515 - entity.zOffset);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, entity.getBlockPos());
-        drawStationName(matrices, immediate, entity.content.isEmpty() ? station == null ? Text.translatable("gui.mtr.untitled").getString() : IDrawingExtends.filterLanguage(station.name) : IDrawingExtends.filterLanguage(entity.content), color, light);
+        drawStationName(matrices, immediate, entity.content.isEmpty() ? station == null ? Text.translatable("gui.mtr.untitled").getString() : IGuiExtends.filterLanguage(station.name) : IGuiExtends.filterLanguage(entity.content), color, light);
         immediate.endBatch();
         matrices.popPose();
     }

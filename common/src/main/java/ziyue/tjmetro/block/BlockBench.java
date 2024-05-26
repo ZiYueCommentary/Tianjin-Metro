@@ -49,7 +49,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlockMapper
 {
     public static final Set<Minecart> SeatSet = new HashSet<>();
-    public static final String ENTITY_SEAT_NAME = "b\nb";
+    public static final String ENTITY_SEAT_NAME = "\r";
 
     public BlockBench() {
         this(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.OAK_PLANKS));

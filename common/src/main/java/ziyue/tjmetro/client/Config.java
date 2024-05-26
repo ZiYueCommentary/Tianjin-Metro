@@ -1,4 +1,4 @@
-package ziyue.tjmetro;
+package ziyue.tjmetro.client;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -16,7 +16,9 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import ziyue.filters.FilterBuilder;
-import ziyue.tjmetro.client.ClientCache;
+import ziyue.tjmetro.data.IGuiExtends;
+import ziyue.tjmetro.Reference;
+import ziyue.tjmetro.TianjinMetro;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -49,10 +51,10 @@ public class Config
 
     protected static final Path CONFIG_FILE_PATH = Minecraft.getInstance().gameDirectory.toPath().resolve("config").resolve("tjmetro.json");
     public static final List<Supplier<MutableComponent>> FOOTERS = Arrays.asList(
-            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.sources"), IDrawingExtends.LINK_STYLE.apply(Reference.GITHUB_REPO)),
-            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.contributors"), IDrawingExtends.LINK_STYLE.apply(Reference.CONTRIBUTORS)),
-            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.forum"), IDrawingExtends.LINK_STYLE.apply(Reference.FORUM).withColor(TextColor.fromRgb(15946322))),
-            () -> IDrawingExtends.format(Text.translatable("footer.tjmetro.weblate"), IDrawingExtends.LINK_STYLE.apply(Reference.WEBLATE))
+            () -> IGuiExtends.format(Text.translatable("footer.tjmetro.sources"), IGuiExtends.LINK_STYLE.apply(Reference.GITHUB_REPO)),
+            () -> IGuiExtends.format(Text.translatable("footer.tjmetro.contributors"), IGuiExtends.LINK_STYLE.apply(Reference.CONTRIBUTORS)),
+            () -> IGuiExtends.format(Text.translatable("footer.tjmetro.forum"), IGuiExtends.LINK_STYLE.apply(Reference.FORUM).withColor(TextColor.fromRgb(15946322))),
+            () -> IGuiExtends.format(Text.translatable("footer.tjmetro.weblate"), IGuiExtends.LINK_STYLE.apply(Reference.WEBLATE))
     );
 
     public static Screen getConfigScreen(Screen parent) {

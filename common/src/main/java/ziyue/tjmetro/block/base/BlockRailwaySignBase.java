@@ -28,7 +28,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import ziyue.tjmetro.IBlockExtends;
+import ziyue.tjmetro.block.IBlockExtends;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.*;

@@ -16,7 +16,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.client.IDrawingExtends;
+import ziyue.tjmetro.data.IGuiExtends;
 import ziyue.tjmetro.block.BlockRoadblockSign;
 
 /**
@@ -53,7 +54,7 @@ public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBloc
         matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         matrices.translate(0, 0.023, 0.5 - entity.zOffset - SMALL_OFFSET);
-        drawString(entity, matrices, vertexConsumers, immediate, IDrawingExtends.filterLanguage(entity.content), light);
+        drawString(entity, matrices, vertexConsumers, immediate, IGuiExtends.filterLanguage(entity.content), light);
         immediate.endBatch();
         matrices.popPose();
     }

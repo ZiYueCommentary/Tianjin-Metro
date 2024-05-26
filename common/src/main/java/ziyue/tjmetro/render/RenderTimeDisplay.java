@@ -15,7 +15,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.client.IDrawingExtends;
 import ziyue.tjmetro.block.BlockTimeDisplay;
 
 /**

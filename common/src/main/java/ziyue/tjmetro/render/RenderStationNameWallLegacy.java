@@ -21,7 +21,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.data.IGuiExtends;
 import ziyue.tjmetro.block.BlockStationNameWallLegacy;
 
 /**
@@ -53,7 +53,7 @@ public class RenderStationNameWallLegacy<T extends BlockStationNameWallLegacy.Ti
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, pos);
         matrices.translate(0, 0.023, 0.5 - entity.zOffset - SMALL_OFFSET);
-        drawStationName(matrices, vertexConsumers, immediate, station == null ? Text.translatable("gui.mtr.untitled").getString() : IDrawingExtends.filterLanguage(station.name), entity.getColor(state), light);
+        drawStationName(matrices, vertexConsumers, immediate, station == null ? Text.translatable("gui.mtr.untitled").getString() : IGuiExtends.filterLanguage(station.name), entity.getColor(state), light);
         immediate.endBatch();
         matrices.popPose();
     }

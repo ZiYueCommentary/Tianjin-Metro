@@ -17,7 +17,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.client.IDrawingExtends;
+import ziyue.tjmetro.data.IGuiExtends;
 import ziyue.tjmetro.block.BlockServiceCorridorSign;
 
 /**
@@ -53,7 +54,7 @@ public class RenderServiceCorridorSign<T extends BlockServiceCorridorSign.TileEn
         matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, Text.translatable("gui.tjmetro.service_corridor_sign").getString(), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -0.12f, 0.85F, 1F, 150, ARGB_BLACK, false, light, null);
-        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, IDrawingExtends.mergeTranslation("gui.tjmetro.contact_station_for_help_cjk", "gui.tjmetro.contact_station_for_help"), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0.02f, 0.85F, 1F, 270, ARGB_BLACK, false, light, null);
+        IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, IGuiExtends.mergeTranslation("gui.tjmetro.contact_station_for_help_cjk", "gui.tjmetro.contact_station_for_help"), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0.02f, 0.85F, 1F, 270, ARGB_BLACK, false, light, null);
         immediate.endBatch();
         matrices.popPose();
     }

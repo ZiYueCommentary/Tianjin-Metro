@@ -22,7 +22,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.BlockList;
-import ziyue.tjmetro.IBlockExtends;
 import ziyue.tjmetro.block.base.IRailwaySign;
 import ziyue.tjmetro.packet.PacketGuiServer;
 

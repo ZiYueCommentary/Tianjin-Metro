@@ -1,4 +1,4 @@
-package ziyue.tjmetro;
+package ziyue.tjmetro.block;
 
 import mtr.Items;
 import mtr.block.IBlock;
@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
+import ziyue.tjmetro.ItemList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,10 +44,12 @@ public interface IBlockExtends
      * @since beta-1
      */
     static void breakBlock(Level world, BlockPos pos) {
+        if(world.isClientSide) return;
+
         try {
             world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
         } catch (Exception exception) {
-            LOGGER.warn("IBlockExtends.breakBlock: Property \"waterlogged\" at {} not found", pos.toShortString());
+            LOGGER.warn("IBlockExtends.breakBlock: Property \"waterlogged\" at [{}] not found", pos.toShortString());
             world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
         }
     }
@@ -60,12 +63,14 @@ public interface IBlockExtends
      * @since beta-1
      */
     static void breakBlock(Level world, BlockPos pos, Block block) {
+        if(world.isClientSide) return;
+
         try {
             if (world.getBlockState(pos).getBlock() == block) {
                 world.setBlock(pos, world.getBlockState(pos).getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState(), 35);
             }
         } catch (Exception exception) {
-            LOGGER.warn("IBlockExtends.breakBlock: Property \"waterlogged\" at {} not found", pos.toShortString());
+            LOGGER.warn("IBlockExtends.breakBlock: Property \"waterlogged\" at [{}] not found", pos.toShortString());
             world.setBlock(pos, Blocks.AIR.defaultBlockState(), 35);
         }
     }

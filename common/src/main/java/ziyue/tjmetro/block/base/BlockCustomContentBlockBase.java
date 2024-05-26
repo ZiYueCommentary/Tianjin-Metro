@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import ziyue.tjmetro.IBlockExtends;
+import ziyue.tjmetro.block.IBlockExtends;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.List;

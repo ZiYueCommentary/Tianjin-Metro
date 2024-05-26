@@ -10,7 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.Tuple;
-import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.data.IGuiExtends;
 import ziyue.tjmetro.Reference;
 import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.block.base.BlockRailwaySignBase;
@@ -119,7 +119,7 @@ public class RouteMapGenerator implements IGui
 
             return nativeImage;
         } catch (Exception e) {
-            TianjinMetro.LOGGER.error(e.getMessage());
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
         }
 
         return null;
@@ -154,7 +154,7 @@ public class RouteMapGenerator implements IGui
 
             return nativeImage;
         } catch (Exception e) {
-            TianjinMetro.LOGGER.error(e.getMessage());
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
         }
 
         return null;
@@ -187,7 +187,7 @@ public class RouteMapGenerator implements IGui
             if (isTerminating) {
                 nativeImage = new NativeImage(NativeImage.Format.RGBA, width, height, false);
                 nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
-                final ClientCache.Text destination = ClientCache.DATA_CACHE.getText(IDrawingExtends.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
+                final ClientCache.Text destination = ClientCache.DATA_CACHE.getText(IGuiExtends.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
                 drawString(nativeImage, destination, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
             } else {
                 final int arrowSizeAndPadding = switch (arrowDirection) {
@@ -202,7 +202,7 @@ public class RouteMapGenerator implements IGui
                     destinationString = IGui.insertTranslation("gui.mtr.to_cjk", "gui.mtr.to", 1, destinationString);
                 final ClientCache.Text textDestination = ClientCache.DATA_CACHE.getText(destinationString, width - leftSize - padding * 2, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize, tileSize / 2, tilePadding, (arrowDirection == 2) ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
                 final ClientCache.Text textNextStations = ClientCache.DATA_CACHE.getText(nextStationString, width - leftSize - padding * 2, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, tilePadding, (arrowDirection == 2) ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
-                final ClientCache.Text textNextStationSign = ClientCache.DATA_CACHE.getText(IDrawingExtends.mergeTranslation("gui.tjmetro.next_station_cjk", "gui.tjmetro.next_station"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, tilePadding, HorizontalAlignment.CENTER);
+                final ClientCache.Text textNextStationSign = ClientCache.DATA_CACHE.getText(IGuiExtends.mergeTranslation("gui.tjmetro.next_station_cjk", "gui.tjmetro.next_station"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, tilePadding, HorizontalAlignment.CENTER);
                 int renderWidth = Math.max(width, leftSize + arrowSizeAndPadding + textDestination.width() + textNextStationSign.width() + tilePadding + textNextStations.width() + leftSize);
                 final boolean renderNextStation = (width - leftSize - arrowSizeAndPadding - textDestination.width() - leftSize) > textNextStations.width();
                 if (!renderNextStation)
@@ -233,7 +233,7 @@ public class RouteMapGenerator implements IGui
 
             return nativeImage;
         } catch (Exception e) {
-            TianjinMetro.LOGGER.error(e.getMessage());
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
         }
 
         return null;
@@ -411,7 +411,7 @@ public class RouteMapGenerator implements IGui
                 return nativeImage;
             }
         } catch (Exception e) {
-            TianjinMetro.LOGGER.error(e.getMessage());
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
         }
 
         return null;
@@ -429,7 +429,7 @@ public class RouteMapGenerator implements IGui
             drawString(nativeImage, text, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
             return nativeImage;
         } catch (Exception e) {
-            TianjinMetro.LOGGER.error(e.getMessage());
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
         }
 
         return null;
@@ -452,7 +452,7 @@ public class RouteMapGenerator implements IGui
             }
             return nativeImage;
         } catch (Exception e) {
-            TianjinMetro.LOGGER.error(e.getMessage());
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
         }
 
         return null;
@@ -478,7 +478,7 @@ public class RouteMapGenerator implements IGui
 
             return nativeImage;
         } catch (Exception e) {
-            TianjinMetro.LOGGER.error(e.getMessage());
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
         }
 
         return null;
@@ -536,7 +536,7 @@ public class RouteMapGenerator implements IGui
 
             return nativeImage;
         } catch (Exception e) {
-            TianjinMetro.LOGGER.error(e.getMessage());
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
         }
 
         return null;

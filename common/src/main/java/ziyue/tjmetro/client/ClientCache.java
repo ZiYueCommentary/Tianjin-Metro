@@ -6,7 +6,6 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
 import mtr.MTR;
 import mtr.client.ClientCache.ColorNameTuple;
 import mtr.client.ClientCache.PlatformRouteDetails;
-import mtr.client.Config;
 import mtr.data.*;
 import mtr.mappings.Utilities;
 import net.minecraft.client.Minecraft;
@@ -163,14 +162,14 @@ public class ClientCache extends DataCache implements IGui
         if (font == null || fontCjk == null) {
             final ResourceManager resourceManager = minecraftClient.getResourceManager();
             try {
-                if (ziyue.tjmetro.Config.USE_TIANJIN_METRO_FONT.get()) {
+                if (Config.USE_TIANJIN_METRO_FONT.get()) {
                     font = fontCjk = Font.createFont(Font.TRUETYPE_FONT, Utilities.getInputStream(resourceManager.getResource(new ResourceLocation(Reference.MOD_ID, "font/dengxian.ttf"))));
                 } else {
                     font = Font.createFont(Font.TRUETYPE_FONT, Utilities.getInputStream(resourceManager.getResource(new ResourceLocation(MTR.MOD_ID, "font/noto-sans-semibold.ttf"))));
                     fontCjk = Font.createFont(Font.TRUETYPE_FONT, Utilities.getInputStream(resourceManager.getResource(new ResourceLocation(MTR.MOD_ID, "font/noto-serif-cjk-tc-semibold.ttf"))));
                 }
             } catch (Exception e) {
-                TianjinMetro.LOGGER.error(e.getMessage());
+                TianjinMetro.LOGGER.error(e.getMessage(), e);
             }
         }
 
@@ -229,14 +228,14 @@ public class ClientCache extends DataCache implements IGui
             return new Text(new byte[0], 0, 0, 0);
         }
 
-        final boolean customFont = ziyue.tjmetro.Config.USE_TIANJIN_METRO_FONT.get();
+        final boolean customFont = Config.USE_TIANJIN_METRO_FONT.get();
         final boolean oneRow = horizontalAlignment == null;
         final String[] defaultTextSplit = IGui.textOrUntitled(text).split("\\|");
         final String[] textSplit;
-        if (Config.languageOptions() == 0) {
+        if (mtr.client.Config.languageOptions() == 0) {
             textSplit = defaultTextSplit;
         } else {
-            final String[] tempTextSplit = Arrays.stream(IGui.textOrUntitled(text).split("\\|")).filter(textPart -> IGui.isCjk(textPart) == (Config.languageOptions() == 1)).toArray(String[]::new);
+            final String[] tempTextSplit = Arrays.stream(IGui.textOrUntitled(text).split("\\|")).filter(textPart -> IGui.isCjk(textPart) == (mtr.client.Config.languageOptions() == 1)).toArray(String[]::new);
             textSplit = tempTextSplit.length == 0 ? defaultTextSplit : tempTextSplit;
         }
         final AttributedString[] attributedStrings = new AttributedString[textSplit.length];

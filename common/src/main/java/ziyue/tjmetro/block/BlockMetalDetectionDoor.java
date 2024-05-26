@@ -40,8 +40,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import ziyue.tjmetro.BlockEntityTypes;
-import ziyue.tjmetro.IBlockExtends;
-import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.data.IGuiExtends;
 import ziyue.tjmetro.inventory.ContainerMenu;
 import ziyue.tjmetro.entity.base.RandomizableContainerBlockEntityMapper;
 
@@ -157,7 +156,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable BlockGetter blockGetter, List<Component> list, TooltipFlag tooltipFlag) {
-        IDrawingExtends.addHoldShiftTooltip(list, Text.translatable("tooltip.tjmetro.metal_detection_door"), true);
+        IGuiExtends.addHoldShiftTooltip(list, Text.translatable("tooltip.tjmetro.metal_detection_door"), true);
     }
 
     @Override

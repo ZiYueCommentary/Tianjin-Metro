@@ -29,8 +29,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import ziyue.tjmetro.IBlockExtends;
-import ziyue.tjmetro.IDrawingExtends;
+import ziyue.tjmetro.block.IBlockExtends;
+import ziyue.tjmetro.data.IGuiExtends;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.List;
@@ -89,7 +89,7 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase impl
     public void appendHoverText(ItemStack itemStack, BlockGetter blockGetter, List<Component> tooltip, TooltipFlag tooltipFlag) {
         tooltip.add(Text.translatable("tooltip.tjmetro.custom_content").withStyle(ChatFormatting.GRAY));
         tooltip.add(Text.translatable("tooltip.tjmetro.station_name").withStyle(ChatFormatting.GRAY));
-        IDrawingExtends.addHoldShiftTooltip(tooltip, Text.translatable("tooltip.tjmetro.station_name_sign"), true);
+        IGuiExtends.addHoldShiftTooltip(tooltip, Text.translatable("tooltip.tjmetro.station_name_sign"), true);
     }
 
     /**
