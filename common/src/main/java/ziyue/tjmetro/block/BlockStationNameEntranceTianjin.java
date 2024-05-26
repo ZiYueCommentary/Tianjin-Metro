@@ -19,10 +19,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -36,13 +39,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
+
 /**
  * @author ZiYueCommentary
  * @see mtr.block.BlockStationNameEntrance
  * @since beta-1
  */
 
-public class BlockStationNameEntranceTianjin extends BlockStationNameBase implements IBlock
+public class BlockStationNameEntranceTianjin extends BlockStationNameBase implements IBlock, SimpleWaterloggedBlock
 {
     /*
      * 0 - short
@@ -115,7 +120,12 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, STYLE);
+        builder.add(FACING, STYLE, WATERLOGGED);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState blockState) {
+        return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 
     public static class TileEntityStationNameEntranceTianjin extends BlockEntityClientSerializableMapper
