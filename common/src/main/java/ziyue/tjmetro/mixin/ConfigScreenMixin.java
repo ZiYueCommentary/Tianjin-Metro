@@ -23,7 +23,7 @@ public abstract class ConfigScreenMixin extends ScreenMapper implements IGui
         super(title);
     }
 
-    @Inject(at = @At("TAIL"), method = "onClose")
+    @Inject(at = @At("TAIL"), method = "onClose", remap = false)
     private void afterOnClose(CallbackInfo ci) {
         ClientCache.DATA_CACHE.sync();
         ClientCache.DATA_CACHE.refreshDynamicResources();

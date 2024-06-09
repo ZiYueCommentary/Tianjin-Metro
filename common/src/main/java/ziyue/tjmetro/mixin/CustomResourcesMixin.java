@@ -22,12 +22,12 @@ import static mtr.client.CustomResources.CUSTOM_SIGNS;
 @Mixin(CustomResources.class)
 public abstract class CustomResourcesMixin implements IResourcePackCreatorProperties, ICustomResources
 {
-    @Inject(at = @At("HEAD"), method = "reload")
+    @Inject(at = @At("HEAD"), method = "reload", remap = false)
     private static void beforeReload(ResourceManager manager, CallbackInfo ci){
         ClientCache.DATA_CACHE.resetFonts();
     }
 
-    @Inject(at = @At("TAIL"), method = "reload")
+    @Inject(at = @At("TAIL"), method = "reload", remap = false)
     private static void afterReload(ResourceManager manager, CallbackInfo ci){
         for (IRailwaySign.SignType value : IRailwaySign.SignType.values()) {
             CUSTOM_SIGNS.put(value.signId, value.sign);

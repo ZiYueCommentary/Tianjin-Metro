@@ -26,13 +26,13 @@ import java.util.function.BiFunction;
 @Mixin(PacketTrainDataGuiClient.class)
 public abstract class PacketTrainDataGuiClientMixin extends PacketTrainDataBase
 {
-    @Inject(at = @At("HEAD"), method = "receiveUpdateOrDeleteS2C")
+    @Inject(at = @At("HEAD"), method = "receiveUpdateOrDeleteS2C", remap = false)
     private static <T extends NameColorDataBase> void beforeReceiveUpdateOrDeleteS2C(Minecraft minecraftClient, FriendlyByteBuf packet, Set<T> dataSet, Map<Long, T> cacheMap, BiFunction<Long, TransportMode, T> createDataWithId, boolean isDelete, CallbackInfo ci) {
         ClientCache.DATA_CACHE.sync();
         ClientCache.DATA_CACHE.refreshDynamicResources();
     }
 
-    @Inject(at = @At("TAIL"), method = "sendUpdate")
+    @Inject(at = @At("TAIL"), method = "sendUpdate", remap = false)
     private static void afterSendUpdate(ResourceLocation packetId, FriendlyByteBuf packet, CallbackInfo ci) {
         ClientCache.DATA_CACHE.sync();
         ClientCache.DATA_CACHE.refreshDynamicResources();

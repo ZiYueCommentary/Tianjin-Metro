@@ -1,6 +1,5 @@
 package ziyue.tjmetro.block;
 
-import mtr.Blocks;
 import mtr.Items;
 import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
@@ -19,8 +18,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -31,12 +30,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import ziyue.tjmetro.BlockEntityTypes;
-import ziyue.tjmetro.BlockList;
 import ziyue.tjmetro.ItemList;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.function.Consumer;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
@@ -64,7 +60,7 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
     public final boolean pinyin;
 
     public BlockStationNameEntranceTianjin(boolean pinyin) {
-        this(Properties.copy(Blocks.STATION_NAME_ENTRANCE.get()), pinyin);
+        this(Properties.copy(mtr.Blocks.STATION_NAME_ENTRANCE.get()), pinyin);
     }
 
     public BlockStationNameEntranceTianjin(Properties properties, boolean pinyin) {
@@ -94,12 +90,12 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         Direction side = ctx.getClickedFace();
-        return side != Direction.UP && side != Direction.DOWN ? this.defaultBlockState().setValue(FACING, side.getOpposite()) : null;
+        return side != Direction.UP && side != Direction.DOWN ? this.defaultBlockState().setValue(FACING, side.getOpposite()).setValue(WATERLOGGED, false) : null;
     }
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor world, BlockPos pos, BlockPos posFrom) {
-        return direction.getOpposite() == IBlock.getStatePropertySafe(state, FACING).getOpposite() && !state.canSurvive(world, pos) ? net.minecraft.world.level.block.Blocks.AIR.defaultBlockState() : state;
+        return direction.getOpposite() == IBlock.getStatePropertySafe(state, FACING).getOpposite() && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : state;
     }
 
     @Override

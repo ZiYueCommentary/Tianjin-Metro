@@ -67,7 +67,7 @@ public class TianjinMetro
         registerBlockItem.accept("station_name_entrance_tianjin", BlockList.STATION_NAME_ENTRANCE_TIANJIN, SIGNS);
         registerBlockItem.accept("station_name_entrance_tianjin_pinyin", BlockList.STATION_NAME_ENTRANCE_TIANJIN_PINYIN, SIGNS);
         registerEnchantedBlockItem.accept("station_name_sign_1", BlockList.STATION_NAME_SIGN_1, SIGNS);
-        registerBlockItem.accept("station_name_pole", BlockList.STATION_NAME_POLE, SIGNS);
+//        registerBlockItem.accept("station_name_pole", BlockList.STATION_NAME_POLE, SIGNS);
         /* PLATFORM GATES */
         registerItem.accept("psd_door_tianjin", ItemList.PSD_DOOR_TIANJIN, GATES);
         registerItem.accept("psd_glass_tianjin", ItemList.PSD_GLASS_TIANJIN, GATES);

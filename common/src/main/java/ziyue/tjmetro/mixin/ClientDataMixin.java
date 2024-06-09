@@ -17,7 +17,7 @@ import ziyue.tjmetro.client.ClientCache;
 @Mixin(ClientData.class)
 public abstract class ClientDataMixin
 {
-    @Inject(at = @At("TAIL"), method = "receivePacket")
+    @Inject(at = @At("TAIL"), method = "receivePacket", remap = false)
     private static void afterReceivePacket(FriendlyByteBuf packet, CallbackInfo ci) {
         ClientCache.DATA_CACHE.sync();
         ClientCache.DATA_CACHE.refreshDynamicResources();
