@@ -1,12 +1,9 @@
-package ziyue.tjmetro.render;
+package ziyue.tjmetro.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
-import mtr.MTR;
 import mtr.block.BlockRailwaySign;
-import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
-import mtr.client.ClientCache;
 import mtr.client.ClientData;
 import mtr.client.CustomResources;
 import mtr.client.IDrawing;
@@ -15,110 +12,42 @@ import mtr.data.Platform;
 import mtr.data.RailwayData;
 import mtr.data.Station;
 import mtr.mappings.BlockEntityRendererMapper;
-import mtr.mappings.UtilitiesClient;
 import mtr.render.RenderRailwaySign;
 import mtr.render.RenderTrains;
 import mtr.render.StoredMatrixTransformations;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.state.BlockState;
-import ziyue.tjmetro.block.BlockRailwaySignWall;
-import ziyue.tjmetro.block.BlockRailwaySignWallBig;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 import ziyue.tjmetro.block.base.IRailwaySign;
+import ziyue.tjmetro.client.ClientCache;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static mtr.render.RenderRailwaySign.getMaxWidth;
 import static mtr.render.RenderRailwaySign.getSign;
 
-/**
- * @author ZiYueCommentary
- * @see RenderRailwaySign
- * @since beta-1
- */
-
-public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRailwaySignWall> extends BlockEntityRendererMapper<T> implements IBlock, IGui, IDrawing
+@Mixin(RenderRailwaySign.class)
+public abstract class RenderRailwaySignMixin<T extends BlockRailwaySign.TileEntityRailwaySign> extends BlockEntityRendererMapper<T> implements IBlock, IGui, IDrawing
 {
-    public RenderRailwaySignWall(BlockEntityRenderDispatcher dispatcher) {
+    @Shadow(remap = false)
+    private static void renderCustomText(String signText, StoredMatrixTransformations storedMatrixTransformations, Direction facing, float size, float start, boolean flipCustomText, float maxWidth, int backgroundColor) {
+    }
+
+    public RenderRailwaySignMixin(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);
     }
 
-    @Override
-    public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
-        final BlockGetter world = entity.getLevel();
-        if (world == null) return;
-
-        final BlockPos pos = entity.getBlockPos();
-        final BlockState state = world.getBlockState(pos);
-        if (!(state.getBlock() instanceof BlockRailwaySignWall block)) return;
-
-        if (entity.getSignIds().length != block.length) return;
-
-        final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
-        final String[] signIds = entity.getSignIds();
-
-        int backgroundColor = 0;
-        for (final String signId : signIds) {
-            if (signId != null) {
-                final CustomResources.CustomSign sign = getSign(signId);
-                if (sign != null) {
-                    if (sign.backgroundColor != 0) {
-                        backgroundColor = sign.backgroundColor;
-                        break;
-                    }
-                }
-            }
-        }
-
-        final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations();
-        storedMatrixTransformations.add(matricesNew -> {
-            matricesNew.translate(0.5 + entity.getBlockPos().getX(), 0.53125 + entity.getBlockPos().getY(), 0.5 + entity.getBlockPos().getZ());
-            UtilitiesClient.rotateYDegrees(matricesNew, -facing.toYRot());
-            UtilitiesClient.rotateZDegrees(matricesNew, 180);
-            matricesNew.translate(block.getXStart() / 16F - 0.5, -0.25, 0.493);
-            if (entity instanceof BlockRailwaySignWallBig.TileEntityRailwaySignWallBig) {
-                matricesNew.translate(0, -0.218, 0);
-                matricesNew.scale(2, 2, 2);
-            }
-        });
-
-        matrices.pushPose();
-        matrices.translate(0.5, 0.53125, 0.5);
-        UtilitiesClient.rotateYDegrees(matrices, -facing.toYRot());
-        UtilitiesClient.rotateZDegrees(matrices, 180);
-        matrices.translate(block.getXStart() / 16F - 0.5, 0, -0.0625 - SMALL_OFFSET * 2);
-
-        final int newBackgroundColor = backgroundColor | ARGB_BLACK;
-        RenderTrains.scheduleRender(new ResourceLocation(MTR.MOD_ID, "textures/block/white.png"), false, RenderTrains.QueuedRenderLayer.LIGHT, (matricesNew, vertexConsumer) -> {
-            storedMatrixTransformations.transform(matricesNew);
-            IDrawing.drawTexture(matricesNew, vertexConsumer, 0, 0, SMALL_OFFSET, 0.5F * (signIds.length), 0.5F, SMALL_OFFSET, facing, newBackgroundColor, MAX_LIGHT_GLOWING);
-            matricesNew.popPose();
-        });
-        for (int i = 0; i < signIds.length; i++) {
-            if (signIds[i] != null) {
-                drawSign(matrices, vertexConsumers, storedMatrixTransformations, Minecraft.getInstance().font, pos, signIds[i], 0.5F * i, 0, 0.5F, getMaxWidth(signIds, i, false), getMaxWidth(signIds, i, true), entity.getSelectedIds(), facing, backgroundColor | ARGB_BLACK, (textureId, x, y, size, flipTexture) -> RenderTrains.scheduleRender(new ResourceLocation(textureId.toString()), true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
-                    storedMatrixTransformations.transform(matricesNew);
-                    IDrawing.drawTexture(matricesNew, vertexConsumer, x, y, size, size, flipTexture ? 1 : 0, 0, flipTexture ? 0 : 1, 1, facing, -1, MAX_LIGHT_GLOWING);
-                    matricesNew.popPose();
-                }));
-            }
-        }
-
-        matrices.popPose();
-    }
-
-    @Override
-    public boolean shouldRenderOffScreen(T blockEntity) {
-        return true;
-    }
-
+    /**
+     * @author
+     * @reason
+     */
+    @Overwrite(remap = false)
     public static void drawSign(PoseStack matrices, MultiBufferSource vertexConsumers, StoredMatrixTransformations storedMatrixTransformations, Font textRenderer, BlockPos pos, String signId, float x, float y, float size, float maxWidthLeft, float maxWidthRight, Set<Long> selectedIds, Direction facing, int backgroundColor, RenderRailwaySign.DrawTexture drawTexture) {
         if (RenderTrains.shouldNotRender(pos, RenderTrains.maxTrainRenderDistance, facing)) return;
 
@@ -173,15 +102,15 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRail
             final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, pos);
             if (station == null) return;
 
-            final Map<Integer, ClientCache.ColorNameTuple> routesInStation = ClientData.DATA_CACHE.getAllRoutesIncludingConnectingStations(station);
-            final List<ClientCache.ColorNameTuple> selectedIdsSorted = selectedIds.stream().filter(selectedId -> RailwayData.isBetween(selectedId, Integer.MIN_VALUE, Integer.MAX_VALUE)).map(Math::toIntExact).filter(routesInStation::containsKey).map(routesInStation::get).sorted(Comparator.comparingInt(route -> route.color)).collect(Collectors.toList());
+            final Map<Integer, mtr.client.ClientCache.ColorNameTuple> routesInStation = ClientData.DATA_CACHE.getAllRoutesIncludingConnectingStations(station);
+            final List<mtr.client.ClientCache.ColorNameTuple> selectedIdsSorted = selectedIds.stream().filter(selectedId -> RailwayData.isBetween(selectedId, Integer.MIN_VALUE, Integer.MAX_VALUE)).map(Math::toIntExact).filter(routesInStation::containsKey).map(routesInStation::get).sorted(Comparator.comparingInt(route -> route.color)).toList();
 
             final float maxWidth = Math.max(0, ((flipCustomText ? maxWidthLeft : maxWidthRight) + 1) * size - margin * 2);
             final float height = size - margin * 2;
-            final List<ClientCache.DynamicResource> resourceLocationDataList = new ArrayList<>();
+            final List<mtr.client.ClientCache.DynamicResource> resourceLocationDataList = new ArrayList<>();
             float totalTextWidth = 0;
-            for (final ClientCache.ColorNameTuple route : selectedIdsSorted) {
-                final ClientCache.DynamicResource resourceLocationData = ClientData.DATA_CACHE.getRouteSquare(route.color, route.name, flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
+            for (final mtr.client.ClientCache.ColorNameTuple route : selectedIdsSorted) {
+                final mtr.client.ClientCache.DynamicResource resourceLocationData = ClientData.DATA_CACHE.getRouteSquare(route.color, route.name, flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
                 resourceLocationDataList.add(resourceLocationData);
                 totalTextWidth += height * resourceLocationData.width / resourceLocationData.height + margin / 2F;
             }
@@ -198,7 +127,7 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRail
             }
 
             float xOffset = 0;
-            for (final ClientCache.DynamicResource resourceLocationData : resourceLocationDataList) {
+            for (final mtr.client.ClientCache.DynamicResource resourceLocationData : resourceLocationDataList) {
                 final float width = height * resourceLocationData.width / resourceLocationData.height;
                 final float finalXOffset = xOffset;
                 RenderTrains.scheduleRender(resourceLocationData.resourceLocation, true, RenderTrains.QueuedRenderLayer.LIGHT, (matricesNew, vertexConsumer) -> {
@@ -254,15 +183,5 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRail
         }
 
         if (immediate != null) immediate.endBatch();
-    }
-
-    public static void renderCustomText(String signText, StoredMatrixTransformations storedMatrixTransformations, Direction facing, float size, float start, boolean flipCustomText, float maxWidth, int backgroundColor) {
-        final ClientCache.DynamicResource dynamicResource = ClientData.DATA_CACHE.getSignText(signText, flipCustomText ? IGui.HorizontalAlignment.RIGHT : IGui.HorizontalAlignment.LEFT, (1 - BlockRailwaySign.SMALL_SIGN_PERCENTAGE) / 2, backgroundColor, ARGB_WHITE);
-        final float width = Math.min(size * dynamicResource.width / dynamicResource.height, maxWidth);
-        RenderTrains.scheduleRender(dynamicResource.resourceLocation, true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
-            storedMatrixTransformations.transform(matricesNew);
-            IDrawing.drawTexture(matricesNew, vertexConsumer, start - (flipCustomText ? width : 0), 0, 0, start + (flipCustomText ? 0 : width), size, 0, 0, 0, 1, 1, facing, -1, MAX_LIGHT_GLOWING);
-            matricesNew.popPose();
-        });
     }
 }

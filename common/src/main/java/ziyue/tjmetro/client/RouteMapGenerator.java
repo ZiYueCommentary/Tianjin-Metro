@@ -446,7 +446,7 @@ public class RouteMapGenerator implements IGui
             final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, size, size, false);
             nativeImage.fillRect(0, 0, size, size, backgroundColor);
             drawResource(nativeImage, EXIT_RESOURCE, 0, 0, size, size, false, 0, 1, 0, true);
-            drawString(nativeImage,  letter, size / 2 - (noNumber ? 0 : textSize / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+            drawString(nativeImage, letter, size / 2 - (noNumber ? 0 : textSize / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
             if (!noNumber) {
                 drawString(nativeImage, number, size / 2 + textSize / 3 - size / 32, size / 2 + textSize / 8, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
             }
@@ -458,6 +458,78 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
+    public static NativeImage generateExitSignLetterTianjin(String exitLetter, String exitNumber, int backgroundColor, boolean forceMTRFont) {
+        try {
+            final int size = scale / 2;
+            final boolean noNumber = exitNumber.isEmpty();
+            final int textSize = (int) (size * 1.25F);
+
+            final ClientCache.Text letter = ClientCache.DATA_CACHE.getText(exitLetter, noNumber ? textSize : textSize * 2 / 3, textSize, textSize, size, size, HorizontalAlignment.CENTER, forceMTRFont);
+            final ClientCache.Text number = noNumber ? null : ClientCache.DATA_CACHE.getText(exitNumber, textSize / 3, textSize, textSize / 2, textSize / 2, size, HorizontalAlignment.CENTER, forceMTRFont);
+
+            final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, size, size, false);
+            nativeImage.fillRect(0, 0, size, size, backgroundColor);
+            drawString(nativeImage, letter, size / 2 - (noNumber ? 0 : textSize / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+            if (!noNumber) {
+                drawString(nativeImage, number, size / 2 + textSize / 3 - size / 32, size / 2 + textSize / 8, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+            }
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
+
+    public static NativeImage generateBoundFor(long platformId, HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, boolean forceMTRFont) {
+        try {
+            final int height = scale;
+            final int width = (int) (height * aspectRatio);
+            final int padding = Math.round(height * paddingScale);
+            final int tileSize = height - padding * 2;
+
+            final List<String> destinations = new ArrayList<>();
+            //final List<Tuple<ClientCache.Text, Integer>> routes = new ArrayList<>();
+            final List<Route> allRoutes = getRouteStream(platformId, (route, currentStationIndex) -> destinations.add(ClientData.DATA_CACHE.getFormattedRouteDestination(route, currentStationIndex, TEMP_CIRCULAR_MARKER)));
+            //allRoutes.forEach(
+            //        route -> {
+            //            final ClientCache.Text name = ClientCache.DATA_CACHE.getText(route.name, Integer.MAX_VALUE, (int) ((fontSizeBig + fontSizeSmall) * mtr.client.ClientCache.LINE_HEIGHT_MULTIPLIER * 1.25F), (int) (fontSizeBig * 1.25F), (int) (fontSizeSmall * 1.25F), padding, horizontalAlignment, forceMTRFont);
+            //            routes.add(new Tuple<>(name, route.color));
+            //            width.addAndGet(routeSquarePadding * 5 + name.width());
+            //        }
+            //);
+            final boolean isTerminating = destinations.isEmpty();
+            final ClientCache.Text boundFor;
+            if (isTerminating) {
+                boundFor = ClientCache.DATA_CACHE.getText(IGuiExtends.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
+            } else {
+                String destinationString = IGui.mergeStations(destinations);
+                final boolean noToString = destinationString.startsWith(TEMP_CIRCULAR_MARKER);
+                destinationString = destinationString.replace(TEMP_CIRCULAR_MARKER, "");
+                if (!destinationString.isEmpty() && !noToString) {
+                    destinationString = IGui.insertTranslation("sign.tjmetro.bound_for_cjk", "sign.tjmetro.bound_for", 1, destinationString);
+                }
+                boundFor = ClientCache.DATA_CACHE.getText(destinationString, width, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
+            }
+
+            final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, width, height, false);
+            nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
+
+            //routes.forEach(route -> {
+            //    nativeImage.fillRect(currentX.get(), 0, route.getA().width(), route.getA().height(), invertColor(ARGB_BLACK | route.getB()));
+            //    drawString(nativeImage, route.getA(), currentX.get(), height / 2, horizontalAlignment, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+            //    currentX.addAndGet(routeSquarePadding * 3 + route.getA().width());
+            //});
+            drawString(nativeImage, boundFor, 0, height / 2, horizontalAlignment, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+            clearColor(nativeImage, invertColor(backgroundColor));
+
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
 
     public static NativeImage generateSignText(String string, HorizontalAlignment horizontalAlignment, float paddingScale, int backgroundColor, int textColor) {
         try {

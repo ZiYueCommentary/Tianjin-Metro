@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.block.base.BlockRailwaySignBase;
+import ziyue.tjmetro.block.base.IRailwaySign;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.*;
@@ -322,10 +323,10 @@ public class RailwaySignScreen extends ScreenMapper implements IGui
     protected void setNewSignId(String newSignId) {
         if (editingIndex >= 0 && editingIndex < signIds.length) {
             signIds[editingIndex] = newSignId;
-            final boolean isExitLetter = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.EXIT_LETTER.toString()) || newSignId.equals(BlockRailwaySign.SignType.EXIT_LETTER_FLIPPED.toString()));
-            final boolean isPlatform = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.PLATFORM.toString()) || newSignId.equals(BlockRailwaySign.SignType.PLATFORM_FLIPPED.toString()));
-            final boolean isLine = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.LINE.toString()) || newSignId.equals(BlockRailwaySign.SignType.LINE_FLIPPED.toString()));
-            final boolean isStation = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.STATION.toString()) || newSignId.equals(BlockRailwaySign.SignType.STATION_FLIPPED.toString()));
+            final boolean isExitLetter = IRailwaySign.signIsExit(newSignId);
+            final boolean isLine = IRailwaySign.signIsLine(newSignId);
+            final boolean isPlatform = IRailwaySign.signIsPlatform(newSignId);
+            final boolean isStation = IRailwaySign.signIsStation(newSignId);
             if ((isExitLetter || isPlatform || isLine || isStation) && minecraft != null) {
                 UtilitiesClient.setScreen(minecraft, new DashboardListSelectorScreen(this, isExitLetter ? exitsForList : isPlatform ? platformsForList : isLine ? routesForList : stationsForList, selectedIds, false, false));
             }

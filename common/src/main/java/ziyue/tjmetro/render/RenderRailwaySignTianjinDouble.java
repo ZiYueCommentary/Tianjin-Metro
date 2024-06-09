@@ -28,7 +28,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.block.BlockRailwaySignTianjinDouble;
-import ziyue.tjmetro.block.BlockRailwaySignWallDouble;
+import ziyue.tjmetro.block.base.IRailwaySign;
 import ziyue.tjmetro.client.ClientCache;
 
 import java.util.*;
@@ -63,7 +63,7 @@ public class RenderRailwaySignTianjinDouble<T extends BlockRailwaySignTianjinDou
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
         final String[][] signIds = entity.getSignIds();
 
-        int[] backgroundColor = { 0x0B0B0B, 0x0B0B0B };
+        int[] backgroundColor = { 0, 0 };
         for (int i = 0; i < 2; i++) {
             for (final String signId : signIds[i]) {
                 if (signId != null) {
@@ -131,10 +131,10 @@ public class RenderRailwaySignTianjinDouble<T extends BlockRailwaySignTianjinDou
         final boolean hasCustomText = sign.hasCustomText();
         final boolean flipCustomText = sign.flipCustomText;
         final boolean flipTexture = sign.flipTexture;
-        final boolean isExit = signId.equals(BlockRailwaySign.SignType.EXIT_LETTER.toString()) || signId.equals(BlockRailwaySign.SignType.EXIT_LETTER_FLIPPED.toString());
-        final boolean isLine = signId.equals(BlockRailwaySign.SignType.LINE.toString()) || signId.equals(BlockRailwaySign.SignType.LINE_FLIPPED.toString());
-        final boolean isPlatform = signId.equals(BlockRailwaySign.SignType.PLATFORM.toString()) || signId.equals(BlockRailwaySign.SignType.PLATFORM_FLIPPED.toString());
-        final boolean isStation = signId.equals(BlockRailwaySign.SignType.STATION.toString()) || signId.equals(BlockRailwaySign.SignType.STATION_FLIPPED.toString());
+        final boolean isExit = IRailwaySign.signIsExit(signId);
+        final boolean isLine = IRailwaySign.signIsLine(signId);
+        final boolean isPlatform = IRailwaySign.signIsPlatform(signId);
+        final boolean isStation = IRailwaySign.signIsStation(signId);
 
         final MultiBufferSource.BufferSource immediate = RenderTrains.shouldNotRender(pos, RenderTrains.maxTrainRenderDistance / 2, null) ? null : MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
 
@@ -155,11 +155,11 @@ public class RenderRailwaySignTianjinDouble<T extends BlockRailwaySignTianjinDou
                 final String selectedExit = selectedExitsSorted.get(flipCustomText ? selectedExitsSorted.size() - i - 1 : i);
                 final float offset = (flipCustomText ? -1 : 1) * signSize * i - (flipCustomText ? signSize : 0);
 
-                RenderTrains.scheduleRender(ClientCache.DATA_CACHE.getExitSignLetter(selectedExit.substring(0, 1), selectedExit.substring(1), backgroundColor).resourceLocation, true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
+                RenderTrains.scheduleRender(IRailwaySign.getExitSignResource(signId, selectedExit.substring(0, 1), selectedExit.substring(1), backgroundColor, false), true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
                     storedMatrixTransformations.transform(matricesNew);
-                    matricesNew.translate(x + margin + (flipCustomText ? signSize : 0), y + margin, 0);
+                    matricesNew.translate(x + margin + (flipCustomText ? signSize : 0), margin, 0);
                     matricesNew.scale(Math.min(1, maxWidth / exitWidth), 1, 1);
-                    IDrawing.drawTexture(matricesNew, vertexConsumer, offset, 0, signSize, signSize, facing, MAX_LIGHT_GLOWING);
+                    IDrawing.drawTexture(matricesNew, vertexConsumer, offset, y, signSize, signSize, facing, MAX_LIGHT_GLOWING);
                     matricesNew.popPose();
                 });
 
@@ -203,7 +203,7 @@ public class RenderRailwaySignTianjinDouble<T extends BlockRailwaySignTianjinDou
                 final float finalXOffset = xOffset;
                 RenderTrains.scheduleRender(resourceLocationData.resourceLocation, true, RenderTrains.QueuedRenderLayer.LIGHT, (matricesNew, vertexConsumer) -> {
                     storedMatrixTransformations2.transform(matricesNew);
-                    IDrawing.drawTexture(matricesNew, vertexConsumer, flipCustomText ? -finalXOffset - width : finalXOffset, margin, width, height, Direction.UP, MAX_LIGHT_GLOWING);
+                    IDrawing.drawTexture(matricesNew, vertexConsumer, flipCustomText ? -finalXOffset - width : finalXOffset, margin + y, width, height, Direction.UP, MAX_LIGHT_GLOWING);
                     matricesNew.popPose();
                 });
                 xOffset += width + margin / 2F;
@@ -224,9 +224,9 @@ public class RenderRailwaySignTianjinDouble<T extends BlockRailwaySignTianjinDou
                     final float bottomOffset = (i + 1) * height + extraMargin;
                     final float left = flipCustomText ? x - maxWidthLeft * size : x + margin;
                     final float right = flipCustomText ? x + size - margin : x + (maxWidthRight + 1) * size;
-                    RenderTrains.scheduleRender(ClientCache.DATA_CACHE.getDirectionArrow(selectedIdsSorted.get(i), false, false, flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, false, margin / size, (right - left) / (bottomOffset - topOffset), backgroundColor, ARGB_WHITE, backgroundColor).resourceLocation, true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
+                    RenderTrains.scheduleRender(IRailwaySign.getPlatformSignResource(signId, selectedIdsSorted.get(i), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, margin / size, (right - left) / (bottomOffset - topOffset), backgroundColor, ARGB_WHITE, backgroundColor, false), true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
                         storedMatrixTransformations.transform(matricesNew);
-                        IDrawing.drawTexture(matricesNew, vertexConsumer, left, topOffset, 0, right, bottomOffset, 0, 0, 0, 1, 1, facing, -1, MAX_LIGHT_GLOWING);
+                        IDrawing.drawTexture(matricesNew, vertexConsumer, left, topOffset + y, 0, right, bottomOffset, 0, 0, 0, 1, 1, facing, -1, MAX_LIGHT_GLOWING);
                         matricesNew.popPose();
                     });
                 }

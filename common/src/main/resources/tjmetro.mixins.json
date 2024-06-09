@@ -17,7 +17,9 @@
 	"client": [
 		"ConfigScreenMixin",
 		"EntityRenderDispatcherMixin",
-		"MinecartRendererMixin"
+		"MinecartRendererMixin",
+		"RailwaySignScreenMixin",
+		"RenderRailwaySignMixin"
 	],
 	"refmap": "tjmetro-refmap.json"
 }

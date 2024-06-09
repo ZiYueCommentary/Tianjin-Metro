@@ -28,6 +28,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import ziyue.tjmetro.block.BlockRailwaySignTianjin;
+import ziyue.tjmetro.block.base.IRailwaySign;
 import ziyue.tjmetro.client.ClientCache;
 
 import java.util.*;
@@ -60,7 +61,7 @@ public class RenderRailwaySignTianjin<T extends BlockRailwaySignTianjin.TileEnti
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
         final String[] signIds = entity.getSignIds();
 
-        int backgroundColor = 0x0B0B0B;
+        int backgroundColor = 0;
         for (final String signId : signIds) {
             if (signId != null) {
                 final CustomResources.CustomSign sign = getSign(signId);
@@ -123,10 +124,10 @@ public class RenderRailwaySignTianjin<T extends BlockRailwaySignTianjin.TileEnti
         final boolean hasCustomText = sign.hasCustomText();
         final boolean flipCustomText = sign.flipCustomText;
         final boolean flipTexture = sign.flipTexture;
-        final boolean isExit = signId.equals(BlockRailwaySign.SignType.EXIT_LETTER.toString()) || signId.equals(BlockRailwaySign.SignType.EXIT_LETTER_FLIPPED.toString());
-        final boolean isLine = signId.equals(BlockRailwaySign.SignType.LINE.toString()) || signId.equals(BlockRailwaySign.SignType.LINE_FLIPPED.toString());
-        final boolean isPlatform = signId.equals(BlockRailwaySign.SignType.PLATFORM.toString()) || signId.equals(BlockRailwaySign.SignType.PLATFORM_FLIPPED.toString());
-        final boolean isStation = signId.equals(BlockRailwaySign.SignType.STATION.toString()) || signId.equals(BlockRailwaySign.SignType.STATION_FLIPPED.toString());
+        final boolean isExit = IRailwaySign.signIsExit(signId);
+        final boolean isLine = IRailwaySign.signIsLine(signId);
+        final boolean isPlatform = IRailwaySign.signIsPlatform(signId);
+        final boolean isStation = IRailwaySign.signIsStation(signId);
 
         final MultiBufferSource.BufferSource immediate = RenderTrains.shouldNotRender(pos, RenderTrains.maxTrainRenderDistance / 2, null) ? null : MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
 
@@ -147,7 +148,7 @@ public class RenderRailwaySignTianjin<T extends BlockRailwaySignTianjin.TileEnti
                 final String selectedExit = selectedExitsSorted.get(flipCustomText ? selectedExitsSorted.size() - i - 1 : i);
                 final float offset = (flipCustomText ? -1 : 1) * signSize * i - (flipCustomText ? signSize : 0);
 
-                RenderTrains.scheduleRender(ClientCache.DATA_CACHE.getExitSignLetter(selectedExit.substring(0, 1), selectedExit.substring(1), backgroundColor).resourceLocation, true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
+                RenderTrains.scheduleRender(IRailwaySign.getExitSignResource(signId, selectedExit.substring(0, 1), selectedExit.substring(1), backgroundColor, false), true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
                     storedMatrixTransformations.transform(matricesNew);
                     matricesNew.translate(x + margin + (flipCustomText ? signSize : 0), y + margin, 0);
                     matricesNew.scale(Math.min(1, maxWidth / exitWidth), 1, 1);
@@ -170,10 +171,10 @@ public class RenderRailwaySignTianjin<T extends BlockRailwaySignTianjin.TileEnti
 
             final float maxWidth = Math.max(0, ((flipCustomText ? maxWidthLeft : maxWidthRight) + 1) * size - margin * 2);
             final float height = size - margin * 2;
-            final List<mtr.client.ClientCache.DynamicResource> resourceLocationDataList = new ArrayList<>();
+            final List<ClientCache.DynamicResource> resourceLocationDataList = new ArrayList<>();
             float totalTextWidth = 0;
             for (final mtr.client.ClientCache.ColorNameTuple route : selectedIdsSorted) {
-                final mtr.client.ClientCache.DynamicResource resourceLocationData = ClientData.DATA_CACHE.getRouteSquare(route.color, route.name, flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
+                final ClientCache.DynamicResource resourceLocationData = ClientCache.DATA_CACHE.getRouteSquare(route.color, route.name, flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
                 resourceLocationDataList.add(resourceLocationData);
                 totalTextWidth += height * resourceLocationData.width / resourceLocationData.height + margin / 2F;
             }
@@ -190,7 +191,7 @@ public class RenderRailwaySignTianjin<T extends BlockRailwaySignTianjin.TileEnti
             }
 
             float xOffset = 0;
-            for (final mtr.client.ClientCache.DynamicResource resourceLocationData : resourceLocationDataList) {
+            for (final ClientCache.DynamicResource resourceLocationData : resourceLocationDataList) {
                 final float width = height * resourceLocationData.width / resourceLocationData.height;
                 final float finalXOffset = xOffset;
                 RenderTrains.scheduleRender(resourceLocationData.resourceLocation, true, RenderTrains.QueuedRenderLayer.LIGHT, (matricesNew, vertexConsumer) -> {
@@ -216,7 +217,7 @@ public class RenderRailwaySignTianjin<T extends BlockRailwaySignTianjin.TileEnti
                     final float bottomOffset = (i + 1) * height + extraMargin;
                     final float left = flipCustomText ? x - maxWidthLeft * size : x + margin;
                     final float right = flipCustomText ? x + size - margin : x + (maxWidthRight + 1) * size;
-                    RenderTrains.scheduleRender(ClientCache.DATA_CACHE.getDirectionArrow(selectedIdsSorted.get(i), false, false, flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, false, margin / size, (right - left) / (bottomOffset - topOffset), backgroundColor, ARGB_WHITE, backgroundColor).resourceLocation, true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
+                    RenderTrains.scheduleRender(IRailwaySign.getPlatformSignResource(signId, selectedIdsSorted.get(i), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, margin / size, (right - left) / (bottomOffset - topOffset), backgroundColor, ARGB_WHITE, backgroundColor, false), true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
                         storedMatrixTransformations.transform(matricesNew);
                         IDrawing.drawTexture(matricesNew, vertexConsumer, left, topOffset, 0, right, bottomOffset, 0, 0, 0, 1, 1, facing, -1, MAX_LIGHT_GLOWING);
                         matricesNew.popPose();

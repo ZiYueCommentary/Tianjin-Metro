@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
 import mtr.MTR;
 import mtr.client.ClientCache.ColorNameTuple;
 import mtr.client.ClientCache.PlatformRouteDetails;
+import mtr.client.ClientData;
 import mtr.data.*;
 import mtr.mappings.Utilities;
 import net.minecraft.client.Minecraft;
@@ -149,6 +150,14 @@ public class ClientCache extends DataCache implements IGui
         return getResource(String.format("tjmetro_exit_sign_letter_%s_%s", exitLetter, exitNumber), () -> RouteMapGenerator.generateExitSignLetter(exitLetter, exitNumber, backgroundColor), DefaultRenderingColor.TRANSPARENT);
     }
 
+    public DynamicResource getExitSignLetterTianjin(String exitLetter, String exitNumber, int backgroundColor, boolean forceMTRFont) {
+        return getResource(String.format("tjmetro_exit_sign_letter_tianjin_%s_%s_%s", exitLetter, exitNumber, forceMTRFont), () -> RouteMapGenerator.generateExitSignLetterTianjin(exitLetter, exitNumber, backgroundColor, forceMTRFont), DefaultRenderingColor.TRANSPARENT);
+    }
+
+    public DynamicResource getBoundFor(long platformId, IGui.HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, boolean forceMTRFont) {
+        return getResource(String.format("tjmetro_bound_for_%s_%s_%s_%s_%s_%s", platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, forceMTRFont), () -> RouteMapGenerator.generateBoundFor(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, forceMTRFont), ClientCache.DefaultRenderingColor.TRANSPARENT);
+    }
+
     public DynamicResource getSignText(String string, HorizontalAlignment horizontalAlignment, float paddingScale, int backgroundColor, int textColor) {
         return getResource(String.format("tjmetro_sign_text_%s_%s_%s_%s_%s", string, horizontalAlignment, paddingScale, backgroundColor, textColor), () -> RouteMapGenerator.generateSignText(string, horizontalAlignment, paddingScale, backgroundColor, textColor), DefaultRenderingColor.TRANSPARENT);
     }
@@ -224,6 +233,16 @@ public class ClientCache extends DataCache implements IGui
     }
 
     public Text getText(String text, int maxWidth, int maxHeight, int fontSizeCjk, int fontSize, int padding, IGui.HorizontalAlignment horizontalAlignment) {
+        return getText(text, maxWidth, maxHeight, fontSizeCjk, fontSize, padding, horizontalAlignment, false);
+    }
+
+    public Text getText(String text, int maxWidth, int maxHeight, int fontSizeCjk, int fontSize, int padding, IGui.HorizontalAlignment horizontalAlignment, boolean forceMTRFont) {
+        if (forceMTRFont) {
+            final int[] dimensions = new int[2];
+            final byte[] pixels = ClientData.DATA_CACHE.getTextPixels(text, dimensions, maxWidth, maxHeight, fontSizeCjk, fontSize, padding, horizontalAlignment);
+            return new ClientCache.Text(pixels, dimensions[0], dimensions[1], dimensions[0]);
+        }
+
         if (maxWidth <= 0) {
             return new Text(new byte[0], 0, 0, 0);
         }

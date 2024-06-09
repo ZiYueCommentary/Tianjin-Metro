@@ -27,6 +27,7 @@ import ziyue.tjmetro.TianjinMetro;
 import ziyue.tjmetro.block.BlockRailwaySignTianjinDouble;
 import ziyue.tjmetro.block.BlockRailwaySignWallDouble;
 import ziyue.tjmetro.block.base.BlockRailwaySignBase;
+import ziyue.tjmetro.block.base.IRailwaySign;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.*;
@@ -56,6 +57,7 @@ public class RailwaySignDoubleScreen extends ScreenMapper implements IGui
     protected final List<NameColorDataBase> exitsForList = new ArrayList<>();
     protected final List<NameColorDataBase> platformsForList = new ArrayList<>();
     protected final List<NameColorDataBase> routesForList = new ArrayList<>();
+    protected final List<NameColorDataBase> stationsForList = new ArrayList<>();
     protected final List<String> allSignIds = new ArrayList<>();
 
     protected final Button[][] buttonsEdit;
@@ -96,8 +98,8 @@ public class RailwaySignDoubleScreen extends ScreenMapper implements IGui
                 Collections.sort(platforms);
                 platforms.stream().map(platform -> new DataConverter(platform.id, platform.name + " " + IGui.mergeStations(ClientData.DATA_CACHE.requestPlatformIdToRoutes(platform.id).stream().map(route -> route.stationDetails.get(route.stationDetails.size() - 1).stationName).collect(Collectors.toList())), 0)).forEach(platformsForList::add);
 
-                final Map<Integer, ClientCache.ColorNameTuple> routeMap = ClientData.DATA_CACHE.stationIdToRoutes.get(station.id);
-                routeMap.forEach((color, route) -> routesForList.add(new DataConverter(route.color, route.name, route.color)));
+                ClientData.DATA_CACHE.getAllRoutesIncludingConnectingStations(station).forEach((color, route) -> routesForList.add(new DataConverter(route.color, route.name, route.color)));
+                ClientData.DATA_CACHE.getConnectingStationsIncludingThisOne(station).forEach(connectingStation -> stationsForList.add(new DataConverter(connectingStation.id, connectingStation.name, connectingStation.color)));
             }
         } catch (Exception e) {
             if (ClientData.DATA_CACHE.stationIdToRoutes.get(RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, signPos).id) == null)
@@ -341,11 +343,12 @@ public class RailwaySignDoubleScreen extends ScreenMapper implements IGui
     protected void setNewSignId(String newSignId) {
         if (editingIndex >= 0 && editingIndex < signIds[0].length) {
             signIds[line][editingIndex] = newSignId;
-            final boolean isExitLetter = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.EXIT_LETTER.toString()) || newSignId.equals(BlockRailwaySign.SignType.EXIT_LETTER_FLIPPED.toString()));
-            final boolean isPlatform = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.PLATFORM.toString()) || newSignId.equals(BlockRailwaySign.SignType.PLATFORM_FLIPPED.toString()));
-            final boolean isLine = newSignId != null && (newSignId.equals(BlockRailwaySign.SignType.LINE.toString()) || newSignId.equals(BlockRailwaySign.SignType.LINE_FLIPPED.toString()));
-            if ((isExitLetter || isPlatform || isLine) && minecraft != null) {
-                UtilitiesClient.setScreen(minecraft, new DashboardListSelectorScreen(this, isExitLetter ? exitsForList : isPlatform ? platformsForList : routesForList, selectedIds.get(line), false, false));
+            final boolean isExitLetter = IRailwaySign.signIsExit(newSignId);
+            final boolean isLine = IRailwaySign.signIsLine(newSignId);
+            final boolean isPlatform = IRailwaySign.signIsPlatform(newSignId);
+            final boolean isStation = IRailwaySign.signIsStation(newSignId);
+            if ((isExitLetter || isPlatform || isLine || isStation) && minecraft != null) {
+                UtilitiesClient.setScreen(minecraft, new DashboardListSelectorScreen(this, isExitLetter ? exitsForList : isPlatform ? platformsForList : isLine ? routesForList : stationsForList, selectedIds.get(line), false, false));
             }
         }
     }
