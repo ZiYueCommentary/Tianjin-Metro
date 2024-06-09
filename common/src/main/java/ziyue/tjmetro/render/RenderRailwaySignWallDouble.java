@@ -157,7 +157,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Ti
 
                 RenderTrains.scheduleRender(IRailwaySign.getExitSignResource(signId, selectedExit.substring(0, 1), selectedExit.substring(1), backgroundColor, true), true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
                     storedMatrixTransformations.transform(matricesNew);
-                    matricesNew.translate(x + margin + (flipCustomText ? signSize : 0), y + margin, 0);
+                    matricesNew.translate(x + margin + (flipCustomText ? signSize : 0), margin, 0);
                     matricesNew.scale(Math.min(1, maxWidth / exitWidth), 1, 1);
                     IDrawing.drawTexture(matricesNew, vertexConsumer, offset, y, signSize, signSize, facing, MAX_LIGHT_GLOWING);
                     matricesNew.popPose();
@@ -220,13 +220,13 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Ti
                 final float extraMargin = margin - margin / selectedCount;
                 final float height = (size - extraMargin * 2) / selectedCount;
                 for (int i = 0; i < selectedIdsSorted.size(); i++) {
-                    final float topOffset = i * height + extraMargin;
-                    final float bottomOffset = (i + 1) * height + extraMargin;
+                    final float topOffset = i * height + extraMargin + y;
+                    final float bottomOffset = (i + 1) * height + extraMargin + y;
                     final float left = flipCustomText ? x - maxWidthLeft * size : x + margin;
                     final float right = flipCustomText ? x + size - margin : x + (maxWidthRight + 1) * size;
                     RenderTrains.scheduleRender(IRailwaySign.getPlatformSignResource(signId, selectedIdsSorted.get(i), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, margin / size, (right - left) / (bottomOffset - topOffset), backgroundColor, ARGB_WHITE, backgroundColor, true), true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
                         storedMatrixTransformations.transform(matricesNew);
-                        IDrawing.drawTexture(matricesNew, vertexConsumer, left, topOffset + y, 0, right, bottomOffset, 0, 0, 0, 1, 1, facing, -1, MAX_LIGHT_GLOWING);
+                        IDrawing.drawTexture(matricesNew, vertexConsumer, left, topOffset, 0, right, bottomOffset, 0, 0, 0, 1, 1, facing, -1, MAX_LIGHT_GLOWING);
                         matricesNew.popPose();
                     });
                 }

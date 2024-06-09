@@ -220,13 +220,13 @@ public class RenderRailwaySignTianjinDouble<T extends BlockRailwaySignTianjinDou
                 final float extraMargin = margin - margin / selectedCount;
                 final float height = (size - extraMargin * 2) / selectedCount;
                 for (int i = 0; i < selectedIdsSorted.size(); i++) {
-                    final float topOffset = i * height + extraMargin;
-                    final float bottomOffset = (i + 1) * height + extraMargin;
+                    final float topOffset = i * height + extraMargin + y;
+                    final float bottomOffset = (i + 1) * height + extraMargin + y;
                     final float left = flipCustomText ? x - maxWidthLeft * size : x + margin;
                     final float right = flipCustomText ? x + size - margin : x + (maxWidthRight + 1) * size;
                     RenderTrains.scheduleRender(IRailwaySign.getPlatformSignResource(signId, selectedIdsSorted.get(i), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, margin / size, (right - left) / (bottomOffset - topOffset), backgroundColor, ARGB_WHITE, backgroundColor, false), true, RenderTrains.QueuedRenderLayer.LIGHT_TRANSLUCENT, (matricesNew, vertexConsumer) -> {
                         storedMatrixTransformations.transform(matricesNew);
-                        IDrawing.drawTexture(matricesNew, vertexConsumer, left, topOffset + y, 0, right, bottomOffset, 0, 0, 0, 1, 1, facing, -1, MAX_LIGHT_GLOWING);
+                        IDrawing.drawTexture(matricesNew, vertexConsumer, left, topOffset, 0, right, bottomOffset, 0, 0, 0, 1, 1, facing, -1, MAX_LIGHT_GLOWING);
                         matricesNew.popPose();
                     });
                 }
