@@ -521,7 +521,7 @@ public class RouteMapGenerator implements IGui
             //    drawString(nativeImage, route.getA(), currentX.get(), height / 2, horizontalAlignment, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
             //    currentX.addAndGet(routeSquarePadding * 3 + route.getA().width());
             //});
-            drawString(nativeImage, boundFor, 0, height / 2, horizontalAlignment, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+            drawString(nativeImage, boundFor, horizontalAlignment == HorizontalAlignment.LEFT ? 0 : width, height / 2, horizontalAlignment, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             clearColor(nativeImage, invertColor(backgroundColor));
 
             return nativeImage;
