@@ -58,14 +58,16 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
     public static final IntegerProperty STYLE = IntegerProperty.create("style", 0, 7);
 
     public final boolean pinyin;
+    public final boolean isBMT;
 
-    public BlockStationNameEntranceTianjin(boolean pinyin) {
-        this(Properties.copy(mtr.Blocks.STATION_NAME_ENTRANCE.get()), pinyin);
+    public BlockStationNameEntranceTianjin(boolean pinyin, boolean isBMT) {
+        this(Properties.copy(mtr.Blocks.STATION_NAME_ENTRANCE.get()), pinyin, isBMT);
     }
 
-    public BlockStationNameEntranceTianjin(Properties properties, boolean pinyin) {
+    public BlockStationNameEntranceTianjin(Properties properties, boolean pinyin, boolean isBMT) {
         super(properties);
         this.pinyin = pinyin;
+        this.isBMT = isBMT;
     }
 
     @Override
@@ -111,7 +113,7 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
 
     @Override
     public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state) {
-        return new TileEntityStationNameEntranceTianjin(pinyin, pos, state);
+        return new TileEntityStationNameEntranceTianjin(pinyin, isBMT, pos, state);
     }
 
     @Override
@@ -131,8 +133,10 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
         protected Long selectedId;
         protected static final String KEY_SELECTED_ID = "selected_id";
 
-        public TileEntityStationNameEntranceTianjin(boolean pinyin, BlockPos pos, BlockState state) {
-            super(pinyin ? BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_PINYIN_TILE_ENTITY.get() : BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_TILE_ENTITY.get(), pos, state);
+        public TileEntityStationNameEntranceTianjin(boolean pinyin, boolean isBMT, BlockPos pos, BlockState state) {
+            super(isBMT ?
+                    (pinyin ? BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN_TILE_ENTITY.get() : BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_TILE_ENTITY.get()) :
+                    (pinyin ? BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_PINYIN_TILE_ENTITY.get() : BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_TILE_ENTITY.get()), pos, state);
             this.yOffset = 0.0F;
             this.zOffset = 0.00625F;
             this.selectedId = -1L;

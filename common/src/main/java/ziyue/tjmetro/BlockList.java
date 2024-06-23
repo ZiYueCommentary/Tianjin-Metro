@@ -100,6 +100,8 @@ public interface BlockList
     RegistryObject<Block> PSD_GLASS_TIANJIN = new RegistryObject<>(BlockPSDGlassTianjin::new);
     RegistryObject<Block> PSD_GLASS_END_TIANJIN = new RegistryObject<>(BlockPSDGlassEndTianjin::new);
     RegistryObject<Block> PSD_TOP_TIANJIN = new RegistryObject<>(BlockPSDTopTianjin::new);
-    RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(false));
-    RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_PINYIN = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(true));
+    RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(false, false));
+    RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_PINYIN = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(true, false));
+    RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_BMT = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(false, true));
+    RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(true, true));
 }

@@ -64,14 +64,15 @@ public class RenderStationNameEntranceTianjin<T extends BlockStationNameEntrance
             final int propagateProperty = IBlock.getStatePropertySafe(world, pos, BlockStationNameEntranceTianjin.STYLE);
             final float logoSize = propagateProperty % 2 == 0 ? 0.5F : 1;
 
+            final BlockStationNameEntranceTianjin block = (BlockStationNameEntranceTianjin) state.getBlock();
             final ClientCache.DynamicResource resource;
             if (station == null) {
                 resource = ClientCache.DATA_CACHE.getStationNameEntrance(-1, -1, switch (propagateProperty) {
                     case 0, 1, 4, 5 -> propagateProperty + 2;
                     default -> propagateProperty;
-                }, IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, Text.translatable("gui.mtr.untitled").getString()), totalLength / logoSize);
+                }, IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, Text.translatable("gui.mtr.untitled").getString()), block.isBMT, totalLength / logoSize);
             } else {
-                resource = ClientCache.DATA_CACHE.getStationNameEntrance(station.id, entity.getSelectedId(), propagateProperty, IGui.insertTranslation("gui.mtr.station_cjk", ((BlockStationNameEntranceTianjin) state.getBlock()).pinyin ? "gui.tjmetro.station_pinyin" : "gui.mtr.station", 1, station.name), totalLength / logoSize);
+                resource = ClientCache.DATA_CACHE.getStationNameEntrance(station.id, entity.getSelectedId(), propagateProperty, IGui.insertTranslation("gui.mtr.station_cjk", block.pinyin ? "gui.tjmetro.station_pinyin" : "gui.mtr.station", 1, station.name), block.isBMT, totalLength / logoSize);
             }
             RenderTrains.scheduleRender(resource.resourceLocation, false, RenderTrains.QueuedRenderLayer.INTERIOR, (poseStack, vertexConsumer) -> {
                 storedMatrixTransformations2.transform(poseStack);

@@ -66,6 +66,8 @@ public class TianjinMetro
         registerBlockItem.accept("station_name_wall_legacy", BlockList.STATION_NAME_WALL_LEGACY, SIGNS);
         registerBlockItem.accept("station_name_entrance_tianjin", BlockList.STATION_NAME_ENTRANCE_TIANJIN, SIGNS);
         registerBlockItem.accept("station_name_entrance_tianjin_pinyin", BlockList.STATION_NAME_ENTRANCE_TIANJIN_PINYIN, SIGNS);
+        registerBlockItem.accept("station_name_entrance_tianjin_bmt", BlockList.STATION_NAME_ENTRANCE_TIANJIN_BMT, SIGNS);
+        registerBlockItem.accept("station_name_entrance_tianjin_bmt_pinyin", BlockList.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN, SIGNS);
         registerEnchantedBlockItem.accept("station_name_sign_1", BlockList.STATION_NAME_SIGN_1, SIGNS);
 //        registerBlockItem.accept("station_name_pole", BlockList.STATION_NAME_POLE, SIGNS);
         /* PLATFORM GATES */
@@ -194,7 +196,9 @@ public class TianjinMetro
         registerBlockEntityType.accept("psd_top_tianjin", BlockEntityTypes.PSD_TOP_TIANJIN_TILE_ENTITY);
         registerBlockEntityType.accept("station_name_entrance_tianjin", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_TILE_ENTITY);
         registerBlockEntityType.accept("station_name_entrance_tianjin_pinyin", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_PINYIN_TILE_ENTITY);
-        registerBlockEntityType.accept("station_name_pole", BlockEntityTypes.STATION_NAME_POLE_TILE_ENTITY);
+        registerBlockEntityType.accept("station_name_entrance_tianjin_bmt", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_TILE_ENTITY);
+        registerBlockEntityType.accept("station_name_entrance_tianjin_bmt_pinyin", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN_TILE_ENTITY);
+//        registerBlockEntityType.accept("station_name_pole", BlockEntityTypes.STATION_NAME_POLE_TILE_ENTITY);
 
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);

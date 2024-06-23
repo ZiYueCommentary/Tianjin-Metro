@@ -39,6 +39,7 @@ public class RouteMapGenerator implements IGui
     public static final int MIN_VERTICAL_SIZE = 5;
     public static final String TEMP_CIRCULAR_MARKER = "temp_circular_marker";
     public static final ResourceLocation TRAIN_LOGO_RESOURCE = new ResourceLocation(Reference.MOD_ID, "textures/sign/train.png");
+    public static final ResourceLocation TRAIN_BMT_LOGO_RESOURCE = new ResourceLocation(Reference.MOD_ID, "textures/sign/to_subway_bmt.png");
     public static final ResourceLocation EXIT_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/exit_letter_blank.png");
     public static final ResourceLocation ARROW_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/arrow.png");
     public static final ResourceLocation CIRCLE_RESOURCE = new ResourceLocation(MTR.MOD_ID, "textures/block/sign/circle.png");
@@ -556,7 +557,7 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
-    public static NativeImage generateStationNameEntrance(long stationId, long selectedId, int style, String stationName, float aspectRatio) {
+    public static NativeImage generateStationNameEntrance(long stationId, long selectedId, int style, String stationName, boolean isBMT, float aspectRatio) {
         if (aspectRatio <= 0) return null;
 
         try {
@@ -591,7 +592,7 @@ public class RouteMapGenerator implements IGui
             final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, Math.max(width, totalWidth.get()), size, false);
             nativeImage.fillRect(0, 0, width, size, backgroundColor);
 
-            final AtomicInteger currentX = new AtomicInteger(iconOffset + iconSize);
+            final AtomicInteger currentX = new AtomicInteger(iconOffset + iconSize + (isBMT ? iconOffset : 0));
             if (!routes.isEmpty()) currentX.addAndGet(iconOffset);
             routes.forEach(route -> {
                 nativeImage.fillRect(currentX.get(), iconOffset, padding * 3 + route.getA().width(), iconSize, invertColor(ARGB_BLACK | route.getB()));
@@ -600,10 +601,10 @@ public class RouteMapGenerator implements IGui
             });
             if (!routes.isEmpty()) currentX.addAndGet(padding * -3);
             if (selectedId != -1) currentX.addAndGet(-iconOffset - exit.width());
-            drawResource(nativeImage, TRAIN_LOGO_RESOURCE, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
+            drawResource(nativeImage, isBMT ? TRAIN_BMT_LOGO_RESOURCE : TRAIN_LOGO_RESOURCE, iconOffset + (isBMT ? iconOffset : 0), iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
             drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get()) / 2, size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             if (selectedId != -1)
-                drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+                drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset - (isBMT ? iconOffset : 0), size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             clearColor(nativeImage, invertColor(backgroundColor));
 
             return nativeImage;

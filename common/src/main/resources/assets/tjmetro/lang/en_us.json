@@ -44,6 +44,8 @@
     "block.tjmetro.psd_tianjin": "Platform Screen Doors (Tianjin)",
     "block.tjmetro.station_name_entrance_tianjin": "Station Name (Entrance, Tianjin)",
     "block.tjmetro.station_name_entrance_tianjin_pinyin": "Station Name (Entrance, Tianjin, Pinyin)",
+    "block.tjmetro.station_name_entrance_tianjin_bmt": "Station Name (Entrance, Tianjin, Line 9)",
+    "block.tjmetro.station_name_entrance_tianjin_bmt_pinyin": "Station Name (Entrance, Tianjin, Line 9, Pinyin)",
 
     "gui.tjmetro.service_corridor_sign": "Service Corridor",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",

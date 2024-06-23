@@ -93,6 +93,8 @@ public class TianjinMetroClient
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PSD_TOP_TIANJIN_TILE_ENTITY.get(), RenderPSDTopTianjin::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_TILE_ENTITY.get(), RenderStationNameEntranceTianjin::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_PINYIN_TILE_ENTITY.get(), RenderStationNameEntranceTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_TILE_ENTITY.get(), RenderStationNameEntranceTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN_TILE_ENTITY.get(), RenderStationNameEntranceTianjin::new);
 
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN, packet -> PacketGuiClient.openCustomContentScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_COLOR_SCREEN, packet -> PacketGuiClient.openCustomColorScreenS2C(Minecraft.getInstance(), packet));
