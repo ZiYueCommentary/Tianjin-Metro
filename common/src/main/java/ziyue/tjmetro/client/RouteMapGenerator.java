@@ -592,7 +592,7 @@ public class RouteMapGenerator implements IGui
             final NativeImage nativeImage = new NativeImage(NativeImage.Format.RGBA, Math.max(width, totalWidth.get()), size, false);
             nativeImage.fillRect(0, 0, width, size, backgroundColor);
 
-            final AtomicInteger currentX = new AtomicInteger(iconOffset + iconSize + (isBMT ? iconOffset : 0));
+            final AtomicInteger currentX = new AtomicInteger(iconOffset + iconSize);
             if (!routes.isEmpty()) currentX.addAndGet(iconOffset);
             routes.forEach(route -> {
                 nativeImage.fillRect(currentX.get(), iconOffset, padding * 3 + route.getA().width(), iconSize, invertColor(ARGB_BLACK | route.getB()));
@@ -601,10 +601,10 @@ public class RouteMapGenerator implements IGui
             });
             if (!routes.isEmpty()) currentX.addAndGet(padding * -3);
             if (selectedId != -1) currentX.addAndGet(-iconOffset - exit.width());
-            drawResource(nativeImage, isBMT ? TRAIN_BMT_LOGO_RESOURCE : TRAIN_LOGO_RESOURCE, iconOffset + (isBMT ? iconOffset : 0), iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
+            drawResource(nativeImage, isBMT ? TRAIN_BMT_LOGO_RESOURCE : TRAIN_LOGO_RESOURCE, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
             drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get()) / 2, size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             if (selectedId != -1)
-                drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset - (isBMT ? iconOffset : 0), size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+                drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             clearColor(nativeImage, invertColor(backgroundColor));
 
             return nativeImage;
