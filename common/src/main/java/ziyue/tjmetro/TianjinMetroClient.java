@@ -32,6 +32,7 @@ public class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PSD_DOOR_TIANJIN.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PSD_GLASS_TIANJIN.get());
         RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.PSD_GLASS_END_TIANJIN.get());
+        RegistryClient.registerBlockRenderType(RenderType.cutout(), BlockList.METAL_DETECTION_DOOR.get());
         RegistryClient.registerBlockRenderType(RenderType.translucent(), BlockList.ROLLING.get());
 
         RegistryClient.registerBlockColors(BlockList.STATION_COLOR_CEILING.get());
@@ -95,6 +96,7 @@ public class TianjinMetroClient
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_PINYIN_TILE_ENTITY.get(), RenderStationNameEntranceTianjin::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_TILE_ENTITY.get(), RenderStationNameEntranceTianjin::new);
         RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN_TILE_ENTITY.get(), RenderStationNameEntranceTianjin::new);
+        RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_PLATE_TILE_ENTITY.get(), RenderStationNamePlate::new);
 
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_CONTENT_SCREEN, packet -> PacketGuiClient.openCustomContentScreenS2C(Minecraft.getInstance(), packet));
         RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_CUSTOM_COLOR_SCREEN, packet -> PacketGuiClient.openCustomColorScreenS2C(Minecraft.getInstance(), packet));

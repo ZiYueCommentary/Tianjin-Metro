@@ -68,8 +68,8 @@ public class TianjinMetro
         registerBlockItem.accept("station_name_entrance_tianjin_pinyin", BlockList.STATION_NAME_ENTRANCE_TIANJIN_PINYIN, SIGNS);
         registerBlockItem.accept("station_name_entrance_tianjin_bmt", BlockList.STATION_NAME_ENTRANCE_TIANJIN_BMT, SIGNS);
         registerBlockItem.accept("station_name_entrance_tianjin_bmt_pinyin", BlockList.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN, SIGNS);
+        registerBlockItem.accept("station_name_plate", BlockList.STATION_NAME_PLATE, SIGNS);
         registerEnchantedBlockItem.accept("station_name_sign_1", BlockList.STATION_NAME_SIGN_1, SIGNS);
-//        registerBlockItem.accept("station_name_pole", BlockList.STATION_NAME_POLE, SIGNS);
         /* PLATFORM GATES */
         registerItem.accept("psd_door_tianjin", ItemList.PSD_DOOR_TIANJIN, GATES);
         registerItem.accept("psd_glass_tianjin", ItemList.PSD_GLASS_TIANJIN, GATES);
@@ -198,7 +198,7 @@ public class TianjinMetro
         registerBlockEntityType.accept("station_name_entrance_tianjin_pinyin", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_PINYIN_TILE_ENTITY);
         registerBlockEntityType.accept("station_name_entrance_tianjin_bmt", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_TILE_ENTITY);
         registerBlockEntityType.accept("station_name_entrance_tianjin_bmt_pinyin", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN_TILE_ENTITY);
-//        registerBlockEntityType.accept("station_name_pole", BlockEntityTypes.STATION_NAME_POLE_TILE_ENTITY);
+        registerBlockEntityType.accept("station_name_plate", BlockEntityTypes.STATION_NAME_PLATE_TILE_ENTITY);
 
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);

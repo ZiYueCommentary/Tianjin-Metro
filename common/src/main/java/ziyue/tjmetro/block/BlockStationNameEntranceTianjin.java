@@ -155,8 +155,7 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
         public void setData(Long selectedId) {
             Consumer<Direction> setStyle = direction -> {
                 BlockPos offsetPos = getBlockPos();
-                while (level.getBlockState(offsetPos).getBlock() instanceof BlockStationNameEntranceTianjin) {
-                    TileEntityStationNameEntranceTianjin entity = (TileEntityStationNameEntranceTianjin) level.getBlockEntity(offsetPos);
+                while (level.getBlockEntity(offsetPos) instanceof TileEntityStationNameEntranceTianjin entity) {
                     entity.selectedId = selectedId;
                     entity.setChanged();
                     entity.syncData();

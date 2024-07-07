@@ -84,7 +84,7 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignWall.TileEntityRail
             UtilitiesClient.rotateZDegrees(matricesNew, 180);
             matricesNew.translate(block.getXStart() / 16F - 0.5, -0.25, 0.493);
             if (entity instanceof BlockRailwaySignWallBig.TileEntityRailwaySignWallBig) {
-                matricesNew.translate(0, -0.218, 0);
+                matricesNew.translate(0, -0.218, -0.003);
                 matricesNew.scale(2, 2, 2);
             }
         });

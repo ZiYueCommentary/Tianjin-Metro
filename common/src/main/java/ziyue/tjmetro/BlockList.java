@@ -104,4 +104,5 @@ public interface BlockList
     RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_PINYIN = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(true, false));
     RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_BMT = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(false, true));
     RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(true, true));
+    RegistryObject<Block> STATION_NAME_PLATE = new RegistryObject<>(BlockStationNamePlate::new);
 }
