@@ -1,0 +1,19 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "ziyue.tjmetro.mod.mixin",
+    "compatibilityLevel": "JAVA_16",
+    "mixins": [
+        "CustomResourceLoaderMixin",
+        "DynamicTextureCacheMixin",
+        "RouteMapGeneratorMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "client": [
+        "RailwaySignScreenMixin",
+        "RenderRailwaySignMixin"
+    ],
+    "refmap": "tjmetro.refmap.json"
+}

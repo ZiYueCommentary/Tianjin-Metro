@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=bottom": {
+            "model": "tjmetro:block/marble_gray_slab_bottom"
+        },
+        "type=double": {
+            "model": "tjmetro:block/marble_gray"
+        },
+        "type=top": {
+            "model": "tjmetro:block/marble_gray_slab_top"
+        }
+    }
+}

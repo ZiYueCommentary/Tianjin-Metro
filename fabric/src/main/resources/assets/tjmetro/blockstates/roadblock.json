@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "tjmetro:block/roadblock_half" },
+        "facing=east":  { "model": "tjmetro:block/roadblock_half", "y":  90},
+        "facing=south": { "model": "tjmetro:block/roadblock_half", "y": 180 },
+        "facing=west":  { "model": "tjmetro:block/roadblock_half", "y": 270 }
+    }
+}

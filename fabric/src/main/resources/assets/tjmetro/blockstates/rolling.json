@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=true,bottom=true":   { "model": "tjmetro:block/rolling_bottom", "y":  90 },
+        "facing=false,bottom=true":  { "model": "tjmetro:block/rolling_bottom" },
+        "facing=true,bottom=false":  { "model": "tjmetro:block/rolling", "y":  90 },
+        "facing=false,bottom=false": { "model": "tjmetro:block/rolling" }
+    }
+}

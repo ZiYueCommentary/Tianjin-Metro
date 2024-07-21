@@ -1,0 +1,38 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "facing": "false"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling"
+            }
+        },
+        {
+            "when": {
+                "facing": "true"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "false"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling_not_lit"
+            }
+        },
+        {
+            "when": {
+                "facing": "true"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling_not_lit",
+                "y": 90
+            }
+        }
+    ]
+}

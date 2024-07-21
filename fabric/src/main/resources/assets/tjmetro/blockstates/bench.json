@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "facing=north,side=single": { "model": "tjmetro:block/bench" },
+        "facing=east,side=single":  { "model": "tjmetro:block/bench", "y":  90},
+        "facing=south,side=single": { "model": "tjmetro:block/bench", "y": 180 },
+        "facing=west,side=single":  { "model": "tjmetro:block/bench", "y": 270 },
+        "facing=north,side=left": { "model": "tjmetro:block/bench_left" },
+        "facing=east,side=left":  { "model": "tjmetro:block/bench_left", "y":  90},
+        "facing=south,side=left": { "model": "tjmetro:block/bench_left", "y": 180 },
+        "facing=west,side=left":  { "model": "tjmetro:block/bench_left", "y": 270 },
+        "facing=north,side=right": { "model": "tjmetro:block/bench_right" },
+        "facing=east,side=right":  { "model": "tjmetro:block/bench_right", "y":  90},
+        "facing=south,side=right": { "model": "tjmetro:block/bench_right", "y": 180 },
+        "facing=west,side=right":  { "model": "tjmetro:block/bench_right", "y": 270 },
+        "facing=north,side=middle": { "model": "tjmetro:block/bench_middle" },
+        "facing=east,side=middle":  { "model": "tjmetro:block/bench_middle", "y":  90},
+        "facing=south,side=middle": { "model": "tjmetro:block/bench_middle", "y": 180 },
+        "facing=west,side=middle":  { "model": "tjmetro:block/bench_middle", "y": 270 }
+    }
+}

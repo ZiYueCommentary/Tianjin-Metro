@@ -1,0 +1,42 @@
+# gradle
+
+.gradle/
+build/
+out/
+classes/
+checkouts/
+
+# eclipse
+
+*.launch
+
+# idea
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# vscode
+
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+
+# macos
+
+*.DS_Store
+
+# fabric
+
+fabric/run/
+run/
+forge/src/main/java/**/mod
+forge/src/main/resources/assets
+forge/src/main/resources/data
+forge/run
+
+**/lang/*.json
+!en_us.json

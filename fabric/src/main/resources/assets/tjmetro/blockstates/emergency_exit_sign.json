@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north,style=left":  { "model": "tjmetro:block/emergency_exit_sign_left" },
+        "facing=east,style=left":   { "model": "tjmetro:block/emergency_exit_sign_left", "y":  90 },
+        "facing=south,style=left":  { "model": "tjmetro:block/emergency_exit_sign_left", "y": 180 },
+        "facing=west,style=left":   { "model": "tjmetro:block/emergency_exit_sign_left", "y": 270 },
+        "facing=north,style=right": { "model": "tjmetro:block/emergency_exit_sign_right" },
+        "facing=east,style=right":  { "model": "tjmetro:block/emergency_exit_sign_right", "y":  90 },
+        "facing=south,style=right": { "model": "tjmetro:block/emergency_exit_sign_right", "y": 180 },
+        "facing=west,style=right":  { "model": "tjmetro:block/emergency_exit_sign_right", "y": 270 },
+        "facing=north,style=both":  { "model": "tjmetro:block/emergency_exit_sign_both" },
+        "facing=east,style=both":   { "model": "tjmetro:block/emergency_exit_sign_both", "y":  90 },
+        "facing=south,style=both":  { "model": "tjmetro:block/emergency_exit_sign_both", "y": 180 },
+        "facing=west,style=both":   { "model": "tjmetro:block/emergency_exit_sign_both", "y": 270 }
+    }
+}

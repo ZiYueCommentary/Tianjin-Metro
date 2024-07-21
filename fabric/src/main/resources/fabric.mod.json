@@ -1,0 +1,41 @@
+{
+    "schemaVersion": 1,
+    "id": "tjmetro",
+    "version": "${version}",
+    "name": "Tianjin Metro",
+    "description": "A small addon for the Minecraft Transit Railway Mod",
+    "authors": [
+        "ZiYueCommentary"
+    ],
+    "contributors": [
+    ],
+    "contact": {
+        "sources": "https://github.com/ZiYueCommentary/Tianjin-Metro",
+        "issues": "https://github.com/ZiYueCommentary/Tianjin-Metro/issues",
+        "email": "ziyuecommentary@gmail.com"
+    },
+    "license": "MIT",
+    "icon": "icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "modmenu": [
+            "ziyue.tjmetro.fabric.ModMenuConfig"
+        ],
+        "main": [
+            "ziyue.tjmetro.fabric.MainFabric"
+        ],
+        "client": [
+            "ziyue.tjmetro.fabric.MainFabricClient"
+        ]
+    },
+    "mixins": [
+        "tjmetro.mixins.json"
+    ],
+    "depends": {
+        "fabric": "*",
+        "minecraft": "*",
+        "filters": ">=1.0.0",
+        "mtr": "*",
+        "java": ">=16"
+    }
+}

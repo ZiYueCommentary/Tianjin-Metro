@@ -1,0 +1,70 @@
+plugins {
+    id "net.minecraftforge.gradle" version "+"
+    id "org.spongepowered.mixin" version "+"
+}
+
+minecraft {
+    mappings channel: "official", version: rootProject.minecraft_version
+    runs {
+        configureEach {
+            property "forge.logging.markers", "REGISTRIES"
+            property "forge.logging.console.level", "debug"
+        }
+        client {}
+        server { args "--nogui" }
+    }
+}
+
+sourceSets.main.resources { srcDir "src/generated/resources" }
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${rootProject.minecraft_version}-${project.properties["forge_version_$rootProject.minecraft_version"]}"
+    annotationProcessor "org.spongepowered:mixin:+:processor"
+    implementation fg.deobf("org.mtr:MTR-forge:${rootProject.mtr_version}+${rootProject.minecraft_version}-server")
+    implementation(fg.deobf("ziyue.filters:filters-forge:1.0.0+1.16.5")) {
+        exclude(group: "net.minecraftforge")
+    }
+    annotationProcessor 'systems.manifold:manifold-preprocessor:+'
+}
+
+mixin {
+    add sourceSets.main, "tjmetro.refmap.json"
+    config "tjmetro.mixins.json"
+    debug.verbose = true
+    debug.export = true
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(java_version))
+    }
+    withSourcesJar()
+}
+
+tasks.register("setupFiles") {
+    delete fileTree("src/main/java/ziyue/tjmetro/mod")
+    delete fileTree("src/main/resources/assets")
+    delete fileTree("src/main/resources/data")
+
+    copy {
+        outputs.upToDateWhen { false }
+        from "../fabric/src/main/java/ziyue/tjmetro/mod"
+        into "src/main/java/ziyue/tjmetro/mod"
+    }
+
+    copy {
+        outputs.upToDateWhen { false }
+        from "../fabric/src/main/resources/assets"
+        into "src/main/resources/assets"
+    }
+
+    copy {
+        outputs.upToDateWhen { false }
+        from "../fabric/src/main/resources/data"
+        into "src/main/resources/data"
+    }
+}
+
+artifacts {
+    archives jar
+}

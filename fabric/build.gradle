@@ -1,0 +1,59 @@
+plugins {
+    id 'fabric-loom' version '1.7-SNAPSHOT'
+}
+
+loom {
+    runConfigs.configureEach { ideConfigGenerated = true }
+}
+
+repositories {
+    maven { url = "https://maven.terraformersmc.com/" }
+}
+
+def yarn_version = project.properties["yarn_mappings_${rootProject.minecraft_version}"]
+def fabric_api_version = project.properties["fabric_api_version_${rootProject.minecraft_version}"]
+def mod_menu_version = project.properties["mod_menu_version_${rootProject.minecraft_version}"]
+def cloth_config_version = project.properties["cloth_config_version_${rootProject.minecraft_version}"]
+
+dependencies {
+    // To change the versions see the gradle.properties file
+    minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+    mappings "net.fabricmc:yarn:${yarn_version}:v2"
+    //modImplementation "org.mtr:MTR-fabric:${rootProject.mtr_version}+${rootProject.minecraft_version}-server"
+    modImplementation(files("E:\\Tianjin-Metro\\libs\\MTR-fabric-4.0.0-beta-8+1.16.5-server.jar"))
+    modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    modApi "com.terraformersmc:modmenu:${mod_menu_version}"
+    modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    modApi ("ziyue.filters:filters-fabric:1.0.0+${rootProject.minecraft_version}") {
+        exclude(group: "net.fabricmc")
+    }
+    annotationProcessor 'systems.manifold:manifold-preprocessor:2023.1.33' // Delibrate: Newer versions just throws an error *when displaying an compiling error*
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+}
+
+configurations.configureEach {
+    // Force use our version of mod-loader even if dependency requires a lower mod-loader so the game can launch
+    // May cause problems, but they're usually backward compatible
+    resolutionStrategy {
+        force("net.fabricmc:fabric-loader:$project.fabric_loader_version")
+    }
+}
+
+java {
+    withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${base.archivesName.get()}"}
+    }
+}

@@ -1,0 +1,87 @@
+{
+	"multipart": [
+		{
+			"apply": {
+				"model": "mtr:block/station_name_wall"
+			}
+		},
+		{
+			"when": {
+				"facing": "north",
+				"style": "0|2"
+			},
+			"apply": {
+				"model": "tjmetro:block/station_name_entrance_tianjin_short"
+			}
+		},
+		{
+			"when": {
+				"facing": "east",
+				"style": "0|2"
+			},
+			"apply": {
+				"model": "tjmetro:block/station_name_entrance_tianjin_short",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"facing": "south",
+				"style": "0|2"
+			},
+			"apply": {
+				"model": "tjmetro:block/station_name_entrance_tianjin_short",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"facing": "west",
+				"style": "0|2"
+			},
+			"apply": {
+				"model": "tjmetro:block/station_name_entrance_tianjin_short",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"facing": "north",
+				"style": "1|3"
+			},
+			"apply": {
+				"model": "tjmetro:block/station_name_entrance_tianjin_tall"
+			}
+		},
+		{
+			"when": {
+				"facing": "east",
+				"style": "1|3"
+			},
+			"apply": {
+				"model": "tjmetro:block/station_name_entrance_tianjin_tall",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"facing": "south",
+				"style": "1|3"
+			},
+			"apply": {
+				"model": "tjmetro:block/station_name_entrance_tianjin_tall",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"facing": "west",
+				"style": "1|3"
+			},
+			"apply": {
+				"model": "tjmetro:block/station_name_entrance_tianjin_tall",
+				"y": 270
+			}
+		}
+	]
+}

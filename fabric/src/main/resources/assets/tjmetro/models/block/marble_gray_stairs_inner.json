@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "tjmetro:block/marble_gray",
+        "top": "tjmetro:block/marble_gray",
+        "side": "tjmetro:block/marble_gray"
+    }
+}

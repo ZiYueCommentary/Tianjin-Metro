@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "tjmetro:block/station_name_sign_2" },
+        "facing=east":  { "model": "tjmetro:block/station_name_sign_2", "y":  90},
+        "facing=south": { "model": "tjmetro:block/station_name_sign_2", "y": 180 },
+        "facing=west":  { "model": "tjmetro:block/station_name_sign_2", "y": 270 }
+    }
+}

@@ -1,0 +1,39 @@
+modLoader = "javafml"
+loaderVersion = "[36,)"
+license = "MIT"
+
+[[mods]]
+modId = "tjmetro"
+version = "1.0"
+displayName = "Tianjin Metro"
+authors = "ZiYueCommentary"
+description = "A small addon for the Minecraft Transit Railway Mod"
+logoFile = "icon.png"
+
+[[dependencies.tjmetro]]
+modId = "forge"
+mandatory = true
+versionRange = "[36,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.tjmetro]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.5,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.tjmetro]]
+modId = "mtr"
+mandatory = true
+versionRange = "1.0"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.tjmetro]]
+modId = "filters"
+mandatory = true
+versionRange = "1.0"
+ordering = "AFTER"
+side = "BOTH"
