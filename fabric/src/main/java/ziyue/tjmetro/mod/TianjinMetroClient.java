@@ -67,6 +67,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN, RenderStationNameEntranceTianjin::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_TOP_TIANJIN, RenderPSDTopTianjin::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_TIANJIN, dispatcher -> new RenderPSDAPGDoor<>(dispatcher, 0));
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_WALL_LEGACY, RenderStationNameWallLegacy::new);
 
         RegistryClient.registerEntityRenderer(EntityTypes.SEAT, RenderSeat::new);
 

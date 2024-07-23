@@ -97,6 +97,7 @@ public interface BlockList
     BlockRegistryObject PSD_TOP_TIANJIN = Registry.registerBlock("psd_top_tianjin", () -> new Block(new BlockPSDTopTianjin()));
     BlockRegistryObject METAL_DETECTION_DOOR = Registry.registerBlockWithBlockItem("metal_detection_door", () -> new Block(new BlockMetalDetectionDoor()), DECORATION);
 //    BlockRegistryObject HIGH_SPEED_REPEATER = Registry.registerBlockWithBlockItem("high_speed_repeater", () -> new Block(new BlockHighSpeedRepeater()), MISCELLANEOUS);
+    BlockRegistryObject STATION_NAME_WALL_LEGACY = Registry.registerBlockWithBlockItem("station_name_wall_legacy", () -> new Block(new BlockStationNameWallLegacy()), SIGNS);
 
     static void registerBlocks() {
         // Calling this class to initialize constants
