@@ -21,6 +21,7 @@ import org.mtr.mod.screen.EditStationScreen;
 import org.mtr.mod.screen.PIDSConfigScreen;
 import ziyue.tjmetro.mod.RegistryClient;
 import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
+import ziyue.tjmetro.mod.block.BlockStationNamePlate;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
 import ziyue.tjmetro.mod.packet.PacketUpdateRailwaySignConfig;
@@ -36,7 +37,7 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
     protected int rows;
 
     protected final BlockPos signPos;
-    protected final boolean isRailwaySign;
+    protected final Type type;
     protected final int length;
     protected final String[] signIds;
     protected final LongAVLTreeSet selectedIds;
@@ -96,13 +97,22 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
             if (entity != null && entity.data instanceof BlockRailwaySignBase.BlockEntityBase entity1) {
                 signIds = entity1.getSignIds();
                 selectedIds = entity1.getSelectedIds();
-                isRailwaySign = true;
+                type = Type.RAILWAY_SIGN;
             } else {
                 signIds = new String[0];
                 selectedIds = new LongAVLTreeSet();
-                isRailwaySign = false;
-                if (entity != null && entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity sign) {
-                    selectedIds.add(sign.getSelectedId());
+                if (entity != null) {
+                    if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity sign) {
+                        selectedIds.add(sign.getSelectedId());
+                        type = Type.STATION_NAME_ENTRANCE;
+                    } else if (entity.data instanceof BlockStationNamePlate.BlockEntity plate) {
+                        selectedIds.add(plate.getPlatformId());
+                        type = Type.STATION_NAME_PLATE;
+                    } else {
+                        type = Type.STATION_NAME_ENTRANCE;
+                    }
+                } else {
+                    type = null;
                 }
             }
             final Block block = world.getBlockState(signPos).getBlock();
@@ -112,10 +122,7 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
                 length = 0;
             }
         } else {
-            length = 0;
-            signIds = new String[0];
-            selectedIds = new LongAVLTreeSet();
-            isRailwaySign = false;
+            throw new NullPointerException("World is null");
         }
 
         buttonsEdit = new ButtonWidgetExtension[length];
@@ -170,8 +177,17 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
         buttonNextPage.visible = false;
         addChild(new ClickableWidget(buttonNextPage));
 
-        if (!isRailwaySign) {
-            MinecraftClient.getInstance().openScreen(new Screen(new DashboardListSelectorScreen(this::onClose2, exitsForList, selectedIds, true, false)));
+        if (type != Type.RAILWAY_SIGN) {
+            final DashboardListSelectorScreen screen = switch (type) {
+                case STATION_NAME_ENTRANCE ->
+                        new DashboardListSelectorScreen(this::onClose2, exitsForList, selectedIds, true, false);
+                case STATION_NAME_PLATE ->
+                        new DashboardListSelectorScreen(this::onClose2, platformsForList, selectedIds, true, false);
+                case STATION_NAVIGATOR ->
+                        new DashboardListSelectorScreen(this::onClose2, new ObjectImmutableList<>(routesForList), selectedIds, false, false);
+                default -> throw new IllegalStateException("Unknown enum type: " + type);
+            };
+            MinecraftClient.getInstance().openScreen(new Screen(screen));
         }
     }
 
@@ -328,5 +344,13 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
     protected interface LoopSignsCallback
     {
         void loopSignsCallback(int index, int x, int y, boolean isBig);
+    }
+
+    public enum Type
+    {
+        RAILWAY_SIGN,
+        STATION_NAME_ENTRANCE,
+        STATION_NAME_PLATE,
+        STATION_NAVIGATOR
     }
 }

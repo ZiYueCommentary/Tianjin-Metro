@@ -2,9 +2,11 @@ package ziyue.tjmetro.mod.packet;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.ScreenExtension;
+import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.block.BlockRailwaySignWallDouble;
 import ziyue.tjmetro.mod.block.BlockRoadblockSign;
 import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
+import ziyue.tjmetro.mod.block.BlockStationNamePlate;
 import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.screen.ColorPickerScreen;
@@ -33,6 +35,10 @@ public final class ClientPacketHelper
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
             } else if (blockEntity.data instanceof BlockStationNameEntranceTianjin.BlockEntity entity) {
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
+            } else if (blockEntity.data instanceof BlockStationNamePlate.BlockEntity entity) {
+                openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
+            } else {
+                TianjinMetro.LOGGER.warn("Unknown block entity data at {}: {}", blockPos.toShortString(), blockEntity.data);
             }
         });
     }

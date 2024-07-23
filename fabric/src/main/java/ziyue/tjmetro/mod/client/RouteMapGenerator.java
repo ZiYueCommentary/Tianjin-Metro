@@ -232,7 +232,7 @@ public class RouteMapGenerator implements IGui
                     } else if (isAnticlockwise) {
                         destinationString = IGui.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
                     } else {
-                        destinationString = IGui.insertTranslation("gui.mtr.to_cjk", "gui.mtr.to", 1, destinationString);
+                        destinationString = IGui.insertTranslation("sign.tjmetro.bound_for_bmt_cjk", "sign.tjmetro.bound_for", 1, destinationString);
                     }
                 }
 
@@ -650,6 +650,106 @@ public class RouteMapGenerator implements IGui
             if (selectedId != -1)
                 drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             clearColor(nativeImage, invertColor(backgroundColor));
+
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
+
+    public static NativeImage generateStationNamePlate(long platformId, int arrowDirection, int backgroundColor, float paddingScale, float aspectRatio, int textColor, int transparentColor) {
+        if (aspectRatio <= 0) return null;
+
+        try {
+            if (platformId == 0) return null;
+            ObjectArrayList<String> destinations = new ObjectArrayList<>();
+            ObjectArrayList<String> nextStations = new ObjectArrayList<>();
+            getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                String tempMarker = switch (simplifiedRoute.getCircularState()) {
+                    case CLOCKWISE -> TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                    case ANTICLOCKWISE -> TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                    default -> "";
+                };
+
+                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+            });
+            final boolean isTerminating = destinations.isEmpty();
+
+            final int height = scale;
+            final int width = Math.round(height * aspectRatio);
+            final int padding = Math.round(height * paddingScale);
+            final int tileSize = height - padding * 2;
+
+            if (width <= 0 || height <= 0) return null;
+
+            final NativeImage nativeImage;
+
+            final int tilePadding = tileSize / 4;
+
+            if (isTerminating) {
+                final DynamicTextureCache.Text destination = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus_bmt"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize, tileSize / 2, tilePadding, HorizontalAlignment.CENTER);
+                final DynamicTextureCache.Text stationName = DynamicTextureCache.instance.getText(getStationName(platformId), width, height - tilePadding * 2, tileSize * 4 / 3, tileSize * 2 / 3, tilePadding, HorizontalAlignment.CENTER);
+                final int imageWidth = Math.max(width, destination.width() + destination.renderWidth() + stationName.width());
+                nativeImage = new NativeImage(NativeImageFormat.RGBA, imageWidth, height, false);
+                nativeImage.fillRect(0, 0, imageWidth, height, invertColor(backgroundColor));
+                drawString(nativeImage, destination, tilePadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                drawString(nativeImage, stationName, imageWidth / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                drawString(nativeImage, destination, imageWidth - tilePadding, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+            } else {
+                final int arrowSizeAndPadding = switch (arrowDirection) {
+                    case 0, 3 -> -tilePadding;
+                    default -> tileSize;
+                };
+                String nextStationString = IGui.mergeStations(nextStations);
+                String destinationString = IGui.mergeStations(destinations);
+                final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
+                final boolean isAnticlockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE);
+                destinationString = destinationString.replace(TEMP_CIRCULAR_MARKER_CLOCKWISE, "").replace(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE, "");
+                if (!destinationString.isEmpty()) {
+                    if (isClockwise) {
+                        destinationString = IGui.insertTranslation("gui.mtr.clockwise_via_cjk", "gui.mtr.clockwise_via", 1, destinationString);
+                    } else if (isAnticlockwise) {
+                        destinationString = IGui.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
+                    } else {
+                        destinationString = IGui.insertTranslation("sign.tjmetro.bound_for_bmt_cjk", "sign.tjmetro.bound_for", 1, destinationString);
+                    }
+                }
+
+                final DynamicTextureCache.Text textDestination = DynamicTextureCache.instance.getText(destinationString, width - tilePadding - padding * 2, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize, tileSize / 2, tilePadding, (arrowDirection == 2) ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
+                final DynamicTextureCache.Text textNextStations = DynamicTextureCache.instance.getText(IGui.insertTranslation("gui.tjmetro.next_station_bmt_cjk", "gui.tjmetro.next_station_bmt", 1, nextStationString), width - tilePadding - padding * 2, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, tilePadding, HorizontalAlignment.CENTER);
+                final DynamicTextureCache.Text textStationName = DynamicTextureCache.instance.getText(getStationName(platformId), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize, tileSize / 2, tilePadding, HorizontalAlignment.CENTER);
+                int imageWidth = Math.max(width, tilePadding + arrowSizeAndPadding + textDestination.width() + textStationName.width() + textNextStations.width() + tilePadding);
+                final boolean renderNextStation = (width - tilePadding - arrowSizeAndPadding - textDestination.width() - tilePadding - textStationName.width()) > textNextStations.width() * 2 / 3;
+                if (!renderNextStation) {
+                    imageWidth = Math.max(width, imageWidth - textNextStations.width());
+                }
+                nativeImage = new NativeImage(NativeImageFormat.RGBA, imageWidth, height, false);
+                nativeImage.fillRect(0, 0, imageWidth, height, invertColor(backgroundColor));
+                if (arrowDirection == 2) {
+                    drawResource(nativeImage, ARROW_RESOURCE, imageWidth - tilePadding - tileSize, padding, tileSize, tileSize, true, 0, 1, textColor, false);
+                    drawString(nativeImage, textDestination, imageWidth - tilePadding - tileSize, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                    drawString(nativeImage, textStationName, (textStationName.width() - textStationName.renderWidth()) / 2 + tilePadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                    if (renderNextStation) {
+                        drawString(nativeImage, textNextStations, tilePadding + textStationName.width() + textNextStations.width() / 2, height, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0xffdcdcdc, false);
+                    }
+                } else {
+                    if (arrowSizeAndPadding > 0) {
+                        drawResource(nativeImage, ARROW_RESOURCE, tilePadding, padding, tileSize, tileSize, false, 0, 1, textColor, false);
+                    }
+                    drawString(nativeImage, textDestination, tilePadding + arrowSizeAndPadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                    drawString(nativeImage, textStationName, imageWidth - (textStationName.width() - textStationName.renderWidth()) / 2 - tilePadding, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                    if (renderNextStation) {
+                        drawString(nativeImage, textNextStations, tilePadding + arrowSizeAndPadding + textDestination.width() + textNextStations.width() / 2, height, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0xffdcdcdc, false);
+                    }
+                }
+            }
+
+            if (transparentColor != 0) {
+                clearColor(nativeImage, invertColor(transparentColor));
+            }
 
             return nativeImage;
         } catch (Exception e) {

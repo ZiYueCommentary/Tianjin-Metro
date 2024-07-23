@@ -7,6 +7,7 @@ import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.ResourceManagerHelper;
 import org.mtr.mod.Init;
+import org.mtr.mod.client.MinecraftClientData;
 import org.mtr.mod.config.Config;
 import org.mtr.mod.config.LanguageDisplay;
 import org.mtr.mod.data.IGui;
@@ -106,6 +107,10 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_station_name_entrance_%s_%s_%s_%s_%s_%s", stationId, selectedId, style, stationName, isBMT, aspectRatio), () -> RouteMapGenerator.generateStationNameEntrance(stationId, selectedId, style, stationName, isBMT, aspectRatio), DefaultRenderingColor.TRANSPARENT);
     }
 
+    public DynamicResource getStationNamePlate(long platformId, int arrowDirection, int backgroundColor, float paddingScale, float aspectRatio, int textColor, int transparentColor) {
+        return getResource(String.format("tjmetro_station_name_plate_%s_%s_%s_%s_%s_%s_%s", platformId, arrowDirection, backgroundColor, paddingScale, aspectRatio, textColor, transparentColor), () -> RouteMapGenerator.generateStationNamePlate(platformId, arrowDirection, backgroundColor, paddingScale, aspectRatio, textColor, transparentColor), DefaultRenderingColor.TRANSPARENT);
+    }
+
     public Text getText(String text, int maxWidth, int maxHeight, int fontSizeCjk, int fontSize, int padding, IGui.HorizontalAlignment horizontalAlignment) {
         return getText(text, maxWidth, maxHeight, fontSizeCjk, fontSize, padding, horizontalAlignment, false);
     }
@@ -117,9 +122,7 @@ public class DynamicTextureCache
             return new DynamicTextureCache.Text(pixels, dimensions[0], dimensions[1], dimensions[0]);
         }
 
-        if (maxWidth <= 0) {
-            return new Text(new byte[0], 0, 0, 0);
-        }
+        if (maxWidth <= 0) return new Text(new byte[0], 0, 0, 0);
 
         final boolean customFont = ConfigClient.USE_TIANJIN_METRO_FONT.get();
         final boolean oneRow = horizontalAlignment == null;
@@ -243,7 +246,7 @@ public class DynamicTextureCache
             }
 
             while (fontCjk == null) {
-                ResourceManagerHelper.readResource(ConfigClient.USE_TIANJIN_METRO_FONT.get() ?  new Identifier(Reference.MOD_ID, "font/dengxian.ttf") : new Identifier(Init.MOD_ID, "font/noto-serif-cjk-tc-semibold.ttf"), inputStream -> {
+                ResourceManagerHelper.readResource(ConfigClient.USE_TIANJIN_METRO_FONT.get() ? new Identifier(Reference.MOD_ID, "font/dengxian.ttf") : new Identifier(Init.MOD_ID, "font/noto-serif-cjk-tc-semibold.ttf"), inputStream -> {
                     try {
                         fontCjk = Font.createFont(Font.TRUETYPE_FONT, inputStream);
                     } catch (Exception e) {
@@ -297,8 +300,6 @@ public class DynamicTextureCache
 
     }
 
-    // ¯\_(ツ)_/¯ protected are everywhere
-
     /**
      * @see org.mtr.mod.client.DynamicTextureCache.DynamicResource
      */
@@ -333,7 +334,8 @@ public class DynamicTextureCache
         }
     }
 
-    protected enum DefaultRenderingColor {
+    protected enum DefaultRenderingColor
+    {
         BLACK(DEFAULT_BLACK_RESOURCE),
         WHITE(DEFAULT_WHITE_RESOURCE),
         TRANSPARENT(DEFAULT_TRANSPARENT_RESOURCE);

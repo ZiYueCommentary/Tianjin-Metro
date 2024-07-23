@@ -1,6 +1,6 @@
 {
-    "modmenu.nameTranslation.tjmetro": "天津地铁",
-    "modmenu.descriptionTranslation.tjmetro": "一个 Minecraft Transit Railway 的附属模组",
+    "modmenu.nameTranslation.tjmetro": "Tianjin Metro",
+    "modmenu.descriptionTranslation.tjmetro": "A small mod for Minecraft Transit Railway.",
 
     "itemGroup.tjmetro.tjmetro_tab": "Tianjin Metro",
 
@@ -56,9 +56,12 @@
     "gui.tjmetro.custom_content": "Display content",
     "gui.tjmetro.terminus_cjk": "终点站",
     "gui.tjmetro.terminus": "Terminal Station",
+    "gui.tjmetro.terminus_bmt": "TERMINAL",
     "gui.tjmetro.next_station_cjk": "下一站",
     "gui.tjmetro.next_station": "Next Station",
     "gui.tjmetro.station_pinyin": "%s ZHAN",
+    "gui.tjmetro.next_station_bmt_cjk": "下一站 %s",
+    "gui.tjmetro.next_station_bmt": "Next Sta. %s",
 
     "sign.tjmetro.tianjin_metro_cjk": "天津地铁",
     "sign.tjmetro.tianjin_metro": "Tianjin Metro",
@@ -84,6 +87,7 @@
     "sign.tjmetro.fare_adjustment": "Fare Adjustment",
     "sign.tjmetro.inquiry_cjk": "问询",
     "sign.tjmetro.inquiry": "Inquiry",
+    "sign.tjmetro.bound_for_bmt_cjk": "开往 %s",
     "sign.tjmetro.bound_for_cjk": "%s方向",
     "sign.tjmetro.bound_for": "To %s",
     "sign.tjmetro.accessible_passage_cjk": "无障碍通道",
@@ -100,6 +104,7 @@
     "sign.tjmetro.tickets_bmt": "Tickets",
 
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Options",
+    "button.tjmetro.click_here": "Click Here!",
 
     "config.category.tjmetro": "Tianjin Metro",
 
@@ -117,10 +122,10 @@
     "tooltip.tjmetro.use_tianjin_metro_font": "Render texts with mod font in some blocks.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
 
-    "footer.tjmetro.sources": "Wanna see the source code? See: %s",
-    "footer.tjmetro.contributors": "Tianjin Metro is a community work, <1>click here</> to see contributors!",
-    "footer.tjmetro.forum": "Would you like to join our forum (Chinese only)? See: %s",
-    "footer.tjmetro.weblate": "Get involved in Tianjin Metro localization: %s",
+    "footer.tjmetro.sources": "Wanna see the source code?",
+    "footer.tjmetro.contributors": "Tianjin Metro is a community work, click the button to see contributors!",
+    "footer.tjmetro.forum": "Would you like to join our forum? (Chinese only)",
+    "footer.tjmetro.weblate": "Get involved in Tianjin Metro localization!",
 
     "filter.tjmetro.miscellaneous": "Miscellaneous",
     "filter.tjmetro.building": "Buildings",

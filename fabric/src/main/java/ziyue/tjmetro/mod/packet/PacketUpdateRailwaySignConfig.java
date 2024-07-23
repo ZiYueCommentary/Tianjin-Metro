@@ -9,6 +9,7 @@ import org.mtr.mapping.registry.PacketHandler;
 import org.mtr.mapping.tool.PacketBufferReceiver;
 import org.mtr.mapping.tool.PacketBufferSender;
 import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
+import ziyue.tjmetro.mod.block.BlockStationNamePlate;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.render.RenderStationNameEntranceTianjin;
 
@@ -59,6 +60,9 @@ public final class PacketUpdateRailwaySignConfig extends PacketHandler
             } else if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity entity1) {
                 final long platformId = selectedIds.isEmpty() ? -1 : (long) selectedIds.toArray()[0];
                 entity1.setData(platformId);
+            } else if (entity.data instanceof BlockStationNamePlate.BlockEntity entity1) {
+                final long platformId = selectedIds.isEmpty() ? 0 : (long) selectedIds.toArray()[0];
+                entity1.setPlatformId(platformId);
             }
         }
     }

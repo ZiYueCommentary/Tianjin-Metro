@@ -52,6 +52,7 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockPSDDoorTianjin.BlockEntity> PSD_DOOR_TIANJIN = Registry.registerBlockEntityType("psd_door_tianjin", BlockPSDDoorTianjin.BlockEntity::new, BlockList.PSD_DOOR_TIANJIN::get);
     BlockEntityTypeRegistryObject<BlockPSDTopTianjin.BlockEntity> PSD_TOP_TIANJIN = Registry.registerBlockEntityType("psd_top_tianjin", BlockPSDTopTianjin.BlockEntity::new, BlockList.PSD_TOP_TIANJIN::get);
     BlockEntityTypeRegistryObject<BlockStationNameWallLegacy.BlockEntity> STATION_NAME_WALL_LEGACY = Registry.registerBlockEntityType("station_name_wall_legacy", BlockStationNameWallLegacy.BlockEntity::new, BlockList.STATION_NAME_WALL_LEGACY::get);
+    BlockEntityTypeRegistryObject<BlockStationNamePlate.BlockEntity> STATION_NAME_PLATE = Registry.registerBlockEntityType("station_name_plate", BlockStationNamePlate.BlockEntity::new, BlockList.STATION_NAME_PLATE::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants
