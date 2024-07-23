@@ -6,6 +6,8 @@ import org.mtr.mapping.holder.Item;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mod.block.BlockPSDAPGDoorBase;
 import ziyue.tjmetro.mod.BlockEntityTypes;
+import ziyue.tjmetro.mod.BlockList;
+import ziyue.tjmetro.mod.ItemList;
 
 import javax.annotation.Nonnull;
 
@@ -14,7 +16,7 @@ public class BlockPSDDoorTianjin extends BlockPSDAPGDoorBase
     @Nonnull
     @Override
     public Item asItem2() {
-        return super.asItem2();
+        return ItemList.PSD_DOOR_TIANJIN.get();
     }
 
     @Override

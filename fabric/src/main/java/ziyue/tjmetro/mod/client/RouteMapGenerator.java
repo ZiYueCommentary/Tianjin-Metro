@@ -63,10 +63,6 @@ public class RouteMapGenerator implements IGui
         fontSizeSmall = fontSizeBig / 2;
     }
 
-    public static int getScale() {
-        return scale;
-    }
-
     public static NativeImage generateDirectionArrow(long platformId, boolean hasLeft, boolean hasRight, HorizontalAlignment horizontalAlignment, boolean showToString, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor) {
         if (aspectRatio <= 0.0F) {
             return null;

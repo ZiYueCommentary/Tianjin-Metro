@@ -84,7 +84,7 @@ public class BlockPSDTopTianjin extends BlockPSDTop
     @Nonnull
     @Override
     public Item asItem2() {
-        return super.asItem2();
+        return ItemList.PSD_GLASS_TIANJIN.get();
     }
 
     @Override

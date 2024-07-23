@@ -29,15 +29,17 @@ public class BlockBench extends BlockExtension implements DirectionHelper, IBloc
         super(blockSettings);
     }
 
+    // Not working in 1.16.5 due to fabric's bug.
+#if MC_VERSION > "11605"
     @Nonnull
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        // Not working in 1.16.5 due to fabric's bug.
         Entity entity = new Entity(new EntitySeat(world, pos.getX() + 0.5, pos.getY() + 0.35, pos.getZ() + 0.5));
         world.spawnEntity(entity);
         player.startRiding(entity);
         return ActionResult.SUCCESS;
     }
+#endif
 
     @Nullable
     @Override

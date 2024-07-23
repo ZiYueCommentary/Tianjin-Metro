@@ -6,7 +6,6 @@ import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.IBlock;
-import ziyue.tjmetro.mod.BlockList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -44,7 +43,7 @@ public class BlockRoadblock extends BlockExtension implements DirectionHelper
 
     @Override
     public void onBreak2(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        IBlockExtension.breakBlock(world, pos.offset(IBlock.getStatePropertySafe(state, FACING).rotateYClockwise()), BlockList.ROADBLOCK.get());
+        IBlockExtension.breakBlock(world, pos.offset(IBlock.getStatePropertySafe(state, FACING).rotateYClockwise()), this.asBlock2());
         super.onBreak2(world, pos, state, player);
     }
 
