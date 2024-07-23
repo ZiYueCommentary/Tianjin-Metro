@@ -134,5 +134,19 @@
     "filter.tjmetro.mtr_uncategorized": "未分类",
     "gamerule.preventBlockFalling": "禁用方块下落",
     "gamerule.preventBlockFalling.description": "阻止可下落的方块下落，例如沙子和铁砧。该规则由天津地铁模组添加。",
-    "footer.tjmetro.weblate": "欢迎参与天津地铁的翻译工作！"
+    "footer.tjmetro.weblate": "欢迎参与天津地铁的翻译工作！",
+    "block.tjmetro.railway_sign_tianjin_bmt": "指示牌（天津、九号线）",
+    "modmenu.nameTranslation.tjmetro": "天津地铁",
+    "block.tjmetro.psd_tianjin": "高站台门（天津）",
+    "sign.tjmetro.tickets_bmt": "Tickets",
+    "sign.tjmetro.to_subway_bmt": "To Subway",
+    "sign.tjmetro.exit_bmt_cjk": "出口",
+    "sign.tjmetro.exit_bmt": "Exit",
+    "sign.tjmetro.tickets_bmt_cjk": "售票处",
+    "button.tjmetro.click_here": "点我！",
+    "gui.tjmetro.terminus_bmt": "TERMINAL",
+    "gui.tjmetro.next_station_bmt_cjk": "下一站 %s",
+    "gui.tjmetro.next_station_bmt": "Next Sta. %s",
+    "sign.tjmetro.bound_for_bmt_cjk": "开往 %s",
+    "block.tjmetro.station_name_plate": "站名板（九号线）"
 }
