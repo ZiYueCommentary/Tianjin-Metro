@@ -477,7 +477,7 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
-    public static NativeImage generateExitSignLetterTianjin(String exitLetter, String exitNumber, int backgroundColor, boolean forceMTRFont) {
+    public static NativeImage generateExitSignLetterTianjin(String exitLetter, String exitNumber, int backgroundColor, int textColor, boolean forceMTRFont) {
         try {
             final int size = scale / 2;
             final boolean noNumber = exitNumber.isEmpty();
@@ -488,9 +488,9 @@ public class RouteMapGenerator implements IGui
 
             final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, size, size, false);
             nativeImage.fillRect(0, 0, size, size, backgroundColor);
-            drawString(nativeImage, letter, size / 2 - (noNumber ? 0 : textSize / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+            drawString(nativeImage, letter, size / 2 - (noNumber ? 0 : textSize / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
             if (!noNumber) {
-                drawString(nativeImage, number, size / 2 + textSize / 3 - size / 32, size / 2 + textSize / 8, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+                drawString(nativeImage, number, size / 2 + textSize / 3 - size / 32, size / 2 + textSize / 8, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
             }
             return nativeImage;
         } catch (Exception e) {
@@ -500,7 +500,7 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
-    public static NativeImage generateBoundFor(long platformId, HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, boolean forceMTRFont) {
+    public static NativeImage generateBoundFor(long platformId, HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, int textColor, boolean forceMTRFont) {
         try {
             final int height = scale;
             final int width = (int) (height * aspectRatio);
@@ -554,7 +554,7 @@ public class RouteMapGenerator implements IGui
             //    drawString(nativeImage, route.left(), currentX.get(), height / 2, horizontalAlignment, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
             //    currentX.addAndGet(routeSquarePadding * 3 + route.left().width());
             //});
-            drawString(nativeImage, boundFor, horizontalAlignment == HorizontalAlignment.LEFT ? 0 : width, height / 2, horizontalAlignment, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+            drawString(nativeImage, boundFor, horizontalAlignment == HorizontalAlignment.LEFT ? 0 : width, height / 2, horizontalAlignment, VerticalAlignment.CENTER, backgroundColor, textColor, false);
             clearColor(nativeImage, invertColor(backgroundColor));
 
             return nativeImage;

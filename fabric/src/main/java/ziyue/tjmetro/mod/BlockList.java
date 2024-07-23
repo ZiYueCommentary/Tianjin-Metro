@@ -100,6 +100,19 @@ public interface BlockList
     BlockRegistryObject STATION_NAME_WALL_LEGACY = Registry.registerBlockWithBlockItem("station_name_wall_legacy", () -> new Block(new BlockStationNameWallLegacy()), SIGNS);
     BlockRegistryObject STATION_NAME_PLATE = Registry.registerBlockWithBlockItem("station_name_plate", () -> new Block(new BlockStationNamePlate()), SIGNS);
     BlockRegistryObject STATION_NAME_PLATE_MIDDLE = Registry.registerBlock("station_name_plate_middle", () -> new Block(new BlockStationNamePlate()));
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_2_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_2_odd", () -> new Block(new BlockRailwaySignTianjinBMT(2, true)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_3_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_3_odd", () -> new Block(new BlockRailwaySignTianjinBMT(3, true)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_4_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_4_odd", () -> new Block(new BlockRailwaySignTianjinBMT(4, true)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_5_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_5_odd", () -> new Block(new BlockRailwaySignTianjinBMT(5, true)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_6_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_6_odd", () -> new Block(new BlockRailwaySignTianjinBMT(6, true)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_7_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_7_odd", () -> new Block(new BlockRailwaySignTianjinBMT(7, true)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_2_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_2_even", () -> new Block(new BlockRailwaySignTianjinBMT(2, false)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_3_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_3_even", () -> new Block(new BlockRailwaySignTianjinBMT(3, false)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_4_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_4_even", () -> new Block(new BlockRailwaySignTianjinBMT(4, false)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_5_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_5_even", () -> new Block(new BlockRailwaySignTianjinBMT(5, false)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_6_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_6_even", () -> new Block(new BlockRailwaySignTianjinBMT(6, false)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_7_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_7_even", () -> new Block(new BlockRailwaySignTianjinBMT(7, false)), RAILWAY_SIGNS);
+    BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_MIDDLE = Registry.registerBlock("railway_sign_tianjin_bmt_middle", () -> new Block(new BlockRailwaySignTianjinBMT(0, false)));
 
     static void registerBlocks() {
         // Calling this class to initialize constants

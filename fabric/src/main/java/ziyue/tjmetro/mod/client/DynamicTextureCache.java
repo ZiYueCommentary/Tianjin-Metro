@@ -91,12 +91,12 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_exit_sign_letter_%s_%s", exitLetter, exitNumber), () -> RouteMapGenerator.generateExitSignLetter(exitLetter, exitNumber, backgroundColor), DefaultRenderingColor.TRANSPARENT);
     }
 
-    public DynamicResource getExitSignLetterTianjin(String exitLetter, String exitNumber, int backgroundColor, boolean forceMTRFont) {
-        return getResource(String.format("tjmetro_exit_sign_letter_tianjin_%s_%s_%s_%s", exitLetter, exitNumber, backgroundColor, forceMTRFont), () -> RouteMapGenerator.generateExitSignLetterTianjin(exitLetter, exitNumber, backgroundColor, forceMTRFont), DefaultRenderingColor.TRANSPARENT);
+    public DynamicResource getExitSignLetterTianjin(String exitLetter, String exitNumber, int backgroundColor, int textColor, boolean forceMTRFont) {
+        return getResource(String.format("tjmetro_exit_sign_letter_tianjin_%s_%s_%s_%s_%s", exitLetter, exitNumber, backgroundColor, textColor, forceMTRFont), () -> RouteMapGenerator.generateExitSignLetterTianjin(exitLetter, exitNumber, backgroundColor, textColor, forceMTRFont), DefaultRenderingColor.TRANSPARENT);
     }
 
-    public DynamicResource getBoundFor(long platformId, IGui.HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, boolean forceMTRFont) {
-        return getResource(String.format("tjmetro_bound_for_%s_%s_%s_%s_%s_%s", platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, forceMTRFont), () -> RouteMapGenerator.generateBoundFor(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, forceMTRFont), DefaultRenderingColor.TRANSPARENT);
+    public DynamicResource getBoundFor(long platformId, IGui.HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, int textColor, boolean forceMTRFont) {
+        return getResource(String.format("tjmetro_bound_for_%s_%s_%s_%s_%s_%s_%s", platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont), () -> RouteMapGenerator.generateBoundFor(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont), DefaultRenderingColor.TRANSPARENT);
     }
 
     public DynamicResource getSignText(String string, IGui.HorizontalAlignment horizontalAlignment, float paddingScale, int backgroundColor, int textColor) {

@@ -11,6 +11,7 @@
     "block.tjmetro.station_name_sign_1": "Station Name Sign",
     "block.tjmetro.station_name_sign_2": "Station Name Sign",
     "block.tjmetro.railway_sign_tianjin": "Railway Sign (Tianjin)",
+    "block.tjmetro.railway_sign_tianjin_bmt": "Railway Sign (Tianjin, Line 9)",
     "block.tjmetro.railway_sign_tianjin_double": "Railway Sign (Tianjin, Double)",
     "block.tjmetro.railway_sign_tianjin_pole": "Railway Sign Pole (Tianjin)",
     "block.tjmetro.railway_sign_wall": "Railway Sign (Wall)",
@@ -46,6 +47,7 @@
     "block.tjmetro.station_name_entrance_tianjin_pinyin": "Station Name (Entrance, Tianjin, Pinyin)",
     "block.tjmetro.station_name_entrance_tianjin_bmt": "Station Name (Entrance, Tianjin, Line 9)",
     "block.tjmetro.station_name_entrance_tianjin_bmt_pinyin": "Station Name (Entrance, Tianjin, Line 9, Pinyin)",
+    "block.tjmetro.station_name_plate": "Station Name Plate (Line 9)",
 
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",

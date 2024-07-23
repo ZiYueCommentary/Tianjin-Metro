@@ -84,6 +84,10 @@ public class BlockStationNamePlate extends BlockRailwaySignBase
     }
 
     @Override
+    public void addTooltips(ItemStack stack, @org.jetbrains.annotations.Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
+    }
+
+    @Override
     protected int getMiddleLength() {
         return 2;
     }

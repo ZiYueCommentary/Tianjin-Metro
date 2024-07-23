@@ -90,9 +90,9 @@ public interface IRailwaySign extends DirectionHelper
         return stations.contains(signId);
     }
 
-    static Identifier getExitSignResource(String signId, String exitLetter, String exitNumber, int backgroundColor, boolean forceMTRFont) {
+    static Identifier getExitSignResource(String signId, String exitLetter, String exitNumber, int backgroundColor, int textColor, boolean forceMTRFont) {
         if (signId.equals(SignType.EXIT_LETTER_TEXT.signId) || signId.equals(SignType.EXIT_LETTER_TEXT_FLIPPED.signId)) {
-            return DynamicTextureCache.instance.getExitSignLetterTianjin(exitLetter, exitNumber, backgroundColor, forceMTRFont).identifier;
+            return DynamicTextureCache.instance.getExitSignLetterTianjin(exitLetter, exitNumber, backgroundColor, textColor, forceMTRFont).identifier;
         } else {
             if (forceMTRFont) {
                 return org.mtr.mod.client.DynamicTextureCache.instance.getExitSignLetter(exitLetter, exitNumber, backgroundColor).identifier;
@@ -104,7 +104,7 @@ public interface IRailwaySign extends DirectionHelper
 
     static Identifier getPlatformSignResource(String signId, long platformId, IGui.HorizontalAlignment horizontalAlignment, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor, boolean forceMTRFont) {
         if (signId.equals(SignType.BOUND_FOR_TEXT.signId) || signId.equals(SignType.BOUND_FOR_TEXT_FLIPPED.signId)) {
-            return DynamicTextureCache.instance.getBoundFor(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, forceMTRFont).identifier;
+            return DynamicTextureCache.instance.getBoundFor(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont).identifier;
         } else {
             if (forceMTRFont) {
                 return org.mtr.mod.client.DynamicTextureCache.instance.getDirectionArrow(platformId, false, false, horizontalAlignment, false, paddingScale, aspectRatio, backgroundColor, textColor, transparentColor).identifier;

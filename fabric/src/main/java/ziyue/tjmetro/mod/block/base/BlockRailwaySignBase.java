@@ -16,6 +16,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * @see org.mtr.mod.block.BlockRailwaySign
+ * @author ZiYueCommentary
+ * @since beta-1
+ */
+
 public abstract class BlockRailwaySignBase extends BlockExtension implements IBlock, DirectionHelper, BlockWithEntity
 {
     public final int length;
