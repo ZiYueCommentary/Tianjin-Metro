@@ -1,18 +1,15 @@
 package ziyue.tjmetro.mod.config;
 
-import me.shedaniel.clothconfig2.api.ConfigBuilder;
-import me.shedaniel.clothconfig2.api.ConfigCategory;
-import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
-import me.shedaniel.clothconfig2.gui.entries.TextListEntry;
-import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import org.mtr.core.tool.Utilities;
 import org.mtr.libraries.com.google.gson.JsonObject;
 import org.mtr.libraries.com.google.gson.JsonParser;
-import org.mtr.mapping.holder.*;
+import org.mtr.mapping.holder.MinecraftClient;
+import org.mtr.mapping.holder.MutableText;
+import org.mtr.mapping.holder.Screen;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.CreativeModeTabs;
 import ziyue.tjmetro.mapping.FilterBuilder;
+import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.TianjinMetro;
 
 import java.nio.file.Files;
@@ -20,7 +17,6 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Supplier;
 
 /**
@@ -45,29 +41,32 @@ public class ConfigClient
     public static final Property<Boolean> USE_TIANJIN_METRO_FONT = new Property<>("use_tianjin_metro_font", true);
 
     protected static final Path CONFIG_FILE_PATH = MinecraftClient.getInstance().getRunDirectoryMapped().toPath().resolve("config/tjmetro.json");
-    public static final List<Supplier<MutableText>> FOOTERS = Arrays.asList(
-            //() -> IGuiExtension.format(Text.translatable("footer.tjmetro.sources"), IGuiExtension.LINK_STYLE.apply(Reference.GITHUB_REPO)),
-            //() -> IGuiExtension.format(Text.translatable("footer.tjmetro.contributors"), IGuiExtension.LINK_STYLE.apply(Reference.CONTRIBUTORS)),
-            //() -> IGuiExtension.format(Text.translatable("footer.tjmetro.forum"), IGuiExtension.LINK_STYLE.apply(Reference.FORUM).withColor(TextColor.fromRgb(15946322))),
-            () -> TextHelper.translatable("footer.tjmetro.sources", "https://url.zip/cfe7ea9"),
-            () -> TextHelper.translatable("footer.tjmetro.forum", "https://url.zip/92ccb56"),
-            () -> TextHelper.translatable("footer.tjmetro.weblate", "https://url.zip/891a2ce")
+    public static final List<Footer> FOOTERS = Arrays.asList(
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.sources"), Reference.GITHUB_REPO),
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.forum"), Reference.FORUM),
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.contributors"), Reference.CONTRIBUTORS),
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.weblate"), Reference.WEBLATE)
     );
 
+    /**
+     * @deprecated Cloth Config does not support Forge 1.20.4
+     */
+    @Deprecated
     public static Screen getConfigScreen(Screen parent) {
-        ConfigBuilder builder = ConfigBuilder.create().setParentScreen(parent.data).setTitle(TextHelper.translatable("gui.tjmetro.options").data).transparentBackground();
-        ConfigEntryBuilder entryBuilder = builder.entryBuilder();
-        ConfigCategory categoryTianjinMetro = builder.getOrCreateCategory(TextHelper.translatable("config.category.tjmetro").data);
-        BooleanListEntry booleanMTRFilters = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.enable_mtr_filters").data, ENABLE_MTR_FILTERS.get()).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
-        BooleanListEntry booleanUseTianjinMetroFont = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.use_tianjin_metro_font").data, USE_TIANJIN_METRO_FONT.get()).setTooltip(TextHelper.translatable("tooltip.tjmetro.use_tianjin_metro_font").data, TextHelper.translatable("tooltip.tjmetro.experimental").formatted(TextFormatting.YELLOW).data).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
-        TextListEntry textFooter = entryBuilder.startTextDescription(FOOTERS.get(new Random().nextInt(FOOTERS.size())).get().data).build();
-        categoryTianjinMetro.addEntry(booleanMTRFilters).addEntry(booleanUseTianjinMetroFont).addEntry(textFooter);
+        //ConfigBuilder builder = ConfigBuilder.create().setParentScreen(parent.data).setTitle(TextHelper.translatable("gui.tjmetro.options").data).transparentBackground();
+        //ConfigEntryBuilder entryBuilder = builder.entryBuilder();
+        //ConfigCategory categoryTianjinMetro = builder.getOrCreateCategory(TextHelper.translatable("config.category.tjmetro").data);
+        //BooleanListEntry booleanMTRFilters = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.enable_mtr_filters").data, ENABLE_MTR_FILTERS.get()).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
+        //BooleanListEntry booleanUseTianjinMetroFont = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.use_tianjin_metro_font").data, USE_TIANJIN_METRO_FONT.get()).setTooltip(TextHelper.translatable("tooltip.tjmetro.use_tianjin_metro_font").data, TextHelper.translatable("tooltip.tjmetro.experimental").formatted(TextFormatting.YELLOW).data).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
+        //TextListEntry textFooter = entryBuilder.startTextDescription(FOOTERS.get(new Random().nextInt(FOOTERS.size())).get().data).build();
+        //categoryTianjinMetro.addEntry(booleanMTRFilters).addEntry(booleanUseTianjinMetroFont).addEntry(textFooter);
 
-        builder.setSavingRunnable(() -> {
-            ENABLE_MTR_FILTERS.set(booleanMTRFilters.getValue());
-            USE_TIANJIN_METRO_FONT.set(booleanUseTianjinMetroFont.getValue());
-        });
-        return new Screen(builder.build());
+        //builder.setSavingRunnable(() -> {
+        //    ENABLE_MTR_FILTERS.set(booleanMTRFilters.getValue());
+        //    USE_TIANJIN_METRO_FONT.set(booleanUseTianjinMetroFont.getValue());
+        //});
+        //return new Screen(builder.build());
+        throw new UnsupportedOperationException();
     }
 
     public static void refreshProperties() {
@@ -135,5 +134,9 @@ public class ConfigClient
         public T getDefault() {
             return defaultValue;
         }
+    }
+
+    public record Footer(Supplier<MutableText> footer, String link)
+    {
     }
 }

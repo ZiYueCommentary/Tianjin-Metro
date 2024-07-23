@@ -2,11 +2,13 @@ package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.holder.MinecraftClient;
 import org.mtr.mapping.holder.RenderLayer;
+import org.mtr.mapping.holder.Screen;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.render.RenderPSDAPGDoor;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mapping.FilterBuilder;
 import ziyue.tjmetro.mod.render.*;
+import ziyue.tjmetro.mod.screen.ConfigClientScreen;
 
 public final class TianjinMetroClient
 {
@@ -77,7 +79,7 @@ public final class TianjinMetroClient
         RegistryClient.REGISTRY_CLIENT.init();
 
         FilterBuilder.setReservedButton(TianjinMetro.CREATIVE_MODE_TAB, TextHelper.translatable("button.tjmetro.tianjin_metro_options"), button ->
-                MinecraftClient.getInstance().openScreen(ConfigClient.getConfigScreen(MinecraftClient.getInstance().getCurrentScreenMapped())));
+                MinecraftClient.getInstance().openScreen(new Screen(new ConfigClientScreen(MinecraftClient.getInstance().getCurrentScreenMapped()))));
         ConfigClient.refreshProperties();
     }
 }
