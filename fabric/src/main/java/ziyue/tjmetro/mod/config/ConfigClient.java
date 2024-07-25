@@ -17,6 +17,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -27,7 +28,7 @@ import java.util.function.Supplier;
 
 public class ConfigClient
 {
-    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<>("enable_mtr_filters", true)
+    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<Boolean>("enable_mtr_filters", true)
     {
         @Override
         public void set(Boolean value) {
@@ -136,7 +137,22 @@ public class ConfigClient
         }
     }
 
-    public record Footer(Supplier<MutableText> footer, String link)
+    public static final class Footer
     {
+        private final Supplier<MutableText> footer;
+        private final String link;
+
+        public Footer(Supplier<MutableText> footer, String link) {
+            this.footer = footer;
+            this.link = link;
+        }
+
+        public Supplier<MutableText> footer() {
+            return footer;
+        }
+
+        public String link() {
+            return link;
+        }
     }
 }

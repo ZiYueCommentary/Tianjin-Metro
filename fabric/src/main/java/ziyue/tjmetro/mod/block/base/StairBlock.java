@@ -1,5 +1,7 @@
 package ziyue.tjmetro.mod.block.base;
 
+import org.mtr.mapping.holder.Block;
+import org.mtr.mapping.holder.BlockState;
 import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.StairsBlockExtension;
 import org.mtr.mapping.registry.BlockRegistryObject;
@@ -14,7 +16,7 @@ import org.mtr.mapping.registry.BlockRegistryObject;
 
 public class StairBlock extends StairsBlockExtension
 {
-    public StairBlock(BlockRegistryObject block) {
-        super(block.get().getDefaultState(), BlockHelper.createBlockSettings(false));
+    public StairBlock(Block block) {
+        super(block.getDefaultState(), BlockHelper.createBlockSettings(false));
     }
 }

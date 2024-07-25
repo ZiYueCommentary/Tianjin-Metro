@@ -74,18 +74,18 @@ public class BlockMetalDetectionDoor extends BlockExtension implements Direction
     @Override
     public void onBreak2(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         switch (IBlock.getStatePropertySafe(state, THIRD)) {
-            case UPPER -> {
+            case UPPER:
                 IBlockExtension.breakBlock(world, pos.down(1), BlockList.METAL_DETECTION_DOOR.get());
                 IBlockExtension.breakBlock(world, pos.down(2), BlockList.METAL_DETECTION_DOOR.get());
-            }
-            case MIDDLE -> {
+                break;
+            case MIDDLE:
                 IBlockExtension.breakBlock(world, pos.up(1), BlockList.METAL_DETECTION_DOOR.get());
                 IBlockExtension.breakBlock(world, pos.down(1), BlockList.METAL_DETECTION_DOOR.get());
-            }
-            case LOWER -> {
+                break;
+            case LOWER:
                 IBlockExtension.breakBlock(world, pos.up(1), BlockList.METAL_DETECTION_DOOR.get());
                 IBlockExtension.breakBlock(world, pos.up(2), BlockList.METAL_DETECTION_DOOR.get());
-            }
+                break;
         }
         super.onBreak2(world, pos, state, player);
     }

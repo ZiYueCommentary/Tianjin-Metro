@@ -54,10 +54,18 @@ public class RenderStationNameEntranceTianjin<T extends BlockStationNameEntrance
         final BlockStationNameEntranceTianjin block = (BlockStationNameEntranceTianjin) state.getBlock().data;
         final DynamicTextureCache.DynamicResource resource;
         if (station == null) {
-            resource = DynamicTextureCache.instance.getStationNameEntrance(-1, -1, switch (propagateProperty) {
-                case 0, 1, 4, 5 -> propagateProperty + 2;
-                default -> propagateProperty;
-            }, IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, TextHelper.translatable("gui.mtr.untitled").getString()), block.isBMT, totalLength / logoSize);
+            final int style;
+            switch (propagateProperty) {
+                case 0:
+                case 1:
+                case 4:
+                case 5:
+                    style = propagateProperty + 2;
+                    break;
+                default:
+                    style = propagateProperty;
+            }
+            resource = DynamicTextureCache.instance.getStationNameEntrance(-1, -1, style, IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, TextHelper.translatable("gui.mtr.untitled").getString()), block.isBMT, totalLength / logoSize);
         } else {
             resource = DynamicTextureCache.instance.getStationNameEntrance(station.getId(), entity.getSelectedId(), propagateProperty, IGui.insertTranslation("gui.mtr.station_cjk", block.pinyin ? "gui.tjmetro.station_pinyin" : "gui.mtr.station", 1, station.getName()), block.isBMT, totalLength / logoSize);
         }

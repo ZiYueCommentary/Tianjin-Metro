@@ -66,7 +66,8 @@ public final class PacketUpdateRailwaySignDoubleConfig extends PacketHandler
     public void runServer(MinecraftServer minecraftServer, ServerPlayerEntity serverPlayerEntity) {
         final BlockEntity entity = serverPlayerEntity.getEntityWorld().getBlockEntity(blockPos);
         if (entity != null) {
-            if (entity.data instanceof BlockRailwaySignWallDouble.BlockEntity entity1) {
+            if (entity.data instanceof BlockRailwaySignWallDouble.BlockEntity) {
+                final BlockRailwaySignWallDouble.BlockEntity entity1 = (BlockRailwaySignWallDouble.BlockEntity) entity.data;
                 entity1.setData(selectedIds, signIds);
             }
         }

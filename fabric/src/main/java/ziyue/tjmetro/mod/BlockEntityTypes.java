@@ -2,9 +2,6 @@ package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.registry.BlockEntityTypeRegistryObject;
 import ziyue.tjmetro.mod.block.*;
-import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
-import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
-import ziyue.tjmetro.mod.block.base.BlockStationNameSignBase;
 
 public interface BlockEntityTypes
 {

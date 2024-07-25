@@ -25,17 +25,19 @@ public final class ClientPacketHelper
 {
     public static void openBlockEntityScreen(BlockPos blockPos) {
         getBlockEntity(blockPos, blockEntity -> {
-            if (blockEntity.data instanceof BlockRoadblockSign.BlockEntity entity) {
+            if (blockEntity.data instanceof BlockRoadblockSign.BlockEntity) {
+                final BlockRoadblockSign.BlockEntity entity = (BlockRoadblockSign.BlockEntity) blockEntity.data;
                 openScreen(new RoadblockContentScreen(blockPos, entity.content), screen -> screen instanceof RoadblockContentScreen);
-            } else if (blockEntity.data instanceof BlockCustomColorBase.BlockEntityBase entity) {
+            } else if (blockEntity.data instanceof BlockCustomColorBase.BlockEntityBase) {
+                final BlockCustomColorBase.BlockEntityBase entity = (BlockCustomColorBase.BlockEntityBase) blockEntity.data;
                 openScreen(new ColorPickerScreen(blockPos, entity.color), screen -> screen instanceof ColorPickerScreen);
-            } else if (blockEntity.data instanceof BlockRailwaySignWallDouble.BlockEntity entity) {
+            } else if (blockEntity.data instanceof BlockRailwaySignWallDouble.BlockEntity) {
                 openScreen(new RailwaySignDoubleScreen(blockPos), screen -> screen instanceof RailwaySignDoubleScreen);
-            } else if (blockEntity.data instanceof BlockRailwaySignBase.BlockEntityBase entity) {
+            } else if (blockEntity.data instanceof BlockRailwaySignBase.BlockEntityBase) {
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
-            } else if (blockEntity.data instanceof BlockStationNameEntranceTianjin.BlockEntity entity) {
+            } else if (blockEntity.data instanceof BlockStationNameEntranceTianjin.BlockEntity) {
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
-            } else if (blockEntity.data instanceof BlockStationNamePlate.BlockEntity entity) {
+            } else if (blockEntity.data instanceof BlockStationNamePlate.BlockEntity) {
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
             } else {
                 TianjinMetro.LOGGER.warn("Unknown block entity data at {}: {}", blockPos.toShortString(), blockEntity.data);

@@ -205,7 +205,7 @@ public interface IRailwaySign extends DirectionHelper
         public final SignResource sign;
 
         SignType(String texture, String translation, boolean flipTexture, boolean flipCustomText, boolean hasCustomText, int backgroundColor) {
-            this.signId = (this.toString().contains("BMT") ? "\1_TJMETRO_%s" : "\0_TJMETRO_%s").formatted(this.toString()).toLowerCase(); // Make sure that signs will always order in front of custom signs, and BMT signs are after TRT ;)
+            this.signId = String.format(this.toString().contains("BMT") ? "\1_TJMETRO_%s" : "\0_TJMETRO_%s", this.toString()).toLowerCase(); // Make sure that signs will always order in front of custom signs, and BMT signs are after TRT ;)
             final JsonObject object = new JsonObject();
             object.addProperty("id", this.signId);
             object.addProperty("textureResource", Reference.MOD_ID + ":textures/sign/" + texture + ".png");

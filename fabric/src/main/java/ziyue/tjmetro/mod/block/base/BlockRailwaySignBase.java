@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * @see org.mtr.mod.block.BlockRailwaySign
  * @author ZiYueCommentary
+ * @see org.mtr.mod.block.BlockRailwaySign
  * @since beta-1
  */
 
@@ -93,12 +93,16 @@ public abstract class BlockRailwaySignBase extends BlockExtension implements IBl
     }
 
     public int getXStart() {
-        return switch (length % 4) {
-            default -> isOdd ? 8 : 16;
-            case 1 -> isOdd ? 4 : 12;
-            case 2 -> isOdd ? 16 : 8;
-            case 3 -> isOdd ? 12 : 4;
-        };
+        switch (length % 4) {
+            default:
+                return isOdd ? 8 : 16;
+            case 1:
+                return isOdd ? 4 : 12;
+            case 2:
+                return isOdd ? 16 : 8;
+            case 3:
+                return isOdd ? 12 : 4;
+        }
     }
 
     protected int getMiddleLength() {

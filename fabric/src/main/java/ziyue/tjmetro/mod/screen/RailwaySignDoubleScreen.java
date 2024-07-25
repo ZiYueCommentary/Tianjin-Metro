@@ -96,7 +96,8 @@ public class RailwaySignDoubleScreen extends ScreenExtension implements IGui
 
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(signPos);
-            if (entity != null && entity.data instanceof BlockRailwaySignWallDouble.BlockEntity entity1) {
+            if (entity != null && entity.data instanceof BlockRailwaySignWallDouble.BlockEntity) {
+                final BlockRailwaySignWallDouble.BlockEntity entity1 = (BlockRailwaySignWallDouble.BlockEntity) entity.data;
                 signIds = entity1.getSignIds();
                 selectedIds = entity1.getSelectedIds();
                 isRailwaySign = true;
@@ -108,7 +109,8 @@ public class RailwaySignDoubleScreen extends ScreenExtension implements IGui
                 isRailwaySign = false;
             }
             final Block block = world.getBlockState(signPos).getBlock();
-            if (block.data instanceof BlockRailwaySignBase block1) {
+            if (block.data instanceof BlockRailwaySignBase) {
+                final BlockRailwaySignBase block1 = (BlockRailwaySignBase) block.data;
                 length = block1.length;
             } else {
                 length = 0;
@@ -132,10 +134,10 @@ public class RailwaySignDoubleScreen extends ScreenExtension implements IGui
         }
 
         buttonsSelection = new ButtonWidgetExtension[allSignIds.size()];
-            for (int i = 0; i < allSignIds.size(); i++) {
-                final int index = i;
-                buttonsSelection[i] = new ButtonWidgetExtension(0, 0, 0, SIGN_BUTTON_SIZE, button -> setNewSignId(allSignIds.get(index)));
-            }
+        for (int i = 0; i < allSignIds.size(); i++) {
+            final int index = i;
+            buttonsSelection[i] = new ButtonWidgetExtension(0, 0, 0, SIGN_BUTTON_SIZE, button -> setNewSignId(allSignIds.get(index)));
+        }
 
 
         buttonClear = new ButtonWidgetExtension(0, 0, 0, SQUARE_SIZE, TextHelper.translatable("gui.mtr.reset_sign"), button -> setNewSignId(null));

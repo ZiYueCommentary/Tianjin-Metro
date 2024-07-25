@@ -26,6 +26,7 @@ import java.awt.image.DataBufferByte;
 import java.text.AttributedString;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 import java.util.function.Supplier;
 
@@ -119,7 +120,7 @@ public class DynamicTextureCache
         if (forceMTRFont) {
             final int[] dimensions = new int[2];
             final byte[] pixels = org.mtr.mod.client.DynamicTextureCache.instance.getTextPixels(text, dimensions, maxWidth, maxHeight, fontSizeCjk, fontSize, padding, horizontalAlignment);
-            return new DynamicTextureCache.Text(pixels, dimensions[0], dimensions[1], dimensions[0]);
+            return new Text(pixels, dimensions[0], dimensions[1], dimensions[0]);
         }
 
         if (maxWidth <= 0) return new Text(new byte[0], 0, 0, 0);
@@ -290,14 +291,42 @@ public class DynamicTextureCache
     /**
      * A text that contains its pixels, width, and height.
      *
-     * @param width       the real width of the text
-     * @param renderWidth the width when rendering the text, do not use
      * @author ZiYueCommentary
      * @since beta-1
      */
-    public record Text(byte[] pixels, int width, int height, int renderWidth)
+    public static final class Text
     {
+        private final byte[] pixels;
+        private final int width;
+        private final int height;
+        private final int renderWidth;
 
+        /**
+         * @param width       the real width of the text
+         * @param renderWidth the width when rendering the text, do not use
+         */
+        public Text(byte[] pixels, int width, int height, int renderWidth) {
+            this.pixels = pixels;
+            this.width = width;
+            this.height = height;
+            this.renderWidth = renderWidth;
+        }
+
+        public byte[] pixels() {
+            return pixels;
+        }
+
+        public int width() {
+            return width;
+        }
+
+        public int height() {
+            return height;
+        }
+
+        public int renderWidth() {
+            return renderWidth;
+        }
     }
 
     /**

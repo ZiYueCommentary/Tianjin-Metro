@@ -32,8 +32,8 @@ public final class PacketUpdateCustomColor extends PacketHandler
     @Override
     public void runServer(MinecraftServer minecraftServer, ServerPlayerEntity serverPlayerEntity) {
         final BlockEntity entity = serverPlayerEntity.getEntityWorld().getBlockEntity(blockPos);
-        if ((entity != null) && (entity.data instanceof BlockCustomColorBase.BlockEntityBase entity1)) {
-            entity1.setData(color);
+        if ((entity != null) && (entity.data instanceof BlockCustomColorBase.BlockEntityBase)) {
+            ((BlockCustomColorBase.BlockEntityBase) entity.data).setData(color);
         }
     }
 }

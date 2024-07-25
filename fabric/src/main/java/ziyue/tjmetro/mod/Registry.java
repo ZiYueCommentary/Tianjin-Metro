@@ -7,12 +7,13 @@ import org.mtr.mapping.mapper.BlockItemExtension;
 import org.mtr.mapping.mapper.EntityExtension;
 import org.mtr.mapping.registry.*;
 import org.mtr.mapping.tool.PacketBufferReceiver;
-import org.mtr.mapping.tool.RegistryObject;
 import ziyue.filters.Filter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Register for some methods that have different implement ways.

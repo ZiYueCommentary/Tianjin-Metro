@@ -43,7 +43,7 @@ public class ConfigClientScreen extends ScreenExtension
     @Override
     protected void init2() {
         super.init2();
-        this.addChild(new ClickableWidget(buttonEnableMTRFilters));
+        //this.addChild(new ClickableWidget(buttonEnableMTRFilters));
         this.addChild(new ClickableWidget(buttonTianjinMetroFont));
         this.addChild(new ClickableWidget(buttonFooterLink));
         this.addChild(new ClickableWidget(buttonDone));

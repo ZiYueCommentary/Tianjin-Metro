@@ -14,7 +14,7 @@ import ziyue.tjmetro.mod.block.base.IRailwaySign;
 public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
 {
     public BlockRailwaySignTianjinBMT(int length, boolean isOdd) {
-        super(BlockHelper.createBlockSettings(false, state -> 15), length, isOdd);
+        super(BlockHelper.createBlockSettings(false, state -> 0),length, isOdd);
     }
 
     @NotNull
@@ -69,21 +69,22 @@ public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
         }
 
         public static BlockEntityType<?> getType(int length, boolean isOdd) {
-            return switch (length) {
-                case 2 ->
-                        isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_2_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_2_EVEN.get();
-                case 3 ->
-                        isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_3_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_3_EVEN.get();
-                case 4 ->
-                        isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_4_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_4_EVEN.get();
-                case 5 ->
-                        isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_5_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_5_EVEN.get();
-                case 6 ->
-                        isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_6_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_6_EVEN.get();
-                case 7 ->
-                        isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_7_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_7_EVEN.get();
-                default -> null;
-            };
+            switch (length) {
+                case 2:
+                    return isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_2_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_2_EVEN.get();
+                case 3:
+                    return isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_3_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_3_EVEN.get();
+                case 4:
+                    return isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_4_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_4_EVEN.get();
+                case 5:
+                    return isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_5_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_5_EVEN.get();
+                case 6:
+                    return isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_6_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_6_EVEN.get();
+                case 7:
+                    return isOdd ? BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_7_ODD.get() : BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_7_EVEN.get();
+                default:
+                    return null;
+            }
         }
     }
 }

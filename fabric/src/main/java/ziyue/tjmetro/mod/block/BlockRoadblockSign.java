@@ -63,7 +63,8 @@ public class BlockRoadblockSign extends BlockRoadblock implements BlockWithEntit
             this.content = content;
             BlockPos pos = this.getPos2().offset(IBlock.getStatePropertySafe(this.getCachedState2(), FACING).rotateYClockwise());
             org.mtr.mapping.holder.BlockEntity blockEntity = this.getWorld2().getBlockEntity(pos);
-            if (blockEntity.data instanceof BlockEntity entity) {
+            if (blockEntity.data instanceof BlockEntity) {
+                final BlockEntity entity = (BlockEntity) blockEntity.data;
                 entity.content = this.content;
                 entity.markDirty2();
             } else {

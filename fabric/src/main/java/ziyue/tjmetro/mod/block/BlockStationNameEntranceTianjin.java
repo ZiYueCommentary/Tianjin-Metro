@@ -121,7 +121,8 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
             Consumer<Direction> setStyle = direction -> {
                 BlockPos offsetPos = getPos2();
                 org.mtr.mapping.holder.BlockEntity blockEntity = getWorld2().getBlockEntity(offsetPos);
-                while ((blockEntity != null) && (blockEntity.data instanceof BlockEntity entity)) {
+                while ((blockEntity != null) && (blockEntity.data instanceof BlockEntity)) {
+                    final BlockEntity entity = (BlockEntity) blockEntity.data;
                     entity.selectedId = selectedId;
                     entity.markDirty2();
                     offsetPos = offsetPos.offset(direction);

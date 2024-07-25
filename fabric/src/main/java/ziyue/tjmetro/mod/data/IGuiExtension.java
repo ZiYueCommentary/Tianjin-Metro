@@ -30,8 +30,11 @@ public interface IGuiExtension
             noCommentString.delete(commentIndex, noCommentString.length());
         if (separatorIndex != -1) {
             switch (Config.getClient().getLanguageDisplay()) {
-                case CJK_ONLY -> noCommentString.delete(separatorIndex, noCommentString.length());
-                case NON_CJK_ONLY -> noCommentString.delete(0, separatorIndex);
+                case CJK_ONLY:
+                    noCommentString.delete(separatorIndex, noCommentString.length());
+                    break;
+                case NON_CJK_ONLY:
+                    noCommentString.delete(0, separatorIndex);
             }
         }
         return noCommentString.toString();
@@ -48,11 +51,14 @@ public interface IGuiExtension
      * @since beta-1
      */
     static String mergeTranslation(String keyCJK, String key) {
-        return switch (Config.getClient().getLanguageDisplay()) {
-            case NORMAL -> TextHelper.translatable(keyCJK).getString() + "|" + TextHelper.translatable(key).getString();
-            case CJK_ONLY -> TextHelper.translatable(keyCJK).getString();
-            case NON_CJK_ONLY -> TextHelper.translatable(key).getString();
-        };
+        switch (Config.getClient().getLanguageDisplay()) {
+            default:
+                return TextHelper.translatable(keyCJK).getString() + "|" + TextHelper.translatable(key).getString();
+            case CJK_ONLY:
+                return TextHelper.translatable(keyCJK).getString();
+            case NON_CJK_ONLY:
+                return TextHelper.translatable(key).getString();
+        }
     }
 
     /**

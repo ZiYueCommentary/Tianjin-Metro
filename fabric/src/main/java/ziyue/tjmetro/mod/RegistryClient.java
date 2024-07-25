@@ -1,6 +1,5 @@
 package ziyue.tjmetro.mod;
 
-import org.mtr.mapping.holder.BlockColorProvider;
 import org.mtr.mapping.holder.Identifier;
 import org.mtr.mapping.holder.RenderLayer;
 import org.mtr.mapping.mapper.BlockEntityExtension;
@@ -11,9 +10,7 @@ import org.mtr.mapping.registry.BlockEntityTypeRegistryObject;
 import org.mtr.mapping.registry.BlockRegistryObject;
 import org.mtr.mapping.registry.EntityTypeRegistryObject;
 import org.mtr.mapping.registry.PacketHandler;
-import org.mtr.mapping.tool.PacketBufferReceiver;
 import org.mtr.mod.InitClient;
-import ziyue.tjmetro.mod.block.BlockCustomColorConcrete;
 import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 
 import java.util.function.Function;
@@ -34,7 +31,8 @@ public final class RegistryClient
         for (BlockRegistryObject block : blocks) {
             REGISTRY_CLIENT.registerBlockColors((state, world, pos, tintIndex) -> {
                 try {
-                    if (world.getBlockEntity(pos).data instanceof BlockCustomColorBase.BlockEntityBase entity) {
+                    if (world.getBlockEntity(pos).data instanceof BlockCustomColorBase.BlockEntityBase) {
+                        final BlockCustomColorBase.BlockEntityBase entity = (BlockCustomColorBase.BlockEntityBase) world.getBlockEntity(pos).data;
                         if (entity.color != -1) return entity.color;
                     }
                 } catch (Exception ignored) {

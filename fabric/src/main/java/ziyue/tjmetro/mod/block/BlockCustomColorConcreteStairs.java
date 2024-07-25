@@ -22,7 +22,7 @@ import java.util.List;
 public class BlockCustomColorConcreteStairs extends StairBlock implements BlockWithEntity
 {
     public BlockCustomColorConcreteStairs() {
-        super(BlockList.CUSTOM_COLOR_CONCRETE);
+        super(Blocks.getWhiteConcreteMapped());
     }
 
     @Override

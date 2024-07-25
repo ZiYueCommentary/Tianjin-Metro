@@ -94,7 +94,8 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
 
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(signPos);
-            if (entity != null && entity.data instanceof BlockRailwaySignBase.BlockEntityBase entity1) {
+            if (entity != null && entity.data instanceof BlockRailwaySignBase.BlockEntityBase) {
+                final BlockRailwaySignBase.BlockEntityBase entity1 = (BlockRailwaySignBase.BlockEntityBase) entity.data;
                 signIds = entity1.getSignIds();
                 selectedIds = entity1.getSelectedIds();
                 type = Type.RAILWAY_SIGN;
@@ -102,10 +103,12 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
                 signIds = new String[0];
                 selectedIds = new LongAVLTreeSet();
                 if (entity != null) {
-                    if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity sign) {
+                    if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity) {
+                        final BlockStationNameEntranceTianjin.BlockEntity sign = (BlockStationNameEntranceTianjin.BlockEntity) entity.data;
                         selectedIds.add(sign.getSelectedId());
                         type = Type.STATION_NAME_ENTRANCE;
-                    } else if (entity.data instanceof BlockStationNamePlate.BlockEntity plate) {
+                    } else if (entity.data instanceof BlockStationNamePlate.BlockEntity) {
+                        final BlockStationNamePlate.BlockEntity plate = (BlockStationNamePlate.BlockEntity) entity.data;
                         selectedIds.add(plate.getPlatformId());
                         type = Type.STATION_NAME_PLATE;
                     } else {
@@ -116,7 +119,8 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
                 }
             }
             final Block block = world.getBlockState(signPos).getBlock();
-            if (block.data instanceof BlockRailwaySignBase block1) {
+            if (block.data instanceof BlockRailwaySignBase) {
+                final BlockRailwaySignBase block1 = (BlockRailwaySignBase) block.data;
                 length = block1.length;
             } else {
                 length = 0;
@@ -178,15 +182,20 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
         addChild(new ClickableWidget(buttonNextPage));
 
         if (type != Type.RAILWAY_SIGN) {
-            final DashboardListSelectorScreen screen = switch (type) {
-                case STATION_NAME_ENTRANCE ->
-                        new DashboardListSelectorScreen(this::onClose2, exitsForList, selectedIds, true, false);
-                case STATION_NAME_PLATE ->
-                        new DashboardListSelectorScreen(this::onClose2, platformsForList, selectedIds, true, false);
-                case STATION_NAVIGATOR ->
-                        new DashboardListSelectorScreen(this::onClose2, new ObjectImmutableList<>(routesForList), selectedIds, false, false);
-                default -> throw new IllegalStateException("Unknown enum type: " + type);
-            };
+            final DashboardListSelectorScreen screen;
+            switch (type) {
+                case STATION_NAME_ENTRANCE:
+                    screen = new DashboardListSelectorScreen(this::onClose2, exitsForList, selectedIds, true, false);
+                    break;
+                case STATION_NAME_PLATE:
+                    screen = new DashboardListSelectorScreen(this::onClose2, platformsForList, selectedIds, true, false);
+                    break;
+                case STATION_NAVIGATOR:
+                    screen = new DashboardListSelectorScreen(this::onClose2, new ObjectImmutableList<>(routesForList), selectedIds, false, false);
+                    break;
+                default:
+                    throw new IllegalStateException("Unknown enum type: " + type);
+            }
             MinecraftClient.getInstance().openScreen(new Screen(screen));
         }
     }

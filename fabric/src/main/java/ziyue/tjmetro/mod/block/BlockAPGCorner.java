@@ -60,11 +60,13 @@ public class BlockAPGCorner extends BlockExtension implements DirectionHelper
     @Nonnull
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (IBlock.getStatePropertySafe(state, HALF)) { // What am I doing?
-            case UPPER ->
-                    IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 9, 4, IBlock.getStatePropertySafe(state, FACING));
-            case LOWER ->
-                    IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 16, 4, IBlock.getStatePropertySafe(state, FACING));
-        };
+        switch (IBlock.getStatePropertySafe(state, HALF)) { // What am I doing?
+            case UPPER:
+                return IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 9, 4, IBlock.getStatePropertySafe(state, FACING));
+            case LOWER:
+                return IBlock.getVoxelShapeByDirection(0, 0, 0, 4, 16, 4, IBlock.getStatePropertySafe(state, FACING));
+            default:
+                return VoxelShapes.fullCube();
+        }
     }
 }

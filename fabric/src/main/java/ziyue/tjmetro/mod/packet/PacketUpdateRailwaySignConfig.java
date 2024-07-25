@@ -55,12 +55,15 @@ public final class PacketUpdateRailwaySignConfig extends PacketHandler
     public void runServer(MinecraftServer minecraftServer, ServerPlayerEntity serverPlayerEntity) {
         final BlockEntity entity = serverPlayerEntity.getEntityWorld().getBlockEntity(blockPos);
         if (entity != null) {
-            if (entity.data instanceof BlockRailwaySignBase.BlockEntityBase entity1) {
+            if (entity.data instanceof BlockRailwaySignBase.BlockEntityBase) {
+                final BlockRailwaySignBase.BlockEntityBase entity1 = (BlockRailwaySignBase.BlockEntityBase) entity.data;
                 entity1.setData(selectedIds, signIds);
-            } else if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity entity1) {
+            } else if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity) {
+                final BlockStationNameEntranceTianjin.BlockEntity entity1 = (BlockStationNameEntranceTianjin.BlockEntity) entity.data;
                 final long platformId = selectedIds.isEmpty() ? -1 : (long) selectedIds.toArray()[0];
                 entity1.setData(platformId);
-            } else if (entity.data instanceof BlockStationNamePlate.BlockEntity entity1) {
+            } else if (entity.data instanceof BlockStationNamePlate.BlockEntity) {
+                final BlockStationNamePlate.BlockEntity entity1 = (BlockStationNamePlate.BlockEntity) entity.data;
                 final long platformId = selectedIds.isEmpty() ? 0 : (long) selectedIds.toArray()[0];
                 entity1.setPlatformId(platformId);
             }

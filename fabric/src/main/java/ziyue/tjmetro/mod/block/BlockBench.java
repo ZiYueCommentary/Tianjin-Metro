@@ -61,12 +61,16 @@ public class BlockBench extends BlockExtension implements DirectionHelper, IBloc
         final VoxelShape top = IBlock.getVoxelShapeByDirection(0.0, 8.0, 1.0, 16.0, 9.5, 15.0, direction);
         final VoxelShape left = IBlock.getVoxelShapeByDirection(12.0, 0.0, 2.0, 14.0, 8.0, 14.0, direction);
         final VoxelShape right = IBlock.getVoxelShapeByDirection(2.0, 0.0, 2.0, 4.0, 8.0, 14.0, direction);
-        return switch (IBlock.getStatePropertySafe(state, SIDE_EXTENDED)) {
-            case SINGLE -> VoxelShapes.union(VoxelShapes.union(top, left), right);
-            case LEFT -> VoxelShapes.union(top, left);
-            case RIGHT -> VoxelShapes.union(top, right);
-            default -> top;
-        };
+        switch (IBlock.getStatePropertySafe(state, SIDE_EXTENDED)) {
+            case SINGLE:
+                return VoxelShapes.union(VoxelShapes.union(top, left), right);
+            case LEFT:
+                return VoxelShapes.union(top, left);
+            case RIGHT:
+                return VoxelShapes.union(top, right);
+            default:
+                return top;
+        }
     }
 
     @Override

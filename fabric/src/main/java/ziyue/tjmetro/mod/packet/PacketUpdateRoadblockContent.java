@@ -39,7 +39,8 @@ public final class PacketUpdateRoadblockContent extends PacketHandler
     @Override
     public void runServer(MinecraftServer minecraftServer, ServerPlayerEntity serverPlayerEntity) {
         final BlockEntity entity = serverPlayerEntity.getEntityWorld().getBlockEntity(blockPos);
-        if ((entity != null) && (entity.data instanceof BlockRoadblockSign.BlockEntity entity1)) {
+        if ((entity != null) && (entity.data instanceof BlockRoadblockSign.BlockEntity)) {
+            final BlockRoadblockSign.BlockEntity entity1 = (BlockRoadblockSign.BlockEntity) entity.data;
             entity1.setData(content);
         }
     }

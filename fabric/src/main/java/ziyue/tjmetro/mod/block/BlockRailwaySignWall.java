@@ -115,13 +115,18 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
         }
 
         public static BlockEntityType<?> getType(int length) {
-            return switch (length) {
-                case 4 -> BlockEntityTypes.RAILWAY_SIGN_WALL_4.get();
-                case 6 -> BlockEntityTypes.RAILWAY_SIGN_WALL_6.get();
-                case 8 -> BlockEntityTypes.RAILWAY_SIGN_WALL_8.get();
-                case 10 -> BlockEntityTypes.RAILWAY_SIGN_WALL_10.get();
-                default -> null;
-            };
+            switch (length) {
+                case 4:
+                    return BlockEntityTypes.RAILWAY_SIGN_WALL_4.get();
+                case 6:
+                    return BlockEntityTypes.RAILWAY_SIGN_WALL_6.get();
+                case 8:
+                    return BlockEntityTypes.RAILWAY_SIGN_WALL_8.get();
+                case 10:
+                    return BlockEntityTypes.RAILWAY_SIGN_WALL_10.get();
+                default:
+                    return null;
+            }
         }
     }
 }

@@ -70,11 +70,17 @@ public class RouteMapGenerator implements IGui
             try {
                 ObjectArrayList<String> destinations = new ObjectArrayList<>();
                 IntArrayList colors = getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
-                    String tempMarker = switch (simplifiedRoute.getCircularState()) {
-                        case CLOCKWISE -> TEMP_CIRCULAR_MARKER_CLOCKWISE;
-                        case ANTICLOCKWISE -> TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
-                        default -> "";
-                    };
+                    final String tempMarker;
+                    switch (simplifiedRoute.getCircularState()) {
+                        case CLOCKWISE:
+                            tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                            break;
+                        case ANTICLOCKWISE:
+                            tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                            break;
+                        default:
+                            tempMarker = "";
+                    }
 
                     destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
                 });
@@ -188,11 +194,17 @@ public class RouteMapGenerator implements IGui
             ObjectArrayList<String> destinations = new ObjectArrayList<>();
             ObjectArrayList<String> nextStations = new ObjectArrayList<>();
             getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
-                String tempMarker = switch (simplifiedRoute.getCircularState()) {
-                    case CLOCKWISE -> TEMP_CIRCULAR_MARKER_CLOCKWISE;
-                    case ANTICLOCKWISE -> TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
-                    default -> "";
-                };
+                final String tempMarker;
+                switch (simplifiedRoute.getCircularState()) {
+                    case CLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                        break;
+                    case ANTICLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                        break;
+                    default:
+                        tempMarker = "";
+                }
 
                 destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
                 nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
@@ -217,10 +229,15 @@ public class RouteMapGenerator implements IGui
                 final DynamicTextureCache.Text destination = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
                 drawString(nativeImage, destination, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
             } else {
-                final int arrowSizeAndPadding = switch (arrowDirection) {
-                    case 0, 3 -> -tilePadding;
-                    default -> tileSize;
-                };
+                final int arrowSizeAndPadding;
+                switch (arrowDirection) {
+                    case 0:
+                    case 3:
+                        arrowSizeAndPadding = -tilePadding;
+                        break;
+                    default:
+                        arrowSizeAndPadding = tileSize;
+                }
                 String nextStationString = IGui.mergeStations(nextStations);
                 String destinationString = IGui.mergeStations(destinations);
                 final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
@@ -510,11 +527,17 @@ public class RouteMapGenerator implements IGui
             ObjectArrayList<String> destinations = new ObjectArrayList<>();
             //final List<Pair<DynamicTextureCache.Text, Integer>> routes = new ArrayList<>();
             final IntArrayList allRoutes = getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
-                String tempMarker = switch (simplifiedRoute.getCircularState()) {
-                    case CLOCKWISE -> TEMP_CIRCULAR_MARKER_CLOCKWISE;
-                    case ANTICLOCKWISE -> TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
-                    default -> "";
-                };
+                final String tempMarker;
+                switch (simplifiedRoute.getCircularState()) {
+                    case CLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                        break;
+                    case ANTICLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                        break;
+                    default:
+                        tempMarker = "";
+                }
 
                 destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
             });
@@ -606,7 +629,10 @@ public class RouteMapGenerator implements IGui
             final AtomicInteger totalWidth = new AtomicInteger(iconOffset + iconSize + text.width());
             final List<Pair<DynamicTextureCache.Text, Integer>> routes = new ArrayList<>();
             switch (style) {
-                case 0, 1, 4, 5 -> {
+                case 0:
+                case 1:
+                case 4:
+                case 5: {
                     final Station station = MinecraftClientData.getInstance().stationIdMap.get(stationId);
                     final ObjectArraySet<Station> connectingStationsIncludingThisOne = new ObjectArraySet<>(station.connectedStations);
                     connectingStationsIncludingThisOne.add(station);
@@ -667,11 +693,17 @@ public class RouteMapGenerator implements IGui
             ObjectArrayList<String> destinations = new ObjectArrayList<>();
             ObjectArrayList<String> nextStations = new ObjectArrayList<>();
             getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
-                String tempMarker = switch (simplifiedRoute.getCircularState()) {
-                    case CLOCKWISE -> TEMP_CIRCULAR_MARKER_CLOCKWISE;
-                    case ANTICLOCKWISE -> TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
-                    default -> "";
-                };
+                final String tempMarker;
+                switch (simplifiedRoute.getCircularState()) {
+                    case CLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                        break;
+                    case ANTICLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                        break;
+                    default:
+                        tempMarker = "";
+                }
 
                 destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
                 nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
@@ -699,10 +731,15 @@ public class RouteMapGenerator implements IGui
                 drawString(nativeImage, stationName, imageWidth / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
                 drawString(nativeImage, destination, imageWidth - tilePadding, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
             } else {
-                final int arrowSizeAndPadding = switch (arrowDirection) {
-                    case 0, 3 -> -tilePadding;
-                    default -> tileSize;
-                };
+                final int arrowSizeAndPadding;
+                switch (arrowDirection) {
+                    case 0:
+                    case 3:
+                        arrowSizeAndPadding = -tilePadding;
+                        break;
+                    default:
+                        arrowSizeAndPadding = tileSize;
+                }
                 String nextStationString = IGui.mergeStations(nextStations);
                 String destinationString = IGui.mergeStations(destinations);
                 final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
@@ -1027,12 +1064,60 @@ public class RouteMapGenerator implements IGui
         }
     }
 
-    protected record StationPosition(float x, float y, boolean isCommon)
+    protected static final class StationPosition
     {
+        private final float x;
+        private final float y;
+        private final boolean isCommon;
+
+        public StationPosition(float x, float y, boolean isCommon) {
+            this.x = x;
+            this.y = y;
+            this.isCommon = isCommon;
+        }
+
+        public float x() {
+            return x;
+        }
+
+        public float y() {
+            return y;
+        }
+
+        public boolean isCommon() {
+            return isCommon;
+        }
     }
 
-    protected record StationPositionGrouped(StationPosition stationPosition, int stationOffset,
-                                            IntArrayList interchangeColors, ObjectArrayList<String> interchangeNames)
+    protected static final class StationPositionGrouped
     {
+        private final StationPosition stationPosition;
+        private final int stationOffset;
+        private final IntArrayList interchangeColors;
+        private final ObjectArrayList<String> interchangeNames;
+
+        public StationPositionGrouped(StationPosition stationPosition, int stationOffset,
+                                       IntArrayList interchangeColors, ObjectArrayList<String> interchangeNames) {
+            this.stationPosition = stationPosition;
+            this.stationOffset = stationOffset;
+            this.interchangeColors = interchangeColors;
+            this.interchangeNames = interchangeNames;
+        }
+
+        public StationPosition stationPosition() {
+            return stationPosition;
+        }
+
+        public int stationOffset() {
+            return stationOffset;
+        }
+
+        public IntArrayList interchangeColors() {
+            return interchangeColors;
+        }
+
+        public ObjectArrayList<String> interchangeNames() {
+            return interchangeNames;
+        }
     }
 }

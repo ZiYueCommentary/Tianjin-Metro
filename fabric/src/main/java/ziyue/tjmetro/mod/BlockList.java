@@ -1,15 +1,12 @@
 package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.holder.Block;
-import org.mtr.mapping.holder.SlabBlock;
+import org.mtr.mapping.holder.Blocks;
 import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.SlabBlockExtension;
-import org.mtr.mapping.mapper.StairsBlockExtension;
 import org.mtr.mapping.registry.BlockRegistryObject;
 import org.mtr.mod.block.BlockCeiling;
 import org.mtr.mod.block.BlockPlatform;
-import org.mtr.mod.block.BlockRailwaySign;
-import org.mtr.mod.block.BlockStationColor;
 import org.mtr.mod.item.ItemBlockEnchanted;
 import ziyue.tjmetro.mod.block.*;
 import ziyue.tjmetro.mod.block.base.StairBlock;
@@ -35,10 +32,10 @@ public interface BlockList
     BlockRegistryObject PLATFORM_TJ_2_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_2_indented", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), true)), BUILDING);
     BlockRegistryObject MARBLE_GRAY = Registry.registerBlockWithBlockItem("marble_gray", () -> new Block(BlockHelper.createBlockSettings(false)), BUILDING);
     BlockRegistryObject MARBLE_GRAY_SLAB = Registry.registerBlockWithBlockItem("marble_gray_slab", () -> new Block(new SlabBlockExtension(BlockHelper.createBlockSettings(false))), BUILDING);
-    BlockRegistryObject MARBLE_GRAY_STAIRS = Registry.registerBlockWithBlockItem("marble_gray_stairs", () -> new Block(new StairBlock(MARBLE_GRAY)), BUILDING);
+    BlockRegistryObject MARBLE_GRAY_STAIRS = Registry.registerBlockWithBlockItem("marble_gray_stairs", () -> new Block(new StairBlock(Blocks.getBricksMapped())), BUILDING);
     BlockRegistryObject MARBLE_YELLOW = Registry.registerBlockWithBlockItem("marble_yellow", () -> new Block(BlockHelper.createBlockSettings(false)), BUILDING);
     BlockRegistryObject MARBLE_YELLOW_SLAB = Registry.registerBlockWithBlockItem("marble_yellow_slab", () -> new Block(new SlabBlockExtension(BlockHelper.createBlockSettings(false))), BUILDING);
-    BlockRegistryObject MARBLE_YELLOW_STAIRS = Registry.registerBlockWithBlockItem("marble_yellow_stairs", () -> new Block(new StairBlock(MARBLE_YELLOW)), BUILDING);
+    BlockRegistryObject MARBLE_YELLOW_STAIRS = Registry.registerBlockWithBlockItem("marble_yellow_stairs", () -> new Block(new StairBlock(Blocks.getBricksMapped())), BUILDING);
     BlockRegistryObject TIME_DISPLAY = Registry.registerBlockWithBlockItem("time_display", () -> new Block(new BlockTimeDisplay()), DECORATION);
     BlockRegistryObject EMERGENCY_EXIT_SIGN = Registry.registerBlockWithBlockItem("emergency_exit_sign", () -> new Block(new BlockEmergencyExitSign()), DECORATION);
     BlockRegistryObject SERVICE_CORRIDOR_SIGN = Registry.registerBlockWithBlockItem("service_corridor_sign", () -> new Block(new BlockServiceCorridorSign()), DECORATION);

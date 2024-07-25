@@ -55,7 +55,8 @@ public class RenderRailwaySignTianjinBMT<T extends BlockRailwaySignBase.BlockEnt
 
         final BlockPos pos = entity.getPos2();
         final BlockState state = world.getBlockState(pos);
-        if (!(state.getBlock().data instanceof BlockRailwaySignBase block)) return;
+        if (!(state.getBlock().data instanceof BlockRailwaySignBase)) return;
+        final BlockRailwaySignBase block = (BlockRailwaySignBase) state.getBlock().data;
 
         if (entity.getSignIds().length != block.length) return;
 
@@ -75,7 +76,7 @@ public class RenderRailwaySignTianjinBMT<T extends BlockRailwaySignBase.BlockEnt
         graphicsHolder.rotateZDegrees(180);
         graphicsHolder.translate(block.getXStart() / 16F - 0.5, 0, -0.0625 - SMALL_OFFSET * 2);
 
-        MainRenderer.scheduleRender(new Identifier(Init.MOD_ID, "textures/block/white.png"), false, QueuedRenderLayer.LIGHT, (graphicsHolderNew, offset) -> {
+        MainRenderer.scheduleRender(new Identifier(Init.MOD_ID, "textures/block/white.png"), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset);
             IDrawing.drawTexture(graphicsHolderNew, 0, 0, SMALL_OFFSET, 0.5F * (signIds.length), 0.5F, SMALL_OFFSET, facing, BACKGROUND_COLOR, GraphicsHolder.getDefaultLight());
             graphicsHolderNew.pop();
@@ -95,7 +96,7 @@ public class RenderRailwaySignTianjinBMT<T extends BlockRailwaySignBase.BlockEnt
                         entity.getSelectedIds(),
                         facing,
                         BACKGROUND_COLOR,
-                        (textureId, x, y, size, flipTexture) -> MainRenderer.scheduleRender(textureId, true, QueuedRenderLayer.LIGHT_TRANSLUCENT, (graphicsHolderNew, offset) -> {
+                        (textureId, x, y, size, flipTexture) -> MainRenderer.scheduleRender(textureId, true, QueuedRenderLayer.EXTERIOR_TRANSLUCENT, (graphicsHolderNew, offset) -> {
                             storedMatrixTransformations.transform(graphicsHolderNew, offset);
                             IDrawing.drawTexture(graphicsHolderNew, x, y, size, size, flipTexture ? 1 : 0, 0, flipTexture ? 0 : 1, 1, facing, TEXT_COLOR, GraphicsHolder.getDefaultLight());
                             graphicsHolderNew.pop();
@@ -267,7 +268,7 @@ public class RenderRailwaySignTianjinBMT<T extends BlockRailwaySignBase.BlockEnt
     protected static void renderCustomText(String signText, StoredMatrixTransformations storedMatrixTransformations, Direction facing, float size, float start, boolean flipCustomText, float maxWidth, int backgroundColor) {
         final DynamicTextureCache.DynamicResource dynamicResource = DynamicTextureCache.instance.getSignText(signText, HorizontalAlignment.CENTER, (1 - BlockRailwaySign.SMALL_SIGN_PERCENTAGE) / 2, backgroundColor, TEXT_COLOR);
         final float width = Math.min(size * dynamicResource.width / dynamicResource.height, maxWidth);
-        MainRenderer.scheduleRender(dynamicResource.identifier, true, QueuedRenderLayer.LIGHT_TRANSLUCENT, (graphicsHolderNew, offset) -> {
+        MainRenderer.scheduleRender(dynamicResource.identifier, true, QueuedRenderLayer.EXTERIOR_TRANSLUCENT, (graphicsHolderNew, offset) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset);
             IDrawing.drawTexture(graphicsHolderNew, start - (flipCustomText ? width : 0), 0, 0, start + (flipCustomText ? 0 : width), size, 0, 0, 0, 1, 1, facing, -1, GraphicsHolder.getDefaultLight());
             graphicsHolderNew.pop();

@@ -31,7 +31,8 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignBase.BlockEntityBas
 
         final BlockPos pos = entity.getPos2();
         final BlockState state = world.getBlockState(pos);
-        if (!(state.getBlock().data instanceof BlockRailwaySignBase block)) return;
+        if (!(state.getBlock().data instanceof BlockRailwaySignBase)) return;
+        final BlockRailwaySignBase block = (BlockRailwaySignBase) state.getBlock().data;
 
         if (entity.getSignIds().length != block.length) return;
 

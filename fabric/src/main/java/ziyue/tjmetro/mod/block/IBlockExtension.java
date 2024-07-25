@@ -9,6 +9,7 @@ import ziyue.tjmetro.mod.ItemList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Some methods similar to methods in <b>IBlock</b>.
@@ -61,7 +62,7 @@ public interface IBlockExtension
     }
 
     static <T extends Enum<T> & StringIdentifiable> BlockState cycleBlockState(BlockState state, EnumProperty<T> property, Predicate<T> includes) {
-        return cycleBlockState(state, property, property.getValues().stream().filter(includes).toList());
+        return cycleBlockState(state, property, property.getValues().stream().filter(includes).collect(Collectors.toList()));
     }
 
     @SafeVarargs

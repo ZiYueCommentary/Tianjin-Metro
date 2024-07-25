@@ -1,5 +1,6 @@
 package ziyue.tjmetro.mod.entity;
 
+import org.mtr.mapping.holder.Entity;
 import org.mtr.mapping.holder.EntityType;
 import org.mtr.mapping.holder.World;
 import org.mtr.mapping.mapper.EntityExtension;
@@ -36,8 +37,13 @@ public class EntitySeat extends EntityExtension
 
     @Override
     public void tick2() {
-        //if (!this.hasPassenger2(new Entity(this))) {
-        //    this.kill2();
-        //}
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if (!this.hasPassenger2(new Entity(this))) {
+            this.kill2();
+        }
     }
 }
