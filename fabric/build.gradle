@@ -22,7 +22,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${buildTools.getFabricApiVersion()}"
     //modImplementation(files("E:\\Tianjin-Metro\\libs\\MTR-fabric-4.0.0-beta-8+1.16.5-server.jar"))
     modApi "com.terraformersmc:modmenu:${buildTools.getModMenuVersion()}"
-    modApi("ziyue.filters:filters-fabric:1.0.0+${minecraft_version}") {
+    modApi("ziyue.filters:filters-fabric:${buildTools.getFiltersAPIVersion()}") {
         exclude(group: "net.fabricmc")
     }
     // Uncomment this if you got "java.lang.IllegalStateException: duplicate fabric loader classes found on classpath".

@@ -1,19 +1,15 @@
 package ziyue.tjmetro.forge;
 
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import org.mtr.mapping.holder.Screen;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.TianjinMetroClient;
-import ziyue.tjmetro.mod.config.ConfigClient;
-import ziyue.tjmetro.mod.screen.ConfigClientScreen;
 
 @Mod(Reference.MOD_ID)
 public final class MainForge
@@ -25,13 +21,16 @@ public final class MainForge
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> TianjinMetroClient::init);
         MinecraftForge.EVENT_BUS.register(this);
 
+        #if MC_VERSION <= "11605"
         ModLoadingContext.get().registerExtensionPoint(net.minecraftforge.fml.ExtensionPoint.CONFIGGUIFACTORY, () -> (client, parent) -> new ConfigClientScreen(new Screen(parent)));
+    #elif MC_VERSION <= "11905"
+    #endif
     }
 
     // As you see, this is a very dumb thing due to we are using Forge.
     // Please read Fabric codes so that you will know how Fabric is awesome.
     @SubscribeEvent
-    public void afterRegistry(GuiScreenEvent.InitGuiEvent event) {
+    public void afterRegistry(ScreenEvent.Init.Post event) {
         //FilterList filterTianjinMetro = FilterList.empty();
         //filterTianjinMetro.add(Filters.MISCELLANEOUS);
         //filterTianjinMetro.add(Filters.BUILDING);

@@ -45,7 +45,6 @@
         "fabric": "*",
         "minecraft": "*",
         "filters": ">=1.0.0",
-        "mtr": "*",
-        "java": ">=16"
+        "mtr": "*"
     }
 }

@@ -7,8 +7,6 @@ import com.jonafanho.apitools.ModId;
 import com.jonafanho.apitools.ModLoader;
 import com.jonafanho.apitools.ModProvider;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.gradle.api.Project;
 
 import java.net.URL;
@@ -60,6 +58,13 @@ public class BuildTools
         final String modIdString = "modmenu";
         String modMenuVersion = new ModId(modIdString, ModProvider.MODRINTH).getModFiles(minecraftVersion, ModLoader.FABRIC, "").get(0).fileName.split(".jar")[0].replace(modIdString + "-", "");
         System.out.println("ModMenu version: " + modMenuVersion);
+        return modMenuVersion;
+    }
+
+    public String getFiltersAPIVersion() {
+        final String modIdString = "filters-api";
+        String modMenuVersion = "1.0.0+" + minecraftVersion;
+        System.out.println("Filters API version: " + modMenuVersion);
         return modMenuVersion;
     }
 

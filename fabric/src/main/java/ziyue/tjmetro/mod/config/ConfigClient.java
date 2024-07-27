@@ -28,10 +28,11 @@ import java.util.function.Supplier;
 
 public class ConfigClient
 {
-    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<Boolean>("enable_mtr_filters", false)
+    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<>("enable_mtr_filters", false)
     {
         @Override
         public void set(Boolean value) {
+            value = false; //todo remove this
             FilterBuilder.filtersVisibility(CreativeModeTabs.CORE, value);
             FilterBuilder.filtersVisibility(CreativeModeTabs.ESCALATORS_LIFTS, value);
             FilterBuilder.filtersVisibility(CreativeModeTabs.RAILWAY_FACILITIES, value);
