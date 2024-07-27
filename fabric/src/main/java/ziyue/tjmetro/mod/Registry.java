@@ -18,17 +18,18 @@ import java.util.function.Supplier;
 /**
  * Register for some methods that have different implement ways.
  *
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public final class Registry
 {
     public static final org.mtr.mapping.registry.Registry REGISTRY = new org.mtr.mapping.registry.Registry();
+    public static final org.mtr.mapping.registry.Registry REGISTRY_TABS = new org.mtr.mapping.registry.Registry();
     public static final List<Pair<Filter, ItemRegistryObject>> FILTERS_REGISTRY_ITEM = new ArrayList<>();
     public static final List<Pair<Filter, BlockRegistryObject>> FILTERS_REGISTRY_BLOCK = new ArrayList<>();
 
     public static CreativeModeTabHolder createCreativeModeTabHolder(String id, Supplier<ItemStack> icon) {
-        return REGISTRY.createCreativeModeTabHolder(new Identifier(Reference.MOD_ID, id), icon);
+        return REGISTRY_TABS.createCreativeModeTabHolder(new Identifier(Reference.MOD_ID, id), icon);
     }
 
     public static BlockRegistryObject registerBlock(String id, Supplier<Block> supplier) {

@@ -35,7 +35,7 @@ import static org.mtr.mod.client.DynamicTextureCache.LINE_HEIGHT_MULTIPLIER;
 /**
  * @author ZiYueCommentary
  * @see org.mtr.mod.client.RouteMapGenerator
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class RouteMapGenerator implements IGui
@@ -249,7 +249,7 @@ public class RouteMapGenerator implements IGui
                     } else if (isAnticlockwise) {
                         destinationString = IGui.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
                     } else {
-                        destinationString = IGui.insertTranslation("sign.tjmetro.bound_for_bmt_cjk", "sign.tjmetro.bound_for", 1, destinationString);
+                        destinationString = IGui.insertTranslation("gui.tjmetro.bound_for_bmt_cjk", "gui.tjmetro.bound_for", 1, destinationString);
                     }
                 }
 
@@ -563,7 +563,7 @@ public class RouteMapGenerator implements IGui
                     } else if (isAnticlockwise) {
                         destinationString = IGui.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
                     } else {
-                        destinationString = IGui.insertTranslation("sign.tjmetro.bound_for_cjk", "sign.tjmetro.bound_for", 1, destinationString);
+                        destinationString = IGui.insertTranslation("gui.tjmetro.bound_for_cjk", "gui.tjmetro.bound_for", 1, destinationString);
                     }
                 }
                 boundFor = DynamicTextureCache.instance.getText(destinationString, width, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
@@ -751,7 +751,7 @@ public class RouteMapGenerator implements IGui
                     } else if (isAnticlockwise) {
                         destinationString = IGui.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
                     } else {
-                        destinationString = IGui.insertTranslation("sign.tjmetro.bound_for_bmt_cjk", "sign.tjmetro.bound_for", 1, destinationString);
+                        destinationString = IGui.insertTranslation("gui.tjmetro.bound_for_bmt_cjk", "gui.tjmetro.bound_for", 1, destinationString);
                     }
                 }
 
@@ -770,7 +770,7 @@ public class RouteMapGenerator implements IGui
                     drawString(nativeImage, textDestination, imageWidth - tilePadding - tileSize, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
                     drawString(nativeImage, textStationName, (textStationName.width() - textStationName.renderWidth()) / 2 + tilePadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
                     if (renderNextStation) {
-                        drawString(nativeImage, textNextStations, tilePadding + textStationName.width() + textNextStations.width() / 2, height, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0xffdcdcdc, false);
+                        drawString(nativeImage, textNextStations, (imageWidth + textStationName.width() - textDestination.width() - arrowSizeAndPadding) / 2, height, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0xffdcdcdc, false);
                     }
                 } else {
                     if (arrowSizeAndPadding > 0) {
@@ -779,7 +779,7 @@ public class RouteMapGenerator implements IGui
                     drawString(nativeImage, textDestination, tilePadding + arrowSizeAndPadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
                     drawString(nativeImage, textStationName, imageWidth - (textStationName.width() - textStationName.renderWidth()) / 2 - tilePadding, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
                     if (renderNextStation) {
-                        drawString(nativeImage, textNextStations, tilePadding + arrowSizeAndPadding + textDestination.width() + textNextStations.width() / 2, height, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0xffdcdcdc, false);
+                        drawString(nativeImage, textNextStations, (imageWidth + arrowSizeAndPadding + textDestination.width() - textStationName.width()) / 2, height, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0xffdcdcdc, false);
                     }
                 }
             }

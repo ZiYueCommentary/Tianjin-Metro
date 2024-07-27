@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author ZiYueCommentary
  * @see BlockEntity
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class BlockPlayerDetector extends BlockExtension implements DirectionHelper, BlockWithEntity
@@ -79,7 +79,7 @@ public class BlockPlayerDetector extends BlockExtension implements DirectionHelp
     /**
      * @author ZiYueCommentary
      * @see BlockPlayerDetector
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     public static class BlockEntity extends BlockEntityExtension
     {

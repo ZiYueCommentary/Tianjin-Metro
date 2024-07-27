@@ -23,12 +23,12 @@ import java.util.function.Supplier;
 /**
  * @author ZiYueCommentary
  * @see Property
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class ConfigClient
 {
-    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<Boolean>("enable_mtr_filters", true)
+    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<Boolean>("enable_mtr_filters", false)
     {
         @Override
         public void set(Boolean value) {
@@ -46,7 +46,8 @@ public class ConfigClient
             new Footer(() -> TextHelper.translatable("footer.tjmetro.sources"), Reference.GITHUB_REPO),
             new Footer(() -> TextHelper.translatable("footer.tjmetro.forum"), Reference.FORUM),
             new Footer(() -> TextHelper.translatable("footer.tjmetro.contributors"), Reference.CONTRIBUTORS),
-            new Footer(() -> TextHelper.translatable("footer.tjmetro.weblate"), Reference.WEBLATE)
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.weblate"), Reference.WEBLATE),
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.discord"), Reference.DISCORD)
     );
 
     /**
@@ -105,7 +106,7 @@ public class ConfigClient
      *
      * @author ZiYueCommentary
      * @see ConfigClient
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     public static class Property<T>
     {

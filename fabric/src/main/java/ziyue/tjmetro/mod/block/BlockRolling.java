@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @author ZiYueCommentary
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class BlockRolling extends BlockExtension

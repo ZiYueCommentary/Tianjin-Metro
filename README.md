@@ -1,7 +1,5 @@
 # Tianjin Metro
 
-<img alt="Requires Java 16" height="50px" src="icons/requires_java16.svg"/>
-
 A small mod for [Minecraft Transit Railway](https://github.com/jonafanho/Minecraft-Transit-Railway), in developing stage.
 
 ## How to build

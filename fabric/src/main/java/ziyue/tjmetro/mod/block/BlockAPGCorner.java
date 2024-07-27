@@ -20,7 +20,7 @@ import static org.mtr.mod.block.IBlock.HALF;
  *
  * @author ZiYueCommentary
  * @see org.mtr.mod.block.BlockAPGGlass
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class BlockAPGCorner extends BlockExtension implements DirectionHelper

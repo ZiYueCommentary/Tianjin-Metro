@@ -1,10 +1,14 @@
+import org.mtr.mod.BuildTools
+
 plugins {
     id "net.minecraftforge.gradle" version "+"
     id "org.spongepowered.mixin" version "+"
 }
 
+final BuildTools buildTools = new BuildTools(minecraft_version, "forge", mtr_version, project)
+
 minecraft {
-    mappings channel: "official", version: rootProject.minecraft_version
+    mappings channel: "official", version: minecraft_version
     runs {
         configureEach {
             property "forge.logging.markers", "REGISTRIES"
@@ -18,12 +22,10 @@ minecraft {
 sourceSets.main.resources { srcDir "src/generated/resources" }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${rootProject.minecraft_version}-${project.properties["forge_version_$rootProject.minecraft_version"]}"
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${buildTools.getForgeVersion()}"
     annotationProcessor "org.spongepowered:mixin:+:processor"
-    implementation fg.deobf("org.mtr:MTR-forge:${rootProject.mtr_version}+${rootProject.minecraft_version}-server")
-    implementation(fg.deobf("ziyue.filters:filters-forge:1.0.0+1.16.5")) {
-        exclude(group: "net.minecraftforge")
-    }
+    implementation fg.deobf("org.mtr:MTR-forge:${mtr_version}+${minecraft_version}-server")
+    implementation(fg.deobf("ziyue.filters:filters-forge:1.0.0+${minecraft_version}"))
     annotationProcessor 'systems.manifold:manifold-preprocessor:+'
 }
 
@@ -36,7 +38,7 @@ mixin {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(java_version))
+        languageVersion.set(JavaLanguageVersion.of(buildTools.javaLanguageVersion))
     }
     withSourcesJar()
 }
@@ -63,8 +65,10 @@ tasks.register("setupFiles") {
         from "../fabric/src/main/resources/data"
         into "src/main/resources/data"
     }
-}
 
-artifacts {
-    archives jar
+    copy {
+        outputs.upToDateWhen { false }
+        from "../fabric/src/main/resources/tjmetro.mixins.json"
+        into "src/main/resources/"
+    }
 }

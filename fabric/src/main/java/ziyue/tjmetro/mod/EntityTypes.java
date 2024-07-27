@@ -4,7 +4,7 @@ import org.mtr.mapping.registry.EntityTypeRegistryObject;
 import ziyue.tjmetro.mod.entity.EntitySeat;
 
 /**
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public interface EntityTypes

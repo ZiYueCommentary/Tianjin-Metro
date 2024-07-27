@@ -210,7 +210,7 @@ public interface IRailwaySign extends DirectionHelper
             object.addProperty("id", this.signId);
             object.addProperty("textureResource", Reference.MOD_ID + ":textures/sign/" + texture + ".png");
             object.addProperty("flipTexture", flipTexture);
-            object.addProperty("customText", hasCustomText ? IGuiExtension.mergeTranslation("sign.tjmetro." + translation + "_cjk", "sign.tjmetro." + translation) : "");
+            object.addProperty("customText", hasCustomText ? "sign.tjmetro." + translation : "");
             object.addProperty("flipCustomText", flipCustomText);
             object.addProperty("small", true);
             object.addProperty("backgroundColor", backgroundColor);

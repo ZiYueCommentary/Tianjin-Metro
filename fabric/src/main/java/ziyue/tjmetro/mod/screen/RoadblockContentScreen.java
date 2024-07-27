@@ -19,7 +19,7 @@ import ziyue.tjmetro.mod.packet.PacketUpdateRoadblockContent;
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.mod.block.BlockRoadblockSign
  * @see ziyue.tjmetro.mod.render.RenderRoadblockSign
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class RoadblockContentScreen extends ScreenExtension implements IGui

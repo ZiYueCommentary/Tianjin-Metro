@@ -22,7 +22,7 @@ import static org.mtr.mod.data.IGui.TEXT_HEIGHT;
  * Some methods similar to methods in <b>IDrawing</b>.
  *
  * @see IDrawing
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public interface IDrawingExtension
@@ -43,7 +43,7 @@ public interface IDrawingExtension
      * Drawing string with Tianjin Metro Font.
      *
      * @author ZiYueCommentary
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     static void drawStringWithFont(GraphicsHolder graphicsHolder, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColorCjk, int textColor, float fontSizeRatio, boolean shadow, int light, boolean forceMinecraftFont, @Nullable IDrawing.DrawingCallback drawingCallback) {
         final Style style;

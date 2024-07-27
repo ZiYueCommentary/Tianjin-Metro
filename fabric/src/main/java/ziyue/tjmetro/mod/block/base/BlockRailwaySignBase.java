@@ -19,7 +19,7 @@ import java.util.Locale;
 /**
  * @author ZiYueCommentary
  * @see org.mtr.mod.block.BlockRailwaySign
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public abstract class BlockRailwaySignBase extends BlockExtension implements IBlock, DirectionHelper, BlockWithEntity

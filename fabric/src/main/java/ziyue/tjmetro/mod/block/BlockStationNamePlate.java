@@ -1,6 +1,5 @@
 package ziyue.tjmetro.mod.block;
 
-import org.jetbrains.annotations.NotNull;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockHelper;
@@ -41,7 +40,7 @@ public class BlockStationNamePlate extends BlockRailwaySignBase
             if (hitSide == facing || hitSide == facing.getOpposite()) {
                 final BlockPos checkPos = findEndWithDirection(world, pos, hitSide.getOpposite(), false);
                 if (checkPos != null) {
-                    if (item == org.mtr.mod.Items.BRUSH.get()) {
+                    if (item.data == Items.BRUSH.get().data) {
                         world.setBlockState(checkPos, world.getBlockState(checkPos).cycle(new Property<>(ARROW_DIRECTION.data)));
                     } else {
                         Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(checkPos));
@@ -51,7 +50,7 @@ public class BlockStationNamePlate extends BlockRailwaySignBase
         }, null, Items.BRUSH.get(), ItemList.WRENCH.get());
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public BlockState getStateForNeighborUpdate2(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         return IRailwaySign.getStateForNeighborUpdate(state, direction, neighborState, BlockList.STATION_NAME_PLATE_MIDDLE.get());
@@ -84,7 +83,7 @@ public class BlockStationNamePlate extends BlockRailwaySignBase
     }
 
     @Override
-    public void addTooltips(ItemStack stack, @org.jetbrains.annotations.Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
+    public void addTooltips(ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
     }
 
     @Override

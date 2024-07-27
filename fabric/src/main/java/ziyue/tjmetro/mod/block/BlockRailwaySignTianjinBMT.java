@@ -1,7 +1,5 @@
 package ziyue.tjmetro.mod.block;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockHelper;
@@ -11,13 +9,16 @@ import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
 {
     public BlockRailwaySignTianjinBMT(int length, boolean isOdd) {
         super(BlockHelper.createBlockSettings(false, state -> 0),length, isOdd);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public BlockState getStateForNeighborUpdate2(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         return IRailwaySign.getStateForNeighborUpdate(state, direction, neighborState, BlockList.RAILWAY_SIGN_TIANJIN_BMT_MIDDLE.get());
@@ -28,7 +29,7 @@ public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
         IRailwaySign.onPlaced(world, pos, state, BlockList.RAILWAY_SIGN_TIANJIN_BMT_MIDDLE.get(), getMiddleLength());
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
@@ -43,7 +44,7 @@ public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
 
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public String getTranslationKey2() {
         return "block.tjmetro.railway_sign_tianjin_bmt";

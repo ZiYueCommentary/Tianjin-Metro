@@ -20,7 +20,7 @@ import static org.mtr.mapping.mapper.DirectionHelper.FACING;
 /**
  * @author ZiYueCommentary
  * @see BlockTimeDisplay
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class RenderTimeDisplay<T extends BlockTimeDisplay.BlockEntity> extends BlockEntityRenderer<T> implements IGui, IDrawing

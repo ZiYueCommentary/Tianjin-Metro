@@ -20,6 +20,8 @@ public final class TianjinMetro
         LOGGER.info("Mod ID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
 
+        Registry.REGISTRY_TABS.init();
+
         BlockList.registerBlocks();
         ItemList.registerItems();
         BlockEntityTypes.registerBlockEntities();

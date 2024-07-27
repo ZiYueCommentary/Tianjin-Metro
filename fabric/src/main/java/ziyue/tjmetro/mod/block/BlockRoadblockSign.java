@@ -1,6 +1,5 @@
 package ziyue.tjmetro.mod.block;
 
-import org.jetbrains.annotations.NotNull;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockWithEntity;
@@ -11,17 +10,19 @@ import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.block.base.BlockEntityRenderable;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
+import javax.annotation.Nonnull;
+
 /**
  * Roadblock with signs.
  *
  * @author ZiYueCommentary
  * @see BlockRoadblock
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class BlockRoadblockSign extends BlockRoadblock implements BlockWithEntity
 {
-    @NotNull
+    @Nonnull
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(pos)));
@@ -34,7 +35,7 @@ public class BlockRoadblockSign extends BlockRoadblock implements BlockWithEntit
 
     /**
      * @author ZiYueCommentary
-     * @since beta-1
+     * @since 1.0.0-beta-1
      * @see ziyue.tjmetro.mod.screen.RoadblockContentScreen
      * @see ziyue.tjmetro.mod.render.RenderRoadblockSign
      */

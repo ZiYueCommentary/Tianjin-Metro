@@ -1,6 +1,5 @@
 package ziyue.tjmetro.mod.block;
 
-import org.jetbrains.annotations.Nullable;
 import org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongAVLTreeSet;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
@@ -10,6 +9,7 @@ import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

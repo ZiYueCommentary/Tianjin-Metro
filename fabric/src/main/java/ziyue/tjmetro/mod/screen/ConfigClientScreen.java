@@ -69,7 +69,7 @@ public class ConfigClientScreen extends ScreenExtension
             final int yStart1 = SQUARE_SIZE + TEXT_PADDING / 2;
 
             int i = 0;
-            graphicsHolder.drawText(TextHelper.translatable("config.tjmetro.enable_mtr_filters"), SQUARE_SIZE, BUTTON_HEIGHT * (i++) + yStart1, ARGB_WHITE, false, GraphicsHolder.getDefaultLight());
+            i++;//graphicsHolder.drawText(TextHelper.translatable("config.tjmetro.enable_mtr_filters"), SQUARE_SIZE, BUTTON_HEIGHT * (i++) + yStart1, ARGB_WHITE, false, GraphicsHolder.getDefaultLight());
             graphicsHolder.drawText(TextHelper.translatable("config.tjmetro.use_tianjin_metro_font"), SQUARE_SIZE, BUTTON_HEIGHT * (i++) + yStart1, ARGB_WHITE, false, GraphicsHolder.getDefaultLight());
             i++;
             graphicsHolder.drawText(this.footer.footer().get(), SQUARE_SIZE, BUTTON_HEIGHT * (i++) + yStart1, ARGB_WHITE, false, GraphicsHolder.getDefaultLight());

@@ -1,17 +1,17 @@
 package ziyue.tjmetro.mod.block.base;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.BlockStationNameBase;
 import org.mtr.mod.block.IBlock;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * @author ZiYueCommentary
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public abstract class BlockStationNameSignBase extends BlockStationNameBase
@@ -26,7 +26,7 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase
         properties.add(FACING);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return IBlock.getVoxelShapeByDirection(1f, 3.5f, 0f, 15f, 14.5f, 0.5f, IBlock.getStatePropertySafe(state, FACING));

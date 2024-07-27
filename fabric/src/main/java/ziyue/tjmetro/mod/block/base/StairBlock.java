@@ -11,7 +11,7 @@ import org.mtr.mapping.registry.BlockRegistryObject;
  *
  * @author ZiYueCommentary
  * @see StairsBlockExtension
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class StairBlock extends StairsBlockExtension

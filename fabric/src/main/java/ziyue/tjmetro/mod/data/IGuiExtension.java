@@ -9,7 +9,7 @@ import org.mtr.mod.config.Config;
  * Some methods similar to methods in <b>IGui</b>.
  *
  * @see org.mtr.mod.data.IGui
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public interface IGuiExtension
@@ -20,7 +20,7 @@ public interface IGuiExtension
      * @return filtered string
      * @author ZiYueCommentary
      * @see org.mtr.mod.config.LanguageDisplay
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     static String filterLanguage(String text) {
         final StringBuilder noCommentString = new StringBuilder(text);
@@ -48,7 +48,7 @@ public interface IGuiExtension
      * @return filtered string
      * @author ZiYueCommentary
      * @see org.mtr.mod.config.LanguageDisplay
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     static String mergeTranslation(String keyCJK, String key) {
         switch (Config.getClient().getLanguageDisplay()) {
@@ -67,7 +67,7 @@ public interface IGuiExtension
      * @param text the translation string
      * @return a tuple of CJK (A) and English (B)
      * @author ZiYueCommentary
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     static Pair<String, String> splitTranslation(String text) {
         final int separatorIndex = text.lastIndexOf("|");

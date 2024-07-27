@@ -22,7 +22,7 @@ public class BlockPSDTopTianjin extends BlockPSDTop
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         return IBlock.checkHoldingItem(world, player, item -> {
-            if (item == ItemList.WRENCH.get()) {
+            if (item.data == ItemList.WRENCH.get().data) {
                 if (BlockList.PSD_DOOR_TIANJIN.get().data == world.getBlockState(pos.down()).getBlock().data) {
                     world.setBlockState(pos, IBlockExtension.cycleBlockState(state, STYLE, value -> value != EnumDoorType.NEXT_STATION));
                     BlockPos pos1 = (IBlock.getStatePropertySafe(state, SIDE_EXTENDED) == EnumSide.LEFT) ? pos.offset(IBlock.getStatePropertySafe(state, FACING).rotateYClockwise()) : pos.offset(IBlock.getStatePropertySafe(state, FACING).rotateYCounterclockwise());
@@ -47,7 +47,7 @@ public class BlockPSDTopTianjin extends BlockPSDTop
                     setStyle.accept(IBlock.getStatePropertySafe(state, FACING).rotateYClockwise());
                     setStyle.accept(IBlock.getStatePropertySafe(state, FACING).rotateYCounterclockwise());
                 }
-            } else if (item == org.mtr.mod.Items.BRUSH.get()) {
+            } else if (item.data == org.mtr.mod.Items.BRUSH.get().data) {
                 world.setBlockState(pos, state.cycle(new Property<>(ARROW_DIRECTION.data)));
                 propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).rotateYClockwise(), new Property<>(ARROW_DIRECTION.data), 1);
                 propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).rotateYCounterclockwise(), new Property<>(ARROW_DIRECTION.data), 1);

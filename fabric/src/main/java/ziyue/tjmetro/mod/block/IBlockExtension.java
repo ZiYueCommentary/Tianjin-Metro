@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * Some methods similar to methods in <b>IBlock</b>.
  *
  * @see IBlock
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public interface IBlockExtension
@@ -25,7 +25,7 @@ public interface IBlockExtension
      *
      * @param pos block's position
      * @author ZiYueCommentary
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     static void breakBlock(World world, BlockPos pos) {
         if (world.isClient()) return;
@@ -39,7 +39,7 @@ public interface IBlockExtension
      * @param pos   block's position
      * @param block specified block
      * @author ZiYueCommentary
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     static void breakBlock(World world, BlockPos pos, Block block) {
         if (world.isClient()) return;

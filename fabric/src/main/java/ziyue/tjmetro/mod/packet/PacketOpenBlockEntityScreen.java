@@ -8,7 +8,7 @@ import org.mtr.mapping.tool.PacketBufferSender;
 /**
  * @author ZiYueCommentary
  * @see ClientPacketHelper
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public final class PacketOpenBlockEntityScreen extends PacketHandler

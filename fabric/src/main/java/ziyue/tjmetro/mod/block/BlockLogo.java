@@ -15,7 +15,7 @@ import java.util.List;
  * Logo of Tianjin Metro.
  *
  * @author ZiYueCommentary
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class BlockLogo extends BlockExtension implements DirectionHelper

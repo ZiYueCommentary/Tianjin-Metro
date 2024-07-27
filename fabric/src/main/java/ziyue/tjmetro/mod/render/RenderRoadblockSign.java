@@ -25,7 +25,7 @@ import static org.mtr.mapping.mapper.DirectionHelper.FACING;
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.mod.screen.RoadblockContentScreen
  * @see BlockRoadblockSign
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class RenderRoadblockSign<T extends BlockRoadblockSign.BlockEntity> extends BlockEntityRenderer<T> implements IGui, IDrawing

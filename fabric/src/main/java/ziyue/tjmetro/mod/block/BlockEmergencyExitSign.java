@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author ZiYueCommentary
  * @see BlockEmergencyExitSignStyle
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class BlockEmergencyExitSign extends BlockExtension implements DirectionHelper
@@ -58,7 +58,7 @@ public class BlockEmergencyExitSign extends BlockExtension implements DirectionH
      *
      * @author ZiYueCommentary
      * @see BlockEmergencyExitSign
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     public enum BlockEmergencyExitSignStyle implements StringIdentifiable
     {

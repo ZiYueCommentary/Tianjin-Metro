@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author ZiYueCommentary
  * @see BlockEntity
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class BlockServiceCorridorSign extends BlockExtension implements DirectionHelper, BlockWithEntity
@@ -54,7 +54,7 @@ public class BlockServiceCorridorSign extends BlockExtension implements Directio
     /**
      * @author ZiYueCommentary
      * @see ziyue.tjmetro.mod.render.RenderServiceCorridorSign
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     public static class BlockEntity extends BlockEntityRenderable
     {

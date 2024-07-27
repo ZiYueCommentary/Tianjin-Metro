@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author ZiYueCommentary
  * @see BlockCeiling
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class BlockStationColorCeiling extends BlockCeiling

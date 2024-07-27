@@ -292,7 +292,7 @@ public class DynamicTextureCache
      * A text that contains its pixels, width, and height.
      *
      * @author ZiYueCommentary
-     * @since beta-1
+     * @since 1.0.0-beta-1
      */
     public static final class Text
     {

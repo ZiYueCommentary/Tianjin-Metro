@@ -2,8 +2,9 @@
     "required": true,
     "minVersion": "0.8",
     "package": "ziyue.tjmetro.mod.mixin",
-    "compatibilityLevel": "JAVA_16",
+    "compatibilityLevel": "JAVA_8",
     "mixins": [
+        "BlockRailwaySignPoleMixin",
         "CustomResourceLoaderMixin",
         "DynamicTextureCacheMixin",
         "RouteMapGeneratorMixin"

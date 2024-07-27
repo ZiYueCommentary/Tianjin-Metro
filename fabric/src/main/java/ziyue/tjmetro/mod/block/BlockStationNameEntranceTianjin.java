@@ -58,7 +58,7 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         return IBlock.checkHoldingItem(world, player, item -> {
-            if (item == Items.BRUSH.get()) {
+            if (item.data == Items.BRUSH.get().data) {
                 world.setBlockState(pos, state.cycle(new Property<>(STYLE.data)));
                 propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).rotateYClockwise(), new Property<>(STYLE.data), 1);
                 propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).rotateYCounterclockwise(), new Property<>(STYLE.data), 1);

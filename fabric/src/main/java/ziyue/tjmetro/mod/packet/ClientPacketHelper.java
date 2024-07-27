@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public final class ClientPacketHelper

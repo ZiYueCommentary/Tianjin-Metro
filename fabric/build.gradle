@@ -1,56 +1,48 @@
+import org.mtr.mod.BuildTools
+
 plugins {
-    id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'fabric-loom' version '+'
 }
+
+final BuildTools buildTools = new BuildTools(minecraft_version, "fabric", mtr_version, project)
 
 loom {
     runConfigs.configureEach { ideConfigGenerated = true }
+    mixin {
+        setDefaultRefmapName("tjmetro.refmap.json")
+    }
+}
+
+dependencies {
+    // To change the versions see the gradle.properties file
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings "net.fabricmc:yarn:${buildTools.getYarnVersion()}:v2"
+    String FabricVersion = buildTools.getFabricVersion()
+    modImplementation "net.fabricmc:fabric-loader:${FabricVersion}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${buildTools.getFabricApiVersion()}"
+    //modImplementation(files("E:\\Tianjin-Metro\\libs\\MTR-fabric-4.0.0-beta-8+1.16.5-server.jar"))
+    modApi "com.terraformersmc:modmenu:${buildTools.getModMenuVersion()}"
+    modApi("ziyue.filters:filters-fabric:1.0.0+${minecraft_version}") {
+        exclude(group: "net.fabricmc")
+    }
+    // Uncomment this if you got "java.lang.IllegalStateException: duplicate fabric loader classes found on classpath".
+    configurations.configureEach {
+        resolutionStrategy {
+            force("net.fabricmc:fabric-loader:${FabricVersion}")
+        }
+    }
+    modImplementation "org.mtr:MTR-fabric:${mtr_version}+${minecraft_version}-server"
+    annotationProcessor 'systems.manifold:manifold-preprocessor:+'
+    // Delibrate: Newer versions just throws an error *when displaying an compiling error*
 }
 
 repositories {
     maven { url = "https://maven.terraformersmc.com/" }
 }
 
-def yarn_version = project.properties["yarn_mappings_${rootProject.minecraft_version}"]
-def fabric_api_version = project.properties["fabric_api_version_${rootProject.minecraft_version}"]
-def mod_menu_version = project.properties["mod_menu_version_${rootProject.minecraft_version}"]
-def cloth_config_version = project.properties["cloth_config_version_${rootProject.minecraft_version}"]
-
-dependencies {
-    // To change the versions see the gradle.properties file
-    minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-    mappings "net.fabricmc:yarn:${yarn_version}:v2"
-    modImplementation "org.mtr:MTR-fabric:${rootProject.mtr_version}+${rootProject.minecraft_version}-server"
-    //modImplementation(files("E:\\Tianjin-Metro\\libs\\MTR-fabric-4.0.0-beta-8+1.16.5-server.jar"))
-    modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
-    modApi "com.terraformersmc:modmenu:${mod_menu_version}"
-    modApi ("ziyue.filters:filters-fabric:1.0.0+${rootProject.minecraft_version}") {
-        exclude(group: "net.fabricmc")
-    }
-    annotationProcessor 'systems.manifold:manifold-preprocessor:2023.1.33' // Delibrate: Newer versions just throws an error *when displaying an compiling error*
-}
-
-tasks.withType(JavaCompile).configureEach {
-    it.options.release = 16
-}
-
-configurations.configureEach {
-    // Force use our version of mod-loader even if dependency requires a lower mod-loader so the game can launch
-    // May cause problems, but they're usually backward compatible
-    resolutionStrategy {
-        force("net.fabricmc:fabric-loader:$project.fabric_loader_version")
-    }
-}
-
 java {
-    withSourcesJar()
-
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
-}
-
-jar {
-    from("LICENSE") {
-        rename { "${it}_${base.archivesName.get()}"}
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(buildTools.javaLanguageVersion))
     }
+    withSourcesJar()
 }

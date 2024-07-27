@@ -15,7 +15,7 @@ import ziyue.tjmetro.mod.client.IDrawingExtension;
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.mod.block.BlockStationNameSign1
  * @see ziyue.tjmetro.mod.block.BlockStationNameSign2
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class RenderStationNameSign<T extends BlockStationNameSignBase.BlockEntityBase> extends RenderStationNameBase<T>

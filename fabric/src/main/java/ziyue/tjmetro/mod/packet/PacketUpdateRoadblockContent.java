@@ -13,7 +13,7 @@ import ziyue.tjmetro.mod.block.BlockRoadblockSign;
  * @author ZiYueCommentary
  * @see BlockRoadblockSign
  * @see ClientPacketHelper
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public final class PacketUpdateRoadblockContent extends PacketHandler

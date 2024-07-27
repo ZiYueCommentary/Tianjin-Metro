@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author ZiYueCommentary
  * @see EntitySeat
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class BlockBench extends BlockExtension implements DirectionHelper, IBlock

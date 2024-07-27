@@ -17,7 +17,7 @@ import java.util.List;
  * A device for clearing specify items from players' inventory.
  *
  * @author ZiYueCommentary
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 // Not working currently, waiting for another implementation.

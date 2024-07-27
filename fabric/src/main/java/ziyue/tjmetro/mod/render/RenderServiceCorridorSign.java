@@ -22,7 +22,7 @@ import static org.mtr.mapping.mapper.DirectionHelper.FACING;
 /**
  * @author ZiYueCommentary
  * @see BlockServiceCorridorSign
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class RenderServiceCorridorSign<T extends BlockServiceCorridorSign.BlockEntity> extends BlockEntityRenderer<T> implements IGui, IDrawing

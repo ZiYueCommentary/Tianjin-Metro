@@ -11,7 +11,7 @@ import ziyue.tjmetro.mod.entity.EntitySeat;
  * @author ZiYueCommentary
  * @see EntitySeat
  * @see ziyue.tjmetro.mod.block.BlockBench
- * @since beta-1
+ * @since 1.0.0-beta-1
  */
 
 public class RenderSeat extends EntityRenderer<EntitySeat> implements IGui
