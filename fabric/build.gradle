@@ -25,7 +25,6 @@ dependencies {
     modApi("ziyue.filters:filters-fabric:${buildTools.getFiltersAPIVersion()}") {
         exclude(group: "net.fabricmc")
     }
-    // Uncomment this if you got "java.lang.IllegalStateException: duplicate fabric loader classes found on classpath".
     configurations.configureEach {
         resolutionStrategy {
             force("net.fabricmc:fabric-loader:${FabricVersion}")

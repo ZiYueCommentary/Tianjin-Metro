@@ -28,7 +28,7 @@ import java.util.function.Supplier;
 
 public class ConfigClient
 {
-    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<>("enable_mtr_filters", false)
+    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<Boolean>("enable_mtr_filters", false)
     {
         @Override
         public void set(Boolean value) {
