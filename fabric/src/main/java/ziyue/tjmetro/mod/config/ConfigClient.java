@@ -7,8 +7,6 @@ import org.mtr.mapping.holder.MinecraftClient;
 import org.mtr.mapping.holder.MutableText;
 import org.mtr.mapping.holder.Screen;
 import org.mtr.mapping.mapper.TextHelper;
-import org.mtr.mod.CreativeModeTabs;
-import ziyue.tjmetro.mapping.FilterBuilder;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.TianjinMetro;
 
@@ -17,7 +15,6 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -28,18 +25,7 @@ import java.util.function.Supplier;
 
 public class ConfigClient
 {
-    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<Boolean>("enable_mtr_filters", false)
-    {
-        @Override
-        public void set(Boolean value) {
-            value = false; //todo remove this
-            FilterBuilder.filtersVisibility(CreativeModeTabs.CORE, value);
-            FilterBuilder.filtersVisibility(CreativeModeTabs.ESCALATORS_LIFTS, value);
-            FilterBuilder.filtersVisibility(CreativeModeTabs.RAILWAY_FACILITIES, value);
-            FilterBuilder.filtersVisibility(CreativeModeTabs.STATION_BUILDING_BLOCKS, value);
-            super.set(value);
-        }
-    };
+    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<>("enable_mtr_filters", false);
     public static final Property<Boolean> USE_TIANJIN_METRO_FONT = new Property<>("use_tianjin_metro_font", true);
 
     protected static final Path CONFIG_FILE_PATH = MinecraftClient.getInstance().getRunDirectoryMapped().toPath().resolve("config/tjmetro.json");
