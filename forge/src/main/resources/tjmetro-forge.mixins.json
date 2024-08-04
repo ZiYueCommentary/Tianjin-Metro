@@ -1,0 +1,16 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "ziyue.tjmetro.forge.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "ATGameRuleBooleanMixin",
+        "FallingBlockMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "client": [
+    ],
+    "refmap": "tjmetro-forge.refmap.json"
+}

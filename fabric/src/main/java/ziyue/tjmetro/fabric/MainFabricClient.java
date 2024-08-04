@@ -9,5 +9,7 @@ public final class MainFabricClient implements ClientModInitializer
     @Override
     public void onInitializeClient() {
         TianjinMetroClient.init();
+        Registry.FILTERS_REGISTRY_ITEM.forEach(pair -> pair.getFirst().addItems(pair.getSecond().get().data));
+        Registry.FILTERS_REGISTRY_BLOCK.forEach(pair -> pair.getFirst().addItems(pair.getSecond().get().asItem().data));
     }
 }

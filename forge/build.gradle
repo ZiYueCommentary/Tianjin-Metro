@@ -31,7 +31,9 @@ dependencies {
 
 mixin {
     add sourceSets.main, "tjmetro.refmap.json"
+    add sourceSets.main, "tjmetro-forge.refmap.json"
     config "tjmetro.mixins.json"
+    config "tjmetro-forge.mixins.json"
     debug.verbose = true
     debug.export = true
 }

@@ -70,7 +70,7 @@ public interface IGuiExtension
      * @since 1.0.0-beta-1
      */
     static Pair<String, String> splitTranslation(String text) {
-        final int separatorIndex = text.lastIndexOf("|");
+        final int separatorIndex = text.indexOf("|");
         return new Pair<>(text.substring(0, separatorIndex), text.substring(separatorIndex + 1));
     }
 }

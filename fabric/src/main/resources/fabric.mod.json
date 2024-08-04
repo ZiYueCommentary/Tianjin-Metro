@@ -39,7 +39,8 @@
         ]
     },
     "mixins": [
-        "tjmetro.mixins.json"
+        "tjmetro.mixins.json",
+        "tjmetro-fabric.mixins.json"
     ],
     "depends": {
         "fabric": "*",

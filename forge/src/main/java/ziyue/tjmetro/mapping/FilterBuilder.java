@@ -1,6 +1,5 @@
 package ziyue.tjmetro.mapping;
 
-import net.minecraft.world.item.CreativeModeTab;
 import org.mtr.mapping.holder.ItemStack;
 import org.mtr.mapping.holder.MutableText;
 import org.mtr.mapping.holder.PressAction;
@@ -29,15 +28,15 @@ public interface FilterBuilder
     }
 #else
     static Filter registerFilter(CreativeModeTabHolder creativeModeTab, MutableText filterName, Supplier<ItemStack> filterIcon) {
-        return ziyue.filters.FilterBuilder.registerFilter((CreativeModeTab) null, filterName.data, () -> filterIcon.get().data);
+        return ziyue.filters.FilterBuilder.registerFilter((net.minecraft.world.item.CreativeModeTab) null, filterName.data, () -> filterIcon.get().data);
     }
 
     static Filter registerUncategorizedItemsFilter(CreativeModeTabHolder creativeModeTab) {
-        return ziyue.filters.FilterBuilder.registerUncategorizedItemsFilter((CreativeModeTab) null);
+        return ziyue.filters.FilterBuilder.registerUncategorizedItemsFilter((net.minecraft.world.item.CreativeModeTab) null);
     }
 
     static void filtersVisibility(CreativeModeTabHolder creativeModeTab, boolean visible) {
-        ziyue.filters.FilterBuilder.filtersVisibility((CreativeModeTab) null, visible);
+        ziyue.filters.FilterBuilder.filtersVisibility((net.minecraft.world.item.CreativeModeTab) null, visible);
     }
 
     static void setReservedButton(CreativeModeTabHolder creativeModeTab, MutableText tooltip, PressAction onPress) {
