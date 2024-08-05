@@ -17,4 +17,5 @@ public interface Reference
     String FORUM = "https://forum.ziyuesinicization.site/t/tianjin-metro";
     String WEBLATE = "https://weblate.ziyuesinicization.site/engage/tianjin-metro/";
     String DISCORD = "https://discord.gg/mEvEjPnVXe";
+    String PREVENT_BLOCK_FALLING = "https://github.com/ZiYueCommentary/Tianjin-Metro/wiki/Prevent-block-falling";
 }

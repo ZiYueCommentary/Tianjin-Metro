@@ -20,7 +20,7 @@ public abstract class FallingBlockMixin extends Block
     }
 
     @Inject(at = @At("HEAD"), method = "scheduledTick", cancellable = true)
-#if MC_VERSION < "11904"
+#if MC_VERSION <= "11802"
     private void beforeScheduledTick(BlockState state, ServerWorld world, BlockPos pos, java.util.Random random, CallbackInfo ci)
 #else
     private void beforeScheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random, CallbackInfo ci)

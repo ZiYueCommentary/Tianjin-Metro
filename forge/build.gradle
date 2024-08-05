@@ -46,6 +46,8 @@ java {
 }
 
 tasks.register("setupFiles") {
+    println("Copying resources from Fabric to Forge")
+
     delete fileTree("src/main/java/ziyue/tjmetro/mod")
     delete fileTree("src/main/resources/assets")
     delete fileTree("src/main/resources/data")

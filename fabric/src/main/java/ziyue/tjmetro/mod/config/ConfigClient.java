@@ -34,7 +34,8 @@ public class ConfigClient
             new Footer(() -> TextHelper.translatable("footer.tjmetro.forum"), Reference.FORUM),
             new Footer(() -> TextHelper.translatable("footer.tjmetro.contributors"), Reference.CONTRIBUTORS),
             new Footer(() -> TextHelper.translatable("footer.tjmetro.weblate"), Reference.WEBLATE),
-            new Footer(() -> TextHelper.translatable("footer.tjmetro.discord"), Reference.DISCORD)
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.discord"), Reference.DISCORD),
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.prevent_block_falling"), Reference.PREVENT_BLOCK_FALLING)
     );
 
     /**
