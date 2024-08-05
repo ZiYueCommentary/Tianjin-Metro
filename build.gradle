@@ -91,7 +91,7 @@ afterEvaluate {
         into "temp_lang"
     }
     copy {
-        from "temp_lang/tianjin-metro/en_us-json/fabric/src/main/resources/assets/tjmetro/lang"
+        from "temp_lang/tianjin-metro/en_us-json/translations"
         into "fabric/src/main/resources/assets/tjmetro/lang"
     }
     delete("lang.zip", "temp_lang")
