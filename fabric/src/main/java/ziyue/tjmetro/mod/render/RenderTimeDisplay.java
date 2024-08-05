@@ -55,7 +55,7 @@ public class RenderTimeDisplay<T extends BlockTimeDisplay.BlockEntity> extends B
             });
             MainRenderer.scheduleRender(QueuedRenderLayer.TEXT, (newGraphicsHolder, offset) -> {
                 storedMatrixTransformations2.transform(newGraphicsHolder, offset);
-                IDrawingExtension.drawStringWithFont(newGraphicsHolder, getFormattedTime(entity.getWorld2().getTime()), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0.03F, -1, -1, 30, -3276781, -3276781, 2, false, light, true, null);
+                IDrawingExtension.drawStringWithFont(newGraphicsHolder, getFormattedTime(entity.getWorld2().getLunarTime()), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0.03F, -1, -1, 30, -3276781, -3276781, 2, false, light, true, null);
                 newGraphicsHolder.pop();
             });
         }
