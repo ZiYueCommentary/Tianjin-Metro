@@ -36,14 +36,8 @@ public class EntitySeat extends EntityExtension
     }
 
     @Override
-    public void tick2() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        if (!this.hasPassenger2(new Entity(this))) {
-            this.kill2();
-        }
+    protected void removePassenger2(Entity passenger) {
+        super.removePassenger2(passenger);
+        if (!getWorld().isClient()) this.kill2();
     }
 }

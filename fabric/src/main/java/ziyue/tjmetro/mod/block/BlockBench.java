@@ -34,7 +34,7 @@ public class BlockBench extends BlockExtension implements DirectionHelper, IBloc
     @Nonnull
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        Entity entity = new Entity(new EntitySeat(world, pos.getX() + 0.5, pos.getY() + 0.35, pos.getZ() + 0.5));
+        Entity entity = new Entity(new EntitySeat(world, pos.getX() + 0.5, pos.getY() + 0.55, pos.getZ() + 0.5));
         world.spawnEntity(entity);
         player.startRiding(entity);
         return ActionResult.SUCCESS;

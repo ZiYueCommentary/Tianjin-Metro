@@ -9,7 +9,7 @@ import ziyue.tjmetro.mod.entity.EntitySeat;
 
 public interface EntityTypes
 {
-    EntityTypeRegistryObject<EntitySeat> SEAT = Registry.registerEntityType("seat", EntitySeat::new, Float.MIN_VALUE, Float.MIN_VALUE);
+    EntityTypeRegistryObject<EntitySeat> SEAT = Registry.registerEntityType("seat", EntitySeat::new, 0, 0);
 
     static void registerEntities() {
         // Calling this class to initialize constants
