@@ -9,12 +9,13 @@ import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.ItemList;
+import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class BlockPSDTopTianjin extends BlockPSDTop
+public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianjin
 {
     public static final EnumProperty<EnumDoorType> STYLE = EnumProperty.of("style", EnumDoorType.class);
 

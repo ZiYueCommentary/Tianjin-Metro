@@ -3,10 +3,11 @@ package ziyue.tjmetro.mod.block;
 import org.mtr.mapping.holder.Item;
 import org.mtr.mod.block.BlockPSDAPGGlassEndBase;
 import ziyue.tjmetro.mod.ItemList;
+import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
 
 import javax.annotation.Nonnull;
 
-public class BlockPSDGlassEndTianjin extends BlockPSDAPGGlassEndBase
+public class BlockPSDGlassEndTianjin extends BlockPSDAPGGlassEndBase implements BlockFlagPSDTianjin
 {
     @Nonnull
     @Override

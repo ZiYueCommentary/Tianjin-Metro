@@ -110,6 +110,9 @@ public interface BlockList
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_6_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_6_even", () -> new Block(new BlockRailwaySignTianjinBMT(6, false)), RAILWAY_SIGNS);
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_7_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_bmt_7_even", () -> new Block(new BlockRailwaySignTianjinBMT(7, false)), RAILWAY_SIGNS);
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_BMT_MIDDLE = Registry.registerBlock("railway_sign_tianjin_bmt_middle", () -> new Block(new BlockRailwaySignTianjinBMT(0, false)));
+    BlockRegistryObject APG_DOOR_TIANJIN = Registry.registerBlock("apg_door_tianjin", () -> new Block(new BlockAPGDoorTianjin()));
+    BlockRegistryObject APG_GLASS_TIANJIN = Registry.registerBlock("apg_glass_tianjin", () -> new Block(new BlockAPGGlassTianjin()));
+    BlockRegistryObject APG_GLASS_END_TIANJIN = Registry.registerBlock("apg_glass_end_tianjin", () -> new Block(new BlockAPGGlassEndTianjin()));
 
     static void registerBlocks() {
         // Calling this class to initialize constants

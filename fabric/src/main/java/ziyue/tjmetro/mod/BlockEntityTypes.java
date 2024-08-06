@@ -62,6 +62,7 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockRailwaySignTianjinBMT.BlockEntity> RAILWAY_SIGN_TIANJIN_BMT_5_EVEN = Registry.registerBlockEntityType("railway_sign_tianjin_bmt_5_even", (pos, state) -> new BlockRailwaySignTianjinBMT.BlockEntity(5, false, pos, state), BlockList.RAILWAY_SIGN_TIANJIN_BMT_5_EVEN::get);
     BlockEntityTypeRegistryObject<BlockRailwaySignTianjinBMT.BlockEntity> RAILWAY_SIGN_TIANJIN_BMT_6_EVEN = Registry.registerBlockEntityType("railway_sign_tianjin_bmt_6_even", (pos, state) -> new BlockRailwaySignTianjinBMT.BlockEntity(6, false, pos, state), BlockList.RAILWAY_SIGN_TIANJIN_BMT_6_EVEN::get);
     BlockEntityTypeRegistryObject<BlockRailwaySignTianjinBMT.BlockEntity> RAILWAY_SIGN_TIANJIN_BMT_7_EVEN = Registry.registerBlockEntityType("railway_sign_tianjin_bmt_7_even", (pos, state) -> new BlockRailwaySignTianjinBMT.BlockEntity(7, false, pos, state), BlockList.RAILWAY_SIGN_TIANJIN_BMT_7_EVEN::get);
+    BlockEntityTypeRegistryObject<BlockAPGDoorTianjin.BlockEntity> APG_DOOR_TIANJIN = Registry.registerBlockEntityType("apg_door_tianjin", BlockAPGDoorTianjin.BlockEntity::new, BlockList.APG_DOOR_TIANJIN::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

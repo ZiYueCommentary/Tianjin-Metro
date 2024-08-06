@@ -7,16 +7,21 @@ import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mod.block.BlockPSDAPGDoorBase;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.ItemList;
-import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
+import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
 
 import javax.annotation.Nonnull;
 
-public class BlockPSDDoorTianjin extends BlockPSDAPGDoorBase implements BlockFlagPSDTianjin
+public class BlockAPGDoorTianjin extends BlockPSDAPGDoorBase implements BlockFlagAPGTianjin
 {
+    @Override
+    protected boolean isAPG() {
+        return true;
+    }
+
     @Nonnull
     @Override
     public Item asItem2() {
-        return ItemList.PSD_DOOR_TIANJIN.get();
+        return ItemList.APG_DOOR_TIANJIN.get();
     }
 
     @Override
@@ -24,10 +29,9 @@ public class BlockPSDDoorTianjin extends BlockPSDAPGDoorBase implements BlockFla
         return new BlockEntity(blockPos, blockState);
     }
 
-    public static class BlockEntity extends BlockEntityBase
-    {
+    public static class BlockEntity extends BlockPSDAPGDoorBase.BlockEntityBase {
         public BlockEntity(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.PSD_DOOR_TIANJIN.get(), pos, state);
+            super(BlockEntityTypes.APG_DOOR_TIANJIN.get(), pos, state);
         }
     }
 }
