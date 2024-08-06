@@ -3,6 +3,7 @@ package ziyue.tjmetro.mod;
 import org.mtr.mapping.holder.Block;
 import org.mtr.mapping.holder.Blocks;
 import org.mtr.mapping.mapper.BlockHelper;
+import org.mtr.mapping.mapper.BlockItemExtension;
 import org.mtr.mapping.mapper.SlabBlockExtension;
 import org.mtr.mapping.registry.BlockRegistryObject;
 import org.mtr.mod.block.BlockCeiling;
@@ -113,6 +114,7 @@ public interface BlockList
     BlockRegistryObject APG_DOOR_TIANJIN = Registry.registerBlock("apg_door_tianjin", () -> new Block(new BlockAPGDoorTianjin()));
     BlockRegistryObject APG_GLASS_TIANJIN = Registry.registerBlock("apg_glass_tianjin", () -> new Block(new BlockAPGGlassTianjin()));
     BlockRegistryObject APG_GLASS_END_TIANJIN = Registry.registerBlock("apg_glass_end_tianjin", () -> new Block(new BlockAPGGlassEndTianjin()));
+    BlockRegistryObject METAL_POLE_BMT = Registry.registerBlockWithBlockItem("metal_pole_bmt", () -> new Block(new BlockMetalPoleBMT()), BlockItemExtension::new, DECORATION);
 
     static void registerBlocks() {
         // Calling this class to initialize constants

@@ -95,6 +95,8 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockStationColor(BlockList.STATION_COLOR_CEILING, BlockList.STATION_COLOR_CEILING_LIGHT, BlockList.STATION_COLOR_CEILING_NO_LIGHT, BlockList.STATION_COLOR_CEILING_NOT_LIT);
         RegistryClient.registerBlockStationColor(BlockList.STATION_NAME_SIGN_1);
         RegistryClient.registerBlockCustomColor(BlockList.CUSTOM_COLOR_CONCRETE, BlockList.CUSTOM_COLOR_CONCRETE_SLAB, BlockList.CUSTOM_COLOR_CONCRETE_STAIRS);
+        RegistryClient.registerBlockCustomColor(BlockList.METAL_POLE_BMT);
+        RegistryClient.registerItemCustomColor(0xfff100, BlockList.METAL_POLE_BMT.get().asItem());
 
         RegistryClient.setupPackets("packet");
 

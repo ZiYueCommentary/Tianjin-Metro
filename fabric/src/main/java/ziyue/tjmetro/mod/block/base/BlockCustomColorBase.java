@@ -5,6 +5,7 @@ import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockExtension;
 import org.mtr.mapping.mapper.BlockWithEntity;
 import org.mtr.mapping.mapper.TextHelper;
+import org.mtr.mod.InitClient;
 import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.block.IBlockExtension;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
@@ -43,6 +44,10 @@ public abstract class BlockCustomColorBase extends BlockExtension implements Blo
 
         public BlockEntityBase(BlockEntityType<?> type, BlockPos blockPos, BlockState blockState) {
             super(type, blockPos, blockState);
+        }
+
+        public int getDefaultColor(BlockPos pos) {
+            return InitClient.getStationColor(pos);
         }
 
         @Override

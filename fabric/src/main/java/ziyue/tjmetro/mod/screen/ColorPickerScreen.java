@@ -10,6 +10,7 @@ import org.mtr.mod.InitClient;
 import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.data.IGui;
 import ziyue.tjmetro.mod.RegistryClient;
+import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 import ziyue.tjmetro.mod.packet.PacketUpdateCustomColor;
 
 import java.awt.*;
@@ -24,6 +25,7 @@ public class ColorPickerScreen extends ScreenExtension implements IGui
 
     protected final BlockPos pos;
     protected final int oldColor;
+    protected final BlockCustomColorBase.BlockEntityBase entity;
     protected final TextFieldWidgetExtension textFieldColor;
     protected final TextFieldWidgetExtension textFieldRed;
     protected final TextFieldWidgetExtension textFieldGreen;
@@ -33,17 +35,18 @@ public class ColorPickerScreen extends ScreenExtension implements IGui
 
     protected static final int RIGHT_WIDTH = 60;
 
-    public ColorPickerScreen(BlockPos pos, int oldColor) {
+    public ColorPickerScreen(BlockPos pos, BlockCustomColorBase.BlockEntityBase entity) {
         super();
         this.pos = pos;
-        this.oldColor = oldColor;
+        this.oldColor = entity.color;
+        this.entity = entity;
         textFieldColor = new TextFieldWidgetExtension(0, 0, 0, SQUARE_SIZE, 6, TextCase.UPPER, "[^\\dA-F]", TextHelper.literal(Integer.toHexString(oldColor).toUpperCase(Locale.ENGLISH)).getString());
         textFieldRed = new TextFieldWidgetExtension(0, 0, 0, SQUARE_SIZE, 3, TextCase.DEFAULT, "\\D", TextHelper.literal(String.valueOf((oldColor >> 16) & 0xFF)).getString());
         textFieldGreen = new TextFieldWidgetExtension(0, 0, 0, SQUARE_SIZE, 3, TextCase.DEFAULT, "\\D", TextHelper.literal(String.valueOf((oldColor >> 8) & 0xFF)).getString());
         textFieldBlue = new TextFieldWidgetExtension(0, 0, 0, SQUARE_SIZE, 3, TextCase.DEFAULT, "\\D", TextHelper.literal(String.valueOf(oldColor & 0xFF)).getString());
         checkboxDefaultColor = new CheckboxWidgetExtension(0, 0, 0, 20, TextHelper.translatable("gui.tjmetro.default_color"), true, checked -> {
             if (checked) {
-                setHsb(InitClient.getStationColor(pos), true);
+                setHsb(entity.getDefaultColor(pos), true);
             }
         });
         checkboxDefaultColor.setChecked(oldColor == -1);
@@ -67,7 +70,7 @@ public class ColorPickerScreen extends ScreenExtension implements IGui
         IDrawing.setPositionAndWidth(checkboxDefaultColor, SQUARE_SIZE * 4 + getMainWidth() + 3, SQUARE_SIZE, RIGHT_WIDTH - TEXT_FIELD_PADDING);
         IDrawing.setPositionAndWidth(buttonReset, startX, getMainHeight(), RIGHT_WIDTH);
 
-        setHsb(oldColor == -1 ? InitClient.getStationColor(pos) : oldColor, true);
+        setHsb(oldColor == -1 ? entity.getDefaultColor(pos) : oldColor, true);
 
         textFieldColor.setChangedListener2(text -> textCallback(text, -1));
         textFieldRed.setChangedListener2(text -> textCallback(text, 16));

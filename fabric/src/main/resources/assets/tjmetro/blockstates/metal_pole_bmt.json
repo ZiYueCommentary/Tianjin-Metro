@@ -1,0 +1,82 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "facing": "north"
+            },
+            "apply": {
+                "model": "tjmetro:block/metal_pole_bmt_horizontal"
+            }
+        },
+        {
+            "when": {
+                "facing": "east"
+            },
+            "apply": {
+                "model": "tjmetro:block/metal_pole_bmt_horizontal",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south"
+            },
+            "apply": {
+                "model": "tjmetro:block/metal_pole_bmt_horizontal",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west"
+            },
+            "apply": {
+                "model": "tjmetro:block/metal_pole_bmt_horizontal",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "facing": "down"
+            },
+            "apply": {
+                "model": "tjmetro:block/metal_pole_bmt_vertical"
+            }
+        },
+        {
+            "when": {
+                "north": true
+            },
+            "apply": {
+                "model": "tjmetro:block/metal_pole_bmt_connect"
+            }
+        },
+        {
+            "when": {
+                "east": true
+            },
+            "apply": {
+                "model": "tjmetro:block/metal_pole_bmt_connect",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "south": true
+            },
+            "apply": {
+                "model": "tjmetro:block/metal_pole_bmt_connect",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "west": true
+            },
+            "apply": {
+                "model": "tjmetro:block/metal_pole_bmt_connect",
+                "y": 270
+            }
+        }
+    ]
+}

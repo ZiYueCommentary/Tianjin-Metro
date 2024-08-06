@@ -1,15 +1,15 @@
 package ziyue.tjmetro.mod;
 
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import org.mtr.mapping.holder.Identifier;
+import org.mtr.mapping.holder.Item;
+import org.mtr.mapping.holder.ItemConvertible;
 import org.mtr.mapping.holder.RenderLayer;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockEntityRenderer;
 import org.mtr.mapping.mapper.EntityExtension;
 import org.mtr.mapping.mapper.EntityRenderer;
-import org.mtr.mapping.registry.BlockEntityTypeRegistryObject;
-import org.mtr.mapping.registry.BlockRegistryObject;
-import org.mtr.mapping.registry.EntityTypeRegistryObject;
-import org.mtr.mapping.registry.PacketHandler;
+import org.mtr.mapping.registry.*;
 import org.mtr.mod.InitClient;
 import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 
@@ -27,17 +27,21 @@ public final class RegistryClient
         REGISTRY_CLIENT.registerBlockColors((state, world, pos, tintIndex) -> InitClient.getStationColor(pos), blocks);
     }
 
+    public static void registerItemCustomColor(int color, Item item) {
+        ColorProviderRegistry.ITEM.register((stack, index) -> color, item.data);
+    }
+
     public static void registerBlockCustomColor(BlockRegistryObject... blocks) {
         for (BlockRegistryObject block : blocks) {
             REGISTRY_CLIENT.registerBlockColors((state, world, pos, tintIndex) -> {
                 try {
                     if (world.getBlockEntity(pos).data instanceof BlockCustomColorBase.BlockEntityBase) {
                         final BlockCustomColorBase.BlockEntityBase entity = (BlockCustomColorBase.BlockEntityBase) world.getBlockEntity(pos).data;
-                        if (entity.color != -1) return entity.color;
+                        return entity.color == -1 ? entity.getDefaultColor(pos) : entity.color;
                     }
                 } catch (Exception ignored) {
                 }
-                return InitClient.getStationColor(pos);
+                return 8355711;
             }, block);
         }
     }

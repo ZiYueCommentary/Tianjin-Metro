@@ -30,7 +30,7 @@ public final class ClientPacketHelper
                 openScreen(new RoadblockContentScreen(blockPos, entity.content), screen -> screen instanceof RoadblockContentScreen);
             } else if (blockEntity.data instanceof BlockCustomColorBase.BlockEntityBase) {
                 final BlockCustomColorBase.BlockEntityBase entity = (BlockCustomColorBase.BlockEntityBase) blockEntity.data;
-                openScreen(new ColorPickerScreen(blockPos, entity.color), screen -> screen instanceof ColorPickerScreen);
+                openScreen(new ColorPickerScreen(blockPos, entity), screen -> screen instanceof ColorPickerScreen);
             } else if (blockEntity.data instanceof BlockRailwaySignWallDouble.BlockEntity) {
                 openScreen(new RailwaySignDoubleScreen(blockPos), screen -> screen instanceof RailwaySignDoubleScreen);
             } else if (blockEntity.data instanceof BlockRailwaySignBase.BlockEntityBase) {
