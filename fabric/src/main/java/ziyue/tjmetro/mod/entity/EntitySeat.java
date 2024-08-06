@@ -38,6 +38,6 @@ public class EntitySeat extends EntityExtension
     @Override
     protected void removePassenger2(Entity passenger) {
         super.removePassenger2(passenger);
-        if (!getWorld().isClient()) this.kill2();
+        if (!getEntityWorld2().isClient()) this.kill2();
     }
 }

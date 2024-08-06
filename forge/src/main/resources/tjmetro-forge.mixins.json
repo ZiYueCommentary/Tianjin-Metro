@@ -4,7 +4,7 @@
     "package": "ziyue.tjmetro.forge.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-        "ATGameRuleBooleanMixin",
+        "GameRuleBooleanAccessor",
         "FallingBlockMixin"
     ],
     "injectors": {
