@@ -134,5 +134,6 @@
     "filter.tjmetro.mtr_railway_facilities_railway_signs": "指示牌",
     "filter.tjmetro.mtr_railway_facilities_route_signs": "路线牌",
     "filter.tjmetro.mtr_railway_facilities_signal_lights": "信号灯",
-    "filter.tjmetro.mtr_railway_facilities_station_name_signs": "站名牌"
+    "filter.tjmetro.mtr_railway_facilities_station_name_signs": "站名牌",
+    "footer.tjmetro.prevent_block_falling": "你知道可以禁止沙子的掉落吗？"
 }
