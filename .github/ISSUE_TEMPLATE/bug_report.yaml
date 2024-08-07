@@ -55,11 +55,13 @@ body:
       placeholder: "1.20.4"
     validations:
       required: true
-- type: input
+  - type: input
     attributes:
       label: Minecraft Transit Railway Version
       description: What version of the Minecraft Transit Railway mod were you using when you encountered the bug?
       placeholder: "4.0.0"
+    validations:
+      required: true
   - type: input
     attributes:
       label: Tianjin Metro Version
