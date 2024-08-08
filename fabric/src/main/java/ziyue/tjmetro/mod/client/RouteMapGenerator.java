@@ -296,6 +296,12 @@ public class RouteMapGenerator implements IGui
         try {
             final ObjectArrayList<ObjectIntImmutablePair<SimplifiedRoute>> routeDetails = new ObjectArrayList<>();
             getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex)));
+            if (routeDetails.isEmpty()) {
+                MinecraftClientData.getInstance().simplifiedRoutes.stream().filter(simplifiedRoute -> simplifiedRoute.getPlatformIndex(platformId) >= 0).sorted().forEach(simplifiedRoute -> {
+                    final int currentStationIndex = simplifiedRoute.getPlatformIndex(platformId);
+                    routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+                });
+            }
             final int routeCount = routeDetails.size();
 
             if (routeCount > 0) {
@@ -1095,7 +1101,7 @@ public class RouteMapGenerator implements IGui
         private final ObjectArrayList<String> interchangeNames;
 
         public StationPositionGrouped(StationPosition stationPosition, int stationOffset,
-                                       IntArrayList interchangeColors, ObjectArrayList<String> interchangeNames) {
+                                      IntArrayList interchangeColors, ObjectArrayList<String> interchangeNames) {
             this.stationPosition = stationPosition;
             this.stationOffset = stationOffset;
             this.interchangeColors = interchangeColors;
