@@ -135,5 +135,8 @@
     "filter.tjmetro.mtr_railway_facilities_route_signs": "路线牌",
     "filter.tjmetro.mtr_railway_facilities_signal_lights": "信号灯",
     "filter.tjmetro.mtr_railway_facilities_station_name_signs": "站名牌",
-    "footer.tjmetro.prevent_block_falling": "你知道可以禁止沙子的掉落吗？"
+    "footer.tjmetro.prevent_block_falling": "你知道可以禁止沙子的掉落吗？",
+    "block.tjmetro.apg_tianjin_bmt": "低站台门（天津、九号线）",
+    "block.tjmetro.apg_tianjin": "低站台门（天津）",
+    "block.tjmetro.metal_pole_bmt": "金属柱（九号线）"
 }
