@@ -17,6 +17,9 @@ public interface ItemList
     ItemRegistryObject APG_DOOR_TIANJIN = Registry.registerItem("apg_door_tianjin", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_DOOR_TIANJIN, itemSettings)), GATES);
     ItemRegistryObject APG_GLASS_TIANJIN = Registry.registerItem("apg_glass_tianjin", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_GLASS_TIANJIN, itemSettings)), GATES);
     ItemRegistryObject APG_GLASS_END_TIANJIN = Registry.registerItem("apg_glass_end_tianjin", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_GLASS_END_TIANJIN, itemSettings)), GATES);
+    ItemRegistryObject APG_DOOR_TIANJIN_BMT = Registry.registerItem("apg_door_tianjin_bmt", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_DOOR_TIANJIN_BMT, itemSettings)), GATES);
+    ItemRegistryObject APG_GLASS_TIANJIN_BMT = Registry.registerItem("apg_glass_tianjin_bmt", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_GLASS_TIANJIN_BMT, itemSettings)), GATES);
+    ItemRegistryObject APG_GLASS_END_TIANJIN_BMT = Registry.registerItem("apg_glass_end_tianjin_bmt", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_GLASS_END_TIANJIN_BMT, itemSettings)), GATES);
 
     static void registerItems() {
         // Calling this class to initialize constants

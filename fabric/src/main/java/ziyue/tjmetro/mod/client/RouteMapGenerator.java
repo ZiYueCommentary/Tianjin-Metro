@@ -15,7 +15,6 @@ import org.mtr.mapping.holder.NativeImage;
 import org.mtr.mapping.holder.NativeImageFormat;
 import org.mtr.mapping.mapper.ResourceManagerHelper;
 import org.mtr.mod.Init;
-import org.mtr.mod.InitClient;
 import org.mtr.mod.block.BlockRailwaySign;
 import org.mtr.mod.client.MinecraftClientData;
 import org.mtr.mod.config.Config;
@@ -152,7 +151,7 @@ public class RouteMapGenerator implements IGui
         }
     }
 
-    public static NativeImage generatePSDStationName(long platformId, HorizontalAlignment horizontalAlignment, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor) {
+    public static NativeImage generateStationName(long platformId, boolean isAPG, HorizontalAlignment horizontalAlignment, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor) {
         if (aspectRatio <= 0) return null;
 
         try {
@@ -164,7 +163,6 @@ public class RouteMapGenerator implements IGui
 
             if (width <= 0 || height <= 0) return null;
 
-
             final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, width, height, false);
             nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
 
@@ -172,7 +170,7 @@ public class RouteMapGenerator implements IGui
             final int leftSize = ((leftToRight ? 1 : 0)) * (tileSize + tilePadding);
             final int rightSize = ((leftToRight ? 0 : 1)) * (tileSize + tilePadding);
 
-            final DynamicTextureCache.Text destination = DynamicTextureCache.instance.getText(getStationName(platformId), width - leftSize - rightSize - padding, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
+            final DynamicTextureCache.Text destination = DynamicTextureCache.instance.getText(getStationName(platformId), isAPG ? width - padding : width - leftSize - rightSize - padding, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
             drawString(nativeImage, destination, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
 
             if (transparentColor != 0) {
@@ -187,7 +185,7 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
-    public static NativeImage generatePSDNextStation(long platformId, int arrowDirection, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor) {
+    public static NativeImage generateNextStation(long platformId, int arrowDirection, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor) {
         if (aspectRatio <= 0) return null;
 
         try {

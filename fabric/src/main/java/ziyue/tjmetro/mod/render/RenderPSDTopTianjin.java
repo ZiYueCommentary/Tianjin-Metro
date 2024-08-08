@@ -1,7 +1,6 @@
 package ziyue.tjmetro.mod.render;
 
 import org.mtr.mapping.holder.*;
-import org.mtr.mapping.mapper.BlockEntityRenderer;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mod.Init;
@@ -10,7 +9,6 @@ import org.mtr.mod.block.BlockPSDAPGDoorBase;
 import org.mtr.mod.block.BlockPSDAPGGlassEndBase;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.client.IDrawing;
-import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
@@ -19,7 +17,7 @@ import ziyue.tjmetro.mod.client.DynamicTextureCache;
 
 import static org.mtr.mod.render.RenderRouteBase.getShadingColor;
 
-public class RenderPSDTopTianjin<T extends BlockPSDTopTianjin.BlockEntity> extends BlockEntityRenderer<T> implements IGui, IBlock
+public class RenderPSDTopTianjin extends RenderRouteBase<BlockPSDTopTianjin.BlockEntity>
 {
     protected static final float END_FRONT_OFFSET = 1 / (MathHelper.getSquareRootOfTwoMapped() * 16);
     protected static final float BOTTOM_DIAGONAL_OFFSET = ((float) Math.sqrt(3) - 1) / 32;
@@ -28,32 +26,12 @@ public class RenderPSDTopTianjin<T extends BlockPSDTopTianjin.BlockEntity> exten
     protected static final float COLOR_STRIP_START = 14.5F / 16;
     protected static final float COLOR_STRIP_END = 15 / 16F;
 
-    protected final float topPadding;
-    protected final float bottomPadding;
-    protected final float sidePadding;
-    protected final float z;
-    protected final boolean transparentWhite;
-    protected final int platformSearchYOffset;
-    protected final IntegerProperty arrowDirectionProperty;
-
-
     public RenderPSDTopTianjin(Argument dispatcher) {
-        this(dispatcher, 2 - SMALL_OFFSET_16, 7.5F, 1.5F, 0.125F, true, 3, BlockPSDTopTianjin.ARROW_DIRECTION);
-    }
-
-    public RenderPSDTopTianjin(Argument dispatcher, float z, float topPadding, float bottomPadding, float sidePadding, boolean transparentWhite, int platformSearchYOffset, IntegerProperty arrowDirectionProperty) {
-        super(dispatcher);
-        this.z = z / 16;
-        this.topPadding = topPadding / 16;
-        this.bottomPadding = bottomPadding / 16;
-        this.sidePadding = sidePadding / 16;
-        this.transparentWhite = transparentWhite;
-        this.platformSearchYOffset = platformSearchYOffset;
-        this.arrowDirectionProperty = arrowDirectionProperty;
+        super(dispatcher, 2 - SMALL_OFFSET_16, 7.5F, 1.5F, 0.125F, true, 3, BlockPSDTopTianjin.ARROW_DIRECTION);
     }
 
     @Override
-    public final void render(T entity, float tickDelta, GraphicsHolder graphicsHolder, int light, int overlay) {
+    public void render(BlockPSDTopTianjin.BlockEntity entity, float tickDelta, GraphicsHolder graphicsHolder, int light, int overlay) {
         final World world = entity.getWorld2();
         if (world == null) return;
 
@@ -89,13 +67,13 @@ public class RenderPSDTopTianjin<T extends BlockPSDTopTianjin.BlockEntity> exten
                 final BlockPSDTopTianjin.EnumDoorType doorType = IBlock.getStatePropertySafe(entity.getCachedState2(), BlockPSDTopTianjin.STYLE);
                 if (renderType == RenderType.ARROW) {
                     if (doorType == BlockPSDTopTianjin.EnumDoorType.STATION_NAME) {
-                        identifier = DynamicTextureCache.instance.getPSDStationName(platformId, HorizontalAlignment.CENTER, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
+                        identifier = DynamicTextureCache.instance.getStationName(platformId, false, HorizontalAlignment.CENTER, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
                     } else {
                         identifier = DynamicTextureCache.instance.getDirectionArrow(platformId, (arrowDirection & 0b01) > 0, (arrowDirection & 0b10) > 0, HorizontalAlignment.CENTER, true, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
                     }
                 } else {
                     if (doorType == BlockPSDTopTianjin.EnumDoorType.NEXT_STATION) {
-                        identifier = DynamicTextureCache.instance.getPSDNextStation(platformId, arrowDirection, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
+                        identifier = DynamicTextureCache.instance.getNextStation(platformId, arrowDirection, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
                     } else {
                         identifier = DynamicTextureCache.instance.getRouteMap(platformId, false, arrowDirection == 2, width / height, transparentWhite).identifier;
                     }
@@ -112,6 +90,7 @@ public class RenderPSDTopTianjin<T extends BlockPSDTopTianjin.BlockEntity> exten
         });
     }
 
+    @Override
     protected RenderType getRenderType(World world, BlockPos pos, BlockState state) {
         final BlockPSDTopTianjin.EnumPersistent persistent = IBlock.getStatePropertySafe(state, BlockPSDTopTianjin.PERSISTENT);
         if (persistent == BlockPSDTopTianjin.EnumPersistent.NONE) {
@@ -128,6 +107,7 @@ public class RenderPSDTopTianjin<T extends BlockPSDTopTianjin.BlockEntity> exten
         }
     }
 
+    @Override
     protected void renderAdditionalUnmodified(StoredMatrixTransformations storedMatrixTransformations, BlockState state, Direction facing, int light) {
         final boolean airLeft = IBlock.getStatePropertySafe(state, BlockPSDTopTianjin.AIR_LEFT);
         final boolean airRight = IBlock.getStatePropertySafe(state, BlockPSDTopTianjin.AIR_RIGHT);
@@ -179,6 +159,7 @@ public class RenderPSDTopTianjin<T extends BlockPSDTopTianjin.BlockEntity> exten
         });
     }
 
+    @Override
     protected void renderAdditional(StoredMatrixTransformations storedMatrixTransformations, long platformId, BlockState state, int leftBlocks, int rightBlocks, Direction facing, int color, int light) {
         final boolean isNotPersistent = IBlock.getStatePropertySafe(state, BlockPSDTopTianjin.PERSISTENT) == BlockPSDTopTianjin.EnumPersistent.NONE;
         final boolean airLeft = isNotPersistent && IBlock.getStatePropertySafe(state, BlockPSDTopTianjin.AIR_LEFT);
@@ -197,50 +178,7 @@ public class RenderPSDTopTianjin<T extends BlockPSDTopTianjin.BlockEntity> exten
     }
 
     @Override
-    public boolean rendersOutsideBoundingBox2(T blockEntity) {
-        return true;
-    }
-
     protected float getAdditionalOffset(BlockState state) {
         return IBlock.getStatePropertySafe(state, BlockPSDTopTianjin.PERSISTENT) == BlockPSDTopTianjin.EnumPersistent.NONE ? 0 : BlockPSDTopTianjin.PERSISTENT_OFFSET_SMALL;
-    }
-
-    protected boolean isLeft(BlockState state) {
-        return IBlock.getStatePropertySafe(state, SIDE_EXTENDED) == IBlock.EnumSide.LEFT;
-    }
-
-    protected boolean isRight(BlockState state) {
-        return IBlock.getStatePropertySafe(state, SIDE_EXTENDED) == IBlock.EnumSide.RIGHT;
-    }
-
-    protected int getTextureNumber(World world, BlockPos pos, Direction facing, boolean searchLeft) {
-        int number = 0;
-        final Block thisBlock = world.getBlockState(pos).getBlock();
-
-        while (true) {
-            final BlockState state = world.getBlockState(pos.offset(searchLeft ? facing.rotateYCounterclockwise() : facing.rotateYClockwise(), number));
-
-            if (state.getBlock().equals(thisBlock)) {
-                final boolean isLeft = isLeft(state);
-                final boolean isRight = isRight(state);
-
-                if (number == 0 || (searchLeft ? !isRight : !isLeft)) {
-                    number++;
-                    if (searchLeft ? isLeft : isRight) break;
-                } else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-        return number - 1;
-    }
-
-    protected enum RenderType
-    {
-        ARROW,
-        ROUTE,
-        NONE
     }
 }

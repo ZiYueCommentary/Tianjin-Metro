@@ -6,6 +6,7 @@ import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mapping.registry.BlockRegistryObject;
 import org.mtr.mod.block.*;
 import ziyue.tjmetro.mod.block.*;
+import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
 import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
 
 import javax.annotation.Nonnull;
@@ -71,8 +72,10 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
     public String getTranslationKey2() {
         if (this.block.data instanceof BlockFlagPSDTianjin) {
             return "block.tjmetro.psd_tianjin";
-        } else {
+        } else if (this.block.data instanceof BlockFlagAPGTianjin) {
             return "block.tjmetro.apg_tianjin";
+        } else {
+            return "block.tjmetro.apg_tianjin_bmt";
         }
     }
 }

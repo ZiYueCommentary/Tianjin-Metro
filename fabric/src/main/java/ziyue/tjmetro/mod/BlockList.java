@@ -114,6 +114,9 @@ public interface BlockList
     BlockRegistryObject APG_DOOR_TIANJIN = Registry.registerBlock("apg_door_tianjin", () -> new Block(new BlockAPGDoorTianjin()));
     BlockRegistryObject APG_GLASS_TIANJIN = Registry.registerBlock("apg_glass_tianjin", () -> new Block(new BlockAPGGlassTianjin()));
     BlockRegistryObject APG_GLASS_END_TIANJIN = Registry.registerBlock("apg_glass_end_tianjin", () -> new Block(new BlockAPGGlassEndTianjin()));
+    BlockRegistryObject APG_DOOR_TIANJIN_BMT = Registry.registerBlock("apg_door_tianjin_bmt", () -> new Block(new BlockAPGDoorTianjinBMT()));
+    BlockRegistryObject APG_GLASS_TIANJIN_BMT = Registry.registerBlock("apg_glass_tianjin_bmt", () -> new Block(new BlockAPGGlassTianjinBMT()));
+    BlockRegistryObject APG_GLASS_END_TIANJIN_BMT = Registry.registerBlock("apg_glass_end_tianjin_bmt", () -> new Block(new BlockAPGGlassEndTianjinBMT()));
     BlockRegistryObject METAL_POLE_BMT = Registry.registerBlockWithBlockItem("metal_pole_bmt", () -> new Block(new BlockMetalPoleBMT()), BlockItemExtension::new, DECORATION);
 
     static void registerBlocks() {

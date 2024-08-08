@@ -4,11 +4,7 @@ import org.mtr.mapping.holder.MinecraftClient;
 import org.mtr.mapping.holder.RenderLayer;
 import org.mtr.mapping.holder.Screen;
 import org.mtr.mapping.mapper.TextHelper;
-import org.mtr.mod.Blocks;
-import org.mtr.mod.Items;
-import org.mtr.mod.render.RenderAPGGlass;
 import org.mtr.mod.render.RenderPSDAPGDoor;
-import ziyue.tjmetro.mod.client.Filters;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mapping.FilterBuilder;
 import ziyue.tjmetro.mod.render.*;
@@ -33,6 +29,9 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_DOOR_TIANJIN);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_TIANJIN);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_END_TIANJIN);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_DOOR_TIANJIN_BMT);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_TIANJIN_BMT);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_END_TIANJIN_BMT);
         RegistryClient.registerBlockRenderType(RenderLayer.getTranslucent(), BlockList.ROLLING);
 
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_1, RenderStationNameSign::new);
@@ -89,6 +88,8 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_6_EVEN, RenderRailwaySignTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_7_EVEN, RenderRailwaySignTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN, dispatcher -> new RenderPSDAPGDoor<>(dispatcher, 2));
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN_BMT, dispatcher -> new RenderPSDAPGDoor<>(dispatcher, 2));
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_GLASS_TIANJIN_BMT, RenderAPGGlassTianjinBMT::new);
 
         RegistryClient.registerEntityRenderer(EntityTypes.SEAT, RenderSeat::new);
 
