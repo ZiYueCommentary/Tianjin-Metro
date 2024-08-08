@@ -1,7 +1,7 @@
 package ziyue.tjmetro.mod;
 
 /**
- * References for <b>Tianjin Metro Mod</b>.
+ * References for Tianjin Metro Mod.
  *
  * @since 1.0.0-beta-1
  */

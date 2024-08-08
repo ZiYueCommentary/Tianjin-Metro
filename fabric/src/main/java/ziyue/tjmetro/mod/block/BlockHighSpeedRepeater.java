@@ -11,6 +11,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 // Screw this.
+@Deprecated
 public class BlockHighSpeedRepeater extends BlockExtension implements DirectionHelper
 {
     public static final BooleanProperty LOCKED = BooleanProperty.of("locked");

@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
 {
     public BlockRailwaySignTianjinBMT(int length, boolean isOdd) {
-        super(BlockHelper.createBlockSettings(false, state -> 0),length, isOdd);
+        super(BlockHelper.createBlockSettings(false, state -> 0), length, isOdd);
     }
 
     @Nonnull
@@ -41,7 +41,6 @@ public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
             final VoxelShape pole = IBlock.getVoxelShapeByDirection(xStart - 2, 0, 7, xStart - 0.75, 16, 9, facing);
             return VoxelShapes.union(main, pole);
         }
-
     }
 
     @Nonnull

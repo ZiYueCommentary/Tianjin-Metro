@@ -22,7 +22,7 @@ public class RenderAPGGlassTianjinBMT extends RenderRouteBase<BlockAPGGlassTianj
     public static final float COLOR_STRIP_END = 15.5F / 16F;
 
     public RenderAPGGlassTianjinBMT(Argument dispatcher) {
-        super(dispatcher, 4, 8F, 1F, 8, false, 2, BlockAPGGlass.ARROW_DIRECTION);
+        super(dispatcher, 4, 8F, 1F, 8, false, 2, BlockAPGGlassTianjinBMT.ARROW_DIRECTION);
     }
 
     @Override
