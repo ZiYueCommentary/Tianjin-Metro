@@ -19,6 +19,7 @@ import java.util.function.Function;
 
 public class BlockAPGGlassTianjinBMT extends BlockAPGGlass implements BlockFlagAPGTianjinBMT
 {
+    public static final IntegerProperty ARROW_DIRECTION = IntegerProperty.of("propagate_property", 0, 2);
     public static final EnumProperty<EnumDoorType> STYLE = EnumProperty.of("style", EnumDoorType.class);
 
     @Nonnull
@@ -53,8 +54,8 @@ public class BlockAPGGlassTianjinBMT extends BlockAPGGlass implements BlockFlagA
                     setStyle.accept(false, IBlock.getStatePropertySafe(state, FACING).rotateYCounterclockwise());
                 } else {
                     world.setBlockState(pos, state.cycle(new Property<>(ARROW_DIRECTION.data)));
-                    propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).rotateYClockwise(), new Property<>(ARROW_DIRECTION.data), 1);
-                    propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).rotateYCounterclockwise(), new Property<>(ARROW_DIRECTION.data), 1);
+                    propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).rotateYClockwise(), new Property<>(ARROW_DIRECTION.data), 3);
+                    propagate(world, pos, IBlock.getStatePropertySafe(state, FACING).rotateYCounterclockwise(), new Property<>(ARROW_DIRECTION.data), 3);
                 }
             }, null, org.mtr.mod.Items.BRUSH.get(), ItemList.WRENCH.get());
         } else {
@@ -80,8 +81,11 @@ public class BlockAPGGlassTianjinBMT extends BlockAPGGlass implements BlockFlagA
 
     @Override
     public void addBlockProperties(List<HolderBase<?>> properties) {
+        properties.add(FACING);
+        properties.add(HALF);
+        properties.add(SIDE_EXTENDED);
+        properties.add(ARROW_DIRECTION);
         properties.add(STYLE);
-        super.addBlockProperties(properties);
     }
 
     public static class BlockEntity extends BlockPSDTop.BlockEntityBase
