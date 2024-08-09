@@ -18,8 +18,7 @@ _Basically_, Javadoc in class should always contain `@author`, `@since`, and `@s
     * Functional classes (**not methods**) should not add `@author`.
 * Classes for block shall always be Javadoc'd. `@see` should be linked to its block entity. If the superclass is located in `ziyue.tjmetro.mod.base`, add it to `@see` as well.
 * Classes for block entity shall add `@see` which linked to its renderer. If there is a screen for it, link it too.
-* Classes for screen shall add `@see` which linked to its open screen packet and update packet.
-* Classes for open screen packets shall add `@see` which linked to its screen.
+* Classes for screen shall add `@see` which linked to its update packet.
 * Classes for update packets shall add `@see` which linked to its block entity.
 * Classes for renderer shall add `@see` which linked to blocks which use it.
 * Methods in `DynamicTextureCache` **should not** be Javadoc'd.
