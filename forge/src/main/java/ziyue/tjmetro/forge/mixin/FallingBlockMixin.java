@@ -52,7 +52,7 @@ public abstract class FallingBlockMixin extends Block implements Fallable
     }
 
     @Inject(at = @At("HEAD"), method = "tick", cancellable = true)
-#if MC_VERSION >= "11802"
+#if MC_VERSION >= "11902"
     private void beforeTick(BlockState p_221124_, ServerLevel world, BlockPos p_221126_, net.minecraft.util.RandomSource p_221127_, CallbackInfo ci)
 #else
     private void beforeTick(BlockState p_53216_, ServerLevel world, BlockPos p_53218_, Random p_53219_, CallbackInfo ci)
