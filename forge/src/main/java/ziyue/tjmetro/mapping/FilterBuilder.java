@@ -13,7 +13,7 @@ import java.util.function.Supplier;
  */
 public interface FilterBuilder
 {
-#if MC_VERSION <= "11802"
+#if MC_VERSION <= "11902"
     static Filter registerFilter(CreativeModeTabHolder creativeModeTab, MutableText filterName, Supplier<ItemStack> filterIcon) {
         return ziyue.filters.FilterBuilder.registerFilter(creativeModeTab.creativeModeTab, filterName.data, () -> filterIcon.get().data);
     }
