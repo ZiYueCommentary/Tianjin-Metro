@@ -1,31 +1,32 @@
-name: Build
-on: [ pull_request, push ]
-
-jobs:
-  build:
-    strategy:
-      matrix:
-        minecraft: [ 1.16.5, 1.17.1, 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4 ]
-        loader: [ fabric, forge ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Validate gradle wrapper
-        uses: gradle/wrapper-validation-action@v1
-      - name: Setup JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: 17
-      - name: Make gradle wrapper executable
-        run: chmod +x ./gradlew
-      - name: Setup ${{ matrix.minecraft }} ${{ matrix.loader }}
-        run: ./gradlew setupLibrary -Pminecraft_version="${{ matrix.minecraft }}"
-      - name: Build ${{ matrix.minecraft }} ${{ matrix.loader }}
-        run: ./gradlew ${{ matrix.loader }}:build -Pminecraft_version="${{ matrix.minecraft }}"
-      #- name: Capture release artifacts
-      #  uses: actions/upload-artifact@v3
-      #  with:
-      #    name: Fabric&Forge Artifacts
-      #    path: build/release/
+#name: Build
+#on: [ pull_request, push ]
+#
+#jobs:
+#  build:
+#    strategy:
+#      matrix:
+#        minecraft: [ 1.16.5, 1.17.1, 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4 ]
+#        loader: [ fabric, forge ]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v3
+#      - name: Validate gradle wrapper
+#        uses: gradle/wrapper-validation-action@v1
+#      - name: Setup JDK 17
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin'
+#          java-version: 17
+#      - name: Make gradle wrapper executable
+#        run: chmod +x ./gradlew
+#      - name: Setup ${{ matrix.minecraft }} ${{ matrix.loader }}
+#        run: ./gradlew setupLibrary -Pminecraft_version="${{ matrix.minecraft }}"
+#      - name: Build ${{ matrix.minecraft }} ${{ matrix.loader }}
+#        run: ./gradlew ${{ matrix.loader }}:build -Pminecraft_version="${{ matrix.minecraft }}"
+#      #- name: Capture release artifacts
+#      #  uses: actions/upload-artifact@v3
+#      #  with:
+#      #    name: Fabric&Forge Artifacts
+#      #    path: build/release/
+#
