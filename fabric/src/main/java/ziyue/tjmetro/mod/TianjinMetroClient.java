@@ -4,6 +4,7 @@ import org.mtr.mapping.holder.MinecraftClient;
 import org.mtr.mapping.holder.RenderLayer;
 import org.mtr.mapping.holder.Screen;
 import org.mtr.mapping.mapper.TextHelper;
+import org.mtr.mapping.registry.ItemRegistryObject;
 import org.mtr.mod.render.RenderPSDAPGDoor;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mapping.FilterBuilder;
@@ -101,7 +102,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockStationColor(BlockList.STATION_NAME_SIGN_1);
         RegistryClient.registerBlockCustomColor(BlockList.CUSTOM_COLOR_CONCRETE, BlockList.CUSTOM_COLOR_CONCRETE_SLAB, BlockList.CUSTOM_COLOR_CONCRETE_STAIRS);
         RegistryClient.registerBlockCustomColor(BlockList.METAL_POLE_BMT);
-        RegistryClient.registerItemCustomColor(0xfff100, BlockList.METAL_POLE_BMT.get().asItem());
+        RegistryClient.registerItemCustomColor(0xfff100, BlockList.METAL_POLE_BMT, "metal_pole_bmt");
 
         RegistryClient.setupPackets("packet");
 
@@ -109,7 +110,7 @@ public final class TianjinMetroClient
 
         FilterBuilder.setReservedButton(TianjinMetro.CREATIVE_MODE_TAB, TextHelper.translatable("button.tjmetro.tianjin_metro_options"), button ->
                 MinecraftClient.getInstance().openScreen(new Screen(new ConfigClientScreen(MinecraftClient.getInstance().getCurrentScreenMapped()))));
-        
+
         ConfigClient.refreshProperties();
     }
 }

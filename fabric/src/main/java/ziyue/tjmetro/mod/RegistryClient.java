@@ -1,9 +1,6 @@
 package ziyue.tjmetro.mod;
 
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import org.mtr.mapping.holder.Identifier;
-import org.mtr.mapping.holder.Item;
-import org.mtr.mapping.holder.ItemConvertible;
 import org.mtr.mapping.holder.RenderLayer;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockEntityRenderer;
@@ -31,8 +28,8 @@ public final class RegistryClient
         REGISTRY_CLIENT.registerBlockColors((state, world, pos, tintIndex) -> InitClient.getStationColor(pos), blocks);
     }
 
-    public static void registerItemCustomColor(int color, Item item) {
-        ColorProviderRegistry.ITEM.register((stack, index) -> color, item.data);
+    public static void registerItemCustomColor(int color, BlockRegistryObject block, String blockIdentifier) {
+        REGISTRY_CLIENT.registerItemColors((stack, index) -> color, RegistryHelper.RegistryObjectBlock2Item(block, new Identifier(Reference.MOD_ID, blockIdentifier)));
     }
 
     public static void registerBlockCustomColor(BlockRegistryObject... blocks) {
