@@ -9,7 +9,6 @@ import ziyue.tjmetro.mod.EntityTypes;
 /**
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.mod.render.RenderSeat
- * @see ziyue.tjmetro.mod.block.BlockBench
  * @since 1.0.0-beta-1
  */
 

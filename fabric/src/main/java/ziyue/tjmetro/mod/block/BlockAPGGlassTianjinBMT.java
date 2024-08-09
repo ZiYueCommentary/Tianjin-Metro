@@ -17,6 +17,14 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * @author ZiYueCommentary
+ * @see org.mtr.mod.block.BlockAPGGlass
+ * @see ziyue.tjmetro.mod.item.ItemPSDAPGTianjinBase
+ * @see BlockEntity
+ * @since 1.0.0-beta-2
+ */
+
 public class BlockAPGGlassTianjinBMT extends BlockAPGGlass implements BlockFlagAPGTianjinBMT
 {
     public static final IntegerProperty ARROW_DIRECTION = IntegerProperty.of("propagate_property", 0, 2);
@@ -88,6 +96,11 @@ public class BlockAPGGlassTianjinBMT extends BlockAPGGlass implements BlockFlagA
         properties.add(STYLE);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderAPGGlassTianjinBMT
+     * @since 1.0.0-beta-2
+     */
     public static class BlockEntity extends BlockPSDTop.BlockEntityBase
     {
         public BlockEntity(BlockPos pos, BlockState state) {

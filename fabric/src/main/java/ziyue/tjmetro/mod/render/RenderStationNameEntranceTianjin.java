@@ -18,6 +18,12 @@ import ziyue.tjmetro.mod.client.DynamicTextureCache;
 
 import javax.annotation.Nullable;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockStationNameEntranceTianjin
+ * @since 1.0.0-beta-1
+ */
+
 public class RenderStationNameEntranceTianjin<T extends BlockStationNameEntranceTianjin.BlockEntity> extends BlockEntityRenderer<T> implements IGui, IDrawing
 {
     public RenderStationNameEntranceTianjin(Argument argument) {

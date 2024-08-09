@@ -16,8 +16,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
- * Register for some methods that have different implement ways.
- *
  * @since 1.0.0-beta-1
  */
 

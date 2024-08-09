@@ -11,6 +11,14 @@ import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
 
 import javax.annotation.Nonnull;
 
+/**
+ * @author ZiYueCommentary
+ * @see org.mtr.mod.block.BlockPSDDoor
+ * @see ziyue.tjmetro.mod.item.ItemPSDAPGTianjinBase
+ * @see BlockEntity
+ * @since 1.0.0-beta-1
+ */
+
 public class BlockPSDDoorTianjin extends BlockPSDAPGDoorBase implements BlockFlagPSDTianjin
 {
     @Nonnull
@@ -24,6 +32,11 @@ public class BlockPSDDoorTianjin extends BlockPSDAPGDoorBase implements BlockFla
         return new BlockEntity(blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see org.mtr.mod.render.RenderPSDAPGDoor
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockEntityBase
     {
         public BlockEntity(BlockPos pos, BlockState state) {

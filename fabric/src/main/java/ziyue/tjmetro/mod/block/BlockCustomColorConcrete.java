@@ -11,6 +11,7 @@ import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 /**
  * @author ZiYueCommentary
  * @see BlockCustomColorBase
+ * @see BlockEntity
  * @since 1.0.0-beta-1
  */
 
@@ -29,6 +30,11 @@ public class BlockCustomColorConcrete extends BlockCustomColorBase
         return new BlockEntity(blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.screen.ColorPickerScreen
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockEntityBase
     {
         public BlockEntity(BlockPos blockPos, BlockState blockState) {

@@ -8,6 +8,9 @@ import ziyue.filters.Filter;
 
 import java.util.function.Supplier;
 
+/**
+ * @since 1.0.0-beta-1
+ */
 public interface FilterBuilder
 {
 #if MC_VERSION <= "11802"

@@ -10,6 +10,12 @@ import org.mtr.mod.block.IBlock;
 import javax.annotation.Nonnull;
 import java.util.List;
 
+/**
+ * @author ZiYueCommentary
+ * @since 1.0.0-beta-1
+ * @deprecated
+ */
+
 // Screw this.
 @Deprecated
 public class BlockHighSpeedRepeater extends BlockExtension implements DirectionHelper

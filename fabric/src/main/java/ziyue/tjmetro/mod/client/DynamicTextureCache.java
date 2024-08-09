@@ -31,6 +31,10 @@ import java.util.function.Supplier;
 import static org.mtr.mod.client.DynamicTextureCache.LINE_HEIGHT_MULTIPLIER;
 import static org.mtr.mod.data.IGui.ARGB_WHITE;
 
+/**
+ * @since 1.0.0-beta-1
+ */
+
 public class DynamicTextureCache
 {
     protected Font font;

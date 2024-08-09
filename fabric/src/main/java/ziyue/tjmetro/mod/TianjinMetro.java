@@ -9,6 +9,10 @@ import ziyue.tjmetro.mapping.BooleanGameRule;
 import ziyue.tjmetro.mapping.GameRuleRegistry;
 import ziyue.tjmetro.mod.packet.*;
 
+/**
+ * @since 1.0.0-beta-1
+ */
+
 public final class TianjinMetro
 {
     public static final Logger LOGGER = LogManager.getLogger(Reference.NAME);

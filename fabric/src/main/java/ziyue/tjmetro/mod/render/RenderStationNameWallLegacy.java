@@ -12,6 +12,12 @@ import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.RenderStationNameBase;
 import org.mtr.mod.render.StoredMatrixTransformations;
 
+/**
+ * @author ZiYueCommentary
+ * @see ziyue.tjmetro.mod.block.BlockStationNameWallLegacy
+ * @since 1.0.0-beta-1
+ */
+
 public class RenderStationNameWallLegacy<T extends BlockStationNameBase.BlockEntityBase> extends RenderStationNameBase<T>
 {
     public RenderStationNameWallLegacy(Argument dispatcher) {

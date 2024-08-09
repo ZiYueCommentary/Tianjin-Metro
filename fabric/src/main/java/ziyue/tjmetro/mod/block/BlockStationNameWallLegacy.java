@@ -6,11 +6,19 @@ import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.BlockWithEntity;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.BlockStationNameWallBase;
+import org.mtr.mod.block.BlockStationNameWallWhite;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+
+/**
+ * @author ZiYueCommentary
+ * @see BlockStationNameWallWhite
+ * @see BlockEntity
+ * @since 1.0.0-beta-1
+ */
 
 public class BlockStationNameWallLegacy extends BlockStationNameWallBase implements BlockWithEntity
 {
@@ -39,6 +47,11 @@ public class BlockStationNameWallLegacy extends BlockStationNameWallBase impleme
         properties.add(COLOR);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderStationNameWallLegacy
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockEntityWallBase
     {
         public BlockEntity(BlockPos pos, BlockState state) {

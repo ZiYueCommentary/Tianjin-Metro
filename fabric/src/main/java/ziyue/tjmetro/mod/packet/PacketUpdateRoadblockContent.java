@@ -11,8 +11,7 @@ import ziyue.tjmetro.mod.block.BlockRoadblockSign;
 
 /**
  * @author ZiYueCommentary
- * @see BlockRoadblockSign
- * @see ClientPacketHelper
+ * @see BlockRoadblockSign.BlockEntity
  * @since 1.0.0-beta-1
  */
 

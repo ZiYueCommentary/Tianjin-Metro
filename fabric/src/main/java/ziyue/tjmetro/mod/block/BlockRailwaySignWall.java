@@ -17,6 +17,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignBase
+ * @see BlockEntity
+ * @since 1.0.0-beta-1
+ */
+
 public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailwaySign
 {
     public static final BooleanProperty EOS = BooleanProperty.of("eos"); // end of sign
@@ -108,6 +115,11 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
             return new BlockEntity(length, blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderRailwaySignWall
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockEntityBase
     {
         public BlockEntity(int length, BlockPos pos, BlockState state) {

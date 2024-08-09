@@ -25,6 +25,7 @@ import java.util.function.Supplier;
 
 public class ConfigClient
 {
+    @Deprecated
     public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<>("enable_mtr_filters", false);
     public static final Property<Boolean> USE_TIANJIN_METRO_FONT = new Property<>("use_tianjin_metro_font", true);
 

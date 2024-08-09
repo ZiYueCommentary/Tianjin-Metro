@@ -1,9 +1,7 @@
 package ziyue.tjmetro.mod.block;
 
-import org.jetbrains.annotations.NotNull;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
-import org.mtr.mapping.mapper.BlockExtension;
 import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
@@ -15,6 +13,13 @@ import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+
+/**
+ * @author ZiYueCommentary
+ * @see BlockEntity
+ * @see BlockCustomColorBase
+ * @since 1.0.0-beta-2
+ */
 
 public class BlockMetalPoleBMT extends BlockCustomColorBase implements DirectionHelper
 {
@@ -107,6 +112,11 @@ public class BlockMetalPoleBMT extends BlockCustomColorBase implements Direction
         properties.add(WEST);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.screen.ColorPickerScreen
+     * @since 1.0.0-beta-2
+     */
     public static class BlockEntity extends BlockEntityBase
     {
         public BlockEntity(BlockPos blockPos, BlockState blockState) {

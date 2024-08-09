@@ -39,6 +39,12 @@ import java.util.stream.Collectors;
 import static org.mtr.mod.render.RenderRailwaySign.getMaxWidth;
 import static org.mtr.mod.render.RenderRailwaySign.getSign;
 
+/**
+ * @author ZiYueCommentary
+ * @see ziyue.tjmetro.mod.block.BlockRailwaySignTianjinBMT
+ * @since 1.0.0-beta-1
+ */
+
 public class RenderRailwaySignTianjinBMT<T extends BlockRailwaySignBase.BlockEntityBase> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing
 {
     public static final int BACKGROUND_COLOR = 0xff00379c;

@@ -12,6 +12,13 @@ import ziyue.tjmetro.mod.block.base.IRailwaySign;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockEntity
+ * @see BlockRailwaySignBase
+ * @since 1.0.0-beta-1
+ */
+
 public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
 {
     public BlockRailwaySignTianjinBMT(int length, boolean isOdd) {
@@ -62,6 +69,11 @@ public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
             return new BlockEntity(length, isOdd, blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderRailwaySignTianjinBMT
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockEntityBase
     {
         public BlockEntity(int length, boolean isOdd, BlockPos pos, BlockState state) {

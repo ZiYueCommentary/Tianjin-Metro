@@ -1,7 +1,6 @@
 package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
-import org.mtr.mapping.mapper.BlockExtension;
 import org.mtr.mod.Items;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.ItemList;
@@ -12,7 +11,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * Some methods similar to methods in <b>IBlock</b>.
+ * Some methods similar to methods in IBlock.
  *
  * @see IBlock
  * @since 1.0.0-beta-1
@@ -34,7 +33,7 @@ public interface IBlockExtension
     }
 
     /**
-     * Specify a block, if block in pos is specified block, then replace it with air.
+     * Specify a block, if a block in pos is a specified block, then replace it with air.
      *
      * @param pos   block's position
      * @param block specified block

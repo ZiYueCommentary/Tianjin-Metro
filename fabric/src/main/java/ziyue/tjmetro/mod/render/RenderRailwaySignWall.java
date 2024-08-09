@@ -12,10 +12,18 @@ import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import org.mtr.mod.resource.SignResource;
+import ziyue.tjmetro.mod.block.BlockRailwaySignWall;
 import ziyue.tjmetro.mod.block.BlockRailwaySignWallBig;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 
 import static org.mtr.mod.render.RenderRailwaySign.*;
+
+/**
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignWall
+ * @see BlockRailwaySignWallBig
+ * @since 1.0.0-beta-1
+ */
 
 public class RenderRailwaySignWall<T extends BlockRailwaySignBase.BlockEntityBase> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing
 {

@@ -9,7 +9,6 @@ import ziyue.tjmetro.mod.entity.EntitySeat;
 
 /**
  * @author ZiYueCommentary
- * @see EntitySeat
  * @see ziyue.tjmetro.mod.block.BlockBench
  * @since 1.0.0-beta-1
  */

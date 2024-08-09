@@ -15,6 +15,10 @@ import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 
 import java.util.function.Function;
 
+/**
+ * @since 1.0.0-beta-1
+ */
+
 public final class RegistryClient
 {
     public static final org.mtr.mapping.registry.RegistryClient REGISTRY_CLIENT = new org.mtr.mapping.registry.RegistryClient(Registry.REGISTRY);

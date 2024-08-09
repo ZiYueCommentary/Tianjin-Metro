@@ -9,7 +9,12 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import ziyue.tjmetro.mod.block.BlockRailwaySignTianjinBMT;
-import ziyue.tjmetro.mod.block.BlockStationNamePlate;
+
+/**
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignPole
+ * @since 1.0.0-beta-1
+ */
 
 @Mixin(BlockRailwaySignPole.class)
 public abstract class BlockRailwaySignPoleMixin extends BlockPoleCheckBase
@@ -30,8 +35,6 @@ public abstract class BlockRailwaySignPoleMixin extends BlockPoleCheckBase
             type = (((BlockRailwaySign) block.data).length + (((BlockRailwaySign) block.data).isOdd ? 2 : 0)) % 4;
         } else if (block.data instanceof BlockRailwaySignTianjinBMT) {
             type = (((BlockRailwaySignTianjinBMT) block.data).length + (((BlockRailwaySignTianjinBMT) block.data).isOdd ? 2 : 0)) % 4;
-        } else if (block.data instanceof BlockStationNamePlate) {
-            type = 3;
         } else {
             type = IBlock.getStatePropertySafe(stateBelow, TYPE);
         }

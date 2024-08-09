@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * @author ZiYueCommentary
  * @see BlockCustomColorBase
+ * @see BlockEntity
  * @since 1.0.0-beta-1
  */
 
@@ -43,6 +44,11 @@ public class BlockCustomColorConcreteSlab extends SlabBlockExtension implements 
         return new BlockEntity(blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.screen.ColorPickerScreen
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockCustomColorBase.BlockEntityBase
     {
         public BlockEntity(BlockPos blockPos, BlockState blockState) {

@@ -14,6 +14,12 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockEntityBase
+ * @since 1.0.0-beta-1
+ */
+
 public abstract class BlockCustomColorBase extends BlockExtension implements BlockWithEntity
 {
     public BlockCustomColorBase(BlockSettings blockSettings) {
@@ -37,6 +43,10 @@ public abstract class BlockCustomColorBase extends BlockExtension implements Blo
         return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(pos)));
     }
 
+    /**
+     * @see ziyue.tjmetro.mod.screen.ColorPickerScreen
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntityBase extends BlockEntityExtension
     {
         public final String COLOR_ID = "color";

@@ -19,6 +19,7 @@ import java.util.Locale;
 /**
  * @author ZiYueCommentary
  * @see org.mtr.mod.block.BlockRailwaySign
+ * @see BlockEntityBase
  * @since 1.0.0-beta-1
  */
 

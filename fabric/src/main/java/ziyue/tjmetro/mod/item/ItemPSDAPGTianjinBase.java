@@ -16,6 +16,20 @@ import java.util.List;
 import static org.mtr.mod.item.ItemPSDAPGBase.blocksNotReplaceable;
 import static ziyue.tjmetro.mod.block.BlockPSDTopTianjin.STYLE;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockAPGDoorTianjin
+ * @see BlockAPGDoorTianjinBMT
+ * @see BlockAPGGlassEndTianjin
+ * @see BlockAPGGlassEndTianjinBMT
+ * @see BlockAPGGlassTianjin
+ * @see BlockAPGGlassTianjinBMT
+ * @see BlockPSDDoorTianjin
+ * @see BlockPSDGlassEndTianjin
+ * @see BlockPSDGlassTianjin
+ * @since 1.0.0-beta-1
+ */
+
 public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
 {
     public final Block block;

@@ -8,6 +8,10 @@ import ziyue.filters.Filter;
 
 import java.util.function.Supplier;
 
+/**
+ * @since 1.0.0-beta-1
+ */
+
 public interface FilterBuilder
 {
     static Filter registerFilter(CreativeModeTabHolder creativeModeTab, MutableText filterName, Supplier<ItemStack> filterIcon) {

@@ -3,6 +3,10 @@ package ziyue.tjmetro.mod;
 import org.mtr.mapping.registry.BlockEntityTypeRegistryObject;
 import ziyue.tjmetro.mod.block.*;
 
+/**
+ * @since 1.0.0-beta-1
+ */
+
 public interface BlockEntityTypes
 {
     BlockEntityTypeRegistryObject<BlockPlayerDetector.BlockEntity> PLAYER_DETECTOR = Registry.registerBlockEntityType("player_detector", BlockPlayerDetector.BlockEntity::new, BlockList.PLAYER_DETECTOR::get);

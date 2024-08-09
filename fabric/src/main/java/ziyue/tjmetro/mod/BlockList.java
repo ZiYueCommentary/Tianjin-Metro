@@ -14,6 +14,10 @@ import ziyue.tjmetro.mod.block.base.StairBlock;
 
 import static ziyue.tjmetro.mod.client.Filters.*;
 
+/**
+ * @since 1.0.0-beta-1
+ */
+
 public interface BlockList
 {
     BlockRegistryObject LOGO = Registry.registerBlockWithBlockItem("logo", () -> new Block(new BlockLogo()), DECORATION);

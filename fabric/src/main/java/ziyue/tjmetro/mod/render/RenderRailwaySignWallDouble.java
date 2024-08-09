@@ -27,7 +27,6 @@ import org.mtr.mod.render.RenderRailwaySign;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import org.mtr.mod.resource.SignResource;
 import org.mtr.mod.screen.EditStationScreen;
-import ziyue.tjmetro.mod.block.BlockRailwaySignWallBig;
 import ziyue.tjmetro.mod.block.BlockRailwaySignWallDouble;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
@@ -38,7 +37,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.mtr.mod.render.RenderRailwaySign.*;
+import static org.mtr.mod.render.RenderRailwaySign.getMaxWidth;
+import static org.mtr.mod.render.RenderRailwaySign.getSign;
+
+/**
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignWallDouble
+ * @since 1.0.0-beta-1
+ */
 
 public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.BlockEntity> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing
 {

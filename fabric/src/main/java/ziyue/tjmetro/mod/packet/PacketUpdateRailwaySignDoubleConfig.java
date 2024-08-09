@@ -14,6 +14,12 @@ import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author ZiYueCommentary
+ * @see ziyue.tjmetro.mod.block.BlockRailwaySignWallDouble.BlockEntity
+ * @since 1.0.0-beta-1
+ */
+
 public final class PacketUpdateRailwaySignDoubleConfig extends PacketHandler
 {
     private final BlockPos blockPos;

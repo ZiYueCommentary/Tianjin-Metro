@@ -14,8 +14,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 /**
+ * Bench is a wooden chair on which players can sit down.
+ * Note that the bench in Minecraft 1.16.5 does not support sitting down.
+ *
  * @author ZiYueCommentary
  * @see EntitySeat
+ * @see <a href="https://github.com/ZiYueCommentary/Tianjin-Metro/wiki/Bench">Wiki page</a>
  * @since 1.0.0-beta-1
  */
 

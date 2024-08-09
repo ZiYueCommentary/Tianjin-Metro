@@ -17,8 +17,7 @@ import ziyue.tjmetro.mod.packet.PacketUpdateRoadblockContent;
  * Custom content to display for Custom Content Block.
  *
  * @author ZiYueCommentary
- * @see ziyue.tjmetro.mod.block.BlockRoadblockSign
- * @see ziyue.tjmetro.mod.render.RenderRoadblockSign
+ * @see PacketUpdateRoadblockContent
  * @since 1.0.0-beta-1
  */
 

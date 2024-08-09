@@ -6,7 +6,7 @@ import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.config.Config;
 
 /**
- * Some methods similar to methods in <b>IGui</b>.
+ * Some methods similar to methods in IGui.
  *
  * @see org.mtr.mod.data.IGui
  * @since 1.0.0-beta-1

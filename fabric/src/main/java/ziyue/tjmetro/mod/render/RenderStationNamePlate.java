@@ -18,6 +18,12 @@ import ziyue.tjmetro.mod.client.DynamicTextureCache;
 
 import static ziyue.tjmetro.mod.block.BlockStationNamePlate.ARROW_DIRECTION;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockStationNamePlate
+ * @since 1.0.0-beta-1
+ */
+
 public class RenderStationNamePlate<T extends BlockStationNamePlate.BlockEntity> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing
 {
     public RenderStationNamePlate(Argument dispatcher) {

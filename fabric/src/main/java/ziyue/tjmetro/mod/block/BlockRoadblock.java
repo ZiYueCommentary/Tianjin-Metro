@@ -12,10 +12,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 /**
- * A roadblock style fence.
+ * A roadblock-style fence.
  *
  * @author ZiYueCommentary
- * @see BlockRoadblockSign
  * @since 1.0.0-beta-1
  */
 

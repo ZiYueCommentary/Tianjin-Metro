@@ -6,13 +6,18 @@ import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mapping.mapper.ScreenExtension;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.client.IDrawing;
-import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;
+import ziyue.tjmetro.mod.config.ConfigClient;
 
 import java.util.Random;
 
 import static org.mtr.mod.data.IGui.*;
+
+/**
+ * @author ZiYueCommentary
+ * @since 1.0.0-beta-1
+ */
 
 public class ConfigClientScreen extends ScreenExtension
 {

@@ -26,6 +26,7 @@ import org.mtr.mod.render.RenderRailwaySign;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import org.mtr.mod.resource.SignResource;
 import org.mtr.mod.screen.EditStationScreen;
+import ziyue.tjmetro.mod.block.BlockPSDTopTianjin;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;
@@ -38,6 +39,12 @@ import java.util.stream.Collectors;
 
 import static org.mtr.mod.render.RenderRailwaySign.getMaxWidth;
 import static org.mtr.mod.render.RenderRailwaySign.getSign;
+
+/**
+ * @author ZiYueCommentary
+ * @see ziyue.tjmetro.mod.block.BlockRailwaySignTianjin
+ * @since 1.0.0-beta-1
+ */
 
 public class RenderRailwaySignTianjin<T extends BlockRailwaySignBase.BlockEntityBase> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing
 {

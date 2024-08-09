@@ -17,6 +17,13 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * @author ZiYueCommentary
+ * @see org.mtr.mod.block.BlockStationNameEntrance
+ * @see BlockEntity
+ * @since 1.0.0-beta-1
+ */
+
 public class BlockStationNameEntranceTianjin extends BlockStationNameBase implements IBlock
 {
     /*
@@ -86,6 +93,12 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
         return new BlockEntity(pinyin, isBMT, blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderStationNameEntranceTianjin
+     * @see ziyue.tjmetro.mod.screen.RailwaySignScreen
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockEntityRenderable
     {
         protected long selectedId = -1;

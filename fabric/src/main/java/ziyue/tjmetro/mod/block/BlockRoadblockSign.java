@@ -17,6 +17,7 @@ import javax.annotation.Nonnull;
  *
  * @author ZiYueCommentary
  * @see BlockRoadblock
+ * @see BlockEntity
  * @since 1.0.0-beta-1
  */
 
@@ -35,9 +36,9 @@ public class BlockRoadblockSign extends BlockRoadblock implements BlockWithEntit
 
     /**
      * @author ZiYueCommentary
-     * @since 1.0.0-beta-1
      * @see ziyue.tjmetro.mod.screen.RoadblockContentScreen
      * @see ziyue.tjmetro.mod.render.RenderRoadblockSign
+     * @since 1.0.0-beta-1
      */
     public static class BlockEntity extends BlockEntityRenderable
     {

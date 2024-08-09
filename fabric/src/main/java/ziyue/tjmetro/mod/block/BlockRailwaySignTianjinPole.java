@@ -7,6 +7,12 @@ import org.mtr.mod.block.IBlock;
 
 import javax.annotation.Nonnull;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignPole
+ * @since 1.0.0-beta-1
+ */
+
 public class BlockRailwaySignTianjinPole extends BlockRailwaySignPole
 {
     public BlockRailwaySignTianjinPole() {

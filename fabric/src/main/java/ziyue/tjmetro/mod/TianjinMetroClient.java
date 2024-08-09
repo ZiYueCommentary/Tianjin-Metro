@@ -10,6 +10,10 @@ import ziyue.tjmetro.mapping.FilterBuilder;
 import ziyue.tjmetro.mod.render.*;
 import ziyue.tjmetro.mod.screen.ConfigClientScreen;
 
+/**
+ * @since 1.0.0-beta-1
+ */
+
 public final class TianjinMetroClient
 {
     public static void init() {

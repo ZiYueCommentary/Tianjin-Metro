@@ -9,7 +9,7 @@ import ziyue.tjmetro.mod.TianjinMetro;
  * Second variant for Station Name Sign.
  *
  * @author ZiYueCommentary
- * @see ziyue.tjmetro.mod.block.base.BlockStationNameSignBase
+ * @see BlockStationNameSign1
  * @see BlockEntity
  * @since 1.0.0-beta-1
  */

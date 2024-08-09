@@ -4,7 +4,6 @@ import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mod.InitClient;
-import org.mtr.mod.block.BlockAPGGlass;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.render.MainRenderer;
@@ -16,10 +15,17 @@ import ziyue.tjmetro.mod.client.DynamicTextureCache;
 import static org.mtr.mod.render.RenderRouteBase.getShadingColor;
 import static ziyue.tjmetro.mod.block.BlockAPGGlassTianjinBMT.STYLE;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockAPGGlassTianjinBMT
+ * @see RenderRouteBase
+ * @since 1.0.0-beta-2
+ */
+
 public class RenderAPGGlassTianjinBMT extends RenderRouteBase<BlockAPGGlassTianjinBMT.BlockEntity>
 {
     public static final float COLOR_STRIP_START = 15F / 16;
-    public static final float COLOR_STRIP_END = 15.5F / 16F;
+    public static final float COLOR_STRIP_END = 1F;
 
     public RenderAPGGlassTianjinBMT(Argument dispatcher) {
         super(dispatcher, 4, 8F, 1F, 8, false, 2, BlockAPGGlassTianjinBMT.ARROW_DIRECTION);

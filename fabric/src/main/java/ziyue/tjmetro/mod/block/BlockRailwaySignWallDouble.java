@@ -14,6 +14,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignWall
+ * @see BlockEntity
+ * @since 1.0.0-beta-1
+ */
+
 public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
 {
     public BlockRailwaySignWallDouble(int length) {
@@ -58,6 +65,11 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
             return new BlockEntity(length, blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderRailwaySignWallDouble
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockEntityExtension
     {
         protected final List<LongAVLTreeSet> selectedIds;

@@ -13,6 +13,15 @@ import ziyue.tjmetro.mod.block.BlockStationNamePlate;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.render.RenderStationNameEntranceTianjin;
 
+/**
+ * @author ZiYueCommentary
+ * @see ziyue.tjmetro.mod.block.BlockRailwaySignTianjinBMT.BlockEntity
+ * @see ziyue.tjmetro.mod.block.BlockRailwaySignTianjin.BlockEntity
+ * @see ziyue.tjmetro.mod.block.BlockRailwaySignWall.BlockEntity
+ * @see ziyue.tjmetro.mod.block.BlockRailwaySignWallBig.BlockEntity
+ * @since 1.0.0-beta-1
+ */
+
 public final class PacketUpdateRailwaySignConfig extends PacketHandler
 {
     private final BlockPos blockPos;

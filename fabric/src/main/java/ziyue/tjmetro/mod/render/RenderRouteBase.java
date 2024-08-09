@@ -5,7 +5,6 @@ import org.mtr.mapping.mapper.BlockEntityRenderer;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mod.InitClient;
-import org.mtr.mod.block.BlockPSDTop;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.client.DynamicTextureCache;
 import org.mtr.mod.client.IDrawing;
@@ -13,10 +12,16 @@ import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
+import ziyue.tjmetro.mod.block.BlockPSDTopTianjin;
 
 import static org.mtr.mod.render.RenderRouteBase.getShadingColor;
 
-public abstract class RenderRouteBase<T extends BlockPSDTop.BlockEntityBase> extends BlockEntityRenderer<T> implements IGui, IBlock
+/**
+ * @see org.mtr.mod.render.RenderRouteBase
+ * @since 1.0.0-beta-2
+ */
+
+public abstract class RenderRouteBase<T extends BlockPSDTopTianjin.BlockEntityBase> extends BlockEntityRenderer<T> implements IGui, IBlock
 {
     public final float topPadding;
     public final float bottomPadding;
@@ -65,7 +70,7 @@ public abstract class RenderRouteBase<T extends BlockPSDTop.BlockEntityBase> ext
             final int color = getShadingColor(facing, ARGB_WHITE);
             final RenderType renderType = getRenderType(world, blockPos.offset(facing.rotateYCounterclockwise(), leftBlocks), state);
 
-            if ((renderType == RenderType.ARROW || renderType == RenderType.ROUTE) && IBlock.getStatePropertySafe(state, SIDE_EXTENDED) != EnumSide.SINGLE) {
+            if ((renderType != RenderType.NONE) && (IBlock.getStatePropertySafe(state, SIDE_EXTENDED) != EnumSide.SINGLE)) {
                 final float width = leftBlocks + rightBlocks + 1 - sidePadding * 2;
                 final float height = 1 - topPadding - bottomPadding;
                 final int arrowDirection = IBlock.getStatePropertySafe(state, arrowDirectionProperty);
@@ -116,7 +121,7 @@ public abstract class RenderRouteBase<T extends BlockPSDTop.BlockEntityBase> ext
         int number = 0;
         final Block thisBlock = world.getBlockState(pos).getBlock();
 
-        while (true) {
+        for (; ; ) {
             final BlockState state = world.getBlockState(pos.offset(searchLeft ? facing.rotateYCounterclockwise() : facing.rotateYClockwise(), number));
 
             if (state.getBlock().equals(thisBlock)) {

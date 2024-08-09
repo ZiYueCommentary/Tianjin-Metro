@@ -6,7 +6,6 @@ import org.mtr.mapping.holder.ClickableWidget;
 import org.mtr.mapping.holder.MathHelper;
 import org.mtr.mapping.mapper.*;
 import org.mtr.mapping.tool.TextCase;
-import org.mtr.mod.InitClient;
 import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.data.IGui;
 import ziyue.tjmetro.mod.RegistryClient;
@@ -15,6 +14,12 @@ import ziyue.tjmetro.mod.packet.PacketUpdateCustomColor;
 
 import java.awt.*;
 import java.util.Locale;
+
+/**
+ * @author ZiYueCommentary
+ * @see PacketUpdateCustomColor
+ * @since 1.0.0-beta-1
+ */
 
 public class ColorPickerScreen extends ScreenExtension implements IGui
 {

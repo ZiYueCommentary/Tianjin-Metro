@@ -10,6 +10,13 @@ import ziyue.tjmetro.mod.block.base.IRailwaySign;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignWall
+ * @see BlockEntity
+ * @since 1.0.0-beta-1
+ */
+
 public class BlockRailwaySignWallBig extends BlockRailwaySignWall
 {
     public BlockRailwaySignWallBig(int length) {
@@ -58,6 +65,11 @@ public class BlockRailwaySignWallBig extends BlockRailwaySignWall
             return new BlockRailwaySignWallBig.BlockEntity(length, blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderRailwaySignWall
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockEntityBase
     {
         public BlockEntity(int length, BlockPos pos, BlockState state) {

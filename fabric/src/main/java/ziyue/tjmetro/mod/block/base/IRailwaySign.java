@@ -15,6 +15,10 @@ import ziyue.tjmetro.mod.data.IGuiExtension;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @since 1.0.0-beta-1
+ */
+
 public interface IRailwaySign extends DirectionHelper
 {
     static void onPlaced(World world, BlockPos pos, BlockState state, Block middle, int middleLength) {

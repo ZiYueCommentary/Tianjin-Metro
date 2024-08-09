@@ -17,6 +17,13 @@ import ziyue.tjmetro.mod.client.DynamicTextureCache;
 
 import static org.mtr.mod.render.RenderRouteBase.getShadingColor;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockPSDTopTianjin
+ * @see RenderRouteBase
+ * @since 1.0.0-beta-1
+ */
+
 public class RenderPSDTopTianjin extends RenderRouteBase<BlockPSDTopTianjin.BlockEntity>
 {
     protected static final float END_FRONT_OFFSET = 1 / (MathHelper.getSquareRootOfTwoMapped() * 16);

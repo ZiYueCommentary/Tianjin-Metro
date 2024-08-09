@@ -12,6 +12,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
 
+/**
+ * @author ZiYueCommentary
+ * @see CustomResourceLoader
+ * @since 1.0.0-beta-1
+ */
+
 @Mixin(CustomResourceLoader.class)
 public abstract class CustomResourceLoaderMixin
 {

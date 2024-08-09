@@ -20,7 +20,7 @@ import static org.mtr.mapping.mapper.DirectionHelper.FACING;
 
 /**
  * Render content for Roadblock with Sign.
- * Support display custom content.
+ * Support displaying custom content.
  *
  * @author ZiYueCommentary
  * @see ziyue.tjmetro.mod.screen.RoadblockContentScreen

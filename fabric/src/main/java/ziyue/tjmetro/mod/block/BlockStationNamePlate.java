@@ -19,6 +19,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockRailwaySignBase
+ * @see BlockEntity
+ * @since 1.0.0-beta-1
+ */
+
 public class BlockStationNamePlate extends BlockRailwaySignBase
 {
     public static final IntegerProperty ARROW_DIRECTION = IntegerProperty.of("arrow_direction", 0, 2);
@@ -114,6 +121,12 @@ public class BlockStationNamePlate extends BlockRailwaySignBase
         else return new BlockEntity(blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderStationNamePlate
+     * @see ziyue.tjmetro.mod.screen.RailwaySignScreen
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockRouteSignBase.BlockEntityBase
     {
         public BlockEntity(BlockPos pos, BlockState state) {

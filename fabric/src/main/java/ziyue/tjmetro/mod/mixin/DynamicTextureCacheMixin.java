@@ -6,6 +6,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * @author ZiYueCommentary
+ * @see DynamicTextureCache
+ * @since 1.0.0-beta-1
+ */
+
 @Mixin(DynamicTextureCache.class)
 public abstract class DynamicTextureCacheMixin
 {

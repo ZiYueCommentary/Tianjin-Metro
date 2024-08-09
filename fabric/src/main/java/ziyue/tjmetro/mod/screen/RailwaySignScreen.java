@@ -28,6 +28,12 @@ import ziyue.tjmetro.mod.packet.PacketUpdateRailwaySignConfig;
 
 import javax.annotation.Nullable;
 
+/**
+ * @author ZiYueCommentary
+ * @see PacketUpdateRailwaySignConfig
+ * @since 1.0.0-beta-1
+ */
+
 public class RailwaySignScreen extends ScreenExtension implements IGui
 {
     protected int editingIndex;

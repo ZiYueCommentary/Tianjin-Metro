@@ -15,6 +15,13 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * @author ZiYueCommentary
+ * @see BlockEntity
+ * @see BlockPSDTop
+ * @since 1.0.0-beta-1
+ */
+
 public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianjin
 {
     public static final EnumProperty<EnumDoorType> STYLE = EnumProperty.of("style", EnumDoorType.class);
@@ -137,6 +144,11 @@ public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianj
         return neighborState;
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderPSDTopTianjin
+     * @since 1.0.0-beta-1
+     */
     public static class BlockEntity extends BlockEntityBase
     {
         public BlockEntity(BlockPos pos, BlockState state) {

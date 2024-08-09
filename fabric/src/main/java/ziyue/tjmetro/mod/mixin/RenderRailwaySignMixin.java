@@ -39,6 +39,12 @@ import java.util.stream.Collectors;
 
 import static org.mtr.mod.render.RenderRailwaySign.getSign;
 
+/**
+ * @author ZiYueCommentary
+ * @see RenderRailwaySign
+ * @since 1.0.0-beta-1
+ */
+
 @Mixin(RenderRailwaySign.class)
 public abstract class RenderRailwaySignMixin<T extends BlockRailwaySign.BlockEntity> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing
 {

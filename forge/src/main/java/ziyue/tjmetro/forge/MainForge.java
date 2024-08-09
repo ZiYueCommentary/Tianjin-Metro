@@ -13,6 +13,10 @@ import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.TianjinMetroClient;
 import ziyue.tjmetro.mod.screen.ConfigClientScreen;
 
+/**
+ * @since 1.0.0-beta-1
+ */
+
 @Mod(Reference.MOD_ID)
 public final class MainForge
 {

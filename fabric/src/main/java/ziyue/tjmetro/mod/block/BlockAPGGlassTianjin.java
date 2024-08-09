@@ -10,6 +10,13 @@ import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
 
 import javax.annotation.Nonnull;
 
+/**
+ * @author ZiYueCommentary
+ * @see org.mtr.mod.block.BlockAPGGlass
+ * @see ziyue.tjmetro.mod.item.ItemPSDAPGTianjinBase
+ * @since 1.0.0-beta-2
+ */
+
 public class BlockAPGGlassTianjin extends BlockAPGGlass implements BlockFlagAPGTianjin
 {
     @Override

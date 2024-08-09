@@ -18,6 +18,12 @@ import ziyue.tjmetro.mod.block.base.IRailwaySign;
 
 import javax.annotation.Nullable;
 
+/**
+ * @author ZiYueCommentary
+ * @see RailwaySignScreen
+ * @since 1.0.0-beta-1
+ */
+
 @Mixin(RailwaySignScreen.class)
 public abstract class RailwaySignScreenMixin extends ScreenExtension implements IGui
 {

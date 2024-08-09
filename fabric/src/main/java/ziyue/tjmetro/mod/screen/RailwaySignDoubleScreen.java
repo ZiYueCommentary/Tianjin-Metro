@@ -29,6 +29,12 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author ZiYueCommentary
+ * @see PacketUpdateRailwaySignDoubleConfig
+ * @since 1.0.0-beta-1
+ */
+
 public class RailwaySignDoubleScreen extends ScreenExtension implements IGui
 {
     protected int line;

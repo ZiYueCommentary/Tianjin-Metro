@@ -39,6 +39,11 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Random;
 
+/**
+ * @author ZiYueCommentary
+ * @since 1.0.0-beta-2
+ */
+
 @Mixin(FallingBlock.class)
 public abstract class FallingBlockMixin extends Block implements Fallable
 {
