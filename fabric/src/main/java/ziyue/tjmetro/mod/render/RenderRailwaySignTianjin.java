@@ -26,7 +26,6 @@ import org.mtr.mod.render.RenderRailwaySign;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import org.mtr.mod.resource.SignResource;
 import org.mtr.mod.screen.EditStationScreen;
-import ziyue.tjmetro.mod.block.BlockPSDTopTianjin;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;

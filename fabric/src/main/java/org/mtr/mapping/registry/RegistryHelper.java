@@ -5,7 +5,7 @@ import org.mtr.mapping.holder.Identifier;
 // This is a very hacky way but I have no choice.
 public interface RegistryHelper
 {
-    static ItemRegistryObject RegistryObjectBlock2Item(BlockRegistryObject block, Identifier blockIdentifier) {
-        return new ItemRegistryObject(block.get().asItem());
+    static ItemRegistryObject RegistryObjectBlock2Item(BlockRegistryObject fabric, Identifier forge) {
+        return new ItemRegistryObject(fabric.get().asItem());
     }
 }

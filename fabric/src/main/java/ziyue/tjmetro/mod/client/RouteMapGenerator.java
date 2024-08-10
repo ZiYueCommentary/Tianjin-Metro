@@ -63,91 +63,87 @@ public class RouteMapGenerator implements IGui
     }
 
     public static NativeImage generateDirectionArrow(long platformId, boolean hasLeft, boolean hasRight, HorizontalAlignment horizontalAlignment, boolean showToString, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor) {
-        if (aspectRatio <= 0.0F) {
-            return null;
-        } else {
-            try {
-                ObjectArrayList<String> destinations = new ObjectArrayList<>();
-                IntArrayList colors = getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
-                    final String tempMarker;
-                    switch (simplifiedRoute.getCircularState()) {
-                        case CLOCKWISE:
-                            tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
-                            break;
-                        case ANTICLOCKWISE:
-                            tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
-                            break;
-                        default:
-                            tempMarker = "";
-                    }
-
-                    destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
-                });
-                final boolean isTerminating = destinations.isEmpty();
-                final boolean leftToRight = horizontalAlignment == HorizontalAlignment.CENTER ? hasLeft || !hasRight : horizontalAlignment != HorizontalAlignment.RIGHT;
-                final int height = scale;
-                final int width = Math.round((float) height * aspectRatio);
-                final int padding = Math.round((float) height * paddingScale);
-                final int tileSize = height - padding * 2;
-                if (width > 0 && height > 0) {
-                    DynamicTextureCache clientCache = DynamicTextureCache.instance;
-                    NativeImage nativeImage = new NativeImage(NativeImageFormat.getAbgrMapped(), width, height, false);
-                    nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
-                    final int circleX;
-                    if (isTerminating) {
-                        circleX = (int) horizontalAlignment.getOffset(0.0F, (float) (tileSize - width));
-                    } else {
-                        String destinationString = IGui.mergeStations(destinations);
-                        final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
-                        final boolean isAnticlockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE);
-                        destinationString = destinationString.replace(TEMP_CIRCULAR_MARKER_CLOCKWISE, "").replace(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE, "");
-                        if (!destinationString.isEmpty()) {
-                            if (isClockwise) {
-                                destinationString = IGui.insertTranslation("gui.mtr.clockwise_via_cjk", "gui.mtr.clockwise_via", 1, destinationString);
-                            } else if (isAnticlockwise) {
-                                destinationString = IGui.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
-                            } else if (showToString) {
-                                destinationString = IGui.insertTranslation("gui.mtr.to_cjk", "gui.mtr.to", 1, destinationString);
-                            }
-                        }
-
-                        final int tilePadding = tileSize / 4;
-                        final int leftSize = ((hasLeft ? 1 : 0) + (leftToRight ? 1 : 0)) * (tileSize + tilePadding);
-                        final int rightSize = ((hasRight ? 1 : 0) + (leftToRight ? 0 : 1)) * (tileSize + tilePadding);
-                        final DynamicTextureCache.Text text = clientCache.getText(destinationString, width - leftSize - rightSize - padding * (showToString ? 2 : 1), (int) ((float) tileSize * 1.25F), tileSize * 3 / 5, tileSize * 3 / 10, tilePadding, leftToRight ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
-                        final int leftPadding = (int) horizontalAlignment.getOffset(0.0F, (float) (leftSize + rightSize + text.renderWidth() - tilePadding * 2 - width));
-                        drawString(nativeImage, text, leftPadding + leftSize - tilePadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
-                        if (hasLeft) {
-                            drawResource(nativeImage, ARROW_RESOURCE, leftPadding, padding, tileSize, tileSize, false, 0.0F, 1.0F, textColor, false);
-                        }
-
-                        if (hasRight) {
-                            drawResource(nativeImage, ARROW_RESOURCE, leftPadding + leftSize + text.renderWidth() - tilePadding * 2 + rightSize - tileSize, padding, tileSize, tileSize, true, 0.0F, 1.0F, textColor, false);
-                        }
-
-                        circleX = leftPadding + leftSize + (leftToRight ? -tileSize - tilePadding : text.renderWidth() - tilePadding);
-                    }
-
-                    for (int i = 0; i < colors.size(); ++i) {
-                        drawResource(nativeImage, CIRCLE_RESOURCE, circleX, padding, tileSize, tileSize, false, (float) i / (float) colors.size(), ((float) i + 1.0F) / (float) colors.size(), colors.getInt(i), false);
-                    }
-
-                    Platform platform = MinecraftClientData.getInstance().platformIdMap.get(platformId);
-                    if (platform != null) {
-                        final DynamicTextureCache.Text text = clientCache.getText(platform.getName(), tileSize, (int) ((float) tileSize * 1.25F * 3.0F / 4.0F), tileSize * 3 / 4, tileSize * 3 / 4, 0, HorizontalAlignment.CENTER);
-                        drawString(nativeImage, text, circleX + tileSize / 2, padding + tileSize / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -1, false);
-                    }
-
-                    if (transparentColor != 0) clearColor(nativeImage, invertColor(transparentColor));
-
-                    return nativeImage;
-                } else {
-                    return null;
+        if (aspectRatio <= 0.0F) return null;
+        try {
+            ObjectArrayList<String> destinations = new ObjectArrayList<>();
+            IntArrayList colors = getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                final String tempMarker;
+                switch (simplifiedRoute.getCircularState()) {
+                    case CLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                        break;
+                    case ANTICLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                        break;
+                    default:
+                        tempMarker = "";
                 }
-            } catch (Exception e) {
-                TianjinMetro.LOGGER.error(e.getMessage(), e);
-                return null;
+
+                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+            });
+            final boolean isTerminating = destinations.isEmpty();
+            final boolean leftToRight = horizontalAlignment == HorizontalAlignment.CENTER ? hasLeft || !hasRight : horizontalAlignment != HorizontalAlignment.RIGHT;
+            final int height = scale;
+            final int width = Math.round((float) height * aspectRatio);
+            final int padding = Math.round((float) height * paddingScale);
+            final int tileSize = height - padding * 2;
+
+            if (width <= 0 || height <= 0) return null;
+
+            DynamicTextureCache clientCache = DynamicTextureCache.instance;
+            NativeImage nativeImage = new NativeImage(NativeImageFormat.getAbgrMapped(), width, height, false);
+            nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
+            final int circleX;
+            if (isTerminating) {
+                circleX = (int) horizontalAlignment.getOffset(0.0F, (float) (tileSize - width));
+            } else {
+                String destinationString = IGui.mergeStations(destinations);
+                final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
+                final boolean isAnticlockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE);
+                destinationString = destinationString.replace(TEMP_CIRCULAR_MARKER_CLOCKWISE, "").replace(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE, "");
+                if (!destinationString.isEmpty()) {
+                    if (isClockwise) {
+                        destinationString = IGui.insertTranslation("gui.mtr.clockwise_via_cjk", "gui.mtr.clockwise_via", 1, destinationString);
+                    } else if (isAnticlockwise) {
+                        destinationString = IGui.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
+                    } else if (showToString) {
+                        destinationString = IGui.insertTranslation("gui.mtr.to_cjk", "gui.mtr.to", 1, destinationString);
+                    }
+                }
+
+                final int tilePadding = tileSize / 4;
+                final int leftSize = ((hasLeft ? 1 : 0) + (leftToRight ? 1 : 0)) * (tileSize + tilePadding);
+                final int rightSize = ((hasRight ? 1 : 0) + (leftToRight ? 0 : 1)) * (tileSize + tilePadding);
+                final DynamicTextureCache.Text text = clientCache.getText(destinationString, width - leftSize - rightSize - padding * (showToString ? 2 : 1), (int) ((float) tileSize * 1.25F), tileSize * 3 / 5, tileSize * 3 / 10, tilePadding, leftToRight ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
+                final int leftPadding = (int) horizontalAlignment.getOffset(0.0F, (float) (leftSize + rightSize + text.renderWidth() - tilePadding * 2 - width));
+                drawString(nativeImage, text, leftPadding + leftSize - tilePadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                if (hasLeft) {
+                    drawResource(nativeImage, ARROW_RESOURCE, leftPadding, padding, tileSize, tileSize, false, 0.0F, 1.0F, textColor, false);
+                }
+
+                if (hasRight) {
+                    drawResource(nativeImage, ARROW_RESOURCE, leftPadding + leftSize + text.renderWidth() - tilePadding * 2 + rightSize - tileSize, padding, tileSize, tileSize, true, 0.0F, 1.0F, textColor, false);
+                }
+
+                circleX = leftPadding + leftSize + (leftToRight ? -tileSize - tilePadding : text.renderWidth() - tilePadding);
             }
+
+            for (int i = 0; i < colors.size(); ++i) {
+                drawResource(nativeImage, CIRCLE_RESOURCE, circleX, padding, tileSize, tileSize, false, (float) i / (float) colors.size(), ((float) i + 1.0F) / (float) colors.size(), colors.getInt(i), false);
+            }
+
+            Platform platform = MinecraftClientData.getInstance().platformIdMap.get(platformId);
+            if (platform != null) {
+                final DynamicTextureCache.Text text = clientCache.getText(platform.getName(), tileSize, (int) ((float) tileSize * 1.25F * 3.0F / 4.0F), tileSize * 3 / 4, tileSize * 3 / 4, 0, HorizontalAlignment.CENTER);
+                drawString(nativeImage, text, circleX + tileSize / 2, padding + tileSize / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -1, false);
+            }
+
+            if (transparentColor != 0) clearColor(nativeImage, invertColor(transparentColor));
+
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+            return null;
         }
     }
 

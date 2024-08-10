@@ -28,8 +28,8 @@ public final class RegistryClient
         REGISTRY_CLIENT.registerBlockColors((state, world, pos, tintIndex) -> InitClient.getStationColor(pos), blocks);
     }
 
-    public static void registerItemCustomColor(int color, BlockRegistryObject block, String blockIdentifier) {
-        REGISTRY_CLIENT.registerItemColors((stack, index) -> color, RegistryHelper.RegistryObjectBlock2Item(block, new Identifier(Reference.MOD_ID, blockIdentifier)));
+    public static void registerItemCustomColor(int color, BlockRegistryObject block, String blockId) {
+        REGISTRY_CLIENT.registerItemColors((stack, index) -> color, RegistryHelper.RegistryObjectBlock2Item(block, new Identifier(Reference.MOD_ID, blockId)));
     }
 
     public static void registerBlockCustomColor(BlockRegistryObject... blocks) {
