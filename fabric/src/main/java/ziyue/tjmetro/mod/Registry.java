@@ -23,8 +23,6 @@ public final class Registry
 {
     public static final org.mtr.mapping.registry.Registry REGISTRY = new org.mtr.mapping.registry.Registry();
     public static final org.mtr.mapping.registry.Registry REGISTRY_TABS = new org.mtr.mapping.registry.Registry();
-    public static final List<Pair<Filter, ItemRegistryObject>> FILTERS_REGISTRY_ITEM = new ArrayList<>();
-    public static final List<Pair<Filter, BlockRegistryObject>> FILTERS_REGISTRY_BLOCK = new ArrayList<>();
 
     public static CreativeModeTabHolder createCreativeModeTabHolder(String id, Supplier<ItemStack> icon) {
         return REGISTRY_TABS.createCreativeModeTabHolder(new Identifier(Reference.MOD_ID, id), icon);
@@ -34,20 +32,16 @@ public final class Registry
         return REGISTRY.registerBlock(new Identifier(Reference.MOD_ID, id), supplier);
     }
 
-    public static ItemRegistryObject registerItem(String id, Function<ItemSettings, Item> function, Filter filter) {
-        ItemRegistryObject object = REGISTRY.registerItem(new Identifier(Reference.MOD_ID, id), function, TianjinMetro.CREATIVE_MODE_TAB);
-        FILTERS_REGISTRY_ITEM.add(new Pair<>(filter, object));
-        return object;
+    public static ItemRegistryObject registerItem(String id, Function<ItemSettings, Item> function, CreativeModeTabHolder creativeModeTab) {
+        return REGISTRY.registerItem(new Identifier(Reference.MOD_ID, id), function, creativeModeTab);
     }
 
-    public static BlockRegistryObject registerBlockWithBlockItem(String id, Supplier<Block> block, Filter filter) {
-        return registerBlockWithBlockItem(id, block, BlockItemExtension::new, filter);
+    public static BlockRegistryObject registerBlockWithBlockItem(String id, Supplier<Block> block, CreativeModeTabHolder creativeModeTab) {
+        return registerBlockWithBlockItem(id, block, BlockItemExtension::new, creativeModeTab);
     }
 
-    public static BlockRegistryObject registerBlockWithBlockItem(String id, Supplier<Block> block, BiFunction<Block, ItemSettings, BlockItemExtension> function, Filter filter) {
-        BlockRegistryObject object = REGISTRY.registerBlockWithBlockItem(new Identifier(Reference.MOD_ID, id), block, function, TianjinMetro.CREATIVE_MODE_TAB);
-        if (filter != null) FILTERS_REGISTRY_BLOCK.add(new Pair<>(filter, object));
-        return object;
+    public static BlockRegistryObject registerBlockWithBlockItem(String id, Supplier<Block> block, BiFunction<Block, ItemSettings, BlockItemExtension> function, CreativeModeTabHolder creativeModeTab) {
+        return REGISTRY.registerBlockWithBlockItem(new Identifier(Reference.MOD_ID, id), block, function, creativeModeTab);
     }
 
     @SafeVarargs

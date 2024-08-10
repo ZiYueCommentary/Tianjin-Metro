@@ -8,6 +8,7 @@ import org.mtr.mapping.mapper.EntityExtension;
 import org.mtr.mapping.mapper.EntityRenderer;
 import org.mtr.mapping.registry.*;
 import org.mtr.mod.InitClient;
+import ziyue.tjmetro.mapping.RegistryHelper;
 import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 
 import java.util.function.Function;
@@ -29,7 +30,11 @@ public final class RegistryClient
     }
 
     public static void registerItemCustomColor(int color, BlockRegistryObject block, String blockId) {
-        REGISTRY_CLIENT.registerItemColors((stack, index) -> color, RegistryHelper.RegistryObjectBlock2Item(block, new Identifier(Reference.MOD_ID, blockId)));
+        try {
+            REGISTRY_CLIENT.registerItemColors((stack, index) -> color, RegistryHelper.RegistryObjectBlock2Item(block, new Identifier(Reference.MOD_ID, blockId)));
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.warn("ItemRegistryObject reflection failed: " + e.getMessage(), e);
+        }
     }
 
     public static void registerBlockCustomColor(BlockRegistryObject... blocks) {

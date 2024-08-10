@@ -3,7 +3,9 @@ package ziyue.tjmetro.mapping;
 import org.mtr.mapping.holder.ItemStack;
 import org.mtr.mapping.holder.MutableText;
 import org.mtr.mapping.holder.PressAction;
+import org.mtr.mapping.registry.BlockRegistryObject;
 import org.mtr.mapping.registry.CreativeModeTabHolder;
+import org.mtr.mapping.registry.ItemRegistryObject;
 import ziyue.filters.Filter;
 
 import java.util.function.Supplier;
@@ -28,5 +30,17 @@ public interface FilterBuilder
 
     static void setReservedButton(CreativeModeTabHolder creativeModeTab, MutableText tooltip, PressAction onPress) {
         ziyue.filters.FilterBuilder.setReservedButton(creativeModeTab.creativeModeTab, tooltip.data, onPress);
+    }
+
+    static void addBlocks(Filter filter, BlockRegistryObject... blocks) {
+        for (BlockRegistryObject block : blocks) {
+            filter.addItems(block.get().asItem().data);
+        }
+    }
+
+    static void addItems(Filter filter, ItemRegistryObject... items) {
+        for (ItemRegistryObject item : items) {
+            filter.addItems(item.get().data);
+        }
     }
 }

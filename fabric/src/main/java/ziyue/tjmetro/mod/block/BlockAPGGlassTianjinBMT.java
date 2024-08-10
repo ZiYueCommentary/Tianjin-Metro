@@ -14,8 +14,6 @@ import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinBMT;
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 /**
  * @author ZiYueCommentary
@@ -42,7 +40,7 @@ public class BlockAPGGlassTianjinBMT extends BlockAPGGlass implements BlockFlagA
                         EnumDoorType style = IBlock.getStatePropertySafe(world, pos, STYLE);
                         BlockPos offsetPos = pos;
                         for (; ; ) {
-                            if (IBlockExtension.isBlock(world.getBlockState(offsetPos), BlockList.APG_DOOR_TIANJIN_BMT.get())) {
+                            if (IBlockExtension.isBlock(world.getBlockState(offsetPos), BlockList.APG_DOOR_TIANJIN_BMT_BLOCK.get())) {
                                 offsetPos = offsetPos.offset(direction);
                                 if (bool) {
                                     final int id = (style.asId() - 1);
@@ -50,7 +48,7 @@ public class BlockAPGGlassTianjinBMT extends BlockAPGGlass implements BlockFlagA
                                 } else {
                                     style = EnumDoorType.byId((style.asId() + 1) % 3);
                                 }
-                            } else if (IBlockExtension.isBlock(world.getBlockState(offsetPos), BlockList.APG_GLASS_TIANJIN_BMT.get())) {
+                            } else if (IBlockExtension.isBlock(world.getBlockState(offsetPos), BlockList.APG_GLASS_TIANJIN_BMT_BLOCK.get())) {
                                 world.setBlockState(offsetPos, world.getBlockState(offsetPos).with(new Property<>(STYLE.data), style));
                             } else {
                                 break;

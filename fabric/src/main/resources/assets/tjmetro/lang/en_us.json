@@ -2,7 +2,7 @@
     "modmenu.nameTranslation.tjmetro": "Tianjin Metro",
     "modmenu.descriptionTranslation.tjmetro": "A small mod for Minecraft Transit Railway.",
 
-    "itemGroup.tjmetro.tjmetro_tab": "Tianjin Metro",
+    "itemGroup.tjmetro.tianjin_metro": "Tianjin Metro",
 
     "item.tjmetro.wrench": "Wrench",
 
@@ -116,13 +116,13 @@
     "footer.tjmetro.discord": "Join our Discord server!",
     "footer.tjmetro.prevent_block_falling": "Did you know you can stop sand falling?",
 
-    "filter.tjmetro.miscellaneous": "Miscellaneous",
-    "filter.tjmetro.building": "Buildings",
-    "filter.tjmetro.signs": "Station Name Signs",
-    "filter.tjmetro.gates": "Platform Gates",
-    "filter.tjmetro.decoration": "Decorations",
-    "filter.tjmetro.ceilings": "Ceilings",
-    "filter.tjmetro.railway_signs": "Railway Signs",
+    "filter.tjmetro.tianjin_miscellaneous": "Miscellaneous",
+    "filter.tjmetro.tianjin_building": "Buildings",
+    "filter.tjmetro.tianjin_signs": "Station Name Signs",
+    "filter.tjmetro.tianjin_gates": "Platform Gates",
+    "filter.tjmetro.tianjin_decoration": "Decorations",
+    "filter.tjmetro.tianjin_ceilings": "Ceilings",
+    "filter.tjmetro.tianjin_railway_signs": "Railway Signs",
     "filter.tjmetro.mtr_core_dashboards": "Dashboards",
     "filter.tjmetro.mtr_core_rails": "Rails",
     "filter.tjmetro.mtr_core_signals": "Signals",

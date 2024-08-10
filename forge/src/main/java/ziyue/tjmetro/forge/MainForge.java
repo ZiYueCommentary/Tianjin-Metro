@@ -8,9 +8,9 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import org.mtr.mapping.holder.Screen;
 import ziyue.tjmetro.mod.Reference;
-import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.TianjinMetroClient;
+import ziyue.tjmetro.mod.client.Filters;
 import ziyue.tjmetro.mod.screen.ConfigClientScreen;
 
 /**
@@ -45,28 +45,11 @@ public final class MainForge
 #elif MC_VERSION <= "11802"
         net.minecraftforge.client.event.ScreenEvent.DrawScreenEvent.Post event
 #elif MC_VERSION <= "12004"
-        net.minecraftforge.client.event.ScreenEvent.Init.Pre event
+        net.minecraftforge.client.event.ScreenEvent.Init.Post event
 #endif
     ) {
-        // As you see, this is a very dumb thing due to we are using Forge.
-        // Please read Fabric codes so that you will know how Fabric is awesome.
-        #if MC_VERSION >= "11904"
-            ziyue.filters.FilterList filterTianjinMetro = ziyue.filters.FilterList.empty();
-            filterTianjinMetro.add(ziyue.tjmetro.mod.client.Filters.MISCELLANEOUS);
-            filterTianjinMetro.add(ziyue.tjmetro.mod.client.Filters.BUILDING);
-            filterTianjinMetro.add(ziyue.tjmetro.mod.client.Filters.SIGNS);
-            filterTianjinMetro.add(ziyue.tjmetro.mod.client.Filters.GATES);
-            filterTianjinMetro.add(ziyue.tjmetro.mod.client.Filters.DECORATION);
-            filterTianjinMetro.add(ziyue.tjmetro.mod.client.Filters.CEILINGS);
-            filterTianjinMetro.add(ziyue.tjmetro.mod.client.Filters.RAILWAY_SIGNS);
-            ziyue.filters.FilterBuilder.FILTERS.put(net.minecraftforge.common.CreativeModeTabRegistry.getTab(TianjinMetro.CREATIVE_MODE_TAB.identifier), filterTianjinMetro);
-
-            ziyue.tjmetro.mapping.FilterBuilder.setReservedButton(TianjinMetro.CREATIVE_MODE_TAB, org.mtr.mapping.mapper.TextHelper.translatable("button.tjmetro.tianjin_metro_options"), button ->
-                    org.mtr.mapping.holder.MinecraftClient.getInstance().openScreen(new Screen(new ConfigClientScreen(org.mtr.mapping.holder.MinecraftClient.getInstance().getCurrentScreenMapped()))));
-        #endif
         if (filterInitialized) return;
-        Registry.FILTERS_REGISTRY_ITEM.forEach(pair -> pair.getFirst().addItems(pair.getSecond().get().data));
-        Registry.FILTERS_REGISTRY_BLOCK.forEach(pair -> pair.getFirst().addItems(pair.getSecond().get().asItem().data));
+        Filters.init();
         filterInitialized = true;
     }
 }

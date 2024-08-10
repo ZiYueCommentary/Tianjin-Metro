@@ -18,7 +18,6 @@ public final class TianjinMetro
     public static final Logger LOGGER = LogManager.getLogger(Reference.NAME);
 
     public static final BooleanGameRule NO_FALLING_BLOCK = GameRuleRegistry.registerBoolean("preventBlockFalling", false);
-    public static final CreativeModeTabHolder CREATIVE_MODE_TAB = Registry.createCreativeModeTabHolder("tjmetro_tab", () -> new ItemStack(new ItemConvertible(BlockList.LOGO.get().data)));
 
     public static void init() {
         LOGGER.info("--------------- " + Reference.NAME + " ---------------");
@@ -26,6 +25,7 @@ public final class TianjinMetro
         LOGGER.info("Mod ID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
 
+        CreativeModeTabs.registerCreativeModeTabs();
         Registry.REGISTRY_TABS.init();
 
         BlockList.registerBlocks();
