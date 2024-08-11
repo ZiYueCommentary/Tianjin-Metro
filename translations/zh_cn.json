@@ -138,5 +138,13 @@
     "footer.tjmetro.prevent_block_falling": "你知道可以禁止沙子的掉落吗？",
     "block.tjmetro.apg_tianjin_bmt": "低站台门（天津、九号线）",
     "block.tjmetro.apg_tianjin": "低站台门（天津）",
-    "block.tjmetro.metal_pole_bmt": "金属柱（九号线）"
+    "block.tjmetro.metal_pole_bmt": "金属柱（九号线）",
+    "itemGroup.tjmetro.tianjin_metro": "天津地铁",
+    "filter.tjmetro.tianjin_miscellaneous": "杂项",
+    "filter.tjmetro.tianjin_building": "建筑",
+    "filter.tjmetro.tianjin_signs": "站名牌",
+    "filter.tjmetro.tianjin_gates": "站台门",
+    "filter.tjmetro.tianjin_decoration": "装饰",
+    "filter.tjmetro.tianjin_ceilings": "天花板",
+    "filter.tjmetro.tianjin_railway_signs": "指示牌"
 }
