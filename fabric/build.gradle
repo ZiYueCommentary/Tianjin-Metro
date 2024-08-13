@@ -10,6 +10,7 @@ loom {
     runConfigs.configureEach { ideConfigGenerated = true }
     mixin {
         setDefaultRefmapName("tjmetro.refmap.json")
+        setDefaultRefmapName("tjmetro-fabric.refmap.json")
     }
 }
 
