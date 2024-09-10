@@ -1,0 +1,254 @@
+{
+	"multipart": [
+		{
+			"when": {
+				"facing": "west",
+				"side": "left|single",
+				"air_left": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left_edge"
+			}
+		},
+		{
+			"when": {
+				"facing": "north",
+				"side": "left|single",
+				"air_left": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left_edge",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"facing": "east",
+				"side": "left|single",
+				"air_left": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left_edge",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"facing": "south",
+				"side": "left|single",
+				"air_left": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left_edge",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"facing": "west",
+				"side": "right|single",
+				"air_right": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right_edge"
+			}
+		},
+		{
+			"when": {
+				"facing": "north",
+				"side": "right|single",
+				"air_right": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right_edge",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"facing": "east",
+				"side": "right|single",
+				"air_right": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right_edge",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"facing": "south",
+				"side": "right|single",
+				"air_right": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right_edge",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"facing": "west",
+				"side": "left|middle",
+				"air_right": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right"
+			}
+		},
+		{
+			"when": {
+				"facing": "north",
+				"side": "left|middle",
+				"air_right": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"facing": "east",
+				"side": "left|middle",
+				"air_right": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"facing": "south",
+				"side": "left|middle",
+				"air_right": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"facing": "west",
+				"side": "right|middle",
+				"air_left": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left"
+			}
+		},
+		{
+			"when": {
+				"facing": "north",
+				"side": "right|middle",
+				"air_left": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"facing": "east",
+				"side": "right|middle",
+				"air_left": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"facing": "south",
+				"side": "right|middle",
+				"air_left": "false"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"facing": "west",
+				"air_left": "true"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left_end"
+			}
+		},
+		{
+			"when": {
+				"facing": "north",
+				"air_left": "true"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left_end",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"facing": "east",
+				"air_left": "true"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left_end",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"facing": "south",
+				"air_left": "true"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_left_end",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"facing": "west",
+				"air_right": "true"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right_end"
+			}
+		},
+		{
+			"when": {
+				"facing": "north",
+				"air_right": "true"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right_end",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"facing": "east",
+				"air_right": "true"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right_end",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"facing": "south",
+				"air_right": "true"
+			},
+			"apply": {
+				"model": "tjmetro:block/psd_tianjin_bmt_top_right_end",
+				"y": 270
+			}
+		}
+	]
+}

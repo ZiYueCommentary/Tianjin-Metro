@@ -21,7 +21,6 @@ dependencies {
     String FabricVersion = buildTools.getFabricVersion()
     modImplementation "net.fabricmc:fabric-loader:${FabricVersion}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${buildTools.getFabricApiVersion()}"
-    //modImplementation(files("E:\\Tianjin-Metro\\libs\\MTR-fabric-4.0.0-beta-8+1.16.5-server.jar"))
     modApi "com.terraformersmc:modmenu:${buildTools.getModMenuVersion()}"
     modApi("ziyue.filters:filters-fabric:${buildTools.getFiltersAPIVersion()}") {
         exclude(group: "net.fabricmc")

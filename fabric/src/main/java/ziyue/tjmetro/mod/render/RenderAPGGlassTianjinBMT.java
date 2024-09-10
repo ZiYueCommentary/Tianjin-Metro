@@ -114,7 +114,7 @@ public class RenderAPGGlassTianjinBMT extends RenderRouteBase<BlockAPGGlassTianj
 
             final float width = leftBlocks + rightBlocks + 1 - sidePadding * 2;
             final float height = 1 - topPadding - bottomPadding;
-            MainRenderer.scheduleRender(org.mtr.mod.client.DynamicTextureCache.instance.getSingleRowStationName(platformId, width / height).identifier, false, QueuedRenderLayer.EXTERIOR, (graphicsHolder, offset) -> {
+            MainRenderer.scheduleRender(DynamicTextureCache.instance.getSingleRowStationName(platformId, width / height).identifier, false, QueuedRenderLayer.EXTERIOR, (graphicsHolder, offset) -> {
                 storedMatrixTransformations.transform(graphicsHolder, offset);
                 IDrawing.drawTexture(graphicsHolder, 1 - (rightBlocks == 0 ? sidePadding : 0), topPadding, 0.125F, leftBlocks == 0 ? sidePadding : 0, 1 - bottomPadding, 0.125F, (rightBlocks - (rightBlocks == 0 ? 0 : sidePadding)) / width, 0, (width - leftBlocks + (leftBlocks == 0 ? 0 : sidePadding)) / width, 1, facing, color, light);
                 graphicsHolder.pop();

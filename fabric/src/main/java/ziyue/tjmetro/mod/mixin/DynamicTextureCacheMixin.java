@@ -20,7 +20,7 @@ public abstract class DynamicTextureCacheMixin
         ziyue.tjmetro.mod.client.DynamicTextureCache.instance.reload();
         // If a Tianjin Metro sign gets text with MTR font and the MTR fonts are not initialized, the game will throw a NullPointerException.
         // This will happen in case of Tianjin Metro sign is rendered before the MTR signs. To fix this, here we invoke whatever thing to ensure that MTR fonts are initialized.
-        DynamicTextureCache.instance.getPixelatedText("", 0, 0, 0, false);
+        DynamicTextureCache.instance.getPixelatedText("", 0, 10, 0, false);
     }
 
     @Inject(at = @At("TAIL"), method = "tick", remap = false)

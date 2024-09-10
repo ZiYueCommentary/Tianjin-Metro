@@ -27,7 +27,6 @@ import static org.mtr.mod.render.RenderRailwaySign.*;
 
 public class RenderRailwaySignWall<T extends BlockRailwaySignBase.BlockEntityBase> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing
 {
-
     public RenderRailwaySignWall(Argument dispatcher) {
         super(dispatcher);
     }

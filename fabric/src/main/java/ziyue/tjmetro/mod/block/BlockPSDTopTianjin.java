@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 
 public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianjin
 {
-    public static final EnumProperty<EnumDoorType> STYLE = EnumProperty.of("style", EnumDoorType.class);
+    public static final EnumProperty<EnumPSDType> STYLE = EnumProperty.of("style", EnumPSDType.class);
 
     @Nonnull
     @Override
@@ -32,18 +32,18 @@ public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianj
         return IBlock.checkHoldingItem(world, player, item -> {
             if (item.data == ItemList.WRENCH.get().data) {
                 if (BlockList.PSD_DOOR_TIANJIN_BLOCK.get().data == world.getBlockState(pos.down()).getBlock().data) {
-                    world.setBlockState(pos, IBlockExtension.cycleBlockState(state, STYLE, value -> value != EnumDoorType.NEXT_STATION));
+                    world.setBlockState(pos, IBlockExtension.cycleBlockState(state, STYLE, value -> value != EnumPSDType.NEXT_STATION));
                     BlockPos pos1 = (IBlock.getStatePropertySafe(state, SIDE_EXTENDED) == EnumSide.LEFT) ? pos.offset(IBlock.getStatePropertySafe(state, FACING).rotateYClockwise()) : pos.offset(IBlock.getStatePropertySafe(state, FACING).rotateYCounterclockwise());
-                    world.setBlockState(pos1, IBlockExtension.cycleBlockState(world.getBlockState(pos1), STYLE, value -> value != EnumDoorType.NEXT_STATION));
+                    world.setBlockState(pos1, IBlockExtension.cycleBlockState(world.getBlockState(pos1), STYLE, value -> value != EnumPSDType.NEXT_STATION));
                 } else {
-                    world.setBlockState(pos, IBlockExtension.cycleBlockState(state, STYLE, EnumDoorType.DEFAULT, EnumDoorType.NEXT_STATION));
+                    world.setBlockState(pos, IBlockExtension.cycleBlockState(state, STYLE, EnumPSDType.DEFAULT, EnumPSDType.NEXT_STATION));
                     Consumer<Direction> setStyle = direction -> {
-                        EnumDoorType style = IBlock.getStatePropertySafe(world, pos, STYLE);
+                        EnumPSDType style = IBlock.getStatePropertySafe(world, pos, STYLE);
                         BlockPos offsetPos = pos;
                         for (; ; ) {
                             if (BlockList.PSD_DOOR_TIANJIN_BLOCK.get().data == world.getBlockState(offsetPos.down()).getBlock().data) {
                                 offsetPos = offsetPos.offset(direction);
-                                style = (style == EnumDoorType.DEFAULT) ? EnumDoorType.NEXT_STATION : EnumDoorType.DEFAULT;
+                                style = (style == EnumPSDType.DEFAULT) ? EnumPSDType.NEXT_STATION : EnumPSDType.DEFAULT;
                             } else if (this == world.getBlockState(offsetPos).getBlock().data) {
                                 world.setBlockState(offsetPos, world.getBlockState(offsetPos).with(new Property<>(STYLE.data), style));
                             } else {
@@ -156,7 +156,7 @@ public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianj
         }
     }
 
-    public enum EnumDoorType implements StringIdentifiable
+    public enum EnumPSDType implements StringIdentifiable
     {
         DEFAULT("default"),
         STATION_NAME("station_name"),
@@ -167,7 +167,7 @@ public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianj
 
         final String name;
 
-        EnumDoorType(String name) {
+        EnumPSDType(String name) {
             this.name = name;
         }
 

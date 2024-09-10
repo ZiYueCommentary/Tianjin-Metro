@@ -8,6 +8,7 @@ import org.mtr.mod.block.*;
 import ziyue.tjmetro.mod.block.*;
 import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
 import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
+import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjinBMT;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -19,14 +20,17 @@ import static ziyue.tjmetro.mod.block.BlockPSDTopTianjin.STYLE;
 /**
  * @author ZiYueCommentary
  * @see BlockAPGDoorTianjin
- * @see BlockAPGDoorTianjinBMT
  * @see BlockAPGGlassEndTianjin
- * @see BlockAPGGlassEndTianjinBMT
  * @see BlockAPGGlassTianjin
+ * @see BlockAPGDoorTianjinBMT
+ * @see BlockAPGGlassEndTianjinBMT
  * @see BlockAPGGlassTianjinBMT
  * @see BlockPSDDoorTianjin
  * @see BlockPSDGlassEndTianjin
  * @see BlockPSDGlassTianjin
+ * @see BlockPSDDoorTianjinBMT
+ * @see BlockPSDGlassEndTianjinBMT
+ * @see BlockPSDGlassTianjinBMT
  * @since 1.0.0-beta-1
  */
 
@@ -62,7 +66,9 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
                 }
             }
             if (this.block.data instanceof BlockFlagPSDTianjin) {
-                world.setBlockState(newPos.up(2), BlockPSDTopTianjin.getActualState(WorldAccess.cast(world), newPos.up(2)).with(new Property<>(STYLE.data), BlockPSDTopTianjin.EnumDoorType.STATION_NAME));
+                world.setBlockState(newPos.up(2), BlockPSDTopTianjin.getActualState(WorldAccess.cast(world), newPos.up(2)).with(new Property<>(BlockPSDTopTianjin.STYLE.data), BlockPSDTopTianjin.EnumPSDType.STATION_NAME));
+            } else if (this.block.data instanceof BlockFlagPSDTianjinBMT) {
+                world.setBlockState(newPos.up(2), BlockPSDTopTianjinBMT.getActualState(WorldAccess.cast(world), newPos.up(2)).with(new Property<>(BlockPSDTopTianjinBMT.STYLE.data), BlockPSDTopTianjinBMT.EnumPSDType.BMT));
             }
         }
 
@@ -86,6 +92,8 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
     public String getTranslationKey2() {
         if (this.block.data instanceof BlockFlagPSDTianjin) {
             return "block.tjmetro.psd_tianjin";
+        } else if (this.block.data instanceof BlockFlagPSDTianjinBMT) {
+            return "block.tjmetro.psd_tianjin_bmt";
         } else if (this.block.data instanceof BlockFlagAPGTianjin) {
             return "block.tjmetro.apg_tianjin";
         } else {

@@ -70,6 +70,8 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockAPGDoorTianjinBMT.BlockEntity> APG_DOOR_TIANJIN_BMT = Registry.registerBlockEntityType("apg_door_tianjin_bmt", BlockAPGDoorTianjinBMT.BlockEntity::new, BlockList.APG_DOOR_TIANJIN_BMT_BLOCK::get);
     BlockEntityTypeRegistryObject<BlockAPGGlassTianjinBMT.BlockEntity> APG_GLASS_TIANJIN_BMT = Registry.registerBlockEntityType("apg_glass_tianjin_bmt", BlockAPGGlassTianjinBMT.BlockEntity::new, BlockList.APG_GLASS_TIANJIN_BMT_BLOCK::get);
     BlockEntityTypeRegistryObject<BlockMetalPoleBMT.BlockEntity> METAL_POLE_BMT = Registry.registerBlockEntityType("metal_pole_bmt", BlockMetalPoleBMT.BlockEntity::new, BlockList.METAL_POLE_BMT::get);
+    BlockEntityTypeRegistryObject<BlockPSDDoorTianjinBMT.BlockEntity> PSD_DOOR_TIANJIN_BMT = Registry.registerBlockEntityType("psd_door_tianjin_bmt", BlockPSDDoorTianjinBMT.BlockEntity::new, BlockList.PSD_DOOR_TIANJIN_BMT_BLOCK::get);
+    BlockEntityTypeRegistryObject<BlockPSDTopTianjinBMT.BlockEntity> PSD_TOP_TIANJIN_BMT = Registry.registerBlockEntityType("psd_top_tianjin_bmt", BlockPSDTopTianjinBMT.BlockEntity::new, BlockList.PSD_TOP_TIANJIN_BMT::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

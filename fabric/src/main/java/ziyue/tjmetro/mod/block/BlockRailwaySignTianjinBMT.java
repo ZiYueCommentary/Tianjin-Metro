@@ -39,15 +39,7 @@ public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
     @Nonnull
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-        if (IBlockExtension.isBlock(state, BlockList.RAILWAY_SIGN_TIANJIN_BMT_MIDDLE.get())) {
-            return IBlock.getVoxelShapeByDirection(0, 0, 7, 16, 12, 9, facing);
-        } else {
-            final int xStart = getXStart();
-            final VoxelShape main = IBlock.getVoxelShapeByDirection(xStart - 0.75, 0, 7, 16, 12, 9, facing);
-            final VoxelShape pole = IBlock.getVoxelShapeByDirection(xStart - 2, 0, 7, xStart - 0.75, 16, 9, facing);
-            return VoxelShapes.union(main, pole);
-        }
+        return IRailwaySign.getOutlineShape(state, getXStart(), BlockList.RAILWAY_SIGN_TIANJIN_BMT_MIDDLE.get());
     }
 
     @Nonnull

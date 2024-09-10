@@ -30,6 +30,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -206,7 +207,7 @@ public abstract class RenderRailwaySignMixin<T extends BlockRailwaySign.BlockEnt
                         signText = IGui.mergeStations(selectedIds.longStream()
                                 .filter(MinecraftClientData.getInstance().stationIdMap::containsKey)
                                 .sorted()
-                                .mapToObj(stationId -> IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, MinecraftClientData.getInstance().stationIdMap.get(stationId).getName()))
+                                .mapToObj(stationId -> IGuiExtension.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, MinecraftClientData.getInstance().stationIdMap.get(stationId).getName()))
                                 .collect(Collectors.toList())
                         );
                     } else {

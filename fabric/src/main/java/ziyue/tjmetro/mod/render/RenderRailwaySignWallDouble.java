@@ -30,6 +30,7 @@ import org.mtr.mod.screen.EditStationScreen;
 import ziyue.tjmetro.mod.block.BlockRailwaySignWallDouble;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -48,7 +49,6 @@ import static org.mtr.mod.render.RenderRailwaySign.getSign;
 
 public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.BlockEntity> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing
 {
-
     public RenderRailwaySignWallDouble(Argument dispatcher) {
         super(dispatcher);
     }
@@ -277,7 +277,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
                         signText = IGui.mergeStations(selectedIds.longStream()
                                 .filter(MinecraftClientData.getInstance().stationIdMap::containsKey)
                                 .sorted()
-                                .mapToObj(stationId -> IGui.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, MinecraftClientData.getInstance().stationIdMap.get(stationId).getName()))
+                                .mapToObj(stationId -> IGuiExtension.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, MinecraftClientData.getInstance().stationIdMap.get(stationId).getName()))
                                 .collect(Collectors.toList())
                         );
                     } else {

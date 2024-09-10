@@ -78,12 +78,24 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_station_name_%s_%s_%s_%s_%s_%s_%s_%s", platformId, isAPG, horizontalAlignment, paddingScale, aspectRatio, backgroundColor, textColor, transparentColor), () -> RouteMapGenerator.generateStationName(platformId, isAPG, horizontalAlignment, paddingScale, aspectRatio, backgroundColor, textColor, transparentColor), transparentColor == 0 && backgroundColor == ARGB_WHITE ? DefaultRenderingColor.WHITE : DefaultRenderingColor.TRANSPARENT);
     }
 
+    public DynamicResource getSingleRowStationName(long platformId, float aspectRatio) {
+        return getResource(String.format("tjmetro_single_row_station_name_%s_%s", platformId, aspectRatio), () -> RouteMapGenerator.generateSingleRowStationName(platformId, aspectRatio), DefaultRenderingColor.WHITE);
+    }
+
+    public DynamicResource getStationNameBMT(long platformId, boolean flip, IGui.HorizontalAlignment horizontalAlignment, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor) {
+        return getResource(String.format("tjmetro_station_name_bmt_%s_%s_%s_%s_%s_%s_%s_%s", platformId, flip, horizontalAlignment, paddingScale, aspectRatio, backgroundColor, textColor, transparentColor), () -> RouteMapGenerator.generateStationNameBMT(platformId, flip, horizontalAlignment, paddingScale, aspectRatio, backgroundColor, textColor, transparentColor), transparentColor == 0 && backgroundColor == ARGB_WHITE ? DefaultRenderingColor.WHITE : DefaultRenderingColor.TRANSPARENT);
+    }
+
     public DynamicResource getNextStation(long platformId, int arrowDirection, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor) {
         return getResource(String.format("tjmetro_next_station_%s_%s_%s_%s_%s_%s_%s", platformId, arrowDirection, paddingScale, aspectRatio, backgroundColor, textColor, transparentColor), () -> RouteMapGenerator.generateNextStation(platformId, arrowDirection, paddingScale, aspectRatio, backgroundColor, textColor, transparentColor), transparentColor == 0 && backgroundColor == ARGB_WHITE ? DefaultRenderingColor.WHITE : DefaultRenderingColor.TRANSPARENT);
     }
 
     public DynamicResource getRouteMap(long platformId, boolean vertical, boolean flip, float aspectRatio, boolean transparentWhite) {
         return getResource(String.format("tjmetro_route_map_%s_%s_%s_%s_%s", platformId, vertical, flip, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMap(platformId, vertical, flip, aspectRatio, transparentWhite), transparentWhite ? DefaultRenderingColor.TRANSPARENT : DefaultRenderingColor.WHITE);
+    }
+
+    public DynamicResource getRouteMapBMT(long platformId, boolean flip, float aspectRatio, boolean transparentWhite) {
+        return getResource(String.format("tjmetro_route_map_bmt_%s_%s_%s_%s", platformId, flip, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMapBMT(platformId, flip, aspectRatio, transparentWhite), transparentWhite ? DefaultRenderingColor.TRANSPARENT : DefaultRenderingColor.WHITE);
     }
 
     public DynamicResource getRouteSquare(int color, String routeName, IGui.HorizontalAlignment horizontalAlignment) {
@@ -114,11 +126,19 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_station_name_plate_%s_%s_%s_%s_%s_%s_%s", platformId, arrowDirection, backgroundColor, paddingScale, aspectRatio, textColor, transparentColor), () -> RouteMapGenerator.generateStationNamePlate(platformId, arrowDirection, backgroundColor, paddingScale, aspectRatio, textColor, transparentColor), DefaultRenderingColor.TRANSPARENT);
     }
 
+    public Text getText(String text, int fontSizeCjk, int fontSize) {
+        return getText(text, Integer.MAX_VALUE, (int) (Math.max(fontSizeCjk, fontSize) * LINE_HEIGHT_MULTIPLIER), fontSizeCjk, fontSize, 0, null);
+    }
+
     public Text getText(String text, int maxWidth, int maxHeight, int fontSizeCjk, int fontSize, int padding, IGui.HorizontalAlignment horizontalAlignment) {
-        return getText(text, maxWidth, maxHeight, fontSizeCjk, fontSize, padding, horizontalAlignment, false);
+        return getText(text, maxWidth, maxHeight, fontSizeCjk, fontSize, padding, horizontalAlignment, LINE_HEIGHT_MULTIPLIER, false);
     }
 
     public Text getText(String text, int maxWidth, int maxHeight, int fontSizeCjk, int fontSize, int padding, IGui.HorizontalAlignment horizontalAlignment, boolean forceMTRFont) {
+        return getText(text, maxWidth, maxHeight, fontSizeCjk, fontSize, padding, horizontalAlignment, LINE_HEIGHT_MULTIPLIER, forceMTRFont);
+    }
+
+    public Text getText(String text, int maxWidth, int maxHeight, int fontSizeCjk, int fontSize, int padding, IGui.HorizontalAlignment horizontalAlignment, float lineHeightMultiply, boolean forceMTRFont) {
         if (forceMTRFont) {
             final int[] dimensions = new int[2];
             final byte[] pixels = org.mtr.mod.client.DynamicTextureCache.instance.getTextPixels(text, dimensions, maxWidth, maxHeight, fontSizeCjk, fontSize, padding, horizontalAlignment);
@@ -178,10 +198,10 @@ public class DynamicTextureCache
                     width += padding;
                 }
                 width += textWidths[index];
-                height = Math.max(height, (int) (fontSizes[index] * LINE_HEIGHT_MULTIPLIER));
+                height = Math.max(height, (int) (fontSizes[index] * lineHeightMultiply));
             } else {
                 width = Math.max(width, Math.min(maxWidth, textWidths[index]));
-                height += (int) (fontSizes[index] * LINE_HEIGHT_MULTIPLIER);
+                height += (int) (fontSizes[index] * lineHeightMultiply);
             }
         }
 
@@ -194,7 +214,7 @@ public class DynamicTextureCache
         int realWidth = 0;
         for (int index = 0; index < textSplit.length; index++) {
             if (oneRow) {
-                graphics2D.drawString(attributedStrings[index].getIterator(), textOffset, height / LINE_HEIGHT_MULTIPLIER - (customFont ? height * 0.035F : 0));
+                graphics2D.drawString(attributedStrings[index].getIterator(), textOffset, height / lineHeightMultiply - (customFont ? height * 0.035F : 0));
                 textOffset += textWidths[index] + padding;
             } else {
                 final float scaleY = (float) imageHeight / height;
@@ -204,7 +224,7 @@ public class DynamicTextureCache
                 stretch.concatenate(AffineTransform.getScaleInstance(scaleX, scaleY));
                 graphics2D.setTransform(stretch);
                 graphics2D.drawString(attributedStrings[index].getIterator(), horizontalAlignment.getOffset(0, textWidth - width) / scaleY + padding / scaleX, textOffset + fontSizes[index] + padding / scaleY - (customFont ? height * 0.035F : 0));
-                textOffset += (int) (fontSizes[index] * LINE_HEIGHT_MULTIPLIER);
+                textOffset += (int) (fontSizes[index] * lineHeightMultiply);
                 realWidth = Math.max(realWidth, (int) textWidth);
             }
         }

@@ -15,10 +15,7 @@ import org.mtr.mod.client.MinecraftClientData;
 import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.RenderRailwaySign;
 import org.mtr.mod.resource.SignResource;
-import org.mtr.mod.screen.DashboardListItem;
-import org.mtr.mod.screen.DashboardListSelectorScreen;
-import org.mtr.mod.screen.EditStationScreen;
-import org.mtr.mod.screen.PIDSConfigScreen;
+import org.mtr.mod.screen.*;
 import ziyue.tjmetro.mod.RegistryClient;
 import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.mod.block.BlockStationNamePlate;
@@ -148,8 +145,8 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
         }
 
         buttonClear = new ButtonWidgetExtension(0, 0, 0, SQUARE_SIZE, TextHelper.translatable("gui.mtr.reset_sign"), button -> setNewSignId(null));
-        buttonPrevPage = new TexturedButtonWidgetExtension(0, 0, 0, SQUARE_SIZE, new Identifier("textures/gui/sprites/mtr/icon_left.png"), new Identifier("textures/gui/sprites/mtr/icon_left_highlighted.png"), button -> setPage(page - 1));
-        buttonNextPage = new TexturedButtonWidgetExtension(0, 0, 0, SQUARE_SIZE, new Identifier("textures/gui/sprites/mtr/icon_right.png"), new Identifier("textures/gui/sprites/mtr/icon_right_highlighted.png"), button -> setPage(page + 1));
+        buttonPrevPage = TexturedButtonWidgetHelper.create(0, 0, 0, SQUARE_SIZE, new Identifier("textures/gui/sprites/mtr/icon_left.png"), new Identifier("textures/gui/sprites/mtr/icon_left_highlighted.png"), button -> setPage(page - 1));
+        buttonNextPage = TexturedButtonWidgetHelper.create(0, 0, 0, SQUARE_SIZE, new Identifier("textures/gui/sprites/mtr/icon_right.png"), new Identifier("textures/gui/sprites/mtr/icon_right_highlighted.png"), button -> setPage(page + 1));
     }
 
     @Override

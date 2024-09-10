@@ -71,15 +71,15 @@ public class RenderPSDTopTianjin extends RenderRouteBase<BlockPSDTopTianjin.Bloc
                 final int arrowDirection = IBlock.getStatePropertySafe(state, arrowDirectionProperty);
 
                 final Identifier identifier;
-                final BlockPSDTopTianjin.EnumDoorType doorType = IBlock.getStatePropertySafe(entity.getCachedState2(), BlockPSDTopTianjin.STYLE);
+                final BlockPSDTopTianjin.EnumPSDType doorType = IBlock.getStatePropertySafe(entity.getCachedState2(), BlockPSDTopTianjin.STYLE);
                 if (renderType == RenderType.ARROW) {
-                    if (doorType == BlockPSDTopTianjin.EnumDoorType.STATION_NAME) {
+                    if (doorType == BlockPSDTopTianjin.EnumPSDType.STATION_NAME) {
                         identifier = DynamicTextureCache.instance.getStationName(platformId, false, HorizontalAlignment.CENTER, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
                     } else {
                         identifier = DynamicTextureCache.instance.getDirectionArrow(platformId, (arrowDirection & 0b01) > 0, (arrowDirection & 0b10) > 0, HorizontalAlignment.CENTER, true, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
                     }
                 } else {
-                    if (doorType == BlockPSDTopTianjin.EnumDoorType.NEXT_STATION) {
+                    if (doorType == BlockPSDTopTianjin.EnumPSDType.NEXT_STATION) {
                         identifier = DynamicTextureCache.instance.getNextStation(platformId, arrowDirection, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
                     } else {
                         identifier = DynamicTextureCache.instance.getRouteMap(platformId, false, arrowDirection == 2, width / height, transparentWhite).identifier;
