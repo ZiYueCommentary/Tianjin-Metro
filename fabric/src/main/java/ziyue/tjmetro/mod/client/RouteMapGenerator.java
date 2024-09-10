@@ -1,6 +1,6 @@
 package ziyue.tjmetro.mod.client;
 
-import com.llamalad7.mixinextras.lib.apache.commons.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.mtr.core.data.*;
 import org.mtr.core.tool.Utilities;
 import org.mtr.libraries.it.unimi.dsi.fastutil.Pair;

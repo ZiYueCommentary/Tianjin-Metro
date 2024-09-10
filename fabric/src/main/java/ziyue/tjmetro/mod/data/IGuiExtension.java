@@ -1,10 +1,9 @@
 package ziyue.tjmetro.mod.data;
 
-import com.llamalad7.mixinextras.lib.apache.commons.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.config.Config;
 import org.mtr.mod.data.IGui;
-import org.mtr.mod.generated.lang.TranslationProvider;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -142,7 +141,7 @@ public interface IGuiExtension
             }
         });
 
-        if (!result.isEmpty()) {
+        if (result.length() > 0) {
             return result.substring(1);
         } else {
             return "";
