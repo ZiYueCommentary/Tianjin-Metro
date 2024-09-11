@@ -2,9 +2,6 @@ package ziyue.tjmetro.mod;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.mtr.mapping.holder.ItemConvertible;
-import org.mtr.mapping.holder.ItemStack;
-import org.mtr.mapping.registry.CreativeModeTabHolder;
 import ziyue.tjmetro.mapping.BooleanGameRule;
 import ziyue.tjmetro.mapping.GameRuleRegistry;
 import ziyue.tjmetro.mod.packet.*;

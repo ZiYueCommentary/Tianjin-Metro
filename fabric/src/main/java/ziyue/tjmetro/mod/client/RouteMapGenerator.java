@@ -683,7 +683,7 @@ public class RouteMapGenerator implements IGui
                         final int lineWidth = (int) Math.ceil((float) lineSize / 4);
                         for (int drawX = 0; drawX < lineWidth; drawX++) {
                             for (int drawY = 0; drawY < lineSize * 1.8; drawY++) {
-                                drawPixelSafe(nativeImage, x + drawX - lineWidth * interchangeColors.size() / 2, y + lines * lineSpacing + drawY, passed ? ARGB_LIGHT_GRAY : ARGB_BLACK);
+                                drawPixelSafe(nativeImage, x + drawX - lineWidth / 2, y + lines * lineSpacing + drawY, passed ? ARGB_LIGHT_GRAY : ARGB_BLACK);
                             }
                         }
 
