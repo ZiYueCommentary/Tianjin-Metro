@@ -41,7 +41,7 @@ jobs:
     - name: Build with Gradle Wrapper
       run: |
           NOW=$(date '+%Y-%m-%d-%H.%M')
-          ./gradlew build -Pminecraft_version="${{ matrix.minecraft }}" -Partifact_date=".artifact_$NOW"
+          ./gradlew build -Pminecraft_version="${{ matrix.minecraft }}" -Partifact_date=".artifact_$NOW" --scan
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
