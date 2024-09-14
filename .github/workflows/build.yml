@@ -56,7 +56,7 @@ jobs:
     - name: Delete temp files
       run: exit 0
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.2.1-node20
+      uses: actions/upload-artifact@v4
       with:
         # Artifact name
         name: Mod File (${{ matrix.minecraft }})
@@ -66,7 +66,7 @@ jobs:
         if-no-files-found: error
     - name: Upload a Build Artifact (Resources)
       if: false
-      uses: actions/upload-artifact@v3.2.1-node20
+      uses: actions/upload-artifact@v4
       with:
         # Artifact name
         name: Resource File (${{ matrix.minecraft }})
