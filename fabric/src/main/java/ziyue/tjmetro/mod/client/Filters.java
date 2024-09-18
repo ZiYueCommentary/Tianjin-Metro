@@ -27,7 +27,7 @@ public interface Filters
 
     static void init() {
         FilterBuilder.addItems(Filters.TIANJIN_MISCELLANEOUS, WRENCH);
-        FilterBuilder.addBlocks(Filters.TIANJIN_MISCELLANEOUS, PLAYER_DETECTOR);
+        FilterBuilder.addBlocks(Filters.TIANJIN_MISCELLANEOUS, PLAYER_DETECTOR, HIGH_SPEED_REPEATER);
         FilterBuilder.addBlocks(Filters.TIANJIN_BUILDING,
                 ROLLING,
                 PLATFORM_TJ_1, PLATFORM_TJ_2, PLATFORM_TJ_1_INDENTED, PLATFORM_TJ_2_INDENTED,

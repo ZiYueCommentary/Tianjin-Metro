@@ -13,11 +13,8 @@ import java.util.List;
 /**
  * @author ZiYueCommentary
  * @since 1.0.0-beta-1
- * @deprecated
  */
 
-// Screw this.
-@Deprecated
 public class BlockHighSpeedRepeater extends BlockExtension implements DirectionHelper
 {
     public static final BooleanProperty LOCKED = BooleanProperty.of("locked");
@@ -40,7 +37,7 @@ public class BlockHighSpeedRepeater extends BlockExtension implements DirectionH
 
     @Override
     public int getStrongRedstonePower2(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return IBlock.getStatePropertySafe(state, POWERED) ? 15 : 0;
+        return direction == IBlock.getStatePropertySafe(state, FACING) && IBlock.getStatePropertySafe(state, POWERED) ? 15 : 0;
     }
 
     @Override
@@ -50,11 +47,15 @@ public class BlockHighSpeedRepeater extends BlockExtension implements DirectionH
 
     @Override
     public void neighborUpdate2(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-        if (this.isLocked(world, pos, state)) return;
-        Direction direction = IBlock.getStatePropertySafe(state, FACING);
-        BlockPos blockPos1 = pos.offset(direction);
-        boolean powered = world.getBlockState(blockPos1).getStrongRedstonePower(new BlockView(world.data), blockPos1, direction) > 0;
-        world.setBlockState(pos, state.with(new Property<>(POWERED.data), powered));
+        if (IBlock.getStatePropertySafe(state, LOCKED)) {
+            world.setBlockState(pos, state.with(new Property<>(LOCKED.data), this.isLocked(world, pos, state)));
+            return;
+        }
+        final Direction direction = IBlock.getStatePropertySafe(state, FACING);
+        final BlockPos blockPos1 = pos.offset(direction);
+        final boolean powered = world.getBlockState(blockPos1).getStrongRedstonePower(new BlockView(world.data), blockPos1, direction) > 0;
+        final boolean isLocked = this.isLocked(world, pos, state);
+        world.setBlockState(pos, state.with(new Property<>(POWERED.data), powered).with(new Property<>(LOCKED.data), isLocked));
     }
 
     protected int getInputLevel(World world, BlockPos pos, Direction dir) {

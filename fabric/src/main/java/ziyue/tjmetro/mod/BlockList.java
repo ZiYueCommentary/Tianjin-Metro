@@ -96,7 +96,7 @@ public interface BlockList
     BlockRegistryObject PSD_GLASS_END_TIANJIN_BLOCK = Registry.registerBlock("psd_glass_end_tianjin", () -> new Block(new BlockPSDGlassEndTianjin()));
     BlockRegistryObject PSD_TOP_TIANJIN = Registry.registerBlock("psd_top_tianjin", () -> new Block(new BlockPSDTopTianjin()));
     BlockRegistryObject METAL_DETECTION_DOOR = Registry.registerBlockWithBlockItem("metal_detection_door", () -> new Block(new BlockMetalDetectionDoor()), CreativeModeTabs.TIANJIN_METRO);
-//    BlockRegistryObject HIGH_SPEED_REPEATER = Registry.registerBlockWithBlockItem("high_speed_repeater", () -> new Block(new BlockHighSpeedRepeater()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject HIGH_SPEED_REPEATER = Registry.registerBlockWithBlockItem("high_speed_repeater", () -> new Block(new BlockHighSpeedRepeater()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAME_WALL_LEGACY = Registry.registerBlockWithBlockItem("station_name_wall_legacy", () -> new Block(new BlockStationNameWallLegacy()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAME_PLATE = Registry.registerBlockWithBlockItem("station_name_plate", () -> new Block(new BlockStationNamePlate()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAME_PLATE_MIDDLE = Registry.registerBlock("station_name_plate_middle", () -> new Block(new BlockStationNamePlate()));
