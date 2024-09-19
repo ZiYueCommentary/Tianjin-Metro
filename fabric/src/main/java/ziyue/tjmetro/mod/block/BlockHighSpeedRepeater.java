@@ -93,7 +93,10 @@ public class BlockHighSpeedRepeater extends BlockExtension implements DirectionH
 
     @Override
     public BlockState getPlacementState2(ItemPlacementContext ctx) {
-        BlockState state = getDefaultState2().with(new Property<>(FACING.data), ctx.getPlayerFacing().getOpposite().data).with(new Property<>(POWERED.data), false);
+        final Direction direction = ctx.getPlayerFacing().getOpposite();
+        final BlockPos blockPos = ctx.getBlockPos().offset(direction);
+        final boolean powered = ctx.getWorld().getBlockState(blockPos).getStrongRedstonePower(new BlockView(ctx.getWorld().data), blockPos, direction) > 0;
+        final BlockState state = getDefaultState2().with(new Property<>(FACING.data), direction.data).with(new Property<>(POWERED.data), powered);
         return state.with(new Property<>(LOCKED.data), this.isLocked(ctx.getWorld(), ctx.getBlockPos(), state));
     }
 
