@@ -6,6 +6,7 @@ import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.IBlock;
+import ziyue.tjmetro.mapping.DustParticleEffect;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -115,9 +116,9 @@ public class BlockHighSpeedRepeater extends BlockExtension implements DirectionH
         final double e = (double) pos.getY() + 0.4 + (random.data.nextDouble() - 0.5) * 0.2;
         final double f = (double) pos.getZ() + 0.5 + (random.data.nextDouble() - 0.5) * 0.2;
         float g = random.data.nextBoolean() ? -1 : -5.0f;
-        double h = (g /= 16.0f) * (float) direction.getOffsetX();
-        double i = g * (float) direction.getOffsetZ();
-        world.addParticle(new ParticleEffect(ParticleTypes.getAshMapped().data), d + h, e, f + i, 0.0, 0.0, 0.0);
+        final double h = (g /= 16.0f) * (float) direction.getOffsetX();
+        final double i = g * (float) direction.getOffsetZ();
+        world.addParticle(new ParticleEffect(DustParticleEffect.BLUE), d + h, e, f + i, 0.0, 0.0, 0.0);
     }
 
     @Override
