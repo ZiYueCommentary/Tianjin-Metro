@@ -821,7 +821,7 @@ public class RouteMapGenerator implements IGui
             final boolean isTerminating = destinations.isEmpty();
             final DynamicTextureCache.Text boundFor;
             if (isTerminating) {
-                boundFor = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
+                boundFor = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width - padding * 2, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
             } else {
                 String destinationString = IGui.mergeStations(destinations);
                 final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
@@ -836,7 +836,7 @@ public class RouteMapGenerator implements IGui
                         destinationString = IGuiExtension.insertTranslation("gui.tjmetro.bound_for_cjk", "gui.tjmetro.bound_for", 1, destinationString);
                     }
                 }
-                boundFor = DynamicTextureCache.instance.getText(destinationString, width, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
+                boundFor = DynamicTextureCache.instance.getText(destinationString, width - padding * 2, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
             }
 
             final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, width, height, false);
