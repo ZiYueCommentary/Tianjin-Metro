@@ -1,9 +1,7 @@
 package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
-import org.mtr.mapping.mapper.BlockExtension;
-import org.mtr.mapping.mapper.BlockHelper;
-import org.mtr.mapping.mapper.DirectionHelper;
+import org.mtr.mapping.mapper.*;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockList;
