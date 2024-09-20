@@ -8,6 +8,7 @@ import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.TianjinMetro;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -90,6 +91,10 @@ public class BlockMetalDetectionDoor extends BlockExtension implements Direction
         super.onBreak2(world, pos, state, player);
     }
 
+    @Override
+    public void addTooltips(ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
+        IGuiExtension.addHoldShiftTooltip(tooltip, TextHelper.translatable("tooltip.tjmetro.metal_detection_door"));
+    }
     @Override
     public void addBlockProperties(List<HolderBase<?>> properties) {
         properties.add(FACING);

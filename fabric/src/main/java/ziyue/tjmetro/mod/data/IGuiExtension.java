@@ -1,9 +1,14 @@
 package ziyue.tjmetro.mod.data;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.mtr.mapping.holder.MutableText;
+import org.mtr.mapping.holder.Screen;
+import org.mtr.mapping.holder.TextFormatting;
+import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.config.Config;
 import org.mtr.mod.data.IGui;
+import org.mtr.mod.generated.lang.TranslationProvider;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -80,10 +85,13 @@ public interface IGuiExtension
         return new ImmutablePair<>(text.substring(0, separatorIndex), text.substring(separatorIndex + 1));
     }
 
-    static String insertTranslation(String keyCJK, String key, int expectedArguments, String... arguments) {
-        return insertTranslation(keyCJK, key, null, expectedArguments, arguments);
-    }
-
+    /**
+     * Formatting the string.
+     *
+     * @author ZiYueCommentary
+     * @see IGui#insertTranslation(TranslationProvider.TranslationHolder, TranslationProvider.TranslationHolder, String, int, String...)
+     * @since 1.0.0-beta-2
+     */
     static String insertTranslation(String keyCJK, String key, @Nullable String overrideFirst, int expectedArguments, String... arguments) {
         if (arguments.length < expectedArguments) {
             return "";
@@ -146,5 +154,92 @@ public interface IGuiExtension
         } else {
             return "";
         }
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @see #insertTranslation(String, String, String, int, String...)
+     * @since 1.0.0-beta-2
+     */
+    static String insertTranslation(String keyCJK, String key, int expectedArguments, String... arguments) {
+        return insertTranslation(keyCJK, key, null, expectedArguments, arguments);
+    }
+
+    /**
+     * Adding a hold-shift-tooltip to the tooltips.
+     *
+     * @param list      hover Text List, just like pointer in C/C++
+     * @param component a component that waits for split
+     * @param regex     the delimiting regular expression
+     * @param limit     the result threshold, as described above
+     * @return hover text lists
+     * @author ZiYueCommentary
+     * @since 1.0.0-beta-2
+     */
+    static List<MutableText> addHoldShiftTooltip(List<MutableText> list, MutableText component, boolean wordWarp, String regex, int limit) {
+        if (Screen.hasShiftDown()) {
+            // Adding a space in the end is the simplest way to fix the bug. Do not ask me why.
+            String[] texts = (component.getString() + " ").split(regex, limit);
+            if (wordWarp) {
+                for (String text : texts) {
+                    int start = 0;
+                    while (start < text.length()) {
+                        int end = start;
+                        int currentWidth = 0;
+                        int lastSpace = -1;
+
+                        while (end < text.length() && currentWidth + GraphicsHolder.getTextWidth(text.substring(start, end + 1)) <= 380) { // 380 is the maximum width
+                            if (text.charAt(end) == ' ') {
+                                lastSpace = end;
+                            }
+                            currentWidth += GraphicsHolder.getTextWidth(text.substring(end, end + 1));
+                            end++;
+                        }
+
+                        if (lastSpace != -1 && lastSpace > start) {
+                            list.add(TextHelper.literal(text.substring(start, lastSpace)));
+                            start = lastSpace + 1;
+                        } else {
+                            list.add(TextHelper.literal(text.substring(start, end)));
+                            start = end;
+                        }
+                    }
+                }
+            } else {
+                for (String text : texts) {
+                    list.add(TextHelper.literal(text));
+                }
+            }
+        } else {
+            list.add(TextHelper.translatable("tooltip.tjmetro.shift").formatted(TextFormatting.YELLOW));
+        }
+        return list;
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @see #addHoldShiftTooltip(List, MutableText, boolean, String, int)
+     * @since 1.0.0-beta-2
+     */
+    static List<MutableText> addHoldShiftTooltip(List<MutableText> list, MutableText component, boolean wordWarp, String regex) {
+        return addHoldShiftTooltip(list, component, wordWarp, regex, 0);
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @see #addHoldShiftTooltip(List, MutableText, boolean, String, int)
+     * @since 1.0.0-beta-2
+     */
+    static List<MutableText> addHoldShiftTooltip(List<MutableText> list, MutableText component, boolean wordWarp) {
+        return addHoldShiftTooltip(list, component, wordWarp, "\n", 0);
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @see #addHoldShiftTooltip(List, MutableText, boolean, String, int)
+     * @since 1.0.0-beta-2
+     */
+    static List<MutableText> addHoldShiftTooltip(List<MutableText> list, MutableText component) {
+        return addHoldShiftTooltip(list, component, true, "\n", 0);
     }
 }

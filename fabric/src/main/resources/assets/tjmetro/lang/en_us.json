@@ -106,7 +106,7 @@
     "tooltip.tjmetro.custom_content": "Support custom display content",
     "tooltip.tjmetro.custom_color": "Support custom display color",
     "tooltip.tjmetro.station_name_sign": "A small station name sign, you can change display content with wrench.",
-    "tooltip.tjmetro.metal_detection_door": "A device for clearing items from players' inventory. Note this device will deleting item directly, instead of taking out item.",
+    "tooltip.tjmetro.metal_detection_door": "A device for clearing items from players' inventory. Note this device will delete item directly, instead of taking out items.",
     "tooltip.tjmetro.use_tianjin_metro_font": "Render texts with mod font in some blocks.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
 
