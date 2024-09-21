@@ -21,7 +21,7 @@ import static org.mtr.mod.render.RenderRouteBase.getShadingColor;
  * @author ZiYueCommentary
  * @see BlockPSDTopTianjinBMT
  * @see RenderRouteBase
- * @since 1.0.0-beta-1
+ * @since 1.0.0-beta-2
  */
 
 public class RenderPSDTopTianjinBMT extends RenderRouteBase<BlockPSDTopTianjinBMT.BlockEntity>

@@ -168,7 +168,7 @@ public interface IGuiExtension
     /**
      * Adding a hold-shift-tooltip to the tooltips.
      *
-     * @param list      hover Text List, just like pointer in C/C++
+     * @param list      hover text List, just like pointer in C/C++
      * @param component a component that waits for split
      * @param regex     the delimiting regular expression
      * @param limit     the result threshold, as described above

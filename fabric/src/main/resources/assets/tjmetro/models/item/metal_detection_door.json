@@ -2,7 +2,7 @@
 	"credit": "Made by ZiYueCommentary, made with Blockbench.",
 	"parent": "block/block",
 	"textures": {
-		"0": "tjmetro:sign/metal_detection_door_sign",
+		"0": "tjmetro:block/metal_detection_door_sign",
 		"1": "mtr:block/metal",
 		"particle": "tjmetro:sign/metal_detection_door_sign"
 	},
