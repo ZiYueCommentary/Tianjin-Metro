@@ -6,17 +6,7 @@ package ziyue.tjmetro.mapping;
  * @since 1.0.0-beta-2
  */
 
-#if MC_VERSION >= "11902"
-
-import net.minecraft.core.NonNullList;
-import net.minecraft.world.item.ItemStack;
-
-public interface ContainerAccessor
-{
-    NonNullList<ItemStack> tianjin_Metro$getItemStacks();
-}
-
-#elif MC_VERSION >= "11701"
+#if MC_VERSION >= "11701"
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;

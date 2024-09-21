@@ -30,7 +30,7 @@ public interface RegistryHelper
     }
 
     static Identifier getIdentifierByItem(net.minecraft.world.item.Item item) {
-#if MC_VERSION >= "11902"
+#if MC_VERSION >= "11904"
         return new Identifier(net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item));
 #else
         return new Identifier(net.minecraft.core.Registry.ITEM.getKey(item));
@@ -38,7 +38,7 @@ public interface RegistryHelper
     }
 
     static net.minecraft.world.item.ItemStack getItemStackByIdentifier(Identifier identifier) {
-#if MC_VERSION >= "11902"
+#if MC_VERSION >= "11904"
         return net.minecraft.core.registries.BuiltInRegistries.ITEM.get(identifier.data).getDefaultInstance();
 #else
         return net.minecraft.core.Registry.ITEM.get(identifier.data).getDefaultInstance();

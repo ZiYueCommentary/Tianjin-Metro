@@ -6,7 +6,7 @@ package ziyue.tjmetro.forge.mixin;
  * @since 1.0.0-beta-2
  */
 
-#if MC_VERSION >= "11902"
+#if MC_VERSION >= "11904"
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.Container;
