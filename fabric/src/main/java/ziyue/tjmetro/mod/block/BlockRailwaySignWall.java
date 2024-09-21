@@ -41,7 +41,13 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
     @Nonnull
     @Override
     public BlockState getStateForNeighborUpdate2(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return IRailwaySign.getStateForNeighborUpdate(state, direction, neighborState, BlockList.RAILWAY_SIGN_WALL_MIDDLE.get());
+        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        final boolean isNext = ((!IBlock.getStatePropertySafe(state, EOS) && (direction == facing.rotateYClockwise())) || IBlockExtension.isBlock(state, BlockList.RAILWAY_SIGN_WALL_MIDDLE.get()) && (direction == facing.rotateYCounterclockwise()));
+        if (isNext && !(state.getBlock().data instanceof BlockRailwaySignWall)) {
+            return Blocks.getAirMapped().getDefaultState();
+        } else {
+            return state;
+        }
     }
 
     @Nonnull
