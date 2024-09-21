@@ -8,7 +8,7 @@ package ziyue.tjmetro.mapping;
  * @since 1.0.0-beta-2
  */
 
-#if MC_VERSION >= "11904"
+#if MC_VERSION >= "11902"
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;

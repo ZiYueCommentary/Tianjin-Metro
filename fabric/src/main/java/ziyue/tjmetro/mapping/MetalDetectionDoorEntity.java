@@ -8,7 +8,7 @@ package ziyue.tjmetro.mapping;
  * @since 1.0.0-beta-2
  */
 
-#if MC_VERSION >= "11902"
+#if MC_VERSION >= "11904"
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -78,7 +78,6 @@ import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.mtr.mapping.holder.BlockPos;
 import org.mtr.mapping.holder.World;
 import ziyue.tjmetro.mod.block.BlockMetalDetectionDoor;
@@ -127,7 +126,11 @@ public class MetalDetectionDoorEntity extends ChestMinecartEntity
 
     @Override
     public Text getDisplayName() {
-        return new TranslatableText("gui.tjmetro.metal_detection_door");
+#if MC_VERSION >= "11902"
+        return net.minecraft.text.Text.translatable("gui.tjmetro.metal_detection_door");
+#else
+        return new net.minecraft.text.TranslatableText("gui.tjmetro.metal_detection_door");
+#endif
     }
 }
 
