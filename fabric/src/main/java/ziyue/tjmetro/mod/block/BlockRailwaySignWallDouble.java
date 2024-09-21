@@ -30,7 +30,13 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
     @Nonnull
     @Override
     public BlockState getStateForNeighborUpdate2(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return IRailwaySign.getStateForNeighborUpdate(state, direction, neighborState, BlockList.RAILWAY_SIGN_WALL_DOUBLE_MIDDLE.get());
+        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        final boolean isNext = ((!IBlock.getStatePropertySafe(state, EOS) && (direction == facing.rotateYClockwise())) || IBlockExtension.isBlock(state, BlockList.RAILWAY_SIGN_WALL_DOUBLE_MIDDLE.get()) && (direction == facing.rotateYCounterclockwise()));
+        if (isNext && !(neighborState.getBlock().data instanceof BlockRailwaySignWallDouble)) {
+            return Blocks.getAirMapped().getDefaultState();
+        } else {
+            return state;
+        }
     }
 
     @Override
