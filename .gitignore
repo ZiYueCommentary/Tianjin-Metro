@@ -38,5 +38,5 @@ forge/src/main/resources/assets
 forge/src/main/resources/data
 forge/run
 
-**/lang/*.json
+**/tjmetro/lang/*.json
 !en_us.json
