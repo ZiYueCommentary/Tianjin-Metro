@@ -7,6 +7,7 @@ import org.mtr.mapping.registry.BlockRegistryObject;
 import org.mtr.mod.block.*;
 import ziyue.tjmetro.mod.block.*;
 import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
+import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinBMT;
 import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
 import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjinBMT;
 
@@ -96,8 +97,10 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
             return "block.tjmetro.psd_tianjin_bmt";
         } else if (this.block.data instanceof BlockFlagAPGTianjin) {
             return "block.tjmetro.apg_tianjin";
-        } else {
+        } else if (this.block.data instanceof BlockFlagAPGTianjinBMT) {
             return "block.tjmetro.apg_tianjin_bmt";
+        } else {
+            return "block.tjmetro.apg_tianjin_trt";
         }
     }
 }

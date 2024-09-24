@@ -23,7 +23,7 @@ public interface Filters
     Filter TIANJIN_DECORATION = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_decoration"), () -> new ItemStack(new ItemConvertible(BlockList.LOGO.get().data)));
     Filter TIANJIN_CEILINGS = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_ceilings"), () -> new ItemStack(new ItemConvertible(BlockList.STATION_COLOR_CEILING.get().data)));
     Filter TIANJIN_RAILWAY_SIGNS = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_railway_signs"), () -> new ItemStack(new ItemConvertible(BlockList.RAILWAY_SIGN_TIANJIN_3_EVEN.get().data)));
-    Filter TIANJIN_UNCATEGORIZED = FilterBuilder.registerUncategorizedItemsFilter(CreativeModeTabs.TIANJIN_METRO);
+    //Filter TIANJIN_UNCATEGORIZED = FilterBuilder.registerUncategorizedItemsFilter(CreativeModeTabs.TIANJIN_METRO);
 
     static void init() {
         FilterBuilder.addItems(Filters.TIANJIN_MISCELLANEOUS, WRENCH);
@@ -43,7 +43,9 @@ public interface Filters
                 PSD_DOOR_TIANJIN, PSD_GLASS_TIANJIN, PSD_GLASS_END_TIANJIN,
                 APG_DOOR_TIANJIN, APG_GLASS_TIANJIN, APG_GLASS_END_TIANJIN,
                 APG_DOOR_TIANJIN_BMT, APG_GLASS_TIANJIN_BMT, APG_GLASS_END_TIANJIN_BMT,
-                PSD_DOOR_TIANJIN_BMT, PSD_GLASS_TIANJIN_BMT, PSD_GLASS_END_TIANJIN_BMT);
+                PSD_DOOR_TIANJIN_BMT, PSD_GLASS_TIANJIN_BMT, PSD_GLASS_END_TIANJIN_BMT
+                //APG_DOOR_TIANJIN_TRT, APG_GLASS_TIANJIN_TRT, APG_GLASS_END_TIANJIN_TRT
+        );
         FilterBuilder.addBlocks(Filters.TIANJIN_DECORATION, LOGO, APG_CORNER, TIME_DISPLAY, EMERGENCY_EXIT_SIGN, SERVICE_CORRIDOR_SIGN, BENCH, METAL_DETECTION_DOOR, METAL_POLE_BMT);
         FilterBuilder.addBlocks(Filters.TIANJIN_CEILINGS,
                 CEILING_NOT_LIT,

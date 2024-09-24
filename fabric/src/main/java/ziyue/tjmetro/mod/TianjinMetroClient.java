@@ -35,6 +35,9 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PSD_DOOR_TIANJIN_BMT_BLOCK);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PSD_GLASS_TIANJIN_BMT_BLOCK);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PSD_GLASS_END_TIANJIN_BMT_BLOCK);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_DOOR_TIANJIN_TRT_BLOCK);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_TIANJIN_TRT_BLOCK);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_END_TIANJIN_TRT_BLOCK);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.HIGH_SPEED_REPEATER);
 
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_1, RenderStationNameSign::new);
@@ -94,7 +97,8 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN_BMT, dispatcher -> new RenderPSDAPGDoor<>(dispatcher, 2));
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_GLASS_TIANJIN_BMT, RenderAPGGlassTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_TOP_TIANJIN_BMT, RenderPSDTopTianjinBMT::new);
-        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_TIANJIN_BMT, RenderPSDTianjinBMTDoor::new);
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_TIANJIN_BMT, RenderPSDDoorTianjinBMT::new);
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN_TRT, RenderAPGDoorTianjinTRT::new);
 
         RegistryClient.registerEntityRenderer(EntityTypes.SEAT, RenderSeat::new);
 

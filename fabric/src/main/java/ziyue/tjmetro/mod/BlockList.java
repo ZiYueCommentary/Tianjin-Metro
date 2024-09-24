@@ -124,6 +124,9 @@ public interface BlockList
     BlockRegistryObject PSD_GLASS_TIANJIN_BMT_BLOCK = Registry.registerBlock("psd_glass_tianjin_bmt", () -> new Block(new BlockPSDGlassTianjinBMT()));
     BlockRegistryObject PSD_GLASS_END_TIANJIN_BMT_BLOCK = Registry.registerBlock("psd_glass_end_tianjin_bmt", () -> new Block(new BlockPSDGlassEndTianjinBMT()));
     BlockRegistryObject PSD_TOP_TIANJIN_BMT = Registry.registerBlock("psd_top_tianjin_bmt", () -> new Block(new BlockPSDTopTianjinBMT()));
+    BlockRegistryObject APG_DOOR_TIANJIN_TRT_BLOCK = Registry.registerBlock("apg_door_tianjin_trt", () -> new Block(new BlockAPGDoorTianjinTRT()));
+    BlockRegistryObject APG_GLASS_TIANJIN_TRT_BLOCK = Registry.registerBlock("apg_glass_tianjin_trt", () -> new Block(new BlockAPGGlassTianjinTRT()));
+    BlockRegistryObject APG_GLASS_END_TIANJIN_TRT_BLOCK = Registry.registerBlock("apg_glass_end_tianjin_trt", () -> new Block(new BlockAPGGlassEndTianjinTRT()));
 
     static void registerBlocks() {
         // Calling this class to initialize constants

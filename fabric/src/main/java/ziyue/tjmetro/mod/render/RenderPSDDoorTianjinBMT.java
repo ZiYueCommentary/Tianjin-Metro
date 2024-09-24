@@ -11,8 +11,16 @@ import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
+import ziyue.tjmetro.mod.block.BlockPSDTopTianjinBMT;
 
-public class RenderPSDTianjinBMTDoor<T extends BlockPSDAPGDoorBase.BlockEntityBase> extends BlockEntityRenderer<T> implements IGui, IBlock
+/**
+ * @author ZiYueCommentary
+ * @see BlockPSDTopTianjinBMT
+ * @see RenderRouteBase
+ * @since 1.0.0-beta-2
+ */
+
+public class RenderPSDDoorTianjinBMT<T extends BlockPSDAPGDoorBase.BlockEntityBase> extends BlockEntityRenderer<T> implements IGui, IBlock
 {
     protected static final ModelSingleCube MODEL_PSD = new ModelSingleCube(36, 18, 0, 0, 0, 16, 16, 2);
     protected static final ModelSingleCube MODEL_PSD_END_LEFT_1 = new ModelSingleCube(20, 18, 0, 0, 0, 8, 16, 2);
@@ -23,7 +31,7 @@ public class RenderPSDTianjinBMTDoor<T extends BlockPSDAPGDoorBase.BlockEntityBa
     protected static final ModelSingleCube MODEL_PSD_LIGHT_RIGHT = new ModelSingleCube(16, 16, 15, -3.7F, 5.3F, 1, 1, 1);
     protected static final ModelSingleCube MODEL_PSD_DOOR_LOCKED = new ModelSingleCube(6, 6, 5, 6, 1, 6, 6, 0);
 
-    public RenderPSDTianjinBMTDoor(Argument dispatcher) {
+    public RenderPSDDoorTianjinBMT(Argument dispatcher) {
         super(dispatcher);
     }
 
@@ -31,6 +39,8 @@ public class RenderPSDTianjinBMTDoor<T extends BlockPSDAPGDoorBase.BlockEntityBa
     public void render(T entity, float tickDelta, GraphicsHolder graphicsHolder, int light, int overlay) {
         final World world = entity.getWorld2();
         if (world == null) return;
+
+        entity.updateRedstone(MinecraftClient.getInstance().getLastFrameDuration());
 
         final BlockPos blockPos = entity.getPos2();
         final Direction facing = IBlock.getStatePropertySafe(world, blockPos, BlockPSDAPGDoorBase.FACING);
