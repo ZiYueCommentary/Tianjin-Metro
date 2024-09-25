@@ -10,6 +10,7 @@ import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
 import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinBMT;
 import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
 import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjinBMT;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -85,6 +86,9 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
             tooltip.add(TextHelper.translatable("tooltip.mtr.psd_apg_glass_end").formatted(TextFormatting.GRAY));
         } else if (this.block.data instanceof BlockPSDAPGGlassBase) {
             tooltip.add(TextHelper.translatable("tooltip.mtr.psd_apg_glass").formatted(TextFormatting.GRAY));
+        }
+        if (this.block.data instanceof BlockFlagPSDTianjin || this.block.data instanceof BlockFlagAPGTianjinBMT) {
+            IGuiExtension.addHoldShiftTooltip(tooltip, TextHelper.translatable("tooltip.tjmetro.psd_apg_tianjin"));
         }
     }
 

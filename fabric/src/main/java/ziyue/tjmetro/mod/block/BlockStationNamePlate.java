@@ -3,6 +3,7 @@ package ziyue.tjmetro.mod.block;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockHelper;
+import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.Items;
 import org.mtr.mod.block.BlockRouteSignBase;
@@ -13,6 +14,7 @@ import ziyue.tjmetro.mod.ItemList;
 import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
@@ -91,6 +93,7 @@ public class BlockStationNamePlate extends BlockRailwaySignBase
 
     @Override
     public void addTooltips(ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
+        IGuiExtension.addHoldShiftTooltip(tooltip, TextHelper.translatable("tooltip.tjmetro.station_name_plate"));
     }
 
     @Override

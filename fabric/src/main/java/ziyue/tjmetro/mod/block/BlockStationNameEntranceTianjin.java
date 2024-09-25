@@ -3,6 +3,7 @@ package ziyue.tjmetro.mod.block;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockHelper;
+import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.Items;
 import org.mtr.mod.block.BlockStationNameBase;
@@ -11,9 +12,11 @@ import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.ItemList;
 import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.block.base.BlockEntityRenderable;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -80,6 +83,11 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         final boolean tall = IBlock.getStatePropertySafe(state, STYLE) % 2 == 1;
         return IBlock.getVoxelShapeByDirection(0, tall ? 0 : 4, 0, 16, tall ? 16 : 12, 1, IBlock.getStatePropertySafe(state, FACING));
+    }
+
+    @Override
+    public void addTooltips(ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
+        IGuiExtension.addHoldShiftTooltip(tooltip, TextHelper.translatable("tooltip.tjmetro.station_name_entrance_tianjin"));
     }
 
     @Override

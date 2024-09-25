@@ -3,14 +3,18 @@ package ziyue.tjmetro.mod.block;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockWithEntity;
+import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.block.base.BlockEntityRenderable;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Roadblock with signs.
@@ -27,6 +31,11 @@ public class BlockRoadblockSign extends BlockRoadblock implements BlockWithEntit
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(pos)));
+    }
+
+    @Override
+    public void addTooltips(ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
+        IGuiExtension.addHoldShiftTooltip(tooltip, TextHelper.translatable("tooltip.tjmetro.roadblock_sign"));
     }
 
     @Override

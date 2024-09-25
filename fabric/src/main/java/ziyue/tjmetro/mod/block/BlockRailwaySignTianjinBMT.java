@@ -3,14 +3,17 @@ package ziyue.tjmetro.mod.block;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockHelper;
+import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * @author ZiYueCommentary
@@ -46,6 +49,12 @@ public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
     @Override
     public String getTranslationKey2() {
         return "block.tjmetro.railway_sign_tianjin_bmt";
+    }
+
+    @Override
+    public void addTooltips(ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
+        super.addTooltips(stack, world, tooltip, options);
+        IGuiExtension.addHoldShiftTooltip(tooltip, TextHelper.translatable("tooltip.tjmetro.railway_sign_bmt"));
     }
 
     @Override

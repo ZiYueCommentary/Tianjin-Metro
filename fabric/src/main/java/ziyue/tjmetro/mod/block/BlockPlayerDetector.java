@@ -5,6 +5,7 @@ import org.mtr.mapping.mapper.*;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -69,6 +70,11 @@ public class BlockPlayerDetector extends BlockExtension implements DirectionHelp
     @Override
     public boolean emitsRedstonePower2(BlockState state) {
         return true;
+    }
+
+    @Override
+    public void addTooltips(ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
+        IGuiExtension.addHoldShiftTooltip(tooltip, TextHelper.translatable("tooltip.tjmetro.player_detector"));
     }
 
     @Override
