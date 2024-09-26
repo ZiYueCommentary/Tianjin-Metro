@@ -49,7 +49,7 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
     @Override
     public ActionResult useOnBlock2(ItemUsageContext context) {
         final int horizontalBlocks = block.data instanceof BlockPSDAPGDoorBase ? 2 : 1;
-        if (blocksNotReplaceable(context, horizontalBlocks, 3, this.block)) return ActionResult.FAIL;
+        if (blocksNotReplaceable(context, horizontalBlocks, isAPG() ? 2 : 3, this.block)) return ActionResult.FAIL;
 
         final World world = context.getWorld();
         final Direction playerFacing = context.getPlayerFacing();
@@ -76,6 +76,10 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
 
         context.getStack().decrement(1);
         return ActionResult.SUCCESS;
+    }
+
+    public boolean isAPG() {
+        return this.block.data instanceof BlockFlagAPGTianjin || this.block.data instanceof BlockFlagAPGTianjinBMT;
     }
 
     @Override

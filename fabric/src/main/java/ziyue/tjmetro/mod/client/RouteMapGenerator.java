@@ -168,8 +168,8 @@ public class RouteMapGenerator implements IGui
             final int leftSize = ((leftToRight ? 1 : 0)) * (tileSize + tilePadding);
             final int rightSize = ((leftToRight ? 0 : 1)) * (tileSize + tilePadding);
 
-            final DynamicTextureCache.Text destination = DynamicTextureCache.instance.getText(getStationName(platformId), isAPG ? width - padding : width - leftSize - rightSize - padding, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
-            drawString(nativeImage, destination, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+            final DynamicTextureCache.Text stationName = DynamicTextureCache.instance.getText(getStationName(platformId), isAPG ? width - padding : width - leftSize - rightSize - padding, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
+            drawString(nativeImage, stationName, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
 
             if (transparentColor != 0) {
                 clearColor(nativeImage, invertColor(transparentColor));
@@ -675,7 +675,6 @@ public class RouteMapGenerator implements IGui
                     final int y = Math.round((stationPositionGrouped.stationPosition.y + rawHeightPart + 0.4F) * scale * heightScale);
                     final int lines = stationPositionGrouped.stationPosition.isCommon ? colorIndices[colorIndices.length - 1] : 0;
                     final boolean currentStation = stationPositionGrouped.stationOffset == 0;
-                    final boolean passed = stationPositionGrouped.stationOffset < 0;
 
                     final IntArrayList interchangeColors = stationPositionGrouped.interchangeColors;
                     if (!interchangeColors.isEmpty() && !currentStation) {
@@ -683,7 +682,7 @@ public class RouteMapGenerator implements IGui
                         final int lineWidth = (int) Math.ceil((float) lineSize / 4);
                         for (int drawX = 0; drawX < lineWidth; drawX++) {
                             for (int drawY = 0; drawY < lineSize * 1.8; drawY++) {
-                                drawPixelSafe(nativeImage, x + drawX - lineWidth / 2, y + lines * lineSpacing + drawY, passed ? ARGB_LIGHT_GRAY : ARGB_BLACK);
+                                drawPixelSafe(nativeImage, x + drawX - lineWidth / 2, y + lines * lineSpacing + drawY, ARGB_BLACK);
                             }
                         }
 
@@ -702,7 +701,7 @@ public class RouteMapGenerator implements IGui
                             int renderX = x - interchangesWidth / 2;
                             for (int i = 0; i < interchanges.size(); i++) {
                                 nativeImage.fillRect(renderX, y + lines * lineSpacing + lineHeight, interchanges.get(i).renderWidth(), interchangesHeight, invertColor(ARGB_BLACK | interchangeColors.getInt(i)));
-                                drawString(nativeImage, interchanges.get(i), renderX, y + lines * lineSpacing + lineHeight + interchangesHeight / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, passed ? ARGB_LIGHT_GRAY : ARGB_WHITE, false);
+                                drawString(nativeImage, interchanges.get(i), renderX, y + lines * lineSpacing + lineHeight + interchangesHeight / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
                                 renderX += interchanges.get(i).renderWidth() + padding;
                             }
                         }
@@ -1289,8 +1288,20 @@ public class RouteMapGenerator implements IGui
 
     protected static void drawVerticalString(NativeImage nativeImage, String text, int x, int y, int maxWidth, int maxHeight, int fontSizeCjk, int fontSize, int padding, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment, int backgroundColor, int textColor) {
         final ImmutablePair<String, String> pair = IGuiExtension.splitTranslation(text);
-        final DynamicTextureCache.Text textCJK = DynamicTextureCache.instance.getText(IGui.formatVerticalChinese(pair.left), maxWidth, maxHeight, fontSizeCjk, fontSizeCjk, ConfigClient.USE_TIANJIN_METRO_FONT.get() ? 0 : padding, HorizontalAlignment.LEFT, 1F, false);
-        final DynamicTextureCache.Text textNonCJK = DynamicTextureCache.instance.getText(pair.right, maxHeight, maxWidth, fontSize, fontSize, padding, HorizontalAlignment.LEFT, 1F, false);
+        final DynamicTextureCache.Text textCJK;
+        if (pair.left.isEmpty()) {
+            textCJK = DynamicTextureCache.Text.empty();
+            padding = 0;
+        } else {
+            textCJK = DynamicTextureCache.instance.getText(IGui.formatVerticalChinese(pair.left), maxWidth, maxHeight, fontSizeCjk, fontSizeCjk, ConfigClient.USE_TIANJIN_METRO_FONT.get() ? 0 : padding, HorizontalAlignment.LEFT, 1F, false);
+        }
+        final DynamicTextureCache.Text textNonCJK;
+        if (pair.right.isEmpty()) {
+            textNonCJK = DynamicTextureCache.Text.empty();
+            padding = 0;
+        } else {
+            textNonCJK = DynamicTextureCache.instance.getText(pair.right, maxHeight, maxWidth, fontSize, fontSize, padding, HorizontalAlignment.LEFT, 1F, false);
+        }
         final int width = textCJK.width() + textNonCJK.height() - padding * 2;
         switch (horizontalAlignment) {
             case LEFT:
@@ -1308,6 +1319,8 @@ public class RouteMapGenerator implements IGui
     }
 
     protected static void drawString(NativeImage nativeImage, DynamicTextureCache.Text text, int x, int y, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment, int backgroundColor, int textColor, boolean rotate90) {
+        if (text == null || text.pixels() == null) return;
+
         if (((backgroundColor >> 24) & 0xFF) > 0) {
             for (int drawX = 0; drawX < (rotate90 ? text.height() : text.renderWidth()); drawX++) {
                 for (int drawY = 0; drawY < (rotate90 ? text.renderWidth() : text.height()); drawY++) {

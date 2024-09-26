@@ -349,6 +349,10 @@ public class DynamicTextureCache
         public int renderWidth() {
             return renderWidth;
         }
+
+        public static Text empty() {
+            return new Text(null, 0, 0, 0);
+        }
     }
 
     /**

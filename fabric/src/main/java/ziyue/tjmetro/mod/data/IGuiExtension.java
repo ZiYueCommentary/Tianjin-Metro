@@ -82,7 +82,11 @@ public interface IGuiExtension
      */
     static ImmutablePair<String, String> splitTranslation(String text) {
         final int separatorIndex = text.indexOf("|");
-        return new ImmutablePair<>(text.substring(0, separatorIndex), text.substring(separatorIndex + 1));
+        if (separatorIndex == -1) {
+            if (IGui.isCjk(text)) return ImmutablePair.of(text, "");
+            else return ImmutablePair.of("", text);
+        }
+        return ImmutablePair.of(text.substring(0, separatorIndex), text.substring(separatorIndex + 1));
     }
 
     /**
