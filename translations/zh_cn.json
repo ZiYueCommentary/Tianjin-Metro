@@ -105,7 +105,7 @@
     "tooltip.tjmetro.custom_content": "支持自定义显示内容",
     "tooltip.tjmetro.custom_color": "支持自定义显示颜色",
     "tooltip.tjmetro.station_name_sign": "一个小站名牌，可以用扳手修改牌子的显示内容。",
-    "tooltip.tjmetro.metal_detection_door": "一个从玩家背包栏中清除特定的物品的装置。注意，这将直接删除物品，而不是取出物品。",
+    "tooltip.tjmetro.metal_detection_door": "从玩家物品栏删除特定物品。用扳手或刷子打开交互界面。",
     "tooltip.tjmetro.use_tianjin_metro_font": "在某些地方上使用模组自定字体渲染文字。",
     "tooltip.tjmetro.shift": "长按 Shift 显示更多信息",
     "footer.tjmetro.sources": "想要查看源码吗？点这里！",
@@ -147,5 +147,12 @@
     "filter.tjmetro.tianjin_decoration": "装饰",
     "filter.tjmetro.tianjin_ceilings": "天花板",
     "filter.tjmetro.tianjin_railway_signs": "指示牌",
-    "block.tjmetro.psd_tianjin_bmt": "高站台门（天津、九号线）"
+    "block.tjmetro.psd_tianjin_bmt": "高站台门（天津、九号线）",
+    "block.tjmetro.apg_tianjin_trt": "低站台门（天津、一号线）",
+    "tooltip.tjmetro.player_detector": "检测2格内的玩家，并放出红石信号。",
+    "tooltip.tjmetro.roadblock_sign": "用扳手或刷子可以修改其显示内容。",
+    "tooltip.tjmetro.psd_apg_tianjin": "用扳手改变其顶部的显示内容，并用刷子改变其箭头方向。",
+    "tooltip.tjmetro.railway_sign_bmt": "用MTR模组的指示牌柱可以加长其柱子。",
+    "tooltip.tjmetro.station_name_plate": "用扳手选择显示的站台，并用刷子改变箭头的方向。",
+    "tooltip.tjmetro.station_name_entrance_tianjin": "用扳手指定显示的出口编号，并用刷子改变方块风格。"
 }
