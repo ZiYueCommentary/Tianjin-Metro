@@ -767,16 +767,16 @@ public class RouteMapGenerator implements IGui
         try {
             final int size = scale / 2;
             final boolean noNumber = exitNumber.isEmpty();
-            final int textSize = (int) (size * 1.25F);
+            final int textSize = size;
 
             final DynamicTextureCache.Text letter = DynamicTextureCache.instance.getText(exitLetter, noNumber ? textSize : textSize * 2 / 3, textSize, textSize, size, size, HorizontalAlignment.CENTER, forceMTRFont);
             final DynamicTextureCache.Text number = noNumber ? null : DynamicTextureCache.instance.getText(exitNumber, textSize / 3, textSize, textSize / 2, textSize / 2, size, HorizontalAlignment.CENTER, forceMTRFont);
 
             final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, size, size, false);
-            nativeImage.fillRect(0, 0, size, size, backgroundColor);
-            drawString(nativeImage, letter, size / 2 - (noNumber ? 0 : textSize / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+            nativeImage.fillRect(0, 0, size, size, 0);
+            drawString(nativeImage, letter, size / 2 - (noNumber ? 0 : textSize / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, textColor, false);
             if (!noNumber) {
-                drawString(nativeImage, number, size / 2 + textSize / 3 - size / 32, size / 2 + textSize / 8, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                drawString(nativeImage, number, size / 2 + textSize / 3 - size / 32, size / 2 + textSize / 8, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, textColor, false);
             }
             return nativeImage;
         } catch (Exception e) {

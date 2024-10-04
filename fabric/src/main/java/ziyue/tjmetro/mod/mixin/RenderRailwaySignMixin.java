@@ -13,13 +13,13 @@ import org.mtr.mapping.holder.Direction;
 import org.mtr.mapping.mapper.BlockEntityRenderer;
 import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mod.InitClient;
-import org.mtr.mod.QrCodeHelper;
 import org.mtr.mod.block.BlockRailwaySign;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.client.DynamicTextureCache;
 import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.client.MinecraftClientData;
 import org.mtr.mod.data.IGui;
+import org.mtr.mod.generated.lang.TranslationProvider;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.RenderRailwaySign;
@@ -30,7 +30,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
-import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -76,7 +75,6 @@ public abstract class RenderRailwaySignMixin<T extends BlockRailwaySign.BlockEnt
         final boolean isLine = IRailwaySign.signIsLine(signId);
         final boolean isPlatform = IRailwaySign.signIsPlatform(signId);
         final boolean isStation = IRailwaySign.signIsStation(signId);
-        final boolean isTransportSystemMap = signId.equals("transport_system_map") || signId.equals("transport_system_map_text") || signId.equals("transport_system_map_text_flipped");
 
         if (storedMatrixTransformations != null && isExit) {
             final Station station = InitClient.findStation(pos);
@@ -186,13 +184,7 @@ public abstract class RenderRailwaySignMixin<T extends BlockRailwaySign.BlockEnt
                 });
             }
         } else {
-            if (storedMatrixTransformations != null && isTransportSystemMap) {
-                final StoredMatrixTransformations storedMatrixTransformationsNew = storedMatrixTransformations.copy();
-                storedMatrixTransformationsNew.add(graphicsHolderNew -> graphicsHolderNew.translate(x, y, 0));
-                QrCodeHelper.INSTANCE.renderQrCode(storedMatrixTransformationsNew, QueuedRenderLayer.LIGHT, signSize);
-            } else {
-                drawTexture.drawTexture(sign.getTexture(), x + margin, y + margin, signSize, flipTexture);
-            }
+            drawTexture.drawTexture(sign.getTexture(), x + margin, y + margin, signSize, flipTexture);
 
             if (hasCustomText) {
                 final float fixedMargin = size * (1 - BlockRailwaySign.SMALL_SIGN_PERCENTAGE) / 2;
@@ -207,7 +199,7 @@ public abstract class RenderRailwaySignMixin<T extends BlockRailwaySign.BlockEnt
                         signText = IGui.mergeStations(selectedIds.longStream()
                                 .filter(MinecraftClientData.getInstance().stationIdMap::containsKey)
                                 .sorted()
-                                .mapToObj(stationId -> IGuiExtension.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, MinecraftClientData.getInstance().stationIdMap.get(stationId).getName()))
+                                .mapToObj(stationId -> IGui.insertTranslation(TranslationProvider.GUI_MTR_STATION_CJK, TranslationProvider.GUI_MTR_STATION, 1, MinecraftClientData.getInstance().stationIdMap.get(stationId).getName()))
                                 .collect(Collectors.toList())
                         );
                     } else {

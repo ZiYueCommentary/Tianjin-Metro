@@ -14,7 +14,6 @@ import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mod.Init;
 import org.mtr.mod.InitClient;
-import org.mtr.mod.QrCodeHelper;
 import org.mtr.mod.block.BlockRailwaySign;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.client.DynamicTextureCache;
@@ -256,13 +255,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
                 });
             }
         } else {
-            if (storedMatrixTransformations != null && isTransportSystemMap) {
-                final StoredMatrixTransformations storedMatrixTransformationsNew = storedMatrixTransformations.copy();
-                storedMatrixTransformationsNew.add(graphicsHolderNew -> graphicsHolderNew.translate(x, y, 0));
-                QrCodeHelper.INSTANCE.renderQrCode(storedMatrixTransformationsNew, QueuedRenderLayer.LIGHT, signSize);
-            } else {
-                drawTexture.drawTexture(sign.getTexture(), x + margin, y + margin, signSize, flipTexture);
-            }
+            drawTexture.drawTexture(sign.getTexture(), x + margin, y + margin, signSize, flipTexture);
 
             if (hasCustomText) {
                 final float fixedMargin = size * (1 - BlockRailwaySign.SMALL_SIGN_PERCENTAGE) / 2;
