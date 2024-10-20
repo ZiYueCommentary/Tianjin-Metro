@@ -84,7 +84,9 @@ public interface IRailwaySign extends DirectionHelper
 
     static boolean signIsPlatform(String signId) {
         List<String> platforms = Arrays.asList("platform", "platform_flipped",
-                SignType.BOUND_FOR_TEXT.signId, SignType.BOUND_FOR_TEXT_FLIPPED.signId);
+                SignType.BOUND_FOR_TEXT.signId, SignType.BOUND_FOR_TEXT_FLIPPED.signId,
+                SignType.TRAIN_TO_TEXT.signId, SignType.TRAIN_TO_TEXT_FLIPPED.signId,
+                SignType.CROSS_LINE_TRAIN_TO_TEXT.signId, SignType.CROSS_LINE_TRAIN_TO_TEXT_FLIPPED.signId);
         return platforms.contains(signId);
     }
 
@@ -109,6 +111,10 @@ public interface IRailwaySign extends DirectionHelper
     static Identifier getPlatformSignResource(String signId, long platformId, IGui.HorizontalAlignment horizontalAlignment, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor, boolean forceMTRFont) {
         if (signId.equals(SignType.BOUND_FOR_TEXT.signId) || signId.equals(SignType.BOUND_FOR_TEXT_FLIPPED.signId)) {
             return DynamicTextureCache.instance.getBoundFor(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont).identifier;
+        } else if (signId.equals(SignType.TRAIN_TO_TEXT.signId) || signId.equals(SignType.TRAIN_TO_TEXT_FLIPPED.signId)) {
+            return DynamicTextureCache.instance.getTrainTo(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont).identifier;
+        } else if (signId.equals(SignType.CROSS_LINE_TRAIN_TO_TEXT.signId) || signId.equals(SignType.CROSS_LINE_TRAIN_TO_TEXT_FLIPPED.signId)) {
+            return DynamicTextureCache.instance.getCrossLineTrainTo(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont).identifier;
         } else {
             if (forceMTRFont) {
                 return org.mtr.mod.client.DynamicTextureCache.instance.getDirectionArrow(platformId, false, false, horizontalAlignment, false, paddingScale, aspectRatio, backgroundColor, textColor, transparentColor).identifier;
@@ -157,6 +163,12 @@ public interface IRailwaySign extends DirectionHelper
         ACCESSIBLE_PASSAGE_TEXT_FLIPPED("accessible_passage", "accessible_passage", true, true),
         TOILET_TEXT("toilet", "toilet", false, false),
         TOILET_TEXT_FLIPPED("toilet", "toilet", false, true),
+        TO_SUBWAY_TEXT("to_subway", "to_subway", false, false),
+        TO_SUBWAY_TEXT_FLIPPED("to_subway", "to_subway", false, true),
+        TRAIN_TO_TEXT("to_subway", "train_to", false, false),
+        TRAIN_TO_TEXT_FLIPPED("to_subway", "train_to", false, true),
+        CROSS_LINE_TRAIN_TO_TEXT("to_subway", "cross_line_train_to", false, false),
+        CROSS_LINE_TRAIN_TO_TEXT_FLIPPED("to_subway", "cross_line_train_to", false, true),
 
         TIANJIN_METRO_LOGO("tianjin_metro_logo", false),
         TIANJIN_METRO_MOD_LOGO("tianjin_metro_mod_logo", false),
@@ -180,6 +192,7 @@ public interface IRailwaySign extends DirectionHelper
         ESCALATOR("escalator", false),
         ESCALATOR_FLIPPED("escalator", true),
         TOILET("toilet", false),
+        TO_SUBWAY("to_subway", false),
 
         // Tianjin Binhai Mass Transit (BMT, Tianjin Metro Line 9)
         NO_ENTRY_BMT_TEXT("no_entry_bmt", "no_entry_bmt", false, false),
@@ -208,25 +221,33 @@ public interface IRailwaySign extends DirectionHelper
         public final String signId;
         public final SignResource sign;
 
-        SignType(String texture, String translation, boolean flipTexture, boolean flipCustomText, boolean hasCustomText, int backgroundColor) {
-            this.signId = String.format(this.toString().contains("BMT") ? "\1_TJMETRO_%s" : "\0_TJMETRO_%s", this.toString()).toLowerCase(); // Make sure that signs will always order in front of custom signs, and BMT signs are after TRT ;)
+        SignType(String texture, String translation, boolean flipTexture, boolean flipCustomText, boolean hasCustomText, boolean small, int backgroundColor) {
+            this.signId = String.format(this.toString().contains("BMT") ? "\1_TJMETRO_%s" : "\0_TJMETRO_%s", this).toLowerCase(); // Make sure that signs will always order in front of custom signs, and BMT signs are after TRT ;)
             final JsonObject object = new JsonObject();
             object.addProperty("id", this.signId);
             object.addProperty("textureResource", Reference.MOD_ID + ":textures/sign/" + texture + ".png");
             object.addProperty("flipTexture", flipTexture);
             object.addProperty("customText", hasCustomText ? "sign.tjmetro." + translation : "");
             object.addProperty("flipCustomText", flipCustomText);
-            object.addProperty("small", true);
+            object.addProperty("small", small);
             object.addProperty("backgroundColor", backgroundColor);
             this.sign = new SignResource(new JsonReader(object));
         }
 
         SignType(String texture, String translation, boolean flipTexture, boolean flipCustomText) {
-            this(texture, translation, flipTexture, flipCustomText, true, 0);
+            this(texture, translation, flipTexture, flipCustomText, true, true, 0);
+        }
+
+        SignType(String texture, String translation, boolean flipTexture, boolean flipCustomText, boolean small) {
+            this(texture, translation, flipTexture, flipCustomText, true, small, 0);
         }
 
         SignType(String texture, boolean flipTexture) {
-            this(texture, texture, flipTexture, false, false, 0);
+            this(texture, texture, flipTexture, false, false, true, 0);
+        }
+
+        SignType(String texture, boolean flipTexture, boolean small) {
+            this(texture, texture, flipTexture, false, false, small, 0);
         }
     }
 }

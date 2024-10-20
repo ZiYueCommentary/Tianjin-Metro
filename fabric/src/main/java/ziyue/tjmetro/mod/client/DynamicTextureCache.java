@@ -114,6 +114,14 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_bound_for_%s_%s_%s_%s_%s_%s_%s", platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont), () -> RouteMapGenerator.generateBoundFor(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont), DefaultRenderingColor.TRANSPARENT);
     }
 
+    public DynamicResource getTrainTo(long platformId, IGui.HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, int textColor, boolean forceMTRFont) {
+        return getResource(String.format("tjmetro_train_to_%s_%s_%s_%s_%s_%s_%s", platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont), () -> RouteMapGenerator.generateTrainTo(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont), DefaultRenderingColor.TRANSPARENT);
+    }
+
+    public DynamicResource getCrossLineTrainTo(long platformId, IGui.HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, int textColor, boolean forceMTRFont) {
+        return getResource(String.format("tjmetro_cross_line_train_to_%s_%s_%s_%s_%s_%s_%s", platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont), () -> RouteMapGenerator.generateCrossLineTrainTo(platformId, horizontalAlignment, aspectRatio, paddingScale, backgroundColor, textColor, forceMTRFont), DefaultRenderingColor.TRANSPARENT);
+    }
+
     public DynamicResource getSignText(String string, IGui.HorizontalAlignment horizontalAlignment, float paddingScale, int backgroundColor, int textColor) {
         return getResource(String.format("tjmetro_sign_text_%s_%s_%s_%s_%s", string, horizontalAlignment, paddingScale, backgroundColor, textColor), () -> RouteMapGenerator.generateSignText(string, horizontalAlignment, paddingScale, backgroundColor, textColor), DefaultRenderingColor.TRANSPARENT);
     }
