@@ -24,7 +24,7 @@ sourceSets.main.resources { srcDir "src/generated/resources" }
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${buildTools.getForgeVersion()}"
     annotationProcessor "org.spongepowered:mixin:+:processor"
-    implementation fg.deobf("org.mtr:MTR-forge:${mtr_version}+${minecraft_version}-server")
+    implementation fg.deobf("org.mtr:MTR-forge:${mtr_version}+${minecraft_version}")
     implementation(fg.deobf("ziyue.filters:filters-forge:${buildTools.getFiltersAPIVersion()}"))
     annotationProcessor 'systems.manifold:manifold-preprocessor:+'
 }
