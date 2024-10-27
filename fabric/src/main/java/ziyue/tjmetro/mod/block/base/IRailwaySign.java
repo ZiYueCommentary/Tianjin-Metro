@@ -169,6 +169,8 @@ public interface IRailwaySign extends DirectionHelper
         TRAIN_TO_TEXT_FLIPPED("to_subway", "train_to", false, true),
         CROSS_LINE_TRAIN_TO_TEXT("to_subway", "cross_line_train_to", false, false),
         CROSS_LINE_TRAIN_TO_TEXT_FLIPPED("to_subway", "cross_line_train_to", false, true),
+        CUSTOMER_SERVICE_CENTER_TEXT("customer_service_center", "customer_service_center", false, false),
+        CUSTOMER_SERVICE_CENTER_TEXT_FLIPPED("customer_service_center", "customer_service_center", false, true),
 
         TIANJIN_METRO_LOGO("tianjin_metro_logo", false),
         TIANJIN_METRO_MOD_LOGO("tianjin_metro_mod_logo", false),
@@ -193,6 +195,8 @@ public interface IRailwaySign extends DirectionHelper
         ESCALATOR_FLIPPED("escalator", true),
         TOILET("toilet", false),
         TO_SUBWAY("to_subway", false),
+        EXIT("exit", false, false),
+        CUSTOMER_SERVICE_CENTER("customer_service_center", false),
 
         // Tianjin Binhai Mass Transit (BMT, Tianjin Metro Line 9)
         NO_ENTRY_BMT_TEXT("no_entry_bmt", "no_entry_bmt", false, false),
