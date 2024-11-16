@@ -27,15 +27,17 @@ public final class MainForge
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> TianjinMetroClient::init);
         MinecraftForge.EVENT_BUS.register(this);
 
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () ->{
 #if MC_VERSION <= "11605"
-        ModLoadingContext.get().registerExtensionPoint(net.minecraftforge.fml.ExtensionPoint.CONFIGGUIFACTORY, () -> (client, parent) -> new ConfigClientScreen(new Screen(parent)));
+            ModLoadingContext.get().registerExtensionPoint(net.minecraftforge.fml.ExtensionPoint.CONFIGGUIFACTORY, () -> (client, parent) -> new ConfigClientScreen(new Screen(parent)));
 #elif MC_VERSION <= "11701"
-        ModLoadingContext.get().registerExtensionPoint(net.minecraftforge.fmlclient.ConfigGuiHandler.ConfigGuiFactory.class, () -> new net.minecraftforge.fmlclient.ConfigGuiHandler.ConfigGuiFactory((client, parent) -> new ConfigClientScreen(new Screen(parent))));
+            ModLoadingContext.get().registerExtensionPoint(net.minecraftforge.fmlclient.ConfigGuiHandler.ConfigGuiFactory.class, () -> new net.minecraftforge.fmlclient.ConfigGuiHandler.ConfigGuiFactory((client, parent) -> new ConfigClientScreen(new Screen(parent))));
 #elif MC_VERSION <= "11802"
-        ModLoadingContext.get().registerExtensionPoint(net.minecraftforge.client.ConfigGuiHandler.ConfigGuiFactory.class, () -> new net.minecraftforge.client.ConfigGuiHandler.ConfigGuiFactory((client, parent) -> new ConfigClientScreen(new Screen(parent))));
+            ModLoadingContext.get().registerExtensionPoint(net.minecraftforge.client.ConfigGuiHandler.ConfigGuiFactory.class, () -> new net.minecraftforge.client.ConfigGuiHandler.ConfigGuiFactory((client, parent) -> new ConfigClientScreen(new Screen(parent))));
 #elif MC_VERSION <= "12004"
-        ModLoadingContext.get().registerExtensionPoint(net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory.class, () -> new net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory((client, parent) -> new ConfigClientScreen(new Screen(parent))));
+            ModLoadingContext.get().registerExtensionPoint(net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory.class, () -> new net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory((client, parent) -> new ConfigClientScreen(new Screen(parent))));
 #endif
+        });
     }
 
     @SubscribeEvent
