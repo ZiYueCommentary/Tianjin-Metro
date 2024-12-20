@@ -1,1 +1,19 @@
-{}
+{
+    "itemGroup.tjmetro.tianjin_metro": "Tianjin Metro",
+    "modmenu.nameTranslation.tjmetro": "Tianjin Metro",
+    "item.tjmetro.wrench": "Schraubenschlüssel",
+    "block.tjmetro.station_name_sign_1": "Stations namen Schild",
+    "block.tjmetro.rolling": "Rolltor",
+    "block.tjmetro.logo": "Tianjin Metro Logo",
+    "block.tjmetro.station_name_sign_2": "Stations namen Schild",
+    "block.tjmetro.railway_sign_tianjin_double": "Eisenbahn Schild (Tianjin, Double)",
+    "block.tjmetro.railway_sign_tianjin_pole": "Eisenbahn Schildpfosten",
+    "block.tjmetro.railway_sign_wall": "Eisenbahn Schild (Wand)",
+    "block.tjmetro.railway_sign_wall_big": "Eisenbahn Schild (Wand, groß)",
+    "block.tjmetro.railway_sign_wall_double": "Eisenbahn Schild (Wand, Doppelt)",
+    "block.tjmetro.roadblock": "Straßenblock",
+    "block.tjmetro.roadblock_sign": "Straßenblock",
+    "modmenu.descriptionTranslation.tjmetro": "Eine kleine Mod für Minecraft Transit Railway.",
+    "block.tjmetro.railway_sign_tianjin_bmt": "Eisenbahn Schild(Tianjin, Line 9)",
+    "block.tjmetro.railway_sign_tianjin": "Eisenbahn Schild(Tianjin)"
+}
