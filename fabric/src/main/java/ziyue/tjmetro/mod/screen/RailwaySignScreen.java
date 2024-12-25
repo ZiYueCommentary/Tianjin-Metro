@@ -188,13 +188,13 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
             final DashboardListSelectorScreen screen;
             switch (type) {
                 case STATION_NAME_ENTRANCE:
-                    screen = new DashboardListSelectorScreen(this::onClose2, exitsForList, selectedIds, true, false);
+                    screen = new DashboardListSelectorScreen(this::onClose2, exitsForList, selectedIds, true, false, null);
                     break;
                 case STATION_NAME_PLATE:
-                    screen = new DashboardListSelectorScreen(this::onClose2, platformsForList, selectedIds, true, false);
+                    screen = new DashboardListSelectorScreen(this::onClose2, platformsForList, selectedIds, true, false, null);
                     break;
                 case STATION_NAVIGATOR:
-                    screen = new DashboardListSelectorScreen(this::onClose2, new ObjectImmutableList<>(routesForList), selectedIds, false, false);
+                    screen = new DashboardListSelectorScreen(this::onClose2, new ObjectImmutableList<>(routesForList), selectedIds, false, false, null);
                     break;
                 default:
                     throw new IllegalStateException("Unknown enum type: " + type);
@@ -341,7 +341,7 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
             final boolean isLine = IRailwaySign.signIsLine(newSignId);
             final boolean isStation = IRailwaySign.signIsStation(newSignId);
             if ((isExitLetter || isPlatform || isLine || isStation)) {
-                MinecraftClient.getInstance().openScreen(new Screen(new DashboardListSelectorScreen(this, new ObjectImmutableList<>(isExitLetter ? exitsForList : isPlatform ? platformsForList : isLine ? routesForList : stationsForList), selectedIds, false, false)));
+                MinecraftClient.getInstance().openScreen(new Screen(new DashboardListSelectorScreen(new ObjectImmutableList<>(isExitLetter ? exitsForList : isPlatform ? platformsForList : isLine ? routesForList : stationsForList), selectedIds, false, false, null)));
             }
         }
     }
