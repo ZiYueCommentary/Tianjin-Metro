@@ -155,5 +155,6 @@
     "tooltip.tjmetro.railway_sign_bmt": "用MTR模组的指示牌柱可以加长其柱子。",
     "tooltip.tjmetro.station_name_plate": "用扳手选择显示的站台，并用刷子改变箭头的方向。",
     "tooltip.tjmetro.station_name_entrance_tianjin": "用扳手指定显示的出口编号，并用刷子改变方块风格。",
-    "block.tjmetro.station_name_entrance_tianjin_jinjing": "站名（入口、天津、津静线）"
+    "block.tjmetro.station_name_entrance_tianjin_jinjing": "站名（入口、天津、津静线）",
+    "block.tjmetro.station_name_entrance_tianjin_jinjing_pinyin": "站名（入口、天津、津静线、拼音）"
 }
