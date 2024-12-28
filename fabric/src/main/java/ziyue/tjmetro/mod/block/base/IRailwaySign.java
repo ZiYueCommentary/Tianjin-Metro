@@ -10,7 +10,6 @@ import org.mtr.mod.resource.SignResource;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.block.IBlockExtension;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;
-import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import java.util.Arrays;
 import java.util.List;
@@ -171,6 +170,14 @@ public interface IRailwaySign extends DirectionHelper
         CROSS_LINE_TRAIN_TO_TEXT_FLIPPED("to_subway", "cross_line_train_to", false, true),
         CUSTOMER_SERVICE_CENTER_TEXT("customer_service_center", "customer_service_center", false, false),
         CUSTOMER_SERVICE_CENTER_TEXT_FLIPPED("customer_service_center", "customer_service_center", false, true),
+        BABY_CARE_TEXT("baby_care", "baby_care", false, false),
+        BABY_CARE_TEXT_FLIPPED("baby_care", "baby_care", false, true),
+        POLICE_OFFICE_TEXT("police_office", "police_office", false, false),
+        POLICE_OFFICE_TEXT_FLIPPED("police_office", "police_office", false, true),
+        OUTBOUND_TRANSFER_TEXT("to_subway", "outbound_transfer", false, false),
+        OUTBOUND_TRANSFER_TEXT_FLIPPED("to_subway", "outbound_transfer", false, true),
+        TO_SUBWAY_JINJING_TEXT("to_subway_jinjing", "to_subway", false, false),
+        TO_SUBWAY_JINJING_TEXT_FLIPPED("to_subway_jinjing", "to_subway", true, true),
 
         TIANJIN_METRO_LOGO("tianjin_metro_logo", false),
         TIANJIN_METRO_MOD_LOGO("tianjin_metro_mod_logo", false),
@@ -186,7 +193,6 @@ public interface IRailwaySign extends DirectionHelper
         ACCESSIBLE_TOILET("accessible_toilet", false),
         FARE_ADJUSTMENT("fare_adjustment", false),
         INQUIRY("inquiry", false),
-        //EXIT("exit", false),
         STAIRS("stairs", false),
         STAIRS_FLIPPED("stairs", true),
         ACCESSIBLE_PASSAGE("accessible_passage", false),
@@ -197,6 +203,11 @@ public interface IRailwaySign extends DirectionHelper
         TO_SUBWAY("to_subway", false),
         EXIT("exit", false, false),
         CUSTOMER_SERVICE_CENTER("customer_service_center", false),
+        BABY_CARE("baby_care", false),
+        POLICE_OFFICE("police_office", false),
+        EXIT_TRANSPARENT("exit_transparent", false),
+        TO_SUBWAY_JINJING("to_subway_jinjing", false),
+        TO_SUBWAY_JINJING_FLIPPED("to_subway_jinjing", true),
 
         // Tianjin Binhai Mass Transit (BMT, Tianjin Metro Line 9)
         NO_ENTRY_BMT_TEXT("no_entry_bmt", "no_entry_bmt", false, false),

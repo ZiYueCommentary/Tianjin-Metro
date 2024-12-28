@@ -100,6 +100,9 @@
     "sign.tjmetro.to_subway_bmt": "乘车|To Subway",
     "sign.tjmetro.exit_bmt": "出口|Exit",
     "sign.tjmetro.tickets_bmt": "售票处|Tickets",
+    "sign.tjmetro.baby_care": "母婴室|Baby Care",
+    "sign.tjmetro.police_office": "警务室|Police Office",
+    "sign.tjmetro.outbound_transfer": "出站换乘|Outbound Transfer",
 
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Options",
     "button.tjmetro.click_here": "Click Here!",
