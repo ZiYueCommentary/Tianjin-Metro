@@ -2,7 +2,7 @@
 
 ![](https://cdn.modrinth.com/data/P0Pb6K4u/images/d4299fafd75434cf4af73be490c939fea8db5eca.png)
 
-A small mod for [Minecraft Transit Railway](https://github.com/jonafanho/Minecraft-Transit-Railway), in developing stage.
+Tianjin Metro mod is an expanding mod for [Minecraft Transit Railway](https://github.com/jonafanho/Minecraft-Transit-Railway), which contains various things from [Tianjin Metro](https://en.wikipedia.org/wiki/Tianjin_Metro) in real life.
 
 ## Localization
 
