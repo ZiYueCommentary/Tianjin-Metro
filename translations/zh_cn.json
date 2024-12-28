@@ -156,5 +156,16 @@
     "tooltip.tjmetro.station_name_plate": "用扳手选择显示的站台，并用刷子改变箭头的方向。",
     "tooltip.tjmetro.station_name_entrance_tianjin": "用扳手指定显示的出口编号，并用刷子改变方块风格。",
     "block.tjmetro.station_name_entrance_tianjin_jinjing": "站名（入口、天津、津静线）",
-    "block.tjmetro.station_name_entrance_tianjin_jinjing_pinyin": "站名（入口、天津、津静线、拼音）"
+    "block.tjmetro.station_name_entrance_tianjin_jinjing_pinyin": "站名（入口、天津、津静线、拼音）",
+    "sign.tjmetro.cross_line_train_to": "跨线车往|Cross Line Train To",
+    "sign.tjmetro.to_subway": "乘车|To Subway",
+    "sign.tjmetro.customer_service_center": "客服中心|Customer Service Center",
+    "gui.tjmetro.train_to_cjk": "开往%s",
+    "gui.tjmetro.train_to": "To %s",
+    "gui.tjmetro.cross_line_train_to_cjk": "跨线车往%s",
+    "gui.tjmetro.cross_line_train_to": "Cross Line Train To %s",
+    "sign.tjmetro.train_to": "开往|To",
+    "sign.tjmetro.baby_care": "母婴室|Baby Care",
+    "sign.tjmetro.outbound_transfer": "出站换乘|Outbound Transfer",
+    "sign.tjmetro.police_office": "警务室|Police Office"
 }
