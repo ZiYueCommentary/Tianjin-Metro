@@ -43,9 +43,7 @@ subprojects {
 
     /* Manifold support */
     tasks.withType(JavaCompile).forEach {
-        it.options.compilerArgs += ["-Xplugin:Manifold",
-                                    "-AMC_VERSION=$merged_mc_version",
-                                    "-ALOADER=$project.properties.loader_name"]
+        it.options.compilerArgs += ["-Xplugin:Manifold", "-AMC_VERSION=$merged_mc_version"]
     }
 
     // Some system don't compile with UTF-8 by default

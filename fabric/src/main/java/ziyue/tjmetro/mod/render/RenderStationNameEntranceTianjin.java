@@ -72,9 +72,9 @@ public class RenderStationNameEntranceTianjin<T extends BlockStationNameEntrance
                 default:
                     style = propagateProperty;
             }
-            resource = DynamicTextureCache.instance.getStationNameEntrance(-1, -1, style, IGuiExtension.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, TextHelper.translatable("gui.mtr.untitled").getString()), block.isBMT, totalLength / logoSize);
+            resource = DynamicTextureCache.instance.getStationNameEntrance(-1, -1, style, IGuiExtension.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, TextHelper.translatable("gui.mtr.untitled").getString()), block.type, totalLength / logoSize);
         } else {
-            resource = DynamicTextureCache.instance.getStationNameEntrance(station.getId(), entity.getSelectedId(), propagateProperty, IGuiExtension.insertTranslation("gui.mtr.station_cjk", block.pinyin ? "gui.tjmetro.station_pinyin" : "gui.mtr.station", 1, station.getName()), block.isBMT, totalLength / logoSize);
+            resource = DynamicTextureCache.instance.getStationNameEntrance(station.getId(), entity.getSelectedId(), propagateProperty, IGuiExtension.insertTranslation("gui.mtr.station_cjk", block.pinyin ? "gui.tjmetro.station_pinyin" : "gui.mtr.station", 1, station.getName()), block.type, totalLength / logoSize);
         }
         MainRenderer.scheduleRender(resource.identifier, false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset);

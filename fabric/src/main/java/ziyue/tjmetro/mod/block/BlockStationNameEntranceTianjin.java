@@ -42,16 +42,16 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
     public static final IntegerProperty STYLE = IntegerProperty.of("style", 0, 7);
 
     public final boolean pinyin;
-    public final boolean isBMT;
+    public final Type type;
 
-    public BlockStationNameEntranceTianjin(boolean pinyin, boolean isBMT) {
-        this(BlockHelper.createBlockSettings(false, state -> 15).noCollision(), pinyin, isBMT);
+    public BlockStationNameEntranceTianjin(boolean pinyin, Type type) {
+        this(BlockHelper.createBlockSettings(false, state -> 15).noCollision(), pinyin, type);
     }
 
-    public BlockStationNameEntranceTianjin(BlockSettings blockSettings, boolean pinyin, boolean isBMT) {
+    public BlockStationNameEntranceTianjin(BlockSettings blockSettings, boolean pinyin, Type type) {
         super(blockSettings);
         this.pinyin = pinyin;
-        this.isBMT = isBMT;
+        this.type = type;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
 
     @Override
     public BlockEntityExtension createBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new BlockEntity(pinyin, isBMT, blockPos, blockState);
+        return new BlockEntity(pinyin, type, blockPos, blockState);
     }
 
     /**
@@ -112,17 +112,23 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
         protected long selectedId = -1;
         public static final String KEY_SELECTED_ID = "selected_id";
 
-        public BlockEntity(boolean pinyin, boolean isBMT, BlockPos pos, BlockState state) {
-            super(getType(pinyin, isBMT), pos, state, 0, 0.00625F);
+        public BlockEntity(boolean pinyin, Type type, BlockPos pos, BlockState state) {
+            super(getType(pinyin, type), pos, state, 0, 0.00625F);
         }
 
-        public static BlockEntityType<?> getType(boolean pinyin, boolean isBMT) {
-            if (isBMT) {
-                if (pinyin) return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN.get();
-                else return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT.get();
-            } else {
-                if (pinyin) return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_PINYIN.get();
-                else return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN.get();
+        public static BlockEntityType<?> getType(boolean pinyin, Type type) {
+            switch (type) {
+                case TRT:
+                    if (pinyin) return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_PINYIN.get();
+                    else return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN.get();
+                case BMT:
+                    if (pinyin) return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN.get();
+                    else return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT.get();
+                case JINJING:
+                    if (pinyin) return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_JINJING_PINYIN.get();
+                    else return BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_JINJING.get();
+                default:
+                    return null;
             }
         }
 
@@ -159,5 +165,12 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
         public long getSelectedId() {
             return selectedId;
         }
+    }
+
+    public enum Type
+    {
+        TRT,
+        BMT,
+        JINJING
     }
 }

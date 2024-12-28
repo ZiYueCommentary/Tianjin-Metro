@@ -24,6 +24,7 @@ import org.mtr.mod.screen.DashboardListItem;
 import org.mtr.mod.screen.EditStationScreen;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.TianjinMetro;
+import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
@@ -48,8 +49,10 @@ public class RouteMapGenerator implements IGui
     protected static int fontSizeSmall;
 
     public static final int MIN_VERTICAL_SIZE = 5;
+    public static final Identifier SUBWAY_LOGO_RESOURCE = new Identifier(Reference.MOD_ID, "textures/sign/to_subway.png");
     public static final Identifier TRAIN_LOGO_RESOURCE = new Identifier(Reference.MOD_ID, "textures/sign/train.png");
     public static final Identifier TRAIN_BMT_LOGO_RESOURCE = new Identifier(Reference.MOD_ID, "textures/sign/to_subway_bmt.png");
+    public static final Identifier TRAIN_JINJING_LOGO_RESOURCE = new Identifier(Reference.MOD_ID, "textures/sign/to_subway_jinjing.png");
     public static final Identifier EXIT_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/sign/exit_letter_blank.png");
     public static final Identifier ARROW_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/sign/arrow.png");
     public static final Identifier CIRCLE_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/sign/circle.png");
@@ -857,6 +860,126 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
+    public static NativeImage generateTrainTo(long platformId, HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, int textColor, boolean forceMTRFont) {
+        try {
+            final int height = scale;
+            final int width = (int) (height * aspectRatio);
+            final int padding = Math.round(height * paddingScale);
+            final int tileSize = height - padding * 2;
+            final boolean leftToRight = horizontalAlignment == HorizontalAlignment.LEFT;
+
+            ObjectArrayList<String> destinations = new ObjectArrayList<>();
+            getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                final String tempMarker;
+                switch (simplifiedRoute.getCircularState()) {
+                    case CLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                        break;
+                    case ANTICLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                        break;
+                    default:
+                        tempMarker = "";
+                }
+
+                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+            });
+            final boolean isTerminating = destinations.isEmpty();
+            final DynamicTextureCache.Text trainTo;
+            if (isTerminating) {
+                trainTo = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width - padding * 2, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
+            } else {
+                String destinationString = IGui.mergeStations(destinations);
+                final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
+                final boolean isAnticlockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE);
+                destinationString = destinationString.replace(TEMP_CIRCULAR_MARKER_CLOCKWISE, "").replace(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE, "");
+                if (!destinationString.isEmpty()) {
+                    if (isClockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.clockwise_via_cjk", "gui.mtr.clockwise_via", 1, destinationString);
+                    } else if (isAnticlockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
+                    } else {
+                        destinationString = IGuiExtension.insertTranslation("gui.tjmetro.train_to_cjk", "gui.tjmetro.train_to", 1, destinationString);
+                    }
+                }
+                trainTo = DynamicTextureCache.instance.getText(destinationString, width - padding * 2 - tileSize, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
+            }
+
+            final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, width, height, false);
+            nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
+
+            drawResource(nativeImage, SUBWAY_LOGO_RESOURCE, leftToRight ? 0 : width - tileSize, padding, tileSize, tileSize, false, 0.0F, 1.0F, textColor, false);
+            drawString(nativeImage, trainTo, leftToRight ? tileSize : width - tileSize, height / 2, horizontalAlignment, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+            clearColor(nativeImage, invertColor(backgroundColor));
+
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
+
+    public static NativeImage generateCrossLineTrainTo(long platformId, HorizontalAlignment horizontalAlignment, float aspectRatio, float paddingScale, int backgroundColor, int textColor, boolean forceMTRFont) {
+        try {
+            final int height = scale;
+            final int width = (int) (height * aspectRatio);
+            final int padding = Math.round(height * paddingScale);
+            final int tileSize = height - padding * 2;
+            final boolean leftToRight = horizontalAlignment == HorizontalAlignment.LEFT;
+
+            ObjectArrayList<String> destinations = new ObjectArrayList<>();
+            getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                final String tempMarker;
+                switch (simplifiedRoute.getCircularState()) {
+                    case CLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                        break;
+                    case ANTICLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                        break;
+                    default:
+                        tempMarker = "";
+                }
+
+                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+            });
+            final boolean isTerminating = destinations.isEmpty();
+            final DynamicTextureCache.Text trainTo;
+            if (isTerminating) {
+                trainTo = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width - padding * 2, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
+            } else {
+                String destinationString = IGui.mergeStations(destinations);
+                final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
+                final boolean isAnticlockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE);
+                destinationString = destinationString.replace(TEMP_CIRCULAR_MARKER_CLOCKWISE, "").replace(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE, "");
+                if (!destinationString.isEmpty()) {
+                    if (isClockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.clockwise_via_cjk", "gui.mtr.clockwise_via", 1, destinationString);
+                    } else if (isAnticlockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
+                    } else {
+                        destinationString = IGuiExtension.insertTranslation("gui.tjmetro.cross_line_train_to_cjk", "gui.tjmetro.cross_line_train_to", 1, destinationString);
+                    }
+                }
+                trainTo = DynamicTextureCache.instance.getText(destinationString, width - padding * 2 - tileSize, height, tileSize * 3 / 5, tileSize * 3 / 10, padding, horizontalAlignment, forceMTRFont);
+            }
+
+            final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, width, height, false);
+            nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
+
+            drawResource(nativeImage, SUBWAY_LOGO_RESOURCE, leftToRight ? 0 : width - tileSize, padding, tileSize, tileSize, false, 0.0F, 1.0F, textColor, false);
+            drawString(nativeImage, trainTo, leftToRight ? tileSize : width - tileSize, height / 2, horizontalAlignment, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+            clearColor(nativeImage, invertColor(backgroundColor));
+
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
+
     public static NativeImage generateSignText(String string, HorizontalAlignment horizontalAlignment, float paddingScale, int backgroundColor, int textColor) {
         try {
             final int height = scale;
@@ -882,7 +1005,7 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
-    public static NativeImage generateStationNameEntrance(long stationId, long selectedId, int style, String stationName, boolean isBMT, float aspectRatio) {
+    public static NativeImage generateStationNameEntrance(long stationId, long selectedId, int style, String stationName, BlockStationNameEntranceTianjin.Type type, float aspectRatio) {
         if (aspectRatio <= 0) return null;
 
         try {
@@ -940,7 +1063,21 @@ public class RouteMapGenerator implements IGui
             });
             if (!routes.isEmpty()) currentX.addAndGet(padding * -3);
             if (selectedId != -1) currentX.addAndGet(-iconOffset - exit.width());
-            drawResource(nativeImage, isBMT ? TRAIN_BMT_LOGO_RESOURCE : TRAIN_LOGO_RESOURCE, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
+            final Identifier resource;
+            switch (type) {
+                case TRT:
+                    resource = TRAIN_LOGO_RESOURCE;
+                    break;
+                case BMT:
+                    resource = TRAIN_BMT_LOGO_RESOURCE;
+                    break;
+                case JINJING:
+                    resource = TRAIN_JINJING_LOGO_RESOURCE;
+                    break;
+                default:
+                    resource = null;
+            }
+            drawResource(nativeImage, resource, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
             drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get()) / 2, size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             if (selectedId != -1)
                 drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
