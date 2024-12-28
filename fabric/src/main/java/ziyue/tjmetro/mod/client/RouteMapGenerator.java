@@ -24,6 +24,7 @@ import org.mtr.mod.screen.DashboardListItem;
 import org.mtr.mod.screen.EditStationScreen;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.TianjinMetro;
+import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
@@ -51,6 +52,7 @@ public class RouteMapGenerator implements IGui
     public static final Identifier SUBWAY_LOGO_RESOURCE = new Identifier(Reference.MOD_ID, "textures/sign/to_subway.png");
     public static final Identifier TRAIN_LOGO_RESOURCE = new Identifier(Reference.MOD_ID, "textures/sign/train.png");
     public static final Identifier TRAIN_BMT_LOGO_RESOURCE = new Identifier(Reference.MOD_ID, "textures/sign/to_subway_bmt.png");
+    public static final Identifier TRAIN_JINJING_LOGO_RESOURCE = new Identifier(Reference.MOD_ID, "textures/sign/to_subway_jinjing.png");
     public static final Identifier EXIT_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/sign/exit_letter_blank.png");
     public static final Identifier ARROW_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/sign/arrow.png");
     public static final Identifier CIRCLE_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/sign/circle.png");
@@ -1003,7 +1005,7 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
-    public static NativeImage generateStationNameEntrance(long stationId, long selectedId, int style, String stationName, boolean isBMT, float aspectRatio) {
+    public static NativeImage generateStationNameEntrance(long stationId, long selectedId, int style, String stationName, BlockStationNameEntranceTianjin.Type type, float aspectRatio) {
         if (aspectRatio <= 0) return null;
 
         try {
@@ -1061,7 +1063,21 @@ public class RouteMapGenerator implements IGui
             });
             if (!routes.isEmpty()) currentX.addAndGet(padding * -3);
             if (selectedId != -1) currentX.addAndGet(-iconOffset - exit.width());
-            drawResource(nativeImage, isBMT ? TRAIN_BMT_LOGO_RESOURCE : TRAIN_LOGO_RESOURCE, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
+            final Identifier resource;
+            switch (type) {
+                case TRT:
+                    resource = TRAIN_LOGO_RESOURCE;
+                    break;
+                case BMT:
+                    resource = TRAIN_BMT_LOGO_RESOURCE;
+                    break;
+                case JINJING:
+                    resource = TRAIN_JINJING_LOGO_RESOURCE;
+                    break;
+                default:
+                    resource = null;
+            }
+            drawResource(nativeImage, resource, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
             drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get()) / 2, size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             if (selectedId != -1)
                 drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);

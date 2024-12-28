@@ -11,6 +11,7 @@ import org.mtr.mod.config.Config;
 import org.mtr.mod.config.LanguageDisplay;
 import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
+import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.TianjinMetro;
@@ -126,8 +127,8 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_sign_text_%s_%s_%s_%s_%s", string, horizontalAlignment, paddingScale, backgroundColor, textColor), () -> RouteMapGenerator.generateSignText(string, horizontalAlignment, paddingScale, backgroundColor, textColor), DefaultRenderingColor.TRANSPARENT);
     }
 
-    public DynamicResource getStationNameEntrance(long stationId, long selectedId, int style, String stationName, boolean isBMT, float aspectRatio) {
-        return getResource(String.format("tjmetro_station_name_entrance_%s_%s_%s_%s_%s_%s", stationId, selectedId, style, stationName, isBMT, aspectRatio), () -> RouteMapGenerator.generateStationNameEntrance(stationId, selectedId, style, stationName, isBMT, aspectRatio), DefaultRenderingColor.TRANSPARENT);
+    public DynamicResource getStationNameEntrance(long stationId, long selectedId, int style, String stationName, BlockStationNameEntranceTianjin.Type type, float aspectRatio) {
+        return getResource(String.format("tjmetro_station_name_entrance_%s_%s_%s_%s_%s_%s", stationId, selectedId, style, stationName, type, aspectRatio), () -> RouteMapGenerator.generateStationNameEntrance(stationId, selectedId, style, stationName, type, aspectRatio), DefaultRenderingColor.TRANSPARENT);
     }
 
     public DynamicResource getStationNamePlate(long platformId, int arrowDirection, int backgroundColor, float paddingScale, float aspectRatio, int textColor, int transparentColor) {

@@ -47,6 +47,8 @@
     "block.tjmetro.station_name_entrance_tianjin_pinyin": "Station Name (Entrance, Tianjin, Pinyin)",
     "block.tjmetro.station_name_entrance_tianjin_bmt": "Station Name (Entrance, Tianjin, Line 9)",
     "block.tjmetro.station_name_entrance_tianjin_bmt_pinyin": "Station Name (Entrance, Tianjin, Line 9, Pinyin)",
+    "block.tjmetro.station_name_entrance_tianjin_jinjing": "Station Name (Entrance, Tianjin, Jinjing Line)",
+    "block.tjmetro.station_name_entrance_tianjin_jinjing_pinyin": "Station Name (Entrance, Tianjin, Jinjing Line, Pinyin)",
     "block.tjmetro.station_name_plate": "Station Name Plate (Line 9)",
     "block.tjmetro.apg_tianjin": "Automatic Platform Gates (Tianjin)",
     "block.tjmetro.apg_tianjin_bmt": "Automatic Platform Gates (Tianjin, Line 9)",
