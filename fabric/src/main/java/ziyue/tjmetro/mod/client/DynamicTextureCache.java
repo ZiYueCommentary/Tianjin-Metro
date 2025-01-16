@@ -24,9 +24,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.text.AttributedString;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Supplier;
 
 import static org.mtr.mod.client.DynamicTextureCache.LINE_HEIGHT_MULTIPLIER;
@@ -298,7 +296,7 @@ public class DynamicTextureCache
                 final DynamicResource dynamicResourceNew;
                 if (nativeImage != null) {
                     final NativeImageBackedTexture nativeImageBackedTexture = new NativeImageBackedTexture(nativeImage);
-                    final Identifier identifier = new Identifier(Reference.MOD_ID, "id_" + Utilities.numberToPaddedHexString(new Random().nextLong()).toLowerCase(Locale.ENGLISH));
+                    final Identifier identifier = new Identifier(Reference.MOD_ID, "id_" + Utilities.numberToPaddedHexString(System.nanoTime()).toLowerCase(Locale.ENGLISH));
                     MinecraftClient.getInstance().getTextureManager().registerTexture(identifier, new AbstractTexture(nativeImageBackedTexture.data));
                     dynamicResourceNew = new DynamicResource(identifier, nativeImageBackedTexture);
                     dynamicResources.put(key, dynamicResourceNew);
