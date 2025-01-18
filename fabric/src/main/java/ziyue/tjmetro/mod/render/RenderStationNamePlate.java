@@ -9,6 +9,7 @@ import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.client.IDrawing;
+import org.mtr.mod.client.MinecraftClientData;
 import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
@@ -54,6 +55,7 @@ public class RenderStationNamePlate<T extends BlockStationNamePlate.BlockEntity>
         graphicsHolder.rotateZDegrees(180);
         graphicsHolder.translate(-0.25, 0, -0.0625 - SMALL_OFFSET * 2);
 
+        if (MinecraftClientData.getInstance().platformIdMap.get(entity.getPlatformId()) == null) return;
         MainRenderer.scheduleRender(DynamicTextureCache.instance.getStationNamePlate(entity.getPlatformId(), arrowDirection, 0xff00379c, 0.25F, 8F, 0xffcc7b32, ARGB_WHITE).identifier, false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset);
             IDrawing.drawTexture(graphicsHolderNew, 0, 0, 4, 0.5F, 0, 0, 1, 1, facing, -1, GraphicsHolder.getDefaultLight());
