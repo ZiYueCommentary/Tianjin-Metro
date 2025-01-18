@@ -42,7 +42,7 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase
     public abstract static class BlockEntityBase extends BlockStationNameBase.BlockEntityBase
     {
         public BlockEntityBase(BlockEntityType<?> type, BlockPos pos, BlockState state) {
-            super(type, pos, state, 0, 0.05F, false);
+            super(type, pos, state, 0, 0.03F, false);
         }
     }
 }
