@@ -16,8 +16,6 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
 
-import javax.annotation.Nullable;
-
 /**
  * @author ZiYueCommentary
  * @see RailwaySignScreen

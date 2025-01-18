@@ -3,7 +3,7 @@
 	"textures": {
 		"1": "tjmetro:block/metal_detection_door_sign",
 		"2": "mtr:block/metal",
-		"3": "block/air",
+		"3": "tjmetro:block/air",
 		"particle": "mtr:block/metal"
 	},
 	"elements": [
