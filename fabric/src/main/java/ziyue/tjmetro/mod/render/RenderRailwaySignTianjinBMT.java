@@ -128,7 +128,6 @@ public class RenderRailwaySignTianjinBMT<T extends BlockRailwaySignBase.BlockEnt
         final boolean isLine = IRailwaySign.signIsLine(signId);
         final boolean isPlatform = IRailwaySign.signIsPlatform(signId);
         final boolean isStation = IRailwaySign.signIsStation(signId);
-        final boolean isTransportSystemMap = signId.equals("transport_system_map") || signId.equals("transport_system_map_text") || signId.equals("transport_system_map_text_flipped");
 
         if (storedMatrixTransformations != null && isExit) {
             final Station station = InitClient.findStation(pos);

@@ -59,7 +59,7 @@ public abstract class RailwaySignScreenMixin extends ScreenExtension implements 
      * @reason Dynamic signs from Tianjin Metro.
      */
     @Overwrite(remap = false)
-    private void setNewSignId(@Nullable String newSignId) {
+    private void setNewSignId(String newSignId) {
         if (editingIndex >= 0 && editingIndex < signIds.length) {
             signIds[editingIndex] = newSignId;
             final boolean isExitLetter = IRailwaySign.signIsExit(newSignId);
