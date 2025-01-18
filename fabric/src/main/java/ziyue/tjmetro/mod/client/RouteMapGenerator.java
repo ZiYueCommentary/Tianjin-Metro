@@ -246,7 +246,7 @@ public class RouteMapGenerator implements IGui
             final int rightSize = ((leftToRight ? 0 : 1)) * (tileSize + tilePadding);
 
             final DynamicTextureCache.Text textStationName = DynamicTextureCache.instance.getText(getStationName(platformId), width - leftSize - rightSize - padding, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize / 2, tileSize / 4, tilePadding, HorizontalAlignment.CENTER);
-            drawString(nativeImage, textStationName, width / 2, (int) (tileSize / 3.5F), HorizontalAlignment.CENTER, VerticalAlignment.TOP, backgroundColor, textColor, false);
+            drawString(nativeImage, textStationName, width / 2, (int) (tileSize / 3.8F), HorizontalAlignment.CENTER, VerticalAlignment.TOP, backgroundColor, textColor, false);
 
             if (isTerminating) {
                 final DynamicTextureCache.Text terminus = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus_bmt"), width / 2, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), fontSizeBig / 2, fontSizeSmall / 2, tilePadding, HorizontalAlignment.CENTER);
