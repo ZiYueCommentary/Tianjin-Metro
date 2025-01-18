@@ -129,6 +129,10 @@ public interface BlockList
     BlockRegistryObject APG_DOOR_TIANJIN_TRT_BLOCK = Registry.registerBlock("apg_door_tianjin_trt", () -> new Block(new BlockAPGDoorTianjinTRT()));
     BlockRegistryObject APG_GLASS_TIANJIN_TRT_BLOCK = Registry.registerBlock("apg_glass_tianjin_trt", () -> new Block(new BlockAPGGlassTianjinTRT()));
     BlockRegistryObject APG_GLASS_END_TIANJIN_TRT_BLOCK = Registry.registerBlock("apg_glass_end_tianjin_trt", () -> new Block(new BlockAPGGlassEndTianjinTRT()));
+    BlockRegistryObject PLATFORM_TJ_LINE_11_1 = Registry.registerBlockWithBlockItem("platform_tj_line_11_1", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_LINE_11_1_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_line_11_1_indented", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_LINE_11_2 = Registry.registerBlockWithBlockItem("platform_tj_line_11_2", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_LINE_11_2_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_line_11_2_indented", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants

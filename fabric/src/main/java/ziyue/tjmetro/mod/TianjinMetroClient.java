@@ -39,6 +39,10 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_TIANJIN_TRT_BLOCK);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_END_TIANJIN_TRT_BLOCK);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.HIGH_SPEED_REPEATER);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_1);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_1_INDENTED);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_2);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_2_INDENTED);
 
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_1, RenderStationNameSign::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_2, RenderStationNameSign::new);
