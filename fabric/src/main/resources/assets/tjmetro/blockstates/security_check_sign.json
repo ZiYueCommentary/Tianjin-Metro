@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north,third=left":  { "model": "tjmetro:block/security_check_sign_left" },
+        "facing=east,third=left":   { "model": "tjmetro:block/security_check_sign_left", "y":  90 },
+        "facing=south,third=left":  { "model": "tjmetro:block/security_check_sign_left", "y": 180 },
+        "facing=west,third=left":   { "model": "tjmetro:block/security_check_sign_left", "y": 270 },
+        "facing=north,third=right": { "model": "tjmetro:block/security_check_sign_right" },
+        "facing=east,third=right":  { "model": "tjmetro:block/security_check_sign_right", "y":  90 },
+        "facing=south,third=right": { "model": "tjmetro:block/security_check_sign_right", "y": 180 },
+        "facing=west,third=right":  { "model": "tjmetro:block/security_check_sign_right", "y": 270 },
+        "facing=north,third=both":  { "model": "tjmetro:block/security_check_sign_both" },
+        "facing=east,third=both":   { "model": "tjmetro:block/security_check_sign_both", "y":  90 },
+        "facing=south,third=both":  { "model": "tjmetro:block/security_check_sign_both", "y": 180 },
+        "facing=west,third=both":   { "model": "tjmetro:block/security_check_sign_both", "y": 270 }
+    }
+}

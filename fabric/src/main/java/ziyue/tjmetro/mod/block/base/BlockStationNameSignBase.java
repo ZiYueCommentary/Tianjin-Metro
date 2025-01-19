@@ -39,6 +39,10 @@ public abstract class BlockStationNameSignBase extends BlockStationNameBase
         return getDefaultState2().with(new Property<>(FACING.data), ctx.getPlayerFacing().data);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @since 1.0.0-beta-3
+     */
     public abstract static class BlockEntityBase extends BlockStationNameBase.BlockEntityBase
     {
         public BlockEntityBase(BlockEntityType<?> type, BlockPos pos, BlockState state) {

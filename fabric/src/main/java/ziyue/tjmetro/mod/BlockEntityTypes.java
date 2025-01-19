@@ -77,6 +77,7 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockMetalDetectionDoor.BlockEntity> METAL_DETECTION_DOOR = Registry.registerBlockEntityType("metal_detection_door", BlockMetalDetectionDoor.BlockEntity::new, BlockList.METAL_DETECTION_DOOR::get);
     BlockEntityTypeRegistryObject<BlockAPGDoorTianjinTRT.BlockEntity> APG_DOOR_TIANJIN_TRT = Registry.registerBlockEntityType("apg_door_tianjin_trt", BlockAPGDoorTianjinTRT.BlockEntity::new, BlockList.APG_DOOR_TIANJIN_TRT_BLOCK::get);
     BlockEntityTypeRegistryObject<BlockAPGGlassTianjinTRT.BlockEntity> APG_GLASS_TIANJIN_TRT = Registry.registerBlockEntityType("apg_glass_tianjin_trt", BlockAPGGlassTianjinTRT.BlockEntity::new, BlockList.APG_GLASS_TIANJIN_TRT_BLOCK::get);
+    BlockEntityTypeRegistryObject<BlockSecurityCheckSign.BlockEntity> SECURITY_CHECK_SIGN = Registry.registerBlockEntityType("security_check_sign", BlockSecurityCheckSign.BlockEntity::new, BlockList.SECURITY_CHECK_SIGN::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

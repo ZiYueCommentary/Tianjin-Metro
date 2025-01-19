@@ -133,6 +133,7 @@ public interface BlockList
     BlockRegistryObject PLATFORM_TJ_LINE_11_1_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_line_11_1_indented", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject PLATFORM_TJ_LINE_11_2 = Registry.registerBlockWithBlockItem("platform_tj_line_11_2", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject PLATFORM_TJ_LINE_11_2_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_line_11_2_indented", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject SECURITY_CHECK_SIGN = Registry.registerBlockWithBlockItem("security_check_sign", () -> new Block(new BlockSecurityCheckSign()), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants

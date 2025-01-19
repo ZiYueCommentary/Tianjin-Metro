@@ -43,6 +43,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_1_INDENTED);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_2);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_2_INDENTED);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.SECURITY_CHECK_SIGN);
 
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_1, RenderStationNameSign::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_2, RenderStationNameSign::new);
@@ -105,6 +106,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_TOP_TIANJIN_BMT, RenderPSDTopTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_TIANJIN_BMT, RenderPSDDoorTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN_TRT, RenderAPGDoorTianjinTRT::new);
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.SECURITY_CHECK_SIGN, RenderSecurityCheckSign::new);
 
         RegistryClient.registerEntityRenderer(EntityTypes.SEAT, RenderSeat::new);
 

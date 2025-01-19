@@ -5,6 +5,7 @@ import org.mtr.mod.Items;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.ItemList;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -19,6 +20,8 @@ import java.util.stream.Collectors;
 
 public interface IBlockExtension
 {
+    EnumProperty<BlockThirdProperty> THIRD = EnumProperty.of("third", BlockThirdProperty.class);
+
     /**
      * Replace block with air.
      *
@@ -73,5 +76,28 @@ public interface IBlockExtension
         int index = includes.indexOf(IBlock.getStatePropertySafe(state, property));
         if (index < 0 || (index == includes.size() - 1)) index = -1;
         return state.with(new Property<>(property.data), includes.get(index + 1));
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @since 1.0.0-beta-1
+     */
+    enum BlockThirdProperty implements StringIdentifiable
+    {
+        LEFT("left"),
+        RIGHT("right"),
+        BOTH("both");
+
+        final String name;
+
+        BlockThirdProperty(String name) {
+            this.name = name;
+        }
+
+        @Nonnull
+        @Override
+        public String asString2() {
+            return name;
+        }
     }
 }
