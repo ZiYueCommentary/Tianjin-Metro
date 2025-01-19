@@ -296,7 +296,7 @@ public class DynamicTextureCache
                 final DynamicResource dynamicResourceNew;
                 if (nativeImage != null) {
                     final NativeImageBackedTexture nativeImageBackedTexture = new NativeImageBackedTexture(nativeImage);
-                    final Identifier identifier = new Identifier(Reference.MOD_ID, "id_" + Utilities.numberToPaddedHexString(System.nanoTime()).toLowerCase(Locale.ENGLISH));
+                    final Identifier identifier = new Identifier(Reference.MOD_ID, Utilities.numberToPaddedHexString(UUID.randomUUID().getMostSignificantBits()).toLowerCase(Locale.ENGLISH));
                     MinecraftClient.getInstance().getTextureManager().registerTexture(identifier, new AbstractTexture(nativeImageBackedTexture.data));
                     dynamicResourceNew = new DynamicResource(identifier, nativeImageBackedTexture);
                     dynamicResources.put(key, dynamicResourceNew);
