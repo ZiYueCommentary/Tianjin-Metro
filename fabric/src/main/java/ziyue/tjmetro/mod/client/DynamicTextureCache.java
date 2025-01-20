@@ -43,7 +43,7 @@ public class DynamicTextureCache
     protected final ObjectOpenHashSet<String> generatingResources = new ObjectOpenHashSet<>();
     protected final ObjectArrayList<Runnable> resourceRegistryQueue = new ObjectArrayList<>();
 
-    public static DynamicTextureCache instance = new DynamicTextureCache();
+    public static DynamicTextureCache instance;
 
     protected static final int COOL_DOWN_TIME = 10000; // Images not requested within the last 10 seconds will be unregistered
     protected static final Identifier DEFAULT_BLACK_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/black.png");
@@ -176,6 +176,25 @@ public class DynamicTextureCache
             attributedStrings[index] = new AttributedString(textSplit[index]);
             fontSizes[index] = newFontSize;
 
+            if (font == null) {
+                ResourceManagerHelper.readResource(ConfigClient.USE_TIANJIN_METRO_FONT.get() ? new Identifier(Reference.MOD_ID, "font/dengxian.ttf") : new Identifier(Init.MOD_ID, "font/noto-sans-semibold.ttf"), inputStream -> {
+                    try {
+                        font = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+                    } catch (Exception e) {
+                        TianjinMetro.LOGGER.error(e.getMessage(), e);
+                    }
+                });
+            }
+
+            if (fontCjk == null) {
+                ResourceManagerHelper.readResource(ConfigClient.USE_TIANJIN_METRO_FONT.get() ? new Identifier(Reference.MOD_ID, "font/dengxian.ttf") : new Identifier(Init.MOD_ID, "font/noto-serif-cjk-tc-semibold.ttf"), inputStream -> {
+                    try {
+                        fontCjk = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+                    } catch (Exception e) {
+                        TianjinMetro.LOGGER.error(e.getMessage(), e);
+                    }
+                });
+            }
             final Font fontSized = font.deriveFont(Font.PLAIN, newFontSize);
             final Font fontCjkSized = fontCjk.deriveFont(Font.PLAIN, newFontSize);
 

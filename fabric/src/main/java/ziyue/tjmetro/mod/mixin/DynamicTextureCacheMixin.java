@@ -15,6 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(DynamicTextureCache.class)
 public abstract class DynamicTextureCacheMixin
 {
+    @Inject(at = @At("TAIL"), method = "<init>", remap = false)
+    private void afterConstruct(CallbackInfo ci) {
+        ziyue.tjmetro.mod.client.DynamicTextureCache.instance = new ziyue.tjmetro.mod.client.DynamicTextureCache();
+    }
+
     @Inject(at = @At("TAIL"), method = "reload", remap = false)
     private void afterReload(CallbackInfo ci) {
         ziyue.tjmetro.mod.client.DynamicTextureCache.instance.reload();
