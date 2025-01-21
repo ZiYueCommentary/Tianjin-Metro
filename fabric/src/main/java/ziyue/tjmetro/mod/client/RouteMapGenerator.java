@@ -680,7 +680,7 @@ public class RouteMapGenerator implements IGui
                     final boolean currentStation = stationPositionGrouped.stationOffset == 0;
 
                     final IntArrayList interchangeColors = stationPositionGrouped.interchangeColors;
-                    if (!interchangeColors.isEmpty() && !currentStation) {
+                    if (!interchangeColors.isEmpty()) {
                         final int lineHeight = lineSize * 2;
                         final int lineWidth = (int) Math.ceil((float) lineSize / 4);
                         for (int drawX = 0; drawX < lineWidth; drawX++) {
