@@ -239,18 +239,17 @@ public class DynamicTextureCache
 
         int textOffset = 0;
         int realWidth = 0;
-        final int imageHeight = Math.min(height, maxHeight);
         if (rotateNeg45Degree) {
+            maxWidth = (int) (maxHeight * Math.sqrt(2) - height);
             for (int index = 0; index < textSplit.length; index++) {
                 if (!oneRow) {
-                    final float scaleY = (float) imageHeight / height;
-                    final float textWidth = Math.min(maxWidth, textWidths[index] * scaleY);
+                    final float textWidth = Math.min(maxWidth, textWidths[index]);
                     realWidth = Math.max(realWidth, (int) textWidth);
                 }
             }
-            realWidth += padding;
+//            realWidth += padding;
 
-            final double imageWidth = (realWidth + imageHeight) / Math.sqrt(2); // sin45deg
+            final double imageWidth = (realWidth + height) / Math.sqrt(2); // sin45deg
             final BufferedImage image = new BufferedImage((int) imageWidth, (int) imageWidth, BufferedImage.TYPE_BYTE_GRAY);
             final Graphics2D graphics2D = image.createGraphics();
             graphics2D.setColor(Color.WHITE);
@@ -261,13 +260,13 @@ public class DynamicTextureCache
                     graphics2D.drawString(attributedStrings[index].getIterator(), textOffset, height / lineHeightMultiply - (customFont ? height * 0.035F : 0));
                     textOffset += textWidths[index] + padding;
                 } else {
-                    final float scaleY = (float) imageHeight / height;
-                    final float textWidth = Math.min(maxWidth, textWidths[index] * scaleY);
+                    final float scaleY = 1;
+                    final float textWidth = Math.min(maxWidth, textWidths[index]);
                     final float scaleX = textWidth / textWidths[index];
                     final float rotatedWidth = (float) (realWidth / Math.sqrt(2));
                     final AffineTransform stretch = new AffineTransform();
-                    stretch.concatenate(AffineTransform.getScaleInstance(scaleX, scaleY));
                     stretch.rotate(Math.toRadians(-45), 0, rotatedWidth);
+                    stretch.concatenate(AffineTransform.getScaleInstance(scaleX, scaleY));
                     graphics2D.setTransform(stretch);
                     graphics2D.drawString(attributedStrings[index].getIterator(), horizontalAlignment.getOffset(0, textWidth - width) / scaleY + padding / scaleX, rotatedWidth + textOffset + fontSizes[index] - (customFont ? height * 0.035F : 0));
                     textOffset += (int) (fontSizes[index] * lineHeightMultiply);
@@ -279,6 +278,7 @@ public class DynamicTextureCache
             image.flush();
             return new Text(pixels, (int) imageWidth, (int) imageWidth, (int) imageWidth);
         } else {
+            final int imageHeight = Math.min(height, maxHeight);
             final BufferedImage image = new BufferedImage(width + (oneRow ? 0 : padding * 2), imageHeight + (oneRow ? 0 : padding * 2), BufferedImage.TYPE_BYTE_GRAY);
             final Graphics2D graphics2D = image.createGraphics();
             graphics2D.setColor(Color.WHITE);

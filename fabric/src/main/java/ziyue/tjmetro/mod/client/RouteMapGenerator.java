@@ -541,7 +541,7 @@ public class RouteMapGenerator implements IGui
 
                     drawStation(nativeImage, x, y, heightScale, lines, passed);
 
-                    final DynamicTextureCache.Text text = clientCache.getText(key.split("\\|\\|")[0], maxStringWidth, (int) ((fontSizeBig + fontSizeSmall) * LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, fontSizeSmall / 4, vertical ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, LINE_HEIGHT_MULTIPLIER, false, true);
+                    final DynamicTextureCache.Text text = clientCache.getText(key.split("\\|\\|")[0], maxStringWidth, y - lineSize, fontSizeBig, fontSizeSmall, fontSizeSmall / 4, vertical ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, LINE_HEIGHT_MULTIPLIER, false, true);
                     drawString(nativeImage, text, x - lineSize * 3 / 2, y - lineSize, HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, passed ? ARGB_LIGHT_GRAY : ARGB_BLACK, vertical);
                 }));
 
