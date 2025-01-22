@@ -463,7 +463,7 @@ public class RouteMapGenerator implements IGui
                 } else {
                     rawHeight = rawHeightTotal;
                     extraPadding = 0;
-                    yOffset = rawHeightPart;
+                    yOffset = rawHeightPart + 0.4F;
                 }
 
                 final int height;
@@ -521,30 +521,28 @@ public class RouteMapGenerator implements IGui
                     final int x = Math.round((stationPositionGrouped.stationPosition.x + xOffset) * scale * widthScale);
                     final int y = Math.round((stationPositionGrouped.stationPosition.y + yOffset) * scale * heightScale);
                     final int lines = stationPositionGrouped.stationPosition.isCommon ? colorIndices[colorIndices.length - 1] : 0;
-                    final boolean textBelow = vertical || (stationPositionGrouped.stationPosition.isCommon ? Math.abs(stationPositionGrouped.stationOffset) % 2 == 0 : y >= yOffset * scale);
-                    final boolean currentStation = stationPositionGrouped.stationOffset == 0;
                     final boolean passed = stationPositionGrouped.stationOffset < 0;
 
                     final IntArrayList interchangeColors = stationPositionGrouped.interchangeColors;
-                    if (!interchangeColors.isEmpty() && !currentStation) {
+                    if (!interchangeColors.isEmpty()) {
                         final int lineHeight = lineSize * 2;
                         final int lineWidth = (int) Math.ceil((float) lineSize / interchangeColors.size());
                         for (int i = 0; i < interchangeColors.size(); i++) {
                             for (int drawX = 0; drawX < lineWidth; drawX++) {
                                 for (int drawY = 0; drawY < lineHeight; drawY++) {
-                                    drawPixelSafe(nativeImage, x + drawX + lineWidth * i - lineWidth * interchangeColors.size() / 2, y + (textBelow ? -1 : lines * lineSpacing) + (textBelow ? -drawY : drawY), passed ? ARGB_LIGHT_GRAY : ARGB_BLACK | interchangeColors.getInt(i));
+                                    drawPixelSafe(nativeImage, x + drawX + lineWidth * i - lineWidth * interchangeColors.size() / 2, y + lines * lineSpacing + drawY, ARGB_BLACK | interchangeColors.getInt(i));
                                 }
                             }
                         }
 
                         final DynamicTextureCache.Text text = clientCache.getText(IGui.mergeStations(stationPositionGrouped.interchangeNames), maxStringWidth - (vertical ? lineHeight : 0), (int) ((fontSizeBig + fontSizeSmall) * LINE_HEIGHT_MULTIPLIER / 2), fontSizeBig / 2, fontSizeSmall / 2, 0, vertical ? HorizontalAlignment.LEFT : HorizontalAlignment.CENTER);
-                        drawString(nativeImage, text, x, y + (textBelow ? -1 - lineHeight : lines * lineSpacing + lineHeight), HorizontalAlignment.CENTER, textBelow ? VerticalAlignment.BOTTOM : VerticalAlignment.TOP, 0, passed ? ARGB_LIGHT_GRAY : ARGB_BLACK, vertical);
+                        drawString(nativeImage, text, x, y + lines * lineSpacing + lineHeight, HorizontalAlignment.CENTER, VerticalAlignment.TOP, 0, ARGB_BLACK, vertical);
                     }
 
                     drawStation(nativeImage, x, y, heightScale, lines, passed);
 
-                    final DynamicTextureCache.Text text = clientCache.getText(key.split("\\|\\|")[0], maxStringWidth, (int) ((fontSizeBig + fontSizeSmall) * LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, fontSizeSmall / 4, vertical ? HorizontalAlignment.RIGHT : HorizontalAlignment.CENTER);
-                    drawString(nativeImage, text, x, y + (textBelow ? lines * lineSpacing : -1) + (textBelow ? 1 : -1) * lineSize * 5 / 4, HorizontalAlignment.CENTER, textBelow ? VerticalAlignment.TOP : VerticalAlignment.BOTTOM, currentStation ? ARGB_BLACK : 0, passed ? ARGB_LIGHT_GRAY : currentStation ? ARGB_WHITE : ARGB_BLACK, vertical);
+                    final DynamicTextureCache.Text text = clientCache.getText(key.split("\\|\\|")[0], maxStringWidth, (int) ((fontSizeBig + fontSizeSmall) * LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, fontSizeSmall / 4, vertical ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, LINE_HEIGHT_MULTIPLIER, false, true);
+                    drawString(nativeImage, text, x - lineSize * 3 / 2, y - lineSize, HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, passed ? ARGB_LIGHT_GRAY : ARGB_BLACK, vertical);
                 }));
 
                 if (transparentWhite) clearColor(nativeImage, ARGB_WHITE);
