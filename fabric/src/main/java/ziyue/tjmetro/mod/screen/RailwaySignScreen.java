@@ -341,7 +341,7 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
             final boolean isLine = IRailwaySign.signIsLine(newSignId);
             final boolean isStation = IRailwaySign.signIsStation(newSignId);
             if ((isExitLetter || isPlatform || isLine || isStation)) {
-                MinecraftClient.getInstance().openScreen(new Screen(new DashboardListSelectorScreen(new ObjectImmutableList<>(isExitLetter ? exitsForList : isPlatform ? platformsForList : isLine ? routesForList : stationsForList), selectedIds, false, false, null)));
+                MinecraftClient.getInstance().openScreen(new Screen(new DashboardListSelectorScreen(this::onClose2, new ObjectImmutableList<>(isExitLetter ? exitsForList : isPlatform ? platformsForList : isLine ? routesForList : stationsForList), selectedIds, false, false, null)));
             }
         }
     }
