@@ -28,6 +28,7 @@ public class ConfigClient
     @Deprecated
     public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<>("enable_mtr_filters", false);
     public static final Property<Boolean> USE_TIANJIN_METRO_FONT = new Property<>("use_tianjin_metro_font", true);
+    public static final Property<Boolean> ROTATED_STATION_NAME = new Property<>("rotated_station_name", true);
 
     protected static final Path CONFIG_FILE_PATH = MinecraftClient.getInstance().getRunDirectoryMapped().toPath().resolve("config/tjmetro.json");
     public static final List<Footer> FOOTERS = Arrays.asList(
@@ -66,10 +67,18 @@ public class ConfigClient
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_FILE_PATH))).getAsJsonObject();
             try {
                 ENABLE_MTR_FILTERS.set(jsonConfig.get(ENABLE_MTR_FILTERS.getId()).getAsBoolean());
-                USE_TIANJIN_METRO_FONT.set(jsonConfig.get(USE_TIANJIN_METRO_FONT.getId()).getAsBoolean());
-            } catch (Exception ignored) {
+            } catch (Exception e) {
                 ENABLE_MTR_FILTERS.set(ENABLE_MTR_FILTERS.getDefault());
+            }
+            try {
+                USE_TIANJIN_METRO_FONT.set(jsonConfig.get(USE_TIANJIN_METRO_FONT.getId()).getAsBoolean());
+            } catch (Exception e) {
                 USE_TIANJIN_METRO_FONT.set(USE_TIANJIN_METRO_FONT.getDefault());
+            }
+            try {
+                ROTATED_STATION_NAME.set(jsonConfig.get(ROTATED_STATION_NAME.getId()).getAsBoolean());
+            } catch (Exception e) {
+                ROTATED_STATION_NAME.set(ROTATED_STATION_NAME.getDefault());
             }
         } catch (Exception e) {
             writeToFile();
@@ -82,6 +91,7 @@ public class ConfigClient
         final JsonObject jsonConfig = new JsonObject();
         jsonConfig.addProperty(ENABLE_MTR_FILTERS.getId(), ENABLE_MTR_FILTERS.get());
         jsonConfig.addProperty(USE_TIANJIN_METRO_FONT.getId(), USE_TIANJIN_METRO_FONT.get());
+        jsonConfig.addProperty(ROTATED_STATION_NAME.getId(), ROTATED_STATION_NAME.get());
 
         try {
             Files.write(CONFIG_FILE_PATH, Collections.singleton(Utilities.prettyPrint(jsonConfig)));

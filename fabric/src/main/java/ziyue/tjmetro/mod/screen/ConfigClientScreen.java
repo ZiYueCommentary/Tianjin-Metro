@@ -24,6 +24,7 @@ public class ConfigClientScreen extends ScreenExtension
     protected final Screen parent;
     protected final ButtonWidgetExtension buttonEnableMTRFilters;
     protected final ButtonWidgetExtension buttonTianjinMetroFont;
+    protected final ButtonWidgetExtension buttonRotatedStationName;
     protected final ButtonWidgetExtension buttonFooterLink;
     protected final ButtonWidgetExtension buttonDone;
     protected final ConfigClient.Footer footer;
@@ -41,6 +42,10 @@ public class ConfigClientScreen extends ScreenExtension
             ConfigClient.USE_TIANJIN_METRO_FONT.set(!ConfigClient.USE_TIANJIN_METRO_FONT.get());
             setButtonText(button, ConfigClient.USE_TIANJIN_METRO_FONT.get());
         });
+        buttonRotatedStationName = new ButtonWidgetExtension(0, 0, 0, BUTTON_HEIGHT, TextHelper.literal(""), button -> {
+            ConfigClient.ROTATED_STATION_NAME.set(!ConfigClient.ROTATED_STATION_NAME.get());
+            setButtonText(button, ConfigClient.ROTATED_STATION_NAME.get());
+        });
         buttonFooterLink = new ButtonWidgetExtension(0, 0, 0, BUTTON_HEIGHT, button -> Util.getOperatingSystem().open(footer.link()));
         buttonDone = new ButtonWidgetExtension(0, 0, 0, 20, button -> this.onClose2());
     }
@@ -50,11 +55,13 @@ public class ConfigClientScreen extends ScreenExtension
         super.init2();
         //this.addChild(new ClickableWidget(buttonEnableMTRFilters));
         this.addChild(new ClickableWidget(buttonTianjinMetroFont));
+        this.addChild(new ClickableWidget(buttonRotatedStationName));
         this.addChild(new ClickableWidget(buttonFooterLink));
         this.addChild(new ClickableWidget(buttonDone));
         int i = 0;
         IDrawing.setPositionAndWidth(buttonEnableMTRFilters, width - SQUARE_SIZE - BUTTON_WIDTH, BUTTON_HEIGHT * (i++) + SQUARE_SIZE, BUTTON_WIDTH);
         IDrawing.setPositionAndWidth(buttonTianjinMetroFont, width - SQUARE_SIZE - BUTTON_WIDTH, BUTTON_HEIGHT * (i++) + SQUARE_SIZE, BUTTON_WIDTH);
+        IDrawing.setPositionAndWidth(buttonRotatedStationName, width - SQUARE_SIZE - BUTTON_WIDTH, BUTTON_HEIGHT * (i++) + SQUARE_SIZE, BUTTON_WIDTH);
         i++;
         IDrawing.setPositionAndWidth(buttonFooterLink, width - SQUARE_SIZE - BUTTON_WIDTH, BUTTON_HEIGHT * (i++) + SQUARE_SIZE, BUTTON_WIDTH);
 
@@ -62,6 +69,7 @@ public class ConfigClientScreen extends ScreenExtension
 
         setButtonText(new ButtonWidget(buttonEnableMTRFilters), ConfigClient.ENABLE_MTR_FILTERS.get());
         setButtonText(new ButtonWidget(buttonTianjinMetroFont), ConfigClient.USE_TIANJIN_METRO_FONT.get());
+        setButtonText(new ButtonWidget(buttonRotatedStationName), ConfigClient.ROTATED_STATION_NAME.get());
         buttonFooterLink.setMessage2(new Text(TextHelper.translatable("button.tjmetro.click_here").data));
         buttonDone.setMessage2(new Text(TextHelper.translatable("gui.done").data));
     }
@@ -76,6 +84,7 @@ public class ConfigClientScreen extends ScreenExtension
             int i = 0;
             i++;//graphicsHolder.drawText(TextHelper.translatable("config.tjmetro.enable_mtr_filters"), SQUARE_SIZE, BUTTON_HEIGHT * (i++) + yStart1, ARGB_WHITE, false, GraphicsHolder.getDefaultLight());
             graphicsHolder.drawText(TextHelper.translatable("config.tjmetro.use_tianjin_metro_font"), SQUARE_SIZE, BUTTON_HEIGHT * (i++) + yStart1, ARGB_WHITE, false, GraphicsHolder.getDefaultLight());
+            graphicsHolder.drawText(TextHelper.translatable("config.tjmetro.rotated_station_name"), SQUARE_SIZE, BUTTON_HEIGHT * (i++) + yStart1, ARGB_WHITE, false, GraphicsHolder.getDefaultLight());
             i++;
             graphicsHolder.drawText(this.footer.footer().get(), SQUARE_SIZE, BUTTON_HEIGHT * (i++) + yStart1, ARGB_WHITE, false, GraphicsHolder.getDefaultLight());
             super.render(graphicsHolder, mouseX, mouseY, delta);
