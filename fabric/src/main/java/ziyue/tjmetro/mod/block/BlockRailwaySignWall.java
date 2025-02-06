@@ -2,7 +2,6 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.IBlock;
@@ -29,7 +28,7 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
     public static final BooleanProperty EOS = BooleanProperty.of("eos"); // end of sign
 
     public BlockRailwaySignWall(int length) {
-        super(BlockHelper.createBlockSettings(true, blockState -> 15).noCollision(), length, false);
+        super(org.mtr.mod.Blocks.createDefaultBlockSettings(true, blockState -> 15).noCollision(), length, false);
     }
 
     @Override

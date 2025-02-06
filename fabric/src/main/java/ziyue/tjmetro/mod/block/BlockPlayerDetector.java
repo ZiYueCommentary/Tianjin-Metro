@@ -3,6 +3,7 @@ package ziyue.tjmetro.mod.block;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.*;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.data.IGuiExtension;
@@ -24,7 +25,7 @@ public class BlockPlayerDetector extends BlockExtension implements DirectionHelp
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
 
     public BlockPlayerDetector() {
-        this(BlockHelper.createBlockSettings(false).breakInstantly());
+        this(Blocks.createDefaultBlockSettings(false).breakInstantly());
     }
 
     public BlockPlayerDetector(BlockSettings blockSettings) {

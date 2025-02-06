@@ -2,7 +2,7 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
-import org.mtr.mapping.mapper.BlockHelper;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.BlockList;
@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 public class BlockRailwaySignTianjin extends BlockRailwaySignBase
 {
     public BlockRailwaySignTianjin(int length, boolean isOdd) {
-        super(BlockHelper.createBlockSettings(true, blockState -> 15), length, isOdd);
+        super(Blocks.createDefaultBlockSettings(true, blockState -> 15), length, isOdd);
     }
 
     @Nonnull

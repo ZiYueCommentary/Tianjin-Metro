@@ -2,9 +2,9 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.BlockWithEntity;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.BlockStationNameWallBase;
 import org.mtr.mod.block.BlockStationNameWallWhite;
 import org.mtr.mod.block.IBlock;
@@ -23,7 +23,7 @@ import java.util.List;
 public class BlockStationNameWallLegacy extends BlockStationNameWallBase implements BlockWithEntity
 {
     public BlockStationNameWallLegacy() {
-        this(BlockHelper.createBlockSettings(false));
+        this(Blocks.createDefaultBlockSettings(false));
     }
 
     public BlockStationNameWallLegacy(BlockSettings blockSettings) {

@@ -2,7 +2,6 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.Items;
@@ -33,7 +32,7 @@ public class BlockStationNamePlate extends BlockRailwaySignBase
     public static final IntegerProperty ARROW_DIRECTION = IntegerProperty.of("arrow_direction", 0, 2);
 
     public BlockStationNamePlate() {
-        this(BlockHelper.createBlockSettings(true));
+        this(org.mtr.mod.Blocks.createDefaultBlockSettings(true));
     }
 
     public BlockStationNamePlate(BlockSettings settings) {

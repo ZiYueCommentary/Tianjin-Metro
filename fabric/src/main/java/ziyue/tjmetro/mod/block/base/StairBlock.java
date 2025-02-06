@@ -1,10 +1,8 @@
 package ziyue.tjmetro.mod.block.base;
 
 import org.mtr.mapping.holder.Block;
-import org.mtr.mapping.holder.BlockState;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.StairsBlockExtension;
-import org.mtr.mapping.registry.BlockRegistryObject;
+import org.mtr.mod.Blocks;
 
 /**
  * A class that support construct stair block.
@@ -17,6 +15,6 @@ import org.mtr.mapping.registry.BlockRegistryObject;
 public class StairBlock extends StairsBlockExtension
 {
     public StairBlock(Block block) {
-        super(block.getDefaultState(), BlockHelper.createBlockSettings(false));
+        super(block.getDefaultState(), Blocks.createDefaultBlockSettings(false));
     }
 }

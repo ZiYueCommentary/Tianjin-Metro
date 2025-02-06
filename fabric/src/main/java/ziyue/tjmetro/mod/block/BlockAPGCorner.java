@@ -2,15 +2,14 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import java.util.List;
 
 import static org.mtr.mod.block.IBlock.HALF;
@@ -26,7 +25,7 @@ import static org.mtr.mod.block.IBlock.HALF;
 public class BlockAPGCorner extends BlockExtension implements DirectionHelper
 {
     public BlockAPGCorner() {
-        this(BlockHelper.createBlockSettings(true));
+        this(Blocks.createDefaultBlockSettings(true));
     }
 
     public BlockAPGCorner(BlockSettings blockSettings) {

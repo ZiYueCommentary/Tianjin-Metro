@@ -2,9 +2,9 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 
 import javax.annotation.Nonnull;
@@ -21,7 +21,7 @@ import java.util.List;
 public class BlockLogo extends BlockExtension implements DirectionHelper
 {
     public BlockLogo() {
-        this(BlockHelper.createBlockSettings(false, state -> 10).noCollision());
+        this(Blocks.createDefaultBlockSettings(false, state -> 10).noCollision());
     }
 
     public BlockLogo(BlockSettings blockSettings) {

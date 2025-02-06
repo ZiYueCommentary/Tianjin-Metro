@@ -3,6 +3,7 @@ package ziyue.tjmetro.mod.block;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.*;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.SoundEvents;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mapping.DefaultedItemStackList;
@@ -32,7 +33,7 @@ public class BlockMetalDetectionDoor extends BlockExtension implements Direction
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
 
     public BlockMetalDetectionDoor() {
-        this(BlockHelper.createBlockSettings(true));
+        this(Blocks.createDefaultBlockSettings(true));
     }
 
     public BlockMetalDetectionDoor(BlockSettings blockSettings) {
