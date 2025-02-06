@@ -2,9 +2,9 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.BlockList;
@@ -29,7 +29,7 @@ public class BlockMetalPoleBMT extends BlockCustomColorBase implements Direction
     public static final BooleanProperty WEST = BooleanProperty.of("west");
 
     public BlockMetalPoleBMT() {
-        this(BlockHelper.createBlockSettings(false).nonOpaque());
+        this(Blocks.createDefaultBlockSettings(false).nonOpaque());
     }
 
     public BlockMetalPoleBMT(BlockSettings blockSettings) {

@@ -1,8 +1,8 @@
 package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.TextHelper;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.BlockCeilingAuto;
 
 import javax.annotation.Nonnull;
@@ -20,7 +20,7 @@ import java.util.List;
 public class BlockStationColorCeilingAuto extends BlockCeilingAuto
 {
     public BlockStationColorCeilingAuto() {
-        this(BlockHelper.createBlockSettings(false, state -> 15));
+        this(Blocks.createDefaultBlockSettings(false, state -> 15));
     }
 
     public BlockStationColorCeilingAuto(BlockSettings blockSettings) {

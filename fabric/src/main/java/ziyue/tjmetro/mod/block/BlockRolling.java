@@ -2,8 +2,8 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockList;
 
@@ -23,7 +23,7 @@ public class BlockRolling extends BlockExtension
     public static final BooleanProperty CHANGED = BooleanProperty.of("changed");
 
     public BlockRolling() {
-        this(BlockHelper.createBlockSettings(false).strength(5.0F, 6.0F));
+        this(Blocks.createDefaultBlockSettings(false).strength(5.0F, 6.0F));
     }
 
     public BlockRolling(BlockSettings blockSettings) {
