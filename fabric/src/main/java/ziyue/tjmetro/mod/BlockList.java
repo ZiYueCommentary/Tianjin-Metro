@@ -1,11 +1,10 @@
 package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.holder.Block;
-import org.mtr.mapping.holder.Blocks;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.BlockItemExtension;
 import org.mtr.mapping.mapper.SlabBlockExtension;
 import org.mtr.mapping.registry.BlockRegistryObject;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.BlockCeiling;
 import org.mtr.mod.block.BlockPlatform;
 import org.mtr.mod.item.ItemBlockEnchanted;
@@ -21,24 +20,24 @@ public interface BlockList
     BlockRegistryObject LOGO = Registry.registerBlockWithBlockItem("logo", () -> new Block(new BlockLogo()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject PLAYER_DETECTOR = Registry.registerBlockWithBlockItem("player_detector", () -> new Block(new BlockPlayerDetector()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject ROLLING = Registry.registerBlockWithBlockItem("rolling", () -> new Block(new BlockRolling()), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject CEILING_NOT_LIT = Registry.registerBlockWithBlockItem("ceiling_not_lit", () -> new Block(new BlockCeiling(BlockHelper.createBlockSettings(false))), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject CEILING_NOT_LIT = Registry.registerBlockWithBlockItem("ceiling_not_lit", () -> new Block(new BlockCeiling(Blocks.createDefaultBlockSettings(false))), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_COLOR_CEILING = Registry.registerBlockWithBlockItem("station_color_ceiling", () -> new Block(new BlockStationColorCeilingAuto()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_COLOR_CEILING_LIGHT = Registry.registerBlockWithBlockItem("station_color_ceiling_light", () -> new Block(new BlockStationColorCeiling()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_COLOR_CEILING_NO_LIGHT = Registry.registerBlockWithBlockItem("station_color_ceiling_no_light", () -> new Block(new BlockStationColorCeiling()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject STATION_COLOR_CEILING_NOT_LIT = Registry.registerBlockWithBlockItem("station_color_ceiling_not_lit", () -> new Block(new BlockStationColorCeiling(BlockHelper.createBlockSettings(false))), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_COLOR_CEILING_NOT_LIT = Registry.registerBlockWithBlockItem("station_color_ceiling_not_lit", () -> new Block(new BlockStationColorCeiling(Blocks.createDefaultBlockSettings(false))), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAME_SIGN_1 = Registry.registerBlockWithBlockItem("station_name_sign_1", () -> new Block(new BlockStationNameSign1()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAME_SIGN_2 = Registry.registerBlockWithBlockItem("station_name_sign_2", () -> new Block(new BlockStationNameSign2()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject APG_CORNER = Registry.registerBlockWithBlockItem("apg_corner", () -> new Block(new BlockAPGCorner()), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject PLATFORM_TJ_1 = Registry.registerBlockWithBlockItem("platform_tj_1", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject PLATFORM_TJ_1_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_1_indented", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject PLATFORM_TJ_2 = Registry.registerBlockWithBlockItem("platform_tj_2", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject PLATFORM_TJ_2_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_2_indented", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject MARBLE_GRAY = Registry.registerBlockWithBlockItem("marble_gray", () -> new Block(BlockHelper.createBlockSettings(false)), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject MARBLE_GRAY_SLAB = Registry.registerBlockWithBlockItem("marble_gray_slab", () -> new Block(new SlabBlockExtension(BlockHelper.createBlockSettings(false))), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject MARBLE_GRAY_STAIRS = Registry.registerBlockWithBlockItem("marble_gray_stairs", () -> new Block(new StairBlock(Blocks.getBricksMapped())), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject MARBLE_YELLOW = Registry.registerBlockWithBlockItem("marble_yellow", () -> new Block(BlockHelper.createBlockSettings(false)), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject MARBLE_YELLOW_SLAB = Registry.registerBlockWithBlockItem("marble_yellow_slab", () -> new Block(new SlabBlockExtension(BlockHelper.createBlockSettings(false))), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject MARBLE_YELLOW_STAIRS = Registry.registerBlockWithBlockItem("marble_yellow_stairs", () -> new Block(new StairBlock(Blocks.getBricksMapped())), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_1 = Registry.registerBlockWithBlockItem("platform_tj_1", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_1_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_1_indented", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_2 = Registry.registerBlockWithBlockItem("platform_tj_2", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_2_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_2_indented", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject MARBLE_GRAY = Registry.registerBlockWithBlockItem("marble_gray", () -> new Block(Blocks.createDefaultBlockSettings(false)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject MARBLE_GRAY_SLAB = Registry.registerBlockWithBlockItem("marble_gray_slab", () -> new Block(new SlabBlockExtension(Blocks.createDefaultBlockSettings(false))), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject MARBLE_GRAY_STAIRS = Registry.registerBlockWithBlockItem("marble_gray_stairs", () -> new Block(new StairBlock(org.mtr.mapping.holder.Blocks.getBricksMapped())), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject MARBLE_YELLOW = Registry.registerBlockWithBlockItem("marble_yellow", () -> new Block(Blocks.createDefaultBlockSettings(false)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject MARBLE_YELLOW_SLAB = Registry.registerBlockWithBlockItem("marble_yellow_slab", () -> new Block(new SlabBlockExtension(Blocks.createDefaultBlockSettings(false))), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject MARBLE_YELLOW_STAIRS = Registry.registerBlockWithBlockItem("marble_yellow_stairs", () -> new Block(new StairBlock(org.mtr.mapping.holder.Blocks.getBricksMapped())), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject TIME_DISPLAY = Registry.registerBlockWithBlockItem("time_display", () -> new Block(new BlockTimeDisplay()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject EMERGENCY_EXIT_SIGN = Registry.registerBlockWithBlockItem("emergency_exit_sign", () -> new Block(new BlockEmergencyExitSign()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject SERVICE_CORRIDOR_SIGN = Registry.registerBlockWithBlockItem("service_corridor_sign", () -> new Block(new BlockServiceCorridorSign()), CreativeModeTabs.TIANJIN_METRO);
@@ -129,10 +128,10 @@ public interface BlockList
     BlockRegistryObject APG_DOOR_TIANJIN_TRT_BLOCK = Registry.registerBlock("apg_door_tianjin_trt", () -> new Block(new BlockAPGDoorTianjinTRT()));
     BlockRegistryObject APG_GLASS_TIANJIN_TRT_BLOCK = Registry.registerBlock("apg_glass_tianjin_trt", () -> new Block(new BlockAPGGlassTianjinTRT()));
     BlockRegistryObject APG_GLASS_END_TIANJIN_TRT_BLOCK = Registry.registerBlock("apg_glass_end_tianjin_trt", () -> new Block(new BlockAPGGlassEndTianjinTRT()));
-    BlockRegistryObject PLATFORM_TJ_LINE_11_1 = Registry.registerBlockWithBlockItem("platform_tj_line_11_1", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject PLATFORM_TJ_LINE_11_1_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_line_11_1_indented", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject PLATFORM_TJ_LINE_11_2 = Registry.registerBlockWithBlockItem("platform_tj_line_11_2", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject PLATFORM_TJ_LINE_11_2_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_line_11_2_indented", () -> new Block(new BlockPlatform(BlockHelper.createBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_LINE_11_1 = Registry.registerBlockWithBlockItem("platform_tj_line_11_1", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_LINE_11_1_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_line_11_1_indented", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_LINE_11_2 = Registry.registerBlockWithBlockItem("platform_tj_line_11_2", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PLATFORM_TJ_LINE_11_2_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_line_11_2_indented", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject SECURITY_CHECK_SIGN = Registry.registerBlockWithBlockItem("security_check_sign", () -> new Block(new BlockSecurityCheckSign()), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {

@@ -1,7 +1,7 @@
 package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
-import org.mtr.mapping.mapper.BlockHelper;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.BlockRailwaySignPole;
 import org.mtr.mod.block.IBlock;
 
@@ -16,7 +16,7 @@ import javax.annotation.Nonnull;
 public class BlockRailwaySignTianjinPole extends BlockRailwaySignPole
 {
     public BlockRailwaySignTianjinPole() {
-        this(BlockHelper.createBlockSettings(false));
+        this(Blocks.createDefaultBlockSettings(false));
     }
 
     public BlockRailwaySignTianjinPole(BlockSettings blockSettings) {

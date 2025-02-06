@@ -2,9 +2,9 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 
 import javax.annotation.Nonnull;
@@ -21,7 +21,7 @@ import java.util.List;
 public class BlockRoadblock extends BlockExtension implements DirectionHelper
 {
     public BlockRoadblock() {
-        this(BlockHelper.createBlockSettings(false));
+        this(Blocks.createDefaultBlockSettings(false));
     }
 
     public BlockRoadblock(BlockSettings blockSettings) {

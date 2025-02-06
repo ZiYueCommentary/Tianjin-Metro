@@ -1,7 +1,11 @@
 package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
-import org.mtr.mapping.mapper.*;
+import org.mtr.mapping.mapper.BlockEntityExtension;
+import org.mtr.mapping.mapper.BlockWithEntity;
+import org.mtr.mapping.mapper.SlabBlockExtension;
+import org.mtr.mapping.mapper.TextHelper;
+import org.mtr.mod.Blocks;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
@@ -21,7 +25,7 @@ import java.util.List;
 public class BlockCustomColorConcreteSlab extends SlabBlockExtension implements BlockWithEntity
 {
     public BlockCustomColorConcreteSlab() {
-        this(BlockHelper.createBlockSettings(false));
+        this(Blocks.createDefaultBlockSettings(false));
     }
 
     public BlockCustomColorConcreteSlab(BlockSettings blockSettings) {

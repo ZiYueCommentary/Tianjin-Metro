@@ -2,9 +2,9 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.Items;
 import org.mtr.mod.block.BlockStationNameBase;
 import org.mtr.mod.block.IBlock;
@@ -45,7 +45,7 @@ public class BlockStationNameEntranceTianjin extends BlockStationNameBase implem
     public final Type type;
 
     public BlockStationNameEntranceTianjin(boolean pinyin, Type type) {
-        this(BlockHelper.createBlockSettings(false, state -> 15).noCollision(), pinyin, type);
+        this(Blocks.createDefaultBlockSettings(false, state -> 15).noCollision(), pinyin, type);
     }
 
     public BlockStationNameEntranceTianjin(BlockSettings blockSettings, boolean pinyin, Type type) {

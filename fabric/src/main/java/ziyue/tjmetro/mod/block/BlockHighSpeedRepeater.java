@@ -2,7 +2,6 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.IBlock;
@@ -23,7 +22,7 @@ public class BlockHighSpeedRepeater extends BlockExtension implements DirectionH
     public static final IntegerProperty POWER = IntegerProperty.of("power", 0, 15);
 
     public BlockHighSpeedRepeater() {
-        this(BlockHelper.createBlockSettings(false));
+        this(org.mtr.mod.Blocks.createDefaultBlockSettings(false));
     }
 
     public BlockHighSpeedRepeater(BlockSettings blockSettings) {

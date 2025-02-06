@@ -1,8 +1,12 @@
 package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
-import org.mtr.mapping.mapper.*;
+import org.mtr.mapping.mapper.BlockEntityExtension;
+import org.mtr.mapping.mapper.BlockExtension;
+import org.mtr.mapping.mapper.BlockWithEntity;
+import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.block.base.BlockEntityRenderable;
@@ -22,7 +26,7 @@ import static ziyue.tjmetro.mod.block.IBlockExtension.THIRD;
 public class BlockSecurityCheckSign extends BlockExtension implements DirectionHelper, BlockWithEntity
 {
     public BlockSecurityCheckSign() {
-        this(BlockHelper.createBlockSettings(false));
+        this(Blocks.createDefaultBlockSettings(false));
     }
 
     public BlockSecurityCheckSign(BlockSettings blockSettings) {

@@ -2,7 +2,7 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
-import org.mtr.mapping.mapper.BlockHelper;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.block.base.BlockStationNameSignBase;
@@ -19,7 +19,7 @@ import ziyue.tjmetro.mod.block.base.BlockStationNameSignBase;
 public class BlockStationNameSign1 extends BlockStationNameSignBase
 {
     public BlockStationNameSign1() {
-        this(BlockHelper.createBlockSettings(true));
+        this(Blocks.createDefaultBlockSettings(true));
     }
 
     public BlockStationNameSign1(BlockSettings blockSettings) {

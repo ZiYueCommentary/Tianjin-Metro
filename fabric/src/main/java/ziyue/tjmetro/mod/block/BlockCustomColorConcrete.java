@@ -4,7 +4,7 @@ import org.mtr.mapping.holder.BlockPos;
 import org.mtr.mapping.holder.BlockSettings;
 import org.mtr.mapping.holder.BlockState;
 import org.mtr.mapping.mapper.BlockEntityExtension;
-import org.mtr.mapping.mapper.BlockHelper;
+import org.mtr.mod.Blocks;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 
@@ -18,7 +18,7 @@ import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 public class BlockCustomColorConcrete extends BlockCustomColorBase
 {
     public BlockCustomColorConcrete() {
-        this(BlockHelper.createBlockSettings(false));
+        this(Blocks.createDefaultBlockSettings(false));
     }
 
     public BlockCustomColorConcrete(BlockSettings blockSettings) {

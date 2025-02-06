@@ -2,9 +2,9 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.entity.EntitySeat;
@@ -26,7 +26,7 @@ import java.util.List;
 public class BlockBench extends BlockExtension implements DirectionHelper, IBlock
 {
     public BlockBench() {
-        this(BlockHelper.createBlockSettings(false));
+        this(Blocks.createDefaultBlockSettings(false));
     }
 
     public BlockBench(BlockSettings blockSettings) {

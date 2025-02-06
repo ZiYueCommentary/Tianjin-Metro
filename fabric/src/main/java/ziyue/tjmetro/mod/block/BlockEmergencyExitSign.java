@@ -2,9 +2,9 @@ package ziyue.tjmetro.mod.block;
 
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
+import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 
 import javax.annotation.Nonnull;
@@ -21,7 +21,7 @@ import static ziyue.tjmetro.mod.block.IBlockExtension.THIRD;
 public class BlockEmergencyExitSign extends BlockExtension implements DirectionHelper
 {
     public BlockEmergencyExitSign() {
-        this(BlockHelper.createBlockSettings(true));
+        this(Blocks.createDefaultBlockSettings(true));
     }
 
     public BlockEmergencyExitSign(BlockSettings blockSettings) {
