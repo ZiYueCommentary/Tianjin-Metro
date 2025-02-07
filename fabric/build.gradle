@@ -30,7 +30,11 @@ dependencies {
             force("net.fabricmc:fabric-loader:${FabricVersion}")
         }
     }
-    modImplementation "org.mtr:MTR-fabric:${mtr_version}+${minecraft_version}-server"
+    modImplementation("org.mtr.mod:mtr-fabric:${mtr_version}+${minecraft_version}") {
+        exclude(group: "org.mtr")
+        exclude(group: "com.logisticscraft")
+        exclude(group: "net.fabricmc")
+    }
     annotationProcessor 'systems.manifold:manifold-preprocessor:+'
     // Delibrate: Newer versions just throws an error *when displaying an compiling error*
 }
