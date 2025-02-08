@@ -173,5 +173,6 @@
     "block.tjmetro.platform_tj_line_11_1": "站台方块 （天津、11号线）",
     "block.tjmetro.platform_tj_line_11_1_indented": "站台方块 （天津、11号线）",
     "block.tjmetro.security_check_sign": "“安全检查”标志",
-    "gui.tjmetro.accept_security_check_cjk": "请您接受安检"
+    "gui.tjmetro.accept_security_check_cjk": "请您接受安检",
+    "config.tjmetro.rotated_station_name": "旋转天津站台门上的站名"
 }
