@@ -1023,7 +1023,7 @@ public class RouteMapGenerator implements IGui
 
         try {
             final int size = scale * 2;
-            final int width = Math.round(size * aspectRatio);
+            int width = Math.round(size * aspectRatio);
             final int padding = scale / 16;
             final DynamicTextureCache.Text text = DynamicTextureCache.instance.getText(stationName, width - size - padding, size - padding * 2, fontSizeBig * 3, fontSizeSmall * 3, padding, HorizontalAlignment.CENTER);
             final DynamicTextureCache.Text exit = DynamicTextureCache.instance.getText(EditStationScreen.deserializeExit(selectedId), width - size - padding, size - padding * 2, fontSizeBig * 3, fontSizeBig * 7, padding, HorizontalAlignment.CENTER);
@@ -1064,7 +1064,8 @@ public class RouteMapGenerator implements IGui
                 totalWidth.addAndGet(iconOffset + exit.width());
             }
 
-            final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, Math.max(width, totalWidth.get()), size, false);
+            width = Math.max(width, totalWidth.get());
+            final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, width, size, false);
             nativeImage.fillRect(0, 0, width, size, backgroundColor);
 
             final AtomicInteger currentX = new AtomicInteger(iconOffset + iconSize);
@@ -1091,9 +1092,9 @@ public class RouteMapGenerator implements IGui
                     resource = null;
             }
             drawResource(nativeImage, resource, iconOffset, iconOffset, iconSize, iconSize, false, 0, 1, 0, true);
-            drawString(nativeImage, text, (Math.max(width, totalWidth.get()) + currentX.get()) / 2, size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+            drawString(nativeImage, text, (width + currentX.get()) / 2, size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             if (selectedId != -1)
-                drawString(nativeImage, exit, Math.max(width, totalWidth.get()) - iconOffset, size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
+                drawString(nativeImage, exit, width - iconOffset, size / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, ARGB_WHITE, false);
             clearColor(nativeImage, invertColor(backgroundColor));
 
             return nativeImage;
