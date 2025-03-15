@@ -72,7 +72,7 @@ public interface BlockList
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_5_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_5_odd", () -> new Block(new BlockRailwaySignTianjin(5, true)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_6_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_6_odd", () -> new Block(new BlockRailwaySignTianjin(6, true)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_7_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_7_odd", () -> new Block(new BlockRailwaySignTianjin(7, true)), CreativeModeTabs.TIANJIN_METRO);
-//    BlockRegistryObject RAILWAY_SIGN_TIANJIN_8_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_8_odd", () -> new Block(new BlockRailwaySignTianjin(8, true)), CreativeModeTabs.TIANJIN_METRO);
+    //    BlockRegistryObject RAILWAY_SIGN_TIANJIN_8_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_8_odd", () -> new Block(new BlockRailwaySignTianjin(8, true)), CreativeModeTabs.TIANJIN_METRO);
 //    BlockRegistryObject RAILWAY_SIGN_TIANJIN_9_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_9_odd", () -> new Block(new BlockRailwaySignTianjin(9, true)), CreativeModeTabs.TIANJIN_METRO);
 //    BlockRegistryObject RAILWAY_SIGN_TIANJIN_10_ODD = Registry.registerBlockWithBlockItem("railway_sign_tianjin_10_odd", () -> new Block(new BlockRailwaySignTianjin(10, true)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_2_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_2_even", () -> new Block(new BlockRailwaySignTianjin(2, false)), CreativeModeTabs.TIANJIN_METRO);
@@ -81,7 +81,7 @@ public interface BlockList
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_5_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_5_even", () -> new Block(new BlockRailwaySignTianjin(5, false)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_6_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_6_even", () -> new Block(new BlockRailwaySignTianjin(6, false)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_7_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_7_even", () -> new Block(new BlockRailwaySignTianjin(7, false)), CreativeModeTabs.TIANJIN_METRO);
-//    BlockRegistryObject RAILWAY_SIGN_TIANJIN_8_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_8_even", () -> new Block(new BlockRailwaySignTianjin(8, false)), CreativeModeTabs.TIANJIN_METRO);
+    //    BlockRegistryObject RAILWAY_SIGN_TIANJIN_8_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_8_even", () -> new Block(new BlockRailwaySignTianjin(8, false)), CreativeModeTabs.TIANJIN_METRO);
 //    BlockRegistryObject RAILWAY_SIGN_TIANJIN_9_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_9_even", () -> new Block(new BlockRailwaySignTianjin(9, false)), CreativeModeTabs.TIANJIN_METRO);
 //    BlockRegistryObject RAILWAY_SIGN_TIANJIN_10_EVEN = Registry.registerBlockWithBlockItem("railway_sign_tianjin_10_even", () -> new Block(new BlockRailwaySignTianjin(10, false)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject RAILWAY_SIGN_TIANJIN_MIDDLE = Registry.registerBlock("railway_sign_tianjin_middle", () -> new Block(new BlockRailwaySignTianjin(0, false)));
@@ -133,6 +133,11 @@ public interface BlockList
     BlockRegistryObject PLATFORM_TJ_LINE_11_2 = Registry.registerBlockWithBlockItem("platform_tj_line_11_2", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), false)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject PLATFORM_TJ_LINE_11_2_INDENTED = Registry.registerBlockWithBlockItem("platform_tj_line_11_2_indented", () -> new Block(new BlockPlatform(Blocks.createDefaultBlockSettings(false), true)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject SECURITY_CHECK_SIGN = Registry.registerBlockWithBlockItem("security_check_sign", () -> new Block(new BlockSecurityCheckSign()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_NAVIGATOR_POLE = Registry.registerBlockWithBlockItem("station_navigator_pole", () -> new Block(new BlockStationNavigatorPole()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_NAVIGATOR_3 = Registry.registerBlockWithBlockItem("station_navigator_3", () -> new Block(new BlockStationNavigator(3)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_NAVIGATOR_4 = Registry.registerBlockWithBlockItem("station_navigator_4", () -> new Block(new BlockStationNavigator(4)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_NAVIGATOR_5 = Registry.registerBlockWithBlockItem("station_navigator_5", () -> new Block(new BlockStationNavigator(5)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_NAVIGATOR_MIDDLE = Registry.registerBlock("station_navigator_middle", () -> new Block(new BlockStationNavigator(0)));
 
     static void registerBlocks() {
         // Calling this class to initialize constants

@@ -1,6 +1,7 @@
 package ziyue.tjmetro.mod.client;
 
 import org.mtr.core.tool.Utilities;
+import org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongAVLTreeSet;
 import org.mtr.libraries.it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
@@ -132,6 +133,17 @@ public class DynamicTextureCache
     public DynamicResource getStationNamePlate(long platformId, int arrowDirection, int backgroundColor, float paddingScale, float aspectRatio, int textColor, int transparentColor) {
         return getResource(String.format("tjmetro_station_name_plate_%s_%s_%s_%s_%s_%s_%s", platformId, arrowDirection, backgroundColor, paddingScale, aspectRatio, textColor, transparentColor), () -> RouteMapGenerator.generateStationNamePlate(platformId, arrowDirection, backgroundColor, paddingScale, aspectRatio, textColor, transparentColor), DefaultRenderingColor.TRANSPARENT);
     }
+
+    public DynamicResource getStationNavigator(LongAVLTreeSet selectedRoutes, boolean arrowLeft, int backgroundColor, float aspectRatio) {
+        // Since each DynamicTexture requires a unique ID, selectedRoutes must provide a unique identifier.
+        // Normally, to reuse resources, the parameter values passed in would be used as unique identifiers.
+        // However, since selectedRoutes is an array, its data volume affects the performance of calculating a unique ID each time, so the usual method cannot be used.
+        // Here, the System.identityHashCode method is used to get the hash code of selectedRoutes, which quickly retrieves a unique identifier for this selectedRoutes.
+        // This operation is similar to get the object memory address in C/C++.
+        // Although this method causes repeated calculations when the instances of selectedRoutes are different but the content is the same, overall, it achieves the best performance.
+        return getResource(String.format("tjmetro_station_navigator_%s_%s_%s_%s", System.identityHashCode(selectedRoutes), arrowLeft, backgroundColor, aspectRatio), () -> RouteMapGenerator.generateStationNavigator(selectedRoutes, arrowLeft, backgroundColor, aspectRatio), DefaultRenderingColor.TRANSPARENT);
+    }
+
 
     public Text getText(String text, int fontSizeCjk, int fontSize) {
         return getText(text, Integer.MAX_VALUE, (int) (Math.max(fontSizeCjk, fontSize) * LINE_HEIGHT_MULTIPLIER), fontSizeCjk, fontSize, 0, null);

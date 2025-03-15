@@ -78,6 +78,9 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockAPGDoorTianjinTRT.BlockEntity> APG_DOOR_TIANJIN_TRT = Registry.registerBlockEntityType("apg_door_tianjin_trt", BlockAPGDoorTianjinTRT.BlockEntity::new, BlockList.APG_DOOR_TIANJIN_TRT_BLOCK::get);
     BlockEntityTypeRegistryObject<BlockAPGGlassTianjinTRT.BlockEntity> APG_GLASS_TIANJIN_TRT = Registry.registerBlockEntityType("apg_glass_tianjin_trt", BlockAPGGlassTianjinTRT.BlockEntity::new, BlockList.APG_GLASS_TIANJIN_TRT_BLOCK::get);
     BlockEntityTypeRegistryObject<BlockSecurityCheckSign.BlockEntity> SECURITY_CHECK_SIGN = Registry.registerBlockEntityType("security_check_sign", BlockSecurityCheckSign.BlockEntity::new, BlockList.SECURITY_CHECK_SIGN::get);
+    BlockEntityTypeRegistryObject<BlockStationNavigator.BlockEntity> STATION_NAVIGATOR_3 = Registry.registerBlockEntityType("station_navigator_3", (pos, state) -> new BlockStationNavigator.BlockEntity(3, pos, state), BlockList.STATION_NAVIGATOR_3::get);
+    BlockEntityTypeRegistryObject<BlockStationNavigator.BlockEntity> STATION_NAVIGATOR_4 = Registry.registerBlockEntityType("station_navigator_4", (pos, state) -> new BlockStationNavigator.BlockEntity(4, pos, state), BlockList.STATION_NAVIGATOR_4::get);
+    BlockEntityTypeRegistryObject<BlockStationNavigator.BlockEntity> STATION_NAVIGATOR_5 = Registry.registerBlockEntityType("station_navigator_5", (pos, state) -> new BlockStationNavigator.BlockEntity(5, pos, state), BlockList.STATION_NAVIGATOR_5::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

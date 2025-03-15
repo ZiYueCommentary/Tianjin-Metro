@@ -21,7 +21,6 @@ public interface Filters
     Filter TIANJIN_SIGNS = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_signs"), () -> new ItemStack(new ItemConvertible(BlockList.STATION_NAME_SIGN_1.get().data)));
     Filter TIANJIN_GATES = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_gates"), () -> new ItemStack(new ItemConvertible(ItemList.PSD_DOOR_TIANJIN.get().data)));
     Filter TIANJIN_DECORATION = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_decoration"), () -> new ItemStack(new ItemConvertible(BlockList.LOGO.get().data)));
-    Filter TIANJIN_CEILINGS = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_ceilings"), () -> new ItemStack(new ItemConvertible(BlockList.STATION_COLOR_CEILING.get().data)));
     Filter TIANJIN_RAILWAY_SIGNS = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_railway_signs"), () -> new ItemStack(new ItemConvertible(BlockList.RAILWAY_SIGN_TIANJIN_3_EVEN.get().data)));
     //Filter TIANJIN_UNCATEGORIZED = FilterBuilder.registerUncategorizedItemsFilter(CreativeModeTabs.TIANJIN_METRO);
 
@@ -47,10 +46,9 @@ public interface Filters
                 //APG_DOOR_TIANJIN_TRT, APG_GLASS_TIANJIN_TRT, APG_GLASS_END_TIANJIN_TRT
         );
         FilterBuilder.addBlocks(Filters.TIANJIN_DECORATION,
-                LOGO, APG_CORNER, TIME_DISPLAY, EMERGENCY_EXIT_SIGN, SERVICE_CORRIDOR_SIGN, BENCH, METAL_DETECTION_DOOR, METAL_POLE_BMT, SECURITY_CHECK_SIGN);
-        FilterBuilder.addBlocks(Filters.TIANJIN_CEILINGS,
-                CEILING_NOT_LIT,
-                STATION_COLOR_CEILING, STATION_COLOR_CEILING_LIGHT, STATION_COLOR_CEILING_NO_LIGHT, STATION_COLOR_CEILING_NOT_LIT);
+                CEILING_NOT_LIT, STATION_COLOR_CEILING, STATION_COLOR_CEILING_LIGHT, STATION_COLOR_CEILING_NO_LIGHT, STATION_COLOR_CEILING_NOT_LIT,
+                LOGO, APG_CORNER, TIME_DISPLAY, EMERGENCY_EXIT_SIGN, SERVICE_CORRIDOR_SIGN, BENCH, METAL_DETECTION_DOOR, METAL_POLE_BMT, SECURITY_CHECK_SIGN,
+                STATION_NAVIGATOR_POLE, STATION_NAVIGATOR_3, STATION_NAVIGATOR_4, STATION_NAVIGATOR_5);
         FilterBuilder.addBlocks(Filters.TIANJIN_RAILWAY_SIGNS,
                 RAILWAY_SIGN_WALL_4, RAILWAY_SIGN_WALL_6, RAILWAY_SIGN_WALL_8, RAILWAY_SIGN_WALL_10,
                 RAILWAY_SIGN_WALL_DOUBLE_4, RAILWAY_SIGN_WALL_DOUBLE_6, RAILWAY_SIGN_WALL_DOUBLE_8, RAILWAY_SIGN_WALL_DOUBLE_10,
