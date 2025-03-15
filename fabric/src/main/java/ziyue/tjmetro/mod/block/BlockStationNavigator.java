@@ -24,6 +24,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * A railway-sign-like block.
+ *
+ * @author ZiYueCommentary
+ * @see BlockEntity
+ * @see BlockRailwaySignBase
+ * @since 1.0.0-beta-4
+ */
+
 public class BlockStationNavigator extends BlockRailwaySignBase
 {
     public static final BooleanProperty ARROW_LEFT = BooleanProperty.of("arrow_left");
@@ -47,6 +56,8 @@ public class BlockStationNavigator extends BlockRailwaySignBase
 
     @Override
     public BlockState getPlacementState2(ItemPlacementContext ctx) {
+        // This block should take three blocks, no matter how longs it is.
+        // Navigator, which takes more blocks, is too long.
         final Direction facing = ctx.getPlayerFacing();
         if (IBlock.isReplaceable(ctx, facing.rotateYClockwise(), 2) && IBlock.isReplaceable(ctx, facing.rotateYCounterclockwise(), 2)) {
             final World world = ctx.getWorld();
@@ -125,6 +136,11 @@ public class BlockStationNavigator extends BlockRailwaySignBase
             return null;
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderStationNavigator
+     * @since 1.0.0-beta-4
+     */
     public static class BlockEntity extends BlockEntityExtension
     {
         public final int length;

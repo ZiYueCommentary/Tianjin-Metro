@@ -14,7 +14,6 @@ import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
-import ziyue.tjmetro.mod.block.BlockStationNamePlate;
 import ziyue.tjmetro.mod.block.BlockStationNavigator;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;
 
@@ -22,8 +21,8 @@ import static ziyue.tjmetro.mod.block.BlockStationNavigator.ARROW_LEFT;
 
 /**
  * @author ZiYueCommentary
- * @see BlockStationNamePlate
- * @since 1.0.0-beta-1
+ * @see BlockStationNavigator
+ * @since 1.0.0-beta-4
  */
 
 public class RenderStationNavigator<T extends BlockStationNavigator.BlockEntity> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing

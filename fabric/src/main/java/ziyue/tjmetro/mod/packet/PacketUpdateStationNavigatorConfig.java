@@ -12,11 +12,8 @@ import ziyue.tjmetro.mod.block.BlockStationNavigator;
 
 /**
  * @author ZiYueCommentary
- * @see ziyue.tjmetro.mod.block.BlockRailwaySignTianjinBMT.BlockEntity
- * @see ziyue.tjmetro.mod.block.BlockRailwaySignTianjin.BlockEntity
- * @see ziyue.tjmetro.mod.block.BlockRailwaySignWall.BlockEntity
- * @see ziyue.tjmetro.mod.block.BlockRailwaySignWallBig.BlockEntity
- * @since 1.0.0-beta-1
+ * @see BlockStationNavigator.BlockEntity
+ * @since 1.0.0-beta-4
  */
 
 public final class PacketUpdateStationNavigatorConfig extends PacketHandler
