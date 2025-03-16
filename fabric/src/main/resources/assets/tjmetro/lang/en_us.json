@@ -62,6 +62,7 @@
     "block.tjmetro.security_check_sign": "\"Security Check\" Sign",
     "block.tjmetro.station_navigator_pole": "Station Navigator Pole",
     "block.tjmetro.station_navigator": "Station Navigator",
+    "block.tjmetro.station_name_projector": "Station Name Projector (Line 1)",
 
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
@@ -139,6 +140,7 @@
     "tooltip.tjmetro.use_tianjin_metro_font": "Render texts with mod font in some blocks.",
     "tooltip.tjmetro.station_navigator": "Place this block above \"Station Navigator Pole\".",
     "tooltip.tjmetro.station_navigator_pole": "Place this block below \"Station Navigator\".",
+    "tooltip.tjmetro.station_name_projector": "A big-red-station-name projector. Use wrench or brush to change its scale.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
 
     "footer.tjmetro.sources": "Wanna see the source code?",

@@ -110,6 +110,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAVIGATOR_3, RenderStationNavigator::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAVIGATOR_4, RenderStationNavigator::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAVIGATOR_5, RenderStationNavigator::new);
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_PROJECTOR, RenderStationNameProjector::new);
 
         RegistryClient.registerEntityRenderer(EntityTypes.SEAT, RenderSeat::new);
 

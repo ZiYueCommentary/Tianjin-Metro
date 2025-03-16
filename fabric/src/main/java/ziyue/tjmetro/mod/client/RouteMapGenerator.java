@@ -1275,6 +1275,27 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
+    public static NativeImage generateStationNameProjector(String stationName, float aspectRatio) {
+        if (aspectRatio <= 0) return null;
+
+        try {
+            final int height = scale * 2;
+            final int width = Math.round(height * aspectRatio);
+            final int padding = scale / 16;
+            final DynamicTextureCache.Text text = DynamicTextureCache.instance.getText(stationName, width - padding * 2, height - padding * 2, fontSizeBig * 2, fontSizeSmall * 2, padding, HorizontalAlignment.CENTER);
+
+            final NativeImage nativeImage = new NativeImage(NativeImageFormat.getAbgrMapped(), width, height, false);
+            nativeImage.fillRect(0, 0, width, height, 0);
+            drawString(nativeImage, text, width / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
+
+
     protected static void setup(ObjectArrayList<Int2ObjectAVLTreeMap<StationPosition>> stationPositions, ObjectArrayList<LongArrayList> stationsIdLists, int[] colorIndices, float[] bounds, boolean passed, boolean reverse) {
         final int passedMultiplier = passed ? -1 : 1;
         final int reverseMultiplier = reverse ? -1 : 1;

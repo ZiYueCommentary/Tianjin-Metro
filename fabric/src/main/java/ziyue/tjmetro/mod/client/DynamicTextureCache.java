@@ -144,6 +144,10 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_station_navigator_%s_%s_%s_%s", System.identityHashCode(selectedRoutes), arrowLeft, backgroundColor, aspectRatio), () -> RouteMapGenerator.generateStationNavigator(selectedRoutes, arrowLeft, backgroundColor, aspectRatio), DefaultRenderingColor.TRANSPARENT);
     }
 
+    public DynamicResource getStationNameProjector(String stationName, float aspectRatio) {
+        return getResource(String.format("station_name_%s_%s", stationName, aspectRatio), () -> RouteMapGenerator.generateStationNameProjector(stationName, aspectRatio), DefaultRenderingColor.TRANSPARENT);
+    }
+
 
     public Text getText(String text, int fontSizeCjk, int fontSize) {
         return getText(text, Integer.MAX_VALUE, (int) (Math.max(fontSizeCjk, fontSize) * LINE_HEIGHT_MULTIPLIER), fontSizeCjk, fontSize, 0, null);

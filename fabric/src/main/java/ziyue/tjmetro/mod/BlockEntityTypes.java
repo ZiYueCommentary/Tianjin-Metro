@@ -81,6 +81,7 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockStationNavigator.BlockEntity> STATION_NAVIGATOR_3 = Registry.registerBlockEntityType("station_navigator_3", (pos, state) -> new BlockStationNavigator.BlockEntity(3, pos, state), BlockList.STATION_NAVIGATOR_3::get);
     BlockEntityTypeRegistryObject<BlockStationNavigator.BlockEntity> STATION_NAVIGATOR_4 = Registry.registerBlockEntityType("station_navigator_4", (pos, state) -> new BlockStationNavigator.BlockEntity(4, pos, state), BlockList.STATION_NAVIGATOR_4::get);
     BlockEntityTypeRegistryObject<BlockStationNavigator.BlockEntity> STATION_NAVIGATOR_5 = Registry.registerBlockEntityType("station_navigator_5", (pos, state) -> new BlockStationNavigator.BlockEntity(5, pos, state), BlockList.STATION_NAVIGATOR_5::get);
+    BlockEntityTypeRegistryObject<BlockStationNameProjector.BlockEntity> STATION_NAME_PROJECTOR = Registry.registerBlockEntityType("station_name_projector", BlockStationNameProjector.BlockEntity::new, BlockList.STATION_NAME_PROJECTOR::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

@@ -138,6 +138,7 @@ public interface BlockList
     BlockRegistryObject STATION_NAVIGATOR_4 = Registry.registerBlockWithBlockItem("station_navigator_4", () -> new Block(new BlockStationNavigator(4)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAVIGATOR_5 = Registry.registerBlockWithBlockItem("station_navigator_5", () -> new Block(new BlockStationNavigator(5)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAVIGATOR_MIDDLE = Registry.registerBlock("station_navigator_middle", () -> new Block(new BlockStationNavigator(0)));
+    BlockRegistryObject STATION_NAME_PROJECTOR = Registry.registerBlockWithBlockItem("station_name_projector", () -> new Block(new BlockStationNameProjector()), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants
