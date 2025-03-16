@@ -31,7 +31,7 @@ public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianj
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         return IBlock.checkHoldingItem(world, player, item -> {
             if (item.data == ItemList.WRENCH.get().data) {
-                if (BlockList.PSD_DOOR_TIANJIN_BLOCK.get().data == world.getBlockState(pos.down()).getBlock().data) {
+                if (IBlock.getStatePropertySafe(state, PERSISTENT) == EnumPersistent.ARROW) {
                     world.setBlockState(pos, IBlockExtension.cycleBlockState(state, STYLE, value -> value != EnumPSDType.NEXT_STATION));
                     BlockPos pos1 = (IBlock.getStatePropertySafe(state, SIDE_EXTENDED) == EnumSide.LEFT) ? pos.offset(IBlock.getStatePropertySafe(state, FACING).rotateYClockwise()) : pos.offset(IBlock.getStatePropertySafe(state, FACING).rotateYCounterclockwise());
                     world.setBlockState(pos1, IBlockExtension.cycleBlockState(world.getBlockState(pos1), STYLE, value -> value != EnumPSDType.NEXT_STATION));
@@ -41,7 +41,7 @@ public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianj
                         EnumPSDType style = IBlock.getStatePropertySafe(world, pos, STYLE);
                         BlockPos offsetPos = pos;
                         for (; ; ) {
-                            if (BlockList.PSD_DOOR_TIANJIN_BLOCK.get().data == world.getBlockState(offsetPos.down()).getBlock().data) {
+                            if (IBlock.getStatePropertySafe(world.getBlockState(offsetPos), PERSISTENT) == EnumPersistent.ARROW) {
                                 offsetPos = offsetPos.offset(direction);
                                 style = (style == EnumPSDType.DEFAULT) ? EnumPSDType.NEXT_STATION : EnumPSDType.DEFAULT;
                             } else if (this == world.getBlockState(offsetPos).getBlock().data) {
