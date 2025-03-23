@@ -180,5 +180,7 @@
     "tooltip.tjmetro.station_navigator": "将此方块放在“站外导向标志柱”上。",
     "tooltip.tjmetro.station_navigator_pole": "将此方块放在“站外导向标志”下。",
     "tooltip.tjmetro.station_name_projector": "一个大型红色站名投影仪。使用扳手或刷子可以改变大小。",
-    "block.tjmetro.station_name_projector": "站名投影仪（1号线）"
+    "block.tjmetro.station_name_projector": "站名投影仪（1号线）",
+    "block.tjmetro.psd_tianjin_jinjing": "高站台门（天津、津静线）",
+    "gui.tjmetro.platform": "站台|Platform"
 }
