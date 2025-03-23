@@ -95,7 +95,7 @@ public interface BlockList
     BlockRegistryObject PSD_DOOR_TIANJIN_BLOCK = Registry.registerBlock("psd_door_tianjin", () -> new Block(new BlockPSDDoorTianjin()));
     BlockRegistryObject PSD_GLASS_TIANJIN_BLOCK = Registry.registerBlock("psd_glass_tianjin", () -> new Block(new BlockPSDGlassTianjin()));
     BlockRegistryObject PSD_GLASS_END_TIANJIN_BLOCK = Registry.registerBlock("psd_glass_end_tianjin", () -> new Block(new BlockPSDGlassEndTianjin()));
-    BlockRegistryObject PSD_TOP_TIANJIN = Registry.registerBlock("psd_top_tianjin", () -> new Block(new BlockPSDTopTianjin()));
+    BlockRegistryObject PSD_TOP_TIANJIN = Registry.registerBlock("psd_top_tianjin", () -> new Block(new BlockPSDTopTianjin(false)));
     BlockRegistryObject METAL_DETECTION_DOOR = Registry.registerBlockWithBlockItem("metal_detection_door", () -> new Block(new BlockMetalDetectionDoor()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject HIGH_SPEED_REPEATER = Registry.registerBlockWithBlockItem("high_speed_repeater", () -> new Block(new BlockHighSpeedRepeater()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAME_WALL_LEGACY = Registry.registerBlockWithBlockItem("station_name_wall_legacy", () -> new Block(new BlockStationNameWallLegacy()), CreativeModeTabs.TIANJIN_METRO);
@@ -139,6 +139,10 @@ public interface BlockList
     BlockRegistryObject STATION_NAVIGATOR_5 = Registry.registerBlockWithBlockItem("station_navigator_5", () -> new Block(new BlockStationNavigator(5)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAVIGATOR_MIDDLE = Registry.registerBlock("station_navigator_middle", () -> new Block(new BlockStationNavigator(0)));
     BlockRegistryObject STATION_NAME_PROJECTOR = Registry.registerBlockWithBlockItem("station_name_projector", () -> new Block(new BlockStationNameProjector()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PSD_DOOR_TIANJIN_JINJING_BLOCK = Registry.registerBlock("psd_door_tianjin_jinjing", () -> new Block(new BlockPSDDoorTianjinJinjing()));
+    BlockRegistryObject PSD_GLASS_TIANJIN_JINJING_BLOCK = Registry.registerBlock("psd_glass_tianjin_jinjing", () -> new Block(new BlockPSDGlassTianjinJinjing()));
+    BlockRegistryObject PSD_GLASS_END_TIANJIN_JINJING_BLOCK = Registry.registerBlock("psd_glass_end_tianjin_jinjing", () -> new Block(new BlockPSDGlassEndTianjinJinjing()));
+    BlockRegistryObject PSD_TOP_TIANJIN_JINJING = Registry.registerBlock("psd_top_tianjin_jinjing", () -> new Block(new BlockPSDTopTianjin(true)));
 
     static void registerBlocks() {
         // Calling this class to initialize constants

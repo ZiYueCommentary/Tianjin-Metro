@@ -15,6 +15,7 @@ import org.mtr.mapping.holder.MathHelper;
 import org.mtr.mapping.holder.NativeImage;
 import org.mtr.mapping.holder.NativeImageFormat;
 import org.mtr.mapping.mapper.ResourceManagerHelper;
+import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.Init;
 import org.mtr.mod.block.BlockRailwaySign;
 import org.mtr.mod.client.MinecraftClientData;
@@ -373,6 +374,131 @@ public class RouteMapGenerator implements IGui
                     if (arrowSizeAndPadding > 0)
                         drawResource(nativeImage, ARROW_RESOURCE, leftSize, padding, tileSize, tileSize, false, 0, 1, textColor, false);
                     drawString(nativeImage, textDestination, leftSize + arrowSizeAndPadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                    if (renderNextStation) {
+                        drawString(nativeImage, textNextStations, renderWidth - leftSize + tilePadding, height, HorizontalAlignment.RIGHT, VerticalAlignment.BOTTOM, 0, textColor, false);
+                        drawString(nativeImage, textNextStationSign, renderWidth - leftSize - textNextStations.width() + tilePadding, height, HorizontalAlignment.RIGHT, VerticalAlignment.BOTTOM, 0, textColor, false);
+                    }
+                }
+            }
+
+            if (transparentColor != 0) {
+                clearColor(nativeImage, invertColor(transparentColor));
+            }
+
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
+
+    public static NativeImage generateNextStationJinjing(long platformId, int arrowDirection, float paddingScale, float aspectRatio, int backgroundColor, int textColor, int transparentColor) {
+        if (aspectRatio <= 0) return null;
+
+        try {
+            ObjectArrayList<String> destinations = new ObjectArrayList<>();
+            ObjectArrayList<String> nextStations = new ObjectArrayList<>();
+            getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                final String tempMarker;
+                switch (simplifiedRoute.getCircularState()) {
+                    case CLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                        break;
+                    case ANTICLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                        break;
+                    default:
+                        tempMarker = "";
+                }
+
+                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+            });
+            final boolean isTerminating = destinations.isEmpty();
+
+            final int height = scale;
+            final int width = Math.round(height * aspectRatio);
+            final int padding = Math.round(height * paddingScale);
+            final int tileSize = height - padding * 2;
+
+            if (width <= 0 || height <= 0) return null;
+
+            final int tilePadding = tileSize / 4;
+            final int leftSize = tileSize + tilePadding;
+            final NativeImage nativeImage;
+            Platform platform = MinecraftClientData.getInstance().platformIdMap.get(platformId);
+            final DynamicTextureCache.Text platformName = DynamicTextureCache.instance.getText(platform.getName(), width, tileSize, tileSize * 2, tileSize * 2, tilePadding, arrowDirection == 2 ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
+            final DynamicTextureCache.Text platformSign = DynamicTextureCache.instance.getText(TextHelper.translatable("gui.tjmetro.platform").getString(), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, arrowDirection == 2 ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
+            final int nonNextStationWidth = leftSize + platformName.width() + platformSign.width() + leftSize * 2;
+
+            if (isTerminating) {
+                final DynamicTextureCache.Text destination = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize * 3, tileSize * 3 / 2, tilePadding, HorizontalAlignment.CENTER);
+                final int imageWidth = Math.max(nonNextStationWidth + destination.width() + leftSize, width);
+                nativeImage = new NativeImage(NativeImageFormat.RGBA, imageWidth, height, false);
+                nativeImage.fillRect(0, 0, imageWidth, height, invertColor(backgroundColor));
+                if (arrowDirection == 2) {
+                    drawString(nativeImage, platformName, imageWidth - leftSize - platformName.width(), height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, textColor, false);
+                    drawString(nativeImage, platformSign, imageWidth - leftSize - platformName.width(), height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, textColor, false);
+                    nativeImage.fillRect(imageWidth - leftSize - platformName.width() - platformSign.width() - leftSize, 0, padding / 6, height, ARGB_BLACK);
+                    drawString(nativeImage, destination, imageWidth - nonNextStationWidth - (imageWidth - nonNextStationWidth - leftSize) / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, textColor, false);
+                } else {
+                    drawString(nativeImage, platformName, leftSize + platformName.width(), height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, textColor, false);
+                    drawString(nativeImage, platformSign, leftSize + platformName.width(), height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, textColor, false);
+                    nativeImage.fillRect(leftSize + platformName.width() + platformSign.width() + leftSize, 0, padding / 6, height, ARGB_BLACK);
+                    drawString(nativeImage, destination, nonNextStationWidth + (imageWidth - nonNextStationWidth - leftSize) / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, textColor, false);
+                }
+            } else {
+                final int arrowSizeAndPadding;
+                switch (arrowDirection) {
+                    case 0:
+                    case 3:
+                        arrowSizeAndPadding = -tilePadding;
+                        break;
+                    default:
+                        arrowSizeAndPadding = tileSize;
+                }
+                String nextStationString = IGui.mergeStations(nextStations);
+                String destinationString = IGui.mergeStations(destinations);
+                final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
+                final boolean isAnticlockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE);
+                destinationString = destinationString.replace(TEMP_CIRCULAR_MARKER_CLOCKWISE, "").replace(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE, "");
+                if (!destinationString.isEmpty()) {
+                    if (isClockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.clockwise_via_cjk", "gui.mtr.clockwise_via", 1, destinationString);
+                    } else if (isAnticlockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
+                    } else {
+                        destinationString = IGuiExtension.insertTranslation("gui.tjmetro.bound_for_bmt_cjk", "gui.tjmetro.bound_for", 1, destinationString);
+                    }
+                }
+
+                final DynamicTextureCache.Text textDestination = DynamicTextureCache.instance.getText(destinationString, width - leftSize - padding * 2, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), tileSize, tileSize / 2, tilePadding, (arrowDirection == 2) ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
+                final DynamicTextureCache.Text textNextStations = DynamicTextureCache.instance.getText(nextStationString, width - leftSize - padding * 2, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, tilePadding, (arrowDirection == 2) ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
+                final DynamicTextureCache.Text textNextStationSign = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.next_station_cjk", "gui.tjmetro.next_station"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), fontSizeBig, fontSizeSmall, tilePadding, HorizontalAlignment.CENTER);
+                int renderWidth = Math.max(width, nonNextStationWidth + arrowSizeAndPadding + textDestination.width() + textNextStationSign.width() + tilePadding + textNextStations.width() + leftSize);
+                final boolean renderNextStation = (width - leftSize - arrowSizeAndPadding - textDestination.width() - leftSize) > textNextStations.width();
+                if (!renderNextStation)
+                    renderWidth = Math.max(width, renderWidth - textNextStations.width() - tilePadding - textNextStationSign.width());
+                nativeImage = new NativeImage(NativeImageFormat.RGBA, renderWidth, height, false);
+                nativeImage.fillRect(0, 0, renderWidth, height, invertColor(backgroundColor));
+                if (arrowDirection == 2) {
+                    drawString(nativeImage, platformName, renderWidth - leftSize - platformName.width(), height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, textColor, false);
+                    drawString(nativeImage, platformSign, renderWidth - leftSize - platformName.width(), height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, textColor, false);
+                    nativeImage.fillRect(renderWidth - leftSize - platformName.width() - platformSign.width() - leftSize, 0, padding / 6, height, ARGB_BLACK);
+                    drawResource(nativeImage, ARROW_RESOURCE, renderWidth - nonNextStationWidth - tileSize, padding, tileSize, tileSize, true, 0, 1, textColor, false);
+                    drawString(nativeImage, textDestination, renderWidth - nonNextStationWidth - arrowSizeAndPadding, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                    if (renderNextStation) {
+                        drawString(nativeImage, textNextStationSign, leftSize - tilePadding, height, HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, textColor, false);
+                        drawString(nativeImage, textNextStations, leftSize - tilePadding + textNextStationSign.width(), height, HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, textColor, false);
+                    }
+                } else {
+                    if (arrowSizeAndPadding > 0)
+                        drawResource(nativeImage, ARROW_RESOURCE, nonNextStationWidth, padding, tileSize, tileSize, false, 0, 1, textColor, false);
+                    drawString(nativeImage, platformName, leftSize + platformName.width(), height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, textColor, false);
+                    drawString(nativeImage, platformSign, leftSize + platformName.width(), height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, textColor, false);
+                    nativeImage.fillRect(leftSize + platformName.width() + platformSign.width() + leftSize, 0, padding / 6, height, ARGB_BLACK);
+                    drawString(nativeImage, textDestination, nonNextStationWidth + arrowSizeAndPadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, textColor, false);
                     if (renderNextStation) {
                         drawString(nativeImage, textNextStations, renderWidth - leftSize + tilePadding, height, HorizontalAlignment.RIGHT, VerticalAlignment.BOTTOM, 0, textColor, false);
                         drawString(nativeImage, textNextStationSign, renderWidth - leftSize - textNextStations.width() + tilePadding, height, HorizontalAlignment.RIGHT, VerticalAlignment.BOTTOM, 0, textColor, false);

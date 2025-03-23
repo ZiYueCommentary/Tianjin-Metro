@@ -63,6 +63,7 @@
     "block.tjmetro.station_navigator_pole": "Station Navigator Pole",
     "block.tjmetro.station_navigator": "Station Navigator",
     "block.tjmetro.station_name_projector": "Station Name Projector (Line 1)",
+    "block.tjmetro.psd_tianjin_jinjing": "Platform Screen Doors (Tianjin, Jinjing Line)",
 
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
@@ -87,6 +88,7 @@
     "gui.tjmetro.cross_line_train_to_cjk": "跨线车往%s",
     "gui.tjmetro.cross_line_train_to": "Cross Line Train To %s",
     "gui.tjmetro.accept_security_check_cjk": "请您接受安检",
+    "gui.tjmetro.platform": "站台|Platform",
 
     "sign.tjmetro.tianjin_metro": "天津地铁|Tianjin Metro",
     "sign.tjmetro.train": "列车|Train",

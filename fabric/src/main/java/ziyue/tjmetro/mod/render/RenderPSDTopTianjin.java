@@ -80,7 +80,11 @@ public class RenderPSDTopTianjin extends RenderRouteBase<BlockPSDTopTianjin.Bloc
                     }
                 } else {
                     if (doorType == BlockPSDTopTianjin.EnumPSDType.NEXT_STATION) {
-                        identifier = DynamicTextureCache.instance.getNextStation(platformId, arrowDirection, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
+                        if (entity.jinjing) {
+                            identifier = DynamicTextureCache.instance.getNextStationJinjing(platformId, arrowDirection, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
+                        } else {
+                            identifier = DynamicTextureCache.instance.getNextStation(platformId, arrowDirection, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
+                        }
                     } else {
                         identifier = DynamicTextureCache.instance.getRouteMap(platformId, false, arrowDirection == 2, width / height, transparentWhite).identifier;
                     }

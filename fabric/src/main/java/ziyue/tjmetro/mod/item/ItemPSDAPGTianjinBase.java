@@ -6,10 +6,7 @@ import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mapping.registry.BlockRegistryObject;
 import org.mtr.mod.block.*;
 import ziyue.tjmetro.mod.block.*;
-import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
-import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinBMT;
-import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
-import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjinBMT;
+import ziyue.tjmetro.mod.block.base.*;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nonnull;
@@ -68,7 +65,7 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
                 }
             }
             if (this.block.data instanceof BlockFlagPSDTianjin) {
-                world.setBlockState(newPos.up(2), BlockPSDTopTianjin.getActualState(WorldAccess.cast(world), newPos.up(2)).with(new Property<>(BlockPSDTopTianjin.STYLE.data), BlockPSDTopTianjin.EnumPSDType.STATION_NAME));
+                world.setBlockState(newPos.up(2), BlockPSDTopTianjin.getActualState(WorldAccess.cast(world), newPos.up(2), this.block.data instanceof BlockFlagPSDTianjinJinjing).with(new Property<>(BlockPSDTopTianjin.STYLE.data), BlockPSDTopTianjin.EnumPSDType.STATION_NAME));
             } else if (this.block.data instanceof BlockFlagPSDTianjinBMT) {
                 world.setBlockState(newPos.up(2), BlockPSDTopTianjinBMT.getActualState(WorldAccess.cast(world), newPos.up(2)).with(new Property<>(BlockPSDTopTianjinBMT.STYLE.data), BlockPSDTopTianjinBMT.EnumPSDType.BMT));
             }
@@ -99,7 +96,9 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
     @Nonnull
     @Override
     public String getTranslationKey2() {
-        if (this.block.data instanceof BlockFlagPSDTianjin) {
+        if (this.block.data instanceof BlockFlagPSDTianjinJinjing) {
+            return "block.tjmetro.psd_tianjin_jinjing";
+        } else if (this.block.data instanceof BlockFlagPSDTianjin) {
             return "block.tjmetro.psd_tianjin";
         } else if (this.block.data instanceof BlockFlagPSDTianjinBMT) {
             return "block.tjmetro.psd_tianjin_bmt";
