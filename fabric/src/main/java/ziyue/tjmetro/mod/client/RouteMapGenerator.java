@@ -1346,7 +1346,6 @@ public class RouteMapGenerator implements IGui
     public static NativeImage generateStationNavigator(LongAVLTreeSet selectedRoutes, boolean arrowLeft, int backgroundColor, float aspectRatio) {
         if (aspectRatio <= 0) return null;
 
-        System.out.println("generating...");
         try {
             final int size = scale * 2;
             int width = Math.round(size * aspectRatio);
@@ -1359,7 +1358,7 @@ public class RouteMapGenerator implements IGui
             totalWidth.addAndGet(iconOffset);
             selectedRoutes.forEach(routeId -> {
                 final SimplifiedRoute route = MinecraftClientData.getInstance().simplifiedRoutes.stream().filter(route1 -> route1.getId() == routeId).findFirst().get();
-                final DynamicTextureCache.Text routeName = DynamicTextureCache.instance.getText(route.getName(), Integer.MAX_VALUE, iconSize, (int) (fontSizeBig * 2.5F), (int) (fontSizeSmall * 2.5F), padding, arrowLeft ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
+                final DynamicTextureCache.Text routeName = DynamicTextureCache.instance.getText(route.getName().split("\\|\\|")[0], Integer.MAX_VALUE, iconSize, (int) (fontSizeBig * 2.5F), (int) (fontSizeSmall * 2.5F), padding, arrowLeft ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
                 routes.add(new ObjectIntImmutablePair<>(routeName, route.getColor()));
                 totalWidth.addAndGet(padding * 5 + routeName.width());
             });
