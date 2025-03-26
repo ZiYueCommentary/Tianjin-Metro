@@ -46,7 +46,7 @@ public class BlockPSDTopTianjin extends BlockPSDTop implements BlockFlagPSDTianj
                         EnumPSDType style = IBlock.getStatePropertySafe(world, pos, STYLE);
                         BlockPos offsetPos = pos;
                         for (; ; ) {
-                            if (IBlock.getStatePropertySafe(world.getBlockState(offsetPos), PERSISTENT) == EnumPersistent.ARROW) {
+                            if ((IBlock.getStatePropertySafe(world.getBlockState(offsetPos), PERSISTENT) == EnumPersistent.ARROW) || (world.getBlockState(offsetPos.down()).getBlock().data instanceof BlockPSDDoorTianjin)) {
                                 offsetPos = offsetPos.offset(direction);
                                 style = (style == EnumPSDType.DEFAULT) ? EnumPSDType.NEXT_STATION : EnumPSDType.DEFAULT;
                             } else if (this == world.getBlockState(offsetPos).getBlock().data) {
