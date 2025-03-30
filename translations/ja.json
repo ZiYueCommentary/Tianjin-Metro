@@ -165,5 +165,14 @@
     "sign.tjmetro.customer_service_center": "駅務室|Customer Service Center",
     "sign.tjmetro.baby_care": "授乳室|Baby Care",
     "sign.tjmetro.police_office": "交番|Police Office",
-    "sign.tjmetro.outbound_transfer": "改札外乗換|Outbound Transfer"
+    "sign.tjmetro.outbound_transfer": "改札外乗換|Outbound Transfer",
+    "tooltip.tjmetro.station_navigator": "このブロックを「自立式駅名標の支柱」の上に配置します。",
+    "tooltip.tjmetro.station_navigator_pole": "このブロックを「自立式駅名標」の上に配置します。",
+    "tooltip.tjmetro.station_name_projector": "大きくて赤い文字の駅名プロジェクター。レンチまたはブラシを使用して大きさを変更します。",
+    "block.tjmetro.station_navigator_pole": "自立式駅名標の支柱",
+    "block.tjmetro.station_navigator": "自立式駅名標",
+    "block.tjmetro.station_name_projector": "駅名標プロジェクター (1号線)",
+    "block.tjmetro.psd_tianjin_jinjing": "フルスクリーンホームドア(天津地下鉄津静線)",
+    "gui.tjmetro.platform": "ホーム|Platform",
+    "config.tjmetro.rotated_station_name": "フルスクリーンホームドア上の駅名を回転する(天津地下鉄)"
 }
