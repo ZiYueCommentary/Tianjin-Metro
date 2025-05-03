@@ -1,3 +1,14 @@
 {
-    "modmenu.nameTranslation.tjmetro": "Tianjin Mêtro"
+    "modmenu.nameTranslation.tjmetro": "Tianjin Mêtro",
+    "modmenu.descriptionTranslation.tjmetro": "Um pequeno mod para Minecraft Transit Railway.",
+    "itemGroup.tjmetro.tianjin_metro": "Metro de Tianjin",
+    "item.tjmetro.wrench": "Chave inglesa",
+    "block.tjmetro.rolling": "Persiana de  enrolar",
+    "block.tjmetro.logo": "Logotipo do metrô de Tianjin",
+    "block.tjmetro.station_name_sign_1": "Placa com o nome da estação",
+    "block.tjmetro.station_name_sign_2": "Placa com o nome da estação",
+    "block.tjmetro.railway_sign_tianjin": "Placa ferroviária (Tianjin)",
+    "block.tjmetro.railway_sign_tianjin_bmt": "Placa ferroviária (Tianjin, Linha 9)",
+    "block.tjmetro.railway_sign_tianjin_double": "Placa ferroviária (Tianjin, dupla)",
+    "block.tjmetro.railway_sign_tianjin_pole": "Poste de sinalização ferroviária (Tianjin)"
 }
