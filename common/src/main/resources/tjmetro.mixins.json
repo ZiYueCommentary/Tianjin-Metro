@@ -8,7 +8,6 @@
 		"CustomResourcesMixin",
 		"FallingBlockMixin",
 		"FinishInitializationMixin",
-		"MinecraftServerMixin",
 		"PacketTrainDataGuiClientMixin"
 	],
 	"injectors": {
@@ -16,8 +15,6 @@
 	},
 	"client": [
 		"ConfigScreenMixin",
-		"EntityRenderDispatcherMixin",
-		"MinecartRendererMixin",
 		"RailwaySignScreenMixin",
 		"RenderRailwaySignMixin"
 	],

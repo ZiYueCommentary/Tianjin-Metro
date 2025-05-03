@@ -3,6 +3,7 @@ package ziyue.tjmetro.block;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.EntityBlockMapper;
+import mtr.mappings.TickableMapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -10,7 +11,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.entity.TickableBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -89,7 +89,7 @@ public class BlockPlayerDetector extends Block implements SimpleWaterloggedBlock
         return new TileEntityPlayerDetector(pos, state);
     }
 
-    public static class TileEntityPlayerDetector extends BlockEntityMapper implements TickableBlockEntity
+    public static class TileEntityPlayerDetector extends BlockEntityMapper implements TickableMapper
     {
         public TileEntityPlayerDetector(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.PLAYER_DETECTOR_TILE_ENTITY.get(), pos, state);

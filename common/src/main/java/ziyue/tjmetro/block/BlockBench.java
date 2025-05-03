@@ -1,40 +1,24 @@
 package ziyue.tjmetro.block;
 
 import mtr.block.IBlock;
-import mtr.mappings.BlockEntityMapper;
-import mtr.mappings.EntityBlockMapper;
-import mtr.mappings.Text;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.entity.TickableBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import ziyue.tjmetro.BlockEntityTypes;
 import ziyue.tjmetro.BlockList;
-import ziyue.tjmetro.mixin.EntityRenderDispatcherMixin;
-import ziyue.tjmetro.mixin.MinecartRendererMixin;
-import ziyue.tjmetro.mixin.MinecraftServerMixin;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import static mtr.block.IBlock.SIDE_EXTENDED;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
@@ -46,10 +30,10 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
  * @since beta-1
  */
 
-public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlockMapper
+public class BlockBench extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock
 {
-    public static final Set<Minecart> SeatSet = new HashSet<>();
-    public static final String ENTITY_SEAT_NAME = "\r";
+//    public static final Set<Minecart> SeatSet = new HashSet<>();
+//    public static final String ENTITY_SEAT_NAME = "\r";
 
     public BlockBench() {
         this(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.OAK_PLANKS));
@@ -59,16 +43,16 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
         super(properties);
     }
 
-    @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        TileEntityBench entityBench = (TileEntityBench) world.getBlockEntity(pos);
-        if (entityBench.seat == null) {
-            entityBench.ride(world, pos, player);
-            return InteractionResult.SUCCESS;
-        } else {
-            return InteractionResult.FAIL;
-        }
-    }
+//    @Override
+//    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+//        TileEntityBench entityBench = (TileEntityBench) world.getBlockEntity(pos);
+//        if (entityBench.seat == null) {
+//            entityBench.ride(world, pos, player);
+//            return InteractionResult.SUCCESS;
+//        } else {
+//            return InteractionResult.FAIL;
+//        }
+//    }
 
     @Nullable
     @Override
@@ -112,16 +96,17 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
         };
     }
 
-    @Override
-    public BlockEntityMapper createBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new TileEntityBench(blockPos, blockState);
-    }
+//    @Override
+//    public BlockEntityMapper createBlockEntity(BlockPos blockPos, BlockState blockState) {
+//        return new TileEntityBench(blockPos, blockState);
+//    }
 
     @Override
     public FluidState getFluidState(BlockState blockState) {
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 
+    /*
     // It's a very dumb way for sitting down. Waiting for a better implementation.
     public static class TileEntityBench extends BlockEntityMapper implements TickableBlockEntity
     {
@@ -148,7 +133,7 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
          * @see EntityRenderDispatcherMixin
          * @see MinecartRendererMixin
          * @see MinecraftServerMixin
-         */
+         -/
         public void ride(Level world, BlockPos pos, Player player) {
             seat = new Minecart(world, pos.getX() + 0.5, pos.getY() + 0.35, pos.getZ() + 0.5)
             {
@@ -164,4 +149,5 @@ public class BlockBench extends HorizontalDirectionalBlock implements SimpleWate
             player.startRiding(seat);
         }
     }
+    */
 }

@@ -103,7 +103,7 @@ public class BlockStationNamePlate extends HorizontalDirectionalBlock implements
         protected static final String KEY_SELECTED_ID = "selected_id";
 
         public TileEntityStationNamePlate(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.STATION_NAME_PLATE_TILE_ENTITY.get(), pos, state);
+            super(null, pos, state);
             this.yOffset = 0.0F;
             this.zOffset = 0.00625F;
             this.selectedId = -1L;

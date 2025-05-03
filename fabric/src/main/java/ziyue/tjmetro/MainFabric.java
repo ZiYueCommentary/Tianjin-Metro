@@ -2,16 +2,19 @@ package ziyue.tjmetro;
 
 import mtr.RegistryObject;
 import mtr.item.ItemBlockEnchanted;
+import mtr.item.ItemWithCreativeTabBase;
 import mtr.mappings.BlockEntityMapper;
+import mtr.mappings.FabricRegistryUtilities;
+import mtr.mappings.RegistryUtilities;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import ziyue.filters.Filter;
+
+import java.util.Objects;
 
 /**
  * Entry of fabric mod.
@@ -28,27 +31,37 @@ public class MainFabric implements ModInitializer
     }
 
     public static void registerBlock(String path, RegistryObject<Block> block) {
-        Registry.register(Registry.BLOCK, new ResourceLocation(Reference.MOD_ID, path), block.get());
+        Registry.register(RegistryUtilities.registryGetBlock(), new ResourceLocation(Reference.MOD_ID, path), block.get());
     }
 
-    public static void registerBlock(String path, RegistryObject<Block> block, Filter filter) {
-        Registry.register(Registry.BLOCK, new ResourceLocation(Reference.MOD_ID, path), block.get());
-        Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), new BlockItem(block.get(), new FabricItemSettings()));
-        filter.addItems(block.get().asItem());
-    }
-
-    public static void registerItem(String path, RegistryObject<Item> item, Filter filter) {
-        Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), item.get());
-        filter.addItems(item.get());
-    }
-
-    public static void registerEnchantedBlock(String path, RegistryObject<Block> block, Filter filter) {
+    public static void registerBlock(String path, RegistryObject<Block> block, Object filter) {
         registerBlock(path, block);
-        Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, path), new ItemBlockEnchanted(block.get(), new FabricItemSettings()));
-        filter.addItems(block.get().asItem());
+        Block var10002 = block.get();
+        Objects.requireNonNull(TianjinMetro.CREATIVE_MODE_TAB.get());
+        BlockItem blockItem = new BlockItem(var10002, RegistryUtilities.createItemProperties(TianjinMetro.CREATIVE_MODE_TAB::get));
+        Registry.register(RegistryUtilities.registryGetItem(), new ResourceLocation(Reference.MOD_ID, path), blockItem);
+        FabricRegistryUtilities.registerCreativeModeTab(TianjinMetro.CREATIVE_MODE_TAB.get(), blockItem);
+    }
+
+    public static void registerItem(String path, RegistryObject<Item> item, Object filter) {
+        Registry.register(RegistryUtilities.registryGetItem(), new ResourceLocation(Reference.MOD_ID, path), item.get());
+        if (item.get() instanceof ItemWithCreativeTabBase) {
+            FabricRegistryUtilities.registerCreativeModeTab(((ItemWithCreativeTabBase)item.get()).creativeModeTab.get(), item.get());
+        } else if (item.get() instanceof ItemWithCreativeTabBase.ItemPlaceOnWater) {
+            FabricRegistryUtilities.registerCreativeModeTab(((ItemWithCreativeTabBase.ItemPlaceOnWater)item.get()).creativeModeTab.get(), item.get());
+        }
+    }
+
+    public static void registerEnchantedBlock(String path, RegistryObject<Block> block, Object filter) {
+        registerBlock(path, block);
+        Block var10002 = block.get();
+        Objects.requireNonNull(TianjinMetro.CREATIVE_MODE_TAB.get());
+        ItemBlockEnchanted itemBlockEnchanted = new ItemBlockEnchanted(var10002, RegistryUtilities.createItemProperties(TianjinMetro.CREATIVE_MODE_TAB::get));
+        Registry.register(RegistryUtilities.registryGetItem(), new ResourceLocation(Reference.MOD_ID, path), itemBlockEnchanted);
+        FabricRegistryUtilities.registerCreativeModeTab(TianjinMetro.CREATIVE_MODE_TAB.get(), itemBlockEnchanted);
     }
 
     public static void registerBlockEntityType(String path, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>> blockEntityType) {
-        Registry.register(Registry.BLOCK_ENTITY_TYPE, new ResourceLocation(Reference.MOD_ID, path), blockEntityType.get());
+        Registry.register(RegistryUtilities.registryGetBlockEntityType(), new ResourceLocation(Reference.MOD_ID, path), blockEntityType.get());
     }
 }

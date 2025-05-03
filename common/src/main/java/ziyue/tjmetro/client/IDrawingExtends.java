@@ -5,6 +5,7 @@ import mtr.MTR;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.mappings.Text;
+import mtr.mappings.UtilitiesClient;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -102,7 +103,7 @@ public interface IDrawingExtends
             final int b = (int) ((textColor & 0xFF) * shade);
 
             if (immediate != null) {
-                textRenderer.drawInBatch(orderedTexts.get(i), xOffset / extraScale, offset / extraScale, (a << 24) + (r << 16) + (g << 8) + b, shadow, matrices.last().pose(), immediate, false, 0, light);
+                UtilitiesClient.drawInBatch(textRenderer, orderedTexts.get(i), xOffset / extraScale, offset / extraScale, (a << 24) + (r << 16) + (g << 8) + b, shadow, matrices.last().pose(), immediate, 0, light);
             }
 
             if (isCJK) {

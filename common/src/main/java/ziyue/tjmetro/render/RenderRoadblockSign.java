@@ -2,7 +2,7 @@ package ziyue.tjmetro.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
 import mtr.client.IDrawing;
@@ -16,6 +16,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import org.joml.Vector3f;
 import ziyue.tjmetro.client.IDrawingExtends;
 import ziyue.tjmetro.data.IGuiExtends;
 import ziyue.tjmetro.block.BlockRoadblockSign;
@@ -50,8 +51,8 @@ public class RenderRoadblockSign<T extends BlockRoadblockSign.TileEntityRoadBloc
 
         matrices.pushPose();
         matrices.translate(0.5, 0.5 + entity.yOffset, 0.5);
-        matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
-        matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
+        matrices.mulPose(Axis.YP.rotationDegrees(-facing.toYRot()));
+        matrices.mulPose(Axis.ZP.rotationDegrees(180));
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         matrices.translate(0, 0.023, 0.5 - entity.zOffset - SMALL_OFFSET);
         drawString(entity, matrices, vertexConsumers, immediate, IGuiExtends.filterLanguage(entity.content), light);

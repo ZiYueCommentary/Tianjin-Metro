@@ -37,10 +37,10 @@ public class BlockStationNameSign2 extends BlockStationNameSignBase
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if (player.getName().toString().equals("EnderkingIIII")) { // Easter egg #1 lol
-            world.explode(player, DamageSource.MAGIC, new ExplosionDamageCalculator(), player.getX(), player.getY(), player.getZ(), 5f, true, Explosion.BlockInteraction.DESTROY);
-            TianjinMetro.LOGGER.warn("EnderkingIIII found!");
-        }
+        //if (player.getName().toString().equals("EnderkingIIII")) { // Easter egg #1 lol
+        //    world.explode(player, DamageSource., new ExplosionDamageCalculator(), player.getX(), player.getY(), player.getZ(), 5f, true, Explosion.BlockInteraction.DESTROY);
+        //    TianjinMetro.LOGGER.warn("EnderkingIIII found!");
+        //}
         return super.use(state, world, pos, player, interactionHand, blockHitResult);
     }
 

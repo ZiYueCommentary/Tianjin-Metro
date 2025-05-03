@@ -2,7 +2,7 @@ package ziyue.tjmetro.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import mtr.block.BlockStationNameBase;
 import mtr.block.IBlock;
 import mtr.client.IDrawing;
@@ -49,8 +49,8 @@ public class RenderServiceCorridorSign<T extends BlockServiceCorridorSign.TileEn
 
         matrices.pushPose();
         matrices.translate(0.5, 0.5 + entity.yOffset, 0.5);
-        matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
-        matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
+        matrices.mulPose(Axis.YP.rotationDegrees(-facing.toYRot()));
+        matrices.mulPose(Axis.ZP.rotationDegrees(180));
         matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, Text.translatable("gui.tjmetro.service_corridor_sign").getString(), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, -0.12f, 0.85F, 1F, 150, ARGB_BLACK, false, light, null);

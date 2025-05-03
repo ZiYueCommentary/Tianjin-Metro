@@ -2,7 +2,7 @@ package ziyue.tjmetro.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import mtr.block.IBlock;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
@@ -44,15 +44,15 @@ public class RenderTimeDisplay<T extends BlockTimeDisplay.TileEntityTimeDisplay>
 
         matrices.pushPose();
         matrices.translate(0.5, 0.5 + entity.yOffset, 0.5);
-        matrices.mulPose(Vector3f.YP.rotationDegrees(-facing.toYRot()));
-        matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
+        matrices.mulPose(Axis.YP.rotationDegrees(-facing.toYRot()));
+        matrices.mulPose(Axis.ZP.rotationDegrees(180));
         final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         for (int i = 0; i < 2; i++) {
             matrices.pushPose();
             matrices.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
             IDrawingExtends.drawStringWithFont(matrices, Minecraft.getInstance().font, immediate, getFormattedTime(entity.getLevel().getDayTime()), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0, -1, -1, 30, -3276781, false, light, true, null);
             matrices.popPose();
-            matrices.mulPose(Vector3f.YP.rotationDegrees(180));
+            matrices.mulPose(Axis.YP.rotationDegrees(180));
         }
         immediate.endBatch();
         matrices.popPose();

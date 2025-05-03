@@ -1,6 +1,5 @@
 package ziyue.tjmetro.block;
 
-import me.shedaniel.architectury.extensions.BlockEntityExtension;
 import mtr.Blocks;
 import mtr.block.IBlock;
 import mtr.mappings.BlockEntityMapper;
@@ -105,7 +104,11 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
         if (entity instanceof Player player) {
             TileEntityMetalDetectionDoor entityMetalDetectionDoor = (TileEntityMetalDetectionDoor) level.getBlockEntity(blockPos);
             HashSet<Item> itemHashSet = entityMetalDetectionDoor.getItemHashSet();
-            player.inventory.clearOrCountMatchingItems(itemStack -> itemHashSet.contains(itemStack.getItem()), -1, player.inventoryMenu.getCraftSlots());
+            player.inventoryMenu.slots.forEach(slot -> {
+                if (itemHashSet.contains(slot.getItem().getItem())) {
+                    slot.set(new ItemStack(net.minecraft.world.level.block.Blocks.AIR));
+                }
+            });
         }
     }
 
@@ -164,7 +167,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 
-    public static class TileEntityMetalDetectionDoor extends RandomizableContainerBlockEntityMapper implements BlockEntityExtension
+    public static class TileEntityMetalDetectionDoor extends RandomizableContainerBlockEntityMapper
     {
         public TileEntityMetalDetectionDoor(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.METAL_DETECTION_DOOR_TILE_ENTITY.get(), pos, state);
@@ -176,6 +179,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
         @Override
         public void readCompoundTag(CompoundTag compoundTag) {
             super.readCompoundTag(compoundTag);
+//            load(compoundTag);
             this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
             if (!this.tryLoadLootTable(compoundTag)) {
                 ContainerHelper.loadAllItems(compoundTag, this.items);
@@ -185,6 +189,7 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
         @Override
         public void writeCompoundTag(CompoundTag compoundTag) {
             super.writeCompoundTag(compoundTag);
+//            saveAdditional(compoundTag);
             if (!this.trySaveLootTable(compoundTag)) {
                 ContainerHelper.saveAllItems(compoundTag, this.items);
             }
@@ -202,17 +207,6 @@ public class BlockMetalDetectionDoor extends HorizontalDirectionalBlock implemen
 
         public int getContainerSize() {
             return 9;
-        }
-
-        @Override
-        public void loadClientData(BlockState pos, CompoundTag tag) {
-            load(getBlockState(), tag);
-        }
-
-        @Override
-        public CompoundTag saveClientData(CompoundTag tag) {
-            save(tag);
-            return tag;
         }
 
         @Override

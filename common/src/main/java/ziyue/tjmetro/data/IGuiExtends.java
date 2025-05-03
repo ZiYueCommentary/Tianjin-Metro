@@ -168,7 +168,7 @@ public interface IGuiExtends
      */
     static MutableComponent format(Component component, Style... styles) {
         Style componentStyle = component.getStyle();
-        MutableComponent result = new TextComponent("");
+        MutableComponent result = Component.empty();
         StringBuilder contents = new StringBuilder(component.getString());
         int firstTagBegin = contents.indexOf("<");
         while (firstTagBegin != -1) {

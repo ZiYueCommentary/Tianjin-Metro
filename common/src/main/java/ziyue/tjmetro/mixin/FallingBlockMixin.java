@@ -2,6 +2,7 @@ package ziyue.tjmetro.mixin;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -38,7 +39,7 @@ public abstract class FallingBlockMixin extends Block
     }
 
     @Inject(at = @At("HEAD"), method = "tick", cancellable = true)
-    public void beforeTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random, CallbackInfo ci) {
+    public void beforeTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource, CallbackInfo ci) {
         if (serverLevel.getGameRules().getBoolean(TianjinMetro.PREVENT_BLOCK_FALLING)) ci.cancel();
     }
 }

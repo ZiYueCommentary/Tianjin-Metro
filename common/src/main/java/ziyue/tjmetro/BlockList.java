@@ -45,7 +45,7 @@ public interface BlockList
     RegistryObject<Block> CUSTOM_COLOR_CONCRETE_SLAB = new RegistryObject<>(BlockCustomColorConcreteSlab::new);
     RegistryObject<Block> APG_CORNER = new RegistryObject<>(BlockAPGCorner::new);
     RegistryObject<Block> PLAYER_DETECTOR = new RegistryObject<>(BlockPlayerDetector::new);
-    RegistryObject<Block> DECORATION_LIGHT = new RegistryObject<>(BlockDecorationLight::new);
+//    RegistryObject<Block> DECORATION_LIGHT = new RegistryObject<>(BlockDecorationLight::new);
     RegistryObject<Block> HIGH_SPEED_REPEATER = new RegistryObject<>(BlockHighSpeedRepeater::new);
     RegistryObject<Block> TIME_DISPLAY = new RegistryObject<>(BlockTimeDisplay::new);
     RegistryObject<Block> EMERGENCY_EXIT_SIGN = new RegistryObject<>(BlockEmergencyExitSign::new);
@@ -104,5 +104,5 @@ public interface BlockList
     RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_PINYIN = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(true, false));
     RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_BMT = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(false, true));
     RegistryObject<Block> STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN = new RegistryObject<>(() -> new BlockStationNameEntranceTianjin(true, true));
-    RegistryObject<Block> STATION_NAME_PLATE = new RegistryObject<>(BlockStationNamePlate::new);
+//    RegistryObject<Block> STATION_NAME_PLATE = new RegistryObject<>(BlockStationNamePlate::new);
 }

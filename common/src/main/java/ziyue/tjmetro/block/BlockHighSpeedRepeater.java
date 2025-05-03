@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -16,8 +17,10 @@ import net.minecraft.world.level.block.RepeaterBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import org.joml.Vector3f;
 
 import java.util.Random;
+import java.util.Vector;
 
 /**
  * Repeater without delay.
@@ -59,7 +62,8 @@ public class BlockHighSpeedRepeater extends RepeaterBlock
     }
 
     @Override
-    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
+    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+
     }
 
     @Environment(EnvType.CLIENT)
@@ -78,7 +82,7 @@ public class BlockHighSpeedRepeater extends RepeaterBlock
         Direction direction = blockState.getValue(FACING);
         double h = g * (float) direction.getStepX();
         double i = g * (float) direction.getStepZ();
-        DustParticleOptions blueParticle = new DustParticleOptions(0.196F, 0.909F, 0.933F, 1.0F); // 50, 232, 238
+        DustParticleOptions blueParticle = new DustParticleOptions(new Vector3f(0.196F, 0.909F, 0.933F), 1.0F); // 50, 232, 238
         level.addParticle(blueParticle, d + h, e, f + i, 0.0, 0.0, 0.0);
     }
 

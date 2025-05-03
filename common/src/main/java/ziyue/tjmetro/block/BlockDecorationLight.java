@@ -60,7 +60,7 @@ public class BlockDecorationLight extends BlockCustomColorBase
     public static class DecorationLightEntity extends CustomColorBlockEntity
     {
         public DecorationLightEntity(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.DECORATION_LIGHT_TILE_ENTITY.get(), pos, state);
+            super(null, pos, state);
         }
     }
 }

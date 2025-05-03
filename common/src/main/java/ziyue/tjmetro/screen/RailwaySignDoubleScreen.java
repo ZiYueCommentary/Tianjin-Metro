@@ -146,7 +146,7 @@ public class RailwaySignDoubleScreen extends ScreenMapper implements IGui
             for (int j = 0; j < buttonsEdit[i].length; j++) {
                 final int index = j;
                 int finalI = i;
-                buttonsEdit[i][j] = new Button(0, 0, 0, SQUARE_SIZE, Text.translatable("selectWorld.edit"), button -> edit(finalI, index));
+                buttonsEdit[i][j] = UtilitiesClient.newButton(Text.translatable("selectWorld.edit"), button -> edit(finalI, index));
             }
         }
 
@@ -154,10 +154,10 @@ public class RailwaySignDoubleScreen extends ScreenMapper implements IGui
         buttonsSelection = new Button[allSignIds.size()];
         for (int i = 0; i < allSignIds.size(); i++) {
             final int index = i;
-            buttonsSelection[i] = new Button(0, 0, 0, SIGN_BUTTON_SIZE, Text.literal(""), button -> setNewSignId(allSignIds.get(index)));
+            buttonsSelection[i] = UtilitiesClient.newButton(SIGN_BUTTON_SIZE, Text.literal(""), button -> setNewSignId(allSignIds.get(index)));
         }
 
-        buttonClear = new Button(0, 0, 0, SQUARE_SIZE, Text.translatable("gui.mtr.reset_sign"), button -> setNewSignId(null));
+        buttonClear = UtilitiesClient.newButton(Text.translatable("gui.mtr.reset_sign"), button -> setNewSignId(null));
         buttonPrevPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation(MTR.MOD_ID, "textures/gui/icon_left.png"), 20, 40, button -> setPage(page - 1));
         buttonNextPage = new ImageButton(0, 0, 0, SQUARE_SIZE, 0, 0, 20, new ResourceLocation(MTR.MOD_ID, "textures/gui/icon_right.png"), 20, 40, button -> setPage(page + 1));
     }

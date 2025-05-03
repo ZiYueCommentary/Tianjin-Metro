@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ziyue.filters.Filter;
+//import ziyue.filters.Filter;
 import ziyue.tjmetro.packet.PacketGuiServer;
 
 import java.util.function.BiConsumer;
@@ -68,7 +68,7 @@ public class TianjinMetro
         registerBlockItem.accept("station_name_entrance_tianjin_pinyin", BlockList.STATION_NAME_ENTRANCE_TIANJIN_PINYIN, SIGNS);
         registerBlockItem.accept("station_name_entrance_tianjin_bmt", BlockList.STATION_NAME_ENTRANCE_TIANJIN_BMT, SIGNS);
         registerBlockItem.accept("station_name_entrance_tianjin_bmt_pinyin", BlockList.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN, SIGNS);
-        registerBlockItem.accept("station_name_plate", BlockList.STATION_NAME_PLATE, SIGNS);
+//        registerBlockItem.accept("station_name_plate", BlockList.STATION_NAME_PLATE, SIGNS);
         registerEnchantedBlockItem.accept("station_name_sign_1", BlockList.STATION_NAME_SIGN_1, SIGNS);
         /* PLATFORM GATES */
         registerItem.accept("psd_door_tianjin", ItemList.PSD_DOOR_TIANJIN, GATES);
@@ -148,7 +148,7 @@ public class TianjinMetro
         registerBlockEntityType.accept("custom_color_concrete_stairs", BlockEntityTypes.STATION_COLOR_CONCRETE_STAIRS_TILE_ENTITY);
         registerBlockEntityType.accept("custom_color_concrete_slab", BlockEntityTypes.STATION_COLOR_CONCRETE_SLAB_TILE_ENTITY);
         registerBlockEntityType.accept("station_name_wall_legacy", BlockEntityTypes.STATION_NAME_WALL_LEGACY_TILE_ENTITY);
-        registerBlockEntityType.accept("decoration_light", BlockEntityTypes.DECORATION_LIGHT_TILE_ENTITY);
+//        registerBlockEntityType.accept("decoration_light", BlockEntityTypes.DECORATION_LIGHT_TILE_ENTITY);
         registerBlockEntityType.accept("time_display", BlockEntityTypes.TIME_DISPLAY_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_4", BlockEntityTypes.RAILWAY_SIGN_WALL_4_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_wall_6", BlockEntityTypes.RAILWAY_SIGN_WALL_6_TILE_ENTITY);
@@ -190,7 +190,7 @@ public class TianjinMetro
         registerBlockEntityType.accept("railway_sign_tianjin_double_6_even", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_DOUBLE_6_EVEN_TILE_ENTITY);
         registerBlockEntityType.accept("railway_sign_tianjin_double_7_even", BlockEntityTypes.RAILWAY_SIGN_TIANJIN_DOUBLE_7_EVEN_TILE_ENTITY);
         registerBlockEntityType.accept("metal_detection_door", BlockEntityTypes.METAL_DETECTION_DOOR_TILE_ENTITY);
-        registerBlockEntityType.accept("bench", BlockEntityTypes.BENCH_TILE_ENTITY);
+//        registerBlockEntityType.accept("bench", BlockEntityTypes.BENCH_TILE_ENTITY);
         registerBlockEntityType.accept("service_corridor_sign", BlockEntityTypes.SERVICE_CORRIDOR_SIGN_TILE_ENTITY);
         registerBlockEntityType.accept("psd_door_tianjin", BlockEntityTypes.PSD_DOOR_TIANJIN_TILE_ENTITY);
         registerBlockEntityType.accept("psd_top_tianjin", BlockEntityTypes.PSD_TOP_TIANJIN_TILE_ENTITY);
@@ -198,7 +198,7 @@ public class TianjinMetro
         registerBlockEntityType.accept("station_name_entrance_tianjin_pinyin", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_PINYIN_TILE_ENTITY);
         registerBlockEntityType.accept("station_name_entrance_tianjin_bmt", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_TILE_ENTITY);
         registerBlockEntityType.accept("station_name_entrance_tianjin_bmt_pinyin", BlockEntityTypes.STATION_NAME_ENTRANCE_TIANJIN_BMT_PINYIN_TILE_ENTITY);
-        registerBlockEntityType.accept("station_name_plate", BlockEntityTypes.STATION_NAME_PLATE_TILE_ENTITY);
+//        registerBlockEntityType.accept("station_name_plate", BlockEntityTypes.STATION_NAME_PLATE_TILE_ENTITY);
 
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_CONTENT, PacketGuiServer::receiveCustomContentC2S);
         mtr.Registry.registerNetworkReceiver(PACKET_UPDATE_CUSTOM_COLOR, PacketGuiServer::receiveCustomColorC2S);
@@ -209,12 +209,12 @@ public class TianjinMetro
     @FunctionalInterface
     public interface RegisterBlockItem
     {
-        void accept(String string, RegistryObject<Block> block, Filter filter);
+        void accept(String string, RegistryObject<Block> block, Object filter);
     }
 
     @FunctionalInterface
     public interface RegisterItem
     {
-        void accept(String string, RegistryObject<Item> item, Filter filter);
+        void accept(String string, RegistryObject<Item> item, Object filter);
     }
 }
