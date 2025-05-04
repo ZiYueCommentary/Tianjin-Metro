@@ -86,7 +86,9 @@ public class RouteMapGenerator implements IGui
                         tempMarker = "";
                 }
 
-                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                }
             });
             final boolean isTerminating = destinations.isEmpty();
             final boolean leftToRight = horizontalAlignment == HorizontalAlignment.CENTER ? hasLeft || !hasRight : horizontalAlignment != HorizontalAlignment.RIGHT;
@@ -227,8 +229,10 @@ public class RouteMapGenerator implements IGui
                         tempMarker = "";
                 }
 
-                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
-                nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                    nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                }
             });
             final boolean isTerminating = destinations.isEmpty();
 
@@ -307,8 +311,10 @@ public class RouteMapGenerator implements IGui
                         tempMarker = "";
                 }
 
-                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
-                nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                    nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                }
             });
             final boolean isTerminating = destinations.isEmpty();
 
@@ -412,8 +418,10 @@ public class RouteMapGenerator implements IGui
                         tempMarker = "";
                 }
 
-                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
-                nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                    nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                }
             });
             final boolean isTerminating = destinations.isEmpty();
 
@@ -523,11 +531,17 @@ public class RouteMapGenerator implements IGui
 
         try {
             final ObjectArrayList<ObjectIntImmutablePair<SimplifiedRoute>> routeDetails = new ObjectArrayList<>();
-            getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex)));
+            getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+                }
+            });
             if (routeDetails.isEmpty()) {
                 MinecraftClientData.getInstance().simplifiedRoutes.stream().filter(simplifiedRoute -> simplifiedRoute.getPlatformIndex(platformId) >= 0).sorted().forEach(simplifiedRoute -> {
                     final int currentStationIndex = simplifiedRoute.getPlatformIndex(platformId);
-                    routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+                    if (!simplifiedRoute.getName().isEmpty()) {
+                        routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+                    }
                 });
             }
             final int routeCount = routeDetails.size();
@@ -703,11 +717,17 @@ public class RouteMapGenerator implements IGui
 
         try {
             final ObjectArrayList<ObjectIntImmutablePair<SimplifiedRoute>> routeDetails = new ObjectArrayList<>();
-            getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex)));
+            getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+                }
+            });
             if (routeDetails.isEmpty()) {
                 MinecraftClientData.getInstance().simplifiedRoutes.stream().filter(simplifiedRoute -> simplifiedRoute.getPlatformIndex(platformId) >= 0).sorted().forEach(simplifiedRoute -> {
                     final int currentStationIndex = simplifiedRoute.getPlatformIndex(platformId);
-                    routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+                    if (!simplifiedRoute.getName().isEmpty()) {
+                        routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+                    }
                 });
             }
             final int routeCount = routeDetails.size();
@@ -1177,10 +1197,12 @@ public class RouteMapGenerator implements IGui
                         final int color = simplifiedRoute.getColor();
                         if (!addedColors.contains(color) && simplifiedRoute.getPlatforms().stream().anyMatch(simplifiedRoutePlatform -> platformIds.contains(simplifiedRoutePlatform.getPlatformId()))) {
                             DashboardListItem route = new DashboardListItem(color, simplifiedRoute.getName().split("\\|\\|")[0], color);
-                            final DynamicTextureCache.Text routeName = DynamicTextureCache.instance.getText(route.getName(false), Integer.MAX_VALUE, iconSize, (int) (fontSizeBig * 2.5F), (int) (fontSizeSmall * 2.5F), padding, HorizontalAlignment.LEFT);
-                            routes.add(new ObjectIntImmutablePair<>(routeName, route.getColor(false)));
-                            totalWidth.addAndGet(padding * 5 + routeName.width());
-                            addedColors.add(color);
+                            if (!route.getName(false).isEmpty()) {
+                                final DynamicTextureCache.Text routeName = DynamicTextureCache.instance.getText(route.getName(false), Integer.MAX_VALUE, iconSize, (int) (fontSizeBig * 2.5F), (int) (fontSizeSmall * 2.5F), padding, HorizontalAlignment.LEFT);
+                                routes.add(new ObjectIntImmutablePair<>(routeName, route.getColor(false)));
+                                totalWidth.addAndGet(padding * 5 + routeName.width());
+                                addedColors.add(color);
+                            }
                         }
                     });
                     totalWidth.addAndGet(iconOffset);
@@ -1252,8 +1274,10 @@ public class RouteMapGenerator implements IGui
                         tempMarker = "";
                 }
 
-                destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
-                nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                    nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                }
             });
             final boolean isTerminating = destinations.isEmpty();
 
