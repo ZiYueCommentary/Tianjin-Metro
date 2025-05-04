@@ -14,6 +14,7 @@ import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
+import ziyue.tjmetro.mod.block.IBlockExtension;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
@@ -40,6 +41,7 @@ public class RenderStationNameEntranceTianjin<T extends BlockStationNameEntrance
 
         final BlockPos pos = entity.getPos2();
         final BlockState state = world.getBlockState(pos);
+        if (!(state.getBlock().data instanceof BlockStationNameEntranceTianjin)) return;
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
 
         final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations(0.5 + pos.getX(), 0.5 + entity.yOffset + pos.getY(), 0.5 + pos.getZ());
