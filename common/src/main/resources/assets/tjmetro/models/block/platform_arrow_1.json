@@ -1,6 +1,6 @@
 {
     "textures": {
-        "arrow": "tjmetro:sign/platform_arrow"
+        "arrow": "tjmetro:block/platform_arrow"
     },
     "elements": [
         {

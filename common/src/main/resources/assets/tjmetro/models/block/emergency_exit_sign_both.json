@@ -2,8 +2,8 @@
 	"credit": "Made by ZiYueCommentary, made with Blockbench.",
 	"textures": {
 		"0": "mtr:block/metal",
-		"1": "tjmetro:sign/emergency_exit",
-		"2": "tjmetro:sign/arrow_green",
+		"1": "tjmetro:block/emergency_exit",
+		"2": "tjmetro:block/arrow_green",
 		"4": "tjmetro:block/air",
 		"particle": "mtr:block/metal"
 	},

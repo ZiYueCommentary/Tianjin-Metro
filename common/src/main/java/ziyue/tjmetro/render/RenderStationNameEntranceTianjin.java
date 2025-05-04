@@ -45,6 +45,7 @@ public class RenderStationNameEntranceTianjin<T extends BlockStationNameEntrance
         final BlockPos pos = entity.getBlockPos();
         final BlockState state = world.getBlockState(pos);
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
+        if (!(state.getBlock() instanceof BlockStationNameEntranceTianjin)) return;
 
         final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations();
         storedMatrixTransformations.add(matricesNew -> {
