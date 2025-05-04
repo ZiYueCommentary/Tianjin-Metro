@@ -32,6 +32,9 @@ subprojects {
     loom {
         silentMojangMappingsLicense()
 
+        mixin {
+            defaultRefmapName.set("tjmetro-refmap.json")
+        }
     }
 
     dependencies {
