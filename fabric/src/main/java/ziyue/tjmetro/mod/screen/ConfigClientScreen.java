@@ -95,7 +95,9 @@ public class ConfigClientScreen extends ScreenExtension
 
     @Override
     public void onClose2() {
-        DynamicTextureCache.instance.reload();
+        if (DynamicTextureCache.instance != null) {
+            DynamicTextureCache.instance.reload();
+        }
         ConfigClient.refreshProperties();
         super.onClose2();
         MinecraftClient.getInstance().openScreen(parent);
