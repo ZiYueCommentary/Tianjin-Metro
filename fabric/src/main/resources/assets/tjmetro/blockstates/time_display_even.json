@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "tjmetro:block/time_display_half", "y": 90 },
+        "facing=east":  { "model": "tjmetro:block/time_display_half" },
+        "facing=south": { "model": "tjmetro:block/time_display_half", "y": 270 },
+        "facing=west":  { "model": "tjmetro:block/time_display_half", "y": 180 }
+    }
+}

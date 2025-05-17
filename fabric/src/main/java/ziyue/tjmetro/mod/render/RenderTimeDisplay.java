@@ -13,6 +13,7 @@ import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import ziyue.tjmetro.mod.block.BlockTimeDisplay;
+import ziyue.tjmetro.mod.block.BlockTimeDisplayEven;
 import ziyue.tjmetro.mod.client.IDrawingExtension;
 
 import static org.mtr.mapping.mapper.DirectionHelper.FACING;
@@ -20,6 +21,7 @@ import static org.mtr.mapping.mapper.DirectionHelper.FACING;
 /**
  * @author ZiYueCommentary
  * @see BlockTimeDisplay
+ * @see BlockTimeDisplayEven
  * @since 1.0.0-beta-1
  */
 
@@ -44,20 +46,30 @@ public class RenderTimeDisplay<T extends BlockTimeDisplay.BlockEntity> extends B
             graphicsHolderNew.rotateZDegrees(180);
         });
 
-        for (int i = 0; i < 2; i++) {
+        if (entity instanceof BlockTimeDisplayEven.BlockEntity) {
             final StoredMatrixTransformations storedMatrixTransformations2 = storedMatrixTransformations.copy();
-            final boolean shouldFlip = i == 1;
-            storedMatrixTransformations2.add(graphicsHolderNew -> {
-                if (shouldFlip) {
-                    graphicsHolderNew.rotateYDegrees(180);
-                }
-                graphicsHolderNew.translate(0, -0.04, 0.5 - entity.zOffset - SMALL_OFFSET);
-            });
+            storedMatrixTransformations2.add(graphicsHolderNew -> graphicsHolderNew.translate(0.516, -0.04, 0.5 - entity.zOffset - SMALL_OFFSET));
             MainRenderer.scheduleRender(QueuedRenderLayer.TEXT, (newGraphicsHolder, offset) -> {
                 storedMatrixTransformations2.transform(newGraphicsHolder, offset);
                 IDrawingExtension.drawStringWithFont(newGraphicsHolder, getFormattedTime(entity.getWorld2().getLunarTime()), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0.03F, -1, -1, 30, -3276781, -3276781, 2, false, light, true, null);
                 newGraphicsHolder.pop();
             });
+        } else {
+            for (int i = 0; i < 2; i++) {
+                final StoredMatrixTransformations storedMatrixTransformations2 = storedMatrixTransformations.copy();
+                final boolean shouldFlip = i == 1;
+                storedMatrixTransformations2.add(graphicsHolderNew -> {
+                    if (shouldFlip) {
+                        graphicsHolderNew.rotateYDegrees(180);
+                    }
+                    graphicsHolderNew.translate(0, -0.04, 0.5 - entity.zOffset - SMALL_OFFSET);
+                });
+                MainRenderer.scheduleRender(QueuedRenderLayer.TEXT, (newGraphicsHolder, offset) -> {
+                    storedMatrixTransformations2.transform(newGraphicsHolder, offset);
+                    IDrawingExtension.drawStringWithFont(newGraphicsHolder, getFormattedTime(entity.getWorld2().getLunarTime()), HorizontalAlignment.CENTER, VerticalAlignment.CENTER, HorizontalAlignment.CENTER, 0, 0.03F, -1, -1, 30, -3276781, -3276781, 2, false, light, true, null);
+                    newGraphicsHolder.pop();
+                });
+            }
         }
     }
 

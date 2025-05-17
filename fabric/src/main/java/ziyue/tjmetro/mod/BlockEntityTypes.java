@@ -84,6 +84,7 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockStationNameProjector.BlockEntity> STATION_NAME_PROJECTOR = Registry.registerBlockEntityType("station_name_projector", BlockStationNameProjector.BlockEntity::new, BlockList.STATION_NAME_PROJECTOR::get);
     BlockEntityTypeRegistryObject<BlockPSDDoorTianjinJinjing.BlockEntity> PSD_DOOR_TIANJIN_JINJING = Registry.registerBlockEntityType("psd_door_tianjin_jinjing", BlockPSDDoorTianjinJinjing.BlockEntity::new, BlockList.PSD_DOOR_TIANJIN_JINJING_BLOCK::get);
     BlockEntityTypeRegistryObject<BlockPSDTopTianjin.BlockEntity> PSD_TOP_TIANJIN_JINJING = Registry.registerBlockEntityType("psd_top_tianjin_jinjing", (pos, state) -> new BlockPSDTopTianjin.BlockEntity(pos, state, true), BlockList.PSD_TOP_TIANJIN_JINJING::get);
+    BlockEntityTypeRegistryObject<BlockTimeDisplayEven.BlockEntity> TIME_DISPLAY_EVEN = Registry.registerBlockEntityType("time_display_even", BlockTimeDisplayEven.BlockEntity::new, BlockList.TIME_DISPLAY_EVEN::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

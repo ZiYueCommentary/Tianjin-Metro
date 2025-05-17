@@ -51,6 +51,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_1, RenderStationNameSign::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_2, RenderStationNameSign::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.TIME_DISPLAY, RenderTimeDisplay::new);
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.TIME_DISPLAY_EVEN, RenderTimeDisplay::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.SERVICE_CORRIDOR_SIGN, RenderServiceCorridorSign::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.ROADBLOCK_SIGN, RenderRoadblockSign::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_WALL_4, RenderRailwaySignWall::new);
