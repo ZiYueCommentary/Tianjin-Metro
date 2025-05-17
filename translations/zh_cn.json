@@ -182,5 +182,6 @@
     "tooltip.tjmetro.station_name_projector": "一个大型红色站名投影仪。使用扳手或刷子可以改变大小。",
     "block.tjmetro.station_name_projector": "站名投影仪（1号线）",
     "block.tjmetro.psd_tianjin_jinjing": "高站台门（天津、津静线）",
-    "gui.tjmetro.platform": "站台|Platform"
+    "gui.tjmetro.platform": "站台|Platform",
+    "block.tjmetro.time_display_even": "时间显示器（双数）"
 }
