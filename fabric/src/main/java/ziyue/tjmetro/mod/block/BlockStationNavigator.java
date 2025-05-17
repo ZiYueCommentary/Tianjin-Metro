@@ -74,7 +74,7 @@ public class BlockStationNavigator extends BlockRailwaySignBase
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         return IBlock.checkHoldingItem(world, player, item -> {
-            if (item == ItemList.WRENCH.get()) {
+            if (item.data == ItemList.WRENCH.get().data) {
                 final BlockPos checkPos = findEndWithDirection(world, pos, hit.getSide().getOpposite(), false);
                 Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(checkPos));
             } else {
