@@ -9,7 +9,6 @@ import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
-import ziyue.tjmetro.mod.block.base.BlockEntityRenderable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -68,6 +67,7 @@ public class BlockTimeDisplayEven extends BlockExtension implements DirectionHel
     /**
      * @author ZiYueCommentary
      * @see ziyue.tjmetro.mod.render.RenderTimeDisplay
+     * @see ziyue.tjmetro.mod.block.BlockTimeDisplay.BlockEntity
      * @since 1.0.0-beta-5
      */
     public static class BlockEntity extends BlockTimeDisplay.BlockEntity
