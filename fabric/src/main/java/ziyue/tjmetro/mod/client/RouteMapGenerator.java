@@ -1673,7 +1673,7 @@ public class RouteMapGenerator implements IGui
             textCJK = DynamicTextureCache.Text.empty();
             padding = 0;
         } else {
-            textCJK = DynamicTextureCache.instance.getText(IGui.formatVerticalChinese(pair.left), maxWidth, maxHeight, fontSizeCjk, fontSizeCjk, ConfigClient.USE_TIANJIN_METRO_FONT.get() ? 0 : padding, HorizontalAlignment.LEFT, 1F, false);
+            textCJK = DynamicTextureCache.instance.getText(IGui.formatVerticalChinese(pair.left), maxWidth, maxHeight, fontSizeCjk, fontSizeCjk, padding, HorizontalAlignment.LEFT, 1F, false);
         }
         final DynamicTextureCache.Text textNonCJK;
         if (pair.right.isEmpty()) {
@@ -1690,7 +1690,7 @@ public class RouteMapGenerator implements IGui
                 break;
             case CENTER:
                 drawString(nativeImage, textCJK, x - (textNonCJK.height() - textCJK.width()) / 2 + padding, y, HorizontalAlignment.RIGHT, verticalAlignment, backgroundColor, textColor, false);
-                drawString(nativeImage, textNonCJK, x - (textNonCJK.height() - textCJK.width()) / 2, y + padding, HorizontalAlignment.LEFT, verticalAlignment, backgroundColor, textColor, true);
+                drawString(nativeImage, textNonCJK, x - (textNonCJK.height() - textCJK.width()) / 2, y, HorizontalAlignment.LEFT, verticalAlignment, backgroundColor, textColor, true);
                 break;
             case RIGHT:
                 drawString(nativeImage, textCJK, x - width, y, HorizontalAlignment.LEFT, verticalAlignment, backgroundColor, textColor, false);
