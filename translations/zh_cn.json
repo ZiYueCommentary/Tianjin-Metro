@@ -148,7 +148,7 @@
     "filter.tjmetro.tianjin_ceilings": "天花板",
     "filter.tjmetro.tianjin_railway_signs": "指示牌",
     "block.tjmetro.psd_tianjin_bmt": "高站台门（天津、9号线）",
-    "block.tjmetro.apg_tianjin_trt": "低站台门（天津、一号线）",
+    "block.tjmetro.apg_tianjin_trt": "低站台门（天津、1号线）",
     "tooltip.tjmetro.player_detector": "检测2格内的玩家，并放出红石信号。",
     "tooltip.tjmetro.roadblock_sign": "用扳手或刷子可以修改其显示内容。",
     "tooltip.tjmetro.psd_apg_tianjin": "用扳手改变其顶部的显示内容，并用刷子改变其箭头方向。",
