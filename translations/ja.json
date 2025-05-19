@@ -174,5 +174,6 @@
     "block.tjmetro.station_name_projector": "駅名標プロジェクター (1号線)",
     "block.tjmetro.psd_tianjin_jinjing": "フルスクリーンホームドア(天津地下鉄津静線)",
     "gui.tjmetro.platform": "ホーム|Platform",
-    "config.tjmetro.rotated_station_name": "フルスクリーンホームドア上の駅名を回転する(天津地下鉄)"
+    "config.tjmetro.rotated_station_name": "フルスクリーンホームドア上の駅名を回転する(天津地下鉄)",
+    "block.tjmetro.time_display_even": "デジタル時計(偶数設置)"
 }
