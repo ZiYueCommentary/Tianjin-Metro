@@ -128,6 +128,8 @@
     "config.tjmetro.enable_mtr_filters": "Enable MTR Filters",
     "config.tjmetro.use_tianjin_metro_font": "Enable Tianjin Metro Font",
     "config.tjmetro.rotated_station_name": "Rotate station names on PSD (Tianjin)",
+    "config.tjmetro.debugging": "Debugging options",
+    "config.tjmetro.disable_dynamic_textures": "Disable dynamic textures",
 
     "tooltip.tjmetro.not_suggest": "This feature is not suggested.",
     "tooltip.tjmetro.mtr_config_screen": "Use the new config screen instead of the original.",
@@ -148,9 +150,10 @@
     "tooltip.tjmetro.station_navigator_pole": "Place this block below \"Station Navigator\".",
     "tooltip.tjmetro.station_name_projector": "A big-red-station-name projector. Use wrench or brush to change its scale.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
+    "tooltip.tjmetro.disable_dynamic_textures": "Skip generating textures for signs, gates, etc.",
 
     "footer.tjmetro.sources": "Wanna see the source code?",
-    "footer.tjmetro.contributors": "Tianjin Metro is a community work, click the button to see contributors!",
+    "footer.tjmetro.contributors": "Tianjin Metro is a community work, click here to see contributors!",
     "footer.tjmetro.forum": "Would you like to join our forum? (Chinese only)",
     "footer.tjmetro.weblate": "Get involved in Tianjin Metro localization!",
     "footer.tjmetro.discord": "Join our Discord server!",

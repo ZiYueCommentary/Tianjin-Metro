@@ -28,13 +28,18 @@ public class ClientConfigScreen
         ConfigCategory categoryTianjinMetro = builder.getOrCreateCategory(TextHelper.translatable("config.category.tjmetro").data);
         BooleanListEntry booleanUseTianjinMetroFont = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.use_tianjin_metro_font").data, ConfigClient.USE_TIANJIN_METRO_FONT.get()).setTooltip(TextHelper.translatable("tooltip.tjmetro.use_tianjin_metro_font").data).setDefaultValue(ConfigClient.USE_TIANJIN_METRO_FONT.getDefault()).build();
         BooleanListEntry booleanRotatedStationName = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.rotated_station_name").data, ConfigClient.ROTATED_STATION_NAME.get()).setDefaultValue(ConfigClient.ROTATED_STATION_NAME.getDefault()).build();
+        SubCategoryBuilder subCategoryDebugging = entryBuilder.startSubCategory(TextHelper.translatable("config.tjmetro.debugging").data);
+        BooleanListEntry booleanDisableDynamicTextures = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.disable_dynamic_textures").data, ConfigClient.DISABLE_DYNAMIC_TEXTURES.get()).setDefaultValue(ConfigClient.DISABLE_DYNAMIC_TEXTURES.getDefault()).setTooltip(TextHelper.translatable("tooltip.tjmetro.disable_dynamic_textures").data).build();
+        subCategoryDebugging.add(booleanDisableDynamicTextures);
         TextListEntry textFooter = entryBuilder.startTextDescription(TextFormatter.FOOTER_LINK.apply(ConfigClient.FOOTERS.get(new Random().nextInt(ConfigClient.FOOTERS.size())))).build();
+        categoryTianjinMetro.addEntry(booleanUseTianjinMetroFont).addEntry(booleanRotatedStationName).addEntry(subCategoryDebugging.build()).addEntry(textFooter);
         builder.setSavingRunnable(() -> {
             if (DynamicTextureCache.instance != null) {
                 DynamicTextureCache.instance.reload();
             }
             ConfigClient.USE_TIANJIN_METRO_FONT.set(booleanUseTianjinMetroFont.getValue());
             ConfigClient.ROTATED_STATION_NAME.set(booleanRotatedStationName.getValue());
+            ConfigClient.DISABLE_DYNAMIC_TEXTURES.set(booleanDisableDynamicTextures.getValue());
             ConfigClient.writeToFile();
         });
         return new Screen(builder.build());

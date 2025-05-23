@@ -332,6 +332,10 @@ public class DynamicTextureCache
     }
 
     protected DynamicResource getResource(String key, Supplier<NativeImage> supplier, DefaultRenderingColor defaultRenderingColor) {
+        if (ConfigClient.DISABLE_DYNAMIC_TEXTURES.get()) {
+            return DefaultRenderingColor.BLACK_PURPLE.dynamicResource;
+        }
+
         if (!resourceRegistryQueue.isEmpty()) {
             final Runnable runnable = resourceRegistryQueue.remove(0);
             if (runnable != null) {
@@ -486,7 +490,8 @@ public class DynamicTextureCache
     {
         BLACK(DEFAULT_BLACK_RESOURCE),
         WHITE(DEFAULT_WHITE_RESOURCE),
-        TRANSPARENT(DEFAULT_TRANSPARENT_RESOURCE);
+        TRANSPARENT(DEFAULT_TRANSPARENT_RESOURCE),
+        BLACK_PURPLE(new Identifier(Reference.MOD_ID, "deliberate.black_purple_tile"));
 
         private final DynamicResource dynamicResource;
 
