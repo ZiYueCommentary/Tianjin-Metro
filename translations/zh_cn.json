@@ -184,5 +184,10 @@
     "block.tjmetro.psd_tianjin_jinjing": "高站台门（天津、津静线）",
     "gui.tjmetro.platform": "站台|Platform",
     "block.tjmetro.time_display_even": "时间显示器（双数）",
-    "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r未安装"
+    "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r未安装",
+    "config.tjmetro.download_cloth_config": "下载Cloth Config",
+    "config.tjmetro.debugging": "调试选项",
+    "config.tjmetro.disable_dynamic_textures": "禁用动态纹理",
+    "config.tjmetro.disable_train_rendering": "禁止列车渲染",
+    "config.tjmetro.cloth_config_required": "你需要安装§lCloth Config API§r来修改天津地铁设置。"
 }
