@@ -68,6 +68,14 @@ public class BuildTools
         return modMenuVersion;
     }
 
+    public String getClothConfigVersion() {
+        final String modIdString = "cloth-config";
+
+        String clothConfigVersion = new ModId(modIdString, ModProvider.MODRINTH).getModFiles(minecraftVersion, ModLoader.FABRIC, "").get(0).fileName.replace("cloth-config-", "").replace(".jar", "").replace("fabric", "").replaceAll("-", "");
+        System.out.println("Cloth Config version: " + clothConfigVersion);
+        return clothConfigVersion;
+    }
+
     public String getForgeVersion() {
         String forgeVersion = getJson("https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json").getAsJsonObject().getAsJsonObject("promos").get(minecraftVersion + "-latest").getAsString();
         System.out.println("Forge version: " + forgeVersion);

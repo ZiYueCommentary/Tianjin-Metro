@@ -25,6 +25,9 @@ dependencies {
     modApi("ziyue.filters:filters-fabric:${buildTools.getFiltersAPIVersion()}") {
         exclude(group: "net.fabricmc")
     }
+    modApi("me.shedaniel.cloth:cloth-config-fabric:${buildTools.getClothConfigVersion()}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
     configurations.configureEach {
         resolutionStrategy {
             force("net.fabricmc:fabric-loader:${FabricVersion}")

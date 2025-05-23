@@ -122,6 +122,9 @@
     "button.tjmetro.click_here": "Click Here!",
 
     "config.category.tjmetro": "Tianjin Metro",
+    "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r is not installed.",
+    "config.tjmetro.cloth_config_required": "You have to install §lCloth Config API§r to config Tianjin Metro mod.",
+    "config.tjmetro.download_cloth_config": "Download Cloth Config",
     "config.tjmetro.enable_mtr_filters": "Enable MTR Filters",
     "config.tjmetro.use_tianjin_metro_font": "Enable Tianjin Metro Font",
     "config.tjmetro.rotated_station_name": "Rotate station names on PSD (Tianjin)",

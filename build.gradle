@@ -24,6 +24,7 @@ subprojects {
         flatDir { dirs "../libs" }
         maven { url "https://jitpack.io" }
         maven { url "https://maven.ziyuesinicization.site/releases/" }
+        maven { url "https://maven.shedaniel.me/" }
     }
 
     def mc_ver = rootProject.properties.minecraft_version

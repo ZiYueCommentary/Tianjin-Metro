@@ -26,6 +26,7 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:+:processor"
     implementation fg.deobf("org.mtr:MTR-forge:${mtr_version}+${minecraft_version}-server")
     implementation(fg.deobf("ziyue.filters:filters-forge:${buildTools.getFiltersAPIVersion()}"))
+    implementation(fg.deobf("me.shedaniel.cloth:cloth-config-forge:${buildTools.clothConfigVersion}"))
     annotationProcessor 'systems.manifold:manifold-preprocessor:+'
 }
 

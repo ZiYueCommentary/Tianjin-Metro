@@ -7,8 +7,11 @@ import org.mtr.mapping.holder.MinecraftClient;
 import org.mtr.mapping.holder.MutableText;
 import org.mtr.mapping.holder.Screen;
 import org.mtr.mapping.mapper.TextHelper;
+import ziyue.tjmetro.mapping.ModLoaderHelper;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.TianjinMetro;
+import ziyue.tjmetro.mod.screen.ClientConfigScreen;
+import ziyue.tjmetro.mod.screen.MissingClothConfigScreen;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,10 +28,10 @@ import java.util.function.Supplier;
 
 public class ConfigClient
 {
-    @Deprecated
-    public static final Property<Boolean> ENABLE_MTR_FILTERS = new Property<>("enable_mtr_filters", false);
     public static final Property<Boolean> USE_TIANJIN_METRO_FONT = new Property<>("use_tianjin_metro_font", true);
     public static final Property<Boolean> ROTATED_STATION_NAME = new Property<>("rotated_station_name", true);
+    public static final Property<Boolean> DISABLE_DYNAMIC_TEXTURES = new Property<>("disable_dynamic_textures", false);
+    public static final Property<Boolean> DISABLE_TRAIN_RENDERING = new Property<>("disable_train_rendering", false);
 
     protected static final Path CONFIG_FILE_PATH = MinecraftClient.getInstance().getRunDirectoryMapped().toPath().resolve("config/tjmetro.json");
     public static final List<Footer> FOOTERS = Arrays.asList(
@@ -40,36 +43,17 @@ public class ConfigClient
             new Footer(() -> TextHelper.translatable("footer.tjmetro.prevent_block_falling"), Reference.PREVENT_BLOCK_FALLING)
     );
 
-    /**
-     * @deprecated Cloth Config does not support Forge 1.20.4
-     */
-    @Deprecated
     public static Screen getConfigScreen(Screen parent) {
-        //ConfigBuilder builder = ConfigBuilder.create().setParentScreen(parent.data).setTitle(TextHelper.translatable("gui.tjmetro.options").data).transparentBackground();
-        //ConfigEntryBuilder entryBuilder = builder.entryBuilder();
-        //ConfigCategory categoryTianjinMetro = builder.getOrCreateCategory(TextHelper.translatable("config.category.tjmetro").data);
-        //BooleanListEntry booleanMTRFilters = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.enable_mtr_filters").data, ENABLE_MTR_FILTERS.get()).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
-        //BooleanListEntry booleanUseTianjinMetroFont = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.use_tianjin_metro_font").data, USE_TIANJIN_METRO_FONT.get()).setTooltip(TextHelper.translatable("tooltip.tjmetro.use_tianjin_metro_font").data, TextHelper.translatable("tooltip.tjmetro.experimental").formatted(TextFormatting.YELLOW).data).setDefaultValue(ENABLE_MTR_FILTERS.getDefault()).build();
-        //TextListEntry textFooter = entryBuilder.startTextDescription(FOOTERS.get(new Random().nextInt(FOOTERS.size())).get().data).build();
-        //categoryTianjinMetro.addEntry(booleanMTRFilters).addEntry(booleanUseTianjinMetroFont).addEntry(textFooter);
-
-        //builder.setSavingRunnable(() -> {
-        //    ENABLE_MTR_FILTERS.set(booleanMTRFilters.getValue());
-        //    USE_TIANJIN_METRO_FONT.set(booleanUseTianjinMetroFont.getValue());
-        //});
-        //return new Screen(builder.build());
-        throw new UnsupportedOperationException();
+        if (ModLoaderHelper.hasClothConfig()) {
+            return ClientConfigScreen.getClothConfigScreen(parent);
+        }
+        return new Screen(new MissingClothConfigScreen(parent));
     }
 
     public static void refreshProperties() {
         TianjinMetro.LOGGER.info("Refreshed Tianjin Metro config");
         try {
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_FILE_PATH))).getAsJsonObject();
-            try {
-                ENABLE_MTR_FILTERS.set(jsonConfig.get(ENABLE_MTR_FILTERS.getId()).getAsBoolean());
-            } catch (Exception e) {
-                ENABLE_MTR_FILTERS.set(ENABLE_MTR_FILTERS.getDefault());
-            }
             try {
                 USE_TIANJIN_METRO_FONT.set(jsonConfig.get(USE_TIANJIN_METRO_FONT.getId()).getAsBoolean());
             } catch (Exception e) {
@@ -80,18 +64,29 @@ public class ConfigClient
             } catch (Exception e) {
                 ROTATED_STATION_NAME.set(ROTATED_STATION_NAME.getDefault());
             }
+            try {
+                DISABLE_DYNAMIC_TEXTURES.set(jsonConfig.get(DISABLE_DYNAMIC_TEXTURES.getId()).getAsBoolean());
+            } catch (Exception e) {
+                DISABLE_DYNAMIC_TEXTURES.set(DISABLE_DYNAMIC_TEXTURES.getDefault());
+            }
+            try {
+                DISABLE_TRAIN_RENDERING.set(jsonConfig.get(DISABLE_TRAIN_RENDERING.getId()).getAsBoolean());
+            } catch (Exception e) {
+                DISABLE_TRAIN_RENDERING.set(DISABLE_TRAIN_RENDERING.getDefault());
+            }
         } catch (Exception e) {
             writeToFile();
             TianjinMetro.LOGGER.error(e.getMessage(), e);
         }
     }
 
-    protected static void writeToFile() {
+    public static void writeToFile() {
         TianjinMetro.LOGGER.info("Wrote Tianjin Metro config to file");
         final JsonObject jsonConfig = new JsonObject();
-        jsonConfig.addProperty(ENABLE_MTR_FILTERS.getId(), ENABLE_MTR_FILTERS.get());
         jsonConfig.addProperty(USE_TIANJIN_METRO_FONT.getId(), USE_TIANJIN_METRO_FONT.get());
         jsonConfig.addProperty(ROTATED_STATION_NAME.getId(), ROTATED_STATION_NAME.get());
+        jsonConfig.addProperty(DISABLE_DYNAMIC_TEXTURES.getId(), DISABLE_DYNAMIC_TEXTURES.get());
+        jsonConfig.addProperty(DISABLE_TRAIN_RENDERING.getId(), DISABLE_TRAIN_RENDERING.get());
 
         try {
             Files.write(CONFIG_FILE_PATH, Collections.singleton(Utilities.prettyPrint(jsonConfig)));
@@ -129,7 +124,6 @@ public class ConfigClient
 
         public void set(T value) {
             this.value = value;
-            writeToFile();
         }
 
         public T getDefault() {
@@ -139,16 +133,16 @@ public class ConfigClient
 
     public static final class Footer
     {
-        private final Supplier<MutableText> footer;
+        private final Supplier<MutableText> text;
         private final String link;
 
-        public Footer(Supplier<MutableText> footer, String link) {
-            this.footer = footer;
+        public Footer(Supplier<MutableText> text, String link) {
+            this.text = text;
             this.link = link;
         }
 
-        public Supplier<MutableText> footer() {
-            return footer;
+        public Supplier<MutableText> text() {
+            return text;
         }
 
         public String link() {

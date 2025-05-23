@@ -7,14 +7,14 @@ import ziyue.tjmetro.mapping.FilterBuilder;
 import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.CreativeModeTabs;
 import ziyue.tjmetro.mod.ItemList;
-import ziyue.tjmetro.mod.screen.ConfigClientScreen;
+import ziyue.tjmetro.mod.config.ConfigClient;
 
 import static ziyue.tjmetro.mod.BlockList.*;
 import static ziyue.tjmetro.mod.ItemList.*;
 
 public interface Filters
 {
-    PressAction OPTION_BUTTON_ACTION = button -> MinecraftClient.getInstance().openScreen(new Screen(new ConfigClientScreen(MinecraftClient.getInstance().getCurrentScreenMapped())));
+    PressAction OPTION_BUTTON_ACTION = button -> MinecraftClient.getInstance().openScreen(ConfigClient.getConfigScreen(MinecraftClient.getInstance().getCurrentScreenMapped()));
 
     Filter TIANJIN_MISCELLANEOUS = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_miscellaneous"), () -> new ItemStack(new ItemConvertible(ItemList.WRENCH.get().data)));
     Filter TIANJIN_BUILDING = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_building"), () -> new ItemStack(new ItemConvertible(BlockList.ROLLING.get().data)));

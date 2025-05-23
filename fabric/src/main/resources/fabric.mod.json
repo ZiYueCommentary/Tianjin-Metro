@@ -54,5 +54,8 @@
         "minecraft": "${minecraft_version}",
         "filters": ">=1.0.0",
         "mtr": "*"
+    },
+    "suggests": {
+        "cloth-config": "*"
     }
 }
