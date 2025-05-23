@@ -1,0 +1,6 @@
+{
+	"parent": "tjmetro:block/apg_door_tianjin_trt_right_light_base",
+	"textures": {
+		"light": "tjmetro:block/apg_door_tianjin_trt_light_off"
+	}
+}

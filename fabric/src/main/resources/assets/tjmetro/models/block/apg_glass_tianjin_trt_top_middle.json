@@ -1,9 +1,30 @@
 {
-	"parent": "tjmetro:block/apg_glass_tianjin_trt_middle_base",
+	"credit": "Made by ZiYueCommentary, made with Blockbench.",
 	"textures": {
-		"frontbottom": "tjmetro:block/air",
-		"sidebottom": "tjmetro:block/air",
-		"fronttop": "tjmetro:block/apg_glass_tianjin_trt_single_top",
-		"sidetop": "tjmetro:block/apg_tianjin_trt_side_light"
-	}
+		"particle": "mtr:item/apg_glass",
+		"fronttop": "mtr:block/apg_glass_single_top",
+		"sidetop": "mtr:block/psd_side_light"
+	},
+	"elements": [
+		{
+			"from": [2, 7, 8],
+			"to": [4, 8, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -1, 0]},
+			"faces": {
+				"east": {"uv": [1, 7, 9, 8], "texture": "#fronttop"},
+				"west": {"uv": [7.375, 7, 15.375, 8], "texture": "#fronttop"},
+				"up": {"uv": [3, 8, 4, 16], "texture": "#sidetop"}
+			}
+		},
+		{
+			"from": [2, 7, 0],
+			"to": [4, 8, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -1, 0]},
+			"faces": {
+				"east": {"uv": [7, 7, 15, 8], "texture": "#fronttop"},
+				"west": {"uv": [1.125, 7, 9.125, 8], "texture": "#fronttop"},
+				"up": {"uv": [3, 0, 4, 8], "texture": "#sidetop"}
+			}
+		}
+	]
 }
