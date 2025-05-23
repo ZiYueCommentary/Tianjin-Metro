@@ -130,6 +130,7 @@
     "config.tjmetro.rotated_station_name": "Rotate station names on PSD (Tianjin)",
     "config.tjmetro.debugging": "Debugging options",
     "config.tjmetro.disable_dynamic_textures": "Disable dynamic textures",
+    "config.tjmetro.disable_train_rendering": "Disable train rendering",
 
     "tooltip.tjmetro.not_suggest": "This feature is not suggested.",
     "tooltip.tjmetro.mtr_config_screen": "Use the new config screen instead of the original.",

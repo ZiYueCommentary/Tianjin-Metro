@@ -30,7 +30,9 @@ public class ClientConfigScreen
         BooleanListEntry booleanRotatedStationName = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.rotated_station_name").data, ConfigClient.ROTATED_STATION_NAME.get()).setDefaultValue(ConfigClient.ROTATED_STATION_NAME.getDefault()).build();
         SubCategoryBuilder subCategoryDebugging = entryBuilder.startSubCategory(TextHelper.translatable("config.tjmetro.debugging").data);
         BooleanListEntry booleanDisableDynamicTextures = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.disable_dynamic_textures").data, ConfigClient.DISABLE_DYNAMIC_TEXTURES.get()).setDefaultValue(ConfigClient.DISABLE_DYNAMIC_TEXTURES.getDefault()).setTooltip(TextHelper.translatable("tooltip.tjmetro.disable_dynamic_textures").data).build();
+        BooleanListEntry booleanDisableTrainRendering = entryBuilder.startBooleanToggle(TextHelper.translatable("config.tjmetro.disable_train_rendering").data, ConfigClient.DISABLE_TRAIN_RENDERING.get()).setDefaultValue(ConfigClient.DISABLE_TRAIN_RENDERING.getDefault()).build();
         subCategoryDebugging.add(booleanDisableDynamicTextures);
+        subCategoryDebugging.add(booleanDisableTrainRendering);
         TextListEntry textFooter = entryBuilder.startTextDescription(TextFormatter.FOOTER_LINK.apply(ConfigClient.FOOTERS.get(new Random().nextInt(ConfigClient.FOOTERS.size())))).build();
         categoryTianjinMetro.addEntry(booleanUseTianjinMetroFont).addEntry(booleanRotatedStationName).addEntry(subCategoryDebugging.build()).addEntry(textFooter);
         builder.setSavingRunnable(() -> {
@@ -40,6 +42,7 @@ public class ClientConfigScreen
             ConfigClient.USE_TIANJIN_METRO_FONT.set(booleanUseTianjinMetroFont.getValue());
             ConfigClient.ROTATED_STATION_NAME.set(booleanRotatedStationName.getValue());
             ConfigClient.DISABLE_DYNAMIC_TEXTURES.set(booleanDisableDynamicTextures.getValue());
+            ConfigClient.DISABLE_TRAIN_RENDERING.set(booleanDisableTrainRendering.getValue());
             ConfigClient.writeToFile();
         });
         return new Screen(builder.build());
