@@ -183,5 +183,6 @@
     "block.tjmetro.station_name_projector": "站名投影仪（1号线）",
     "block.tjmetro.psd_tianjin_jinjing": "高站台门（天津、津静线）",
     "gui.tjmetro.platform": "站台|Platform",
-    "block.tjmetro.time_display_even": "时间显示器（双数）"
+    "block.tjmetro.time_display_even": "时间显示器（双数）",
+    "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r未安装"
 }
