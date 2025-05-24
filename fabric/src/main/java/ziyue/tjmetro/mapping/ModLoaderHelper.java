@@ -10,6 +10,6 @@ import net.fabricmc.loader.api.FabricLoader;
 public interface ModLoaderHelper
 {
     static boolean hasClothConfig() {
-        return FabricLoader.getInstance().isModLoaded("cloth-config");
+        return FabricLoader.getInstance().isModLoaded("cloth-config") || FabricLoader.getInstance().isModLoaded("cloth-config2");
     }
 }

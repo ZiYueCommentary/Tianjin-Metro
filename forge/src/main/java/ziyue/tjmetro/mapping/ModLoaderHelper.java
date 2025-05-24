@@ -10,6 +10,6 @@ import net.minecraftforge.fml.ModList;
 public interface ModLoaderHelper
 {
     static boolean hasClothConfig() {
-        return ModList.get().isLoaded("cloth_config");
+        return ModList.get().isLoaded("cloth_config") || ModList.get().isLoaded("cloth-config");
     }
 }
