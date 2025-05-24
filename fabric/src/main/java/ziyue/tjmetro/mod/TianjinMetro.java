@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ziyue.tjmetro.mapping.BooleanGameRule;
 import ziyue.tjmetro.mapping.GameRuleRegistry;
+import ziyue.tjmetro.mapping.ModLoaderHelper;
 import ziyue.tjmetro.mod.packet.*;
 
 /**
@@ -21,6 +22,7 @@ public final class TianjinMetro
         LOGGER.info("Hello from ZiYueCommentary!");
         LOGGER.info("Mod ID: " + Reference.MOD_ID);
         LOGGER.info("Version: " + Reference.VERSION);
+        if (!ModLoaderHelper.hasClothConfig()) LOGGER.info("Cloth Config is not installed");
 
         CreativeModeTabs.registerCreativeModeTabs();
         Registry.REGISTRY_TABS.init();

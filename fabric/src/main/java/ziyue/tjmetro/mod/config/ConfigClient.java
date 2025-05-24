@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -28,6 +29,8 @@ import java.util.function.Supplier;
 
 public class ConfigClient
 {
+    private static final HashSet<Property<?>> PROPERTIES = new HashSet<>();
+
     public static final Property<Boolean> USE_TIANJIN_METRO_FONT = new Property<>("use_tianjin_metro_font", true);
     public static final Property<Boolean> ROTATED_STATION_NAME = new Property<>("rotated_station_name", true);
     public static final Property<Boolean> DISABLE_DYNAMIC_TEXTURES = new Property<>("disable_dynamic_textures", false);
@@ -50,29 +53,37 @@ public class ConfigClient
         return new Screen(new MissingClothConfigScreen(parent));
     }
 
+    @SuppressWarnings("unchecked")
     public static void refreshProperties() {
         TianjinMetro.LOGGER.info("Refreshed Tianjin Metro config");
         try {
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(CONFIG_FILE_PATH))).getAsJsonObject();
-            try {
-                USE_TIANJIN_METRO_FONT.set(jsonConfig.get(USE_TIANJIN_METRO_FONT.getId()).getAsBoolean());
-            } catch (Exception e) {
-                USE_TIANJIN_METRO_FONT.set(USE_TIANJIN_METRO_FONT.getDefault());
-            }
-            try {
-                ROTATED_STATION_NAME.set(jsonConfig.get(ROTATED_STATION_NAME.getId()).getAsBoolean());
-            } catch (Exception e) {
-                ROTATED_STATION_NAME.set(ROTATED_STATION_NAME.getDefault());
-            }
-            try {
-                DISABLE_DYNAMIC_TEXTURES.set(jsonConfig.get(DISABLE_DYNAMIC_TEXTURES.getId()).getAsBoolean());
-            } catch (Exception e) {
-                DISABLE_DYNAMIC_TEXTURES.set(DISABLE_DYNAMIC_TEXTURES.getDefault());
-            }
-            try {
-                DISABLE_TRAIN_RENDERING.set(jsonConfig.get(DISABLE_TRAIN_RENDERING.getId()).getAsBoolean());
-            } catch (Exception e) {
-                DISABLE_TRAIN_RENDERING.set(DISABLE_TRAIN_RENDERING.getDefault());
+
+            for (Property<?> property : PROPERTIES) {
+                if (property.get() instanceof Boolean) {
+                    Property<Boolean> converted = (Property<Boolean>) property;
+                    try {
+                        converted.set(jsonConfig.get(converted.getId()).getAsBoolean());
+                    } catch (Exception e) {
+                        converted.set(converted.getDefault());
+                    }
+                } else if (property.get() instanceof Number) {
+                    Property<Number> converted = (Property<Number>) property;
+                    try {
+                        converted.set(jsonConfig.get(converted.getId()).getAsNumber());
+                    } catch (Exception e) {
+                        converted.set(converted.getDefault());
+                    }
+                } else if (property.get() instanceof Enum) {
+                    Property<Enum<?>> converted = (Property<Enum<?>>) property;
+                    try {
+                        converted.set(Enum.valueOf(converted.get().getClass(), jsonConfig.get(converted.getId()).getAsString()));
+                    } catch (Exception e) {
+                        converted.set(converted.getDefault());
+                    }
+                } else {
+                    TianjinMetro.LOGGER.warn("Unrecognized config property: {}, type: {}", property.getId(), property.get().getClass().getName());
+                }
             }
         } catch (Exception e) {
             writeToFile();
@@ -83,10 +94,18 @@ public class ConfigClient
     public static void writeToFile() {
         TianjinMetro.LOGGER.info("Wrote Tianjin Metro config to file");
         final JsonObject jsonConfig = new JsonObject();
-        jsonConfig.addProperty(USE_TIANJIN_METRO_FONT.getId(), USE_TIANJIN_METRO_FONT.get());
-        jsonConfig.addProperty(ROTATED_STATION_NAME.getId(), ROTATED_STATION_NAME.get());
-        jsonConfig.addProperty(DISABLE_DYNAMIC_TEXTURES.getId(), DISABLE_DYNAMIC_TEXTURES.get());
-        jsonConfig.addProperty(DISABLE_TRAIN_RENDERING.getId(), DISABLE_TRAIN_RENDERING.get());
+
+        for (Property<?> property : PROPERTIES) {
+            if (property.get() instanceof Boolean) {
+                jsonConfig.addProperty(property.getId(), (Boolean) property.get());
+            } else if (property.get() instanceof Number) {
+                jsonConfig.addProperty(property.getId(), (Number) property.get());
+            } else if (property.get() instanceof Enum) {
+                jsonConfig.addProperty(property.getId(), property.get().toString());
+            } else {
+                TianjinMetro.LOGGER.warn("Unrecognized config property: {}, type: {}", property.getId(), property.get().getClass().getName());
+            }
+        }
 
         try {
             Files.write(CONFIG_FILE_PATH, Collections.singleton(Utilities.prettyPrint(jsonConfig)));
@@ -97,6 +116,8 @@ public class ConfigClient
 
     /**
      * A wrapper for settings.
+     * A property shouldn't be modified outside the config screen.
+     * If you do so, invoke {@link ConfigClient#writeToFile()} after modify.
      *
      * @author ZiYueCommentary
      * @see ConfigClient
@@ -112,6 +133,8 @@ public class ConfigClient
             this.id = id;
             this.value = defaultValue;
             this.defaultValue = defaultValue;
+
+            ConfigClient.PROPERTIES.add(this);
         }
 
         public String getId() {
