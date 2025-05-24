@@ -1,10 +1,10 @@
-import org.mtr.mod.BuildTools
+import ziyue.tjmetro.buildtools.BuildTools
 
 plugins {
     id 'fabric-loom' version '+'
 }
 
-final BuildTools buildTools = new BuildTools(minecraft_version, "fabric", mtr_version, project)
+final BuildTools buildTools = new BuildTools(minecraft_version)
 
 loom {
     runConfigs.configureEach { ideConfigGenerated = true }
@@ -17,20 +17,19 @@ loom {
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings "net.fabricmc:yarn:${buildTools.getYarnVersion()}:v2"
-    String FabricVersion = buildTools.getFabricVersion()
-    modImplementation "net.fabricmc:fabric-loader:${FabricVersion}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${buildTools.getFabricApiVersion()}"
-    modApi "com.terraformersmc:modmenu:${buildTools.getModMenuVersion()}"
-    modApi("ziyue.filters:filters-fabric:${buildTools.getFiltersAPIVersion()}") {
+    mappings "net.fabricmc:yarn:${buildTools.dependencies.yarn()}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${buildTools.dependencies.fabricLoader()}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${buildTools.dependencies.fabricApi()}"
+    modApi "com.terraformersmc:modmenu:${buildTools.dependencies.modMenu()}"
+    modApi("ziyue.filters:filters-fabric:${buildTools.dependencies.filtersApi()}") {
         exclude(group: "net.fabricmc")
     }
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${buildTools.getClothConfigVersion()}") {
+    modApi("me.shedaniel.cloth:cloth-config-fabric:${buildTools.dependencies.clothConfig()}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
     configurations.configureEach {
         resolutionStrategy {
-            force("net.fabricmc:fabric-loader:${FabricVersion}")
+            force("net.fabricmc:fabric-loader:${buildTools.dependencies.fabricLoader()}")
         }
     }
     modImplementation "org.mtr:MTR-fabric:${mtr_version}+${minecraft_version}-server"

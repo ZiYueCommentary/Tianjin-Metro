@@ -1,11 +1,11 @@
-import org.mtr.mod.BuildTools
+import ziyue.tjmetro.buildtools.BuildTools
 
 plugins {
     id "net.minecraftforge.gradle" version "+"
     id "org.spongepowered.mixin" version "+"
 }
 
-final BuildTools buildTools = new BuildTools(minecraft_version, "forge", mtr_version, project)
+final BuildTools buildTools = new BuildTools(minecraft_version)
 
 minecraft {
     mappings channel: "official", version: minecraft_version
@@ -22,11 +22,11 @@ minecraft {
 sourceSets.main.resources { srcDir "src/generated/resources" }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${buildTools.getForgeVersion()}"
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${buildTools.dependencies.forge()}"
     annotationProcessor "org.spongepowered:mixin:+:processor"
     implementation fg.deobf("org.mtr:MTR-forge:${mtr_version}+${minecraft_version}-server")
-    implementation(fg.deobf("ziyue.filters:filters-forge:${buildTools.getFiltersAPIVersion()}"))
-    implementation(fg.deobf("me.shedaniel.cloth:cloth-config-forge:${buildTools.clothConfigVersion}"))
+    implementation(fg.deobf("ziyue.filters:filters-forge:${buildTools.dependencies.forge()}"))
+    implementation(fg.deobf("me.shedaniel.cloth:cloth-config-forge:${buildTools.dependencies.clothConfig()}"))
     annotationProcessor 'systems.manifold:manifold-preprocessor:+'
 }
 
