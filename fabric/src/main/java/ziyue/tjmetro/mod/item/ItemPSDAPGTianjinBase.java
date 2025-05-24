@@ -14,7 +14,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static org.mtr.mod.item.ItemPSDAPGBase.blocksNotReplaceable;
-import static ziyue.tjmetro.mod.block.BlockPSDTopTianjin.STYLE;
 
 /**
  * @author ZiYueCommentary
@@ -76,7 +75,7 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
     }
 
     public boolean isAPG() {
-        return this.block.data instanceof BlockFlagAPGTianjin || this.block.data instanceof BlockFlagAPGTianjinBMT;
+        return this.block.data instanceof BlockFlagAPGTianjin || this.block.data instanceof BlockFlagAPGTianjinBMT || this.block.data instanceof BlockFlagAPGTianjinTRT;
     }
 
     @Override

@@ -6,6 +6,7 @@ import org.mtr.mapping.holder.Item;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mod.block.BlockAPGGlass;
 import org.mtr.mod.block.BlockPSDAPGDoorBase;
+import org.mtr.mod.block.BlockPSDTop;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.ItemList;
 import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
@@ -43,7 +44,7 @@ public class BlockAPGGlassTianjinTRT extends BlockAPGGlass implements BlockFlagA
      * @see org.mtr.mod.render.RenderPSDAPGDoor
      * @since 1.0.0-beta-2
      */
-    public static class BlockEntity extends BlockPSDAPGDoorBase.BlockEntityBase
+    public static class BlockEntity extends BlockPSDTop.BlockEntityBase
     {
         public BlockEntity(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.APG_GLASS_TIANJIN_TRT.get(), pos, state);

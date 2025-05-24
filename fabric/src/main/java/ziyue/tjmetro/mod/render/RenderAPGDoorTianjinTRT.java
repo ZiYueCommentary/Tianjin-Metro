@@ -11,7 +11,8 @@ import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
-import ziyue.tjmetro.mod.block.BlockPSDTopTianjinBMT;
+import ziyue.tjmetro.mod.Reference;
+import ziyue.tjmetro.mod.block.BlockAPGDoorTianjinTRT;
 
 /**
  * @author ZiYueCommentary
@@ -22,20 +23,9 @@ import ziyue.tjmetro.mod.block.BlockPSDTopTianjinBMT;
 
 public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBase> extends BlockEntityRenderer<T> implements IGui, IBlock
 {
-    private static final ModelSingleCube MODEL_PSD = new ModelSingleCube(36, 18, 0, 0, 0, 16, 16, 2);
-    private static final ModelSingleCube MODEL_PSD_END_LEFT_1 = new ModelSingleCube(20, 18, 0, 0, 0, 8, 16, 2);
-    private static final ModelSingleCube MODEL_PSD_END_RIGHT_1 = new ModelSingleCube(20, 18, 8, 0, 0, 8, 16, 2);
-    private static final ModelSingleCube MODEL_PSD_END_LEFT_2 = new ModelSingleCube(20, 18, 8, 0, 2, 8, 16, 2);
-    private static final ModelSingleCube MODEL_PSD_END_RIGHT_2 = new ModelSingleCube(20, 18, 0, 0, 2, 8, 16, 2);
-    private static final ModelSingleCube MODEL_PSD_LIGHT_LEFT = new ModelSingleCube(16, 16, 0, -1, 5, 1, 1, 1);
-    private static final ModelSingleCube MODEL_PSD_LIGHT_RIGHT = new ModelSingleCube(16, 16, 15, -1, 5, 1, 1, 1);
-    private static final ModelSingleCube MODEL_APG_TOP = new ModelSingleCube(34, 9, 0, 8, 1, 16, 8, 1);
-    private static final ModelAPGDoorBottom MODEL_APG_BOTTOM = new ModelAPGDoorBottom();
-    private static final ModelAPGDoorLight MODEL_APG_LIGHT = new ModelAPGDoorLight();
-    private static final ModelSingleCube MODEL_APG_DOOR_LOCKED = new ModelSingleCube(6, 6, 5, 10, 1, 6, 6, 0);
-    private static final ModelSingleCube MODEL_PSD_DOOR_LOCKED = new ModelSingleCube(6, 6, 5, 6, 1, 6, 6, 0);
-    private static final ModelSingleCube MODEL_LIFT_LEFT = new ModelSingleCube(28, 18, 0, 0, 0, 12, 16, 2);
-    private static final ModelSingleCube MODEL_LIFT_RIGHT = new ModelSingleCube(28, 18, 4, 0, 0, 12, 16, 2);
+    protected static final ModelSingleCube MODEL_APG_TOP = new ModelSingleCube(34, 9, 0, 8, 1, 16, 8, 1);
+    protected static final ModelAPGDoorBottom MODEL_APG_BOTTOM = new ModelAPGDoorBottom();
+    protected static final ModelSingleCube MODEL_APG_DOOR_LOCKED = new ModelSingleCube(6, 6, 5, 10, 1, 6, 6, 0);
 
     public RenderAPGDoorTianjinTRT(Argument dispatcher) {
         super(dispatcher);
@@ -49,10 +39,10 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         entity.updateRedstone(MinecraftClient.getInstance().getLastFrameDuration());
 
         final BlockPos blockPos = entity.getPos2();
-        final Direction facing = IBlock.getStatePropertySafe(world, blockPos, BlockPSDAPGDoorBase.FACING);
-        final boolean side = IBlock.getStatePropertySafe(world, blockPos, BlockPSDAPGDoorBase.SIDE) == EnumSide.RIGHT;
-        final boolean half = IBlock.getStatePropertySafe(world, blockPos, BlockPSDAPGDoorBase.HALF) == DoubleBlockHalf.UPPER;
-        final boolean unlocked = IBlock.getStatePropertySafe(world, blockPos, BlockPSDAPGDoorBase.UNLOCKED);
+        final Direction facing = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.FACING);
+        final boolean side = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.SIDE) == EnumSide.RIGHT;
+        final boolean half = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.HALF) == DoubleBlockHalf.UPPER;
+        final boolean unlocked = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.UNLOCKED);
         final double open = Math.min(entity.getDoorValue(), 1);
 
         final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations(0.5 + entity.getPos2().getX(), entity.getPos2().getY(), 0.5 + entity.getPos2().getZ());
@@ -60,24 +50,24 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
             graphicsHolderNew.rotateYDegrees(-facing.asRotation());
             graphicsHolderNew.rotateXDegrees(180);
         });
-        final StoredMatrixTransformations storedMatrixTransformationsLight = storedMatrixTransformations.copy();
 
+        // Traditional lights.
         if (half) {
-            final Block block = world.getBlockState(blockPos.offset(side ? facing.rotateYClockwise() : facing.rotateYCounterclockwise())).getBlock();
-            if (block.data instanceof BlockAPGGlass || block.data instanceof BlockAPGGlassEnd) {
-                MainRenderer.scheduleRender(new Identifier(String.format("mtr:textures/block/apg_door_light_%s.png", open > 0 ? "on" : "off")), false, open > 0 ? QueuedRenderLayer.LIGHT_TRANSLUCENT : QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
-                    storedMatrixTransformationsLight.transform(graphicsHolderNew, offset);
-                    graphicsHolderNew.translate(side ? -0.515625 : 0.515625, 0, 0);
-                    graphicsHolderNew.scale(0.5F, 1, 1);
-                    MODEL_APG_LIGHT.render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
-                    graphicsHolderNew.pop();
-                });
+            final Block sideBlock = world.getBlockState(blockPos.offset(side ? facing.rotateYClockwise() : facing.rotateYCounterclockwise())).getBlock();
+            if (sideBlock.data instanceof BlockAPGGlass || sideBlock.data instanceof BlockAPGGlassEnd) {
+                if (open > 0) {
+                    tryUpdateLightState(world, blockPos, BlockAPGDoorTianjinTRT.LightProperty.LIGHT_ON);
+                } else {
+                    tryUpdateLightState(world, blockPos, BlockAPGDoorTianjinTRT.LightProperty.LIGHT_OFF);
+                }
+            } else {
+                tryUpdateLightState(world, blockPos, BlockAPGDoorTianjinTRT.LightProperty.NO_LIGHT);
             }
         }
 
         storedMatrixTransformations.add(matricesNew -> matricesNew.translate(open * (side ? -1 : 1), 0, 0));
 
-        MainRenderer.scheduleRender(new Identifier(String.format("mtr:textures/block/apg_door_%s_%s.png", half ? "top" : "bottom", side ? "right" : "left")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+        MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, String.format("textures/block/apg_door_tianjin_trt_%s_%s.png", half ? "top" : "bottom", side ? "right" : "left")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset);
             (half ? MODEL_APG_TOP : MODEL_APG_BOTTOM).render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
             graphicsHolderNew.pop();
@@ -96,12 +86,17 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         return true;
     }
 
-    private static class ModelSingleCube extends EntityModelExtension<EntityAbstractMapping>
+    protected void tryUpdateLightState(World world, BlockPos blockPos, BlockAPGDoorTianjinTRT.LightProperty lightProperty) {
+        if (IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.LIGHT) != lightProperty) {
+            world.setBlockState(blockPos, world.getBlockState(blockPos).with(new Property<>(BlockAPGDoorTianjinTRT.LIGHT.data), lightProperty));
+        }
+    }
+
+    protected static class ModelSingleCube extends EntityModelExtension<EntityAbstractMapping>
     {
+        protected final ModelPartExtension cube;
 
-        private final ModelPartExtension cube;
-
-        private ModelSingleCube(int textureWidth, int textureHeight, int x, int y, int z, int length, int height, int depth) {
+        protected ModelSingleCube(int textureWidth, int textureHeight, int x, int y, int z, int length, int height, int depth) {
             super(textureWidth, textureHeight);
             cube = createModelPart();
             cube.setTextureUVOffset(0, 0).addCuboid(x - 8, y - 16, z - 8, length, height, depth, 0, false);
@@ -118,12 +113,11 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         }
     }
 
-    private static class ModelAPGDoorBottom extends EntityModelExtension<EntityAbstractMapping>
+    protected static class ModelAPGDoorBottom extends EntityModelExtension<EntityAbstractMapping>
     {
+        protected final ModelPartExtension bone;
 
-        private final ModelPartExtension bone;
-
-        private ModelAPGDoorBottom() {
+        protected ModelAPGDoorBottom() {
             super(34, 27);
 
             bone = createModelPart();
@@ -134,35 +128,6 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
             cube.setPivot(0, -6, -8);
             cube.setRotation(-0.7854F, 0, 0);
             cube.setTextureUVOffset(0, 24).addCuboid(-8, -2, 0, 16, 2, 1, 0, false);
-
-            buildModel();
-        }
-
-        @Override
-        public void render(GraphicsHolder graphicsHolder, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-            bone.render(graphicsHolder, 0, 0, 0, packedLight, packedOverlay);
-        }
-
-        @Override
-        public void setAngles2(EntityAbstractMapping entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-        }
-    }
-
-    private static class ModelAPGDoorLight extends EntityModelExtension<EntityAbstractMapping>
-    {
-
-        private final ModelPartExtension bone;
-
-        private ModelAPGDoorLight() {
-            super(8, 8);
-
-            bone = createModelPart();
-            bone.setTextureUVOffset(0, 4).addCuboid(-0.5F, -9, -7, 1, 1, 3, 0.05F, false);
-
-            final ModelPartExtension cube = bone.addChild();
-            cube.setPivot(0, -9.05F, -4.95F);
-            cube.setRotation(0.3927F, 0, 0);
-            cube.setTextureUVOffset(0, 0).addCuboid(-0.5F, 0.05F, -3.05F, 1, 1, 3, 0.05F, false);
 
             buildModel();
         }

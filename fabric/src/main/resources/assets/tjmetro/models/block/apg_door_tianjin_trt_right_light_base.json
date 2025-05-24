@@ -2,10 +2,9 @@
 	"credit": "Made by ZiYueCommentary, made with Blockbench.",
 	"elements": [
 		{
-			"shade": false,
-			"from": [2.25, 8.9, -6.65],
-			"to": [4.315, 9.1, -1],
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [2.15, 9.1, -8]},
+			"from": [3.25, 8.9, -3.45],
+			"to": [4.315, 9.1, -0.8],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [2.15, 9.1, -7.8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#light"},
 				"south": {"uv": [0, 0, 16, 16], "texture": "#light"},
@@ -14,10 +13,9 @@
 			}
 		},
 		{
-			"shade": false,
-			"from": [4, 7.7, -6.65],
-			"to": [4.165, 8.3, -1],
-			"rotation": {"angle": 0, "axis": "z", "origin": [2, 8.1, -8]},
+			"from": [4, 7.7, -3.45],
+			"to": [4.165, 8.3, -0.8],
+			"rotation": {"angle": 0, "axis": "z", "origin": [2, 8.1, -7.8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#light"},
 				"east": {"uv": [0, 0, 16, 16], "texture": "#light"},

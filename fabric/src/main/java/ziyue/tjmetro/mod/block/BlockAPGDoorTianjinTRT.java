@@ -1,9 +1,9 @@
 package ziyue.tjmetro.mod.block;
 
-import org.mtr.mapping.holder.BlockPos;
-import org.mtr.mapping.holder.BlockState;
-import org.mtr.mapping.holder.Item;
+import org.jetbrains.annotations.NotNull;
+import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
+import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.BlockPSDAPGDoorBase;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.ItemList;
@@ -11,6 +11,7 @@ import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
 import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinTRT;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * @author ZiYueCommentary
@@ -22,6 +23,8 @@ import javax.annotation.Nonnull;
 
 public class BlockAPGDoorTianjinTRT extends BlockPSDAPGDoorBase implements BlockFlagAPGTianjinTRT
 {
+    public static final EnumProperty<LightProperty> LIGHT = EnumProperty.of("light", LightProperty.class);
+
     @Override
     protected boolean isAPG() {
         return true;
@@ -31,6 +34,19 @@ public class BlockAPGDoorTianjinTRT extends BlockPSDAPGDoorBase implements Block
     @Override
     public Item asItem2() {
         return ItemList.APG_DOOR_TIANJIN_TRT.get();
+    }
+
+    // Note that I chose traditional way to render lights.
+    @Nonnull
+    @Override
+    public BlockRenderType getRenderType2(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Override
+    public void addBlockProperties(List<HolderBase<?>> properties) {
+        super.addBlockProperties(properties);
+        properties.add(LIGHT);
     }
 
     @Override
@@ -47,6 +63,29 @@ public class BlockAPGDoorTianjinTRT extends BlockPSDAPGDoorBase implements Block
     {
         public BlockEntity(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.APG_DOOR_TIANJIN_TRT.get(), pos, state);
+        }
+    }
+
+    /**
+     * @author ZiYueCommentary
+     * @since 1.0.0-beta-5
+     */
+    public enum LightProperty implements StringIdentifiable
+    {
+        NO_LIGHT("no_light"),
+        LIGHT_OFF("light_off"),
+        LIGHT_ON("light_on");
+
+        final String name;
+
+        LightProperty(String name) {
+            this.name = name;
+        }
+
+        @Nonnull
+        @Override
+        public String asString2() {
+            return name;
         }
     }
 }

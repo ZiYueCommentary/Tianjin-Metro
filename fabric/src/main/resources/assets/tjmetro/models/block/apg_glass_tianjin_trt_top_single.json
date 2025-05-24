@@ -1,9 +1,9 @@
 {
 	"credit": "Made by ZiYueCommentary, made with Blockbench.",
 	"textures": {
-		"particle": "mtr:item/apg_glass",
-		"sidetop": "mtr:block/psd_side_light",
-		"fronttop": "mtr:block/apg_glass_single_top"
+		"particle": "tjmetro:item/apg_glass_tianjin_trt",
+		"sidetop": "tjmetro:block/apg_tianjin_trt_side_light",
+		"fronttop": "tjmetro:block/apg_glass_tianjin_trt_single_top"
 	},
 	"elements": [
 		{

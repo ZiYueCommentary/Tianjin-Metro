@@ -2,6 +2,22 @@
 	"multipart": [
 		{
 			"when": {
+				"unlocked": "false"
+			},
+			"apply": {
+				"model": "mtr:block/apg_door"
+			}
+		},
+		{
+			"when": {
+				"unlocked": "true"
+			},
+			"apply": {
+				"model": "mtr:block/apg_door"
+			}
+		},
+		{
+			"when": {
 				"facing": "north",
 				"side": "right",
 				"half": "upper",

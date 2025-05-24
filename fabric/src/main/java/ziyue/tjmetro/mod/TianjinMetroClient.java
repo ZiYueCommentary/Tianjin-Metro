@@ -1,6 +1,7 @@
 package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.holder.RenderLayer;
+import org.mtr.mod.render.RenderAPGGlass;
 import org.mtr.mod.render.RenderPSDAPGDoor;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.render.*;
@@ -110,6 +111,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_TOP_TIANJIN_BMT, RenderPSDTopTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_TIANJIN_BMT, RenderPSDDoorTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN_TRT, RenderAPGDoorTianjinTRT::new);
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_GLASS_TIANJIN_TRT, RenderAPGGlassTianjinTRT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.SECURITY_CHECK_SIGN, RenderSecurityCheckSign::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAVIGATOR_3, RenderStationNavigator::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAVIGATOR_4, RenderStationNavigator::new);
