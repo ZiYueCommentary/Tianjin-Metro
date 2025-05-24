@@ -18,13 +18,11 @@ import static org.mtr.mod.data.IGui.*;
 public class MissingClothConfigScreen extends ScreenExtension
 {
     protected final Screen parent;
-    protected final ButtonWidgetExtension buttonDone;
-    protected static final int BUTTON_WIDTH = 60;
-    protected static final int BUTTON_HEIGHT = TEXT_HEIGHT + TEXT_PADDING;
+    protected final ButtonWidgetExtension buttonDownload;
 
     public MissingClothConfigScreen(Screen parent) {
         this.parent = parent;
-        buttonDone = new ButtonWidgetExtension(0, 0, 0, 20, button -> {
+        buttonDownload = new ButtonWidgetExtension(0, 0, 0, 20, button -> {
             Util.getOperatingSystem().open("https://modrinth.com/mod/cloth-config");
             this.onClose2();
         });
@@ -33,10 +31,10 @@ public class MissingClothConfigScreen extends ScreenExtension
     @Override
     protected void init2() {
         super.init2();
-        this.addChild(new ClickableWidget(buttonDone));
-        IDrawing.setPositionAndWidth(buttonDone, (width - 150) / 2, height / 2 + TEXT_PADDING, 150);
+        this.addChild(new ClickableWidget(buttonDownload));
+        IDrawing.setPositionAndWidth(buttonDownload, (width - 150) / 2, height / 2 + TEXT_PADDING, 150);
 
-        buttonDone.setMessage2(new Text(TextHelper.translatable("config.tjmetro.download_cloth_config").data));
+        buttonDownload.setMessage2(new Text(TextHelper.translatable("config.tjmetro.download_cloth_config").data));
     }
 
     @Override
