@@ -11,6 +11,12 @@ import ziyue.tjmetro.mod.config.ConfigClient;
 
 import java.util.function.Consumer;
 
+/**
+ * @author ZiYueCommentary
+ * @see RenderVehicleHelper
+ * @since 1.0.0-beta-5
+ */
+
 @Mixin(RenderVehicleHelper.class)
 public abstract class RenderVehicleHelperMixin
 {

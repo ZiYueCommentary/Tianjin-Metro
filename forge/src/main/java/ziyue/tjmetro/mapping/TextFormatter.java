@@ -1,6 +1,6 @@
 package ziyue.tjmetro.mapping;
 
-#if MC_VERSION > 1.16.5
+#if MC_VERSION > "11605"
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.ClickEvent;
