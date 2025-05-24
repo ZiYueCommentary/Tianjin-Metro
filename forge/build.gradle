@@ -25,7 +25,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${buildTools.dependencies.forge()}"
     annotationProcessor "org.spongepowered:mixin:+:processor"
     implementation fg.deobf("org.mtr:MTR-forge:${mtr_version}+${minecraft_version}-server")
-    implementation(fg.deobf("ziyue.filters:filters-forge:${buildTools.dependencies.forge()}"))
+    implementation(fg.deobf("ziyue.filters:filters-forge:${buildTools.dependencies.filtersApi()}"))
     implementation(fg.deobf("me.shedaniel.cloth:cloth-config-forge:${buildTools.dependencies.clothConfig()}"))
     annotationProcessor 'systems.manifold:manifold-preprocessor:+'
 }

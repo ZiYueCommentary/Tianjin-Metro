@@ -35,7 +35,7 @@ jobs:
     - name: Make Gradle wrapper executable
       run: chmod +x gradlew
 
-    - name: Setup Forge files
+    - name: Setup files
       run: ./gradlew forge:setupFiles -Pminecraft_version="${{ matrix.minecraft }}"
 
     - name: Build with Gradle Wrapper
