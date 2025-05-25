@@ -193,5 +193,6 @@
     "tooltip.tjmetro.disable_dynamic_textures": "跳过指示牌、屏蔽门等方块的贴图渲染。",
     "block.tjmetro.ceiling_tianjin_light": "天花板（天津、有灯）",
     "block.tjmetro.ceiling_tianjin": "天花板（天津）",
-    "block.tjmetro.no_entering_sign": "“禁止入内”标志"
+    "block.tjmetro.no_entering_sign": "“禁止入内”标志",
+    "block.tjmetro.ceiling_tianjin_no_light": "天花板（天津、无灯）"
 }
