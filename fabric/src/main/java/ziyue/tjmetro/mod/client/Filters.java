@@ -22,7 +22,7 @@ public interface Filters
     Filter TIANJIN_GATES = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_gates"), () -> new ItemStack(new ItemConvertible(ItemList.PSD_DOOR_TIANJIN.get().data)));
     Filter TIANJIN_DECORATION = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_decoration"), () -> new ItemStack(new ItemConvertible(BlockList.LOGO.get().data)));
     Filter TIANJIN_RAILWAY_SIGNS = FilterBuilder.registerFilter(CreativeModeTabs.TIANJIN_METRO, TextHelper.translatable("filter.tjmetro.tianjin_railway_signs"), () -> new ItemStack(new ItemConvertible(BlockList.RAILWAY_SIGN_TIANJIN_3_EVEN.get().data)));
-    //Filter TIANJIN_UNCATEGORIZED = FilterBuilder.registerUncategorizedItemsFilter(CreativeModeTabs.TIANJIN_METRO);
+    Filter TIANJIN_UNCATEGORIZED = FilterBuilder.registerUncategorizedItemsFilter(CreativeModeTabs.TIANJIN_METRO);
 
     static void init() {
         FilterBuilder.addItems(Filters.TIANJIN_MISCELLANEOUS, WRENCH);
@@ -48,6 +48,7 @@ public interface Filters
         );
         FilterBuilder.addBlocks(Filters.TIANJIN_DECORATION,
                 CEILING_NOT_LIT, STATION_COLOR_CEILING, STATION_COLOR_CEILING_LIGHT, STATION_COLOR_CEILING_NO_LIGHT, STATION_COLOR_CEILING_NOT_LIT,
+                CEILING_TIANJIN, CEILING_TIANJIN_NO_LIGHT, CEILING_TIANJIN_LIGHT, CEILING_TIANJIN_NOT_LIT,
                 LOGO, APG_CORNER, TIME_DISPLAY, TIME_DISPLAY_EVEN, EMERGENCY_EXIT_SIGN, SERVICE_CORRIDOR_SIGN, BENCH, METAL_DETECTION_DOOR, METAL_POLE_BMT, SECURITY_CHECK_SIGN, NO_ENTERING_SIGN,
                 STATION_NAVIGATOR_POLE, STATION_NAVIGATOR_3, STATION_NAVIGATOR_4, STATION_NAVIGATOR_5);
         FilterBuilder.addBlocks(Filters.TIANJIN_RAILWAY_SIGNS,

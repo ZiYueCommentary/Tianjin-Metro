@@ -1,0 +1,28 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "waterlogged": "false"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling_tianjin"
+            }
+        },
+        {
+            "when": {
+                "waterlogged": "true"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling_tianjin"
+            }
+        },
+        {
+            "when": {
+                "light": "true"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling_tianjin_light"
+            }
+        }
+    ]
+}

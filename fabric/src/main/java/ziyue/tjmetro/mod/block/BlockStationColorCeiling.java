@@ -20,7 +20,7 @@ import java.util.List;
 public class BlockStationColorCeiling extends BlockCeiling
 {
     public BlockStationColorCeiling() {
-        this(Blocks.createDefaultBlockSettings(false, state -> 15));
+        this(Blocks.createDefaultBlockSettings(true, state -> 15));
     }
 
     public BlockStationColorCeiling(BlockSettings blockSettings) {

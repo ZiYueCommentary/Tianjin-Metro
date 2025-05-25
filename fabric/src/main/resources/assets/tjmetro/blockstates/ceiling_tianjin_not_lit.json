@@ -1,0 +1,36 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "waterlogged": "false"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling_tianjin"
+            }
+        },
+        {
+            "when": {
+                "waterlogged": "true"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling_tianjin"
+            }
+        },
+        {
+            "when": {
+                "waterlogged": "false"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling_tianjin_not_lit"
+            }
+        },
+        {
+            "when": {
+                "waterlogged": "true"
+            },
+            "apply": {
+                "model": "tjmetro:block/ceiling_tianjin_not_lit"
+            }
+        }
+    ]
+}
