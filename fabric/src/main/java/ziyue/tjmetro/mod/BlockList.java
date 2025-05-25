@@ -144,6 +144,7 @@ public interface BlockList
     BlockRegistryObject PSD_GLASS_END_TIANJIN_JINJING_BLOCK = Registry.registerBlock("psd_glass_end_tianjin_jinjing", () -> new Block(new BlockPSDGlassEndTianjinJinjing()));
     BlockRegistryObject PSD_TOP_TIANJIN_JINJING = Registry.registerBlock("psd_top_tianjin_jinjing", () -> new Block(new BlockPSDTopTianjin(true)));
     BlockRegistryObject TIME_DISPLAY_EVEN = Registry.registerBlockWithBlockItem("time_display_even", () -> new Block(new BlockTimeDisplayEven()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject NO_ENTERING_SIGN = Registry.registerBlockWithBlockItem("no_entering_sign", () -> new Block(new BlockNoEnteringSign()), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants

@@ -1,0 +1,21 @@
+{
+	"credit": "Made by ZiYueCommentary, made with Blockbench.",
+	"textures": {
+		"0": "tjmetro:block/no_entering_sign",
+		"particle": "tjmetro:block/no_entering_sign"
+	},
+	"elements": [
+		{
+			"from": [3, 2, 0],
+			"to": [13, 15, 0.1],
+			"faces": {
+				"north": {"uv": [0, 0, 0.5625, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 0.9375, 16], "texture": "#0"},
+				"south": {"uv": [1.8125, 0, 14.1125, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 0.9375, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 0.875, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 1.5, 16], "texture": "#0"}
+			}
+		}
+	]
+}

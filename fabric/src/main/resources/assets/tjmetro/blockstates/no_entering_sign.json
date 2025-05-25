@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "tjmetro:block/no_entering_sign" },
+        "facing=east":  { "model": "tjmetro:block/no_entering_sign", "y":  90 },
+        "facing=south": { "model": "tjmetro:block/no_entering_sign", "y": 180 },
+        "facing=west":  { "model": "tjmetro:block/no_entering_sign", "y": 270 }
+    }
+}
