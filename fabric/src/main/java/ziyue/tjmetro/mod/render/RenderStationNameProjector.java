@@ -41,18 +41,18 @@ public class RenderStationNameProjector<T extends BlockStationNameProjector.Bloc
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
         final int scale = IBlock.getStatePropertySafe(state, BlockStationNameProjector.SCALE);
 
-        final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations(0.5 + pos.getX(), 0.5 + entity.yOffset + pos.getY(), 0.5 + pos.getZ());
+        final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations(0.5 + pos.getX(), 0.5 + pos.getY(), 0.5 + pos.getZ());
         storedMatrixTransformations.add(graphicsHolderNew -> {
             graphicsHolderNew.rotateYDegrees(-facing.asRotation());
             graphicsHolderNew.rotateZDegrees(180);
-            graphicsHolderNew.translate(0, 0, 0.5 - entity.zOffset - SMALL_OFFSET);
+            graphicsHolderNew.translate(0, 0, 0.5 - SMALL_OFFSET);
             graphicsHolderNew.scale(scale, scale, scale);
         });
 
         final Station station = InitClient.findStation(pos);
         MainRenderer.scheduleRender(DynamicTextureCache.instance.getStationNameProjector(station == null ? TranslationProvider.GUI_MTR_UNTITLED.getString() : station.getName(), 10).identifier, false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset);
-            IDrawing.drawTexture(graphicsHolderNew, -5F, -0.5F, 10, 1, 0, 0, 1, 1, facing, entity.getColor(state), light);
+            IDrawing.drawTexture(graphicsHolderNew, -5F, -0.5F, 10, 1, 0, 0, 1, 1, facing, entity.color == -1 ? entity.getDefaultColor(pos) : ARGB_BLACK | entity.color, light);
             graphicsHolderNew.pop();
         });
     }
