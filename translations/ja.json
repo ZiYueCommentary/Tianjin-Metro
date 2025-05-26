@@ -175,5 +175,17 @@
     "block.tjmetro.psd_tianjin_jinjing": "フルスクリーンホームドア(天津地下鉄津静線)",
     "gui.tjmetro.platform": "ホーム|Platform",
     "config.tjmetro.rotated_station_name": "フルスクリーンホームドア上の駅名を回転する(天津地下鉄)",
-    "block.tjmetro.time_display_even": "デジタル時計(偶数設置)"
+    "block.tjmetro.time_display_even": "デジタル時計(偶数設置)",
+    "block.tjmetro.ceiling_tianjin_no_light": "照明なし天井 (天津地下鉄)",
+    "block.tjmetro.ceiling_tianjin": "天井 (天津地下鉄)",
+    "block.tjmetro.ceiling_tianjin_light": "照明付き天井 (天津地下鉄)",
+    "block.tjmetro.ceiling_tianjin_not_lit": "消灯した照明付き天井 (天津地下鉄)",
+    "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r が導入されていません。",
+    "config.tjmetro.download_cloth_config": "Cloth Configをダウンロード",
+    "config.tjmetro.cloth_config_required": "Tianjin Metro modの設定をするには、 §lCloth Config API§r を導入する必要があります。",
+    "config.tjmetro.debugging": "デバッグオプション",
+    "config.tjmetro.disable_dynamic_textures": "動的テクスチャを無効化",
+    "block.tjmetro.no_entering_sign": "「立入禁止」の看板",
+    "config.tjmetro.disable_train_rendering": "列車の描画を無効化",
+    "tooltip.tjmetro.disable_dynamic_textures": "標識やホームドアなどのテクスチャの生成をスキップします。"
 }
