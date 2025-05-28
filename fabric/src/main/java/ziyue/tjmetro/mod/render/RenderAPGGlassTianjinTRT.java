@@ -40,8 +40,6 @@ public class RenderAPGGlassTianjinTRT extends RenderRouteBase<BlockAPGGlassTianj
         final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations(0.5 + entity.getPos2().getX(), entity.getPos2().getY(), 0.5 + entity.getPos2().getZ());
         storedMatrixTransformations.add(graphicsHolderNew -> graphicsHolderNew.rotateYDegrees(-facing.asRotation()));
 
-        renderAdditionalUnmodified(storedMatrixTransformations.copy(), state, facing, light);
-
         InitClient.findClosePlatform(blockPos.down(platformSearchYOffset), 5, platform -> {
             final long platformId = platform.getId();
 
@@ -69,8 +67,6 @@ public class RenderAPGGlassTianjinTRT extends RenderRouteBase<BlockAPGGlassTianj
                     graphicsHolderNew.pop();
                 });
             }
-
-            renderAdditional(storedMatrixTransformations, platformId, state, leftBlocks, rightBlocks, facing.getOpposite(), color, light);
         });
     }
 
@@ -85,14 +81,5 @@ public class RenderAPGGlassTianjinTRT extends RenderRouteBase<BlockAPGGlassTianj
 
     @Override
     protected void renderAdditional(StoredMatrixTransformations storedMatrixTransformations, long platformId, BlockState state, int leftBlocks, int rightBlocks, Direction facing, int color, int light) {
-        if (IBlock.getStatePropertySafe(state, HALF) == DoubleBlockHalf.UPPER && IBlock.getStatePropertySafe(state, SIDE_EXTENDED) != EnumSide.SINGLE) {
-            final float width = leftBlocks + rightBlocks + 1 - sidePadding * 2;
-            final float height = 1 - topPadding - bottomPadding;
-            MainRenderer.scheduleRender(DynamicTextureCache.instance.getSingleRowStationName(platformId, width / height).identifier, false, QueuedRenderLayer.EXTERIOR, (graphicsHolder, offset) -> {
-                storedMatrixTransformations.transform(graphicsHolder, offset);
-                IDrawing.drawTexture(graphicsHolder, 1 - (rightBlocks == 0 ? sidePadding : 0), topPadding, 0.125F, leftBlocks == 0 ? sidePadding : 0, 1 - bottomPadding, 0.125F, (rightBlocks - (rightBlocks == 0 ? 0 : sidePadding)) / width, 0, (width - leftBlocks + (leftBlocks == 0 ? 0 : sidePadding)) / width, 1, facing, color, light);
-                graphicsHolder.pop();
-            });
-        }
     }
 }
