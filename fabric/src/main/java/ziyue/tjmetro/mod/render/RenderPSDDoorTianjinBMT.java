@@ -40,7 +40,7 @@ public class RenderPSDDoorTianjinBMT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         final World world = entity.getWorld2();
         if (world == null) return;
 
-        entity.updateRedstone(MinecraftClient.getInstance().getLastFrameDuration());
+        entity.tick(tickDelta);
 
         final BlockPos blockPos = entity.getPos2();
         final Direction facing = IBlock.getStatePropertySafe(world, blockPos, BlockPSDAPGDoorBase.FACING);

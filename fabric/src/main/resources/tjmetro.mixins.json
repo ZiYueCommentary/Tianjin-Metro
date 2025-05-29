@@ -7,13 +7,14 @@
 		"BlockRailwaySignPoleMixin",
 		"CustomResourceLoaderMixin",
 		"DynamicTextureCacheMixin",
-		"RenderVehicleHelperMixin",
-		"RouteMapGeneratorMixin"
+		"RouteMapGeneratorMixin",
+		"VehicleResourceMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
 	},
 	"client": [
+		"DynamicVehicleModelMixin",
 		"RailwaySignScreenMixin",
 		"RenderRailwaySignMixin"
 	]
