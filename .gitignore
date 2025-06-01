@@ -40,3 +40,5 @@ forge/run
 
 **/tjmetro/lang/*.json
 !en_us.json
+/forge/src/main/resources/tjmetro.mixins.json
+/forge/src/main/java/ziyue/centralconfig/

@@ -50,6 +50,7 @@ tasks.register("setupFiles") {
     println("Copying resources from Fabric to Forge")
 
     delete fileTree("src/main/java/ziyue/tjmetro/mod")
+    delete fileTree("src/main/java/ziyue/centralconfig")
     delete fileTree("src/main/resources/assets")
     delete fileTree("src/main/resources/data")
 
@@ -57,6 +58,12 @@ tasks.register("setupFiles") {
         outputs.upToDateWhen { false }
         from "../fabric/src/main/java/ziyue/tjmetro/mod"
         into "src/main/java/ziyue/tjmetro/mod"
+    }
+
+    copy {
+        outputs.upToDateWhen { false }
+        from "../fabric/src/main/java/ziyue/centralconfig"
+        into "src/main/java/ziyue/centralconfig"
     }
 
     copy {
