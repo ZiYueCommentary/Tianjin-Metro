@@ -7,8 +7,6 @@ import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import org.mtr.mapping.holder.Screen;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.client.DynamicTextureCache;
-import ziyue.centralconfig.CentralConfig;
-import ziyue.centralconfig.MasterCategory;
 import ziyue.tjmetro.mapping.TextFormatter;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.config.ConfigClient;

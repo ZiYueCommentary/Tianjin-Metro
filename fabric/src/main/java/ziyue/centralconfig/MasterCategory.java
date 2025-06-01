@@ -4,8 +4,6 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import org.mtr.mapping.holder.MutableText;
-import ziyue.centralconfig.CentralConfig;
-import ziyue.centralconfig.ModuleCategory;
 
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;

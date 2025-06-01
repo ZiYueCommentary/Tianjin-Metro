@@ -4,14 +4,12 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import org.mtr.mapping.holder.Screen;
-import ziyue.centralconfig.MasterCategory;
-import ziyue.centralconfig.ModuleCategory;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Central config management object which owns by the parent mod. Child mods for it should construct {@link ziyue.centralconfig.ModuleCategory} and register with {@link #registerModuleCategory(ziyue.centralconfig.ModuleCategory)}.
+ * Central config management object which owns by the parent mod. Child mods for it should construct {@link ModuleCategory} and register with {@link #registerModuleCategory(ModuleCategory)}.
  *
  * @author ZiYueCommentary
  * @author EasyT_T
@@ -20,8 +18,8 @@ import java.util.Set;
 
 public final class CentralConfig
 {
-    private final ziyue.centralconfig.MasterCategory masterCategory;
-    private final Set<ziyue.centralconfig.ModuleCategory> moduleCategories = new HashSet<>();
+    private final MasterCategory masterCategory;
+    private final Set<ModuleCategory> moduleCategories = new HashSet<>();
 
     /**
      * Constructing a central config management object.
@@ -37,10 +35,10 @@ public final class CentralConfig
      *
      * @param moduleCategory category that adds to the config screen
      * @throws IllegalArgumentException two module categories are bound with the same mod ID
-     * @see ziyue.centralconfig.ModuleCategory
+     * @see ModuleCategory
      * @since 1.0
      */
-    public void registerModuleCategory(ziyue.centralconfig.ModuleCategory moduleCategory) {
+    public void registerModuleCategory(ModuleCategory moduleCategory) {
         if (!this.moduleCategories.add(moduleCategory)) {
             throw new IllegalArgumentException("Duplicate mod id: " + moduleCategory.modId);
         }
