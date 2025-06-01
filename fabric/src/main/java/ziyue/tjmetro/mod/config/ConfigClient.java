@@ -39,11 +39,11 @@ public class ConfigClient
     protected static final Path CONFIG_FILE_PATH = MinecraftClient.getInstance().getRunDirectoryMapped().toPath().resolve("config/tjmetro.json");
     public static final List<Footer> FOOTERS = Arrays.asList(
             new Footer(() -> TextHelper.translatable("footer.tjmetro.sources"), Reference.GITHUB_REPO),
-            new Footer(() -> TextHelper.translatable("footer.tjmetro.forum"), Reference.FORUM),
             new Footer(() -> TextHelper.translatable("footer.tjmetro.contributors"), Reference.CONTRIBUTORS),
             new Footer(() -> TextHelper.translatable("footer.tjmetro.weblate"), Reference.WEBLATE),
             new Footer(() -> TextHelper.translatable("footer.tjmetro.discord"), Reference.DISCORD),
-            new Footer(() -> TextHelper.translatable("footer.tjmetro.prevent_block_falling"), Reference.PREVENT_BLOCK_FALLING)
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.prevent_block_falling"), Reference.PREVENT_BLOCK_FALLING),
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.bde"), Reference.BDE)
     );
 
     public static Screen getConfigScreen(Screen parent) {
