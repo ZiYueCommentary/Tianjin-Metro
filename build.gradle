@@ -2,6 +2,7 @@ plugins {
     id "java"
     id "de.undercouch.download" version "4.1.2"
     id "io.github.pacifistmc.forgix" version "1.2.9"
+    id "maven-publish"
 }
 
 group "ziyue.tjmetro"
@@ -15,6 +16,7 @@ forgix {
 
 subprojects {
     apply plugin: "java"
+    apply plugin: "maven-publish"
 
     dependencies {
         implementation 'com.google.code.findbugs:jsr305:+'
@@ -46,6 +48,9 @@ subprojects {
     tasks.withType(JavaCompile).forEach {
         it.options.compilerArgs += ["-Xplugin:Manifold", "-AMC_VERSION=$merged_mc_version"]
     }
+    //tasks.withType(PublishToMavenRepository).forEach {
+    //    it.options.compilerArgs += ["-Xplugin:Manifold", "-AMC_VERSION=$merged_mc_version"]
+    //}
 
     // Some system don't compile with UTF-8 by default
     compileJava {
@@ -94,4 +99,51 @@ afterEvaluate {
         into "fabric/src/main/resources/assets/tjmetro/lang"
     }
     delete("lang.zip", "temp_lang")
+}
+
+subprojects {
+    tasks.register('buildJar', Jar) {
+        from sourceSets.main.output
+        exclude 'assets'
+    }
+
+    tasks.register('sourcesJar', Jar) {
+        dependsOn classes
+        archiveClassifier = 'sources'
+        from sourceSets.main.allSource
+        exclude 'assets'
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId = maven_group
+                artifactId = "${archives_base_name}-${loader_name}"
+                version = "${mod_version}+${minecraft_version}"
+                artifact buildJar
+                artifact sourcesJar
+
+                pom.withXml {
+                    def dependenciesNode = asNode().get('dependencies')
+                    if (dependenciesNode) {
+                        dependenciesNode*.parent()*.remove(dependenciesNode)
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                url = "https://maven.ziyuesinicization.site/releases/"
+                credentials {
+                    username = "ZiYueCommentary"
+                    password = System.getenv("MAVEN_PASS")
+                }
+            }
+        }
+    }
+
+    tasks.withType(GenerateModuleMetadata).configureEach {
+        enabled = false
+    }
 }

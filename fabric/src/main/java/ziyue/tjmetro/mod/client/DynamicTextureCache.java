@@ -37,19 +37,19 @@ import static org.mtr.mod.data.IGui.ARGB_WHITE;
 
 public class DynamicTextureCache
 {
-    protected Font font;
-    protected Font fontCjk;
+    public Font font;
+    public Font fontCjk;
 
-    protected final Object2ObjectLinkedOpenHashMap<String, DynamicResource> dynamicResources = new Object2ObjectLinkedOpenHashMap<>();
-    protected final ObjectOpenHashSet<String> generatingResources = new ObjectOpenHashSet<>();
-    protected final ObjectArrayList<Runnable> resourceRegistryQueue = new ObjectArrayList<>();
+    public final Object2ObjectLinkedOpenHashMap<String, DynamicResource> dynamicResources = new Object2ObjectLinkedOpenHashMap<>();
+    public final ObjectOpenHashSet<String> generatingResources = new ObjectOpenHashSet<>();
+    public final ObjectArrayList<Runnable> resourceRegistryQueue = new ObjectArrayList<>();
 
     public static DynamicTextureCache instance;
 
-    protected static final int COOL_DOWN_TIME = 10000; // Images not requested within the last 10 seconds will be unregistered
-    protected static final Identifier DEFAULT_BLACK_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/black.png");
-    protected static final Identifier DEFAULT_WHITE_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/white.png");
-    protected static final Identifier DEFAULT_TRANSPARENT_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/transparent.png");
+    public static final int COOL_DOWN_TIME = 10000; // Images not requested within the last 10 seconds will be unregistered
+    public static final Identifier DEFAULT_BLACK_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/black.png");
+    public static final Identifier DEFAULT_WHITE_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/white.png");
+    public static final Identifier DEFAULT_TRANSPARENT_RESOURCE = new Identifier(Init.MOD_ID, "textures/block/transparent.png");
 
     public void reload() {
         font = null;
@@ -335,7 +335,7 @@ public class DynamicTextureCache
         }
     }
 
-    protected DynamicResource getResource(String key, Supplier<NativeImage> supplier, DefaultRenderingColor defaultRenderingColor) {
+    public DynamicResource getResource(String key, Supplier<NativeImage> supplier, DefaultRenderingColor defaultRenderingColor) {
         if (ConfigClient.DISABLE_DYNAMIC_TEXTURES.get()) {
             return DefaultRenderingColor.BLACK_PURPLE.dynamicResource;
         }
@@ -461,13 +461,13 @@ public class DynamicTextureCache
      */
     public static class DynamicResource
     {
-        protected long expiryTime;
-        protected boolean needsRefresh;
+        public long expiryTime;
+        public boolean needsRefresh;
         public final int width;
         public final int height;
         public final Identifier identifier;
 
-        protected DynamicResource(Identifier identifier, @Nullable NativeImageBackedTexture nativeImageBackedTexture) {
+        public DynamicResource(Identifier identifier, @Nullable NativeImageBackedTexture nativeImageBackedTexture) {
             this.identifier = identifier;
             if (nativeImageBackedTexture != null) {
                 final NativeImage nativeImage = nativeImageBackedTexture.getImage();
@@ -484,13 +484,13 @@ public class DynamicTextureCache
             }
         }
 
-        protected void remove() {
+        public void remove() {
             MinecraftClient.getInstance().getTextureManager().destroyTexture(identifier);
             MainRenderer.cancelRender(identifier);
         }
     }
 
-    protected enum DefaultRenderingColor
+    public enum DefaultRenderingColor
     {
         BLACK(DEFAULT_BLACK_RESOURCE),
         WHITE(DEFAULT_WHITE_RESOURCE),
