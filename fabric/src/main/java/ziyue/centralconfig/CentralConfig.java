@@ -48,7 +48,14 @@ public final class CentralConfig
      * @see #getConfigScreen(Screen, String)
      */
     public Screen getConfigScreen() {
-        return getConfigScreen(new Screen(null), null);
+        return getConfigScreen(new Screen(null), (String) null);
+    }
+
+    /**
+     * @see #getConfigScreen(Screen, String)
+     */
+    public Screen getConfigScreen(ModuleCategory category) {
+        return getConfigScreen(new Screen(null), category.modId);
     }
 
     /**
@@ -62,7 +69,14 @@ public final class CentralConfig
      * @see #getConfigScreen(Screen, String)
      */
     public Screen getConfigScreen(Screen parent) {
-        return getConfigScreen(parent, null);
+        return getConfigScreen(parent, (String) null);
+    }
+
+    /**
+     * @see #getConfigScreen(Screen, String)
+     */
+    public Screen getConfigScreen(Screen parent, ModuleCategory category) {
+        return getConfigScreen(parent, category.modId);
     }
 
     /**
