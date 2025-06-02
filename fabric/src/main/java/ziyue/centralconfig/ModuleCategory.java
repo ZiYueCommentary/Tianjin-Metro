@@ -12,6 +12,7 @@ import java.util.function.Supplier;
  *
  * @author ZiYueCommentary
  * @author EasyT_T
+ * @see <a href="https://github.com/ZiYueCommentary/central-config">central-config</a>
  * @since 1.0
  */
 
@@ -27,8 +28,8 @@ public class ModuleCategory
     /**
      * Constructing a module category for child mods.
      *
-     * @param modId the mod ID of the child mod
-     * @param titleSupplier category name
+     * @param modId              the mod ID of the child mod
+     * @param titleSupplier      category name
      * @param categoryBiConsumer {@code ConfigEntryBuilder} is for adding configs, and {@code ConfigCategory} is the category instance that created with the category name that provided by {@code titleSupplier}.
      */
     public ModuleCategory(String modId, Supplier<MutableText> titleSupplier, BiConsumer<ConfigEntryBuilder, ConfigCategory> categoryBiConsumer) {

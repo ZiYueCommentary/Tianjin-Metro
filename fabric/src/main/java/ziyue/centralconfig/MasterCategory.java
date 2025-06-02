@@ -13,6 +13,7 @@ import java.util.function.Supplier;
  *
  * @author ZiYueCommentary
  * @author EasyT_T
+ * @see <a href="https://github.com/ZiYueCommentary/central-config">central-config</a>
  * @see ModuleCategory
  * @since 1.0
  */
@@ -22,8 +23,8 @@ public class MasterCategory extends ModuleCategory
     protected final Supplier<ConfigBuilder> configBuilderSupplier;
 
     /**
-     * @see ModuleCategory#ModuleCategory(String, Supplier, BiConsumer)
      * @param configBuilderSupplier configurations for the config screen itself
+     * @see ModuleCategory#ModuleCategory(String, Supplier, BiConsumer)
      */
     public MasterCategory(String modId, Supplier<MutableText> titleSupplier, BiConsumer<ConfigEntryBuilder, ConfigCategory> categorySupplier, Supplier<ConfigBuilder> configBuilderSupplier) {
         super(modId, titleSupplier, categorySupplier);

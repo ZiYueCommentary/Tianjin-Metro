@@ -13,6 +13,7 @@ import java.util.Set;
  *
  * @author ZiYueCommentary
  * @author EasyT_T
+ * @see <a href="https://github.com/ZiYueCommentary/central-config">central-config</a>
  * @since 1.0
  */
 
