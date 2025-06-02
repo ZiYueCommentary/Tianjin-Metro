@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
  * @since 1.0.0-beta-1
  */
 
-// Not working currently, waiting for another implementation.
 public class BlockMetalDetectionDoor extends BlockExtension implements DirectionHelper, BlockWithEntity, IBlock
 {
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
