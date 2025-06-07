@@ -104,7 +104,7 @@ afterEvaluate {
 subprojects {
     tasks.register('buildJar', Jar) {
         from sourceSets.main.output
-        exclude 'assets'
+        if (minecraft_version != "1.20.4" || loader_name != "fabric") exclude 'assets'
     }
 
     tasks.register('sourcesJar', Jar) {
