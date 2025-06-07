@@ -864,8 +864,23 @@ public class RouteMapGenerator implements IGui
                             }
                         }
 
-                        final DynamicTextureCache.Text text = clientCache.getText(IGui.mergeStations(stationPositionGrouped.interchangeNames), maxStringWidth - (vertical ? lineHeight : 0), (int) ((fontSizeBig + fontSizeSmall) * LINE_HEIGHT_MULTIPLIER / 2), fontSizeBig / 2, fontSizeSmall / 2, 0, vertical ? HorizontalAlignment.LEFT : HorizontalAlignment.CENTER);
-                        drawString(nativeImage, text, x, y + (textBelow ? -1 - lineHeight : lines * lineSpacing + lineHeight), HorizontalAlignment.CENTER, textBelow ? VerticalAlignment.BOTTOM : VerticalAlignment.TOP, ARGB_BLACK | interchangeColors.getInt(0), ARGB_WHITE, vertical);
+                        int interchangesWidth = 0;
+                        int interchangesHeight = 0;
+                        final ObjectArrayList<DynamicTextureCache.Text> interchanges = new ObjectArrayList<>();
+                        for (int i = 0; i < stationPositionGrouped.interchangeNames.size(); i++) {
+                            final DynamicTextureCache.Text text = clientCache.getText(stationPositionGrouped.interchangeNames.get(i), maxStringWidth, (int) ((fontSizeBig + fontSizeSmall) * LINE_HEIGHT_MULTIPLIER / 2), fontSizeBig / 2, fontSizeSmall / 2, 0, HorizontalAlignment.CENTER);
+                            interchanges.add(text);
+                            interchangesWidth += text.renderWidth();
+                            interchangesHeight = Math.max(interchangesHeight, text.height());
+                        }
+                        if (interchangesWidth > 0) {
+                            int renderX = x - interchangesWidth / 2;
+                            for (int i = 0; i < interchanges.size(); i++) {
+                                nativeImage.fillRect(renderX, y + (textBelow ? -lineHeight - interchangesHeight : lines * lineSpacing + lineHeight), interchanges.get(i).renderWidth(), interchangesHeight, invertColor(ARGB_BLACK | interchangeColors.getInt(i)));
+                                drawString(nativeImage, interchanges.get(i), renderX, y + (textBelow ? -lineHeight : lines * lineSpacing + lineHeight + interchangesHeight / 2), HorizontalAlignment.LEFT, textBelow ? VerticalAlignment.BOTTOM : VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+                                renderX += interchanges.get(i).renderWidth();
+                            }
+                        }
                     }
 
                     drawStation(nativeImage, x, y, heightScale, lines, passed);
