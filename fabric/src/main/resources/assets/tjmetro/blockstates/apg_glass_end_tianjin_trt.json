@@ -346,159 +346,173 @@
 		},
 		{
 			"when": {
-				"OR": [
-					{
-						"touching_left": "air",
-						"half": "lower",
-						"facing": "west"
-					},
-					{
-						"touching_right": "air",
-						"half": "lower",
-						"facing": "east"
-					}
-				]
+				"touching_left": "air",
+				"half": "lower",
+				"facing": "west"
 			},
 			"apply": {
-				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom"
-			}
-		},
-		{
-			"when": {
-				"OR": [
-					{
-						"touching_left": "air",
-						"half": "lower",
-						"facing": "north"
-					},
-					{
-						"touching_right": "air",
-						"half": "lower",
-						"facing": "south"
-					}
-				]
-			},
-			"apply": {
-				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom",
-				"y": 90
-			}
-		},
-		{
-			"when": {
-				"OR": [
-					{
-						"touching_left": "air",
-						"half": "lower",
-						"facing": "east"
-					},
-					{
-						"touching_right": "air",
-						"half": "lower",
-						"facing": "west"
-					}
-				]
-			},
-			"apply": {
-				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom",
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom_left",
 				"y": 180
 			}
 		},
 		{
 			"when": {
-				"OR": [
-					{
-						"touching_left": "air",
-						"half": "lower",
-						"facing": "south"
-					},
-					{
-						"touching_right": "air",
-						"half": "lower",
-						"facing": "north"
-					}
-				]
+				"touching_left": "air",
+				"half": "lower",
+				"facing": "north"
 			},
 			"apply": {
-				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom",
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom_left",
 				"y": 270
 			}
 		},
 		{
 			"when": {
-				"OR": [
-					{
-						"touching_left": "air",
-						"half": "upper",
-						"facing": "west"
-					},
-					{
-						"touching_right": "air",
-						"half": "upper",
-						"facing": "east"
-					}
-				]
+				"touching_left": "air",
+				"half": "lower",
+				"facing": "east"
 			},
 			"apply": {
-				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top"
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom_left"
 			}
 		},
 		{
 			"when": {
-				"OR": [
-					{
-						"touching_left": "air",
-						"half": "upper",
-						"facing": "north"
-					},
-					{
-						"touching_right": "air",
-						"half": "upper",
-						"facing": "south"
-					}
-				]
+				"touching_left": "air",
+				"half": "lower",
+				"facing": "south"
 			},
 			"apply": {
-				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top",
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom_left",
 				"y": 90
 			}
 		},
 		{
 			"when": {
-				"OR": [
-					{
-						"touching_left": "air",
-						"half": "upper",
-						"facing": "east"
-					},
-					{
-						"touching_right": "air",
-						"half": "upper",
-						"facing": "west"
-					}
-				]
+				"touching_right": "air",
+				"half": "lower",
+				"facing": "east"
 			},
 			"apply": {
-				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top",
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom_right"
+			}
+		},
+		{
+			"when": {
+				"touching_right": "air",
+				"half": "lower",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom_right",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"touching_right": "air",
+				"half": "lower",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom_right",
 				"y": 180
 			}
 		},
 		{
 			"when": {
-				"OR": [
-					{
-						"touching_left": "air",
-						"half": "upper",
-						"facing": "south"
-					},
-					{
-						"touching_right": "air",
-						"half": "upper",
-						"facing": "north"
-					}
-				]
+				"touching_right": "air",
+				"half": "lower",
+				"facing": "north"
 			},
 			"apply": {
-				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top",
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_bottom_right",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"touching_left": "air",
+				"half": "upper",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top_left",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"touching_left": "air",
+				"half": "upper",
+				"facing": "north"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top_left",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"touching_left": "air",
+				"half": "upper",
+				"facing": "east"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top_left"
+			}
+		},
+		{
+			"when": {
+				"touching_left": "air",
+				"half": "upper",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top_left",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"touching_right": "air",
+				"half": "upper",
+				"facing": "east"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top_right"
+			}
+		},
+		{
+			"when": {
+				"touching_right": "air",
+				"half": "upper",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top_right",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"touching_right": "air",
+				"half": "upper",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top_right",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"touching_right": "air",
+				"half": "upper",
+				"facing": "north"
+			},
+			"apply": {
+				"model": "tjmetro:block/apg_glass_end_tianjin_trt_top_right",
 				"y": 270
 			}
 		}

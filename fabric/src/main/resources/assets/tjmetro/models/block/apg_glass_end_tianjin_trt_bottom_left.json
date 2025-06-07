@@ -1,0 +1,20 @@
+{
+	"credit": "Made by ZiYueCommentary, made with Blockbench.",
+	"textures": {
+		"frontbottom": "tjmetro:block/apg_glass_tianjin_trt_single_bottom",
+		"sidebottom": "tjmetro:block/apg_tianjin_trt_side_light"
+	},
+	"elements": [
+		{
+			"from": [15.3, 0, 5.2],
+			"to": [17.35, 16, 21.2],
+			"rotation": {"angle": 45, "axis": "y", "origin": [1.3, 0, 21.2]},
+			"faces": {
+				"north": {"uv": [0, 0, 2.05, 16], "texture": "#sidebottom", "cullface": "east"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#frontbottom"},
+				"south": {"uv": [13.95, 0, 16, 16], "texture": "#sidebottom", "cullface": "west"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#frontbottom"}
+			}
+		}
+	]
+}
