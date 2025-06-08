@@ -161,6 +161,8 @@
     "footer.tjmetro.discord": "Join our Discord server!",
     "footer.tjmetro.prevent_block_falling": "Did you know you can stop sand falling?",
     "footer.tjmetro.bde": "Also try Bomb Disposal Expert!",
+    "footer.tjmetro.sponsor": "Sponsoring the development of Tianjin Metro!",
+    "footer.tjmetro.tutorial": "Check out the tutorial/introduction videos!",
 
     "gamerule.preventBlockFalling": "Prevent Block Falling",
     "gamerule.preventBlockFalling.description": "Prevent blocks to fall, such as sands and anvils. This rule was added by Tianjin Metro mod."

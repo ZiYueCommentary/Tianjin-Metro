@@ -146,9 +146,6 @@ public interface BlockList
     BlockRegistryObject TIME_DISPLAY_EVEN = Registry.registerBlockWithBlockItem("time_display_even", () -> new Block(new BlockTimeDisplayEven()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject NO_ENTERING_SIGN = Registry.registerBlockWithBlockItem("no_entering_sign", () -> new Block(new BlockNoEnteringSign()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CEILING_TIANJIN = Registry.registerBlockWithBlockItem("ceiling_tianjin", () -> new Block(new BlockCeilingTianjinAuto()), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject CEILING_TIANJIN_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_light", () -> new Block(new BlockCeilingTianjin()), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject CEILING_TIANJIN_NO_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_no_light", () -> new Block(new BlockCeilingTianjin()), CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject CEILING_TIANJIN_NOT_LIT = Registry.registerBlockWithBlockItem("ceiling_tianjin_not_lit", () -> new Block(new BlockCeilingTianjin()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CEILING_TIANJIN_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_light", () -> new Block(new BlockCeilingTianjin(15)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CEILING_TIANJIN_NO_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_no_light", () -> new Block(new BlockCeilingTianjin(0)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CEILING_TIANJIN_NOT_LIT = Registry.registerBlockWithBlockItem("ceiling_tianjin_not_lit", () -> new Block(new BlockCeilingTianjin(0)), CreativeModeTabs.TIANJIN_METRO);

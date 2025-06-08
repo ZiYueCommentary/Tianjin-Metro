@@ -43,7 +43,9 @@ public class ConfigClient
             new Footer(() -> TextHelper.translatable("footer.tjmetro.weblate"), Reference.WEBLATE),
             new Footer(() -> TextHelper.translatable("footer.tjmetro.discord"), Reference.DISCORD),
             new Footer(() -> TextHelper.translatable("footer.tjmetro.prevent_block_falling"), Reference.PREVENT_BLOCK_FALLING),
-            new Footer(() -> TextHelper.translatable("footer.tjmetro.bde"), Reference.BDE)
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.bde"), Reference.BDE),
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.sponsor"), Reference.PATREON),
+            new Footer(() -> TextHelper.translatable("footer.tjmetro.tutorial"), Reference.TUTORIAL)
     );
 
     public static Screen getConfigScreen(Screen parent) {
