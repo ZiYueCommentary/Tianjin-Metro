@@ -8,8 +8,8 @@ import javax.annotation.Nonnull;
 
 public class BlockCeilingTianjin extends BlockWaterloggable
 {
-    public BlockCeilingTianjin() {
-        this(Blocks.createDefaultBlockSettings(true, state -> 15));
+    public BlockCeilingTianjin(int light) {
+        this(Blocks.createDefaultBlockSettings(true, state -> light));
     }
 
     public BlockCeilingTianjin(BlockSettings blockSettings) {

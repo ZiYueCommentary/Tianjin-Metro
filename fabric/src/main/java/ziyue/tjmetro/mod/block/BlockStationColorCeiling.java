@@ -19,8 +19,8 @@ import java.util.List;
 
 public class BlockStationColorCeiling extends BlockCeiling
 {
-    public BlockStationColorCeiling() {
-        this(Blocks.createDefaultBlockSettings(true, state -> 15));
+    public BlockStationColorCeiling(int light) {
+        this(Blocks.createDefaultBlockSettings(true, state -> light));
     }
 
     public BlockStationColorCeiling(BlockSettings blockSettings) {

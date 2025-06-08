@@ -22,9 +22,9 @@ public interface BlockList
     BlockRegistryObject ROLLING = Registry.registerBlockWithBlockItem("rolling", () -> new Block(new BlockRolling()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CEILING_NOT_LIT = Registry.registerBlockWithBlockItem("ceiling_not_lit", () -> new Block(new BlockCeiling(Blocks.createDefaultBlockSettings(false))), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_COLOR_CEILING = Registry.registerBlockWithBlockItem("station_color_ceiling", () -> new Block(new BlockStationColorCeilingAuto()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject STATION_COLOR_CEILING_LIGHT = Registry.registerBlockWithBlockItem("station_color_ceiling_light", () -> new Block(new BlockStationColorCeiling()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject STATION_COLOR_CEILING_NO_LIGHT = Registry.registerBlockWithBlockItem("station_color_ceiling_no_light", () -> new Block(new BlockStationColorCeiling()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
-    BlockRegistryObject STATION_COLOR_CEILING_NOT_LIT = Registry.registerBlockWithBlockItem("station_color_ceiling_not_lit", () -> new Block(new BlockStationColorCeiling(Blocks.createDefaultBlockSettings(false))), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_COLOR_CEILING_LIGHT = Registry.registerBlockWithBlockItem("station_color_ceiling_light", () -> new Block(new BlockStationColorCeiling(15)), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_COLOR_CEILING_NO_LIGHT = Registry.registerBlockWithBlockItem("station_color_ceiling_no_light", () -> new Block(new BlockStationColorCeiling(0)), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_COLOR_CEILING_NOT_LIT = Registry.registerBlockWithBlockItem("station_color_ceiling_not_lit", () -> new Block(new BlockStationColorCeiling(0)), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAME_SIGN_1 = Registry.registerBlockWithBlockItem("station_name_sign_1", () -> new Block(new BlockStationNameSign1()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAME_SIGN_2 = Registry.registerBlockWithBlockItem("station_name_sign_2", () -> new Block(new BlockStationNameSign2()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject APG_CORNER = Registry.registerBlockWithBlockItem("apg_corner", () -> new Block(new BlockAPGCorner()), CreativeModeTabs.TIANJIN_METRO);
@@ -149,6 +149,9 @@ public interface BlockList
     BlockRegistryObject CEILING_TIANJIN_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_light", () -> new Block(new BlockCeilingTianjin()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CEILING_TIANJIN_NO_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_no_light", () -> new Block(new BlockCeilingTianjin()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CEILING_TIANJIN_NOT_LIT = Registry.registerBlockWithBlockItem("ceiling_tianjin_not_lit", () -> new Block(new BlockCeilingTianjin()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject CEILING_TIANJIN_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_light", () -> new Block(new BlockCeilingTianjin(15)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject CEILING_TIANJIN_NO_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_no_light", () -> new Block(new BlockCeilingTianjin(0)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject CEILING_TIANJIN_NOT_LIT = Registry.registerBlockWithBlockItem("ceiling_tianjin_not_lit", () -> new Block(new BlockCeilingTianjin(0)), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants
