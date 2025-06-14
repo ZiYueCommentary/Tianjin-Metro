@@ -1,0 +1,10 @@
+{
+	"parent": "tjmetro:block/psd_glass_end_tianjin_left_door_base",
+	"textures": {
+		"bottom": "mtr:block/transparent",
+		"top": "mtr:block/black",
+		"front": "tjmetro:block/psd_glass_tianjin_top",
+		"back": "tjmetro:block/psd_glass_tianjin_top_back",
+		"red": "tjmetro:block/psd_tianjin_red_top"
+	}
+}

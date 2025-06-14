@@ -1,0 +1,10 @@
+{
+	"parent": "tjmetro:block/apg_glass_tianjin_single_base",
+	"textures": {
+		"frontbottom": "mtr:block/transparent",
+		"sidebottom": "mtr:block/transparent",
+		"fronttop": "tjmetro:block/apg_glass_tianjin_single_top",
+		"sidetop": "tjmetro:block/psd_side_light",
+		"sidetriangle": "tjmetro:block/apg_side_tianjin_triangle"
+	}
+}

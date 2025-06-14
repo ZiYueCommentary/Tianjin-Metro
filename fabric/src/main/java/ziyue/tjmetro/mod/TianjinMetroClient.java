@@ -1,7 +1,6 @@
 package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.holder.RenderLayer;
-import org.mtr.mod.render.RenderAPGGlass;
 import org.mtr.mod.render.RenderPSDAPGDoor;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.render.*;
@@ -105,8 +104,8 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_5_EVEN, RenderRailwaySignTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_6_EVEN, RenderRailwaySignTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_TIANJIN_BMT_7_EVEN, RenderRailwaySignTianjinBMT::new);
-        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN, dispatcher -> new RenderPSDAPGDoor<>(dispatcher, 2));
-        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN_BMT, dispatcher -> new RenderPSDAPGDoor<>(dispatcher, 2));
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN,  RenderAPGDoorTianjin::new);
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_TIANJIN_BMT, RenderAPGDoorTianjin::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_GLASS_TIANJIN_BMT, RenderAPGGlassTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_TOP_TIANJIN_BMT, RenderPSDTopTianjinBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_TIANJIN_BMT, RenderPSDDoorTianjinBMT::new);
@@ -118,7 +117,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAVIGATOR_5, RenderStationNavigator::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_PROJECTOR, RenderStationNameProjector::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_TOP_TIANJIN_JINJING, RenderPSDTopTianjin::new);
-        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_TIANJIN_JINJING, dispatcher -> new RenderPSDAPGDoor<>(dispatcher, 0));
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_TIANJIN_JINJING, RenderPSDDoorTianjin::new);
 
         RegistryClient.registerEntityRenderer(EntityTypes.SEAT, RenderSeat::new);
 

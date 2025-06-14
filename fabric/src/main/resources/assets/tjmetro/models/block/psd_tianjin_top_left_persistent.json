@@ -1,0 +1,6 @@
+{
+	"parent": "tjmetro:block/psd_tianjin_top_left_persistent_base",
+	"textures": {
+		"particle": "tjmetro:block/psd_tianjin_top"
+	}
+}

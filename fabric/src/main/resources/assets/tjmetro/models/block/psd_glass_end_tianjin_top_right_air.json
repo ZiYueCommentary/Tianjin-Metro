@@ -1,0 +1,7 @@
+{
+	"parent": "tjmetro:block/psd_glass_end_tianjin_right_air_base",
+	"textures": {
+		"front": "tjmetro:block/psd_glass_tianjin_diagonal_top",
+		"back": "tjmetro:block/psd_glass_tianjin_diagonal_top_back"
+	}
+}

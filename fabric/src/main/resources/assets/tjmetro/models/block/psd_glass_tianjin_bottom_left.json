@@ -1,0 +1,9 @@
+{
+	"parent": "mtr:block/psd_glass_left_base",
+	"textures": {
+		"bottom": "mtr:block/black",
+		"top": "mtr:block/transparent",
+		"front": "tjmetro:block/psd_glass_tianjin_bottom",
+		"back": "tjmetro:block/psd_glass_tianjin_bottom_back"
+	}
+}

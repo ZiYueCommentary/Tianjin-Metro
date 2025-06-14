@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "mtr:item/apg_door"
+		"layer0": "tjmetro:item/apg_door_tianjin"
 	}
 }
