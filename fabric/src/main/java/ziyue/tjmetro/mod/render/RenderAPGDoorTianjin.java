@@ -15,6 +15,12 @@ import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.render.RenderAPGDoorTianjinTRT.ModelSingleCube;
 import ziyue.tjmetro.mod.render.RenderAPGDoorTianjinTRT.ModelAPGDoorBottom;
 
+/**
+ * @author ZiYueCommentary
+ * @see ziyue.tjmetro.mod.block.BlockAPGDoorTianjin
+ * @since 1.0.0-prerelease-1
+ */
+
 public class RenderAPGDoorTianjin<T extends BlockPSDAPGDoorBase.BlockEntityBase> extends BlockEntityRenderer<T> implements IGui, IBlock
 {
     private static final ModelSingleCube MODEL_APG_TOP = new ModelSingleCube(34, 9, 0, 8, 1, 16, 8, 1);

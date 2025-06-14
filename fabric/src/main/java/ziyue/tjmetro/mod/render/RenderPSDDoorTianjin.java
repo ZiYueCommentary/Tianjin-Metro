@@ -12,6 +12,12 @@ import org.mtr.mod.render.StoredMatrixTransformations;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.render.RenderAPGDoorTianjinTRT.ModelSingleCube;
 
+/**
+ * @author ZiYueCommentary
+ * @see ziyue.tjmetro.mod.block.BlockPSDDoorTianjin
+ * @since 1.0.0-prerelease-1
+ */
+
 public class RenderPSDDoorTianjin<T extends BlockPSDAPGDoorBase.BlockEntityBase> extends BlockEntityRenderer<T> implements IGui, IBlock
 {
     private static final ModelSingleCube MODEL_PSD = new ModelSingleCube(36, 18, 0, 0, 0, 16, 16, 2);
