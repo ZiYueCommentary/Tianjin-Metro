@@ -18,8 +18,10 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_CORNER);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_1);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_1_INDENTED);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_1_SLAB);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_2);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_2_INDENTED);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_2_SLAB);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.EMERGENCY_EXIT_SIGN);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.SERVICE_CORRIDOR_SIGN);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PSD_DOOR_TIANJIN_BLOCK);
@@ -41,8 +43,10 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.HIGH_SPEED_REPEATER);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_1);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_1_INDENTED);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_1_SLAB);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_2);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_2_INDENTED);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PLATFORM_TJ_LINE_11_2_SLAB);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.SECURITY_CHECK_SIGN);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PSD_DOOR_TIANJIN_JINJING_BLOCK);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.PSD_GLASS_TIANJIN_JINJING_BLOCK);

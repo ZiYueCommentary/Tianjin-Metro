@@ -1,0 +1,465 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "type": "bottom",
+                "facing": "north"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1_slab_bottom"
+            }
+        },
+        {
+            "when": {
+                "type": "bottom",
+                "facing": "east"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1_slab_bottom",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "type": "bottom",
+                "facing": "south"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1_slab_bottom",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "type": "bottom",
+                "facing": "west"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1_slab_bottom",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "type": "double",
+                "facing": "north"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1"
+            }
+        },
+        {
+            "when": {
+                "type": "double",
+                "facing": "east"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "type": "double",
+                "facing": "south"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "type": "double",
+                "facing": "west"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "type": "top",
+                "facing": "north"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1_slab_top"
+            }
+        },
+        {
+            "when": {
+                "type": "top",
+                "facing": "east"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1_slab_top",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "type": "top",
+                "facing": "south"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1_slab_top",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "type": "top",
+                "facing": "west"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_tj_1_slab_top",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "side": "1",
+                "facing": "north",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_1"
+            }
+        },
+        {
+            "when": {
+                "side": "1",
+                "facing": "east",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_1",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "side": "1",
+                "facing": "south",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_1",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "side": "1",
+                "facing": "west",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_1",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "side": "2",
+                "facing": "north",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_2"
+            }
+        },
+        {
+            "when": {
+                "side": "2",
+                "facing": "east",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_2",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "side": "2",
+                "facing": "south",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_2",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "side": "2",
+                "facing": "west",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_2",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "side": "3",
+                "facing": "north",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_3"
+            }
+        },
+        {
+            "when": {
+                "side": "3",
+                "facing": "east",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_3",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "side": "3",
+                "facing": "south",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_3",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "side": "3",
+                "facing": "west",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_3",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "side": "4",
+                "facing": "north",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_4"
+            }
+        },
+        {
+            "when": {
+                "side": "4",
+                "facing": "east",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_4",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "side": "4",
+                "facing": "south",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_4",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "side": "4",
+                "facing": "west",
+                "type": "double|top"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_4",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "side": "1",
+                "facing": "north",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_1"
+            }
+        },
+        {
+            "when": {
+                "side": "1",
+                "facing": "east",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_1",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "side": "1",
+                "facing": "south",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_1",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "side": "1",
+                "facing": "west",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_1",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "side": "2",
+                "facing": "north",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_2"
+            }
+        },
+        {
+            "when": {
+                "side": "2",
+                "facing": "east",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_2",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "side": "2",
+                "facing": "south",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_2",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "side": "2",
+                "facing": "west",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_2",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "side": "3",
+                "facing": "north",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_3"
+            }
+        },
+        {
+            "when": {
+                "side": "3",
+                "facing": "east",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_3",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "side": "3",
+                "facing": "south",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_3",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "side": "3",
+                "facing": "west",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_3",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "side": "4",
+                "facing": "north",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_4"
+            }
+        },
+        {
+            "when": {
+                "side": "4",
+                "facing": "east",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_4",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "side": "4",
+                "facing": "south",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_4",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "side": "4",
+                "facing": "west",
+                "type": "bottom"
+            },
+            "apply": {
+                "model": "tjmetro:block/platform_arrow_line_11_slab_4",
+                "y": 270
+            }
+        }
+    ]
+}
