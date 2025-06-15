@@ -8,6 +8,7 @@ import org.mtr.mod.Blocks;
 import org.mtr.mod.block.BlockCeiling;
 import org.mtr.mod.block.BlockPlatform;
 import org.mtr.mod.block.BlockPlatformSlab;
+import org.mtr.mod.block.BlockTicketBarrier;
 import org.mtr.mod.item.ItemBlockEnchanted;
 import ziyue.tjmetro.mod.block.*;
 import ziyue.tjmetro.mod.block.base.StairBlock;
@@ -154,6 +155,8 @@ public interface BlockList
     BlockRegistryObject CEILING_TIANJIN_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_light", () -> new Block(new BlockCeilingTianjin(15)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CEILING_TIANJIN_NO_LIGHT = Registry.registerBlockWithBlockItem("ceiling_tianjin_no_light", () -> new Block(new BlockCeilingTianjin(0)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CEILING_TIANJIN_NOT_LIT = Registry.registerBlockWithBlockItem("ceiling_tianjin_not_lit", () -> new Block(new BlockCeilingTianjin(0)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject TICKET_BARRIER_TIANJIN_ENTRANCE = Registry.registerBlockWithBlockItem("ticket_barrier_tianjin_entrance", () -> new Block(new BlockTicketBarrier(true)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject TICKET_BARRIER_TIANJIN_EXIT = Registry.registerBlockWithBlockItem("ticket_barrier_tianjin_exit", () -> new Block(new BlockTicketBarrier(false)), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants

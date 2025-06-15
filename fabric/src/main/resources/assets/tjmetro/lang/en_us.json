@@ -74,6 +74,8 @@
     "block.tjmetro.ceiling_tianjin_light": "Ceiling (Tianjin, light)",
     "block.tjmetro.ceiling_tianjin_no_light": "Ceiling (Tianjin, No light)",
     "block.tjmetro.ceiling_tianjin_not_lit": "Ceiling (Tianjin, Not lit)",
+    "block.tjmetro.ticket_barrier_tianjin_entrance": "Ticket Barrier (Entrance, Tianjin)",
+    "block.tjmetro.ticket_barrier_tianjin_exit": "Ticket Barrier (Exit, Tianjin)",
 
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
