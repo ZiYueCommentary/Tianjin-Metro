@@ -198,5 +198,9 @@
     "block.tjmetro.ceiling_tianjin_not_lit": "天花板（天津、未亮起）",
     "footer.tjmetro.bde": "试试《拆弹专家》！",
     "footer.tjmetro.tutorial": "观看教程介绍视频！",
-    "footer.tjmetro.sponsor": "赞助支持天津地铁的开发！"
+    "footer.tjmetro.sponsor": "赞助支持天津地铁的开发！",
+    "block.tjmetro.platform_tj_1_slab": "站台台阶（天津）",
+    "block.tjmetro.platform_tj_2_slab": "站台台阶（天津）",
+    "block.tjmetro.platform_tj_line_11_1_slab": "站台台阶（天津、11号线）",
+    "block.tjmetro.platform_tj_line_11_2_slab": "站台台阶（天津、11号线）"
 }
