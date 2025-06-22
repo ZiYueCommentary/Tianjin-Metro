@@ -101,6 +101,8 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
             return "block.tjmetro.psd_tianjin";
         } else if (this.block.data instanceof BlockFlagPSDTianjinBMT) {
             return "block.tjmetro.psd_tianjin_bmt";
+        } else if (this.block.data instanceof BlockFlagAPGTianjinJinjing) {
+            return "block.tjmetro.apg_tianjin_jinjing";
         } else if (this.block.data instanceof BlockFlagAPGTianjin) {
             return "block.tjmetro.apg_tianjin";
         } else if (this.block.data instanceof BlockFlagAPGTianjinBMT) {

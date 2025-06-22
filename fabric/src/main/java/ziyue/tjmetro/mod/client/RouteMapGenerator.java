@@ -1071,6 +1071,276 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
+    public static NativeImage generateRouteMapJinjing(long platformId, int arrowDirection, float aspectRatio, boolean transparentWhite) {
+        if (aspectRatio <= 0) return null;
+
+        try {
+            ObjectArrayList<String> destinations = new ObjectArrayList<>();
+            ObjectArrayList<String> nextStations = new ObjectArrayList<>();
+            final ObjectArrayList<ObjectIntImmutablePair<SimplifiedRoute>> routeDetails = new ObjectArrayList<>();
+            getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+
+                    final String tempMarker;
+                    switch (simplifiedRoute.getCircularState()) {
+                        case CLOCKWISE:
+                            tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                            break;
+                        case ANTICLOCKWISE:
+                            tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                            break;
+                        default:
+                            tempMarker = "";
+                    }
+
+                    if (!simplifiedRoute.getName().isEmpty()) {
+                        destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                        nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                    }
+                }
+            });
+            if (routeDetails.isEmpty()) {
+                MinecraftClientData.getInstance().simplifiedRoutes.stream().filter(simplifiedRoute -> simplifiedRoute.getPlatformIndex(platformId) >= 0).sorted().forEach(simplifiedRoute -> {
+                    final int currentStationIndex = simplifiedRoute.getPlatformIndex(platformId);
+                    if (!simplifiedRoute.getName().isEmpty()) {
+                        routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+                    }
+                });
+            }
+            final boolean isTerminating = destinations.isEmpty();
+            final int routeCount = routeDetails.size();
+
+            if (routeCount > 0) {
+                final DynamicTextureCache clientCache = DynamicTextureCache.instance;
+                final ObjectArrayList<LongArrayList> stationsIdsBefore = new ObjectArrayList<>();
+                final ObjectArrayList<LongArrayList> stationsIdsAfter = new ObjectArrayList<>();
+                final ObjectArrayList<Int2ObjectAVLTreeMap<StationPosition>> stationPositions = new ObjectArrayList<>();
+                final IntAVLTreeSet colors = new IntAVLTreeSet();
+                final int[] colorIndices = new int[routeCount];
+                int colorIndex = -1;
+                int previousColor = -1;
+                for (int routeIndex = 0; routeIndex < routeCount; routeIndex++) {
+                    stationsIdsBefore.add(new LongArrayList());
+                    stationsIdsAfter.add(new LongArrayList());
+                    stationPositions.add(new Int2ObjectAVLTreeMap<>());
+
+                    final ObjectIntImmutablePair<SimplifiedRoute> routeDetail = routeDetails.get(routeIndex);
+                    final ObjectArrayList<SimplifiedRoutePlatform> simplifiedRoutePlatforms = routeDetail.left().getPlatforms();
+                    final int currentIndex = routeDetail.rightInt();
+                    for (int stationIndex = 0; stationIndex < simplifiedRoutePlatforms.size(); stationIndex++) {
+                        if (stationIndex != currentIndex) {
+                            final long stationId = simplifiedRoutePlatforms.get(stationIndex).getStationId();
+                            if (stationIndex < currentIndex) {
+                                stationsIdsBefore.get(stationsIdsBefore.size() - 1).add(0, stationId);
+                            } else {
+                                stationsIdsAfter.get(stationsIdsAfter.size() - 1).add(stationId);
+                            }
+                        }
+                    }
+
+                    final int color = routeDetail.left().getColor();
+                    colors.add(color);
+                    if (color != previousColor) {
+                        colorIndex++;
+                        previousColor = color;
+                    }
+                    colorIndices[routeIndex] = colorIndex;
+                }
+
+                for (int routeIndex = 0; routeIndex < routeCount; routeIndex++) {
+                    stationPositions.get(routeIndex).put(0, new StationPosition(0, getLineOffset(routeIndex, colorIndices), true));
+                }
+
+                final boolean rotateStationName = ConfigClient.ROTATED_STATION_NAME.get();
+                final float[] bounds = new float[3];
+                setup(stationPositions, arrowDirection == 2 ? stationsIdsBefore : stationsIdsAfter, colorIndices, bounds, arrowDirection == 2, true);
+                final float xOffset = bounds[0] + 0.5F;
+                setup(stationPositions, arrowDirection == 2 ? stationsIdsAfter : stationsIdsBefore, colorIndices, bounds, arrowDirection != 2, false);
+                final float rawHeightPart = Math.abs(bounds[1]) + 1;
+                final float rawWidth = xOffset + bounds[0] + 0.5F;
+                final float rawHeightTotal = rawHeightPart + bounds[2] + 3;
+                final float yOffset = rawHeightPart + (rotateStationName ? 0.6F : 0) + 1.7F;
+                final float extraPadding = 0;
+
+                final int height;
+                final int width;
+                final float widthScale;
+                final float heightScale;
+                if (rawWidth / rawHeightTotal > aspectRatio) {
+                    width = Math.round(rawWidth * scale);
+                    height = Math.round(width / aspectRatio);
+                    widthScale = 1;
+                    heightScale = height / rawHeightTotal / scale;
+                } else {
+                    height = Math.round(rawHeightTotal * scale);
+                    width = Math.round(height * aspectRatio);
+                    heightScale = 1;
+                    widthScale = width / rawWidth / scale;
+                }
+
+                if (width <= 0 || height <= 0) return null;
+
+                final int padding = Math.round(height * 0.25F);
+
+                final NativeImage nativeImage = new NativeImage(NativeImageFormat.getAbgrMapped(), width, height, false);
+                nativeImage.fillRect(0, 0, width, height, ARGB_WHITE);
+
+                String nextStationString = IGui.mergeStations(nextStations);
+                String destinationString = IGui.mergeStations(destinations);
+                final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
+                final boolean isAnticlockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE);
+                destinationString = destinationString.replace(TEMP_CIRCULAR_MARKER_CLOCKWISE, "").replace(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE, "");
+                if (!destinationString.isEmpty()) {
+                    if (isClockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.clockwise_via_cjk", "gui.mtr.clockwise_via", 1, destinationString);
+                    } else if (isAnticlockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
+                    } else {
+                        destinationString = IGuiExtension.insertTranslation("gui.tjmetro.train_to_cjk", "gui.tjmetro.train_to", 1, destinationString);
+                    }
+                }
+
+                /* WARNING - HORRIBLE! */
+                // This is too complex to fully understand. Do not modify them if they are working properly.
+                final DynamicTextureCache.Text textCurrentStationSign = clientCache.getText(IGuiExtension.mergeTranslation("gui.tjmetro.current_station_cjk", "gui.tjmetro.current_station"), width, height, lineSize * 4, lineSize * 2, 0, HorizontalAlignment.CENTER);
+                final DynamicTextureCache.Text textCurrentStation = clientCache.getText(MinecraftClientData.getInstance().platformIdMap.get(platformId).area.getName(), width, height, lineSize * 5, lineSize * 3, 0, HorizontalAlignment.CENTER);
+
+                final int textY = (int) ((height - (rawHeightPart + 1.5F) * scale * heightScale) / 2);
+                final int arrowSize = arrowDirection % 3 == 0 ? 0 : padding;
+                final int arrowPadding = arrowDirection % 3 == 0 ? 0 : padding / 4;
+                final boolean shouldRenderCurrentStationText = isTerminating || (((double) (textCurrentStation.width() + textCurrentStationSign.width() + padding / 4) / width) <= 0.4);
+                final int CurrentStationSignStartX = (width - textCurrentStationSign.width() - padding - textCurrentStation.width()) / 2;
+                if (isTerminating) {
+                    final DynamicTextureCache.Text textTerminus = clientCache.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), arrowDirection == 2 ? width - CurrentStationSignStartX - textCurrentStationSign.width() - padding / 4 - textCurrentStation.width() : CurrentStationSignStartX - padding, height, lineSize * 4, lineSize * 2, 0, HorizontalAlignment.CENTER);
+                    if (arrowDirection == 2) {
+                        drawString(nativeImage, textTerminus, width - padding, textY, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                    } else {
+                        drawString(nativeImage, textTerminus, padding, textY, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                    }
+                } else {
+                    final DynamicTextureCache.Text textNextStationSign = clientCache.getText(IGuiExtension.mergeTranslation("gui.tjmetro.next_station_cjk", "gui.tjmetro.next_station"), width, height, lineSize * 4, lineSize * 2, 0, HorizontalAlignment.CENTER);
+                    final DynamicTextureCache.Text textNextStations, textDestinations;
+                    final boolean renderDestinationOnly;
+                    if (arrowDirection == 2) {
+                        final int leftWidthForText = shouldRenderCurrentStationText ? CurrentStationSignStartX - padding - textNextStationSign.width() - padding / 4 : width;
+                        textNextStations = clientCache.getText(nextStationString, leftWidthForText, height, lineSize * 4, lineSize * 2, 0, HorizontalAlignment.CENTER);
+                        final int rightWidthForText = (shouldRenderCurrentStationText ? width / 2 - textCurrentStation.width() / 2 - padding / 2 : width - padding - textNextStationSign.width() - padding / 4 - textNextStations.width()) - padding - arrowSize - arrowPadding;
+                        renderDestinationOnly = ((double) rightWidthForText / width) < 0.3 && !shouldRenderCurrentStationText;
+                        textDestinations = clientCache.getText(destinationString, renderDestinationOnly ? width - padding * 2 - arrowSize - arrowPadding : rightWidthForText, height, lineSize * 4, lineSize * 2, 0, HorizontalAlignment.RIGHT);
+                    } else {
+                        final int rightWidthForText = shouldRenderCurrentStationText ? width - CurrentStationSignStartX - textCurrentStationSign.width() - padding / 4 - textCurrentStation.width() - textNextStationSign.width() - padding / 4 - padding : width;
+                        textNextStations = clientCache.getText(nextStationString, rightWidthForText, height, lineSize * 4, lineSize * 2, 0, HorizontalAlignment.CENTER);
+                        final int leftWidthForText = shouldRenderCurrentStationText ? CurrentStationSignStartX - padding - arrowSize - arrowPadding : width - padding * 2 - textNextStations.width() - padding / 4 - textNextStationSign.width();
+                        renderDestinationOnly = ((double) leftWidthForText / width) < 0.3 && !shouldRenderCurrentStationText;
+                        textDestinations = clientCache.getText(destinationString, renderDestinationOnly ? width - padding * 2 - arrowSize - arrowPadding : leftWidthForText, height, lineSize * 4, lineSize * 2, 0, HorizontalAlignment.LEFT);
+                    }
+
+                    if (arrowDirection == 2) {
+                        if (!renderDestinationOnly) {
+                            drawString(nativeImage, textNextStationSign, padding, textY, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                            drawString(nativeImage, textNextStations, padding + textNextStationSign.width() + padding / 4, textY, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                        }
+                        drawString(nativeImage, textDestinations, width - padding - arrowSize - arrowPadding, textY, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                        drawResource(nativeImage, ARROW_RESOURCE, width - padding - arrowSize, textY - arrowSize / 2, arrowSize, arrowSize, true, 0, 1, ARGB_BLACK, false);
+                    } else {
+                        drawResource(nativeImage, ARROW_RESOURCE, padding, textY - arrowSize / 2, arrowSize, arrowSize, false, 0, 1, ARGB_BLACK, false);
+                        drawString(nativeImage, textDestinations, padding + arrowSize + arrowPadding, textY, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                        if (!renderDestinationOnly) {
+                            drawString(nativeImage, textNextStationSign, width - padding - textNextStations.width() - padding / 4, textY, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                            drawString(nativeImage, textNextStations, width - padding, textY, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                        }
+                    }
+                }
+                if (shouldRenderCurrentStationText) {
+                    drawString(nativeImage, textCurrentStationSign, CurrentStationSignStartX, textY, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                    drawString(nativeImage, textCurrentStation, (width - textCurrentStation.width() + padding) / 2, textY, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+                }
+                /* END OF HORRIBLE */
+
+                final Object2ObjectOpenHashMap<String, ObjectOpenHashSet<StationPositionGrouped>> stationPositionsGrouped = new Object2ObjectOpenHashMap<>();
+                for (int routeIndex = 0; routeIndex < routeCount; routeIndex++) {
+                    final SimplifiedRoute simplifiedRoute = routeDetails.get(routeIndex).left();
+                    final int currentIndex = routeDetails.get(routeIndex).rightInt();
+                    final Int2ObjectAVLTreeMap<StationPosition> routeStationPositions = stationPositions.get(routeIndex);
+
+                    for (int stationIndex = 0; stationIndex < simplifiedRoute.getPlatforms().size(); stationIndex++) {
+                        final StationPosition stationPosition = routeStationPositions.get(stationIndex - currentIndex);
+                        if (stationIndex < simplifiedRoute.getPlatforms().size() - 1) {
+                            drawLine(nativeImage, stationPosition, routeStationPositions.get(stationIndex + 1 - currentIndex), widthScale, heightScale, xOffset, yOffset, stationIndex < currentIndex ? ARGB_LIGHT_GRAY : ARGB_BLACK | simplifiedRoute.getColor());
+                        }
+
+                        final SimplifiedRoutePlatform simplifiedRoutePlatform = simplifiedRoute.getPlatforms().get(stationIndex);
+                        final String key = String.format("%s||%s", simplifiedRoutePlatform.getStationName(), simplifiedRoutePlatform.getStationId());
+
+                        if (!stationPosition.isCommon || stationPositionsGrouped.getOrDefault(key, new ObjectOpenHashSet<>()).stream().noneMatch(stationPosition2 -> stationPosition2.stationPosition.x == stationPosition.x)) {
+                            final IntArrayList interchangeColors = new IntArrayList();
+                            final ObjectArrayList<String> interchangeNames = new ObjectArrayList<>();
+                            simplifiedRoutePlatform.forEach((color, interchangeRouteNamesForColor) -> {
+                                if (!colors.contains(color)) {
+                                    interchangeColors.add(color);
+                                    interchangeRouteNamesForColor.forEach(interchangeNames::add);
+                                }
+                            });
+                            Data.put(stationPositionsGrouped, key, new StationPositionGrouped(stationPosition, stationIndex - currentIndex, interchangeColors, interchangeNames), ObjectOpenHashSet::new);
+                        }
+                    }
+                }
+
+                final int maxStringWidth = (int) (scale * 0.9 * (widthScale / 2 + extraPadding / routeCount));
+                stationPositionsGrouped.forEach((key, stationPositionGroupedSet) -> stationPositionGroupedSet.forEach(stationPositionGrouped -> {
+                    final int x = Math.round((stationPositionGrouped.stationPosition.x + xOffset) * scale * widthScale);
+                    final int y = Math.round((stationPositionGrouped.stationPosition.y + yOffset) * scale * heightScale);
+                    final int lines = stationPositionGrouped.stationPosition.isCommon ? colorIndices[colorIndices.length - 1] : 0;
+                    final boolean currentStation = stationPositionGrouped.stationOffset == 0;
+                    final boolean passed = stationPositionGrouped.stationOffset < 0;
+                    final boolean textBelow = stationPositionGrouped.stationPosition.isCommon ? Math.abs(stationPositionGrouped.stationOffset) % 2 == 0 : y >= yOffset * scale;
+
+                    final IntArrayList interchangeColors = stationPositionGrouped.interchangeColors;
+                    if (!interchangeColors.isEmpty()) {
+                        final int lineHeight = lineSize * 2;
+                        final int lineWidth = (int) Math.ceil((float) lineSize / interchangeColors.size());
+                        for (int i = 0; i < interchangeColors.size(); i++) {
+                            for (int drawX = 0; drawX < lineWidth; drawX++) {
+                                for (int drawY = 0; drawY < lineHeight; drawY++) {
+                                    if (rotateStationName) {
+                                        drawPixelSafe(nativeImage, x + drawX + lineWidth * i - lineWidth * interchangeColors.size() / 2, y + lines * lineSpacing + drawY, ARGB_BLACK | interchangeColors.getInt(i));
+                                    } else {
+                                        drawPixelSafe(nativeImage, x + drawX + lineWidth * i - lineWidth * interchangeColors.size() / 2, y + (textBelow ? -1 : lines * lineSpacing) + (textBelow ? -drawY : drawY), passed ? ARGB_LIGHT_GRAY : ARGB_BLACK | interchangeColors.getInt(i));
+                                    }
+                                }
+                            }
+                        }
+
+                        final DynamicTextureCache.Text text = clientCache.getText(IGui.mergeStations(stationPositionGrouped.interchangeNames), maxStringWidth, (int) ((fontSizeBig + fontSizeSmall) * LINE_HEIGHT_MULTIPLIER / 2), fontSizeBig / 2, fontSizeSmall / 2, 0, HorizontalAlignment.CENTER);
+                        if (rotateStationName) {
+                            drawString(nativeImage, text, x, y + lines * lineSpacing + lineHeight, HorizontalAlignment.CENTER, VerticalAlignment.TOP, 0, ARGB_BLACK, false);
+                        } else {
+                            drawString(nativeImage, text, x, y + (textBelow ? -1 - lineHeight : lines * lineSpacing + lineHeight), HorizontalAlignment.CENTER, textBelow ? VerticalAlignment.BOTTOM : VerticalAlignment.TOP, 0, passed ? ARGB_LIGHT_GRAY : ARGB_BLACK, false);
+                        }
+                    }
+
+                    drawStation(nativeImage, x, y, heightScale, lines, passed);
+
+                    final DynamicTextureCache.Text text = clientCache.getText(key.split("\\|\\|")[0], maxStringWidth, y - textY - textCurrentStation.height() / 2, (int) ((currentStation ? 1.2 : 1) * fontSizeBig), (int) ((currentStation ? 1.2 : 1) * fontSizeSmall), fontSizeSmall / 4, rotateStationName ? HorizontalAlignment.LEFT : HorizontalAlignment.CENTER, LINE_HEIGHT_MULTIPLIER, false, rotateStationName);
+                    if (rotateStationName) {
+                        drawString(nativeImage, text, x - lineSize * 3 / 2, y - lineSize, HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, passed ? ARGB_LIGHT_GRAY : ARGB_BLACK, false);
+                    } else {
+                        drawString(nativeImage, text, x, y + (textBelow ? lines * lineSpacing : -1) + (textBelow ? 1 : -1) * lineSize * 5 / 4, HorizontalAlignment.CENTER, textBelow ? VerticalAlignment.TOP : VerticalAlignment.BOTTOM, currentStation ? ARGB_BLACK : 0, passed ? ARGB_LIGHT_GRAY : currentStation ? ARGB_WHITE : ARGB_BLACK, false);
+                    }
+                }));
+
+                if (transparentWhite) clearColor(nativeImage, ARGB_WHITE);
+
+                return nativeImage;
+            }
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
+
     public static NativeImage generateRouteSquare(int color, String routeName, HorizontalAlignment horizontalAlignment) {
         try {
             final int padding = scale / 32;
@@ -1484,9 +1754,9 @@ public class RouteMapGenerator implements IGui
                 final int imageWidth = Math.max(width, destination.width() + destination.renderWidth() + stationName.width());
                 nativeImage = new NativeImage(NativeImageFormat.RGBA, imageWidth, height, false);
                 nativeImage.fillRect(0, 0, imageWidth, height, invertColor(backgroundColor));
-                drawString(nativeImage, destination, tilePadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
-                drawString(nativeImage, stationName, imageWidth / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, backgroundColor, textColor, false);
-                drawString(nativeImage, destination, imageWidth - tilePadding, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                drawString(nativeImage, destination, tilePadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, textColor, false);
+                drawString(nativeImage, stationName, imageWidth / 2, height / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, textColor, false);
+                drawString(nativeImage, destination, imageWidth - tilePadding, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, textColor, false);
             } else {
                 final int arrowSizeAndPadding;
                 switch (arrowDirection) {
@@ -1524,8 +1794,8 @@ public class RouteMapGenerator implements IGui
                 nativeImage.fillRect(0, 0, imageWidth, height, invertColor(backgroundColor));
                 if (arrowDirection == 2) {
                     drawResource(nativeImage, ARROW_RESOURCE, imageWidth - tilePadding - tileSize, padding, tileSize, tileSize, true, 0, 1, textColor, false);
-                    drawString(nativeImage, textDestination, imageWidth - tilePadding - tileSize, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
-                    drawString(nativeImage, textStationName, (textStationName.width() - textStationName.renderWidth()) / 2 + tilePadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                    drawString(nativeImage, textDestination, imageWidth - tilePadding - tileSize, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, textColor, false);
+                    drawString(nativeImage, textStationName, (textStationName.width() - textStationName.renderWidth()) / 2 + tilePadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, textColor, false);
                     if (renderNextStation) {
                         drawString(nativeImage, textNextStations, (imageWidth + textStationName.width() - textDestination.width() - arrowSizeAndPadding) / 2, height, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0xffdcdcdc, false);
                     }
@@ -1533,8 +1803,8 @@ public class RouteMapGenerator implements IGui
                     if (arrowSizeAndPadding > 0) {
                         drawResource(nativeImage, ARROW_RESOURCE, tilePadding, padding, tileSize, tileSize, false, 0, 1, textColor, false);
                     }
-                    drawString(nativeImage, textDestination, tilePadding + arrowSizeAndPadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
-                    drawString(nativeImage, textStationName, imageWidth - (textStationName.width() - textStationName.renderWidth()) / 2 - tilePadding, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, backgroundColor, textColor, false);
+                    drawString(nativeImage, textDestination, tilePadding + arrowSizeAndPadding, height / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, textColor, false);
+                    drawString(nativeImage, textStationName, imageWidth - (textStationName.width() - textStationName.renderWidth()) / 2 - tilePadding, height / 2, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, textColor, false);
                     if (renderNextStation) {
                         drawString(nativeImage, textNextStations, (imageWidth + arrowSizeAndPadding + textDestination.width() - textStationName.width()) / 2, height, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0xffdcdcdc, false);
                     }

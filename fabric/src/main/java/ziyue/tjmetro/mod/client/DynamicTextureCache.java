@@ -98,6 +98,10 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_route_map_%s_%s_%s_%s_%s", platformId, vertical, flip, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMap(platformId, vertical, flip, aspectRatio, transparentWhite), transparentWhite ? DefaultRenderingColor.TRANSPARENT : DefaultRenderingColor.WHITE);
     }
 
+    public DynamicResource getRouteMapJinjing(long platformId, int arrowDirection, float aspectRatio, boolean transparentWhite) {
+        return getResource(String.format("tjmetro_route_map_jinjing_%s_%s_%s_%s", platformId, arrowDirection, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMapJinjing(platformId, arrowDirection, aspectRatio, transparentWhite), transparentWhite ? DefaultRenderingColor.TRANSPARENT : DefaultRenderingColor.WHITE);
+    }
+
     public DynamicResource getRouteMapTRT(long platformId, boolean vertical, boolean flip, float aspectRatio, boolean transparentWhite) {
         return getResource(String.format("tjmetro_route_map_trt_%s_%s_%s_%s_%s", platformId, vertical, flip, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMapTRT(platformId, vertical, flip, aspectRatio, transparentWhite), transparentWhite ? DefaultRenderingColor.TRANSPARENT : DefaultRenderingColor.WHITE);
     }

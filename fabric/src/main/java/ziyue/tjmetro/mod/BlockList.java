@@ -157,6 +157,9 @@ public interface BlockList
     BlockRegistryObject CEILING_TIANJIN_NOT_LIT = Registry.registerBlockWithBlockItem("ceiling_tianjin_not_lit", () -> new Block(new BlockCeilingTianjin(0)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject TICKET_BARRIER_TIANJIN_ENTRANCE = Registry.registerBlockWithBlockItem("ticket_barrier_tianjin_entrance", () -> new Block(new BlockTicketBarrier(true)), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject TICKET_BARRIER_TIANJIN_EXIT = Registry.registerBlockWithBlockItem("ticket_barrier_tianjin_exit", () -> new Block(new BlockTicketBarrier(false)), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject APG_DOOR_TIANJIN_JINJING_BLOCK = Registry.registerBlock("apg_door_tianjin_jinjing", () -> new Block(new BlockAPGDoorTianjinJinjing()));
+    BlockRegistryObject APG_GLASS_TIANJIN_JINJING_BLOCK = Registry.registerBlock("apg_glass_tianjin_jinjing", () -> new Block(new BlockAPGGlassTianjinJinjing()));
+    BlockRegistryObject APG_GLASS_END_TIANJIN_JINJING_BLOCK = Registry.registerBlock("apg_glass_end_tianjin_jinjing", () -> new Block(new BlockAPGGlassEndTianjinJinjing()));
 
     static void registerBlocks() {
         // Calling this class to initialize constants
