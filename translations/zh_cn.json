@@ -206,5 +206,6 @@
     "block.tjmetro.ticket_barrier_tianjin_entrance": "入站闸机（天津）",
     "block.tjmetro.ticket_barrier_tianjin_exit": "出站闸机（天津）",
     "gui.tjmetro.current_station_cjk": "当前站",
-    "block.tjmetro.apg_tianjin_jinjing": "低站台门（天津、津静线）"
+    "block.tjmetro.apg_tianjin_jinjing": "低站台门（天津、津静线）",
+    "gui.tjmetro.current_station": "Current Station"
 }
