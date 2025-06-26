@@ -64,10 +64,10 @@
     "gui.tjmetro.default_color": "默认颜色",
     "gui.tjmetro.custom_content": "显示内容",
     "gui.tjmetro.terminus_cjk": "终点站",
-    "gui.tjmetro.terminus": "终点站",
-    "gui.tjmetro.terminus_bmt": "末端",
+    "gui.tjmetro.terminus": "Terminal Station",
+    "gui.tjmetro.terminus_bmt": "TERMINAL",
     "gui.tjmetro.next_station_cjk": "下一站",
-    "gui.tjmetro.next_station": "下一站",
+    "gui.tjmetro.next_station": "Next Station",
     "gui.tjmetro.station_pinyin": "%s ZHAN",
     "gui.tjmetro.next_station_bmt_cjk": "下一站 %s",
     "gui.tjmetro.next_station_bmt": "Next Sta. %s",
@@ -207,5 +207,5 @@
     "block.tjmetro.ticket_barrier_tianjin_exit": "出站闸机（天津）",
     "gui.tjmetro.current_station_cjk": "当前站",
     "block.tjmetro.apg_tianjin_jinjing": "低站台门（天津、津静线）",
-    "gui.tjmetro.current_station": "当前站"
+    "gui.tjmetro.current_station": "Current Station"
 }
