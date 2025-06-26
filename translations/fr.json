@@ -162,5 +162,7 @@
     "gui.tjmetro.options": "",
     "sign.tjmetro.tianjin_metro": "",
     "sign.tjmetro.train": "",
-    "sign.tjmetro.station": ""
+    "sign.tjmetro.station": "",
+    "gui.tjmetro.terminus_cjk": "",
+    "gui.tjmetro.next_station_cjk": ""
 }
