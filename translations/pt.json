@@ -162,5 +162,7 @@
     "gui.tjmetro.platform": "",
     "sign.tjmetro.train": "",
     "sign.tjmetro.station": "",
-    "sign.tjmetro.bound_for": ""
+    "sign.tjmetro.bound_for": "",
+    "gui.tjmetro.terminus_cjk": "",
+    "gui.tjmetro.next_station_cjk": ""
 }
