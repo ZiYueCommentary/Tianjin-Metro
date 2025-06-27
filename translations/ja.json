@@ -187,5 +187,17 @@
     "config.tjmetro.disable_dynamic_textures": "動的テクスチャを無効化",
     "block.tjmetro.no_entering_sign": "「立入禁止」の看板",
     "config.tjmetro.disable_train_rendering": "列車の描画を無効化",
-    "tooltip.tjmetro.disable_dynamic_textures": "標識やホームドアなどのテクスチャの生成をスキップします。"
+    "tooltip.tjmetro.disable_dynamic_textures": "標識やホームドアなどのテクスチャの生成をスキップします。",
+    "footer.tjmetro.bde": "Bomb Disposal Expertもお試しください!",
+    "footer.tjmetro.sponsor": "天津地下鉄の発展を応援します！",
+    "block.tjmetro.platform_tj_1_slab": "ホームのハーフブロック(天津地下鉄)",
+    "block.tjmetro.platform_tj_2_slab": "ホームのハーフブロック(天津地下鉄)",
+    "block.tjmetro.platform_tj_line_11_1_slab": "ホームのハーフブロック(天津地下鉄11号線)",
+    "block.tjmetro.platform_tj_line_11_2_slab": "ホームのハーフブロック(天津地下鉄11号線)",
+    "footer.tjmetro.tutorial": "チュートリアル/MOD紹介動画はこちら。",
+    "block.tjmetro.ticket_barrier_tianjin_entrance": "入場用自動改札機(天津地下鉄)",
+    "block.tjmetro.ticket_barrier_tianjin_exit": "出場用自動改札機(天津地下鉄)",
+    "block.tjmetro.apg_tianjin_jinjing": "可動式ホーム柵(天津地下鉄津静線)",
+    "gui.tjmetro.current_station_cjk": "ここは",
+    "gui.tjmetro.current_station": "Current Station"
 }
