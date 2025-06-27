@@ -7,6 +7,7 @@
 		"BlockRailwaySignPoleMixin",
 		"CustomResourceLoaderMixin",
 		"DynamicTextureCacheMixin",
+		"RenderVehiclesMixin",
 		"RouteMapGeneratorMixin",
 		"VehicleResourceMixin"
 	],
