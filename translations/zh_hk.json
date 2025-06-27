@@ -153,5 +153,16 @@
     "footer.tjmetro.contributors": "天津地鐵模組是一個社區作品，點此查看所有貢獻者！",
     "footer.tjmetro.forum": "有興趣加入我們的論壇嗎？",
     "gamerule.preventBlockFalling": "禁用方塊下落",
-    "gamerule.preventBlockFalling.description": "阻止可下落的方塊下落，例如沙子和鐵砧。該規則由天津地鐵模組添加。"
+    "gamerule.preventBlockFalling.description": "阻止可下落的方塊下落，例如沙子和鐵砧。該規則由天津地鐵模組添加。",
+    "footer.tjmetro.sponsor": "贊助支持天津地鐵的開發！",
+    "block.tjmetro.platform_tj_1_slab": "站台台階（天津）",
+    "block.tjmetro.platform_tj_2_slab": "站台台階（天津）",
+    "block.tjmetro.platform_tj_line_11_1_slab": "站台台阶（天津、11号线）",
+    "block.tjmetro.platform_tj_line_11_2_slab": "站台台阶（天津、11号线）",
+    "block.tjmetro.ticket_barrier_tianjin_entrance": "入站閘機（天津）",
+    "block.tjmetro.ticket_barrier_tianjin_exit": "出站閘機（天津）",
+    "block.tjmetro.apg_tianjin_jinjing": "月台自動閘門（天津、津靜線）",
+    "gui.tjmetro.current_station_cjk": "當前站",
+    "gui.tjmetro.current_station": "Current Station",
+    "footer.tjmetro.tutorial": "觀看教程介紹視頻！"
 }
