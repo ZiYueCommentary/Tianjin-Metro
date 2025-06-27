@@ -153,5 +153,16 @@
     "footer.tjmetro.prevent_block_falling": "你知道可以禁止沙子的掉落嗎？",
     "footer.tjmetro.bde": "試試《拆彈專家》！",
     "gamerule.preventBlockFalling": "禁用方塊下落",
-    "gamerule.preventBlockFalling.description": "阻止可下落的方塊下落，例如沙子和鐵砧。該規則由天津地鐵模組添加。"
+    "gamerule.preventBlockFalling.description": "阻止可下落的方塊下落，例如沙子和鐵砧。該規則由天津地鐵模組添加。",
+    "footer.tjmetro.sponsor": "贊助支援天津地鐵的開發！",
+    "footer.tjmetro.tutorial": "观看教程介绍视频！",
+    "block.tjmetro.platform_tj_1_slab": "站臺臺階（天津）",
+    "block.tjmetro.platform_tj_2_slab": "站臺臺階（天津）",
+    "block.tjmetro.platform_tj_line_11_1_slab": "站臺臺階（天津、11號線）",
+    "block.tjmetro.platform_tj_line_11_2_slab": "站臺臺階（天津、11號線）",
+    "block.tjmetro.ticket_barrier_tianjin_entrance": "入站閘機（天津）",
+    "block.tjmetro.ticket_barrier_tianjin_exit": "出站閘機（天津）",
+    "block.tjmetro.apg_tianjin_jinjing": "低站臺門（天津、津靜線）",
+    "gui.tjmetro.current_station_cjk": "當前站",
+    "gui.tjmetro.current_station": "Current Station"
 }
