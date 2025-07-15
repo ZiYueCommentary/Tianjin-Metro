@@ -163,6 +163,14 @@
     "footer.tjmetro.bde": "Also try Bomb Disposal Expert!",
     "footer.tjmetro.sponsor": "Sponsoring the development of Tianjin Metro!",
     "footer.tjmetro.tutorial": "Check out the tutorial/introduction videos!",
+
+    "filter.tjmetro.tianjin_miscellaneous": "Miscellaneous",
+    "filter.tjmetro.tianjin_building": "Buildings",
+    "filter.tjmetro.tianjin_signs": "Station Name Signs",
+    "filter.tjmetro.tianjin_gates": "Platform Gates",
+    "filter.tjmetro.tianjin_decoration": "Decorations",
+    "filter.tjmetro.tianjin_railway_signs": "Railway Signs",
+
     "gamerule.preventBlockFalling": "Prevent Block Falling",
     "gamerule.preventBlockFalling.description": "Prevent blocks to fall, such as sands and anvils. This rule was added by Tianjin Metro mod."
 }

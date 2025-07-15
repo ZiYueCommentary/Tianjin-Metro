@@ -11,6 +11,7 @@ import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
+import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.block.BlockPSDTopTianjinBMT;
 
 /**
@@ -58,14 +59,14 @@ public class RenderPSDDoorTianjinBMT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         final StoredMatrixTransformations storedMatrixTransformationsLight = storedMatrixTransformations.copy();
 
         if (half) {
-            MainRenderer.scheduleRender(new Identifier(String.format("mtr:textures/block/light_%s.png", open > 0 ? "on" : "off")), false, open > 0 ? QueuedRenderLayer.LIGHT : QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+            MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, String.format("textures/block/light_%s.png", open > 0 ? "on" : "off")), false, open > 0 ? QueuedRenderLayer.LIGHT : QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
                 storedMatrixTransformationsLight.transform(graphicsHolderNew, offset);
                 (side ? MODEL_PSD_LIGHT_RIGHT : MODEL_PSD_LIGHT_LEFT).render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
                 graphicsHolderNew.pop();
             });
         }
         if (end) {
-            MainRenderer.scheduleRender(new Identifier(String.format("mtr:textures/block/psd_door_end_%s_%s_2_%s.png", half ? "top" : "bottom", side ? "right" : "left", "1")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+            MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, String.format("textures/block/psd_door_end_tianjin_%s_%s_2.png", half ? "top" : "bottom", side ? "right" : "left")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
                 storedMatrixTransformationsLight.transform(graphicsHolderNew, offset);
                 graphicsHolderNew.translate(open / 2 * (side ? -1 : 1), 0, 0);
                 (side ? MODEL_PSD_END_RIGHT_2 : MODEL_PSD_END_LEFT_2).render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
@@ -76,13 +77,13 @@ public class RenderPSDDoorTianjinBMT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         storedMatrixTransformations.add(matricesNew -> matricesNew.translate(open * (side ? -1 : 1), 0, 0));
 
         if (end) {
-            MainRenderer.scheduleRender(new Identifier(String.format("mtr:textures/block/psd_door_end_%s_%s_1_%s.png", half ? "top" : "bottom", side ? "right" : "left", "1")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+            MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, String.format("textures/block/psd_door_end_tianjin_%s_%s_1.png", half ? "top" : "bottom", side ? "right" : "left")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
                 storedMatrixTransformations.transform(graphicsHolderNew, offset);
                 (side ? MODEL_PSD_END_RIGHT_1 : MODEL_PSD_END_LEFT_1).render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
                 graphicsHolderNew.pop();
             });
         } else {
-            MainRenderer.scheduleRender(new Identifier(String.format("mtr:textures/block/psd_door_%s_%s_%s.png", half ? "top" : "bottom", side ? "right" : "left", "1")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+            MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, String.format("textures/block/psd_door_tianjin_%s_%s.png", half ? "top" : "bottom", side ? "right" : "left")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
                 storedMatrixTransformations.transform(graphicsHolderNew, offset);
                 MODEL_PSD.render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
                 graphicsHolderNew.pop();
