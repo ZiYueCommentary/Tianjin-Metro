@@ -13,6 +13,8 @@ import ziyue.tjmetro.mod.client.DynamicTextureCache;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
  * @since 1.0.0-beta-1
@@ -20,6 +22,16 @@ import java.util.List;
 
 public interface IRailwaySign extends DirectionHelper
 {
+    List<String> EXIT_SIGNS = Arrays.asList("exit_letter", "exit_letter_flipped",
+            SignType.EXIT_LETTER_TEXT.signId, SignType.EXIT_LETTER_TEXT_FLIPPED.signId);
+    List<String> LINE_SIGNS = Arrays.asList("line", "line_flipped");
+    List<String> PLATFORM_SIGNS = Arrays.asList("platform", "platform_flipped",
+            SignType.BOUND_FOR_TEXT.signId, SignType.BOUND_FOR_TEXT_FLIPPED.signId,
+            SignType.TRAIN_TO_TEXT.signId, SignType.TRAIN_TO_TEXT_FLIPPED.signId,
+            SignType.CROSS_LINE_TRAIN_TO_TEXT.signId, SignType.CROSS_LINE_TRAIN_TO_TEXT_FLIPPED.signId);
+    List<String> STATION_SIGNS = Arrays.asList("station", "station_flipped",
+            SignType.STATION_TEXT.signId, SignType.STATION_TEXT_FLIPPED.signId);
+
     static void onPlaced(World world, BlockPos pos, BlockState state, Block middle, int middleLength) {
         if (world.isClient()) return;
 
@@ -71,28 +83,19 @@ public interface IRailwaySign extends DirectionHelper
     }
 
     static boolean signIsExit(String signId) {
-        List<String> exits = Arrays.asList("exit_letter", "exit_letter_flipped",
-                SignType.EXIT_LETTER_TEXT.signId, SignType.EXIT_LETTER_TEXT_FLIPPED.signId);
-        return exits.contains(signId);
+        return EXIT_SIGNS.contains(signId);
     }
 
     static boolean signIsLine(String signId) {
-        List<String> lines = Arrays.asList("line", "line_flipped");
-        return lines.contains(signId);
+        return LINE_SIGNS.contains(signId);
     }
 
     static boolean signIsPlatform(String signId) {
-        List<String> platforms = Arrays.asList("platform", "platform_flipped",
-                SignType.BOUND_FOR_TEXT.signId, SignType.BOUND_FOR_TEXT_FLIPPED.signId,
-                SignType.TRAIN_TO_TEXT.signId, SignType.TRAIN_TO_TEXT_FLIPPED.signId,
-                SignType.CROSS_LINE_TRAIN_TO_TEXT.signId, SignType.CROSS_LINE_TRAIN_TO_TEXT_FLIPPED.signId);
-        return platforms.contains(signId);
+        return PLATFORM_SIGNS.contains(signId);
     }
 
     static boolean signIsStation(String signId) {
-        List<String> stations = Arrays.asList("station", "station_flipped",
-                SignType.STATION_TEXT.signId, SignType.STATION_TEXT_FLIPPED.signId);
-        return stations.contains(signId);
+        return STATION_SIGNS.contains(signId);
     }
 
     static Identifier getExitSignResource(String signId, String exitLetter, String exitNumber, int backgroundColor, int textColor, boolean forceMTRFont) {
@@ -178,6 +181,8 @@ public interface IRailwaySign extends DirectionHelper
         OUTBOUND_TRANSFER_TEXT_FLIPPED("to_subway", "outbound_transfer", false, true),
         TO_SUBWAY_JINJING_TEXT("to_subway_jinjing", "to_subway", false, false),
         TO_SUBWAY_JINJING_TEXT_FLIPPED("to_subway_jinjing", "to_subway", true, true),
+        SELF_SERVICE_TICKETING_TEXT("self_service_ticketing", "self_service_ticketing", false, false),
+        SELF_SERVICE_TICKETING_TEXT_FLIPPED("self_service_ticketing", "self_service_ticketing", false, true),
 
         TIANJIN_METRO_LOGO("tianjin_metro_logo", false),
         TIANJIN_METRO_MOD_LOGO("tianjin_metro_mod_logo", false),
@@ -208,6 +213,7 @@ public interface IRailwaySign extends DirectionHelper
         EXIT_TRANSPARENT("exit_transparent", false),
         TO_SUBWAY_JINJING("to_subway_jinjing", false),
         TO_SUBWAY_JINJING_FLIPPED("to_subway_jinjing", true),
+        SELF_SERVICE_TICKETING("self_service_ticketing", false),
 
         // Tianjin Binhai Mass Transit (BMT, Tianjin Metro Line 9)
         NO_ENTRY_BMT_TEXT("no_entry_bmt", "no_entry_bmt", false, false),
@@ -222,6 +228,8 @@ public interface IRailwaySign extends DirectionHelper
         EXIT_BMT_RIGHT_TEXT("exit_bmt_right", "exit_bmt", false, true),
         TICKETS_BMT_TEXT("fare_adjustment", "tickets_bmt", false, false),
         TICKETS_BMT_TEXT_FLIPPED("fare_adjustment", "tickets_bmt", false, true),
+        TO_TRAIN_BMT_TEXT("to_train_bmt", "to_train_bmt", false, false),
+        TO_TRAIN_BMT_TEXT_FLIPPED("to_train_bmt", "to_train_bmt", false, true),
 
         NO_ENTRY_BMT("no_entry_bmt", false),
         TO_SUBWAY_BMT("to_subway_bmt", false),
@@ -231,7 +239,8 @@ public interface IRailwaySign extends DirectionHelper
         EXIT_BMT_UP("exit_bmt_up", false),
         EXIT_BMT_DOWN("exit_bmt_down", false),
         EXIT_BMT_LEFT("exit_bmt_left", false),
-        EXIT_BMT_RIGHT("exit_bmt_right", false);
+        EXIT_BMT_RIGHT("exit_bmt_right", false),
+        TO_TRAIN_BMT("to_train_bmt", false);
 
         public final String signId;
         public final SignResource sign;

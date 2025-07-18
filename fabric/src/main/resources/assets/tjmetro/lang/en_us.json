@@ -100,6 +100,7 @@
     "gui.tjmetro.cross_line_train_to": "Cross Line Train To %s",
     "gui.tjmetro.accept_security_check_cjk": "请您接受安检",
     "gui.tjmetro.platform": "站台|Platform",
+
     "sign.tjmetro.tianjin_metro": "天津地铁|Tianjin Metro",
     "sign.tjmetro.train": "列车|Train",
     "sign.tjmetro.station": "站名|Station",
@@ -126,6 +127,7 @@
     "sign.tjmetro.baby_care": "母婴室|Baby Care",
     "sign.tjmetro.police_office": "警务室|Police Office",
     "sign.tjmetro.outbound_transfer": "出站换乘|Outbound Transfer",
+    
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Options",
     "button.tjmetro.click_here": "Click Here!",
     "config.category.tjmetro": "Tianjin Metro",
@@ -154,6 +156,7 @@
     "tooltip.tjmetro.station_name_projector": "A big-red-station-name projector. Use wrench or brush to change its scale.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
     "tooltip.tjmetro.disable_dynamic_textures": "Skip generating textures for signs, gates, etc.",
+
     "footer.tjmetro.sources": "Wanna see the source code?",
     "footer.tjmetro.contributors": "Tianjin Metro is a community work, click here to see contributors!",
     "footer.tjmetro.forum": "Would you like to join our forum? (Chinese only)",
