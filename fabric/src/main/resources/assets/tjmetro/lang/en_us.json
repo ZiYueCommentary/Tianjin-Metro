@@ -1,8 +1,11 @@
 {
     "modmenu.nameTranslation.tjmetro": "Tianjin Metro",
     "modmenu.descriptionTranslation.tjmetro": "A small mod for Minecraft Transit Railway.",
+
     "itemGroup.tjmetro.tianjin_metro": "Tianjin Metro",
+
     "item.tjmetro.wrench": "Wrench",
+
     "block.tjmetro.rolling": "Rolling shutter",
     "block.tjmetro.logo": "Tianjin Metro Logo",
     "block.tjmetro.station_name_sign_1": "Station Name Sign",
@@ -74,6 +77,7 @@
     "block.tjmetro.ticket_barrier_tianjin_entrance": "Ticket Barrier (Entrance, Tianjin)",
     "block.tjmetro.ticket_barrier_tianjin_exit": "Ticket Barrier (Exit, Tianjin)",
     "block.tjmetro.apg_tianjin_jinjing": "Automatic Platform Gates (Tianjin, Jinjing Line)",
+
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
     "gui.tjmetro.contact_station_for_help": "Please contact the station for help.",
@@ -81,12 +85,12 @@
     "gui.tjmetro.options": "Tianjin Metro Options",
     "gui.tjmetro.default_color": "Default Color",
     "gui.tjmetro.custom_content": "Display content",
-    "gui.tjmetro.terminus_cjk": "terminal",
+    "gui.tjmetro.terminus_cjk": "终点站",
     "gui.tjmetro.terminus": "Terminal Station",
     "gui.tjmetro.terminus_bmt": "TERMINAL",
     "gui.tjmetro.current_station_cjk": "当前站",
     "gui.tjmetro.current_station": "Current Station",
-    "gui.tjmetro.next_station_cjk": "next Station",
+    "gui.tjmetro.next_station_cjk": "下一站",
     "gui.tjmetro.next_station": "Next Station",
     "gui.tjmetro.station_pinyin": "%s ZHAN",
     "gui.tjmetro.next_station_bmt_cjk": "下一站 %s",
@@ -100,6 +104,7 @@
     "gui.tjmetro.cross_line_train_to": "Cross Line Train To %s",
     "gui.tjmetro.accept_security_check_cjk": "请您接受安检",
     "gui.tjmetro.platform": "站台|Platform",
+
     "sign.tjmetro.tianjin_metro": "天津地铁|Tianjin Metro",
     "sign.tjmetro.train": "列车|Train",
     "sign.tjmetro.station": "站名|Station",
@@ -129,6 +134,7 @@
     
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Options",
     "button.tjmetro.click_here": "Click Here!",
+
     "config.category.tjmetro": "Tianjin Metro",
     "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r is not installed.",
     "config.tjmetro.cloth_config_required": "You have to install §lCloth Config API§r to config Tianjin Metro mod.",
@@ -138,6 +144,7 @@
     "config.tjmetro.debugging": "Debugging options",
     "config.tjmetro.disable_dynamic_textures": "Disable dynamic textures",
     "config.tjmetro.disable_train_rendering": "Disable train rendering",
+
     "tooltip.tjmetro.experimental": "This feature is experimental.",
     "tooltip.tjmetro.station_name": "Text depends on the station",
     "tooltip.tjmetro.custom_content": "Support custom display content",
@@ -155,6 +162,7 @@
     "tooltip.tjmetro.station_name_projector": "A big-red-station-name projector. Use wrench or brush to change its scale.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
     "tooltip.tjmetro.disable_dynamic_textures": "Skip generating textures for signs, gates, etc.",
+
     "footer.tjmetro.sources": "Wanna see the source code?",
     "footer.tjmetro.contributors": "Tianjin Metro is a community work, click here to see contributors!",
     "footer.tjmetro.forum": "Would you like to join our forum? (Chinese only)",
