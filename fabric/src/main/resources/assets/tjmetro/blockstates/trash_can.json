@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=upper": {"model": "tjmetro:block/trash_can_upper"},
+        "half=lower": {"model": "tjmetro:block/trash_can_lower"}
+    }
+}
