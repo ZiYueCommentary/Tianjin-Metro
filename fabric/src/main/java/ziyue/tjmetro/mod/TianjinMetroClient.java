@@ -54,6 +54,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_DOOR_TIANJIN_JINJING_BLOCK);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_TIANJIN_JINJING_BLOCK);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.APG_GLASS_END_TIANJIN_JINJING_BLOCK);
+        RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.STATION_SIGN_BMT);
 
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_1, RenderStationNameSign::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_2, RenderStationNameSign::new);

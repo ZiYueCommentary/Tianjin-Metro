@@ -162,6 +162,7 @@ public interface BlockList
     BlockRegistryObject APG_GLASS_TIANJIN_JINJING_BLOCK = Registry.registerBlock("apg_glass_tianjin_jinjing", () -> new Block(new BlockAPGGlassTianjinJinjing()));
     BlockRegistryObject APG_GLASS_END_TIANJIN_JINJING_BLOCK = Registry.registerBlock("apg_glass_end_tianjin_jinjing", () -> new Block(new BlockAPGGlassEndTianjinJinjing()));
     BlockRegistryObject STATION_SIGN = Registry.registerBlockWithBlockItem("station_sign", () -> new Block(new BlockStationSign()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_SIGN_BMT = Registry.registerBlockWithBlockItem("station_sign_bmt", () -> new Block(new BlockStationSignBMT()), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants
