@@ -32,6 +32,7 @@ import ziyue.tjmetro.mod.data.IGuiExtension;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 import static org.mtr.mod.client.DynamicTextureCache.LINE_HEIGHT_MULTIPLIER;
 
@@ -898,7 +899,7 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
-    public static NativeImage generateRouteMapBMT(long platformId, boolean flip, float aspectRatio, boolean transparentWhite) {
+    public static NativeImage generateRouteMapPSDBMT(long platformId, boolean flip, float aspectRatio, boolean transparentWhite) {
         if (aspectRatio <= 0) return null;
 
         try {
@@ -1331,6 +1332,239 @@ public class RouteMapGenerator implements IGui
                 }));
 
                 if (transparentWhite) clearColor(nativeImage, ARGB_WHITE);
+
+                return nativeImage;
+            }
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
+
+    public static NativeImage generateRouteMapBMT(long platformId, boolean arrowLeft, float aspectRatio, int backgroundColor) {
+        if (aspectRatio <= 0) return null;
+
+        try {
+            ObjectArrayList<String> destinations = new ObjectArrayList<>();
+            final ObjectArrayList<ObjectIntImmutablePair<SimplifiedRoute>> routeDetails = new ObjectArrayList<>();
+            final IntArrayList routeColors = getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+
+                    final String tempMarker;
+                    switch (simplifiedRoute.getCircularState()) {
+                        case CLOCKWISE:
+                            tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                            break;
+                        case ANTICLOCKWISE:
+                            tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                            break;
+                        default:
+                            tempMarker = "";
+                    }
+
+                    if (!simplifiedRoute.getName().isEmpty()) {
+                        destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                    }
+                }
+            });
+            if (routeDetails.isEmpty()) {
+                MinecraftClientData.getInstance().simplifiedRoutes.stream().filter(simplifiedRoute -> simplifiedRoute.getPlatformIndex(platformId) >= 0).sorted().forEach(simplifiedRoute -> {
+                    final int currentStationIndex = simplifiedRoute.getPlatformIndex(platformId);
+                    if (!simplifiedRoute.getName().isEmpty()) {
+                        routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
+                    }
+                });
+            }
+            final int routeCount = routeDetails.size();
+
+            if (routeCount > 0) {
+                final DynamicTextureCache clientCache = DynamicTextureCache.instance;
+                final ObjectArrayList<LongArrayList> stationsIdsBefore = new ObjectArrayList<>();
+                final ObjectArrayList<LongArrayList> stationsIdsAfter = new ObjectArrayList<>();
+                final ObjectArrayList<Int2ObjectAVLTreeMap<StationPosition>> stationPositions = new ObjectArrayList<>();
+                final IntAVLTreeSet colors = new IntAVLTreeSet();
+                final int[] colorIndices = new int[routeCount];
+                int colorIndex = -1;
+                int previousColor = -1;
+                for (int routeIndex = 0; routeIndex < routeCount; routeIndex++) {
+                    stationsIdsBefore.add(new LongArrayList());
+                    stationsIdsAfter.add(new LongArrayList());
+                    stationPositions.add(new Int2ObjectAVLTreeMap<>());
+
+                    final ObjectIntImmutablePair<SimplifiedRoute> routeDetail = routeDetails.get(routeIndex);
+                    final ObjectArrayList<SimplifiedRoutePlatform> simplifiedRoutePlatforms = routeDetail.left().getPlatforms();
+                    final int currentIndex = routeDetail.rightInt();
+                    for (int stationIndex = 0; stationIndex < simplifiedRoutePlatforms.size(); stationIndex++) {
+                        if (stationIndex != currentIndex) {
+                            final long stationId = simplifiedRoutePlatforms.get(stationIndex).getStationId();
+                            if (stationIndex < currentIndex) {
+                                stationsIdsBefore.get(stationsIdsBefore.size() - 1).add(0, stationId);
+                            } else {
+                                stationsIdsAfter.get(stationsIdsAfter.size() - 1).add(stationId);
+                            }
+                        }
+                    }
+
+                    final int color = routeDetail.left().getColor();
+                    colors.add(color);
+                    if (color != previousColor) {
+                        colorIndex++;
+                        previousColor = color;
+                    }
+                    colorIndices[routeIndex] = colorIndex;
+                }
+
+                for (int routeIndex = 0; routeIndex < routeCount; routeIndex++) {
+                    stationPositions.get(routeIndex).put(0, new StationPosition(0, getLineOffset(routeIndex, colorIndices), true));
+                }
+
+                final boolean rotateStationName = ConfigClient.ROTATED_STATION_NAME.get();
+                final float[] bounds = new float[3];
+                setup(stationPositions, arrowLeft ? stationsIdsAfter : stationsIdsBefore, colorIndices, bounds, !arrowLeft, true);
+                final float xOffset = bounds[0] + 0.5F;
+                setup(stationPositions, arrowLeft ? stationsIdsBefore : stationsIdsAfter, colorIndices, bounds, arrowLeft, false);
+                final float rawHeightPart = Math.abs(bounds[1]) + 1;
+                final float rawWidth = xOffset + bounds[0] + 0.5F;
+                final float rawHeightTotal = rawHeightPart + bounds[2] + 3;
+                final float yOffset = rawHeightPart + (rotateStationName ? 0.6F : 0) + 1.6F;
+                final float extraPadding = 0;
+
+                final int height;
+                final int width;
+                final float widthScale;
+                final float heightScale;
+                if (rawWidth / rawHeightTotal > aspectRatio) {
+                    width = Math.round(rawWidth * scale);
+                    height = Math.round(width / aspectRatio);
+                    widthScale = 1;
+                    heightScale = height / rawHeightTotal / scale;
+                } else {
+                    height = Math.round(rawHeightTotal * scale);
+                    width = Math.round(height * aspectRatio);
+                    heightScale = 1;
+                    widthScale = width / rawWidth / scale;
+                }
+
+                if (width <= 0 || height <= 0) return null;
+
+                final int padding = Math.round(height * 0.05F);
+
+                final NativeImage nativeImage = new NativeImage(NativeImageFormat.getAbgrMapped(), width, height, false);
+                nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
+
+                String destinationString = IGui.mergeStations(destinations);
+                final boolean isClockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_CLOCKWISE);
+                final boolean isAnticlockwise = destinationString.startsWith(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE);
+                destinationString = destinationString.replace(TEMP_CIRCULAR_MARKER_CLOCKWISE, "").replace(TEMP_CIRCULAR_MARKER_ANTICLOCKWISE, "");
+                if (!destinationString.isEmpty()) {
+                    if (isClockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.clockwise_via_cjk", "gui.mtr.clockwise_via", 1, destinationString);
+                    } else if (isAnticlockwise) {
+                        destinationString = IGuiExtension.insertTranslation("gui.mtr.anticlockwise_via_cjk", "gui.mtr.anticlockwise_via", 1, destinationString);
+                    } else {
+                        destinationString = IGuiExtension.insertTranslation("gui.tjmetro.train_to_cjk", "gui.tjmetro.train_to", 1, destinationString);
+                    }
+                }
+
+                final List<String> routeNames = routeDetails.stream()
+                        .map(pair -> pair.left().getName())
+                        .collect(Collectors.toList());
+                // The next line is using those functions "unproperly", but everything works properly.
+                final String information = IGuiExtension.insertTranslation("gui.tjmetro.route_map_bmt_routes", "gui.tjmetro.route_map_bmt_routes", 2, IGui.mergeStations(routeNames), destinationString);
+
+                final DynamicTextureCache.Text textInformation = clientCache.getText(information, width - padding * 2, height, fontSizeBig, fontSizeSmall, 0, arrowLeft ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
+                if (arrowLeft) {
+                    drawString(nativeImage, textInformation, padding, padding, HorizontalAlignment.LEFT, VerticalAlignment.TOP, 0, ARGB_WHITE, false);
+                } else {
+                    drawString(nativeImage, textInformation, width - padding, padding, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, 0, ARGB_WHITE, false);
+                }
+
+                final int colorStripY = padding + textInformation.height() + padding;
+                final int heightPerColor = padding / 2 / routeColors.size();
+                for (int i = 0; i < routeColors.size(); i++) {
+                    nativeImage.fillRect(0, colorStripY + heightPerColor * i, width, heightPerColor, ARGB_BLACK | routeColors.getInt(i));
+                }
+
+                final Object2ObjectOpenHashMap<String, ObjectOpenHashSet<StationPositionGrouped>> stationPositionsGrouped = new Object2ObjectOpenHashMap<>();
+                for (int routeIndex = 0; routeIndex < routeCount; routeIndex++) {
+                    final SimplifiedRoute simplifiedRoute = routeDetails.get(routeIndex).left();
+                    final int currentIndex = routeDetails.get(routeIndex).rightInt();
+                    final Int2ObjectAVLTreeMap<StationPosition> routeStationPositions = stationPositions.get(routeIndex);
+
+                    for (int stationIndex = 0; stationIndex < simplifiedRoute.getPlatforms().size(); stationIndex++) {
+                        final StationPosition stationPosition = routeStationPositions.get(stationIndex - currentIndex);
+                        if (stationIndex < simplifiedRoute.getPlatforms().size() - 1) {
+                            drawLine(nativeImage, stationPosition, routeStationPositions.get(stationIndex + 1 - currentIndex), widthScale, heightScale, xOffset, yOffset, stationIndex < currentIndex ? ARGB_LIGHT_GRAY : ARGB_BLACK | simplifiedRoute.getColor());
+                        }
+
+                        final SimplifiedRoutePlatform simplifiedRoutePlatform = simplifiedRoute.getPlatforms().get(stationIndex);
+                        final String key = String.format("%s||%s", simplifiedRoutePlatform.getStationName(), simplifiedRoutePlatform.getStationId());
+
+                        if (!stationPosition.isCommon || stationPositionsGrouped.getOrDefault(key, new ObjectOpenHashSet<>()).stream().noneMatch(stationPosition2 -> stationPosition2.stationPosition.x == stationPosition.x)) {
+                            final IntArrayList interchangeColors = new IntArrayList();
+                            final ObjectArrayList<String> interchangeNames = new ObjectArrayList<>();
+                            simplifiedRoutePlatform.forEach((color, interchangeRouteNamesForColor) -> {
+                                if (!colors.contains(color)) {
+                                    interchangeColors.add(color);
+                                    interchangeRouteNamesForColor.forEach(interchangeNames::add);
+                                }
+                            });
+                            Data.put(stationPositionsGrouped, key, new StationPositionGrouped(stationPosition, stationIndex - currentIndex, interchangeColors, interchangeNames), ObjectOpenHashSet::new);
+                        }
+                    }
+                }
+
+                final int maxStringWidth = (int) (scale * 0.9 * (widthScale / 2 + extraPadding / routeCount));
+                stationPositionsGrouped.forEach((key, stationPositionGroupedSet) -> stationPositionGroupedSet.forEach(stationPositionGrouped -> {
+                    final int x = Math.round((stationPositionGrouped.stationPosition.x + xOffset) * scale * widthScale);
+                    final int y = Math.round((stationPositionGrouped.stationPosition.y + yOffset) * scale * heightScale);
+                    final int lines = stationPositionGrouped.stationPosition.isCommon ? colorIndices[colorIndices.length - 1] : 0;
+                    final boolean currentStation = stationPositionGrouped.stationOffset == 0;
+                    final boolean passed = stationPositionGrouped.stationOffset < 0;
+                    final boolean textBelow = stationPositionGrouped.stationPosition.isCommon ? Math.abs(stationPositionGrouped.stationOffset) % 2 == 0 : y >= yOffset * scale;
+
+                    final IntArrayList interchangeColors = stationPositionGrouped.interchangeColors;
+                    if (!interchangeColors.isEmpty()) {
+                        final int lineHeight = lineSize * 2;
+                        final int lineWidth = (int) Math.ceil((float) lineSize / 4);
+                        for (int drawX = 0; drawX < lineWidth; drawX++) {
+                            for (int drawY = 0; drawY < lineSize * 1.8; drawY++) {
+                                drawPixelSafe(nativeImage, x + drawX - lineWidth / 2, y + lines * lineSpacing + drawY, ARGB_WHITE);
+                            }
+                        }
+
+                        final int interchangePadding = scale / 32;
+                        int interchangesWidth = 0;
+                        int interchangesHeight = 0;
+                        final ObjectArrayList<DynamicTextureCache.Text> interchanges = new ObjectArrayList<>();
+                        for (int i = 0; i < stationPositionGrouped.interchangeNames.size(); i++) {
+                            final DynamicTextureCache.Text text = clientCache.getText(stationPositionGrouped.interchangeNames.get(i), maxStringWidth, (int) ((fontSizeBig + fontSizeSmall) * LINE_HEIGHT_MULTIPLIER / 2), fontSizeBig / 2, fontSizeSmall / 2, 0, HorizontalAlignment.CENTER);
+                            interchanges.add(text);
+                            interchangesWidth += text.renderWidth() + interchangePadding;
+                            interchangesHeight = Math.max(interchangesHeight, text.height());
+                        }
+                        interchangesWidth -= interchangePadding;
+                        if (interchangesWidth > 0) {
+                            int renderX = x - interchangesWidth / 2;
+                            for (int i = 0; i < interchanges.size(); i++) {
+                                nativeImage.fillRect(renderX, y + lines * lineSpacing + lineHeight, interchanges.get(i).renderWidth(), interchangesHeight, invertColor(ARGB_BLACK | interchangeColors.getInt(i)));
+                                drawString(nativeImage, interchanges.get(i), renderX, y + lines * lineSpacing + lineHeight + interchangesHeight / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
+                                renderX += interchanges.get(i).renderWidth() + interchangePadding;
+                            }
+                        }
+                    }
+
+                    drawStationRouteMapBMT(nativeImage, x, y, heightScale, lines, passed, currentStation);
+
+                    final DynamicTextureCache.Text text = clientCache.getText(key.split("\\|\\|")[0], maxStringWidth, y, fontSizeBig, fontSizeSmall, fontSizeSmall / 4, rotateStationName ? HorizontalAlignment.LEFT : HorizontalAlignment.CENTER, LINE_HEIGHT_MULTIPLIER, false, rotateStationName);
+                    if (rotateStationName) {
+                        drawString(nativeImage, text, x - lineSize * 3 / 2, y - lineSize, HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, passed ? ARGB_LIGHT_GRAY : (currentStation ? 0xff00acd0 : ARGB_WHITE), false);
+                    } else {
+                        drawString(nativeImage, text, x, y + (textBelow ? lines * lineSpacing : -1) + (textBelow ? 1 : -1) * lineSize * 5 / 4, HorizontalAlignment.CENTER, textBelow ? VerticalAlignment.TOP : VerticalAlignment.BOTTOM, currentStation ? 0xff00acd0 : 0, passed ? ARGB_LIGHT_GRAY : currentStation ? ARGB_WHITE : ARGB_BLACK, false);
+                    }
+                }));
 
                 return nativeImage;
             }
@@ -2096,6 +2330,26 @@ public class RouteMapGenerator implements IGui
                 } else if (squareSum <= lineSize * lineSize) {
                     for (int i = 0; i <= repeatDraw; i++) {
                         drawPixelSafe(nativeImage, x + offsetX, y + offsetY + extraOffsetY + i, passed ? ARGB_LIGHT_GRAY : ARGB_BLACK);
+                    }
+                }
+            }
+        }
+    }
+
+    protected static void drawStationRouteMapBMT(NativeImage nativeImage, int x, int y, float heightScale, int lines, boolean passed, boolean current) {
+        for (int offsetX = -lineSize; offsetX < lineSize; offsetX++) {
+            for (int offsetY = -lineSize; offsetY < lineSize; offsetY++) {
+                final int extraOffsetY = offsetY > 0 ? (int) (lines * lineSpacing * heightScale) : 0;
+                final int repeatDraw = offsetY == 0 ? (int) (lines * lineSpacing * heightScale) : 0;
+                final double squareSum = (offsetX + 0.5) * (offsetX + 0.5) + (offsetY + 0.5) * (offsetY + 0.5);
+
+                if (squareSum <= 0.5 * lineSize * lineSize) {
+                    for (int i = 0; i <= repeatDraw; i++) {
+                        drawPixelSafe(nativeImage, x + offsetX, y + offsetY + extraOffsetY + i, passed ? ARGB_LIGHT_GRAY : (current ? 0xff00acd0 : ARGB_WHITE));
+                    }
+                } else if (squareSum <= lineSize * lineSize) {
+                    for (int i = 0; i <= repeatDraw; i++) {
+                        drawPixelSafe(nativeImage, x + offsetX, y + offsetY + extraOffsetY + i, 0xff00379c);
                     }
                 }
             }

@@ -74,7 +74,7 @@ public class RenderPSDTopTianjinBMT extends RenderRouteBase<BlockPSDTopTianjinBM
                 if (renderType == RenderType.ARROW) {
                     identifier = DynamicTextureCache.instance.getStationNameBMT(platformId, arrowDirection == 1, HorizontalAlignment.CENTER, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
                 } else {
-                    identifier = DynamicTextureCache.instance.getRouteMapBMT(platformId, arrowDirection == 1, width / height, transparentWhite).identifier;
+                    identifier = DynamicTextureCache.instance.getRouteMapPSDBMT(platformId, arrowDirection == 1, width / height, transparentWhite).identifier;
                 }
 
                 MainRenderer.scheduleRender(identifier, false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {

@@ -42,7 +42,7 @@ public final class ClientPacketHelper
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
             } else if (blockEntity.data instanceof BlockStationNameEntranceTianjin.BlockEntity) {
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
-            } else if (blockEntity.data instanceof BlockStationNamePlate.BlockEntity) {
+            } else if (blockEntity.data instanceof BlockStationNamePlate.BlockEntity || blockEntity.data instanceof BlockRouteMapBMT.BlockEntity) {
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
             } else if (blockEntity.data instanceof BlockStationNavigator.BlockEntity) {
                 final ObjectArraySet<DashboardListItem> routes = new ObjectArraySet<>();

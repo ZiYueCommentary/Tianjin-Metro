@@ -164,6 +164,7 @@ public interface BlockList
     BlockRegistryObject APG_GLASS_END_TIANJIN_JINJING_BLOCK = Registry.registerBlock("apg_glass_end_tianjin_jinjing", () -> new Block(new BlockAPGGlassEndTianjinJinjing()));
     BlockRegistryObject STATION_SIGN = Registry.registerBlockWithBlockItem("station_sign", () -> new Block(new BlockStationSign()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject ROUTE_MAP_BMT = Registry.registerBlockWithBlockItem("route_map_bmt", () -> new Block(new BlockRouteMapBMT()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject ROUTE_MAP_BMT_MIDDLE = Registry.registerBlock("route_map_bmt_middle", () -> new Block(new BlockRouteMapBMT()));
     BlockRegistryObject STATION_SIGN_BMT = Registry.registerBlockWithBlockItem("station_sign_bmt", () -> new Block(new BlockStationSignBMT()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject TRASH_CAN = Registry.registerBlockWithBlockItem("trash_can", () -> new Block(new BlockTrashCan()), CreativeModeTabs.TIANJIN_METRO);
 

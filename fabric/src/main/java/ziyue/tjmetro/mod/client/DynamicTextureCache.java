@@ -106,8 +106,12 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_route_map_trt_%s_%s_%s_%s_%s", platformId, vertical, flip, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMapTRT(platformId, vertical, flip, aspectRatio, transparentWhite), transparentWhite ? DefaultRenderingColor.TRANSPARENT : DefaultRenderingColor.WHITE);
     }
 
-    public DynamicResource getRouteMapBMT(long platformId, boolean flip, float aspectRatio, boolean transparentWhite) {
-        return getResource(String.format("tjmetro_route_map_bmt_%s_%s_%s_%s", platformId, flip, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMapBMT(platformId, flip, aspectRatio, transparentWhite), transparentWhite ? DefaultRenderingColor.TRANSPARENT : DefaultRenderingColor.WHITE);
+    public DynamicResource getRouteMapPSDBMT(long platformId, boolean flip, float aspectRatio, boolean transparentWhite) {
+        return getResource(String.format("tjmetro_route_map_psd_bmt_%s_%s_%s_%s", platformId, flip, aspectRatio, transparentWhite), () -> RouteMapGenerator.generateRouteMapPSDBMT(platformId, flip, aspectRatio, transparentWhite), transparentWhite ? DefaultRenderingColor.TRANSPARENT : DefaultRenderingColor.WHITE);
+    }
+
+    public DynamicResource getRouteMapBMT(long platformId, boolean arrowLeft, float aspectRatio, int backgroundColor) {
+        return getResource(String.format("tjmetro_route_map_bmt_%s_%s_%s_%s", platformId, arrowLeft, aspectRatio, backgroundColor), () -> RouteMapGenerator.generateRouteMapBMT(platformId, arrowLeft, aspectRatio, backgroundColor), DefaultRenderingColor.WHITE);
     }
 
     public DynamicResource getRouteSquare(int color, String routeName, IGui.HorizontalAlignment horizontalAlignment) {

@@ -31,6 +31,7 @@ public class BlockTrashCan extends BlockExtension
 
     @Override
     public @Nullable BlockState getPlacementState2(ItemPlacementContext ctx) {
+        if (!IBlock.isReplaceable(ctx, Direction.UP, 2)) return null;
         ctx.getWorld().setBlockState(ctx.getBlockPos().up(), super.getPlacementState2(ctx).with(new Property<>(IBlock.HALF.data), IBlock.DoubleBlockHalf.UPPER));
         return super.getPlacementState2(ctx).with(new Property<>(IBlock.HALF.data), IBlock.DoubleBlockHalf.LOWER);
     }

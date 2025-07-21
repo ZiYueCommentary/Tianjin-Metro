@@ -80,6 +80,7 @@
     "block.tjmetro.station_sign": "Station Sign",
     "block.tjmetro.station_sign_bmt": "Station Sign (Line 9)",
     "block.tjmetro.trash_can": "Trash Can",
+    "block.tjmetro.route_map_bmt": "Route Map (Line 9)",
 
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
@@ -107,6 +108,7 @@
     "gui.tjmetro.cross_line_train_to": "Cross Line Train To %s",
     "gui.tjmetro.accept_security_check_cjk": "请您接受安检",
     "gui.tjmetro.platform": "站台|Platform",
+    "gui.tjmetro.route_map_bmt_routes": "%s - %s",
 
     "sign.tjmetro.tianjin_metro": "天津地铁|Tianjin Metro",
     "sign.tjmetro.train": "列车|Train",
