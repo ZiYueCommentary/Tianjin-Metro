@@ -164,5 +164,14 @@
     "block.tjmetro.ticket_barrier_tianjin_exit": "出站闸机（天津）",
     "gui.tjmetro.current_station_cjk": "当前站",
     "block.tjmetro.apg_tianjin_jinjing": "低站台门（天津、津静线）",
-    "gui.tjmetro.current_station": "Current Station"
+    "gui.tjmetro.current_station": "Current Station",
+    "filter.tjmetro.tianjin_signs": "站名牌",
+    "filter.tjmetro.tianjin_gates": "站台门",
+    "filter.tjmetro.tianjin_decoration": "装饰",
+    "filter.tjmetro.tianjin_miscellaneous": "杂项",
+    "filter.tjmetro.tianjin_building": "建筑",
+    "block.tjmetro.station_sign": "车站牌",
+    "block.tjmetro.station_sign_bmt": "车站牌（9号线）",
+    "filter.tjmetro.tianjin_railway_signs": "指示牌",
+    "block.tjmetro.trash_can": "垃圾桶"
 }
