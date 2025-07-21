@@ -164,5 +164,16 @@
     "block.tjmetro.ticket_barrier_tianjin_exit": "出場用自動改札機(天津地下鉄)",
     "block.tjmetro.apg_tianjin_jinjing": "可動式ホーム柵(天津地下鉄津静線)",
     "gui.tjmetro.current_station_cjk": "ここは",
-    "gui.tjmetro.current_station": "Current Station"
+    "gui.tjmetro.current_station": "Current Station",
+    "block.tjmetro.station_sign": "駅名標",
+    "block.tjmetro.station_sign_bmt": "駅名標(天津地下鉄9号線)",
+    "block.tjmetro.trash_can": "ゴミ箱",
+    "gui.tjmetro.route_map_bmt_routes": "%s - %s",
+    "filter.tjmetro.tianjin_miscellaneous": "その他",
+    "filter.tjmetro.tianjin_building": "駅施設",
+    "filter.tjmetro.tianjin_signs": "駅名標",
+    "filter.tjmetro.tianjin_gates": "ホームドア",
+    "filter.tjmetro.tianjin_decoration": "装飾ブロック",
+    "filter.tjmetro.tianjin_railway_signs": "サインシステム",
+    "block.tjmetro.route_map_bmt": "路線図(天津地下鉄9号線)"
 }
