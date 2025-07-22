@@ -173,5 +173,7 @@
     "block.tjmetro.station_sign": "车站牌",
     "block.tjmetro.station_sign_bmt": "车站牌（9号线）",
     "filter.tjmetro.tianjin_railway_signs": "指示牌",
-    "block.tjmetro.trash_can": "垃圾桶"
+    "block.tjmetro.trash_can": "垃圾桶",
+    "block.tjmetro.route_map_bmt": "路线图（9号线）",
+    "gui.tjmetro.route_map_bmt_routes": "%s - %s"
 }
