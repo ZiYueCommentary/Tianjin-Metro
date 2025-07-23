@@ -1372,10 +1372,9 @@ public class RouteMapGenerator implements IGui
             if (routeDetails.isEmpty()) {
                 MinecraftClientData.getInstance().simplifiedRoutes.stream().filter(simplifiedRoute -> simplifiedRoute.getPlatformIndex(platformId) >= 0).sorted().forEach(simplifiedRoute -> {
                     final int currentStationIndex = simplifiedRoute.getPlatformIndex(platformId);
-                    if (!simplifiedRoute.getName().isEmpty()) {
-                        routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
-                    }
+                    routeDetails.add(new ObjectIntImmutablePair<>(simplifiedRoute, currentStationIndex));
                 });
+                destinations.add(getStationName(platformId));
             }
             final int routeCount = routeDetails.size();
 
