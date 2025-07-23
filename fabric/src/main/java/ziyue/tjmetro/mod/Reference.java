@@ -10,7 +10,7 @@ public interface Reference
 {
     String MOD_ID = "tjmetro";
     String NAME = "Tianjin Metro";
-    String VERSION = "1.0.0-prerelease-1";
+    String VERSION = "1.0.0";
 
     String GITHUB_REPO = "https://github.com/ZiYueCommentary/Tianjin-Metro";
     String CONTRIBUTORS = "https://github.com/ZiYueCommentary/Tianjin-Metro/graphs/contributors";
