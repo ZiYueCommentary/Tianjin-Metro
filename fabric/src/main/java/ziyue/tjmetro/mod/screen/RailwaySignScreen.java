@@ -110,17 +110,17 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
                     if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity) {
                         final BlockStationNameEntranceTianjin.BlockEntity sign = (BlockStationNameEntranceTianjin.BlockEntity) entity.data;
                         selectedIds.add(sign.getSelectedId());
-                        type = Type.STATION_NAME_ENTRANCE;
+                        type = Type.SINGLE_EXIT;
                     } else if (entity.data instanceof BlockStationNamePlate.BlockEntity) {
                         final BlockStationNamePlate.BlockEntity plate = (BlockStationNamePlate.BlockEntity) entity.data;
                         selectedIds.add(plate.getPlatformId());
-                        type = Type.STATION_NAME_PLATE;
+                        type = Type.SINGLE_PLATFORM;
                     } else if (entity.data instanceof BlockRouteMapBMT.BlockEntity) {
                         final BlockRouteMapBMT.BlockEntity routeMap = (BlockRouteMapBMT.BlockEntity) entity.data;
                         selectedIds.add(routeMap.getPlatformId());
-                        type = Type.STATION_NAME_PLATE;
+                        type = Type.SINGLE_PLATFORM;
                     } else {
-                        type = Type.STATION_NAME_ENTRANCE;
+                        type = null;
                     }
                 } else {
                     type = null;
@@ -192,14 +192,13 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
         if (type != Type.RAILWAY_SIGN) {
             final DashboardListSelectorScreen screen;
             switch (type) {
-                case STATION_NAME_ENTRANCE:
+                case SINGLE_EXIT:
                     screen = new DashboardListSelectorScreen(this::onClose2, exitsForList, selectedIds, true, false, null);
                     break;
-                case ROUTE_MAP_BMT:
-                case STATION_NAME_PLATE:
+                case SINGLE_PLATFORM:
                     screen = new DashboardListSelectorScreen(this::onClose2, platformsForList, selectedIds, true, false, null);
                     break;
-                case STATION_NAVIGATOR:
+                case MULTIPLE_ROUTE:
                     screen = new DashboardListSelectorScreen(this::onClose2, new ObjectImmutableList<>(routesForList), selectedIds, false, false, null);
                     break;
                 default:
@@ -367,9 +366,8 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
     public enum Type
     {
         RAILWAY_SIGN,
-        STATION_NAME_ENTRANCE,
-        STATION_NAME_PLATE,
-        STATION_NAVIGATOR,
-        ROUTE_MAP_BMT
+        SINGLE_EXIT,
+        SINGLE_PLATFORM,
+        MULTIPLE_ROUTE
     }
 }
