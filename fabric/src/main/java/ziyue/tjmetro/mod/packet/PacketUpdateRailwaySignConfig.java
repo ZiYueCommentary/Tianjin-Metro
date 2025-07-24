@@ -11,6 +11,7 @@ import org.mtr.mapping.tool.PacketBufferSender;
 import ziyue.tjmetro.mod.block.BlockRouteMapBMT;
 import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.mod.block.BlockStationNamePlate;
+import ziyue.tjmetro.mod.block.BlockStationNameSignTianjin;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.render.RenderStationNameEntranceTianjin;
 
@@ -80,6 +81,10 @@ public final class PacketUpdateRailwaySignConfig extends PacketHandler
                 final BlockRouteMapBMT.BlockEntity entity1 = (BlockRouteMapBMT.BlockEntity) entity.data;
                 final long platformId = selectedIds.isEmpty() ? 0 : (long) selectedIds.toArray()[0];
                 entity1.setPlatformId(platformId);
+            } else if (entity.data instanceof BlockStationNameSignTianjin.BlockEntity) {
+                final BlockStationNameSignTianjin.BlockEntity entity1 = (BlockStationNameSignTianjin.BlockEntity) entity.data;
+                final long platformId = selectedIds.isEmpty() ? 0 : (long) selectedIds.toArray()[0];
+                entity1.setData(platformId);
             }
         }
     }

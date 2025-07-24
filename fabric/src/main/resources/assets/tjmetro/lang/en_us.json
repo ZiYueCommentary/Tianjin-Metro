@@ -81,6 +81,7 @@
     "block.tjmetro.station_sign_bmt": "Station Sign (Line 9)",
     "block.tjmetro.trash_can": "Trash Can",
     "block.tjmetro.route_map_bmt": "Route Map (Line 9)",
+    "block.tjmetro.station_name_sign_tianjin": "Station Name Sign (Tianjin)",
 
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
@@ -97,6 +98,8 @@
     "gui.tjmetro.next_station_cjk": "下一站",
     "gui.tjmetro.next_station": "Next Station",
     "gui.tjmetro.station_pinyin": "%s ZHAN",
+    "gui.tjmetro.next_station_format_cjk": "下一站 %s",
+    "gui.tjmetro.next_station_format": "Next Station %s",
     "gui.tjmetro.next_station_bmt_cjk": "下一站 %s",
     "gui.tjmetro.next_station_bmt": "Next Sta. %s",
     "gui.tjmetro.bound_for_bmt_cjk": "开往 %s",
@@ -136,6 +139,7 @@
     "sign.tjmetro.baby_care": "母婴室|Baby Care",
     "sign.tjmetro.police_office": "警务室|Police Office",
     "sign.tjmetro.outbound_transfer": "出站换乘|Outbound Transfer",
+    "sign.tjmetro.to_train_bmt": "乘车|To Train",
     
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Options",
     "button.tjmetro.click_here": "Click Here!",

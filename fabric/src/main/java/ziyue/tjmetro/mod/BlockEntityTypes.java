@@ -88,6 +88,7 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockAPGDoorTianjinJinjing.BlockEntity> APG_DOOR_TIANJIN_JINJING = Registry.registerBlockEntityType("apg_door_tianjin_jinjing", BlockAPGDoorTianjinJinjing.BlockEntity::new, BlockList.APG_DOOR_TIANJIN_JINJING_BLOCK::get);
     BlockEntityTypeRegistryObject<BlockAPGGlassTianjinJinjing.BlockEntity> APG_GLASS_TIANJIN_JINJING = Registry.registerBlockEntityType("apg_glass_tianjin_jinjing", BlockAPGGlassTianjinJinjing.BlockEntity::new, BlockList.APG_GLASS_TIANJIN_JINJING_BLOCK::get);
     BlockEntityTypeRegistryObject<BlockRouteMapBMT.BlockEntity> ROUTE_MAP_BMT = Registry.registerBlockEntityType("route_map_bmt", BlockRouteMapBMT.BlockEntity::new, BlockList.ROUTE_MAP_BMT::get);
+    BlockEntityTypeRegistryObject<BlockStationNameSignTianjin.BlockEntity> STATION_NAME_SIGN_TIANJIN = Registry.registerBlockEntityType("station_name_sign_tianjin", BlockStationNameSignTianjin.BlockEntity::new, BlockList.STATION_NAME_SIGN_TIANJIN::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

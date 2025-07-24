@@ -150,6 +150,10 @@ public class DynamicTextureCache
         return getResource(String.format("tjmetro_station_name_plate_%s_%s_%s_%s_%s_%s_%s", platformId, arrowDirection, backgroundColor, paddingScale, aspectRatio, textColor, transparentColor), () -> RouteMapGenerator.generateStationNamePlate(platformId, arrowDirection, backgroundColor, paddingScale, aspectRatio, textColor, transparentColor), DefaultRenderingColor.TRANSPARENT);
     }
 
+    public DynamicResource getStationNameSignTianjin(long platformId, float aspectRatio, int backgroundColor) {
+        return getResource(String.format("tjmetro_station_name_sign_tianjin_%s_%s_%s", platformId, aspectRatio, backgroundColor), () -> RouteMapGenerator.generateStationNameSignTianjin(platformId, aspectRatio, backgroundColor), DefaultRenderingColor.TRANSPARENT);
+    }
+
     public DynamicResource getStationNavigator(LongAVLTreeSet selectedRoutes, boolean arrowLeft, int backgroundColor, float aspectRatio) {
         // Since each DynamicTexture requires a unique ID, selectedRoutes must provide a unique identifier.
         // Normally, to reuse resources, the parameter values passed in would be used as unique identifiers.

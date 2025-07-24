@@ -167,6 +167,7 @@ public interface BlockList
     BlockRegistryObject ROUTE_MAP_BMT_MIDDLE = Registry.registerBlock("route_map_bmt_middle", () -> new Block(new BlockRouteMapBMT()));
     BlockRegistryObject STATION_SIGN_BMT = Registry.registerBlockWithBlockItem("station_sign_bmt", () -> new Block(new BlockStationSignBMT()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject TRASH_CAN = Registry.registerBlockWithBlockItem("trash_can", () -> new Block(new BlockTrashCan()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject STATION_NAME_SIGN_TIANJIN = Registry.registerBlockWithBlockItem("station_name_sign_tianjin", () -> new Block(new BlockStationNameSignTianjin()), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants

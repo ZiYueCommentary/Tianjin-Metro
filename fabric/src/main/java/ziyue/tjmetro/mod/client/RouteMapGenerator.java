@@ -2056,6 +2056,70 @@ public class RouteMapGenerator implements IGui
         return null;
     }
 
+    public static NativeImage generateStationNameSignTianjin(long platformId, float aspectRatio, int backgroundColor) {
+        if (aspectRatio <= 0) return null;
+
+        try {
+            if (platformId == 0) return null;
+            ObjectArrayList<String> destinations = new ObjectArrayList<>();
+            ObjectArrayList<String> nextStations = new ObjectArrayList<>();
+            IntArrayList routeColors = getRouteStream(platformId, (simplifiedRoute, currentStationIndex) -> {
+                final String tempMarker;
+                switch (simplifiedRoute.getCircularState()) {
+                    case CLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_CLOCKWISE;
+                        break;
+                    case ANTICLOCKWISE:
+                        tempMarker = TEMP_CIRCULAR_MARKER_ANTICLOCKWISE;
+                        break;
+                    default:
+                        tempMarker = "";
+                }
+
+                if (!simplifiedRoute.getName().isEmpty()) {
+                    destinations.add(tempMarker + simplifiedRoute.getPlatforms().get(currentStationIndex).getDestination());
+                    nextStations.add(simplifiedRoute.getPlatforms().get(currentStationIndex + 1).getStationName());
+                }
+            });
+            final boolean isTerminating = destinations.isEmpty();
+
+            final int height = scale;
+            final int width = Math.round(height * aspectRatio);
+            final int padding = Math.round(height * 0.05F);
+            final int tileSize = height - padding * 2;
+
+            if (width <= 0 || height <= 0) return null;
+
+            final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, width, height, false);
+            nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
+
+            final int tilePadding = tileSize / 4;
+
+            final DynamicTextureCache.Text stationName = DynamicTextureCache.instance.getText(getStationName(platformId), width - padding * 2, height - tilePadding * 2, fontSizeBig, fontSizeSmall, 0, HorizontalAlignment.CENTER);
+            final DynamicTextureCache.Text destinationOrNextStation;
+            if (isTerminating) {
+                destinationOrNextStation = DynamicTextureCache.instance.getText(IGuiExtension.mergeTranslation("gui.tjmetro.terminus_cjk", "gui.tjmetro.terminus"), width, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), fontSizeBig / 2, fontSizeSmall / 2, 0, HorizontalAlignment.CENTER);
+            } else {
+                String nextStationString = IGui.mergeStations(nextStations);
+                destinationOrNextStation = DynamicTextureCache.instance.getText(IGuiExtension.insertTranslation("gui.tjmetro.next_station_format_cjk", "gui.tjmetro.next_station_format", 1, nextStationString), width - padding * 2, (int) (tileSize * LINE_HEIGHT_MULTIPLIER), fontSizeBig / 2, fontSizeSmall / 2, 0, HorizontalAlignment.CENTER);
+            }
+
+            drawString(nativeImage, stationName, width / 2, (height - destinationOrNextStation.height() - padding * 3) / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
+            final int colorStripY = height - destinationOrNextStation.height() - padding * 3;
+            final int heightPerColor = padding / routeColors.size();
+            for (int i = 0; i < routeColors.size(); i++) {
+                nativeImage.fillRect(0, colorStripY + heightPerColor * i, width, heightPerColor, ARGB_BLACK | routeColors.getInt(i));
+            }
+            drawString(nativeImage, destinationOrNextStation, width / 2, height - padding, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, ARGB_BLACK, false);
+
+            return nativeImage;
+        } catch (Exception e) {
+            TianjinMetro.LOGGER.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
+
     public static NativeImage generateStationNavigator(LongAVLTreeSet selectedRoutes, boolean arrowLeft, int backgroundColor, float aspectRatio) {
         if (aspectRatio <= 0) return null;
 

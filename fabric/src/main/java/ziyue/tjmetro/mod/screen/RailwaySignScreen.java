@@ -20,6 +20,7 @@ import ziyue.tjmetro.mod.RegistryClient;
 import ziyue.tjmetro.mod.block.BlockRouteMapBMT;
 import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.mod.block.BlockStationNamePlate;
+import ziyue.tjmetro.mod.block.BlockStationNameSignTianjin;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
 import ziyue.tjmetro.mod.packet.PacketUpdateRailwaySignConfig;
@@ -118,6 +119,10 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
                     } else if (entity.data instanceof BlockRouteMapBMT.BlockEntity) {
                         final BlockRouteMapBMT.BlockEntity routeMap = (BlockRouteMapBMT.BlockEntity) entity.data;
                         selectedIds.add(routeMap.getPlatformId());
+                        type = Type.SINGLE_PLATFORM;
+                    } else if (entity.data instanceof BlockStationNameSignTianjin.BlockEntity) {
+                        final BlockStationNameSignTianjin.BlockEntity sign = (BlockStationNameSignTianjin.BlockEntity) entity.data;
+                        selectedIds.add(sign.getPlatformId());
                         type = Type.SINGLE_PLATFORM;
                     } else {
                         type = null;

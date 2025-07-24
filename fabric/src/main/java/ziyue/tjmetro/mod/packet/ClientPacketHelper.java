@@ -38,11 +38,12 @@ public final class ClientPacketHelper
                 openScreen(new ColorPickerScreen(blockPos, entity), screen -> screen instanceof ColorPickerScreen);
             } else if (blockEntity.data instanceof BlockRailwaySignWallDouble.BlockEntity) {
                 openScreen(new RailwaySignDoubleScreen(blockPos), screen -> screen instanceof RailwaySignDoubleScreen);
-            } else if (blockEntity.data instanceof BlockRailwaySignBase.BlockEntityBase) {
-                openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
-            } else if (blockEntity.data instanceof BlockStationNameEntranceTianjin.BlockEntity) {
-                openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
-            } else if (blockEntity.data instanceof BlockStationNamePlate.BlockEntity || blockEntity.data instanceof BlockRouteMapBMT.BlockEntity) {
+            } else if (blockEntity.data instanceof BlockRailwaySignBase.BlockEntityBase ||
+                    blockEntity.data instanceof BlockStationNameEntranceTianjin.BlockEntity ||
+                    blockEntity.data instanceof BlockStationNamePlate.BlockEntity ||
+                    blockEntity.data instanceof BlockRouteMapBMT.BlockEntity ||
+                    blockEntity.data instanceof BlockStationNameSignTianjin.BlockEntity
+            ) {
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
             } else if (blockEntity.data instanceof BlockStationNavigator.BlockEntity) {
                 final ObjectArraySet<DashboardListItem> routes = new ObjectArraySet<>();
