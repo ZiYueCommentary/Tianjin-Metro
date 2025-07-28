@@ -158,8 +158,8 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
                 final boolean isMinute = arrival > 60;
                 String arrivalTime = String.valueOf(isMinute ? arrival / 60 : arrival);
                 String arrivalUnit = TextHelper.translatable((isMinute ? "gui.tjmetro.minute" : "gui.tjmetro.second") + (isCjk ? "_cjk" : "")).getString();
-                float arrivalTimeWidth = IDrawingExtension.stringWidthWithFont(graphicsHolder, arrivalTime, 0.4F, 1, false).leftFloat();
-                float arrivalUnitWidth = IDrawingExtension.stringWidthWithFont(graphicsHolder, arrivalUnit, 1.5F, 1, false).leftFloat();
+                float arrivalTimeWidth = IDrawingExtension.stringWidthWithFont(arrivalTime, 0.4F, 1, false).left();
+                float arrivalUnitWidth = IDrawingExtension.stringWidthWithFont(arrivalUnit, 1.5F, 1, false).left();
                 renderText(graphicsHolder, arrivalTime, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, LEFT_TEXT_X_CENTER - (arrivalTimeWidth + arrivalUnitWidth) / 2, 30F + yOffset, LEFT_TEXT_MAX_WIDTH, 0.4F, 0xFFEFEF00);
                 renderText(graphicsHolder, arrivalUnit, HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, LEFT_TEXT_X_CENTER + (arrivalTimeWidth + arrivalUnitWidth) / 2, 30F + yOffset, LEFT_TEXT_MAX_WIDTH, 1.5F, ARGB_WHITE);
             }

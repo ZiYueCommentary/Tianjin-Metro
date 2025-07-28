@@ -1,11 +1,8 @@
 package ziyue.tjmetro.mod.client;
 
-import it.unimi.dsi.fastutil.floats.FloatFloatImmutablePair;
-import org.joml.Vector2i;
 import org.mtr.libraries.it.unimi.dsi.fastutil.booleans.BooleanArrayList;
-import org.mtr.libraries.it.unimi.dsi.fastutil.ints.IntIntImmutablePair;
 import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectIntImmutablePair;
+import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectObjectImmutablePair;
 import org.mtr.mapping.holder.Identifier;
 import org.mtr.mapping.holder.LightmapTextureManager;
 import org.mtr.mapping.holder.OrderedText;
@@ -18,8 +15,6 @@ import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.Reference;
 
 import javax.annotation.Nullable;
-
-import java.awt.*;
 
 import static org.mtr.mod.data.IGui.LINE_HEIGHT;
 import static org.mtr.mod.data.IGui.TEXT_HEIGHT;
@@ -46,10 +41,8 @@ public interface IDrawingExtension
     }
 
     /**
-     * Drawing string with Tianjin Metro Font.
-     *
      * @author ZiYueCommentary
-     * @since 1.0.0-beta-1
+     * @since 1.0.0
      */
     static void drawStringWithFont(GraphicsHolder graphicsHolder, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColorCjk, int textColor, float fontSizeRatio, boolean shadow, int light, boolean forceMinecraftFont, @Nullable IDrawing.DrawingCallback drawingCallback) {
         final Style style;
@@ -137,7 +130,7 @@ public interface IDrawingExtension
         }
     }
 
-    static FloatFloatImmutablePair stringWidthWithFont(GraphicsHolder graphicsHolder, String text, float scale, float fontSizeRatio, boolean forceMinecraftFont) {
+    static ObjectObjectImmutablePair<Float, Float> stringWidthWithFont(String text, float scale, float fontSizeRatio, boolean forceMinecraftFont) {
         final Style style;
         final int height;
         if (!forceMinecraftFont && ConfigClient.USE_TIANJIN_METRO_FONT.get()) {
@@ -170,6 +163,6 @@ public interface IDrawingExtension
             }
         }
 
-        return FloatFloatImmutablePair.of(totalWidth / scale, totalHeight / scale);
+        return ObjectObjectImmutablePair.of(totalWidth / scale, totalHeight / scale);
     }
 }
