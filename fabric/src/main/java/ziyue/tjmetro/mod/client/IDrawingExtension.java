@@ -1,7 +1,11 @@
 package ziyue.tjmetro.mod.client;
 
+import it.unimi.dsi.fastutil.floats.FloatFloatImmutablePair;
+import org.joml.Vector2i;
 import org.mtr.libraries.it.unimi.dsi.fastutil.booleans.BooleanArrayList;
+import org.mtr.libraries.it.unimi.dsi.fastutil.ints.IntIntImmutablePair;
 import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectIntImmutablePair;
 import org.mtr.mapping.holder.Identifier;
 import org.mtr.mapping.holder.LightmapTextureManager;
 import org.mtr.mapping.holder.OrderedText;
@@ -14,6 +18,8 @@ import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.Reference;
 
 import javax.annotation.Nullable;
+
+import java.awt.*;
 
 import static org.mtr.mod.data.IGui.LINE_HEIGHT;
 import static org.mtr.mod.data.IGui.TEXT_HEIGHT;
@@ -129,5 +135,41 @@ public interface IDrawingExtension
             final float y1 = verticalAlignment.getOffset(y, totalHeight / scale);
             drawingCallback.drawingCallback(x1, y1, x1 + totalWidthScaled / scale, y1 + totalHeight / scale);
         }
+    }
+
+    static FloatFloatImmutablePair stringWidthWithFont(GraphicsHolder graphicsHolder, String text, float scale, float fontSizeRatio, boolean forceMinecraftFont) {
+        final Style style;
+        final int height;
+        if (!forceMinecraftFont && ConfigClient.USE_TIANJIN_METRO_FONT.get()) {
+            style = Style.getEmptyMapped().withFont(new Identifier(Reference.MOD_ID, "tjmetro"));
+            height = TEXT_HEIGHT;
+        } else {
+            style = Style.getEmptyMapped();
+            height = LINE_HEIGHT;
+        }
+
+        while (text.contains("||")) {
+            text = text.replace("||", "|");
+        }
+        final String[] stringSplit = text.split("\\|");
+
+        final BooleanArrayList isCJKList = new BooleanArrayList();
+        final ObjectArrayList<OrderedText> orderedTexts = new ObjectArrayList<>();
+        int totalHeight = 0, totalWidth = 0;
+        for (final String stringSplitPart : stringSplit) {
+            final boolean isCJK = IGui.isCjk(stringSplitPart);
+            isCJKList.add(isCJK);
+
+            final OrderedText orderedText = TextHelper.mutableTextToOrderedText(TextHelper.setStyle(TextHelper.literal(stringSplitPart), style));
+            orderedTexts.add(orderedText);
+
+            totalHeight += Math.round(height * (isCJK ? fontSizeRatio : 1));
+            final int width = (int) Math.ceil(GraphicsHolder.getTextWidth(orderedText) * (isCJK ? fontSizeRatio : 1));
+            if (width > totalWidth) {
+                totalWidth = width;
+            }
+        }
+
+        return FloatFloatImmutablePair.of(totalWidth / scale, totalHeight / scale);
     }
 }

@@ -82,6 +82,7 @@
     "block.tjmetro.trash_can": "Trash Can",
     "block.tjmetro.route_map_bmt": "Route Map (Line 9)",
     "block.tjmetro.station_name_sign_tianjin": "Station Name Sign (Tianjin)",
+    "block.tjmetro.pids_tianjin": "Passenger Information Display System (Tianjin)",
 
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
@@ -112,6 +113,21 @@
     "gui.tjmetro.accept_security_check_cjk": "请您接受安检",
     "gui.tjmetro.platform": "站台|Platform",
     "gui.tjmetro.route_map_bmt_routes": "%s - %s",
+    "gui.tjmetro.this_train_cjk": "本次列车",
+    "gui.tjmetro.this_train": "This Train",
+    "gui.tjmetro.bound_for_pids": "To: %s",
+    "gui.tjmetro.bound_for_pids_cjk": "开往：%s",
+    "gui.tjmetro.arriving": "Arriving",
+    "gui.tjmetro.arriving_cjk": "即将到站",
+    "gui.tjmetro.arrived": "Arrived",
+    "gui.tjmetro.arrived_cjk": "已到站",
+    "gui.tjmetro.minute_cjk": "分钟",
+    "gui.tjmetro.minute": "minute",
+    "gui.tjmetro.second_cjk": "秒",
+    "gui.tjmetro.second": "second",
+    "gui.tjmetro.next_train_cjk": "下次列车",
+    "gui.tjmetro.next_train": "Next Train",
+    "gui.tjmetro.filtered_ads": "Filtered Advertisements (%s)",
 
     "sign.tjmetro.tianjin_metro": "天津地铁|Tianjin Metro",
     "sign.tjmetro.train": "列车|Train",
@@ -143,6 +159,7 @@
     
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Options",
     "button.tjmetro.click_here": "Click Here!",
+    "button.tjmetro.open_tutorial": "Create ads",
 
     "config.category.tjmetro": "Tianjin Metro",
     "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r is not installed.",
@@ -171,6 +188,7 @@
     "tooltip.tjmetro.station_name_projector": "A big-red-station-name projector. Use wrench or brush to change its scale.",
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
     "tooltip.tjmetro.disable_dynamic_textures": "Skip generating textures for signs, gates, etc.",
+    "tooltip.tjmetro.pids_tianjin": "A PIDS which has a customizable advertisement part. Using Railway Sign Pole (Tianjin) to extend its pole.",
 
     "footer.tjmetro.sources": "Wanna see the source code?",
     "footer.tjmetro.contributors": "Tianjin Metro is a community work, click here to see contributors!",
@@ -181,6 +199,12 @@
     "footer.tjmetro.bde": "Also try Bomb Disposal Expert!",
     "footer.tjmetro.sponsor": "Sponsoring the development of Tianjin Metro!",
     "footer.tjmetro.tutorial": "Check out the tutorial/introduction videos!",
+
+    "advertisement.tjmetro.name": "Tianjin Metro",
+    "advertisement.tjmetro.description": "Default advertisements from Tianjin Metro mod.",
+    "advertisement.tjmetro.banner": "Tianjin Metro mod is an expanding mod for Minecraft Transit Railway, which contains various things from Tianjin Metro in real life.",
+    "advertisement.tjmetro.weblate": "Get involved in Tianjin Metro localization!",
+    "advertisement.tjmetro.bde": "Bomb Disposal Expert is a fun mod that allows you to dispose of bombs and Creepers!",
 
     "filter.tjmetro.tianjin_miscellaneous": "Miscellaneous",
     "filter.tjmetro.tianjin_building": "Buildings",

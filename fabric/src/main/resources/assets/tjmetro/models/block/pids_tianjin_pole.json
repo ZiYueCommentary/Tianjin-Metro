@@ -1,0 +1,24 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made by ZiYueCommentary, made with Blockbench.",
+	"textures": {
+		"0": "tjmetro:block/black",
+		"particle": "tjmetro:block/black"
+	},
+	"elements": [
+		{
+			"name": "Pole",
+			"from": [7.5, 0, 7.5],
+			"to": [8.5, 16, 8.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 16]},
+			"faces": {
+				"north": {"uv": [2.5, 0, 3.5, 5], "texture": "#0"},
+				"east": {"uv": [7.5, 0, 8.5, 5], "texture": "#0"},
+				"south": {"uv": [12.5, 0, 13.5, 5], "texture": "#0"},
+				"west": {"uv": [7.5, 0, 8.5, 5], "texture": "#0"},
+				"up": {"uv": [7.5, 12.5, 8.5, 13.5], "rotation": 270, "texture": "#0", "cullface": "up"},
+				"down": {"uv": [0, 0, 0, 0], "rotation": 90, "texture": "#0"}
+			}
+		}
+	]
+}

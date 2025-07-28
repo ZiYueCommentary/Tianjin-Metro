@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "tjmetro:block/pids_tianjin" },
+        "facing=east":  { "model": "tjmetro:block/pids_tianjin", "y":  90},
+        "facing=south": { "model": "tjmetro:block/pids_tianjin", "y": 180 },
+        "facing=west":  { "model": "tjmetro:block/pids_tianjin", "y": 270 }
+    }
+}

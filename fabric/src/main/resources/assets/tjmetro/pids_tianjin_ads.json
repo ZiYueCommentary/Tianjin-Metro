@@ -1,0 +1,22 @@
+{
+    "_comment_aspectRatio": 1.82,
+    "tjmetro": {
+        "name": "advertisement.tjmetro.name",
+        "description": "advertisement.tjmetro.description",
+        "color": "CB1C1C",
+        "advertisements": [
+            {
+                "image": "tjmetro:advertisements/banner.png",
+                "text": "advertisement.tjmetro.banner"
+            },
+            {
+                "image": "tjmetro:advertisements/weblate.png",
+                "text": "advertisement.tjmetro.weblate"
+            },
+            {
+                "image": "tjmetro:advertisements/bde.png",
+                "text": "advertisement.tjmetro.bde"
+            }
+        ]
+    }
+}

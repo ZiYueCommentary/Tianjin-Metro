@@ -59,6 +59,9 @@
 		"facing=south,type=3": {
 			"model": "tjmetro:block/railway_sign_tianjin_end_one_and_a_half_pole",
 			"y": 180
+		},
+		"type=4": {
+			"model": "tjmetro:block/pids_tianjin_pole"
 		}
 	}
 }

@@ -13,10 +13,7 @@ import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.block.*;
 import ziyue.tjmetro.mod.block.base.BlockCustomColorBase;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
-import ziyue.tjmetro.mod.screen.ColorPickerScreen;
-import ziyue.tjmetro.mod.screen.RailwaySignDoubleScreen;
-import ziyue.tjmetro.mod.screen.RailwaySignScreen;
-import ziyue.tjmetro.mod.screen.RoadblockContentScreen;
+import ziyue.tjmetro.mod.screen.*;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -45,6 +42,8 @@ public final class ClientPacketHelper
                     blockEntity.data instanceof BlockStationNameSignTianjin.BlockEntity
             ) {
                 openScreen(new RailwaySignScreen(blockPos), screen -> screen instanceof RailwaySignScreen);
+            } else if (blockEntity.data instanceof BlockPIDSTianjin.BlockEntity) {
+                openScreen(new PIDSTianjinConfigScreen(blockPos), screen -> screen instanceof PIDSTianjinConfigScreen);
             } else if (blockEntity.data instanceof BlockStationNavigator.BlockEntity) {
                 final ObjectArraySet<DashboardListItem> routes = new ObjectArraySet<>();
                 MinecraftClientData.getInstance().simplifiedRoutes.forEach(route ->

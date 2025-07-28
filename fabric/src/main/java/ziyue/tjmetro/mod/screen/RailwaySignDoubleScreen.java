@@ -78,7 +78,7 @@ public class RailwaySignDoubleScreen extends ScreenExtension implements IGui
             routesForList = new ObjectArraySet<>();
         } else {
             exitsForList = new ObjectImmutableList<>(EditStationScreen.getExitsForDashboardList(EditStationScreen.getStationExits(station, true)));
-            platformsForList = PIDSConfigScreen.getPlatformsForList(new ObjectArrayList<>(station.savedRails));
+            platformsForList = PIDSTianjinConfigScreen.getPlatformsForList(new ObjectArrayList<>(station.savedRails));
 
             final ObjectArraySet<Station> connectingStationsIncludingThisOne = new ObjectArraySet<>(station.connectedStations);
             connectingStationsIncludingThisOne.add(station);
