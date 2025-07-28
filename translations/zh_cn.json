@@ -177,7 +177,7 @@
     "block.tjmetro.route_map_bmt": "路线图（9号线）",
     "gui.tjmetro.route_map_bmt_routes": "%s - %s",
     "gui.tjmetro.next_station_format_cjk": "下一站 %s",
-    "gui.tjmetro.next_station_format": "下一站 %s",
+    "gui.tjmetro.next_station_format": "Next Station %s",
     "sign.tjmetro.to_train_bmt": "乘车|To Train",
     "block.tjmetro.station_name_sign_tianjin": "站名牌（天津）"
 }
