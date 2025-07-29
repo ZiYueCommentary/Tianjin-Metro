@@ -83,24 +83,6 @@ subprojects {
     assemble.finalizedBy(mergeJars)
 }
 
-afterEvaluate {
-    download {
-        src "https://weblate.ziyuesinicization.site/api/components/tianjin-metro/en_us-json/file/"
-        dest "lang.zip"
-        overwrite true
-        retries - 1
-    }
-    copy {
-        from(zipTree("lang.zip"))
-        into "temp_lang"
-    }
-    copy {
-        from "temp_lang/tianjin-metro/en_us-json/translations"
-        into "fabric/src/main/resources/assets/tjmetro/lang"
-    }
-    delete("lang.zip", "temp_lang")
-}
-
 subprojects {
     tasks.register('buildJar', Jar) {
         from sourceSets.main.output
