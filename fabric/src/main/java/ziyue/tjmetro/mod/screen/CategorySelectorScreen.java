@@ -19,9 +19,7 @@ import ziyue.tjmetro.mod.block.BlockPIDSTianjin;
 import ziyue.tjmetro.mod.packet.PacketUpdatePIDSAdsConfig;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CategorySelectorScreen extends DashboardListSelectorScreen implements Icons
 {

@@ -91,7 +91,6 @@ public class BlockStationNameSignTianjin extends BlockExtension implements Direc
     {
         public BlockEntity(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.STATION_NAME_SIGN_TIANJIN.get(), pos, state);
-            InitClient.findClosePlatform(getPos2(), 5, platform -> setPlatformId(platform.getId()));
         }
 
         public void setData(long platformId) {
