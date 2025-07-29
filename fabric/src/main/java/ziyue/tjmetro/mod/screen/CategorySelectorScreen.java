@@ -18,6 +18,8 @@ import ziyue.tjmetro.mod.RegistryClient;
 import ziyue.tjmetro.mod.block.BlockPIDSTianjin;
 import ziyue.tjmetro.mod.packet.PacketUpdatePIDSAdsConfig;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +33,7 @@ public class CategorySelectorScreen extends DashboardListSelectorScreen implemen
         super(CategoryForList.getCategoriesForList(), entity.getCategories(), false, true, previousScreenExtension);
         this.buttonOpenTutorial = new ButtonWidgetExtension(0, 0, 0, SQUARE_SIZE, TextHelper.translatable("button.tjmetro.open_tutorial"), button -> Util.getOperatingSystem().open(Reference.PIDS_ADS));
         this.entity = entity;
-        this.categories = BlockPIDSTianjin.CATEGORIES.values().stream().collect(Collectors.toUnmodifiableList());
+        this.categories = new ArrayList<>(BlockPIDSTianjin.CATEGORIES.values());
     }
 
     @Override
@@ -66,7 +68,7 @@ public class CategorySelectorScreen extends DashboardListSelectorScreen implemen
 
     @Override
     public void onClose2() {
-        RegistryClient.REGISTRY_CLIENT.sendPacketToServer(new PacketUpdatePIDSAdsConfig(entity.getPos2(), new LongArrayList(selectedIds.stream().collect(Collectors.toUnmodifiableList()))));
+        RegistryClient.REGISTRY_CLIENT.sendPacketToServer(new PacketUpdatePIDSAdsConfig(entity.getPos2(), new LongArrayList(selectedIds)));
         super.onClose2();
     }
 
