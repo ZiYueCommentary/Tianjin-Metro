@@ -13,11 +13,13 @@ import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.generated.lang.TranslationProvider;
 import org.mtr.mod.screen.DashboardListItem;
 import org.mtr.mod.screen.DashboardListSelectorScreen;
+import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.RegistryClient;
 import ziyue.tjmetro.mod.block.BlockPIDSTianjin;
 import ziyue.tjmetro.mod.packet.PacketUpdatePIDSAdsConfig;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CategorySelectorScreen extends DashboardListSelectorScreen implements Icons
 {
@@ -27,9 +29,9 @@ public class CategorySelectorScreen extends DashboardListSelectorScreen implemen
 
     public CategorySelectorScreen(BlockPIDSTianjin.BlockEntity entity, ScreenExtension previousScreenExtension) {
         super(CategoryForList.getCategoriesForList(), entity.getCategories(), false, true, previousScreenExtension);
-        this.buttonOpenTutorial = new ButtonWidgetExtension(0, 0, 0, SQUARE_SIZE, TextHelper.translatable("button.tjmetro.open_tutorial"), button -> Util.getOperatingSystem().open("")); // TODO github wiki
+        this.buttonOpenTutorial = new ButtonWidgetExtension(0, 0, 0, SQUARE_SIZE, TextHelper.translatable("button.tjmetro.open_tutorial"), button -> Util.getOperatingSystem().open(Reference.PIDS_ADS));
         this.entity = entity;
-        this.categories = BlockPIDSTianjin.CATEGORIES.values().stream().toList();
+        this.categories = BlockPIDSTianjin.CATEGORIES.values().stream().collect(Collectors.toUnmodifiableList());
     }
 
     @Override
@@ -64,7 +66,7 @@ public class CategorySelectorScreen extends DashboardListSelectorScreen implemen
 
     @Override
     public void onClose2() {
-        RegistryClient.REGISTRY_CLIENT.sendPacketToServer(new PacketUpdatePIDSAdsConfig(entity.getPos2(), new LongArrayList(selectedIds.stream().toList())));
+        RegistryClient.REGISTRY_CLIENT.sendPacketToServer(new PacketUpdatePIDSAdsConfig(entity.getPos2(), new LongArrayList(selectedIds.stream().collect(Collectors.toUnmodifiableList()))));
         super.onClose2();
     }
 

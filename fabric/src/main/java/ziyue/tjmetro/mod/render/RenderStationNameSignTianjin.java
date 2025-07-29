@@ -7,6 +7,7 @@ import org.mtr.mapping.holder.World;
 import org.mtr.mapping.mapper.BlockEntityRenderer;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.mapper.GraphicsHolder;
+import org.mtr.mod.InitClient;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.client.MinecraftClientData;
@@ -22,8 +23,8 @@ import static ziyue.tjmetro.mod.block.BlockStationNamePlate.ARROW_DIRECTION;
 
 /**
  * @author ZiYueCommentary
- * @see BlockStationNamePlate
- * @since 1.0.0-beta-1
+ * @see BlockStationNameSignTianjin
+ * @since 1.0.0
  */
 
 public class RenderStationNameSignTianjin<T extends BlockStationNameSignTianjin.BlockEntity> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing

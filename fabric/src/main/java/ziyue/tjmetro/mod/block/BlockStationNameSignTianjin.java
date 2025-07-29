@@ -1,6 +1,5 @@
 package ziyue.tjmetro.mod.block;
 
-import org.jetbrains.annotations.NotNull;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockExtension;
@@ -8,6 +7,7 @@ import org.mtr.mapping.mapper.BlockWithEntity;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.Blocks;
+import org.mtr.mod.InitClient;
 import org.mtr.mod.block.BlockRouteSignBase;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
@@ -20,6 +20,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static org.mtr.mod.block.IBlock.SIDE;
+
+/**
+ * @author ZiYueCommentary
+ * @see BlockEntity
+ * @since 1.0.0
+ */
 
 public class BlockStationNameSignTianjin extends BlockExtension implements DirectionHelper, BlockWithEntity
 {
@@ -56,7 +62,7 @@ public class BlockStationNameSignTianjin extends BlockExtension implements Direc
     }
 
     @Override
-    public @NotNull VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public @Nonnull VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         final Direction direction = IBlock.getStatePropertySafe(state, FACING);
         if (IBlock.getStatePropertySafe(state, SIDE) == IBlock.EnumSide.LEFT) {
             return IBlock.getVoxelShapeByDirection(4, 0, 0, 16, 16, 1, direction);
@@ -76,10 +82,16 @@ public class BlockStationNameSignTianjin extends BlockExtension implements Direc
         return new BlockEntity(blockPos, blockState);
     }
 
+    /**
+     * @author ZiYueCommentary
+     * @see ziyue.tjmetro.mod.render.RenderStationNameSignTianjin
+     * @since 1.0.0
+     */
     public static class BlockEntity extends BlockRouteSignBase.BlockEntityBase
     {
         public BlockEntity(BlockPos pos, BlockState state) {
             super(BlockEntityTypes.STATION_NAME_SIGN_TIANJIN.get(), pos, state);
+            InitClient.findClosePlatform(getPos2(), 5, platform -> setPlatformId(platform.getId()));
         }
 
         public void setData(long platformId) {

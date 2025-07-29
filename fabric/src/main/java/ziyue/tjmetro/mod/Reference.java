@@ -20,4 +20,5 @@ public interface Reference
     String BDE = "https://modrinth.com/mod/bde";
     String PATREON = "https://www.patreon.com/c/ZiYueWeblate";
     String TUTORIAL = "https://www.youtube.com/watch?v=B1wPwJmtjn8&list=PLzxdvYevO_3uSYEuZwEr4ggGilyoL-m0A";
+    String PIDS_ADS = "https://github.com/ZiYueCommentary/Tianjin-Metro/wiki/Create-advertisements";
 }
