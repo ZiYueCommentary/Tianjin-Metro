@@ -118,7 +118,7 @@
     "gui.tjmetro.bound_for_pids": "To: %s",
     "gui.tjmetro.bound_for_pids_cjk": "开往：%s",
     "gui.tjmetro.arriving": "Arriving",
-    "gui.tjmetro.arriving_cjk": "即将到站",
+    "gui.tjmetro.arriving_cjk": "即将进站",
     "gui.tjmetro.arrived": "Arrived",
     "gui.tjmetro.arrived_cjk": "已到站",
     "gui.tjmetro.minute_cjk": "分钟",
