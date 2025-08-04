@@ -2108,7 +2108,7 @@ public class RouteMapGenerator implements IGui
             final int colorStripY = height - destinationOrNextStation.height() - padding * 3;
             final int heightPerColor = padding / routeColors.size();
             for (int i = 0; i < routeColors.size(); i++) {
-                nativeImage.fillRect(0, colorStripY + heightPerColor * i, width, heightPerColor, ARGB_BLACK | routeColors.getInt(i));
+                nativeImage.fillRect(0, colorStripY + heightPerColor * i, width, heightPerColor, invertColor(ARGB_BLACK | routeColors.getInt(i)));
             }
             drawString(nativeImage, destinationOrNextStation, width / 2, height - padding, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, ARGB_BLACK, false);
 
