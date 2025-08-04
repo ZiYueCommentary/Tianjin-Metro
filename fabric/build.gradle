@@ -9,6 +9,7 @@ final BuildTools buildTools = new BuildTools(minecraft_version)
 loom {
     runConfigs.configureEach { ideConfigGenerated = true }
     mixin {
+        useLegacyMixinAp = true
         setDefaultRefmapName("tjmetro.refmap.json")
         setDefaultRefmapName("tjmetro-fabric.refmap.json")
     }

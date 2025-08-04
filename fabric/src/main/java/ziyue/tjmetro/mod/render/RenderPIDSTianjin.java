@@ -172,7 +172,7 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
 
         graphicsHolder.translate(86.7, 3.38, 0);
         if (categoryIndex >= entity.getCategories().size() || !BlockPIDSTianjin.CATEGORIES.containsKey(entity.getCategories().getLong(categoryIndex))) {
-            TianjinMetro.LOGGER.warn("Invalid advertisement category id: {} at {}. Skipping!", entity.getCategories().getLong(categoryIndex), blockPos.toShortString());
+            TianjinMetro.LOGGER.warn("Invalid advertisement category id: {} at {}. Skipping!", categoryIndex, blockPos.toShortString());
             categoryIndex = (categoryIndex + 1) % entity.getCategories().size();
             advertisementIndex = 0;
         }
