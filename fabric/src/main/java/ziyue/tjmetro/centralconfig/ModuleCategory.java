@@ -1,4 +1,4 @@
-package ziyue.centralconfig;
+package ziyue.tjmetro.centralconfig;
 
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
