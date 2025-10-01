@@ -1487,7 +1487,7 @@ public class RouteMapGenerator implements IGui
                 final int colorStripY = padding + textInformation.height() + padding;
                 final int heightPerColor = padding / 2 / routeColors.size();
                 for (int i = 0; i < routeColors.size(); i++) {
-                    nativeImage.fillRect(0, colorStripY + heightPerColor * i, width, heightPerColor, ARGB_BLACK | routeColors.getInt(i));
+                    nativeImage.fillRect(0, colorStripY + heightPerColor * i, width, heightPerColor, invertColor(ARGB_BLACK | routeColors.getInt(i)));
                 }
 
                 final Object2ObjectOpenHashMap<String, ObjectOpenHashSet<StationPositionGrouped>> stationPositionsGrouped = new Object2ObjectOpenHashMap<>();
