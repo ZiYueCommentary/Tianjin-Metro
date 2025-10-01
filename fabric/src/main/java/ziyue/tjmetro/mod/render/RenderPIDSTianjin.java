@@ -42,10 +42,6 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
     protected final float maxWidth;
     protected final boolean rotate90;
     protected final float textPadding;
-    protected final ScrollingText scrollingText = new ScrollingText(158F, 47, 4, true);
-    protected BlockPIDSTianjin.Advertisement advertisement = null;
-    protected int categoryIndex = 0;
-    protected int advertisementIndex = 0;
 
     public RenderPIDSTianjin(Argument dispatcher, float maxHeight, int maxWidth, boolean rotate90, float textPadding) {
         super(dispatcher);
@@ -171,32 +167,39 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
         }
 
         graphicsHolder.translate(86.7, 3.38, 0);
-        if (categoryIndex >= entity.getCategories().size() || !BlockPIDSTianjin.CATEGORIES.containsKey(entity.getCategories().getLong(categoryIndex))) {
-            TianjinMetro.LOGGER.warn("Invalid advertisement category id: {} at {}. Skipping!", categoryIndex, blockPos.toShortString());
-            categoryIndex = (categoryIndex + 1) % entity.getCategories().size();
-            advertisementIndex = 0;
+        if (entity.categoryIndex >= entity.getCategories().size() || !BlockPIDSTianjin.CATEGORIES.containsKey(entity.getCategories().getLong(entity.categoryIndex))) {
+            TianjinMetro.LOGGER.warn("Invalid advertisement category id: {} at {}. Skipping!", entity.categoryIndex, blockPos.toShortString());
+            entity.categoryIndex = (entity.categoryIndex + 1) % entity.getCategories().size();
+            entity.advertisementIndex = 0;
+            if (!BlockPIDSTianjin.CATEGORIES.containsKey(entity.getCategories().getLong(entity.categoryIndex))) {
+                TianjinMetro.LOGGER.error("Invalid advertisement after reset. Clearing!");
+                entity.getCategories().clear();
+                graphicsHolder.pop();
+                return;
+            }
         }
-        BlockPIDSTianjin.Advertisement newAd = BlockPIDSTianjin.CATEGORIES.get(entity.getCategories().getLong(categoryIndex)).get(advertisementIndex);
-        if (advertisement != newAd) {
-            advertisement = newAd;
+
+        BlockPIDSTianjin.Advertisement newAd = BlockPIDSTianjin.CATEGORIES.get(entity.getCategories().getLong(entity.categoryIndex)).get(entity.advertisementIndex);
+        if (entity.advertisement != newAd) {
+            entity.advertisement = newAd;
             // The space down below is a hacky way to deal with the error of float.
-            scrollingText.changeImage(() -> DynamicTextureCache.instance.getPlainText("   " + advertisement.getText().getString() + "   ", 0xFF1A1D46, ARGB_WHITE));
+            entity.scrollingText.changeImage(() -> DynamicTextureCache.instance.getPlainText("   " + entity.advertisement.getText().getString() + "   ", 0xFF1A1D46, ARGB_WHITE));
         }
-        renderTexture(graphicsHolder, advertisement.getImage(), 161F, 88.3F, facing);
+        renderTexture(graphicsHolder, entity.advertisement.getImage(), 161F, 88.3F, facing);
         graphicsHolder.translate(1.5F, 75.3F, 0);
-        boolean shouldSwitch = scrollingText.scrollText(graphicsHolder, facing);
+        boolean shouldSwitch = entity.scrollingText.scrollText(graphicsHolder, facing);
         if (shouldSwitch) nextSlide(entity);
 
         graphicsHolder.pop();
     }
 
     protected void nextSlide(T entity) {
-        if (advertisementIndex + 1 >= BlockPIDSTianjin.CATEGORIES.get(entity.getCategories().getLong(categoryIndex)).size()) {
-            categoryIndex = (categoryIndex + 1) % entity.getCategories().size();
-            advertisementIndex = 0;
+        if (entity.advertisementIndex + 1 >= BlockPIDSTianjin.CATEGORIES.get(entity.getCategories().getLong(entity.categoryIndex)).size()) {
+            entity.categoryIndex = (entity.categoryIndex + 1) % entity.getCategories().size();
+            entity.advertisementIndex = 0;
             return;
         }
-        advertisementIndex = (advertisementIndex + 1) % BlockPIDSTianjin.CATEGORIES.get(entity.getCategories().getLong(categoryIndex)).size();
+        entity.advertisementIndex = (entity.advertisementIndex + 1) % BlockPIDSTianjin.CATEGORIES.get(entity.getCategories().getLong(entity.categoryIndex)).size();
     }
 
     protected void renderText(GraphicsHolder graphicsHolder, String text, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment, float x, float y, float availableWidth, float scale, int color) {

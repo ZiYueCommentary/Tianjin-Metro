@@ -8,6 +8,7 @@ import org.mtr.mod.block.BlockPIDSHorizontalBase;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.Registry;
+import ziyue.tjmetro.mod.client.ScrollingText;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
@@ -65,6 +66,10 @@ public class BlockPIDSTianjin extends BlockPIDSHorizontalBase
         protected final LongAVLTreeSet platformIds = new LongAVLTreeSet();
         protected final LongArrayList categories = new LongArrayList();
         protected int displayPage;
+        public final ScrollingText scrollingText = new ScrollingText(158F, 47, 4, true);
+        public BlockPIDSTianjin.Advertisement advertisement = null;
+        public int categoryIndex = 0;
+        public int advertisementIndex = 0;
 
         public static final String PLATFORM_IDS_ID = "platform_ids";
         public static final String DISPLAY_PAGE_ID = "display_page";
