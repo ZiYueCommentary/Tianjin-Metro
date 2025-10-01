@@ -29,7 +29,11 @@ import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -1062,7 +1066,7 @@ public class RouteMapGenerator implements IGui
                     }
 
                     drawStationBMT(nativeImage, x, y, heightScale, lines, currentStation);
-                    drawVerticalString(nativeImage, key.split("\\|\\|")[0], x, y - lineSize * 5 / 4, Integer.MAX_VALUE, y, fontSizeBig, fontSizeSmall, fontSizeSmall / 4, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, currentStation ? 0xffff0000 : ARGB_BLACK);
+                    drawVerticalString(nativeImage, key.split("\\|\\|")[0], x, y - lineSize * 5 / 4, Integer.MAX_VALUE, y - lineSize * 4, fontSizeBig, fontSizeSmall, fontSizeSmall / 4, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, currentStation ? 0xffff0000 : ARGB_BLACK);
                 }));
 
                 if (transparentWhite) clearColor(nativeImage, ARGB_WHITE);
@@ -2463,12 +2467,32 @@ public class RouteMapGenerator implements IGui
 
     protected static void drawVerticalString(NativeImage nativeImage, String text, int x, int y, int maxWidth, int maxHeight, int fontSizeCjk, int fontSize, int padding, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment, int backgroundColor, int textColor) {
         final ImmutablePair<String, String> pair = IGuiExtension.splitTranslation(text);
-        final DynamicTextureCache.Text textCJK;
+        DynamicTextureCache.Text textCJK;
         if (pair.left.isEmpty()) {
             textCJK = DynamicTextureCache.Text.empty();
             padding = 0;
         } else {
-            textCJK = DynamicTextureCache.instance.getText(IGui.formatVerticalChinese(pair.left), maxWidth, maxHeight, fontSizeCjk, fontSizeCjk, padding, HorizontalAlignment.LEFT, 1F, false);
+            textCJK = DynamicTextureCache.instance.getText(IGui.formatVerticalChinese(pair.left), maxWidth, Integer.MAX_VALUE, fontSizeCjk, fontSizeCjk, padding, HorizontalAlignment.LEFT, 1F, false);
+            if (textCJK.height() > maxHeight) {
+                try {
+                    // compressing the height of cjk text...
+                    final BufferedImage image = new BufferedImage(textCJK.renderWidth(), textCJK.height(), BufferedImage.TYPE_BYTE_GRAY);
+                    final byte[] imageBuffer = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+                    System.arraycopy(textCJK.pixels(), 0, imageBuffer, 0, textCJK.pixels().length);
+                    BufferedImage scaledImage = new BufferedImage(textCJK.renderWidth(), maxHeight, BufferedImage.TYPE_BYTE_GRAY);
+                    Graphics2D graphics = scaledImage.createGraphics();
+                    graphics.setColor(Color.WHITE);
+                    graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                    graphics.drawImage(image, 0, 0, textCJK.renderWidth(), maxHeight, null);
+                    final byte[] pixels = ((DataBufferByte) scaledImage.getRaster().getDataBuffer()).getData();
+                    graphics.dispose();
+                    scaledImage.flush();
+                    image.flush();
+                    textCJK = new DynamicTextureCache.Text(pixels, textCJK.width(), maxHeight, textCJK.renderWidth());
+                } catch (Exception e) {
+                    TianjinMetro.LOGGER.warn("Error when scaling vertical string. Skipping!", e);
+                }
+            }
         }
         final DynamicTextureCache.Text textNonCJK;
         if (pair.right.isEmpty()) {
