@@ -1435,7 +1435,7 @@ public class RouteMapGenerator implements IGui
                 final float rawHeightPart = Math.abs(bounds[1]) + 1;
                 final float rawWidth = xOffset + bounds[0] + 0.5F;
                 final float rawHeightTotal = rawHeightPart + bounds[2] + 3;
-                final float yOffset = rawHeightPart + (rotateStationName ? 0.6F : 0) + 1.6F;
+                final float yOffset = rawHeightPart + (rotateStationName ? 0.6F : 0) + 1.5F;
                 final float extraPadding = 0;
 
                 final int height;
@@ -1455,8 +1455,6 @@ public class RouteMapGenerator implements IGui
                 }
 
                 if (width <= 0 || height <= 0) return null;
-
-                final int padding = Math.round(height * 0.05F);
 
                 final NativeImage nativeImage = new NativeImage(NativeImageFormat.getAbgrMapped(), width, height, false);
                 nativeImage.fillRect(0, 0, width, height, invertColor(backgroundColor));
@@ -1481,14 +1479,15 @@ public class RouteMapGenerator implements IGui
                 // The next line is using those functions "unproperly", but everything works properly.
                 final String information = IGuiExtension.insertTranslation("gui.tjmetro.route_map_bmt_routes", "gui.tjmetro.route_map_bmt_routes", 2, IGui.mergeStations(routeNames), destinationString);
 
-                final DynamicTextureCache.Text textInformation = clientCache.getText(information, width - padding * 2, height, fontSizeBig, fontSizeSmall, 0, arrowLeft ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
+                final int padding = (int) (height / aspectRatio * 0.1); // fixed size
+                final DynamicTextureCache.Text textInformation = clientCache.getText(information, width - padding * 2, height, (int) (fontSizeBig * height / aspectRatio * 0.002), (int) (fontSizeSmall * height / aspectRatio * 0.002), 0, arrowLeft ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
                 if (arrowLeft) {
-                    drawString(nativeImage, textInformation, padding, padding, HorizontalAlignment.LEFT, VerticalAlignment.TOP, 0, ARGB_WHITE, false);
+                    drawString(nativeImage, textInformation, padding, (int) (height / aspectRatio * 0.2), HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
                 } else {
-                    drawString(nativeImage, textInformation, width - padding, padding, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, 0, ARGB_WHITE, false);
+                    drawString(nativeImage, textInformation, width - padding, (int) (height / aspectRatio * 0.2), HorizontalAlignment.RIGHT, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
                 }
 
-                final int colorStripY = padding + textInformation.height() + padding;
+                final int colorStripY = (int) (height / aspectRatio * 0.4);
                 final int heightPerColor = padding / 2 / routeColors.size();
                 for (int i = 0; i < routeColors.size(); i++) {
                     nativeImage.fillRect(0, colorStripY + heightPerColor * i, width, heightPerColor, invertColor(ARGB_BLACK | routeColors.getInt(i)));
@@ -1556,11 +1555,12 @@ public class RouteMapGenerator implements IGui
                         }
                         interchangesWidth -= interchangePadding;
                         if (interchangesWidth > 0) {
-                            int renderX = x - interchangesWidth / 2;
+                            int renderX = Math.max(0, x - interchangesWidth / 2);
                             for (int i = 0; i < interchanges.size(); i++) {
-                                nativeImage.fillRect(renderX, y + lines * lineSpacing + lineHeight, interchanges.get(i).renderWidth(), interchangesHeight, invertColor(ARGB_BLACK | interchangeColors.getInt(i)));
+                                nativeImage.fillRect(renderX, y + lines * lineSpacing + lineHeight, renderX + interchanges.get(i).renderWidth() > width ? width - renderX : interchanges.get(i).renderWidth(), interchangesHeight, invertColor(ARGB_BLACK | interchangeColors.getInt(i)));
                                 drawString(nativeImage, interchanges.get(i), renderX, y + lines * lineSpacing + lineHeight + interchangesHeight / 2, HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
                                 renderX += interchanges.get(i).renderWidth() + interchangePadding;
+                                if (renderX >= width) break;
                             }
                         }
                     }
