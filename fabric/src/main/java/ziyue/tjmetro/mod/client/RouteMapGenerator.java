@@ -835,8 +835,10 @@ public class RouteMapGenerator implements IGui
                             final ObjectArrayList<String> interchangeNames = new ObjectArrayList<>();
                             simplifiedRoutePlatform.forEach((color, interchangeRouteNamesForColor) -> {
                                 if (!colors.contains(color)) {
-                                    interchangeColors.add(color);
-                                    interchangeRouteNamesForColor.forEach(interchangeNames::add);
+                                    interchangeRouteNamesForColor.forEach(name -> {
+                                        interchangeColors.add(color);
+                                        interchangeNames.add(name);
+                                    });
                                 }
                             });
                             Data.put(stationPositionsGrouped, key, new StationPositionGrouped(stationPosition, stationIndex - currentIndex, interchangeColors, interchangeNames), ObjectOpenHashSet::new);
@@ -1010,8 +1012,10 @@ public class RouteMapGenerator implements IGui
                             final ObjectArrayList<String> interchangeNames = new ObjectArrayList<>();
                             simplifiedRoutePlatform.forEach((color, interchangeRouteNamesForColor) -> {
                                 if (!colors.contains(color)) {
-                                    interchangeColors.add(color);
-                                    interchangeRouteNamesForColor.forEach(interchangeNames::add);
+                                    interchangeRouteNamesForColor.forEach(name -> {
+                                        interchangeColors.add(color);
+                                        interchangeNames.add(name);
+                                    });
                                 }
                             });
                             Data.put(stationPositionsGrouped, key, new StationPositionGrouped(stationPosition, stationIndex - currentIndex, interchangeColors, interchangeNames), ObjectOpenHashSet::new);
@@ -1506,8 +1510,10 @@ public class RouteMapGenerator implements IGui
                             final ObjectArrayList<String> interchangeNames = new ObjectArrayList<>();
                             simplifiedRoutePlatform.forEach((color, interchangeRouteNamesForColor) -> {
                                 if (!colors.contains(color)) {
-                                    interchangeColors.add(color);
-                                    interchangeRouteNamesForColor.forEach(interchangeNames::add);
+                                    interchangeRouteNamesForColor.forEach(name -> {
+                                        interchangeColors.add(color);
+                                        interchangeNames.add(name);
+                                    });
                                 }
                             });
                             Data.put(stationPositionsGrouped, key, new StationPositionGrouped(stationPosition, stationIndex - currentIndex, interchangeColors, interchangeNames), ObjectOpenHashSet::new);
