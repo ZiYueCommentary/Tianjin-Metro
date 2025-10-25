@@ -161,6 +161,7 @@
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Options",
     "button.tjmetro.click_here": "Click Here!",
     "button.tjmetro.open_tutorial": "Create ads",
+    "button.tjmetro.duplicate_siding_settings": "Duplicate settings to other sidings",
 
     "config.category.tjmetro": "Tianjin Metro",
     "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r is not installed.",
