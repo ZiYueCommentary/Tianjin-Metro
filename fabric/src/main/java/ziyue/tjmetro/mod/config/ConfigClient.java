@@ -35,6 +35,7 @@ public class ConfigClient
     public static final Property<Boolean> ROTATED_STATION_NAME = new Property<>("rotated_station_name", true);
     public static final Property<Boolean> DISABLE_DYNAMIC_TEXTURES = new Property<>("disable_dynamic_textures", false);
     public static final Property<Boolean> DISABLE_TRAIN_RENDERING = new Property<>("disable_train_rendering", false);
+    public static final Property<Integer> DYNAMIC_TEXTURE_MAX_SIZE = new Property<>("dynamic_texture_max_size", 2048);
 
     protected static final Path CONFIG_FILE_PATH = MinecraftClient.getInstance().getRunDirectoryMapped().toPath().resolve("config/tjmetro.json");
     public static final List<Footer> FOOTERS = Arrays.asList(
@@ -72,7 +73,7 @@ public class ConfigClient
                 } else if (property.get() instanceof Number) {
                     Property<Number> converted = (Property<Number>) property;
                     try {
-                        converted.set(jsonConfig.get(converted.getId()).getAsNumber());
+                        converted.set(jsonConfig.get(converted.getId()).getAsNumber().intValue());
                     } catch (Exception e) {
                         converted.set(converted.getDefault());
                     }
