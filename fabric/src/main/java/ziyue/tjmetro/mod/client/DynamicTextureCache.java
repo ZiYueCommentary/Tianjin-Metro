@@ -404,7 +404,20 @@ public class DynamicTextureCache
 
                 final DynamicResource dynamicResourceNew;
                 if (nativeImage != null) {
-                    final NativeImageBackedTexture nativeImageBackedTexture = new NativeImageBackedTexture(nativeImage);
+                    final NativeImage newNativeImage;
+                    final int newMaxImageSize = ConfigClient.DYNAMIC_TEXTURE_MAX_SIZE.get() * (int) Math.pow(2, Config.getClient().getDynamicTextureResolution());
+                    if (nativeImage.getWidth() > newMaxImageSize || nativeImage.getHeight() > newMaxImageSize) {
+                        newNativeImage = new NativeImage(NativeImageFormat.getAbgrMapped(), Math.min(newMaxImageSize, nativeImage.getWidth()), Math.min(newMaxImageSize, nativeImage.getHeight()), false);
+                        for (int x = 0; x < Math.min(newMaxImageSize, nativeImage.getWidth()); x++) {
+                            for (int y = 0; y < Math.min(newMaxImageSize, nativeImage.getHeight()); y++) {
+                                newNativeImage.setPixelColor(x, y, nativeImage.getColor(x, y));
+                            }
+                        }
+                    } else {
+                        newNativeImage = nativeImage;
+                    }
+
+                    final NativeImageBackedTexture nativeImageBackedTexture = new NativeImageBackedTexture(newNativeImage);
                     final Identifier identifier = new Identifier(Reference.MOD_ID, Utilities.numberToPaddedHexString(UUID.randomUUID().getMostSignificantBits()).toLowerCase(Locale.ENGLISH));
                     MinecraftClient.getInstance().getTextureManager().registerTexture(identifier, new AbstractTexture(nativeImageBackedTexture.data));
                     dynamicResourceNew = new DynamicResource(identifier, nativeImageBackedTexture);

@@ -2,6 +2,7 @@ package ziyue.tjmetro.mod.screen;
 
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
+import me.shedaniel.clothconfig2.gui.entries.IntegerSliderEntry;
 import me.shedaniel.clothconfig2.gui.entries.TextListEntry;
 import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import org.mtr.mapping.holder.Screen;
@@ -46,8 +47,15 @@ public class ClientConfigScreen
                 .setDefaultValue(ConfigClient.DISABLE_TRAIN_RENDERING.getDefault())
                 .setSaveConsumer(ConfigClient.DISABLE_TRAIN_RENDERING::set)
                 .build();
+        IntegerSliderEntry integerDynamicTextureMaxSize = entryBuilder
+                .startIntSlider(TextHelper.translatable("config.tjmetro.dynamic_texture_max_size").data, ConfigClient.DYNAMIC_TEXTURE_MAX_SIZE.get(), 1024, 4096)
+                .setDefaultValue(ConfigClient.DYNAMIC_TEXTURE_MAX_SIZE.getDefault())
+                .setTooltip(TextHelper.translatable("tooltip.tjmetro.dynamic_texture_max_size").data)
+                .setSaveConsumer(ConfigClient.DYNAMIC_TEXTURE_MAX_SIZE::set)
+                .build();
         subCategoryDebugging.add(booleanDisableDynamicTextures);
         subCategoryDebugging.add(booleanDisableTrainRendering);
+        subCategoryDebugging.add(integerDynamicTextureMaxSize);
         TextListEntry textFooter = entryBuilder.startTextDescription(TextFormatter.FOOTER_LINK.apply(ConfigClient.FOOTERS.get(new Random().nextInt(ConfigClient.FOOTERS.size())))).build();
         categoryTianjinMetro.addEntry(booleanUseTianjinMetroFont).addEntry(booleanRotatedStationName).addEntry(subCategoryDebugging.build()).addEntry(textFooter);
     }, () -> ConfigBuilder.create()

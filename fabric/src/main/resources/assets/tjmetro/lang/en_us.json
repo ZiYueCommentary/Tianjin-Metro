@@ -171,6 +171,7 @@
     "config.tjmetro.debugging": "Debugging options",
     "config.tjmetro.disable_dynamic_textures": "Disable dynamic textures",
     "config.tjmetro.disable_train_rendering": "Disable train rendering",
+    "config.tjmetro.dynamic_texture_max_size": "Dynamic texture max size",
 
     "tooltip.tjmetro.experimental": "This feature is experimental.",
     "tooltip.tjmetro.station_name": "Text depends on the station",
@@ -190,6 +191,7 @@
     "tooltip.tjmetro.shift": "Hold SHIFT for more info",
     "tooltip.tjmetro.disable_dynamic_textures": "Skip generating textures for signs, gates, etc.",
     "tooltip.tjmetro.pids_tianjin": "A PIDS which has a customizable advertisement part. Using Railway Sign Pole (Tianjin) to extend its pole.",
+    "tooltip.tjmetro.dynamic_texture_max_size": "Dynamic textures that exceed the limitation will be truncated. If you meet this issue, please adjust this with caution.",
 
     "footer.tjmetro.sources": "Wanna see the source code?",
     "footer.tjmetro.contributors": "Tianjin Metro is a community work, click here to see contributors!",
