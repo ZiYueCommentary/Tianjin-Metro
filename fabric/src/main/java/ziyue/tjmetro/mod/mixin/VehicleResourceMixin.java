@@ -2,7 +2,6 @@ package ziyue.tjmetro.mod.mixin;
 
 import org.mtr.libraries.it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import org.mtr.mod.data.VehicleExtension;
-import org.mtr.mod.render.DynamicVehicleModel;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import org.mtr.mod.resource.OptimizedModelWrapper;
 import org.mtr.mod.resource.PartCondition;

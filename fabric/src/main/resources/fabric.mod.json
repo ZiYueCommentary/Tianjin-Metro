@@ -57,7 +57,8 @@
         "fabric": "*",
         "minecraft": "${minecraft_version}",
         "filters": ">=1.0.0",
-        "mtr": "*"
+        "mtr": "*",
+        "java": ">=16"
     },
     "suggests": {
         "cloth-config": "*"

@@ -442,43 +442,13 @@ public class DynamicTextureCache
     /**
      * A text that contains its pixels, width, and height.
      *
+     * @param width       the real width of the text
+     * @param renderWidth the width when rendering the text, do not use
      * @author ZiYueCommentary
      * @since 1.0.0-beta-1
      */
-    public static final class Text
+    public record Text(byte[] pixels, int width, int height, int renderWidth)
     {
-        private final byte[] pixels;
-        private final int width;
-        private final int height;
-        private final int renderWidth;
-
-        /**
-         * @param width       the real width of the text
-         * @param renderWidth the width when rendering the text, do not use
-         */
-        public Text(byte[] pixels, int width, int height, int renderWidth) {
-            this.pixels = pixels;
-            this.width = width;
-            this.height = height;
-            this.renderWidth = renderWidth;
-        }
-
-        public byte[] pixels() {
-            return pixels;
-        }
-
-        public int width() {
-            return width;
-        }
-
-        public int height() {
-            return height;
-        }
-
-        public int renderWidth() {
-            return renderWidth;
-        }
-
         public static Text empty() {
             return new Text(null, 0, 0, 0);
         }

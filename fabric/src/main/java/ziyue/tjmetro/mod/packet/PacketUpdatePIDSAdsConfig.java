@@ -1,6 +1,5 @@
 package ziyue.tjmetro.mod.packet;
 
-import org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongAVLTreeSet;
 import org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongArrayList;
 import org.mtr.mapping.holder.BlockEntity;
 import org.mtr.mapping.holder.BlockPos;
@@ -46,8 +45,7 @@ public final class PacketUpdatePIDSAdsConfig extends PacketHandler
     @Override
     public void runServer(MinecraftServer minecraftServer, ServerPlayerEntity serverPlayerEntity) {
         final BlockEntity entity = serverPlayerEntity.getEntityWorld().getBlockEntity(blockPos);
-        if ((entity != null) && (entity.data instanceof BlockPIDSTianjin.BlockEntity)) {
-            final BlockPIDSTianjin.BlockEntity entity1 = (BlockPIDSTianjin.BlockEntity) entity.data;
+        if ((entity != null) && (entity.data instanceof BlockPIDSTianjin.BlockEntity entity1)) {
             entity1.setData(categories);
         }
     }

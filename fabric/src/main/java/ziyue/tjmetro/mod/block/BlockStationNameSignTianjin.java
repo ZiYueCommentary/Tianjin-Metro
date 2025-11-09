@@ -7,7 +7,6 @@ import org.mtr.mapping.mapper.BlockWithEntity;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.Blocks;
-import org.mtr.mod.InitClient;
 import org.mtr.mod.block.BlockRouteSignBase;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
@@ -103,12 +102,11 @@ public class BlockStationNameSignTianjin extends BlockExtension implements Direc
             }
 
             org.mtr.mapping.holder.BlockEntity blockEntity = this.getWorld2().getBlockEntity(pos);
-            if (blockEntity.data instanceof BlockEntity) {
-                final BlockEntity entity = (BlockEntity) blockEntity.data;
+            if (blockEntity.data instanceof BlockEntity entity) {
                 entity.setPlatformId(platformId);
                 entity.markDirty2();
             } else {
-                TianjinMetro.LOGGER.error("BlockStationNameSignTianjin.BlockEntity: Unable to set data for block entity at " + pos.toShortString());
+                TianjinMetro.LOGGER.error("BlockStationNameSignTianjin.BlockEntity: Unable to set data for block entity at {}", pos.toShortString());
             }
             markDirty2();
         }

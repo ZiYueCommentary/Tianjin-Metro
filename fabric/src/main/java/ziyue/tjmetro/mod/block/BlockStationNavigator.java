@@ -153,16 +153,12 @@ public class BlockStationNavigator extends BlockRailwaySignBase
         }
 
         public static BlockEntityType<?> getType(int length) {
-            switch (length) {
-                case 3:
-                    return BlockEntityTypes.STATION_NAVIGATOR_3.get();
-                case 4:
-                    return BlockEntityTypes.STATION_NAVIGATOR_4.get();
-                case 5:
-                    return BlockEntityTypes.STATION_NAVIGATOR_5.get();
-                default:
-                    throw new InvalidParameterException();
-            }
+            return switch (length) {
+                case 3 -> BlockEntityTypes.STATION_NAVIGATOR_3.get();
+                case 4 -> BlockEntityTypes.STATION_NAVIGATOR_4.get();
+                case 5 -> BlockEntityTypes.STATION_NAVIGATOR_5.get();
+                default -> throw new InvalidParameterException();
+            };
         }
 
         @Override

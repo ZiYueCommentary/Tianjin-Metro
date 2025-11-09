@@ -99,8 +99,7 @@ public class RailwaySignDoubleScreen extends ScreenExtension implements IGui
 
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(signPos);
-            if (entity != null && entity.data instanceof BlockRailwaySignWallDouble.BlockEntity) {
-                final BlockRailwaySignWallDouble.BlockEntity entity1 = (BlockRailwaySignWallDouble.BlockEntity) entity.data;
+            if (entity != null && entity.data instanceof BlockRailwaySignWallDouble.BlockEntity entity1) {
                 signIds = entity1.getSignIds();
                 selectedIds = entity1.getSelectedIds();
                 isRailwaySign = true;
@@ -112,8 +111,7 @@ public class RailwaySignDoubleScreen extends ScreenExtension implements IGui
                 isRailwaySign = false;
             }
             final Block block = world.getBlockState(signPos).getBlock();
-            if (block.data instanceof BlockRailwaySignBase) {
-                final BlockRailwaySignBase block1 = (BlockRailwaySignBase) block.data;
+            if (block.data instanceof BlockRailwaySignBase block1) {
                 length = block1.length;
             } else {
                 length = 0;

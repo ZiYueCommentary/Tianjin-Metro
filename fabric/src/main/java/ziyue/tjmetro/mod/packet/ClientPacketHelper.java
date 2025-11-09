@@ -17,7 +17,6 @@ import ziyue.tjmetro.mod.screen.*;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * @since 1.0.0-beta-1
@@ -27,11 +26,9 @@ public final class ClientPacketHelper
 {
     public static void openBlockEntityScreen(BlockPos blockPos) {
         getBlockEntity(blockPos, blockEntity -> {
-            if (blockEntity.data instanceof BlockRoadblockSign.BlockEntity) {
-                final BlockRoadblockSign.BlockEntity entity = (BlockRoadblockSign.BlockEntity) blockEntity.data;
+            if (blockEntity.data instanceof BlockRoadblockSign.BlockEntity entity) {
                 openScreen(new RoadblockContentScreen(blockPos, entity.content), screen -> screen instanceof RoadblockContentScreen);
-            } else if (blockEntity.data instanceof BlockCustomColorBase.BlockEntityBase) {
-                final BlockCustomColorBase.BlockEntityBase entity = (BlockCustomColorBase.BlockEntityBase) blockEntity.data;
+            } else if (blockEntity.data instanceof BlockCustomColorBase.BlockEntityBase entity) {
                 openScreen(new ColorPickerScreen(blockPos, entity), screen -> screen instanceof ColorPickerScreen);
             } else if (blockEntity.data instanceof BlockRailwaySignWallDouble.BlockEntity) {
                 openScreen(new RailwaySignDoubleScreen(blockPos), screen -> screen instanceof RailwaySignDoubleScreen);

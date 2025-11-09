@@ -5,11 +5,9 @@ import org.mtr.mapping.holder.BlockState;
 import org.mtr.mapping.holder.Item;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mod.block.BlockAPGGlass;
-import org.mtr.mod.block.BlockPSDAPGDoorBase;
 import org.mtr.mod.block.BlockPSDTop;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.ItemList;
-import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
 import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinTRT;
 
 import javax.annotation.Nonnull;

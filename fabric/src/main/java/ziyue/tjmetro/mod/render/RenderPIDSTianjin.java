@@ -22,7 +22,6 @@ import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.block.BlockPIDSTianjin;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;
 import ziyue.tjmetro.mod.client.IDrawingExtension;
-import ziyue.tjmetro.mod.client.ScrollingText;
 
 import static org.mtr.mod.render.RenderPIDS.SWITCH_LANGUAGE_TICKS;
 
@@ -183,9 +182,9 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
         if (entity.advertisement != newAd) {
             entity.advertisement = newAd;
             // The space down below is a hacky way to deal with the error of float.
-            entity.scrollingText.changeImage(() -> DynamicTextureCache.instance.getPlainText("   " + entity.advertisement.getText().getString() + "   ", 0xFF1A1D46, ARGB_WHITE));
+            entity.scrollingText.changeImage(() -> DynamicTextureCache.instance.getPlainText("   " + entity.advertisement.text().getString() + "   ", 0xFF1A1D46, ARGB_WHITE));
         }
-        renderTexture(graphicsHolder, entity.advertisement.getImage(), 161F, 88.3F, facing);
+        renderTexture(graphicsHolder, entity.advertisement.image(), 161F, 88.3F, facing);
         graphicsHolder.translate(1.5F, 75.3F, 0);
         boolean shouldSwitch = entity.scrollingText.scrollText(graphicsHolder, facing);
         if (shouldSwitch) nextSlide(entity);

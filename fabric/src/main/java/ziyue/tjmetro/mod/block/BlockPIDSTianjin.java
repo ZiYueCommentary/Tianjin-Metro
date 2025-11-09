@@ -130,23 +130,8 @@ public class BlockPIDSTianjin extends BlockPIDSHorizontalBase
         }
     }
 
-    public static class Advertisement
+    public record Advertisement(Identifier image, MutableText text)
     {
-        private final Identifier image;
-        private final MutableText text;
-
-        public Advertisement(Identifier image, MutableText text) {
-            this.image = image;
-            this.text = text;
-        }
-
-        public Identifier getImage() {
-            return image;
-        }
-
-        public MutableText getText() {
-            return text;
-        }
     }
 
     public static class Category extends ArrayList<Advertisement>

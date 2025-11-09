@@ -17,7 +17,6 @@ import ziyue.tjmetro.mod.data.IGuiExtension;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * A device for clearing specify items from players' inventory.
@@ -57,17 +56,11 @@ public class BlockMetalDetectionDoor extends BlockExtension implements Direction
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> {
-            final BlockPos blockPos;
-            switch (IBlock.getStatePropertySafe(state, THIRD)) {
-                case LOWER:
-                    blockPos = pos;
-                    break;
-                case MIDDLE:
-                    blockPos = pos.down(1);
-                    break;
-                default:
-                    blockPos = pos.down(2);
-            }
+            final BlockPos blockPos = switch (IBlock.getStatePropertySafe(state, THIRD)) {
+                case LOWER -> pos;
+                case MIDDLE -> pos.down(1);
+                default -> pos.down(2);
+            };
             MetalDetectionDoorEntity entity = new MetalDetectionDoorEntity(world, blockPos, (BlockEntity) world.getBlockEntity(blockPos).data);
             world.spawnEntity(new Entity(entity));
             entity.interact(player.data, hand.data);
@@ -159,7 +152,7 @@ public class BlockMetalDetectionDoor extends BlockExtension implements Direction
             final PlayerEntity player = getWorld2().getClosestPlayer(getPos2().getX(), getPos2().getY(), getPos2().getZ(), 1, false);
             if (player != null) {
                 if (getPos2().getX() == Math.floor(player.getX()) && getPos2().getY() == Math.round(player.getY()) && getPos2().getZ() == Math.floor(player.getZ())) {
-                    List<?> items = this.inventory.data.stream().map(itemStack -> itemStack.getItem()).collect(Collectors.toList()); // Do not use method reference.
+                    List<?> items = this.inventory.data.stream().map(itemStack -> itemStack.getItem()).toList(); // Do not use method reference.
                     PlayerInventoryHelper.clearItems(player, items::contains);
                     if (IBlock.getStatePropertySafe(getCachedState2(), OPEN)) return;
                     getWorld2().playSound(null, getPos2(), SoundEvents.TICKET_BARRIER.get(), SoundCategory.BLOCKS, 1, 1);

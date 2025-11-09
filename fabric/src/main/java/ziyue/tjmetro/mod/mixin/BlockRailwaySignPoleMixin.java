@@ -31,10 +31,10 @@ public abstract class BlockRailwaySignPoleMixin extends BlockPoleCheckBase
     protected BlockState placeWithState(BlockState stateBelow) {
         Block block = stateBelow.getBlock();
         int type;
-        if (block.data instanceof BlockRailwaySign) {
-            type = (((BlockRailwaySign) block.data).length + (((BlockRailwaySign) block.data).isOdd ? 2 : 0)) % 4;
-        } else if (block.data instanceof BlockRailwaySignTianjinBMT) {
-            type = (((BlockRailwaySignTianjinBMT) block.data).length + (((BlockRailwaySignTianjinBMT) block.data).isOdd ? 2 : 0)) % 4;
+        if (block.data instanceof BlockRailwaySign sign) {
+            type = (sign.length + (sign.isOdd ? 2 : 0)) % 4;
+        } else if (block.data instanceof BlockRailwaySignTianjinBMT sign) {
+            type = (sign.length + (sign.isOdd ? 2 : 0)) % 4;
         } else {
             type = IBlock.getStatePropertySafe(stateBelow, TYPE);
         }
@@ -44,8 +44,8 @@ public abstract class BlockRailwaySignPoleMixin extends BlockPoleCheckBase
 
     @Override
     protected boolean isBlock(Block block) {
-        final boolean vanilla = block.data instanceof BlockRailwaySign && ((BlockRailwaySign) block.data).length > 0 || block.data instanceof BlockRailwaySignPole;
-        final boolean extended = block.data instanceof BlockRailwaySignTianjinBMT && ((BlockRailwaySignTianjinBMT) block.data).length > 0;
+        final boolean vanilla = block.data instanceof BlockRailwaySign sign && sign.length > 0 || block.data instanceof BlockRailwaySignPole;
+        final boolean extended = block.data instanceof BlockRailwaySignTianjinBMT sign && sign.length > 0;
         return vanilla || extended;
     }
 }

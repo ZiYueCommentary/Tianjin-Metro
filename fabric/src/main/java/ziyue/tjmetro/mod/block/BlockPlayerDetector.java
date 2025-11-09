@@ -60,14 +60,11 @@ public class BlockPlayerDetector extends BlockExtension implements DirectionHelp
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction direction = IBlock.getStatePropertySafe(state, FACING_NORMAL);
-        switch (direction) {
-            case UP:
-                return Block.createCuboidShape(6, 0, 6, 10, 1, 10);
-            case DOWN:
-                return Block.createCuboidShape(6, 15, 6, 10, 16, 10);
-            default:
-                return IBlock.getVoxelShapeByDirection(1.7, 2, 14.8, 14.3, 4, 17, direction);
-        }
+        return switch (direction) {
+            case UP -> Block.createCuboidShape(6, 0, 6, 10, 1, 10);
+            case DOWN -> Block.createCuboidShape(6, 15, 6, 10, 16, 10);
+            default -> IBlock.getVoxelShapeByDirection(1.7, 2, 14.8, 14.3, 4, 17, direction);
+        };
     }
 
     @Override

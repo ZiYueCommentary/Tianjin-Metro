@@ -10,7 +10,6 @@ import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.*;
 import org.mtr.mapping.tool.TextCase;
 import org.mtr.mod.InitClient;
-import org.mtr.mod.block.BlockPIDSBase;
 import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.client.MinecraftClientData;
 import org.mtr.mod.data.IGui;
@@ -35,8 +34,6 @@ public class PIDSTianjinConfigScreen extends ScreenExtension implements IGui
     private final int displayPage;
     private final ButtonWidgetExtension categoryButton;
     private final int filteredAdsCount;
-
-    private static final int TEXT_FIELDS_Y_OFFSET = SQUARE_SIZE * 8 + TEXT_FIELD_PADDING / 2;
 
     public PIDSTianjinConfigScreen(BlockPos blockPos) {
         super();

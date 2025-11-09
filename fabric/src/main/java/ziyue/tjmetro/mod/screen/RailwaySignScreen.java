@@ -99,8 +99,7 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
 
         if (world != null) {
             final BlockEntity entity = world.getBlockEntity(signPos);
-            if (entity != null && entity.data instanceof BlockRailwaySignBase.BlockEntityBase) {
-                final BlockRailwaySignBase.BlockEntityBase entity1 = (BlockRailwaySignBase.BlockEntityBase) entity.data;
+            if (entity != null && entity.data instanceof BlockRailwaySignBase.BlockEntityBase entity1) {
                 signIds = entity1.getSignIds();
                 selectedIds = entity1.getSelectedIds();
                 type = Type.RAILWAY_SIGN;
@@ -108,20 +107,16 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
                 signIds = new String[0];
                 selectedIds = new LongAVLTreeSet();
                 if (entity != null) {
-                    if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity) {
-                        final BlockStationNameEntranceTianjin.BlockEntity sign = (BlockStationNameEntranceTianjin.BlockEntity) entity.data;
+                    if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity sign) {
                         selectedIds.add(sign.getSelectedId());
                         type = Type.SINGLE_EXIT;
-                    } else if (entity.data instanceof BlockStationNamePlate.BlockEntity) {
-                        final BlockStationNamePlate.BlockEntity plate = (BlockStationNamePlate.BlockEntity) entity.data;
+                    } else if (entity.data instanceof BlockStationNamePlate.BlockEntity plate) {
                         selectedIds.add(plate.getPlatformId());
                         type = Type.SINGLE_PLATFORM;
-                    } else if (entity.data instanceof BlockRouteMapBMT.BlockEntity) {
-                        final BlockRouteMapBMT.BlockEntity routeMap = (BlockRouteMapBMT.BlockEntity) entity.data;
+                    } else if (entity.data instanceof BlockRouteMapBMT.BlockEntity routeMap) {
                         selectedIds.add(routeMap.getPlatformId());
                         type = Type.SINGLE_PLATFORM;
-                    } else if (entity.data instanceof BlockStationNameSignTianjin.BlockEntity) {
-                        final BlockStationNameSignTianjin.BlockEntity sign = (BlockStationNameSignTianjin.BlockEntity) entity.data;
+                    } else if (entity.data instanceof BlockStationNameSignTianjin.BlockEntity sign) {
                         selectedIds.add(sign.getPlatformId());
                         type = Type.SINGLE_PLATFORM;
                     } else {
@@ -132,8 +127,7 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
                 }
             }
             final Block block = world.getBlockState(signPos).getBlock();
-            if (block.data instanceof BlockRailwaySignBase) {
-                final BlockRailwaySignBase block1 = (BlockRailwaySignBase) block.data;
+            if (block.data instanceof BlockRailwaySignBase block1) {
                 length = block1.length;
             } else {
                 length = 0;
@@ -195,20 +189,15 @@ public class RailwaySignScreen extends ScreenExtension implements IGui
         addChild(new ClickableWidget(buttonNextPage));
 
         if (type != Type.RAILWAY_SIGN) {
-            final DashboardListSelectorScreen screen;
-            switch (type) {
-                case SINGLE_EXIT:
-                    screen = new DashboardListSelectorScreen(this::onClose2, exitsForList, selectedIds, true, false, null);
-                    break;
-                case SINGLE_PLATFORM:
-                    screen = new DashboardListSelectorScreen(this::onClose2, platformsForList, selectedIds, true, false, null);
-                    break;
-                case MULTIPLE_ROUTE:
-                    screen = new DashboardListSelectorScreen(this::onClose2, new ObjectImmutableList<>(routesForList), selectedIds, false, false, null);
-                    break;
-                default:
-                    throw new IllegalStateException("Unknown enum type: " + type);
-            }
+            final DashboardListSelectorScreen screen = switch (type) {
+                case SINGLE_EXIT ->
+                        new DashboardListSelectorScreen(this::onClose2, exitsForList, selectedIds, true, false, null);
+                case SINGLE_PLATFORM ->
+                        new DashboardListSelectorScreen(this::onClose2, platformsForList, selectedIds, true, false, null);
+                case MULTIPLE_ROUTE ->
+                        new DashboardListSelectorScreen(this::onClose2, new ObjectImmutableList<>(routesForList), selectedIds, false, false, null);
+                default -> throw new IllegalStateException("Unknown enum type: " + type);
+            };
             MinecraftClient.getInstance().openScreen(new Screen(screen));
         }
     }

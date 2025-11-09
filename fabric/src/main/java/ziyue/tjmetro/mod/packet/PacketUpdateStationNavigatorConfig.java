@@ -46,8 +46,7 @@ public final class PacketUpdateStationNavigatorConfig extends PacketHandler
     public void runServer(MinecraftServer minecraftServer, ServerPlayerEntity serverPlayerEntity) {
         final BlockEntity entity = serverPlayerEntity.getEntityWorld().getBlockEntity(blockPos);
         if (entity != null) {
-            if (entity.data instanceof BlockStationNavigator.BlockEntity) {
-                final BlockStationNavigator.BlockEntity entity1 = (BlockStationNavigator.BlockEntity) entity.data;
+            if (entity.data instanceof BlockStationNavigator.BlockEntity entity1) {
                 entity1.setData(selectedRoutes);
             }
         }

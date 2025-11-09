@@ -131,18 +131,13 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
         }
 
         protected static BlockEntityType<?> getType(int length) {
-            switch (length) {
-                case 4:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_4.get();
-                case 6:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_6.get();
-                case 8:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_8.get();
-                case 10:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_10.get();
-                default:
-                    return null;
-            }
+            return switch (length) {
+                case 4 -> BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_4.get();
+                case 6 -> BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_6.get();
+                case 8 -> BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_8.get();
+                case 10 -> BlockEntityTypes.RAILWAY_SIGN_WALL_DOUBLE_10.get();
+                default -> null;
+            };
         }
     }
 }

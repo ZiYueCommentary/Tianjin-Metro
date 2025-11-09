@@ -83,28 +83,18 @@ public class BlockRailwaySignWallBig extends BlockRailwaySignWall
         }
 
         public static BlockEntityType<?> getType(int length) {
-            switch (length) {
-                case 2:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_2.get();
-                case 3:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_3.get();
-                case 4:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_4.get();
-                case 5:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_5.get();
-                case 6:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_6.get();
-                case 7:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_7.get();
-                case 8:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_8.get();
-                case 9:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_9.get();
-                case 10:
-                    return BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_10.get();
-                default:
-                    return null;
-            }
+            return switch (length) {
+                case 2 -> BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_2.get();
+                case 3 -> BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_3.get();
+                case 4 -> BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_4.get();
+                case 5 -> BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_5.get();
+                case 6 -> BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_6.get();
+                case 7 -> BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_7.get();
+                case 8 -> BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_8.get();
+                case 9 -> BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_9.get();
+                case 10 -> BlockEntityTypes.RAILWAY_SIGN_WALL_BIG_10.get();
+                default -> null;
+            };
         }
     }
 }

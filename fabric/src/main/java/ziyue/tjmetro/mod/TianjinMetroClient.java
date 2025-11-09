@@ -1,7 +1,6 @@
 package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.holder.RenderLayer;
-import org.mtr.mod.render.RenderPSDAPGDoor;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.render.*;
 

@@ -1,7 +1,6 @@
 package ziyue.tjmetro.mod.packet;
 
 import org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongAVLTreeSet;
-import org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongArrayList;
 import org.mtr.mapping.holder.BlockEntity;
 import org.mtr.mapping.holder.BlockPos;
 import org.mtr.mapping.holder.MinecraftServer;
@@ -10,7 +9,6 @@ import org.mtr.mapping.registry.PacketHandler;
 import org.mtr.mapping.tool.PacketBufferReceiver;
 import org.mtr.mapping.tool.PacketBufferSender;
 import ziyue.tjmetro.mod.block.BlockPIDSTianjin;
-import ziyue.tjmetro.mod.block.BlockRoadblockSign;
 
 /**
  * @author ZiYueCommentary
@@ -52,8 +50,7 @@ public final class PacketUpdatePIDSTianjinConfig extends PacketHandler
     @Override
     public void runServer(MinecraftServer minecraftServer, ServerPlayerEntity serverPlayerEntity) {
         final BlockEntity entity = serverPlayerEntity.getEntityWorld().getBlockEntity(blockPos);
-        if ((entity != null) && (entity.data instanceof BlockPIDSTianjin.BlockEntity)) {
-            final BlockPIDSTianjin.BlockEntity entity1 = (BlockPIDSTianjin.BlockEntity) entity.data;
+        if ((entity != null) && (entity.data instanceof BlockPIDSTianjin.BlockEntity entity1)) {
             entity1.setData(platformIds, displayPage);
         }
     }

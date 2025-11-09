@@ -55,17 +55,13 @@ public class BlockMetalPoleBMT extends BlockCustomColorBase implements Direction
                 shouldConnect = true;
             }
         }
-        switch (direction) {
-            case NORTH:
-                return state.with(new Property<>(NORTH.data), shouldConnect);
-            case EAST:
-                return state.with(new Property<>(EAST.data), shouldConnect);
-            case SOUTH:
-                return state.with(new Property<>(SOUTH.data), shouldConnect);
-            case WEST:
-                return state.with(new Property<>(WEST.data), shouldConnect);
-        }
-        return state;
+        return switch (direction) {
+            case NORTH -> state.with(new Property<>(NORTH.data), shouldConnect);
+            case EAST -> state.with(new Property<>(EAST.data), shouldConnect);
+            case SOUTH -> state.with(new Property<>(SOUTH.data), shouldConnect);
+            case WEST -> state.with(new Property<>(WEST.data), shouldConnect);
+            default -> state;
+        };
     }
 
     @Nonnull

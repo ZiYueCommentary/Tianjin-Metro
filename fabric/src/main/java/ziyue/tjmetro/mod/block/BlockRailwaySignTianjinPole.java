@@ -54,20 +54,14 @@ public class BlockRailwaySignTianjinPole extends BlockPoleCheckBase
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-        switch (IBlock.getStatePropertySafe(state, TYPE)) {
-            case 0:
-                return IBlock.getVoxelShapeByDirection(3, 0, 7.5, 4, 16, 8.5, facing);
-            case 1:
-                return IBlock.getVoxelShapeByDirection(15, 0, 7.5, 16, 16, 8.5, facing);
-            case 2:
-                return IBlock.getVoxelShapeByDirection(11, 0, 7.5, 12, 16, 8.5, facing);
-            case 3:
-                return IBlock.getVoxelShapeByDirection(7, 0, 7.5, 8, 16, 8.5, facing);
-            case 4:
-                return IBlock.getVoxelShapeByDirection(7.5, 0, 7.5, 8.5, 16, 8.5, facing);
-            default:
-                return VoxelShapes.fullCube();
-        }
+        return switch (IBlock.getStatePropertySafe(state, TYPE)) {
+            case 0 -> IBlock.getVoxelShapeByDirection(3, 0, 7.5, 4, 16, 8.5, facing);
+            case 1 -> IBlock.getVoxelShapeByDirection(15, 0, 7.5, 16, 16, 8.5, facing);
+            case 2 -> IBlock.getVoxelShapeByDirection(11, 0, 7.5, 12, 16, 8.5, facing);
+            case 3 -> IBlock.getVoxelShapeByDirection(7, 0, 7.5, 8, 16, 8.5, facing);
+            case 4 -> IBlock.getVoxelShapeByDirection(7.5, 0, 7.5, 8.5, 16, 8.5, facing);
+            default -> VoxelShapes.fullCube();
+        };
     }
 
     @Override

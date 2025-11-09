@@ -9,7 +9,6 @@ import org.mtr.mapping.registry.PacketHandler;
 import org.mtr.mapping.tool.PacketBufferReceiver;
 import org.mtr.mapping.tool.PacketBufferSender;
 import ziyue.tjmetro.mod.block.BlockRailwaySignWallDouble;
-import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +71,7 @@ public final class PacketUpdateRailwaySignDoubleConfig extends PacketHandler
     public void runServer(MinecraftServer minecraftServer, ServerPlayerEntity serverPlayerEntity) {
         final BlockEntity entity = serverPlayerEntity.getEntityWorld().getBlockEntity(blockPos);
         if (entity != null) {
-            if (entity.data instanceof BlockRailwaySignWallDouble.BlockEntity) {
-                final BlockRailwaySignWallDouble.BlockEntity entity1 = (BlockRailwaySignWallDouble.BlockEntity) entity.data;
+            if (entity.data instanceof BlockRailwaySignWallDouble.BlockEntity entity1) {
                 entity1.setData(selectedIds, signIds);
             }
         }

@@ -31,7 +31,6 @@ public class BlockAPGGlassTianjinBMT extends BlockAPGGlass implements BlockFlagA
     @Nonnull
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        final double y = hit.getPos().getYMapped();
         if (IBlock.getStatePropertySafe(state, HALF) == DoubleBlockHalf.UPPER) {
             return IBlock.checkHoldingItem(world, player, item -> {
                 if (item.data == ItemList.WRENCH.get().data) {
@@ -125,16 +124,12 @@ public class BlockAPGGlassTianjinBMT extends BlockAPGGlass implements BlockFlagA
         }
 
         public static EnumDoorType byId(int id) {
-            switch (id) {
-                case 0:
-                    return ROUTE;
-                case 1:
-                    return STATION_NAME;
-                case 2:
-                    return NEXT_STATION;
-                default:
-                    throw new IllegalStateException();
-            }
+            return switch (id) {
+                case 0 -> ROUTE;
+                case 1 -> STATION_NAME;
+                case 2 -> NEXT_STATION;
+                default -> throw new IllegalStateException();
+            };
         }
 
         @Nonnull

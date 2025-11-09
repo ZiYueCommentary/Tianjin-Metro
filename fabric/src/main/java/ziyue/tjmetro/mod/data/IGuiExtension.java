@@ -62,14 +62,11 @@ public interface IGuiExtension
      * @since 1.0.0-beta-1
      */
     static String mergeTranslation(String keyCJK, String key) {
-        switch (Config.getClient().getLanguageDisplay()) {
-            default:
-                return TextHelper.translatable(keyCJK).getString() + "|" + TextHelper.translatable(key).getString();
-            case CJK_ONLY:
-                return TextHelper.translatable(keyCJK).getString();
-            case NON_CJK_ONLY:
-                return TextHelper.translatable(key).getString();
-        }
+        return switch (Config.getClient().getLanguageDisplay()) {
+            case CJK_ONLY -> TextHelper.translatable(keyCJK).getString();
+            case NON_CJK_ONLY -> TextHelper.translatable(key).getString();
+            default -> TextHelper.translatable(keyCJK).getString() + "|" + TextHelper.translatable(key).getString();
+        };
     }
 
     /**
@@ -153,11 +150,8 @@ public interface IGuiExtension
             }
         });
 
-        if (result.length() > 0) {
-            return result.substring(1);
-        } else {
-            return "";
-        }
+        if (result.isEmpty()) return "";
+        return result.substring(1);
     }
 
     /**

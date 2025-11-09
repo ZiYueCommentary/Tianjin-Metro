@@ -13,7 +13,6 @@ import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
 import ziyue.tjmetro.mod.block.BlockStationNamePlate;
 import ziyue.tjmetro.mod.block.BlockStationNameSignTianjin;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
-import ziyue.tjmetro.mod.render.RenderStationNameEntranceTianjin;
 
 /**
  * @author ZiYueCommentary
@@ -66,23 +65,18 @@ public final class PacketUpdateRailwaySignConfig extends PacketHandler
     public void runServer(MinecraftServer minecraftServer, ServerPlayerEntity serverPlayerEntity) {
         final BlockEntity entity = serverPlayerEntity.getEntityWorld().getBlockEntity(blockPos);
         if (entity != null) {
-            if (entity.data instanceof BlockRailwaySignBase.BlockEntityBase) {
-                final BlockRailwaySignBase.BlockEntityBase entity1 = (BlockRailwaySignBase.BlockEntityBase) entity.data;
+            if (entity.data instanceof BlockRailwaySignBase.BlockEntityBase entity1) {
                 entity1.setData(selectedIds, signIds);
-            } else if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity) {
-                final BlockStationNameEntranceTianjin.BlockEntity entity1 = (BlockStationNameEntranceTianjin.BlockEntity) entity.data;
+            } else if (entity.data instanceof BlockStationNameEntranceTianjin.BlockEntity entity1) {
                 final long platformId = selectedIds.isEmpty() ? -1 : (long) selectedIds.toArray()[0];
                 entity1.setData(platformId);
-            } else if (entity.data instanceof BlockStationNamePlate.BlockEntity) {
-                final BlockStationNamePlate.BlockEntity entity1 = (BlockStationNamePlate.BlockEntity) entity.data;
+            } else if (entity.data instanceof BlockStationNamePlate.BlockEntity entity1) {
                 final long platformId = selectedIds.isEmpty() ? 0 : (long) selectedIds.toArray()[0];
                 entity1.setPlatformId(platformId);
-            } else if (entity.data instanceof BlockRouteMapBMT.BlockEntity) {
-                final BlockRouteMapBMT.BlockEntity entity1 = (BlockRouteMapBMT.BlockEntity) entity.data;
+            } else if (entity.data instanceof BlockRouteMapBMT.BlockEntity entity1) {
                 final long platformId = selectedIds.isEmpty() ? 0 : (long) selectedIds.toArray()[0];
                 entity1.setPlatformId(platformId);
-            } else if (entity.data instanceof BlockStationNameSignTianjin.BlockEntity) {
-                final BlockStationNameSignTianjin.BlockEntity entity1 = (BlockStationNameSignTianjin.BlockEntity) entity.data;
+            } else if (entity.data instanceof BlockStationNameSignTianjin.BlockEntity entity1) {
                 final long platformId = selectedIds.isEmpty() ? 0 : (long) selectedIds.toArray()[0];
                 entity1.setData(platformId);
             }

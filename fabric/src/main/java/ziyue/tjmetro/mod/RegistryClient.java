@@ -41,8 +41,7 @@ public final class RegistryClient
         for (BlockRegistryObject block : blocks) {
             REGISTRY_CLIENT.registerBlockColors((state, world, pos, tintIndex) -> {
                 try {
-                    if (world.getBlockEntity(pos).data instanceof BlockCustomColorBase.BlockEntityBase) {
-                        final BlockCustomColorBase.BlockEntityBase entity = (BlockCustomColorBase.BlockEntityBase) world.getBlockEntity(pos).data;
+                    if (world.getBlockEntity(pos).data instanceof BlockCustomColorBase.BlockEntityBase entity) {
                         return entity.color == -1 ? entity.getDefaultColor(pos) : entity.color;
                     }
                 } catch (Exception ignored) {

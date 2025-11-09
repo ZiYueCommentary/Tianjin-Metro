@@ -157,22 +157,7 @@ public class ConfigClient
         }
     }
 
-    public static final class Footer
+    public record Footer(Supplier<MutableText> text, String link)
     {
-        private final Supplier<MutableText> text;
-        private final String link;
-
-        public Footer(Supplier<MutableText> text, String link) {
-            this.text = text;
-            this.link = link;
-        }
-
-        public Supplier<MutableText> text() {
-            return text;
-        }
-
-        public String link() {
-            return link;
-        }
     }
 }
