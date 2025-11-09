@@ -6,7 +6,8 @@
     "mixins": [
         "AbstractMinecartContainerMixin",
         "FallingBlockMixin",
-        "GameRuleBooleanAccessor"
+        "GameRuleBooleanAccessor",
+        "GameRuleIntegerAccessor"
     ],
     "injectors": {
         "defaultRequire": 1

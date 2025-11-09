@@ -2,8 +2,6 @@ package ziyue.tjmetro.mod;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ziyue.tjmetro.mapping.BooleanGameRule;
-import ziyue.tjmetro.mapping.GameRuleRegistry;
 import ziyue.tjmetro.mapping.ModLoaderHelper;
 import ziyue.tjmetro.mod.packet.*;
 
@@ -14,8 +12,6 @@ import ziyue.tjmetro.mod.packet.*;
 public final class TianjinMetro
 {
     public static final Logger LOGGER = LogManager.getLogger(Reference.NAME);
-
-    public static final BooleanGameRule NO_FALLING_BLOCK = GameRuleRegistry.registerBoolean("preventBlockFalling", false);
 
     public static void init() {
         LOGGER.info("--------------- " + Reference.NAME + " ---------------");
@@ -31,6 +27,7 @@ public final class TianjinMetro
         ItemList.registerItems();
         BlockEntityTypes.registerBlockEntities();
         EntityTypes.registerEntities();
+        GameRules.registerGameRules();
 
         Registry.setupPackets("packet");
         Registry.registerPacket(PacketOpenBlockEntityScreen.class, PacketOpenBlockEntityScreen::new);

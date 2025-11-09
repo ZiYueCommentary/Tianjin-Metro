@@ -5,7 +5,9 @@ import org.mtr.mapping.mapper.*;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
+import ziyue.tjmetro.mapping.IntegerGameRule;
 import ziyue.tjmetro.mod.BlockEntityTypes;
+import ziyue.tjmetro.mod.GameRules;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nonnull;
@@ -95,7 +97,9 @@ public class BlockPlayerDetector extends BlockExtension implements DirectionHelp
 
         @Override
         public void blockEntityTick() {
-            final PlayerEntity player = this.getWorld2().getClosestPlayer(this.getPos2().getX(), this.getPos2().getY(), this.getPos2().getZ(), 3, false);
+            if (this.getWorld2().isClient()) return;
+
+            final PlayerEntity player = this.getWorld2().getClosestPlayer(this.getPos2().getX(), this.getPos2().getY(), this.getPos2().getZ(), IntegerGameRule.getValue(ServerWorld.cast(this.getWorld2()), GameRules.PLAYER_DETECT_RANGE), false);
             final boolean powered = player != null;
             if (powered != IBlock.getStatePropertySafe(this.getCachedState2(), POWERED)) {
                 this.getWorld2().setBlockState(this.getPos2(), this.getCachedState2().with(new Property<>(POWERED.data), powered));

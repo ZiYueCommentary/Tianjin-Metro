@@ -218,5 +218,7 @@
     "filter.tjmetro.tianjin_railway_signs": "Railway Signs",
 
     "gamerule.preventBlockFalling": "Prevent Block Falling",
-    "gamerule.preventBlockFalling.description": "Prevent blocks to fall, such as sands and anvils. This rule was added by Tianjin Metro mod."
+    "gamerule.preventBlockFalling.description": "Prevent blocks to fall, such as sands and anvils. This rule was added by Tianjin Metro mod.",
+    "gamerule.playerDetectRange": "Player Detect Range",
+    "gamerule.playerDetectRange.description": "The detection radius of Player Detector. This rule was added by Tianjin Metro mod."
 }

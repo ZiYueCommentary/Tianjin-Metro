@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.mapping.BooleanGameRule;
-import ziyue.tjmetro.mod.TianjinMetro;
+import ziyue.tjmetro.mod.GameRules;
 
 /**
  * @author ZiYueCommentary
@@ -31,7 +31,7 @@ public abstract class FallingBlockMixin extends Block
     private void beforeScheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random, CallbackInfo ci)
 #endif
     {
-        if (BooleanGameRule.getValue(new org.mtr.mapping.holder.ServerWorld(world), TianjinMetro.NO_FALLING_BLOCK)) {
+        if (BooleanGameRule.getValue(new org.mtr.mapping.holder.ServerWorld(world), GameRules.NO_FALLING_BLOCK)) {
             ci.cancel();
         }
     }
