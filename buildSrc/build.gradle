@@ -4,7 +4,7 @@ repositories {
 
 dependencies {
 	implementation "com.google.code.gson:gson:+"
-	implementation "commons-io:commons-io:+"
+	implementation "commons-io:commons-io:2.20.+"
 }
 
 java {
