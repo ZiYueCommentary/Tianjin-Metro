@@ -203,5 +203,8 @@
     "advertisement.tjmetro.description": "天津地铁模组的默认广告。",
     "gui.tjmetro.bound_for_pids": "To: %s",
     "advertisement.tjmetro.banner": "天津地铁模组是 Minecraft Transit Railway 的综合性拓展模组，其中包括各种取自现实天津地铁的新内容。",
-    "sign.tjmetro.self_service_ticketing": "自助购票|Self-Service Ticketing"
+    "sign.tjmetro.self_service_ticketing": "自助购票|Self-Service Ticketing",
+    "button.tjmetro.duplicate_siding_settings": "复制设置到其他侧线",
+    "config.tjmetro.dynamic_texture_max_size": "动态纹理最大大小",
+    "tooltip.tjmetro.dynamic_texture_max_size": "超出该限制的动态纹理将被截断。如果你遇到此类问题，请谨慎调整此设置。"
 }
