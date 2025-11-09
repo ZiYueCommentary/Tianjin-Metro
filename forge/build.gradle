@@ -1,7 +1,7 @@
 import ziyue.tjmetro.buildtools.BuildTools
 
 plugins {
-    id "net.minecraftforge.gradle" version "6.0.36"
+    id "net.minecraftforge.gradle" version "6.+"
     id "org.spongepowered.mixin" version "+"
 }
 
