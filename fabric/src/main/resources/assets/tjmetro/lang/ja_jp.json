@@ -202,5 +202,11 @@
     "advertisement.tjmetro.bde": "Bomb Disposal Expert は、爆弾やクリーパーを処分できる MOD です。",
     "gui.tjmetro.arriving_cjk": "まもなく",
     "sign.tjmetro.to_train_bmt": "ホーム|To Train",
-    "tooltip.tjmetro.pids_tianjin": "カスタマイズ可能な広告部分を持つPIDS。サインシステムの支柱(天津地下鉄)を利用してポールを延長。"
+    "tooltip.tjmetro.pids_tianjin": "カスタマイズ可能な広告部分を持つPIDS。サインシステムの支柱(天津地下鉄)を利用してポールを延長。",
+    "sign.tjmetro.self_service_ticketing": "自動券売機|Self-Service Ticketing",
+    "button.tjmetro.duplicate_siding_settings": "側線の設定をコピー",
+    "config.tjmetro.dynamic_texture_max_size": "動的テクスチャ最大サイズ",
+    "tooltip.tjmetro.dynamic_texture_max_size": "制限を超える動的テクスチャは切り捨てられます。この問題が発生する場合は、慎重に調整してください。",
+    "gamerule.playerDetectRange": "プレイヤー検出範囲",
+    "gamerule.playerDetectRange.description": "センサーの検知範囲。このルールはTianjin Metro modによって追加されました。"
 }
