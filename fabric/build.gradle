@@ -1,7 +1,7 @@
 import ziyue.tjmetro.buildtools.BuildTools
 
 plugins {
-    id 'fabric-loom' version '+'
+    id 'fabric-loom' version '1.10-SNAPSHOT'
 }
 
 final BuildTools buildTools = new BuildTools(minecraft_version)
@@ -34,7 +34,7 @@ dependencies {
         }
     }
     modImplementation "org.mtr:MTR-fabric:${mtr_version}+${minecraft_version}-server"
-    annotationProcessor 'systems.manifold:manifold-preprocessor:+'
+    annotationProcessor 'systems.manifold:manifold-preprocessor:2023.1.33'
 }
 
 repositories {

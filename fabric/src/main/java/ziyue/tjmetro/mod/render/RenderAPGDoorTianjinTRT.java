@@ -13,6 +13,7 @@ import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.block.BlockAPGDoorTianjinTRT;
+import ziyue.tjmetro.mod.block.BlockAPGGlassTianjinTRT;
 
 /**
  * @author ZiYueCommentary
@@ -54,7 +55,7 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         // Traditional lights.
         if (half) {
             final Block sideBlock = world.getBlockState(blockPos.offset(side ? facing.rotateYClockwise() : facing.rotateYCounterclockwise())).getBlock();
-            if (sideBlock.data instanceof BlockAPGGlass || sideBlock.data instanceof BlockAPGGlassEnd) {
+            if (sideBlock.data instanceof BlockAPGGlassTianjinTRT) {
                 if (open > 0) {
                     tryUpdateLightState(world, blockPos, BlockAPGDoorTianjinTRT.LightProperty.LIGHT_ON);
                 } else {
