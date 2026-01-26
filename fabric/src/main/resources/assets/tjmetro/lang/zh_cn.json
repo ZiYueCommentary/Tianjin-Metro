@@ -208,5 +208,5 @@
     "config.tjmetro.dynamic_texture_max_size": "动态纹理最大大小",
     "tooltip.tjmetro.dynamic_texture_max_size": "超出该限制的动态纹理将被截断。如果你遇到此类问题，请谨慎调整此设置。",
     "gamerule.playerDetectRange": "玩家检测范围",
-    "gamerule.playerDetectRange.description": "此项用于控制玩家检测器的检测半径，此规则由天津地铁mod添加。"
+    "gamerule.playerDetectRange.description": "设置玩家侦测器的检测半径。此规则由天津地铁模组添加。"
 }
