@@ -90,6 +90,7 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockRouteMapBMT.BlockEntity> ROUTE_MAP_BMT = Registry.registerBlockEntityType("route_map_bmt", BlockRouteMapBMT.BlockEntity::new, BlockList.ROUTE_MAP_BMT::get);
     BlockEntityTypeRegistryObject<BlockStationNameSignTianjin.BlockEntity> STATION_NAME_SIGN_TIANJIN = Registry.registerBlockEntityType("station_name_sign_tianjin", BlockStationNameSignTianjin.BlockEntity::new, BlockList.STATION_NAME_SIGN_TIANJIN::get);
     BlockEntityTypeRegistryObject<BlockPIDSTianjin.BlockEntity> PIDS_TIANJIN = Registry.registerBlockEntityType("pids_tianjin", BlockPIDSTianjin.BlockEntity::new, BlockList.PIDS_TIANJIN::get);
+    BlockEntityTypeRegistryObject<BlockSmokeAlarm.BlockEntity> SMOKE_ALARM = Registry.registerBlockEntityType("smoke_alarm", BlockSmokeAlarm.BlockEntity::new, BlockList.SMOKE_ALARM::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

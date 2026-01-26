@@ -169,6 +169,7 @@ public interface BlockList
     BlockRegistryObject TRASH_CAN = Registry.registerBlockWithBlockItem("trash_can", () -> new Block(new BlockTrashCan()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject STATION_NAME_SIGN_TIANJIN = Registry.registerBlockWithBlockItem("station_name_sign_tianjin", () -> new Block(new BlockStationNameSignTianjin()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject PIDS_TIANJIN = Registry.registerBlockWithBlockItem("pids_tianjin", () -> new Block(new BlockPIDSTianjin()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject SMOKE_ALARM = Registry.registerBlockWithBlockItem("smoke_alarm", () -> new Block(new BlockSmokeAlarm()), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants

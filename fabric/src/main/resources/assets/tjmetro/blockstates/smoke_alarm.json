@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "activated=false": { "model": "tjmetro:block/smoke_alarm_off" },
+        "activated=true": { "model": "tjmetro:block/smoke_alarm_on" }
+    }
+}

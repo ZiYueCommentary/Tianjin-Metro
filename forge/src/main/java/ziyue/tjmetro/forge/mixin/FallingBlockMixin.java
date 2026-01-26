@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.mapping.BooleanGameRule;
-import ziyue.tjmetro.mod.TianjinMetro;
+import ziyue.tjmetro.mod.GameRules;
 
 #if MC_VERSION <= "11605"
 import net.minecraft.block.Block;
@@ -24,7 +24,7 @@ public abstract class FallingBlockMixin extends Block
 
     @Inject(at = @At("HEAD"), method = "tick", cancellable = true)
     private void beforeTick(BlockState p_225534_1_, ServerWorld world, BlockPos p_225534_3_, Random p_225534_4_, CallbackInfo ci) {
-        if (BooleanGameRule.getValue(new org.mtr.mapping.holder.ServerWorld(world), TianjinMetro.NO_FALLING_BLOCK)) {
+        if (BooleanGameRule.getValue(new org.mtr.mapping.holder.ServerWorld(world), GameRules.NO_FALLING_BLOCK)) {
             ci.cancel();
         }
     }
@@ -57,7 +57,7 @@ public abstract class FallingBlockMixin extends Block implements Fallable
 #else
     private void beforeTick(BlockState p_53216_, ServerLevel world, BlockPos p_53218_, Random p_53219_, CallbackInfo ci)
 #endif {
-        if (BooleanGameRule.getValue(new org.mtr.mapping.holder.ServerWorld(world), TianjinMetro.NO_FALLING_BLOCK)) {
+        if (BooleanGameRule.getValue(new org.mtr.mapping.holder.ServerWorld(world), GameRules.NO_FALLING_BLOCK)) {
             ci.cancel();
         }
     }

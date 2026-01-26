@@ -1,8 +1,10 @@
 package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.holder.RenderLayer;
+import ziyue.tjmetro.mod.block.BlockSmokeAlarm;
 import ziyue.tjmetro.mod.config.ConfigClient;
 import ziyue.tjmetro.mod.render.*;
+import ziyue.tjmetro.mod.sound.LoopingSoundInstance;
 
 /**
  * @since 1.0.0-beta-1
@@ -10,6 +12,8 @@ import ziyue.tjmetro.mod.render.*;
 
 public final class TianjinMetroClient
 {
+    public static final LoopingSoundInstance SMOKE_ALARM_SOUND_INSTANCE = new LoopingSoundInstance("smoke_alarm");
+
     public static void init() {
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.LOGO);
         RegistryClient.registerBlockRenderType(RenderLayer.getCutout(), BlockList.STATION_NAME_SIGN_1);
@@ -138,6 +142,8 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockCustomColor(BlockList.CUSTOM_COLOR_CONCRETE, BlockList.CUSTOM_COLOR_CONCRETE_SLAB, BlockList.CUSTOM_COLOR_CONCRETE_STAIRS);
         RegistryClient.registerBlockCustomColor(BlockList.METAL_POLE_BMT);
         RegistryClient.registerItemCustomColor(0xfff100, BlockList.METAL_POLE_BMT, "metal_pole_bmt");
+
+        BlockSmokeAlarm.BlockEntity.updateSoundSource = SMOKE_ALARM_SOUND_INSTANCE::setPos;
 
         RegistryClient.setupPackets("packet");
 

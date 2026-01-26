@@ -2,12 +2,13 @@
     "required": true,
     "minVersion": "0.8",
     "package": "ziyue.tjmetro.forge.mixin",
-    "compatibilityLevel": "JAVA_8",
+    "compatibilityLevel": "JAVA_16",
     "mixins": [
         "AbstractMinecartContainerMixin",
         "FallingBlockMixin",
         "GameRuleBooleanAccessor",
-        "GameRuleIntegerAccessor"
+        "GameRuleIntegerAccessor",
+        "LevelChunkMixin"
     ],
     "injectors": {
         "defaultRequire": 1

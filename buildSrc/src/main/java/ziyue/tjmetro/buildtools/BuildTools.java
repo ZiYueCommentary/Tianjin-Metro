@@ -16,8 +16,7 @@ public class BuildTools
 
     public BuildTools(String minecraftVersion) {
         this.minecraftVersion = minecraftVersion;
-        int majorVersion = Integer.parseInt(minecraftVersion.split("\\.")[1]);
-        javaLanguageVersion = majorVersion == 17 ? 16 : 17;
+        javaLanguageVersion = 17;
         JsonObject json = getJson("https://files.ziyuesinicization.site/tjmetro/dependencies.json").getAsJsonObject();
         JsonObject versionSpecificJson = json.get(minecraftVersion).getAsJsonObject();
         dependencies = new Dependencies(

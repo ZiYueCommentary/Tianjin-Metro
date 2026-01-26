@@ -8,7 +8,7 @@ import org.mtr.mapping.tool.HolderBase;
  * @since 1.1.0
  */
 
-#if MC_VERSION<="11605"
+#if MC_VERSION <= "11605"
 import net.minecraft.world.GameRules;
 
 public class IntegerGameRule extends HolderBase<GameRules.RuleKey<GameRules.IntegerValue>>
@@ -18,7 +18,7 @@ public class IntegerGameRule extends HolderBase<GameRules.RuleKey<GameRules.Inte
     }
 
     public static int getValue(ServerWorld world, IntegerGameRule rule) {
-        return world.data.getGameRules().getInteger(rule.data);
+        return world.data.getGameRules().getInt(rule.data);
     }
 }
 #else
@@ -31,7 +31,7 @@ public class IntegerGameRule extends HolderBase<GameRules.Key<GameRules.IntegerV
     }
 
     public static int getValue(ServerWorld world, IntegerGameRule rule) {
-        return world.data.getGameRules().getInteger(rule.data);
+        return world.data.getGameRules().getInt(rule.data);
     }
 }
 #endif

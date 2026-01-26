@@ -1,0 +1,10 @@
+{
+    "smoke_alarm": {
+        "sounds": [
+            {
+                "name": "tjmetro:smoke_alarm",
+                "pitch": 1
+            }
+        ]
+    }
+}

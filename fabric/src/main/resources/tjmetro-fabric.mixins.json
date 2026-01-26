@@ -2,9 +2,10 @@
     "required": true,
     "minVersion": "0.8",
     "package": "ziyue.tjmetro.fabric.mixin",
-    "compatibilityLevel": "JAVA_8",
+    "compatibilityLevel": "JAVA_16",
     "mixins": [
         "FallingBlockMixin",
+        "WorldChunkMixin",
         "StorageMinecartEntityMixin"
     ],
     "injectors": {
