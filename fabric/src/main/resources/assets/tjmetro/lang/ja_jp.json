@@ -98,7 +98,7 @@
     "sign.tjmetro.railway_station": "駅|Railway Station",
     "sign.tjmetro.fare_adjustment": "乗り越し精算|Fare Adjustment",
     "button.tjmetro.click_here": " ",
-    "block.tjmetro.service_corridor_sign": "従業員用通路(Serivce Corridor)の標識",
+    "block.tjmetro.service_corridor_sign": "従業員用通路(Service Corridor)の標識",
     "block.tjmetro.station_name_entrance_tianjin_bmt": "駅名標(入口・天津地下鉄9号線)",
     "block.tjmetro.psd_tianjin_bmt": "フルスクリーンホームドア(天津地下鉄9号線)",
     "gui.tjmetro.contact_station_for_help_cjk": "お手伝いの必要な方はお気軽に駅員にご連絡ください",
@@ -188,9 +188,9 @@
     "gui.tjmetro.arrived": "Arrived",
     "gui.tjmetro.arrived_cjk": "停車中",
     "gui.tjmetro.minute_cjk": "分",
-    "gui.tjmetro.minute": "minute",
+    "gui.tjmetro.minute": "minutes",
     "gui.tjmetro.second_cjk": "秒",
-    "gui.tjmetro.second": "second",
+    "gui.tjmetro.second": "seconds",
     "gui.tjmetro.next_train_cjk": "つぎの電車",
     "gui.tjmetro.next_train": "Next Train",
     "gui.tjmetro.filtered_ads": "表示する広告の絞り込み (%s)",
@@ -208,5 +208,6 @@
     "config.tjmetro.dynamic_texture_max_size": "動的テクスチャ最大サイズ",
     "tooltip.tjmetro.dynamic_texture_max_size": "制限を超える動的テクスチャは切り捨てられます。この問題が発生する場合は、慎重に調整してください。",
     "gamerule.playerDetectRange": "プレイヤー検出範囲",
-    "gamerule.playerDetectRange.description": "センサーの検知範囲。このルールはTianjin Metro modによって追加されました。"
+    "gamerule.playerDetectRange.description": "センサーの検知範囲。このルールはTianjin Metro modによって追加されました。",
+    "block.tjmetro.smoke_alarm": "火災報知器"
 }
