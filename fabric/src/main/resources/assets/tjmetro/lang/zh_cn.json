@@ -106,7 +106,7 @@
     "itemGroup.tjmetro.tianjin_metro": "天津地铁",
     "block.tjmetro.psd_tianjin_bmt": "高站台门（天津、9号线）",
     "block.tjmetro.apg_tianjin_trt": "低站台门（天津、1号线）",
-    "tooltip.tjmetro.player_detector": "检测2格内的玩家，并放出红石信号。",
+    "tooltip.tjmetro.player_detector": "检测范围内的玩家，并放出红石信号。可在游戏规则内修改侦测范围。",
     "tooltip.tjmetro.roadblock_sign": "用扳手或刷子可以修改其显示内容。",
     "tooltip.tjmetro.psd_apg_tianjin": "用扳手改变其顶部的显示内容，并用刷子改变其箭头方向。",
     "tooltip.tjmetro.railway_sign_bmt": "用MTR模组的指示牌柱可以加长其柱子。",
@@ -209,5 +209,6 @@
     "tooltip.tjmetro.dynamic_texture_max_size": "超出该限制的动态纹理将被截断。如果你遇到此类问题，请谨慎调整此设置。",
     "gamerule.playerDetectRange": "玩家检测范围",
     "gamerule.playerDetectRange.description": "设置玩家侦测器的检测半径。此规则由天津地铁模组添加。",
-    "block.tjmetro.smoke_alarm": "烟雾报警器"
+    "block.tjmetro.smoke_alarm": "烟雾报警器",
+    "tooltip.tjmetro.smoke_alarm": "检测范围内的火，并放出红石信号。可在游戏规则内修改侦测范围。"
 }
