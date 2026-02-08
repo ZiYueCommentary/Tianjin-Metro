@@ -134,17 +134,14 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
             final String destinationFormatted;
             final float yOffset = i * 45F;
 
-            switch (arrivalResponse.getCircularState()) {
-                case CLOCKWISE:
-                    destinationFormatted = (isCjk ? TranslationProvider.GUI_MTR_CLOCKWISE_VIA_CJK : TranslationProvider.GUI_MTR_CLOCKWISE_VIA).getString(destination);
-                    break;
-                case ANTICLOCKWISE:
-                    destinationFormatted = (isCjk ? TranslationProvider.GUI_MTR_ANTICLOCKWISE_VIA_CJK : TranslationProvider.GUI_MTR_ANTICLOCKWISE_VIA).getString(destination);
-                    break;
-                default:
-                    destinationFormatted = isCjk ? TextHelper.translatable("gui.tjmetro.bound_for_pids_cjk", destination).getString() : TextHelper.translatable("gui.tjmetro.bound_for_pids", destination).getString();
-                    break;
-            }
+            destinationFormatted = switch (arrivalResponse.getCircularState()) {
+                case CLOCKWISE ->
+                        (isCjk ? TranslationProvider.GUI_MTR_CLOCKWISE_VIA_CJK : TranslationProvider.GUI_MTR_CLOCKWISE_VIA).getString(destination);
+                case ANTICLOCKWISE ->
+                        (isCjk ? TranslationProvider.GUI_MTR_ANTICLOCKWISE_VIA_CJK : TranslationProvider.GUI_MTR_ANTICLOCKWISE_VIA).getString(destination);
+                default ->
+                        isCjk ? TextHelper.translatable("gui.tjmetro.bound_for_pids_cjk", destination).getString() : TextHelper.translatable("gui.tjmetro.bound_for_pids", destination).getString();
+            };
 
             renderText(graphicsHolder, isCjk ? TextHelper.translatable(i == 0 ? "gui.tjmetro.this_train_cjk" : "gui.tjmetro.next_train_cjk").getString() : TextHelper.translatable(i == 0 ? "gui.tjmetro.this_train" : "gui.tjmetro.next_train").getString(), HorizontalAlignment.CENTER, VerticalAlignment.TOP, LEFT_TEXT_X_CENTER, 8F + yOffset, LEFT_TEXT_MAX_WIDTH, 1.5F, ARGB_WHITE);
             renderText(graphicsHolder, destinationFormatted, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, LEFT_TEXT_X_CENTER, 45F + yOffset, LEFT_TEXT_MAX_WIDTH, 1.3F, ARGB_WHITE);

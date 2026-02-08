@@ -7,7 +7,6 @@ import org.mtr.mapping.holder.World;
 import org.mtr.mapping.mapper.BlockEntityRenderer;
 import org.mtr.mapping.mapper.DirectionHelper;
 import org.mtr.mapping.mapper.GraphicsHolder;
-import org.mtr.mod.InitClient;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.client.MinecraftClientData;
@@ -15,11 +14,8 @@ import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
-import ziyue.tjmetro.mod.block.BlockStationNamePlate;
 import ziyue.tjmetro.mod.block.BlockStationNameSignTianjin;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;
-
-import static ziyue.tjmetro.mod.block.BlockStationNamePlate.ARROW_DIRECTION;
 
 /**
  * @author ZiYueCommentary

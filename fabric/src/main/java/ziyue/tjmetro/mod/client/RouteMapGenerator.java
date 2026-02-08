@@ -1577,16 +1577,15 @@ public class RouteMapGenerator implements IGui
         try {
             final int size = scale / 2;
             final boolean noNumber = exitNumber.isEmpty();
-            final int textSize = size;
 
-            final DynamicTextureCache.Text letter = DynamicTextureCache.instance.getText(exitLetter, noNumber ? textSize : textSize * 2 / 3, textSize, textSize, size, size, HorizontalAlignment.CENTER, forceMTRFont);
-            final DynamicTextureCache.Text number = noNumber ? null : DynamicTextureCache.instance.getText(exitNumber, textSize / 3, textSize, textSize / 2, textSize / 2, size, HorizontalAlignment.CENTER, forceMTRFont);
+            final DynamicTextureCache.Text letter = DynamicTextureCache.instance.getText(exitLetter, noNumber ? size : size * 2 / 3, size, size, size, size, HorizontalAlignment.CENTER, forceMTRFont);
+            final DynamicTextureCache.Text number = noNumber ? null : DynamicTextureCache.instance.getText(exitNumber, size / 3, size, size / 2, size / 2, size, HorizontalAlignment.CENTER, forceMTRFont);
 
             final NativeImage nativeImage = new NativeImage(NativeImageFormat.RGBA, size, size, false);
             DrawingHelper.fillRectSafe(nativeImage, 0, 0, size, size, 0);
-            DrawingHelper.drawString(nativeImage, letter, size / 2 - (noNumber ? 0 : textSize / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, textColor, false);
+            DrawingHelper.drawString(nativeImage, letter, size / 2 - (noNumber ? 0 : size / 6 - size / 32), size / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, textColor, false);
             if (!noNumber) {
-                DrawingHelper.drawString(nativeImage, number, size / 2 + textSize / 3 - size / 32, size / 2 + textSize / 8, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, textColor, false);
+                DrawingHelper.drawString(nativeImage, number, size / 2 + size / 3 - size / 32, size / 2 + size / 8, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, textColor, false);
             }
             return nativeImage;
         } catch (Exception e) {

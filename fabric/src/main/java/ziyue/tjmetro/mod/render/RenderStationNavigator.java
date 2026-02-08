@@ -38,8 +38,7 @@ public class RenderStationNavigator<T extends BlockStationNavigator.BlockEntity>
 
         final BlockPos pos = entity.getPos2();
         final BlockState state = world.getBlockState(pos);
-        if (!(state.getBlock().data instanceof BlockStationNavigator)) return;
-        final BlockStationNavigator block = (BlockStationNavigator) state.getBlock().data;
+        if (!(state.getBlock().data instanceof BlockStationNavigator block)) return;
 
         final Direction facing = IBlock.getStatePropertySafe(state, DirectionHelper.FACING);
         final boolean arrowLeft = IBlock.getStatePropertySafe(state, ARROW_LEFT);

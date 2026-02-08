@@ -14,7 +14,6 @@ import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import ziyue.tjmetro.mod.block.BlockStationNameEntranceTianjin;
-import ziyue.tjmetro.mod.block.IBlockExtension;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
@@ -35,13 +34,11 @@ public class RenderStationNameEntranceTianjin<T extends BlockStationNameEntrance
     @Override
     public void render(T entity, float tickDelta, GraphicsHolder graphicsHolder, int light, int overlay) {
         final World world = entity.getWorld2();
-        if (world == null) {
-            return;
-        }
+        if (world == null) return;
 
         final BlockPos pos = entity.getPos2();
         final BlockState state = world.getBlockState(pos);
-        if (!(state.getBlock().data instanceof BlockStationNameEntranceTianjin)) return;
+        if (!(state.getBlock().data instanceof BlockStationNameEntranceTianjin block)) return;
         final Direction facing = IBlock.getStatePropertySafe(state, BlockStationNameBase.FACING);
 
         final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations(0.5 + pos.getX(), 0.5 + entity.yOffset + pos.getY(), 0.5 + pos.getZ());
@@ -60,20 +57,12 @@ public class RenderStationNameEntranceTianjin<T extends BlockStationNameEntrance
         final int propagateProperty = IBlock.getStatePropertySafe(world, pos, BlockStationNameEntranceTianjin.STYLE);
         final float logoSize = propagateProperty % 2 == 0 ? 0.5F : 1;
 
-        final BlockStationNameEntranceTianjin block = (BlockStationNameEntranceTianjin) state.getBlock().data;
         final DynamicTextureCache.DynamicResource resource;
         if (station == null) {
-            final int style;
-            switch (propagateProperty) {
-                case 0:
-                case 1:
-                case 4:
-                case 5:
-                    style = propagateProperty + 2;
-                    break;
-                default:
-                    style = propagateProperty;
-            }
+            final int style = switch (propagateProperty) {
+                case 0, 1, 4, 5 -> propagateProperty + 2;
+                default -> propagateProperty;
+            };
             resource = DynamicTextureCache.instance.getStationNameEntrance(-1, -1, style, IGuiExtension.insertTranslation("gui.mtr.station_cjk", "gui.mtr.station", 1, TextHelper.translatable("gui.mtr.untitled").getString()), block.type, totalLength / logoSize);
         } else {
             resource = DynamicTextureCache.instance.getStationNameEntrance(station.getId(), entity.getSelectedId(), propagateProperty, IGuiExtension.insertTranslation("gui.mtr.station_cjk", block.pinyin ? "gui.tjmetro.station_pinyin" : "gui.mtr.station", 1, station.getName()), block.type, totalLength / logoSize);

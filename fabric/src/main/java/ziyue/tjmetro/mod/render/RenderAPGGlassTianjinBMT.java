@@ -74,20 +74,14 @@ public class RenderAPGGlassTianjinBMT extends RenderRouteBase<BlockAPGGlassTianj
                 final float height = 1 - topPadding - bottomPadding;
                 final int arrowDirection = IBlock.getStatePropertySafe(state, arrowDirectionProperty);
 
-                final Identifier identifier;
-                switch (style) {
-                    case ROUTE:
-                        identifier = DynamicTextureCache.instance.getRouteMap(platformId, false, arrowDirection == 2, width / height, transparentWhite).identifier;
-                        break;
-                    case STATION_NAME:
-                        identifier = DynamicTextureCache.instance.getStationName(platformId, true, HorizontalAlignment.CENTER, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
-                        break;
-                    case NEXT_STATION:
-                        identifier = DynamicTextureCache.instance.getNextStation(platformId, arrowDirection, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
-                        break;
-                    default:
-                        identifier = null;
-                }
+                final Identifier identifier = switch (style) {
+                    case ROUTE ->
+                            DynamicTextureCache.instance.getRouteMap(platformId, false, arrowDirection == 2, width / height, transparentWhite).identifier;
+                    case STATION_NAME ->
+                            DynamicTextureCache.instance.getStationName(platformId, true, HorizontalAlignment.CENTER, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
+                    case NEXT_STATION ->
+                            DynamicTextureCache.instance.getNextStation(platformId, arrowDirection, 0.25F, width / height, ARGB_WHITE, ARGB_BLACK, transparentWhite ? ARGB_WHITE : 0).identifier;
+                };
 
                 MainRenderer.scheduleRender(identifier, false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
                     storedMatrixTransformations.transform(graphicsHolderNew, offset);
