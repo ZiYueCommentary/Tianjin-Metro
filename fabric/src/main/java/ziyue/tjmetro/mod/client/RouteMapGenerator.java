@@ -1428,7 +1428,7 @@ public class RouteMapGenerator implements IGui
                 final String information = IGuiExtension.insertTranslation("gui.tjmetro.route_map_bmt_routes", "gui.tjmetro.route_map_bmt_routes", 2, IGui.mergeStations(routeNames), destinationString);
 
                 final int padding = (int) (height / aspectRatio * 0.1); // fixed size
-                final DynamicTextureCache.Text textInformation = clientCache.getText(information, width - padding * 2, height, (int) (fontSizeBig * height / aspectRatio * 0.002), (int) (fontSizeSmall * height / aspectRatio * 0.002), 0, arrowLeft ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
+                final DynamicTextureCache.Text textInformation = clientCache.getText(information, width - padding * 2, height, (int) (height / aspectRatio * 0.12), (int) (height / aspectRatio * 0.06), 0, arrowLeft ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT);
                 if (arrowLeft) {
                     DrawingHelper.drawString(nativeImage, textInformation, padding, (int) (height / aspectRatio * 0.2), HorizontalAlignment.LEFT, VerticalAlignment.CENTER, 0, ARGB_WHITE, false);
                 } else {
