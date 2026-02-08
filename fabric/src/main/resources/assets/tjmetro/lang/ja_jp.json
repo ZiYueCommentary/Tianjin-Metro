@@ -69,7 +69,7 @@
     "tooltip.tjmetro.station_name": "テキストは駅によって異なります",
     "tooltip.tjmetro.custom_content": "カスタム表示コンテンツ対応",
     "tooltip.tjmetro.custom_color": "カスタム表示色対応",
-    "tooltip.tjmetro.player_detector": "2 ブロック内のプレイヤーを検出し、レッドストーン信号を発します。",
+    "tooltip.tjmetro.player_detector": "一定範囲内のプレイヤーを検出し、レッドストーン信号を発します。ゲームルールにて範囲を変更可能。",
     "tooltip.tjmetro.railway_sign_bmt": "MTR mod の 柱(サインシステム用) を使用してポールを延長します。",
     "tooltip.tjmetro.use_tianjin_metro_font": "一部のブロックでテキストを mod フォントで描画します。",
     "tooltip.tjmetro.shift": "詳細はSHIFTキーを押しながらご覧ください",
@@ -209,5 +209,9 @@
     "tooltip.tjmetro.dynamic_texture_max_size": "制限を超える動的テクスチャは切り捨てられます。この問題が発生する場合は、慎重に調整してください。",
     "gamerule.playerDetectRange": "プレイヤー検出範囲",
     "gamerule.playerDetectRange.description": "センサーの検知範囲。このルールはTianjin Metro modによって追加されました。",
-    "block.tjmetro.smoke_alarm": "火災報知器"
+    "block.tjmetro.smoke_alarm": "火災報知器",
+    "block.tjmetro.custom_color_mosaic_tile_slab": "モザイクタイルのハーフブロック",
+    "block.tjmetro.custom_color_mosaic_tile_stairs": "モザイクタイルの階段",
+    "block.tjmetro.pids_tianjin_single": "発車標(天津地下鉄, 1行)",
+    "tooltip.tjmetro.smoke_alarm": "一定範囲内の炎や煙を検知し、レッドストーン信号を発します。ゲームルールで範囲を変更できます。"
 }
