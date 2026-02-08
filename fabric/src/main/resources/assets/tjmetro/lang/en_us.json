@@ -181,7 +181,7 @@
     "tooltip.tjmetro.custom_color": "Support custom display color",
     "tooltip.tjmetro.metal_detection_door": "A device that can delete items from players' inventory. Use wrench or brush to open its inventory.",
     "tooltip.tjmetro.station_name_plate": "Use wrench to select a platform to display, and use brush to change its arrow direction.",
-    "tooltip.tjmetro.player_detector": "Detects players in 2 blocks and emits a redstone signal.",
+    "tooltip.tjmetro.player_detector": "Detects players in a range and emits a redstone signal. You can change the range in game rule.",
     "tooltip.tjmetro.station_name_entrance_tianjin": "Use wrench to specify an exit to display, and use brush to change its style.",
     "tooltip.tjmetro.roadblock_sign": "Use wrench or brush to change its display content.",
     "tooltip.tjmetro.psd_apg_tianjin": "Use wrench to change its top's display content, and use brush to change its arrow direction.",
@@ -194,6 +194,7 @@
     "tooltip.tjmetro.disable_dynamic_textures": "Skip generating textures for signs, gates, etc.",
     "tooltip.tjmetro.pids_tianjin": "A PIDS which has a customizable advertisement part. Using Railway Sign Pole (Tianjin) to extend its pole.",
     "tooltip.tjmetro.dynamic_texture_max_size": "Dynamic textures that exceed the limitation will be truncated. If you meet this issue, please adjust this with caution.",
+    "tooltip.tjmetro.smoke_alarm": "Detects fire and smokes in a range and emits a redstone signal. You can change the range in game rule.",
 
     "footer.tjmetro.sources": "Wanna see the source code?",
     "footer.tjmetro.contributors": "Tianjin Metro is a community work, click here to see contributors!",

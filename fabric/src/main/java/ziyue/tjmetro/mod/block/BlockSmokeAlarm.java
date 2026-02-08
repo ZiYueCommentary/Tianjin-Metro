@@ -4,10 +4,12 @@ import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.BlockExtension;
 import org.mtr.mapping.mapper.BlockWithEntity;
+import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -64,6 +66,11 @@ public class BlockSmokeAlarm extends BlockExtension implements BlockWithEntity
     @Override
     public int getWeakRedstonePower2(BlockState state, BlockView world, BlockPos pos, Direction direction) {
         return IBlock.getStatePropertySafe(state, ACTIVATED) ? 15 : 0;
+    }
+
+    @Override
+    public void addTooltips(ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
+        IGuiExtension.addHoldShiftTooltip(tooltip, TextHelper.translatable("tooltip.tjmetro.smoke_alarm"));
     }
 
     @Nonnull
