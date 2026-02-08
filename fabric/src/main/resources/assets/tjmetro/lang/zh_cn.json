@@ -210,5 +210,8 @@
     "gamerule.playerDetectRange": "玩家检测范围",
     "gamerule.playerDetectRange.description": "设置玩家侦测器的检测半径。此规则由天津地铁模组添加。",
     "block.tjmetro.smoke_alarm": "烟雾报警器",
-    "tooltip.tjmetro.smoke_alarm": "检测范围内的火，并放出红石信号。可在游戏规则内修改侦测范围。"
+    "tooltip.tjmetro.smoke_alarm": "检测范围内的火，并放出红石信号。可在游戏规则内修改侦测范围。",
+    "block.tjmetro.custom_color_mosaic_tile_slab": "马赛克瓷砖台阶",
+    "block.tjmetro.custom_color_mosaic_tile_stairs": "马赛克瓷砖楼梯",
+    "block.tjmetro.pids_tianjin_single": "乘客资讯显示屏（天津、单向）"
 }
