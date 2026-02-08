@@ -86,6 +86,7 @@
     "block.tjmetro.smoke_alarm": "Smoke Alarm",
     "block.tjmetro.custom_color_mosaic_tile_slab": "Mosaic Tile Slab",
     "block.tjmetro.custom_color_mosaic_tile_stairs": "Mosaic Tile Stairs",
+    "block.tjmetro.pids_tianjin_single": "Passenger Information Display System (Tianjin, Single)",
 
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",

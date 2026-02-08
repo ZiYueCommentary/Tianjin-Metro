@@ -45,15 +45,15 @@ public class BlockPIDSTianjin extends BlockPIDSHorizontalBase
 
     @Override
     public BlockEntityExtension createBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new BlockEntity(blockPos, blockState);
+        return new BlockEntity(blockPos, blockState, false);
     }
 
-    public static boolean canStoreData(World world, BlockPos blockPos) {
+    public boolean canStoreData(World world, BlockPos blockPos) {
         final Direction facing = IBlock.getStatePropertySafe(world, blockPos, FACING);
         return facing == Direction.NORTH || facing == Direction.EAST;
     }
 
-    public static BlockPos getBlockPosWithData(World world, BlockPos blockPos) {
+    public BlockPos getBlockPosWithData(World world, BlockPos blockPos) {
         if (canStoreData(world, blockPos)) {
             return blockPos;
         } else {
@@ -70,13 +70,15 @@ public class BlockPIDSTianjin extends BlockPIDSHorizontalBase
         public BlockPIDSTianjin.Advertisement advertisement = null;
         public int categoryIndex = 0;
         public int advertisementIndex = 0;
+        public final boolean renderSingleFace;
 
         public static final String PLATFORM_IDS_ID = "platform_ids";
         public static final String DISPLAY_PAGE_ID = "display_page";
         public static final String CATEGORIES_ID = "categories";
 
-        public BlockEntity(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.PIDS_TIANJIN.get(), pos, state);
+        public BlockEntity(BlockPos pos, BlockState state, boolean renderSingleFace) {
+            super(renderSingleFace ? BlockEntityTypes.PIDS_TIANJIN_SINGLE.get() : BlockEntityTypes.PIDS_TIANJIN.get(), pos, state);
+            this.renderSingleFace = renderSingleFace;
             categories.add("tjmetro".hashCode());
         }
 

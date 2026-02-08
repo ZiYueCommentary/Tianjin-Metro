@@ -89,11 +89,12 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockAPGGlassTianjinJinjing.BlockEntity> APG_GLASS_TIANJIN_JINJING = Registry.registerBlockEntityType("apg_glass_tianjin_jinjing", BlockAPGGlassTianjinJinjing.BlockEntity::new, BlockList.APG_GLASS_TIANJIN_JINJING_BLOCK::get);
     BlockEntityTypeRegistryObject<BlockRouteMapBMT.BlockEntity> ROUTE_MAP_BMT = Registry.registerBlockEntityType("route_map_bmt", BlockRouteMapBMT.BlockEntity::new, BlockList.ROUTE_MAP_BMT::get);
     BlockEntityTypeRegistryObject<BlockStationNameSignTianjin.BlockEntity> STATION_NAME_SIGN_TIANJIN = Registry.registerBlockEntityType("station_name_sign_tianjin", BlockStationNameSignTianjin.BlockEntity::new, BlockList.STATION_NAME_SIGN_TIANJIN::get);
-    BlockEntityTypeRegistryObject<BlockPIDSTianjin.BlockEntity> PIDS_TIANJIN = Registry.registerBlockEntityType("pids_tianjin", BlockPIDSTianjin.BlockEntity::new, BlockList.PIDS_TIANJIN::get);
+    BlockEntityTypeRegistryObject<BlockPIDSTianjin.BlockEntity> PIDS_TIANJIN = Registry.registerBlockEntityType("pids_tianjin", (pos, state) -> new BlockPIDSTianjin.BlockEntity(pos, state, false), BlockList.PIDS_TIANJIN::get);
     BlockEntityTypeRegistryObject<BlockSmokeAlarm.BlockEntity> SMOKE_ALARM = Registry.registerBlockEntityType("smoke_alarm", BlockSmokeAlarm.BlockEntity::new, BlockList.SMOKE_ALARM::get);
     BlockEntityTypeRegistryObject<BlockCustomColorMosaicTile.BlockEntity> CUSTOM_COLOR_MOSAIC_TILE = Registry.registerBlockEntityType("custom_color_mosaic_tile", BlockCustomColorMosaicTile.BlockEntity::new, BlockList.CUSTOM_COLOR_MOSAIC_TILE::get);
     BlockEntityTypeRegistryObject<BlockCustomColorMosaicTileSlab.BlockEntity> CUSTOM_COLOR_MOSAIC_TILE_SLAB = Registry.registerBlockEntityType("custom_color_mosaic_tile_slab", BlockCustomColorMosaicTileSlab.BlockEntity::new, BlockList.CUSTOM_COLOR_MOSAIC_TILE_SLAB::get);
     BlockEntityTypeRegistryObject<BlockCustomColorMosaicTileStairs.BlockEntity> CUSTOM_COLOR_MOSAIC_TILE_STAIRS = Registry.registerBlockEntityType("custom_color_mosaic_tile_stairs", BlockCustomColorMosaicTileStairs.BlockEntity::new, BlockList.CUSTOM_COLOR_MOSAIC_TILE_STAIRS::get);
+    BlockEntityTypeRegistryObject<BlockPIDSTianjin.BlockEntity> PIDS_TIANJIN_SINGLE = Registry.registerBlockEntityType("pids_tianjin_single", (pos, state) -> new BlockPIDSTianjinSingle.BlockEntity(pos, state, true), BlockList.PIDS_TIANJIN_SINGLE::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

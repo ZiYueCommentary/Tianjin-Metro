@@ -134,6 +134,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.ROUTE_MAP_BMT, RenderRouteMapBMT::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.STATION_NAME_SIGN_TIANJIN, RenderStationNameSignTianjin::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PIDS_TIANJIN, dispatcher -> new RenderPIDSTianjin<>(dispatcher, 2.5F, 30, true, 1));
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PIDS_TIANJIN_SINGLE, dispatcher -> new RenderPIDSTianjin<>(dispatcher, 2.5F, 30, false, 1));
 
         RegistryClient.registerEntityRenderer(EntityTypes.SEAT, RenderSeat::new);
 

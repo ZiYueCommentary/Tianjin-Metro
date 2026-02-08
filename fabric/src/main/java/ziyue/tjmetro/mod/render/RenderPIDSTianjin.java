@@ -20,6 +20,7 @@ import org.mtr.mod.render.QueuedRenderLayer;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.TianjinMetro;
 import ziyue.tjmetro.mod.block.BlockPIDSTianjin;
+import ziyue.tjmetro.mod.block.BlockPIDSTianjinSingle;
 import ziyue.tjmetro.mod.client.DynamicTextureCache;
 import ziyue.tjmetro.mod.client.IDrawingExtension;
 
@@ -56,7 +57,8 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
         if (world == null) return;
 
         final BlockPos blockPos = entity.getPos2();
-        if (!BlockPIDSTianjin.canStoreData(world, blockPos)) return;
+        if (!(entity.getCachedState2().getBlock().data instanceof BlockPIDSTianjin block)) return;
+        if (!block.canStoreData(world, blockPos)) return;
 
         final Direction facing = IBlock.getStatePropertySafe(world, blockPos, DirectionHelper.FACING);
 
@@ -72,8 +74,8 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
     private void getArrivalsAndRender(T entity, BlockPos blockPos, Direction facing, LongCollection platformIds) {
         final ObjectArrayList<ArrivalResponse> arrivalResponseList = ArrivalsCacheClient.INSTANCE.requestArrivals(platformIds);
         MainRenderer.scheduleRender(QueuedRenderLayer.TEXT, (graphicsHolder, offset) -> {
-            render(entity, blockPos, facing, arrivalResponseList, graphicsHolder, offset);
-            render(entity, blockPos.offset(facing), facing.getOpposite(), arrivalResponseList, graphicsHolder, offset);
+            if(!entity.renderSingleFace || IBlock.getStatePropertySafe(entity.getCachedState2(), BlockPIDSTianjinSingle.SHOULD_RENDER)) render(entity, blockPos, facing, arrivalResponseList, graphicsHolder, offset);
+            if (!entity.renderSingleFace) render(entity, blockPos.offset(facing), facing.getOpposite(), arrivalResponseList, graphicsHolder, offset);
         });
     }
 

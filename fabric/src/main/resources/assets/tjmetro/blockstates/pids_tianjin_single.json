@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,should_render=true": { "model": "tjmetro:block/pids_tianjin_single_left" },
+        "facing=east,should_render=true":  { "model": "tjmetro:block/pids_tianjin_single_left", "y": 90 },
+        "facing=south,should_render=true": { "model": "tjmetro:block/pids_tianjin_single_left", "y": 180 },
+        "facing=west,should_render=true":  { "model": "tjmetro:block/pids_tianjin_single_left", "y":  270 },
+        "facing=north,should_render=false": { "model": "tjmetro:block/pids_tianjin_single_right" },
+        "facing=east,should_render=false":  { "model": "tjmetro:block/pids_tianjin_single_right", "y": 90 },
+        "facing=south,should_render=false": { "model": "tjmetro:block/pids_tianjin_single_right", "y": 180 },
+        "facing=west,should_render=false":  { "model": "tjmetro:block/pids_tianjin_single_right", "y":  270 }
+    }
+}

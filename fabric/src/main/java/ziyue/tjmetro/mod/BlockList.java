@@ -171,6 +171,7 @@ public interface BlockList
     BlockRegistryObject CUSTOM_COLOR_MOSAIC_TILE = Registry.registerBlockWithBlockItem("custom_color_mosaic_tile", () -> new Block(new BlockCustomColorMosaicTile()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CUSTOM_COLOR_MOSAIC_TILE_SLAB = Registry.registerBlockWithBlockItem("custom_color_mosaic_tile_slab", () -> new Block(new BlockCustomColorMosaicTileSlab()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject CUSTOM_COLOR_MOSAIC_TILE_STAIRS = Registry.registerBlockWithBlockItem("custom_color_mosaic_tile_stairs", () -> new Block(new BlockCustomColorMosaicTileStairs()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject PIDS_TIANJIN_SINGLE = Registry.registerBlockWithBlockItem("pids_tianjin_single", () -> new Block(new BlockPIDSTianjinSingle()), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants
