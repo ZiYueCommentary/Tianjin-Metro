@@ -1,8 +1,6 @@
 package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.holder.Block;
-import org.mtr.mapping.mapper.BlockExtension;
-import org.mtr.mapping.mapper.BlockHelper;
 import org.mtr.mapping.mapper.BlockItemExtension;
 import org.mtr.mapping.mapper.SlabBlockExtension;
 import org.mtr.mapping.registry.BlockRegistryObject;
@@ -170,6 +168,9 @@ public interface BlockList
     BlockRegistryObject STATION_NAME_SIGN_TIANJIN = Registry.registerBlockWithBlockItem("station_name_sign_tianjin", () -> new Block(new BlockStationNameSignTianjin()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject PIDS_TIANJIN = Registry.registerBlockWithBlockItem("pids_tianjin", () -> new Block(new BlockPIDSTianjin()), CreativeModeTabs.TIANJIN_METRO);
     BlockRegistryObject SMOKE_ALARM = Registry.registerBlockWithBlockItem("smoke_alarm", () -> new Block(new BlockSmokeAlarm()), CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject CUSTOM_COLOR_MOSAIC_TILE = Registry.registerBlockWithBlockItem("custom_color_mosaic_tile", () -> new Block(new BlockCustomColorMosaicTile()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject CUSTOM_COLOR_MOSAIC_TILE_SLAB = Registry.registerBlockWithBlockItem("custom_color_mosaic_tile_slab", () -> new Block(new BlockCustomColorMosaicTileSlab()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
+    BlockRegistryObject CUSTOM_COLOR_MOSAIC_TILE_STAIRS = Registry.registerBlockWithBlockItem("custom_color_mosaic_tile_stairs", () -> new Block(new BlockCustomColorMosaicTileStairs()), ItemBlockEnchanted::new, CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants

@@ -141,6 +141,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockStationColor(BlockList.STATION_NAME_SIGN_1);
         RegistryClient.registerBlockCustomColor(BlockList.CUSTOM_COLOR_CONCRETE, BlockList.CUSTOM_COLOR_CONCRETE_SLAB, BlockList.CUSTOM_COLOR_CONCRETE_STAIRS);
         RegistryClient.registerBlockCustomColor(BlockList.METAL_POLE_BMT);
+        RegistryClient.registerBlockCustomColor(BlockList.CUSTOM_COLOR_MOSAIC_TILE, BlockList.CUSTOM_COLOR_MOSAIC_TILE_SLAB, BlockList.CUSTOM_COLOR_MOSAIC_TILE_STAIRS);
         RegistryClient.registerItemCustomColor(0xfff100, BlockList.METAL_POLE_BMT, "metal_pole_bmt");
 
         BlockSmokeAlarm.BlockEntity.updateSoundSource = SMOKE_ALARM_SOUND_INSTANCE::setPos;
