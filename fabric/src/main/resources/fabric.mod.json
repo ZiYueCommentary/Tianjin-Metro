@@ -58,7 +58,7 @@
         "minecraft": "${minecraft_version}",
         "filters": ">=1.0.0",
         "mtr": "*",
-        "java": ">=16"
+        "java": ">=17"
     },
     "suggests": {
         "cloth-config": "*"
