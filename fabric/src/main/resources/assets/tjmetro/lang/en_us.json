@@ -1,8 +1,11 @@
 {
     "modmenu.nameTranslation.tjmetro": "Tianjin Metro",
     "modmenu.descriptionTranslation.tjmetro": "A small mod for Minecraft Transit Railway.",
+
     "itemGroup.tjmetro.tianjin_metro": "Tianjin Metro",
+
     "item.tjmetro.wrench": "Wrench",
+
     "block.tjmetro.rolling": "Rolling shutter",
     "block.tjmetro.logo": "Tianjin Metro Logo",
     "block.tjmetro.station_name_sign_1": "Station Name Sign",
@@ -84,8 +87,9 @@
     "block.tjmetro.custom_color_mosaic_tile_slab": "Mosaic Tile Slab",
     "block.tjmetro.custom_color_mosaic_tile_stairs": "Mosaic Tile Stairs",
     "block.tjmetro.pids_tianjin_single": "Passenger Information Display System (Tianjin, Single)",
+
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
-    "gui.tjmetro.contact_station_for_help_cjk": "Please contact staff for help",
+    "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
     "gui.tjmetro.contact_station_for_help": "Please contact the station for help.",
     "gui.tjmetro.metal_detection_door": "Metal Detection Door",
     "gui.tjmetro.options": "Tianjin Metro Options",
@@ -128,6 +132,7 @@
     "gui.tjmetro.next_train_cjk": "下次列车",
     "gui.tjmetro.next_train": "Next Train",
     "gui.tjmetro.filtered_ads": "Filtered Advertisements (%s)",
+
     "sign.tjmetro.tianjin_metro": "天津地铁|Tianjin Metro",
     "sign.tjmetro.train": "列车|Train",
     "sign.tjmetro.station": "站名|Station",
@@ -156,10 +161,12 @@
     "sign.tjmetro.outbound_transfer": "出站换乘|Outbound Transfer",
     "sign.tjmetro.to_train_bmt": "乘车|To Train",
     "sign.tjmetro.self_service_ticketing": "自助购票|Self-Service Ticketing",
+    
     "button.tjmetro.tianjin_metro_options": "Tianjin Metro Options",
     "button.tjmetro.click_here": "Click Here!",
     "button.tjmetro.open_tutorial": "Create ads",
     "button.tjmetro.duplicate_siding_settings": "Duplicate settings to other sidings",
+
     "config.category.tjmetro": "Tianjin Metro",
     "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r is not installed.",
     "config.tjmetro.cloth_config_required": "You have to install §lCloth Config API§r to config Tianjin Metro mod.",
@@ -170,6 +177,7 @@
     "config.tjmetro.disable_dynamic_textures": "Disable dynamic textures",
     "config.tjmetro.disable_train_rendering": "Disable train rendering",
     "config.tjmetro.dynamic_texture_max_size": "Dynamic texture max size",
+
     "tooltip.tjmetro.experimental": "This feature is experimental.",
     "tooltip.tjmetro.station_name": "Text depends on the station",
     "tooltip.tjmetro.custom_content": "Support custom display content",
@@ -190,6 +198,7 @@
     "tooltip.tjmetro.pids_tianjin": "A PIDS which has a customizable advertisement part. Using Railway Sign Pole (Tianjin) to extend its pole.",
     "tooltip.tjmetro.dynamic_texture_max_size": "Dynamic textures that exceed the limitation will be truncated. If you meet this issue, please adjust this with caution.",
     "tooltip.tjmetro.smoke_alarm": "Detects fire and smokes in a range and emits a redstone signal. You can change the range in game rule.",
+
     "footer.tjmetro.sources": "Wanna see the source code?",
     "footer.tjmetro.contributors": "Tianjin Metro is a community work, click here to see contributors!",
     "footer.tjmetro.forum": "Would you like to join our forum? (Chinese only)",
@@ -199,17 +208,20 @@
     "footer.tjmetro.bde": "Also try Bomb Disposal Expert!",
     "footer.tjmetro.sponsor": "Sponsoring the development of Tianjin Metro!",
     "footer.tjmetro.tutorial": "Check out the tutorial/introduction videos!",
+
     "advertisement.tjmetro.name": "Tianjin Metro",
     "advertisement.tjmetro.description": "Default advertisements from Tianjin Metro mod.",
     "advertisement.tjmetro.banner": "Tianjin Metro mod is an expanding mod for Minecraft Transit Railway, which contains various things from Tianjin Metro in real life.",
     "advertisement.tjmetro.weblate": "Get involved in Tianjin Metro localization!",
     "advertisement.tjmetro.bde": "Bomb Disposal Expert is a fun mod that allows you to dispose of bombs and Creepers!",
+
     "filter.tjmetro.tianjin_miscellaneous": "Miscellaneous",
     "filter.tjmetro.tianjin_building": "Buildings",
     "filter.tjmetro.tianjin_signs": "Station Name Signs",
     "filter.tjmetro.tianjin_gates": "Platform Gates",
     "filter.tjmetro.tianjin_decoration": "Decorations",
     "filter.tjmetro.tianjin_railway_signs": "Railway Signs",
+
     "gamerule.preventBlockFalling": "Prevent Block Falling",
     "gamerule.preventBlockFalling.description": "Prevent blocks to fall, such as sands and anvils. This rule was added by Tianjin Metro mod.",
     "gamerule.playerDetectRange": "Player Detect Range",
