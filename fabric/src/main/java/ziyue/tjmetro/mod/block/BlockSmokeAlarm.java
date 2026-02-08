@@ -55,7 +55,7 @@ public class BlockSmokeAlarm extends BlockExtension implements BlockWithEntity
 
     @Override
     public boolean emitsRedstonePower2(BlockState state) {
-        return IBlock.getStatePropertySafe(state, ACTIVATED);
+        return true;
     }
 
     @Override
@@ -76,7 +76,10 @@ public class BlockSmokeAlarm extends BlockExtension implements BlockWithEntity
     @Nonnull
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> world.setBlockState(pos, state.with(new Property<>(ACTIVATED.data), false)));
+        return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> {
+            world.setBlockState(pos, state.with(new Property<>(ACTIVATED.data), false));
+            world.updateNeighbor(pos.up(2), state.getBlock(), pos.up());
+        });
     }
 
     public static class BlockEntity extends BlockEntityExtension

@@ -75,6 +75,7 @@ public abstract class WorldChunkMixin implements Chunk
                     if (IBlockExtension.isBlock(new org.mtr.mapping.holder.BlockState(blockState), BlockList.SMOKE_ALARM.get())) {
                         // This is pretty dangerous...
                         this.setBlockState(currentPos, blockState.with(BlockSmokeAlarm.ACTIVATED.data, true), true);
+                        this.getWorld().updateNeighbor(currentPos.up(2), blockState.getBlock(), currentPos.up());
                     }
                 }
             }

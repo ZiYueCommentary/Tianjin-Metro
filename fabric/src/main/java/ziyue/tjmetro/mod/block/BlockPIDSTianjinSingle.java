@@ -26,7 +26,7 @@ public class BlockPIDSTianjinSingle extends BlockPIDSTianjin
 
     public BlockState getPlacementState2(ItemPlacementContext ctx) {
         final Direction direction = ctx.getPlayerFacing();
-        return IBlock.isReplaceable(ctx, direction, 2) ? this.getDefaultState2().with(new Property<>(FACING.data), direction.data).with(new Property<>(SHOULD_RENDER.data), true) : null;
+        return IBlock.isReplaceable(ctx, direction.rotateYClockwise(), 2) ? this.getDefaultState2().with(new Property<>(FACING.data), direction.data).with(new Property<>(SHOULD_RENDER.data), true) : null;
     }
 
     @Override

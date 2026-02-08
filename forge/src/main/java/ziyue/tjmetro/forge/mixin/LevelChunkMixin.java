@@ -90,6 +90,7 @@ public abstract class LevelChunkMixin
                     if (IBlockExtension.isBlock(new org.mtr.mapping.holder.BlockState(blockState), BlockList.SMOKE_ALARM.get())) {
                         // This is pretty dangerous...
                         this.setBlockState(currentPos, blockState.setValue(BlockSmokeAlarm.ACTIVATED.data, true), true);
+                        this.getLevel().neighborChanged(currentPos.above(2), blockState.getBlock(), currentPos.below());
                     }
                 }
             }
