@@ -2018,10 +2018,12 @@ public class RouteMapGenerator implements IGui
             }
 
             DrawingHelper.drawString(nativeImage, stationName, width / 2, (height - destinationOrNextStation.height() - padding * 3) / 2, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, ARGB_BLACK, false);
-            final int colorStripY = height - destinationOrNextStation.height() - padding * 3;
-            final int heightPerColor = padding / routeColors.size();
-            for (int i = 0; i < routeColors.size(); i++) {
-                DrawingHelper.fillRectSafe(nativeImage, 0, colorStripY + heightPerColor * i, width, heightPerColor, DrawingHelper.invertColor(ARGB_BLACK | routeColors.getInt(i)));
+            if (!routeColors.isEmpty()) {
+                final int colorStripY = height - destinationOrNextStation.height() - padding * 3;
+                final int heightPerColor = padding / routeColors.size();
+                for (int i = 0; i < routeColors.size(); i++) {
+                    DrawingHelper.fillRectSafe(nativeImage, 0, colorStripY + heightPerColor * i, width, heightPerColor, DrawingHelper.invertColor(ARGB_BLACK | routeColors.getInt(i)));
+                }
             }
             DrawingHelper.drawString(nativeImage, destinationOrNextStation, width / 2, height - padding, HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, ARGB_BLACK, false);
 
