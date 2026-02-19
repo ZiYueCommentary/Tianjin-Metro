@@ -1,10 +1,19 @@
 package ziyue.tjmetro.mod.mixin;
 
+import org.mtr.mapping.holder.Identifier;
+import org.mtr.mapping.mapper.ResourceManagerHelper;
+import org.mtr.mod.Init;
 import org.mtr.mod.client.DynamicTextureCache;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ziyue.tjmetro.mod.Reference;
+import ziyue.tjmetro.mod.TianjinMetro;
+import ziyue.tjmetro.mod.config.ConfigClient;
+
+import java.awt.*;
 
 /**
  * @author ZiYueCommentary
@@ -15,6 +24,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(DynamicTextureCache.class)
 public abstract class DynamicTextureCacheMixin
 {
+    @Shadow(remap = false)
+    private Font font;
+
+    @Shadow(remap = false)
+    private Font fontCjk;
+
     @Inject(at = @At("TAIL"), method = "<init>", remap = false)
     private void afterConstruct(CallbackInfo ci) {
         ziyue.tjmetro.mod.client.DynamicTextureCache.instance = new ziyue.tjmetro.mod.client.DynamicTextureCache();
@@ -24,8 +39,26 @@ public abstract class DynamicTextureCacheMixin
     private void afterReload(CallbackInfo ci) {
         ziyue.tjmetro.mod.client.DynamicTextureCache.instance.reload();
         // If a Tianjin Metro sign gets text with MTR font and the MTR fonts are not initialized, the game will throw a NullPointerException.
-        // This will happen in case of Tianjin Metro sign is rendered before the MTR signs. To fix this, here we invoke whatever thing to ensure that MTR fonts are initialized.
-        DynamicTextureCache.instance.getPixelatedText("", 0, 10, 0, false);
+        // This will happen in case of Tianjin Metro sign is rendered before the MTR signs. To fix this, here we load MTR fonts manually.
+        if (font == null) {
+            ResourceManagerHelper.readResource(new Identifier(Init.MOD_ID, "font/noto-sans-semibold.ttf"), inputStream -> {
+                try {
+                    font = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+                } catch (Exception e) {
+                    TianjinMetro.LOGGER.error(e.getMessage(), e);
+                }
+            });
+        }
+
+        if (fontCjk == null) {
+            ResourceManagerHelper.readResource(new Identifier(Init.MOD_ID, "font/noto-serif-cjk-tc-semibold.ttf"), inputStream -> {
+                try {
+                    fontCjk = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+                } catch (Exception e) {
+                    TianjinMetro.LOGGER.error(e.getMessage(), e);
+                }
+            });
+        }
     }
 
     @Inject(at = @At("TAIL"), method = "tick", remap = false)
