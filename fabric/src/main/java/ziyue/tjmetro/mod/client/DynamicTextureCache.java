@@ -219,27 +219,6 @@ public class DynamicTextureCache
             attributedStrings[index] = new AttributedString(textSplit[index]);
             fontSizes[index] = newFontSize;
 
-            // todo remove this
-            if (font == null) {
-                ResourceManagerHelper.readResource(ConfigClient.USE_TIANJIN_METRO_FONT.get() ? new Identifier(Reference.MOD_ID, "font/dengxian.ttf") : new Identifier(Init.MOD_ID, "font/noto-sans-semibold.ttf"), inputStream -> {
-                    try {
-                        font = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-                    } catch (Exception e) {
-                        TianjinMetro.LOGGER.error(e.getMessage(), e);
-                    }
-                });
-            }
-
-            if (fontCjk == null) {
-                ResourceManagerHelper.readResource(ConfigClient.USE_TIANJIN_METRO_FONT.get() ? new Identifier(Reference.MOD_ID, "font/dengxian.ttf") : new Identifier(Init.MOD_ID, "font/noto-serif-cjk-tc-semibold.ttf"), inputStream -> {
-                    try {
-                        fontCjk = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-                    } catch (Exception e) {
-                        TianjinMetro.LOGGER.error(e.getMessage(), e);
-                    }
-                });
-            }
-            // end todo
             final Font fontSized = font.deriveFont(Font.PLAIN, newFontSize);
             final Font fontCjkSized = fontCjk.deriveFont(Font.PLAIN, newFontSize);
 
@@ -374,7 +353,7 @@ public class DynamicTextureCache
         }
 
         MainRenderer.WORKER_THREAD.scheduleDynamicTextures(() -> {
-            while (font == null) {
+            if (font == null) {
                 ResourceManagerHelper.readResource(ConfigClient.USE_TIANJIN_METRO_FONT.get() ? new Identifier(Reference.MOD_ID, "font/dengxian.ttf") : new Identifier(Init.MOD_ID, "font/noto-sans-semibold.ttf"), inputStream -> {
                     try {
                         font = Font.createFont(Font.TRUETYPE_FONT, inputStream);
@@ -384,7 +363,7 @@ public class DynamicTextureCache
                 });
             }
 
-            while (fontCjk == null) {
+            if (fontCjk == null) {
                 ResourceManagerHelper.readResource(ConfigClient.USE_TIANJIN_METRO_FONT.get() ? new Identifier(Reference.MOD_ID, "font/dengxian.ttf") : new Identifier(Init.MOD_ID, "font/noto-serif-cjk-tc-semibold.ttf"), inputStream -> {
                     try {
                         fontCjk = Font.createFont(Font.TRUETYPE_FONT, inputStream);
@@ -392,6 +371,10 @@ public class DynamicTextureCache
                         TianjinMetro.LOGGER.error(e.getMessage(), e);
                     }
                 });
+            }
+            if (font == null || fontCjk == null) {
+                dynamicResources.put(key, DefaultRenderingColor.BLACK_PURPLE.dynamicResource);
+                return;
             }
 
             final NativeImage nativeImage = supplier.get();
