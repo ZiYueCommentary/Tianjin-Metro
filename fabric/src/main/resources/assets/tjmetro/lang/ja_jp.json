@@ -177,7 +177,7 @@
     "filter.tjmetro.tianjin_railway_signs": "サインシステム",
     "block.tjmetro.route_map_bmt": "路線図(天津地下鉄9号線)",
     "block.tjmetro.station_name_sign_tianjin": "駅名標(天津地下鉄)",
-    "block.tjmetro.pids_tianjin": "発車標(天津地下鉄)",
+    "block.tjmetro.pids_tianjin": "発車標(天津地下鉄, 両面)",
     "gui.tjmetro.next_station_format_cjk": "つぎは %s",
     "gui.tjmetro.next_station_format": "Next Station %s",
     "gui.tjmetro.this_train_cjk": "こんどの電車",
@@ -212,6 +212,6 @@
     "block.tjmetro.smoke_alarm": "火災報知器",
     "block.tjmetro.custom_color_mosaic_tile_slab": "モザイクタイルのハーフブロック",
     "block.tjmetro.custom_color_mosaic_tile_stairs": "モザイクタイルの階段",
-    "block.tjmetro.pids_tianjin_single": "発車標(天津地下鉄, 1行)",
+    "block.tjmetro.pids_tianjin_single": "発車標(天津地下鉄, 片面)",
     "tooltip.tjmetro.smoke_alarm": "一定範囲内の炎や煙を検知し、レッドストーン信号を発します。ゲームルールで範囲を変更できます。"
 }
