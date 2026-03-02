@@ -1,1 +1,15 @@
-{}
+{
+    "modmenu.descriptionTranslation.tjmetro": "Небольшой мод для Minecraft Transit Railway.",
+    "itemGroup.tjmetro.tianjin_metro": "Тяньцзиньское Метро",
+    "item.tjmetro.wrench": "Гаечный ключ",
+    "block.tjmetro.logo": "Логотип Тяньцзиньского Метро",
+    "block.tjmetro.station_name_sign_1": "Табличка с Названием Станции",
+    "block.tjmetro.station_name_sign_2": "Табличка с Названием Станции",
+    "block.tjmetro.railway_sign_tianjin": "Железнодорожный знак (Тяньцзинь)",
+    "block.tjmetro.railway_sign_tianjin_bmt": "Железнодорожный знак (Тяньцзинь, Линия 9)",
+    "block.tjmetro.railway_sign_tianjin_double": "Железнодорожный знак (Тяньцзинь, Двойное)",
+    "block.tjmetro.railway_sign_tianjin_pole": "Столб Железнодорожного Знака (Тяньцзинь)",
+    "block.tjmetro.railway_sign_wall": "Железнодорожный Знак (Стена)",
+    "block.tjmetro.railway_sign_wall_big": "Железнодорожный Знак (Стена, Большой)",
+    "block.tjmetro.railway_sign_wall_double": "Железнодорожный Знак (Стена, Двойной)"
+}
