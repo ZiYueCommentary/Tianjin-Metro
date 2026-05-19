@@ -186,5 +186,6 @@
     "tooltip.tjmetro.disable_dynamic_textures": "Pomiń generowanie tekstur dla znaków, bramek, itd.",
     "config.tjmetro.cloth_config_required": "Musisz zainstalować §lCloth Config API§r aby skonfigurować mod Tianjin Metro.",
     "tooltip.tjmetro.psd_apg_tianjin": "Użyj klucza żeby zmienić treść wyświetlaną u góry, użyj pędzla aby zmienić kierunek strzałek.",
-    "gamerule.preventBlockFalling.description": "Zapobiegaj spadaniu bloków, takich jak piasek i kowadła. Ta zasada została dodana w modzie Metro Tiencin."
+    "gamerule.preventBlockFalling.description": "Zapobiegaj spadaniu bloków, takich jak piasek i kowadła. Ta zasada została dodana w modzie Metro Tiencin.",
+    "block.tjmetro.smoke_alarm": "Alarm dymowy"
 }
