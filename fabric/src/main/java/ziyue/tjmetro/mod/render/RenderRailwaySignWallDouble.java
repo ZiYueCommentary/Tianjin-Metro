@@ -26,6 +26,7 @@ import org.mtr.mod.render.RenderRailwaySign;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import org.mtr.mod.resource.SignResource;
 import org.mtr.mod.screen.EditStationScreen;
+import ziyue.tjmetro.mod.block.BlockRailwaySignWall;
 import ziyue.tjmetro.mod.block.BlockRailwaySignWallDouble;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
@@ -85,6 +86,10 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
         storedMatrixTransformations.add(graphicsHolderNew -> {
             graphicsHolderNew.rotateYDegrees(-facing.asRotation());
             graphicsHolderNew.rotateZDegrees(180);
+            if (IBlock.getStatePropertySafe(state, BlockRailwaySignWall.GROUND)) {
+                graphicsHolderNew.rotateXDegrees(-90);
+                graphicsHolderNew.translate(0, -0.5, 0.5);
+            }
             graphicsHolderNew.translate(block.getXStart() / 16F - 0.5, 0, 0.493);
         });
 

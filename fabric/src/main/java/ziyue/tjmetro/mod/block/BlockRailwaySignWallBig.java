@@ -40,10 +40,19 @@ public class BlockRailwaySignWallBig extends BlockRailwaySignWall
         if (world.isClient()) return;
 
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        final boolean ground = IBlock.getStatePropertySafe(state, GROUND);
         for (int i = 1; i < getMiddleLength(); i++) {
-            world.setBlockState(pos.offset(facing.rotateYClockwise(), i), BlockList.RAILWAY_SIGN_WALL_BIG_MIDDLE.get().getDefaultState().with(new Property<>(FACING.data), facing.data).with(new Property<>(EOS.data), false), 3);
+            world.setBlockState(pos.offset(facing.rotateYClockwise(), i),
+                    BlockList.RAILWAY_SIGN_WALL_BIG_MIDDLE.get().getDefaultState()
+                            .with(new Property<>(FACING.data), facing.data)
+                            .with(new Property<>(EOS.data), false)
+                            .with(new Property<>(GROUND.data), ground), 3);
         }
-        world.setBlockState(pos.offset(facing.rotateYClockwise(), getMiddleLength()), BlockList.RAILWAY_SIGN_WALL_BIG_MIDDLE.get().getDefaultState().with(new Property<>(FACING.data), facing.data).with(new Property<>(EOS.data), true), 3);
+        world.setBlockState(pos.offset(facing.rotateYClockwise(), getMiddleLength()),
+                BlockList.RAILWAY_SIGN_WALL_BIG_MIDDLE.get().getDefaultState()
+                        .with(new Property<>(FACING.data), facing.data)
+                        .with(new Property<>(EOS.data), true)
+                        .with(new Property<>(GROUND.data), ground), 3);
         world.updateNeighbors(pos, Blocks.getAirMapped());
         state.updateNeighbors(new WorldAccess(world.data), pos, 3);
     }

@@ -10,6 +10,7 @@ import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
+import ziyue.tjmetro.mod.data.IGuiExtension;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
@@ -26,6 +27,7 @@ import java.util.List;
 public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailwaySign
 {
     public static final BooleanProperty EOS = BooleanProperty.of("eos"); // end of sign
+    public static final BooleanProperty GROUND = BooleanProperty.of("ground");
 
     public BlockRailwaySignWall(int length) {
         super(org.mtr.mod.Blocks.createDefaultBlockSettings(true, blockState -> 15).noCollision(), length, false);
@@ -34,7 +36,11 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
     @Override
     public BlockState getPlacementState2(ItemPlacementContext ctx) {
         final Direction facing = ctx.getPlayerFacing();
-        return IBlock.isReplaceable(ctx, facing.rotateYClockwise(), getMiddleLength() + 1) ? getDefaultState2().with(new Property<>(FACING.data), facing.data).with(new Property<>(EOS.data), false) : null;
+        return IBlock.isReplaceable(ctx, facing.rotateYClockwise(), getMiddleLength() + 1) ?
+                getDefaultState2().with(new Property<>(FACING.data), facing.data)
+                        .with(new Property<>(EOS.data), false)
+                        .with(new Property<>(GROUND.data), ctx.getPlayerLookDirection() == Direction.DOWN) :
+                null;
     }
 
     @Nonnull
@@ -66,10 +72,19 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
         if (world.isClient()) return;
 
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        final boolean ground = IBlock.getStatePropertySafe(state, GROUND);
         for (int i = 1; i < getMiddleLength(); i++) {
-            world.setBlockState(pos.offset(facing.rotateYClockwise(), i), BlockList.RAILWAY_SIGN_WALL_MIDDLE.get().getDefaultState().with(new Property<>(FACING.data), facing.data).with(new Property<>(EOS.data), false), 3);
+            world.setBlockState(pos.offset(facing.rotateYClockwise(), i),
+                    BlockList.RAILWAY_SIGN_WALL_MIDDLE.get().getDefaultState()
+                            .with(new Property<>(FACING.data), facing.data)
+                            .with(new Property<>(EOS.data), false)
+                            .with(new Property<>(GROUND.data), ground), 3);
         }
-        world.setBlockState(pos.offset(facing.rotateYClockwise(), getMiddleLength()), BlockList.RAILWAY_SIGN_WALL_MIDDLE.get().getDefaultState().with(new Property<>(FACING.data), facing.data).with(new Property<>(EOS.data), true), 3);
+        world.setBlockState(pos.offset(facing.rotateYClockwise(), getMiddleLength()),
+                BlockList.RAILWAY_SIGN_WALL_MIDDLE.get().getDefaultState()
+                        .with(new Property<>(FACING.data), facing.data)
+                        .with(new Property<>(EOS.data), true)
+                        .with(new Property<>(GROUND.data), ground), 3);
         world.updateNeighbors(pos, Blocks.getAirMapped());
         state.updateNeighbors(new WorldAccess(world.data), pos, 3);
     }
@@ -77,11 +92,13 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
     @Override
     public void addTooltips(ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, TooltipContext options) {
         tooltip.add(TextHelper.translatable("tooltip.mtr.railway_sign_length", length).formatted(TextFormatting.GRAY));
+        IGuiExtension.addHoldShiftTooltip(tooltip, TextHelper.translatable("tooltip.tjmetro.railway_sign_wall"));
     }
 
     @Nonnull
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (IBlock.getStatePropertySafe(state, GROUND)) return Block.createCuboidShape(0, 0, 0, 16, 1, 16);
         return IBlock.getVoxelShapeByDirection(0, 0, 0, 16, 16, 1, IBlock.getStatePropertySafe(state, FACING));
     }
 
@@ -110,6 +127,7 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
     public void addBlockProperties(List<HolderBase<?>> properties) {
         properties.add(FACING);
         properties.add(EOS);
+        properties.add(GROUND);
     }
 
     @Override
