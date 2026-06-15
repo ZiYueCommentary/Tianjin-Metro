@@ -213,5 +213,6 @@
     "tooltip.tjmetro.smoke_alarm": "检测范围内的火，并放出红石信号。可在游戏规则内修改侦测范围。",
     "block.tjmetro.custom_color_mosaic_tile_slab": "马赛克瓷砖台阶",
     "block.tjmetro.custom_color_mosaic_tile_stairs": "马赛克瓷砖楼梯",
-    "block.tjmetro.pids_tianjin_single": "乘客资讯显示屏（天津、单向）"
+    "block.tjmetro.pids_tianjin_single": "乘客资讯显示屏（天津、单向）",
+    "tooltip.tjmetro.railway_sign_wall": "你可以将其放在地上"
 }
