@@ -4,14 +4,18 @@ import org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongAVLTreeSet;
 import org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongArrayList;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
+import org.mtr.mod.Items;
 import org.mtr.mod.block.BlockPIDSHorizontalBase;
 import org.mtr.mod.block.IBlock;
+import ziyue.tjmetro.mapping.ConfirmLinkScreenHelper;
 import ziyue.tjmetro.mod.BlockEntityTypes;
+import ziyue.tjmetro.mod.ItemList;
 import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.client.ScrollingText;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,14 +37,21 @@ public class BlockPIDSTianjin extends BlockPIDSHorizontalBase
 
     @Override
     public @Nonnull ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> {
-            final BlockPos newBlockPos = getBlockPosWithData(world, pos);
-            final org.mtr.mapping.holder.BlockEntity entity = world.getBlockEntity(newBlockPos);
-            if (entity != null && entity.data instanceof BlockEntity) {
-                ((BlockEntity) entity.data).markDirty2();
-                Registry.REGISTRY.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(newBlockPos));
-            }
-        });
+        final BlockPos newBlockPos = getBlockPosWithData(world, pos);
+        if (!(world.getBlockEntity(newBlockPos).data instanceof BlockEntity entity)) return ActionResult.PASS;
+        if (player.isHolding(Items.BRUSH.get()) || player.isHolding(ItemList.WRENCH.get())) {
+            return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> {
+                entity.markDirty2();
+                Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(newBlockPos));
+            });
+        }
+        if (entity.advertisement == null) return ActionResult.PASS;
+        final @Nullable String url = entity.advertisement.url;
+        if (url != null) {
+            ConfirmLinkScreenHelper.open(new Screen(null), url, false);
+            return ActionResult.SUCCESS;
+        }
+        return ActionResult.PASS;
     }
 
     @Override
@@ -132,7 +143,7 @@ public class BlockPIDSTianjin extends BlockPIDSHorizontalBase
         }
     }
 
-    public record Advertisement(Identifier image, MutableText text)
+    public record Advertisement(Identifier image, MutableText text, @Nullable String url)
     {
     }
 

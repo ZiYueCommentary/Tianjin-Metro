@@ -7,15 +7,18 @@
         "advertisements": [
             {
                 "image": "tjmetro:advertisements/banner.png",
-                "text": "advertisement.tjmetro.banner"
+                "text": "advertisement.tjmetro.banner",
+                "url": null
             },
             {
                 "image": "tjmetro:advertisements/weblate.png",
-                "text": "advertisement.tjmetro.weblate"
+                "text": "advertisement.tjmetro.weblate",
+                "url": "https://weblate.ziyuesinicization.site/engage/tianjin-metro/"
             },
             {
                 "image": "tjmetro:advertisements/bde.png",
-                "text": "advertisement.tjmetro.bde"
+                "text": "advertisement.tjmetro.bde",
+                "url": "https://modrinth.com/mod/bde"
             }
         ]
     }

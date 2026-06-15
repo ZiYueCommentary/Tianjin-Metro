@@ -76,7 +76,10 @@ public abstract class CustomResourceLoaderMixin
                                     try {
                                         if (ad.isJsonObject()) {
                                             JsonObject slide = ad.getAsJsonObject();
-                                            array.add(new BlockPIDSTianjin.Advertisement(new Identifier(slide.get("image").getAsString()), TextHelper.translatable(slide.get("text").getAsString())));
+                                            array.add(new BlockPIDSTianjin.Advertisement(
+                                                    new Identifier(slide.get("image").getAsString()),
+                                                    TextHelper.translatable(slide.get("text").getAsString()),
+                                                    slide.has("url") && !slide.get("url").isJsonNull() ? slide.get("url").getAsString() : null));
                                         }
                                     } catch (Exception e) {
                                         TianjinMetro.LOGGER.warn("Bad advertisement config at {}, index {}. Skipping!", entry.getKey(), index.get());
