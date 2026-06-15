@@ -57,7 +57,7 @@ public class BlockPIDSTianjinSingle extends BlockPIDSTianjin
     public void onBreak2(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         final Direction direction = IBlock.getStatePropertySafe(state, FACING);
         IBlockExtension.breakBlock(world, pos.offset(IBlock.getStatePropertySafe(state, SHOULD_RENDER) ? direction.rotateYClockwise() : direction.rotateYCounterclockwise()), this.asBlock2());
-        super.onBreak2(world, pos, state, player);
+        world.breakBlock(pos, false, Entity.cast(player));
     }
 
     @Override
