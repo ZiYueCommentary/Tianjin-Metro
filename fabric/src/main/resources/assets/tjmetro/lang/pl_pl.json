@@ -213,5 +213,6 @@
     "gamerule.playerDetectRange": "Zasięg wykrywania gracza",
     "gamerule.playerDetectRange.description": "Promień wykrywania Detektora Gracza. Ta reguła została dodana przez mod Tianjin Metro.",
     "gui.tjmetro.station_pinyin": "%s ZHAN",
-    "gui.tjmetro.train_to_cjk": "Sektor %s"
+    "gui.tjmetro.train_to_cjk": "Sektor %s",
+    "tooltip.tjmetro.railway_sign_wall": "Możesz to położyć na ziemii."
 }
