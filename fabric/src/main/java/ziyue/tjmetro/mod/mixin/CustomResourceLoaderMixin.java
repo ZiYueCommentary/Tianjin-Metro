@@ -79,7 +79,9 @@ public abstract class CustomResourceLoaderMixin
                                             array.add(new BlockPIDSTianjin.Advertisement(
                                                     new Identifier(slide.get("image").getAsString()),
                                                     TextHelper.translatable(slide.get("text").getAsString()),
-                                                    slide.has("url") && !slide.get("url").isJsonNull() ? slide.get("url").getAsString() : null));
+                                                    slide.has("url") && !slide.get("url").isJsonNull() && !slide.get("url").getAsString().isEmpty() ?
+                                                            slide.get("url").getAsString() :
+                                                            null));
                                         }
                                     } catch (Exception e) {
                                         TianjinMetro.LOGGER.warn("Bad advertisement config at {}, index {}. Skipping!", entry.getKey(), index.get());

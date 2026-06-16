@@ -74,8 +74,10 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
     private void getArrivalsAndRender(T entity, BlockPos blockPos, Direction facing, LongCollection platformIds) {
         final ObjectArrayList<ArrivalResponse> arrivalResponseList = ArrivalsCacheClient.INSTANCE.requestArrivals(platformIds);
         MainRenderer.scheduleRender(QueuedRenderLayer.TEXT, (graphicsHolder, offset) -> {
-            if(!entity.renderSingleFace || IBlock.getStatePropertySafe(entity.getCachedState2(), BlockPIDSTianjinSingle.SHOULD_RENDER)) render(entity, blockPos, facing, arrivalResponseList, graphicsHolder, offset);
-            if (!entity.renderSingleFace) render(entity, blockPos.offset(facing), facing.getOpposite(), arrivalResponseList, graphicsHolder, offset);
+            if (!entity.renderSingleFace || IBlock.getStatePropertySafe(entity.getCachedState2(), BlockPIDSTianjinSingle.SHOULD_RENDER))
+                render(entity, blockPos, facing, arrivalResponseList, graphicsHolder, offset);
+            if (!entity.renderSingleFace)
+                render(entity, blockPos.offset(facing), facing.getOpposite(), arrivalResponseList, graphicsHolder, offset);
         });
     }
 
@@ -184,6 +186,11 @@ public class RenderPIDSTianjin<T extends BlockPIDSTianjin.BlockEntity> extends B
             entity.scrollingText.changeImage(() -> DynamicTextureCache.instance.getPlainText("   " + entity.advertisement.text().getString() + "   ", 0xFF1A1D46, ARGB_WHITE));
         }
         renderTexture(graphicsHolder, entity.advertisement.image(), 161F, 88.3F, facing);
+        if (entity.advertisement.url() != null) {
+            graphicsHolder.translate(0, 0, -0.1F);
+            renderTexture(graphicsHolder, new Identifier(Reference.MOD_ID, "textures/sign/click.png"), 15F, 15F, facing);
+            graphicsHolder.translate(0, 0, 0.1F);
+        }
         graphicsHolder.translate(1.5F, 75.3F, 0);
         boolean shouldSwitch = entity.scrollingText.scrollText(graphicsHolder, facing);
         if (shouldSwitch) nextSlide(entity);
