@@ -213,5 +213,6 @@
     "block.tjmetro.custom_color_mosaic_tile_slab": "モザイクタイルのハーフブロック",
     "block.tjmetro.custom_color_mosaic_tile_stairs": "モザイクタイルの階段",
     "block.tjmetro.pids_tianjin_single": "発車標(天津地下鉄, 片面)",
-    "tooltip.tjmetro.smoke_alarm": "一定範囲内の炎や煙を検知し、レッドストーン信号を発します。ゲームルールで範囲を変更できます。"
+    "tooltip.tjmetro.smoke_alarm": "一定範囲内の炎や煙を検知し、レッドストーン信号を発します。ゲームルールで範囲を変更できます。",
+    "tooltip.tjmetro.railway_sign_wall": "地面に設置可能。レンチを使ってフォントを切り替えできます。"
 }
