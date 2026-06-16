@@ -211,12 +211,12 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
             float totalTextWidth = 0;
             for (final IntObjectImmutablePair<String> route : selectedRoutesSorted) {
                 if (toggleStyle) {
-                    final org.mtr.mod.client.DynamicTextureCache.DynamicResource resourceLocationData = org.mtr.mod.client.DynamicTextureCache.instance.getRouteSquare(route.leftInt(), route.right(), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
-                    resourceLocationDataList.add(new DynamicTextureCache.DynamicResource(resourceLocationData));
-                    totalTextWidth += height * resourceLocationData.width / resourceLocationData.height + margin / 2F;
-                } else {
                     final DynamicTextureCache.DynamicResource resourceLocationData = DynamicTextureCache.instance.getRouteSquare(route.leftInt(), route.right(), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
                     resourceLocationDataList.add(resourceLocationData);
+                    totalTextWidth += height * resourceLocationData.width / resourceLocationData.height + margin / 2F;
+                } else {
+                    final org.mtr.mod.client.DynamicTextureCache.DynamicResource resourceLocationData = org.mtr.mod.client.DynamicTextureCache.instance.getRouteSquare(route.leftInt(), route.right(), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
+                    resourceLocationDataList.add(new DynamicTextureCache.DynamicResource(resourceLocationData));
                     totalTextWidth += height * resourceLocationData.width / resourceLocationData.height + margin / 2F;
                 }
             }
