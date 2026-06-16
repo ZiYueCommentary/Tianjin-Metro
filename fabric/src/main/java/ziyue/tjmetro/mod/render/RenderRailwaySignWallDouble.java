@@ -16,7 +16,6 @@ import org.mtr.mod.Init;
 import org.mtr.mod.InitClient;
 import org.mtr.mod.block.BlockRailwaySign;
 import org.mtr.mod.block.IBlock;
-import org.mtr.mod.client.DynamicTextureCache;
 import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.client.MinecraftClientData;
 import org.mtr.mod.data.IGui;
@@ -28,8 +27,8 @@ import org.mtr.mod.resource.SignResource;
 import org.mtr.mod.screen.EditStationScreen;
 import ziyue.tjmetro.mod.block.BlockRailwaySignWall;
 import ziyue.tjmetro.mod.block.BlockRailwaySignWallDouble;
-import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
+import ziyue.tjmetro.mod.client.DynamicTextureCache;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nullable;
@@ -126,7 +125,8 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
                                 storedMatrixTransformations.transform(graphicsHolderNew, offset);
                                 IDrawing.drawTexture(graphicsHolderNew, x, y, size, size, flipTexture ? 1 : 0, 0, flipTexture ? 0 : 1, 1, facing, -1, GraphicsHolder.getDefaultLight());
                                 graphicsHolderNew.pop();
-                            })
+                            }),
+                            entity.getToggleStyle()
                     );
                 }
             }
@@ -135,7 +135,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
         graphicsHolder.pop();
     }
 
-    public static void drawSign(GraphicsHolder graphicsHolder, @Nullable StoredMatrixTransformations storedMatrixTransformations, BlockPos pos, String signId, float x, float y, float size, float maxWidthLeft, float maxWidthRight, LongAVLTreeSet selectedIds, Direction facing, int backgroundColor, RenderRailwaySign.DrawTexture drawTexture) {
+    public static void drawSign(GraphicsHolder graphicsHolder, @Nullable StoredMatrixTransformations storedMatrixTransformations, BlockPos pos, String signId, float x, float y, float size, float maxWidthLeft, float maxWidthRight, LongAVLTreeSet selectedIds, Direction facing, int backgroundColor, RenderRailwaySign.DrawTexture drawTexture, boolean toggleStyle) {
         final SignResource sign = getSign(signId);
         if (sign == null) return;
 
@@ -172,7 +172,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
                 final StationExit stationExit = selectedExitsSorted.get(flipCustomText ? selectedExitsSorted.size() - i - 1 : i);
                 final float signOffset = (flipCustomText ? -1 : 1) * signSize * i - (flipCustomText ? signSize : 0);
 
-                MainRenderer.scheduleRender(IRailwaySign.getExitSignResource(signId, stationExit.getName().substring(0, 1), stationExit.getName().substring(1), backgroundColor, ARGB_WHITE, true), true, QueuedRenderLayer.LIGHT_TRANSLUCENT, (graphicsHolderNew, offset) -> {
+                MainRenderer.scheduleRender(IRailwaySign.getExitSignResource(signId, stationExit.getName().substring(0, 1), stationExit.getName().substring(1), backgroundColor, ARGB_WHITE, !toggleStyle), true, QueuedRenderLayer.LIGHT_TRANSLUCENT, (graphicsHolderNew, offset) -> {
                     storedMatrixTransformations.transform(graphicsHolderNew, offset);
                     graphicsHolderNew.translate(x + margin + (flipCustomText ? signSize : 0), margin, 0);
                     graphicsHolderNew.scale(Math.min(1, maxWidth / exitWidth), 1, 1);
@@ -181,7 +181,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
                 });
 
                 if (maxWidth > exitWidth && selectedExitsSorted.size() == 1 && !stationExit.getDestinations().isEmpty()) {
-                    renderCustomText(stationExit.getDestinations().get(0), storedMatrixTransformations, facing, size, flipCustomText ? x : x + size, y, flipCustomText, maxWidth - exitWidth - margin * 2, backgroundColor);
+                    renderCustomText(stationExit.getDestinations().get(0), storedMatrixTransformations, facing, size, flipCustomText ? x : x + size, y, flipCustomText, maxWidth - exitWidth - margin * 2, backgroundColor, toggleStyle);
                 }
             }
 
@@ -210,9 +210,15 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
             final List<DynamicTextureCache.DynamicResource> resourceLocationDataList = new ArrayList<>();
             float totalTextWidth = 0;
             for (final IntObjectImmutablePair<String> route : selectedRoutesSorted) {
-                final DynamicTextureCache.DynamicResource resourceLocationData = DynamicTextureCache.instance.getRouteSquare(route.leftInt(), route.right(), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
-                resourceLocationDataList.add(resourceLocationData);
-                totalTextWidth += height * resourceLocationData.width / resourceLocationData.height + margin / 2F;
+                if (toggleStyle) {
+                    final org.mtr.mod.client.DynamicTextureCache.DynamicResource resourceLocationData = org.mtr.mod.client.DynamicTextureCache.instance.getRouteSquare(route.leftInt(), route.right(), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
+                    resourceLocationDataList.add(new DynamicTextureCache.DynamicResource(resourceLocationData));
+                    totalTextWidth += height * resourceLocationData.width / resourceLocationData.height + margin / 2F;
+                } else {
+                    final DynamicTextureCache.DynamicResource resourceLocationData = DynamicTextureCache.instance.getRouteSquare(route.leftInt(), route.right(), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT);
+                    resourceLocationDataList.add(resourceLocationData);
+                    totalTextWidth += height * resourceLocationData.width / resourceLocationData.height + margin / 2F;
+                }
             }
 
             final StoredMatrixTransformations storedMatrixTransformations2 = storedMatrixTransformations.copy();
@@ -251,7 +257,7 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
                 final float bottomOffset = (i + 1) * height + extraMargin + y;
                 final float left = flipCustomText ? x - maxWidthLeft * size : x + margin;
                 final float right = flipCustomText ? x + size - margin : x + (maxWidthRight + 1) * size;
-                MainRenderer.scheduleRender(IRailwaySign.getPlatformSignResource(signId, selectedIdsSorted.getLong(i), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, margin / size, (right - left) / (bottomOffset - topOffset), backgroundColor, ARGB_WHITE, backgroundColor, true), true, QueuedRenderLayer.LIGHT_TRANSLUCENT, (graphicsHolderNew, offset) -> {
+                MainRenderer.scheduleRender(IRailwaySign.getPlatformSignResource(signId, selectedIdsSorted.getLong(i), flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, margin / size, (right - left) / (bottomOffset - topOffset), backgroundColor, ARGB_WHITE, backgroundColor, !toggleStyle), true, QueuedRenderLayer.LIGHT_TRANSLUCENT, (graphicsHolderNew, offset) -> {
                     storedMatrixTransformations.transform(graphicsHolderNew, offset);
                     IDrawing.drawTexture(graphicsHolderNew, left, topOffset, 0, right, bottomOffset, 0, 0, 0, 1, 1, facing, -1, GraphicsHolder.getDefaultLight());
                     graphicsHolderNew.pop();
@@ -279,14 +285,19 @@ public class RenderRailwaySignWallDouble<T extends BlockRailwaySignWallDouble.Bl
                     } else {
                         signText = sign.getCustomText().getString();
                     }
-                    renderCustomText(signText, storedMatrixTransformations, facing, size, start, y, flipCustomText, maxWidth, backgroundColor);
+                    renderCustomText(signText, storedMatrixTransformations, facing, size, start, y, flipCustomText, maxWidth, backgroundColor, toggleStyle);
                 }
             }
         }
     }
 
-    protected static void renderCustomText(String signText, StoredMatrixTransformations storedMatrixTransformations, Direction facing, float size, float start, float offset, boolean flipCustomText, float maxWidth, int backgroundColor) {
-        final DynamicTextureCache.DynamicResource dynamicResource = DynamicTextureCache.instance.getSignText(signText, flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, (1 - BlockRailwaySign.SMALL_SIGN_PERCENTAGE) / 2, backgroundColor, ARGB_WHITE);
+    protected static void renderCustomText(String signText, StoredMatrixTransformations storedMatrixTransformations, Direction facing, float size, float start, float offset, boolean flipCustomText, float maxWidth, int backgroundColor, boolean toggleStyle) {
+        final DynamicTextureCache.DynamicResource dynamicResource;
+        if (toggleStyle) {
+            dynamicResource = DynamicTextureCache.instance.getSignText(signText, flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, (1 - BlockRailwaySign.SMALL_SIGN_PERCENTAGE) / 2, backgroundColor, ARGB_WHITE);
+        } else {
+            dynamicResource = new DynamicTextureCache.DynamicResource(org.mtr.mod.client.DynamicTextureCache.instance.getSignText(signText, flipCustomText ? HorizontalAlignment.RIGHT : HorizontalAlignment.LEFT, (1 - BlockRailwaySign.SMALL_SIGN_PERCENTAGE) / 2, backgroundColor, ARGB_WHITE));
+        }
         final float width = Math.min(size * dynamicResource.width / dynamicResource.height, maxWidth);
         MainRenderer.scheduleRender(dynamicResource.identifier, true, QueuedRenderLayer.LIGHT_TRANSLUCENT, (graphicsHolderNew, offset1) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset1);

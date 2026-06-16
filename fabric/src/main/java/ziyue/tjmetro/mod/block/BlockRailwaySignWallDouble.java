@@ -6,7 +6,10 @@ import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.BlockList;
+import ziyue.tjmetro.mod.ItemList;
+import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
+import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -61,6 +64,24 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
         state.updateNeighbors(new WorldAccess(world.data), pos, 3);
     }
 
+    @Nonnull
+    @Override
+    public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
+        if (player.isHolding(ItemList.WRENCH.get())) {
+            if (world.getBlockEntity(checkPos).data instanceof BlockEntity entity) {
+                entity.setToggleStyle();
+                return ActionResult.SUCCESS;
+            }
+        }
+        return IBlock.checkHoldingBrush(world, player, () -> {
+            if (checkPos != null) {
+                Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(checkPos));
+            }
+        });
+    }
+
     @Override
     protected BlockPos findEndWithDirection(World world, BlockPos startPos, Direction direction, boolean allowOpposite) {
         return IRailwaySign.findEndWithDirection(world, startPos, direction, allowOpposite, BlockList.RAILWAY_SIGN_WALL_DOUBLE_MIDDLE.get());
@@ -89,8 +110,10 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
     {
         protected final List<LongAVLTreeSet> selectedIds;
         protected final String[][] signIds;
+        protected boolean toggleStyle = false;
         protected static final String KEY_SELECTED_IDS = "selected_ids";
         protected static final String KEY_SIGN_LENGTH = "sign_length";
+        protected static final String KEY_TOGGLE_STYLE = "toggle_style";
 
         public BlockEntity(int length, BlockPos pos, BlockState state) {
             super(getType(length), pos, state);
@@ -110,6 +133,7 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
                     signIds[i][j] = signId.isEmpty() ? null : signId;
                 }
             }
+            toggleStyle = compoundTag.getBoolean(KEY_TOGGLE_STYLE);
         }
 
         @Override
@@ -120,6 +144,7 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
                     compoundTag.putString(KEY_SIGN_LENGTH + i + j, signIds[i][j] == null ? "" : signIds[i][j]);
                 }
             }
+            compoundTag.putBoolean(KEY_TOGGLE_STYLE, toggleStyle);
         }
 
         public void setData(List<LongAVLTreeSet> selectedIds, String[][] signTypes) {
@@ -131,12 +156,21 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
             markDirty2();
         }
 
+        public void setToggleStyle() {
+            toggleStyle = !toggleStyle;
+            markDirty2();
+        }
+
         public List<LongAVLTreeSet> getSelectedIds() {
             return selectedIds;
         }
 
         public String[][] getSignIds() {
             return signIds;
+        }
+
+        public boolean getToggleStyle() {
+            return toggleStyle;
         }
 
         protected static BlockEntityType<?> getType(int length) {

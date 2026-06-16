@@ -40,7 +40,7 @@ public class BlockAPGDoorTianjinJinjing extends BlockPSDAPGDoorBase implements B
     /**
      * @author ZiYueCommentary
      * @see org.mtr.mod.render.RenderPSDAPGDoor
-     * @since 1.0.0-beta-2
+     * @since 1.0.0-prerelease-1
      */
     public static class BlockEntity extends BlockEntityBase
     {

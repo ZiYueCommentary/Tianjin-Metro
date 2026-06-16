@@ -5,8 +5,8 @@ import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.*;
 import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.IBlock;
+import ziyue.tjmetro.mod.ItemList;
 import ziyue.tjmetro.mod.Registry;
-import ziyue.tjmetro.mod.block.IBlockExtension;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
@@ -37,11 +37,17 @@ public abstract class BlockRailwaySignBase extends BlockExtension implements IBl
     @Nonnull
     @Override
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> {
-            final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-            final Direction hitSide = hit.getSide();
+        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        final Direction hitSide = hit.getSide();
+        final BlockPos checkPos = findEndWithDirection(world, pos, hitSide.getOpposite(), false);
+        if (player.isHolding(ItemList.WRENCH.get())) {
+            if (world.getBlockEntity(checkPos).data instanceof BlockEntityBase entity) {
+                entity.setToggleStyle();
+                return ActionResult.SUCCESS;
+            }
+        }
+        return IBlock.checkHoldingBrush(world, player, () -> {
             if (hitSide == facing || hitSide == facing.getOpposite()) {
-                final BlockPos checkPos = findEndWithDirection(world, pos, hitSide.getOpposite(), false);
                 if (checkPos != null) {
                     Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(checkPos));
                 }
@@ -116,8 +122,10 @@ public abstract class BlockRailwaySignBase extends BlockExtension implements IBl
     {
         protected final LongAVLTreeSet selectedIds;
         protected final String[] signIds;
+        protected boolean toggleStyle = false; // This is a very dumb way to implement this, but it is convenient
         protected static final String KEY_SELECTED_IDS = "selected_ids";
         protected static final String KEY_SIGN_LENGTH = "sign_length";
+        protected static final String KEY_TOGGLE_STYLE = "toggle_style";
 
         public BlockEntityBase(BlockEntityType<?> type, int length, BlockPos pos, BlockState state) {
             super(type, pos, state);
@@ -133,6 +141,7 @@ public abstract class BlockRailwaySignBase extends BlockExtension implements IBl
                 final String signId = compoundTag.getString(KEY_SIGN_LENGTH + i);
                 signIds[i] = signId.isEmpty() ? null : signId.toLowerCase(Locale.ENGLISH);
             }
+            toggleStyle = compoundTag.getBoolean(KEY_TOGGLE_STYLE);
         }
 
         @Override
@@ -141,6 +150,7 @@ public abstract class BlockRailwaySignBase extends BlockExtension implements IBl
             for (int i = 0; i < signIds.length; i++) {
                 compoundTag.putString(KEY_SIGN_LENGTH + i, signIds[i] == null ? "" : signIds[i]);
             }
+            compoundTag.putBoolean(KEY_TOGGLE_STYLE, toggleStyle);
         }
 
         public void setData(LongAVLTreeSet selectedIds, String[] signTypes) {
@@ -152,12 +162,21 @@ public abstract class BlockRailwaySignBase extends BlockExtension implements IBl
             markDirty2();
         }
 
+        public void setToggleStyle() {
+            toggleStyle = !toggleStyle;
+            markDirty2();
+        }
+
         public LongAVLTreeSet getSelectedIds() {
             return selectedIds;
         }
 
         public String[] getSignIds() {
             return signIds;
+        }
+
+        public boolean getToggleStyle() {
+            return toggleStyle;
         }
     }
 }

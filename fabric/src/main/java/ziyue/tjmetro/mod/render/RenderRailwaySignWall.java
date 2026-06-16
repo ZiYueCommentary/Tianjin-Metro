@@ -87,25 +87,44 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignBase.BlockEntityBas
         });
         for (int i = 0; i < signIds.length; i++) {
             if (signIds[i] != null) {
-                drawSign(
-                        graphicsHolder,
-                        storedMatrixTransformations,
-                        pos,
-                        signIds[i],
-                        0.5F * i,
-                        0,
-                        0.5F,
-                        getMaxWidth(signIds, i, false),
-                        getMaxWidth(signIds, i, true),
-                        entity.getSelectedIds(),
-                        facing,
-                        backgroundColor | ARGB_BLACK,
-                        (textureId, x, y, size, flipTexture) -> MainRenderer.scheduleRender(textureId, true, QueuedRenderLayer.LIGHT_TRANSLUCENT, (graphicsHolderNew, offset) -> {
-                            storedMatrixTransformations.transform(graphicsHolderNew, offset);
-                            IDrawing.drawTexture(graphicsHolderNew, x, y, size, size, flipTexture ? 1 : 0, 0, flipTexture ? 0 : 1, 1, facing, -1, GraphicsHolder.getDefaultLight());
-                            graphicsHolderNew.pop();
-                        })
-                );
+                final DrawTexture drawTexture = (textureId, x, y, size, flipTexture) -> MainRenderer.scheduleRender(textureId, true, QueuedRenderLayer.LIGHT_TRANSLUCENT, (graphicsHolderNew, offset) -> {
+                    storedMatrixTransformations.transform(graphicsHolderNew, offset);
+                    IDrawing.drawTexture(graphicsHolderNew, x, y, size, size, flipTexture ? 1 : 0, 0, flipTexture ? 0 : 1, 1, facing, -1, GraphicsHolder.getDefaultLight());
+                    graphicsHolderNew.pop();
+                });
+                if (entity.getToggleStyle()) {
+                    RenderRailwaySignTianjin.drawSign(
+                            graphicsHolder,
+                            storedMatrixTransformations,
+                            pos,
+                            signIds[i],
+                            0.5F * i,
+                            0,
+                            0.5F,
+                            getMaxWidth(signIds, i, false),
+                            getMaxWidth(signIds, i, true),
+                            entity.getSelectedIds(),
+                            facing,
+                            backgroundColor | ARGB_BLACK,
+                            drawTexture
+                    );
+                } else {
+                    drawSign(
+                            graphicsHolder,
+                            storedMatrixTransformations,
+                            pos,
+                            signIds[i],
+                            0.5F * i,
+                            0,
+                            0.5F,
+                            getMaxWidth(signIds, i, false),
+                            getMaxWidth(signIds, i, true),
+                            entity.getSelectedIds(),
+                            facing,
+                            backgroundColor | ARGB_BLACK,
+                            drawTexture
+                    );
+                }
             }
         }
 

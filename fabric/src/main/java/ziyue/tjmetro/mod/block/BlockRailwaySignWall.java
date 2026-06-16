@@ -7,6 +7,7 @@ import org.mtr.mapping.tool.HolderBase;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.BlockList;
+import ziyue.tjmetro.mod.ItemList;
 import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
@@ -60,7 +61,13 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
     public ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
         final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
-        return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> {
+        if (player.isHolding(ItemList.WRENCH.get())) {
+            if (world.getBlockEntity(checkPos).data instanceof BlockEntityBase entity) {
+                entity.setToggleStyle();
+                return ActionResult.SUCCESS;
+            }
+        }
+        return IBlock.checkHoldingBrush(world, player, () -> {
             if (checkPos != null) {
                 Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(checkPos));
             }

@@ -448,6 +448,18 @@ public class DynamicTextureCache
         public final int height;
         public final Identifier identifier;
 
+        /**
+         * Creates a dummy of MTR dynamic resources.
+         * The resource itself still belongs to MTR, and managed recycle by it.
+         *
+         * @since 1.1.1
+         */
+        public DynamicResource(org.mtr.mod.client.DynamicTextureCache.DynamicResource resource) {
+            this.width = resource.width;
+            this.height = resource.height;
+            this.identifier = resource.identifier;
+        }
+
         public DynamicResource(Identifier identifier, @Nullable NativeImageBackedTexture nativeImageBackedTexture) {
             this.identifier = identifier;
             if (nativeImageBackedTexture != null) {
