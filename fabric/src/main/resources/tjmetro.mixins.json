@@ -16,6 +16,7 @@
     },
     "client": [
         "DynamicVehicleModelMixin",
+        "EditRouteScreenMixin",
         "RailwaySignScreenMixin",
         "RenderRailwaySignMixin",
         "SidingScreenMixin"

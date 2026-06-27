@@ -25,6 +25,8 @@ import java.util.Objects;
 
 public interface IGuiExtension
 {
+    int CHECKBOX_WIDTH = 160;
+
     /**
      * Remains the language string that the language option specified.
      *

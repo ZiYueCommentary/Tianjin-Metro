@@ -132,6 +132,7 @@
     "gui.tjmetro.next_train_cjk": "下次列车",
     "gui.tjmetro.next_train": "Next Train",
     "gui.tjmetro.filtered_ads": "Filtered Advertisements (%s)",
+    "gui.tjmetro.duplicated_route": "%s (Duplicated)",
 
     "sign.tjmetro.tianjin_metro": "天津地铁|Tianjin Metro",
     "sign.tjmetro.train": "列车|Train",
@@ -166,6 +167,7 @@
     "button.tjmetro.click_here": "Click Here!",
     "button.tjmetro.open_tutorial": "Create ads",
     "button.tjmetro.duplicate_siding_settings": "Duplicate settings to other sidings",
+    "button.tjmetro.duplicate_route": "Duplicate",
 
     "config.category.tjmetro": "Tianjin Metro",
     "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r is not installed.",
