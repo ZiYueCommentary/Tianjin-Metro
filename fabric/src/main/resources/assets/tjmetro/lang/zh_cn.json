@@ -214,5 +214,7 @@
     "block.tjmetro.custom_color_mosaic_tile_slab": "马赛克瓷砖台阶",
     "block.tjmetro.custom_color_mosaic_tile_stairs": "马赛克瓷砖楼梯",
     "block.tjmetro.pids_tianjin_single": "乘客资讯显示屏（天津、单向）",
-    "tooltip.tjmetro.railway_sign_wall": "你可以将其放在地上。使用扳手可以切换字体。"
+    "tooltip.tjmetro.railway_sign_wall": "你可以将其放在地上。使用扳手可以切换字体。",
+    "gui.tjmetro.duplicated_route": "%s（复制）",
+    "button.tjmetro.duplicate_route": "复制"
 }
