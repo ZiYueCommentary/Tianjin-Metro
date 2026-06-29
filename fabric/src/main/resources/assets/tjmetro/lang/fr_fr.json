@@ -33,5 +33,8 @@
     "block.tjmetro.station_name_sign_1": "Panneau du nom de station",
     "block.tjmetro.marble_yellow_stairs": "Escaliers de marbre jaune",
     "block.tjmetro.railway_sign_tianjin": "Panneau de réseau ferré (Tianjin)",
-    "block.tjmetro.marble_gray_slab": "Dalle de marbre gris"
+    "block.tjmetro.marble_gray_slab": "Dalle de marbre gris",
+    "block.tjmetro.platform_tj_1_slab": "Dalle de quai (Tianjin)",
+    "block.tjmetro.platform_tj_2_slab": "Dalle de quai (Tianjin)",
+    "block.tjmetro.high_speed_repeater": "Répétiteur à haute vitesse"
 }
