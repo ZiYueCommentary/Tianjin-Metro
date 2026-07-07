@@ -6,7 +6,7 @@ import org.mtr.mod.block.BlockAPGGlass;
 import org.mtr.mod.block.BlockPSDTop;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.ItemList;
-import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinJinjing;
+import ziyue.tjmetro.mod.block.flag.BlockFlagAPGTianjinJinjing;
 
 import javax.annotation.Nonnull;
 

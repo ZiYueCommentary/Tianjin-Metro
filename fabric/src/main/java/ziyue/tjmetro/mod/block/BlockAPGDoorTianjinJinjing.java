@@ -7,7 +7,7 @@ import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mod.block.BlockPSDAPGDoorBase;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.ItemList;
-import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinJinjing;
+import ziyue.tjmetro.mod.block.flag.BlockFlagAPGTianjinJinjing;
 
 import javax.annotation.Nonnull;
 

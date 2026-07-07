@@ -9,7 +9,7 @@ import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.ItemList;
-import ziyue.tjmetro.mod.block.base.BlockFlagPSDTianjin;
+import ziyue.tjmetro.mod.block.flag.BlockFlagPSDTianjin;
 
 import javax.annotation.Nonnull;
 import java.util.List;

@@ -6,7 +6,7 @@ import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mapping.registry.BlockRegistryObject;
 import org.mtr.mod.block.*;
 import ziyue.tjmetro.mod.block.*;
-import ziyue.tjmetro.mod.block.base.*;
+import ziyue.tjmetro.mod.block.flag.*;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
 import javax.annotation.Nonnull;

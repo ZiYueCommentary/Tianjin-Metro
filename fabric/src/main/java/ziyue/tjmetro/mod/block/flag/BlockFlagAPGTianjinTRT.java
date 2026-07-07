@@ -1,4 +1,4 @@
-package ziyue.tjmetro.mod.block.base;
+package ziyue.tjmetro.mod.block.flag;
 
 /**
  * @since 1.0.0-beta-2

@@ -8,7 +8,7 @@ import org.mtr.mod.block.BlockAPGGlass;
 import org.mtr.mod.block.BlockPSDTop;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.ItemList;
-import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinTRT;
+import ziyue.tjmetro.mod.block.flag.BlockFlagAPGTianjinTRT;
 
 import javax.annotation.Nonnull;
 

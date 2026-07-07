@@ -3,7 +3,7 @@ package ziyue.tjmetro.mod.block;
 import org.mtr.mapping.holder.Item;
 import org.mtr.mod.block.BlockAPGGlassEnd;
 import ziyue.tjmetro.mod.ItemList;
-import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjinBMT;
+import ziyue.tjmetro.mod.block.flag.BlockFlagAPGTianjinBMT;
 
 import javax.annotation.Nonnull;
 

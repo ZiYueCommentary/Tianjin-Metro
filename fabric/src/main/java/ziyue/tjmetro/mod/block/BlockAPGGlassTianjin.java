@@ -6,7 +6,7 @@ import org.mtr.mapping.holder.Item;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mod.block.BlockAPGGlass;
 import ziyue.tjmetro.mod.ItemList;
-import ziyue.tjmetro.mod.block.base.BlockFlagAPGTianjin;
+import ziyue.tjmetro.mod.block.flag.BlockFlagAPGTianjin;
 
 import javax.annotation.Nonnull;
 
