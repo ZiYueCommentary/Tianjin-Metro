@@ -95,6 +95,10 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockCustomColorMosaicTileSlab.BlockEntity> CUSTOM_COLOR_MOSAIC_TILE_SLAB = Registry.registerBlockEntityType("custom_color_mosaic_tile_slab", BlockCustomColorMosaicTileSlab.BlockEntity::new, BlockList.CUSTOM_COLOR_MOSAIC_TILE_SLAB::get);
     BlockEntityTypeRegistryObject<BlockCustomColorMosaicTileStairs.BlockEntity> CUSTOM_COLOR_MOSAIC_TILE_STAIRS = Registry.registerBlockEntityType("custom_color_mosaic_tile_stairs", BlockCustomColorMosaicTileStairs.BlockEntity::new, BlockList.CUSTOM_COLOR_MOSAIC_TILE_STAIRS::get);
     BlockEntityTypeRegistryObject<BlockPIDSTianjin.BlockEntity> PIDS_TIANJIN_SINGLE = Registry.registerBlockEntityType("pids_tianjin_single", (pos, state) -> new BlockPIDSTianjinSingle.BlockEntity(pos, state, true), BlockList.PIDS_TIANJIN_SINGLE::get);
+    BlockEntityTypeRegistryObject<BlockAPGDoorSingle.BlockEntity> APG_DOOR_SINGLE_LEFT = Registry.registerBlockEntityType("apg_door_single_left", (pos, state) -> new BlockAPGDoorSingle.BlockEntity(pos, state, true), BlockList.APG_DOOR_SINGLE_LEFT::get);
+    BlockEntityTypeRegistryObject<BlockAPGDoorSingle.BlockEntity> APG_DOOR_SINGLE_RIGHT = Registry.registerBlockEntityType("apg_door_single_right", (pos, state) -> new BlockAPGDoorSingle.BlockEntity(pos, state, false), BlockList.APG_DOOR_SINGLE_RIGHT::get);
+    BlockEntityTypeRegistryObject<BlockPSDDoorSingle.BlockEntity> PSD_DOOR_SINGLE_LEFT = Registry.registerBlockEntityType("psd_door_single_left", (pos, state) -> new BlockPSDDoorSingle.BlockEntity(pos, state, true), BlockList.PSD_DOOR_SINGLE_LEFT::get);
+    BlockEntityTypeRegistryObject<BlockPSDDoorSingle.BlockEntity> PSD_DOOR_SINGLE_RIGHT = Registry.registerBlockEntityType("psd_door_single_right", (pos, state) -> new BlockPSDDoorSingle.BlockEntity(pos, state, false), BlockList.PSD_DOOR_SINGLE_RIGHT::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants

@@ -33,6 +33,10 @@ public interface ItemList
     ItemRegistryObject APG_DOOR_TIANJIN_JINJING = Registry.registerItem("apg_door_tianjin_jinjing", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_DOOR_TIANJIN_JINJING_BLOCK, itemSettings)), CreativeModeTabs.TIANJIN_METRO);
     ItemRegistryObject APG_GLASS_TIANJIN_JINJING = Registry.registerItem("apg_glass_tianjin_jinjing", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_GLASS_TIANJIN_JINJING_BLOCK, itemSettings)), CreativeModeTabs.TIANJIN_METRO);
     ItemRegistryObject APG_GLASS_END_TIANJIN_JINJING = Registry.registerItem("apg_glass_end_tianjin_jinjing", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_GLASS_END_TIANJIN_JINJING_BLOCK, itemSettings)), CreativeModeTabs.TIANJIN_METRO);
+    ItemRegistryObject APG_DOOR_SINGLE_LEFT = Registry.registerItem("apg_door_single_left", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_DOOR_SINGLE_LEFT, itemSettings)), CreativeModeTabs.TIANJIN_METRO);
+    ItemRegistryObject APG_DOOR_SINGLE_RIGHT = Registry.registerItem("apg_door_single_right", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.APG_DOOR_SINGLE_RIGHT, itemSettings)), CreativeModeTabs.TIANJIN_METRO);
+    ItemRegistryObject PSD_DOOR_SINGLE_LEFT = Registry.registerItem("psd_door_single_left", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.PSD_DOOR_SINGLE_LEFT, itemSettings)), CreativeModeTabs.TIANJIN_METRO);
+    ItemRegistryObject PSD_DOOR_SINGLE_RIGHT = Registry.registerItem("psd_door_single_right", itemSettings -> new Item(new ItemPSDAPGTianjinBase(BlockList.PSD_DOOR_SINGLE_RIGHT, itemSettings)), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerItems() {
         // Calling this class to initialize constants
