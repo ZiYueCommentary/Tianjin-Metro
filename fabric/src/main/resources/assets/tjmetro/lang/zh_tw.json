@@ -192,5 +192,9 @@
     "advertisement.tjmetro.name": "天津地鐵",
     "advertisement.tjmetro.description": "天津地鐵模組的默認廣告。",
     "advertisement.tjmetro.banner": "天津地鐵模組是Minecraft Transit Railway的綜合性拓展模組，其中包含各種取自現實中天津地鐵的新內容。",
-    "advertisement.tjmetro.weblate": "歡迎參加天津地鐵的翻譯工作!"
+    "advertisement.tjmetro.weblate": "歡迎參加天津地鐵的翻譯工作!",
+    "advertisement.tjmetro.bde": "《拆彈專家》是一款允許玩家拆彈以及拆苦力怕的有趣模組!",
+    "filter.tjmetro.tianjin_miscellaneous": "雜項",
+    "tooltip.tjmetro.railway_sign_wall": "你可以將它放在地板。使用扳手可以切換字體。",
+    "gamerule.playerDetectRange.description": "設定玩家偵測器的偵測半徑。此規則由天津地鐵模組增加。"
 }
