@@ -28,7 +28,10 @@ import java.util.List;
 public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailwaySign
 {
     public static final BooleanProperty EOS = BooleanProperty.of("eos"); // end of sign
-    public static final BooleanProperty GROUND = BooleanProperty.of("ground");
+    // When Minecraft meets a new blockstate, the game will assign it with `true`.
+    // For backward compatibility, we can't use `is_on_ground`, but `is_not_on_ground`,
+    // to make sure the old signs are work properly.
+    public static final BooleanProperty NOT_GROUND = BooleanProperty.of("not_ground");
 
     public BlockRailwaySignWall(int length) {
         super(org.mtr.mod.Blocks.createDefaultBlockSettings(true, blockState -> 15).noCollision(), length, false);
@@ -40,7 +43,7 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
         return IBlock.isReplaceable(ctx, facing.rotateYClockwise(), getMiddleLength() + 1) ?
                 getDefaultState2().with(new Property<>(FACING.data), facing.data)
                         .with(new Property<>(EOS.data), false)
-                        .with(new Property<>(GROUND.data), ctx.getPlayerLookDirection() == Direction.DOWN) :
+                        .with(new Property<>(NOT_GROUND.data), ctx.getPlayerLookDirection() == Direction.DOWN) :
                 null;
     }
 
@@ -79,19 +82,19 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
         if (world.isClient()) return;
 
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-        final boolean ground = IBlock.getStatePropertySafe(state, GROUND);
+        final boolean ground = IBlock.getStatePropertySafe(state, NOT_GROUND);
         for (int i = 1; i < getMiddleLength(); i++) {
             world.setBlockState(pos.offset(facing.rotateYClockwise(), i),
                     BlockList.RAILWAY_SIGN_WALL_MIDDLE.get().getDefaultState()
                             .with(new Property<>(FACING.data), facing.data)
                             .with(new Property<>(EOS.data), false)
-                            .with(new Property<>(GROUND.data), ground), 3);
+                            .with(new Property<>(NOT_GROUND.data), ground), 3);
         }
         world.setBlockState(pos.offset(facing.rotateYClockwise(), getMiddleLength()),
                 BlockList.RAILWAY_SIGN_WALL_MIDDLE.get().getDefaultState()
                         .with(new Property<>(FACING.data), facing.data)
                         .with(new Property<>(EOS.data), true)
-                        .with(new Property<>(GROUND.data), ground), 3);
+                        .with(new Property<>(NOT_GROUND.data), ground), 3);
         world.updateNeighbors(pos, Blocks.getAirMapped());
         state.updateNeighbors(new WorldAccess(world.data), pos, 3);
     }
@@ -105,7 +108,7 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
     @Nonnull
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (IBlock.getStatePropertySafe(state, GROUND)) return Block.createCuboidShape(0, 0, 0, 16, 1, 16);
+        if (!IBlock.getStatePropertySafe(state, NOT_GROUND)) return Block.createCuboidShape(0, 0, 0, 16, 1, 16);
         return IBlock.getVoxelShapeByDirection(0, 0, 0, 16, 16, 1, IBlock.getStatePropertySafe(state, FACING));
     }
 
@@ -134,7 +137,7 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
     public void addBlockProperties(List<HolderBase<?>> properties) {
         properties.add(FACING);
         properties.add(EOS);
-        properties.add(GROUND);
+        properties.add(NOT_GROUND);
     }
 
     @Override

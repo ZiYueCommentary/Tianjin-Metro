@@ -44,7 +44,7 @@ public class ItemPSDAPGTianjinBase extends ItemExtension implements IBlock
     @Nonnull
     @Override
     public ActionResult useOnBlock2(ItemUsageContext context) {
-        final int horizontalBlocks = block.data instanceof BlockFlagDoorSingle ? 1 : 2;
+        final int horizontalBlocks = block.data instanceof BlockPSDAPGDoorBase && !(block.data instanceof BlockFlagDoorSingle) ? 2 : 1;
         if (blocksNotReplaceable(context, horizontalBlocks, isAPG() ? 2 : 3, this.block)) return ActionResult.FAIL;
 
         final World world = context.getWorld();

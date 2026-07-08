@@ -62,7 +62,7 @@ public class RenderRailwaySignWall<T extends BlockRailwaySignBase.BlockEntityBas
         storedMatrixTransformations.add(graphicsHolderNew -> {
             graphicsHolderNew.rotateYDegrees(-facing.asRotation());
             graphicsHolderNew.rotateZDegrees(180);
-            if (IBlock.getStatePropertySafe(state, BlockRailwaySignWall.GROUND)) {
+            if (!IBlock.getStatePropertySafe(state, BlockRailwaySignWall.NOT_GROUND)) {
                 graphicsHolderNew.rotateXDegrees(-90);
                 graphicsHolderNew.translate(0, -0.03, 0.02);
             }
