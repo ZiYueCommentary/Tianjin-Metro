@@ -183,6 +183,7 @@
     "config.tjmetro.disable_dynamic_textures": "Disable dynamic textures",
     "config.tjmetro.disable_train_rendering": "Disable train rendering",
     "config.tjmetro.dynamic_texture_max_size": "Dynamic texture max size",
+    "config.tjmetro.disable_filters": "Disable filters",
 
     "tooltip.tjmetro.experimental": "This feature is experimental.",
     "tooltip.tjmetro.station_name": "Text depends on the station",
@@ -205,6 +206,7 @@
     "tooltip.tjmetro.dynamic_texture_max_size": "Dynamic textures that exceed the limitation will be truncated. If you meet this issue, please adjust this with caution.",
     "tooltip.tjmetro.smoke_alarm": "Detects fire and smokes in a range and emits a redstone signal. You can change the range in game rule.",
     "tooltip.tjmetro.railway_sign_wall": "You can place it on the ground. Use Wrench to switch the font.",
+    "tooltip.tjmetro.disable_filters": "You can't open config screen from the tab too.",
 
     "footer.tjmetro.sources": "Wanna see the source code?",
     "footer.tjmetro.contributors": "Tianjin Metro is a community work, click here to see contributors!",

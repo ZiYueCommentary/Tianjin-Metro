@@ -6,6 +6,7 @@ import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mapping.mapper.ScreenExtension;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.client.IDrawing;
+import ziyue.tjmetro.mapping.ConfirmLinkScreenHelper;
 import ziyue.tjmetro.mod.TianjinMetro;
 
 import static org.mtr.mod.data.IGui.*;
@@ -23,7 +24,7 @@ public class MissingClothConfigScreen extends ScreenExtension
     public MissingClothConfigScreen(Screen parent) {
         this.parent = parent;
         buttonDownload = new ButtonWidgetExtension(0, 0, 0, 20, button -> {
-            Util.getOperatingSystem().open("https://modrinth.com/mod/cloth-config");
+            ConfirmLinkScreenHelper.open(new Screen(this), "https://modrinth.com/mod/cloth-config", true);
             this.onClose2();
         });
     }

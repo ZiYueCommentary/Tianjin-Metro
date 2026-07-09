@@ -35,6 +35,12 @@ public class ClientConfigScreen
                 .setDefaultValue(ConfigClient.ROTATED_STATION_NAME.getDefault())
                 .setSaveConsumer(ConfigClient.ROTATED_STATION_NAME::set)
                 .build();
+        BooleanListEntry booleanDisableFilters = entryBuilder
+                .startBooleanToggle(TextHelper.translatable("config.tjmetro.disable_filters").data, ConfigClient.DISABLE_FILTERS.get())
+                .setDefaultValue(ConfigClient.DISABLE_FILTERS.getDefault())
+                .setTooltip(TextHelper.translatable("tooltip.tjmetro.disable_filters").data)
+                .setSaveConsumer(ConfigClient.DISABLE_FILTERS::set)
+                .build();
         SubCategoryBuilder subCategoryDebugging = entryBuilder.startSubCategory(TextHelper.translatable("config.tjmetro.debugging").data);
         BooleanListEntry booleanDisableDynamicTextures = entryBuilder
                 .startBooleanToggle(TextHelper.translatable("config.tjmetro.disable_dynamic_textures").data, ConfigClient.DISABLE_DYNAMIC_TEXTURES.get())
@@ -57,7 +63,7 @@ public class ClientConfigScreen
         subCategoryDebugging.add(booleanDisableTrainRendering);
         subCategoryDebugging.add(integerDynamicTextureMaxSize);
         TextListEntry textFooter = entryBuilder.startTextDescription(TextFormatter.FOOTER_LINK.apply(ConfigClient.FOOTERS.get(new Random().nextInt(ConfigClient.FOOTERS.size())))).build();
-        categoryTianjinMetro.addEntry(booleanUseTianjinMetroFont).addEntry(booleanRotatedStationName).addEntry(subCategoryDebugging.build()).addEntry(textFooter);
+        categoryTianjinMetro.addEntry(booleanUseTianjinMetroFont).addEntry(booleanRotatedStationName).addEntry(booleanDisableFilters).addEntry(subCategoryDebugging.build()).addEntry(textFooter);
     }, () -> ConfigBuilder.create()
             .setTitle(TextHelper.translatable("gui.tjmetro.options").data)
             .setSavingRunnable(() -> {
