@@ -220,5 +220,7 @@
     "filter.tjmetro.tianjin_gates": "月台門",
     "filter.tjmetro.tianjin_decoration": "裝飾",
     "filter.tjmetro.tianjin_railway_signs": "指示牌",
-    "gamerule.playerDetectRange": "玩家偵測範圍"
+    "gamerule.playerDetectRange": "玩家偵測範圍",
+    "config.tjmetro.disable_filters": "停用過濾器",
+    "tooltip.tjmetro.disable_filters": "你無法從該標籤頁開啟設定介面。"
 }
