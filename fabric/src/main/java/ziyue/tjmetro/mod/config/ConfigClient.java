@@ -7,7 +7,7 @@ import org.mtr.mapping.holder.MinecraftClient;
 import org.mtr.mapping.holder.MutableText;
 import org.mtr.mapping.holder.Screen;
 import org.mtr.mapping.mapper.TextHelper;
-import ziyue.filters.FilterBuilder;
+import ziyue.tjmetro.mapping.FilterBuilder;
 import ziyue.tjmetro.mapping.ModLoaderHelper;
 import ziyue.tjmetro.mod.CreativeModeTabs;
 import ziyue.tjmetro.mod.Reference;
@@ -40,7 +40,7 @@ public class ConfigClient
         @Override
         public void set(Boolean value) {
             super.set(value);
-            FilterBuilder.filtersVisibility(CreativeModeTabs.TIANJIN_METRO.creativeModeTab, !value);
+            FilterBuilder.filtersVisibility(CreativeModeTabs.TIANJIN_METRO, !value);
         }
     };
     public static final Property<Boolean> DISABLE_DYNAMIC_TEXTURES = new Property<>("disable_dynamic_textures", false);
