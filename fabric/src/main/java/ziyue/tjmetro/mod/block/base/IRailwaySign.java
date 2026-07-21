@@ -13,8 +13,6 @@ import ziyue.tjmetro.mod.client.DynamicTextureCache;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 
 /**
  * @since 1.0.0-beta-1
@@ -67,6 +65,7 @@ public interface IRailwaySign extends DirectionHelper
 
     static BlockPos findEndWithDirection(World world, BlockPos startPos, Direction direction, boolean allowOpposite, Block middle) {
         int i = 0;
+        if (direction == Direction.UP || direction == Direction.DOWN) return null;
         while (true) {
             final BlockPos checkPos = startPos.offset(direction.rotateYCounterclockwise(), i);
             final BlockState checkState = world.getBlockState(checkPos);

@@ -65,7 +65,7 @@ public class BlockRailwaySignWall extends BlockRailwaySignBase implements IRailw
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
         final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
         if (player.isHolding(ItemList.WRENCH.get())) {
-            if (world.getBlockEntity(checkPos).data instanceof BlockEntityBase entity) {
+            if (checkPos != null && world.getBlockEntity(checkPos).data instanceof BlockEntityBase entity) {
                 entity.setToggleStyle();
                 return ActionResult.SUCCESS;
             }

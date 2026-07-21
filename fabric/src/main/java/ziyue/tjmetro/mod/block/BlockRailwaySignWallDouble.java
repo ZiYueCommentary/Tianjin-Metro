@@ -70,7 +70,7 @@ public class BlockRailwaySignWallDouble extends BlockRailwaySignWall
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
         final BlockPos checkPos = findEndWithDirection(world, pos, facing, false);
         if (player.isHolding(ItemList.WRENCH.get())) {
-            if (world.getBlockEntity(checkPos).data instanceof BlockEntity entity) {
+            if (checkPos != null && world.getBlockEntity(checkPos).data instanceof BlockEntity entity) {
                 entity.setToggleStyle();
                 return ActionResult.SUCCESS;
             }

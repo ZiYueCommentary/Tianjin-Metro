@@ -41,7 +41,7 @@ public abstract class BlockRailwaySignBase extends BlockExtension implements IBl
         final Direction hitSide = hit.getSide();
         final BlockPos checkPos = findEndWithDirection(world, pos, hitSide.getOpposite(), false);
         if (player.isHolding(ItemList.WRENCH.get())) {
-            if (world.getBlockEntity(checkPos).data instanceof BlockEntityBase entity) {
+            if (checkPos != null && world.getBlockEntity(checkPos).data instanceof BlockEntityBase entity) {
                 entity.setToggleStyle();
                 return ActionResult.SUCCESS;
             }
