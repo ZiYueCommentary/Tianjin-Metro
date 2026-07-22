@@ -13,6 +13,7 @@ import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.generated.lang.TranslationProvider;
 import org.mtr.mod.screen.DashboardListItem;
 import org.mtr.mod.screen.DashboardListSelectorScreen;
+import ziyue.tjmetro.mapping.ConfirmLinkScreenHelper;
 import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.RegistryClient;
 import ziyue.tjmetro.mod.block.BlockPIDSTianjin;
@@ -29,7 +30,8 @@ public class CategorySelectorScreen extends DashboardListSelectorScreen implemen
 
     public CategorySelectorScreen(BlockPIDSTianjin.BlockEntity entity, ScreenExtension previousScreenExtension) {
         super(CategoryForList.getCategoriesForList(), entity.getCategories(), false, true, previousScreenExtension);
-        this.buttonOpenTutorial = new ButtonWidgetExtension(0, 0, 0, SQUARE_SIZE, TextHelper.translatable("button.tjmetro.open_tutorial"), button -> Util.getOperatingSystem().open(Reference.PIDS_ADS));
+        this.buttonOpenTutorial = new ButtonWidgetExtension(0, 0, 0, SQUARE_SIZE, TextHelper.translatable("button.tjmetro.open_tutorial"),
+                button -> ConfirmLinkScreenHelper.open(new Screen(this), Reference.PIDS_ADS, true));
         this.entity = entity;
         this.categories = new ArrayList<>(BlockPIDSTianjin.CATEGORIES.values());
     }
