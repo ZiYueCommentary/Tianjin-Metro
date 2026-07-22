@@ -6,8 +6,10 @@ import org.mtr.mod.Blocks;
 import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.BlockList;
+import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
+import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -34,6 +36,20 @@ public class BlockRailwaySignTianjin extends BlockRailwaySignBase
     @Override
     public void onPlaced2(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         IRailwaySign.onPlaced(world, pos, state, BlockList.RAILWAY_SIGN_TIANJIN_MIDDLE.get(), getMiddleLength());
+    }
+
+    @Override
+    public @Nonnull ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        final Direction hitSide = hit.getSide();
+        final BlockPos checkPos = findEndWithDirection(world, pos, hitSide.getOpposite(), false);
+        return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> {
+            if (hitSide == facing || hitSide == facing.getOpposite()) {
+                if (checkPos != null) {
+                    Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(checkPos));
+                }
+            }
+        });
     }
 
     @Nonnull

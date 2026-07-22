@@ -4,11 +4,14 @@ import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.Blocks;
+import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.BlockEntityTypes;
 import ziyue.tjmetro.mod.BlockList;
+import ziyue.tjmetro.mod.Registry;
 import ziyue.tjmetro.mod.block.base.BlockRailwaySignBase;
 import ziyue.tjmetro.mod.block.base.IRailwaySign;
 import ziyue.tjmetro.mod.data.IGuiExtension;
+import ziyue.tjmetro.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -59,6 +62,20 @@ public class BlockRailwaySignTianjinBMT extends BlockRailwaySignBase
     @Override
     protected BlockPos findEndWithDirection(World world, BlockPos startPos, Direction direction, boolean allowOpposite) {
         return IRailwaySign.findEndWithDirection(world, startPos, direction, allowOpposite, BlockList.RAILWAY_SIGN_TIANJIN_BMT_MIDDLE.get());
+    }
+
+    @Override
+    public @Nonnull ActionResult onUse2(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+        final Direction hitSide = hit.getSide();
+        final BlockPos checkPos = findEndWithDirection(world, pos, hitSide.getOpposite(), false);
+        return IBlockExtension.checkHoldingBrushOrWrench(world, player, () -> {
+            if (hitSide == facing || hitSide == facing.getOpposite()) {
+                if (checkPos != null) {
+                    Registry.sendPacketToClient(ServerPlayerEntity.cast(player), new PacketOpenBlockEntityScreen(checkPos));
+                }
+            }
+        });
     }
 
     @Override
