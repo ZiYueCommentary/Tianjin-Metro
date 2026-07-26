@@ -222,5 +222,5 @@
     "block.tjmetro.psd_door_single_left": "片開き式フルスクリーンホームドア(左)",
     "block.tjmetro.psd_door_single_right": "片開き式フルスクリーンホームドア(右)",
     "config.tjmetro.disable_filters": "絞り込みを無効化",
-    "tooltip.tjmetro.disable_filters": "タブから設定画面を開くこともできません。"
+    "tooltip.tjmetro.disable_filters": "タブから設定画面を開けなくなるため注意。"
 }
