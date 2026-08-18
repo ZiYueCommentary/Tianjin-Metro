@@ -28,5 +28,22 @@
     "block.tjmetro.marble_yellow": "Sarı Mermer",
     "gui.tjmetro.next_station_bmt": "Gelecek İstasyon %s",
     "gui.tjmetro.next_station": "Gelecek İstasyon",
-    "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r indirilmedi."
+    "config.tjmetro.cloth_config_not_found": "§lCloth Config API§r indirilmedi.",
+    "block.tjmetro.railway_sign_tianjin": "Demiryolu Tabelası (Tientsin)",
+    "block.tjmetro.railway_sign_tianjin_bmt": "Demiryolu Tabelası (Tientsin, 9. Hat)",
+    "block.tjmetro.railway_sign_tianjin_double": "Demiryolu Tabelası (Tientsin, Çift Taraflı)",
+    "block.tjmetro.railway_sign_tianjin_pole": "Demiryolu Tabelası Direği (Tientsin)",
+    "block.tjmetro.railway_sign_wall": "Demiryolu Tabelası (Duvar)",
+    "block.tjmetro.railway_sign_wall_big": "Demiryolu Tabelası (Duvar, Büyük)",
+    "block.tjmetro.railway_sign_wall_double": "Demiryolu Tabelası (Duvar, Çift)",
+    "block.tjmetro.platform_tj_1": "Peron (Tientsin)",
+    "block.tjmetro.platform_tj_1_indented": "Peron (Tientsin)",
+    "block.tjmetro.platform_tj_1_slab": "Peron Basamak (Tientsin)",
+    "block.tjmetro.platform_tj_2": "Peron (Tientsin)",
+    "block.tjmetro.platform_tj_2_indented": "Peron (Tientsin)",
+    "block.tjmetro.platform_tj_2_slab": "Peron Basamak (Tientsin)",
+    "block.tjmetro.station_name_wall_legacy": "İstasyon Adı (Duvar, Eski Tip)",
+    "block.tjmetro.ceiling_not_lit": "Tavan (Işıksız)",
+    "block.mtr.ceiling_not_lit": "Tavan (Işıksız)",
+    "block.tjmetro.bench": "Bank"
 }
