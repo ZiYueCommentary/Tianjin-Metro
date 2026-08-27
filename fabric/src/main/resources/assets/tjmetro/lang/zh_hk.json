@@ -164,5 +164,16 @@
     "block.tjmetro.apg_tianjin_jinjing": "月台自動閘門（天津、津靜線）",
     "gui.tjmetro.current_station_cjk": "當前站",
     "gui.tjmetro.current_station": "Current Station",
-    "footer.tjmetro.tutorial": "觀看教程介紹視頻！"
+    "footer.tjmetro.tutorial": "觀看教程介紹視頻！",
+    "block.tjmetro.station_sign": "車站牌",
+    "block.tjmetro.station_sign_bmt": "車站牌（9號線）",
+    "block.tjmetro.trash_can": "垃圾桶",
+    "block.tjmetro.route_map_bmt": "路線圖（9號線）",
+    "block.tjmetro.station_name_sign_tianjin": "站名牌（天津）",
+    "block.tjmetro.pids_tianjin": "乘客資訊顯示屏（天津）",
+    "block.tjmetro.smoke_alarm": "煙霧報警器",
+    "block.tjmetro.custom_color_mosaic_tile_slab": "馬賽克瓷磚台階",
+    "block.tjmetro.custom_color_mosaic_tile_stairs": "馬賽克瓷磚樓梯",
+    "block.tjmetro.pids_tianjin_single": "乘客資訊顯示屏（天津、單向）",
+    "block.tjmetro.apg_door_single_left": "低站台門（單扇、左側）"
 }
