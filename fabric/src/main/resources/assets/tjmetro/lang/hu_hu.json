@@ -1,1 +1,17 @@
-{}
+{
+    "modmenu.nameTranslation.tjmetro": "Tianjin-i metró",
+    "modmenu.descriptionTranslation.tjmetro": "Egy kis mod a Minecraft Transit Railway-hez.",
+    "itemGroup.tjmetro.tianjin_metro": "Tianjin-i metró",
+    "item.tjmetro.wrench": "Csavarkulcs",
+    "block.tjmetro.rolling": "Redőny",
+    "block.tjmetro.logo": "A Tianjin-i metró logója",
+    "block.tjmetro.station_name_sign_1": "Állomásnév-tábla",
+    "block.tjmetro.station_name_sign_2": "Állomásnév-tábla",
+    "block.tjmetro.railway_sign_tianjin": "Vasúti jelzőtábla (Tianjin)",
+    "block.tjmetro.railway_sign_tianjin_bmt": "Vasúti jelzőtábla (Tianjin, 9-es vonal)",
+    "block.tjmetro.railway_sign_tianjin_double": "Vasúti jelzőtábla (Tianjin, kettős)",
+    "block.tjmetro.railway_sign_tianjin_pole": "Vasúti jelzőoszlop (Tianjin)",
+    "block.tjmetro.railway_sign_wall": "Vasúti jelzőtábla (fali)",
+    "block.tjmetro.railway_sign_wall_big": "Vasúti tábla (fali, nagy)",
+    "block.tjmetro.railway_sign_wall_double": "Vasúti jelzőtábla (fali, kettős)"
+}
