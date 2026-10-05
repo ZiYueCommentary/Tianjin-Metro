@@ -31,8 +31,7 @@ import ziyue.tjmetro.mod.Reference;
  */
 
 @Mixin(SidingScreen.class)
-public abstract class SidingScreenMixin extends SavedRailScreenBase<Siding, Depot> implements Icons
-{
+public abstract class SidingScreenMixin extends SavedRailScreenBase<Siding, Depot> implements Icons {
     @Shadow(remap = false)
     @Final
     private TextFieldWidgetExtension textFieldMaxTrains;
@@ -115,6 +114,7 @@ public abstract class SidingScreenMixin extends SavedRailScreenBase<Siding, Depo
     private void duplicateSettings() {
         final Depot depot = MinecraftClientData.getDashboardInstance().depotIdMap.get(this.savedRailBase.area.getId());
         depot.savedRails.forEach(siding -> {
+            if (siding.getId() == savedRailBase.getId()) return;
             siding.setVehicleCars(savedRailBase.getVehicleCars());
             int maxTrains;
             try {
