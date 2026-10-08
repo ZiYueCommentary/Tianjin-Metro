@@ -91,6 +91,7 @@
     "block.tjmetro.apg_door_single_right": "Automatic Platform Gates (Single, Right)",
     "block.tjmetro.psd_door_single_left": "Platform Screen Doors (Single, Left)",
     "block.tjmetro.psd_door_single_right": "Platform Screen Doors (Single, Right)",
+    "block.tjmetro.ticket_barrier_outbound_transfer_exit": "Ticket Barrier (Outbound Transfer)",
 
     "gui.tjmetro.service_corridor_sign_cjk": "暖行服务连廊",
     "gui.tjmetro.contact_station_for_help_cjk": "如需帮助请联系车站",
@@ -137,6 +138,10 @@
     "gui.tjmetro.next_train": "Next Train",
     "gui.tjmetro.filtered_ads": "Filtered Advertisements (%s)",
     "gui.tjmetro.duplicated_route": "%s (Duplicated)",
+    "gui.tjmetro.outbound_transfer_exit": "Outbound transfer - valid in 10min",
+    "gui.tjmetro.outbound_transfer_invalid": "Entered %s - outbound transfer failed - last cost: $%s",
+    "gui.tjmetro.outbound_transfer_expired": "Entered %s - outbound transfer expired - last cost: $%s",
+    "gui,tjmetro.outbound_transfer_success": "Outbound transfer - continue previous journey",
 
     "sign.tjmetro.tianjin_metro": "天津地铁|Tianjin Metro",
     "sign.tjmetro.train": "列车|Train",
@@ -207,6 +212,7 @@
     "tooltip.tjmetro.smoke_alarm": "Detects fire and smokes in a range and emits a redstone signal. You can change the range in game rule.",
     "tooltip.tjmetro.railway_sign_wall": "You can place it on the ground. Use Wrench to switch the font.",
     "tooltip.tjmetro.disable_filters": "You can't open config screen from the tab too.",
+    "tooltip.tjmetro.outbound_transfer": "Interchange outside the fare zone, without ending current journey.",
 
     "footer.tjmetro.sources": "Wanna see the source code?",
     "footer.tjmetro.contributors": "Tianjin Metro is a community work, click here to see contributors!",

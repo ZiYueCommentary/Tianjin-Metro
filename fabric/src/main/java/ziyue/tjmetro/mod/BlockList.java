@@ -176,6 +176,7 @@ public interface BlockList
     BlockRegistryObject APG_DOOR_SINGLE_RIGHT = Registry.registerBlock("apg_door_single_right", () -> new Block(new BlockAPGDoorSingle(false)));
     BlockRegistryObject PSD_DOOR_SINGLE_LEFT = Registry.registerBlock("psd_door_single_left", () -> new Block(new BlockPSDDoorSingle(true)));
     BlockRegistryObject PSD_DOOR_SINGLE_RIGHT = Registry.registerBlock("psd_door_single_right", () -> new Block(new BlockPSDDoorSingle(false)));
+    BlockRegistryObject TICKET_BARRIER_OUTBOUND_TRANSFER_EXIT = Registry.registerBlockWithBlockItem("ticket_barrier_outbound_transfer_exit", () -> new Block(new BlockTicketBarrierOutboundTransfer()), CreativeModeTabs.TIANJIN_METRO);
 
     static void registerBlocks() {
         // Calling this class to initialize constants
