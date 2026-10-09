@@ -222,5 +222,9 @@
     "filter.tjmetro.tianjin_railway_signs": "指示牌",
     "gamerule.playerDetectRange": "玩家偵測範圍",
     "config.tjmetro.disable_filters": "停用過濾器",
-    "tooltip.tjmetro.disable_filters": "你無法從該標籤頁開啟設定介面。"
+    "tooltip.tjmetro.disable_filters": "你無法從該標籤頁開啟設定介面。",
+    "block.tjmetro.ticket_barrier_outbound_transfer_exit": "出站轉乘閘機",
+    "gui.tjmetro.outbound_transfer_exit": "出站轉乘-10分鐘內有效",
+    "gui,tjmetro.outbound_transfer_success": "出站轉乘-接續之前的行程",
+    "tooltip.tjmetro.outbound_transfer": "在不結束目前行程的情況,下在非付費區進行轉乘"
 }
