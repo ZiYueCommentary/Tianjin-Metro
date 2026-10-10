@@ -176,8 +176,8 @@ public interface IRailwaySign extends DirectionHelper
         BABY_CARE_TEXT_FLIPPED("baby_care", "baby_care", false, true),
         POLICE_OFFICE_TEXT("police_office", "police_office", false, false),
         POLICE_OFFICE_TEXT_FLIPPED("police_office", "police_office", false, true),
-        OUTBOUND_TRANSFER_TEXT("to_subway", "outbound_transfer", false, false),
-        OUTBOUND_TRANSFER_TEXT_FLIPPED("to_subway", "outbound_transfer", false, true),
+        OUTBOUND_TRANSFER_TEXT("transfer", "outbound_transfer", false, false),
+        OUTBOUND_TRANSFER_TEXT_FLIPPED("transfer", "outbound_transfer", false, true),
         TO_SUBWAY_JINJING_TEXT("to_subway_jinjing", "to_subway", false, false),
         TO_SUBWAY_JINJING_TEXT_FLIPPED("to_subway_jinjing", "to_subway", true, true),
         SELF_SERVICE_TICKETING_TEXT("self_service_ticketing", "self_service_ticketing", false, false),
@@ -213,6 +213,7 @@ public interface IRailwaySign extends DirectionHelper
         TO_SUBWAY_JINJING("to_subway_jinjing", false),
         TO_SUBWAY_JINJING_FLIPPED("to_subway_jinjing", true),
         SELF_SERVICE_TICKETING("self_service_ticketing", false),
+        OUTBOUND_TRANSFER("transfer", false),
 
         // Tianjin Binhai Mass Transit (BMT, Tianjin Metro Line 9)
         NO_ENTRY_BMT_TEXT("no_entry_bmt", "no_entry_bmt", false, false),
