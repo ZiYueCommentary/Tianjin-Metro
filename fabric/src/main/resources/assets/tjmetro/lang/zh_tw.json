@@ -226,5 +226,7 @@
     "block.tjmetro.ticket_barrier_outbound_transfer_exit": "出站轉乘閘機",
     "gui.tjmetro.outbound_transfer_exit": "出站轉乘-10分鐘內有效",
     "gui,tjmetro.outbound_transfer_success": "出站轉乘-接續之前的行程",
-    "tooltip.tjmetro.outbound_transfer": "在不結束目前行程的情況,下在非付費區進行轉乘"
+    "tooltip.tjmetro.outbound_transfer": "在不結束目前行程的情況,下在非付費區進行轉乘",
+    "gui.tjmetro.outbound_transfer_invalid": "出站%s出站轉乘失敗-最終金額%s元",
+    "gui.tjmetro.outbound_transfer_expired": "以出站%s-出站轉乘時間已超過-最終費用%s元"
 }
