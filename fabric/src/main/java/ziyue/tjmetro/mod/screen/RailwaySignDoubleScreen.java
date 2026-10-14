@@ -26,6 +26,9 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ziyue.tjmetro.mod.screen.RailwaySignScreen.SIGN_BUTTON_SIZE;
+import static ziyue.tjmetro.mod.screen.RailwaySignScreen.SIGN_SIZE;
+
 /**
  * @author ZiYueCommentary
  * @see PacketUpdateRailwaySignDoubleConfig
@@ -58,8 +61,6 @@ public class RailwaySignDoubleScreen extends ScreenExtension implements IGui
     protected final TexturedButtonWidgetExtension buttonPrevPage;
     protected final TexturedButtonWidgetExtension buttonNextPage;
 
-    protected static final int SIGN_SIZE = 32;
-    protected static final int SIGN_BUTTON_SIZE = 16;
     protected static final int BUTTON_Y_START = (SQUARE_SIZE + SIGN_SIZE) * 2 + SIGN_BUTTON_SIZE / 2;
 
     public RailwaySignDoubleScreen(BlockPos signPos) {

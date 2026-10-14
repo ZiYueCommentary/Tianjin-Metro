@@ -139,6 +139,7 @@ public final class TianjinMetroClient
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.APG_DOOR_SINGLE_RIGHT, RenderAPGDoorTianjin::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_SINGLE_LEFT, RenderPSDDoorTianjin::new);
         RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.PSD_DOOR_SINGLE_RIGHT, RenderPSDDoorTianjin::new);
+        RegistryClient.registerBlockEntityRenderer(BlockEntityTypes.RAILWAY_SIGN_SINGLE, RenderRailwaySignSingle::new);
 
         RegistryClient.registerEntityRenderer(EntityTypes.SEAT, RenderSeat::new);
 

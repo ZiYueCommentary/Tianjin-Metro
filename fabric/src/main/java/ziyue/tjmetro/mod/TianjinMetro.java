@@ -38,6 +38,8 @@ public final class TianjinMetro
         Registry.registerPacket(PacketUpdateStationNavigatorConfig.class, PacketUpdateStationNavigatorConfig::new);
         Registry.registerPacket(PacketUpdatePIDSTianjinConfig.class, PacketUpdatePIDSTianjinConfig::new);
         Registry.registerPacket(PacketUpdatePIDSAdsConfig.class, PacketUpdatePIDSAdsConfig::new);
+        Registry.registerPacket(PacketUpdateRailwaySignSingleConfig.class, PacketUpdateRailwaySignSingleConfig::new);
+        Registry.registerPacket(PacketOpenBlockRailwaySignSingleScreen.class, PacketOpenBlockRailwaySignSingleScreen::new);
 
         Registry.init();
     }

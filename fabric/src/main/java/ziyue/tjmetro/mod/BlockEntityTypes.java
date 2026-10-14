@@ -99,6 +99,7 @@ public interface BlockEntityTypes
     BlockEntityTypeRegistryObject<BlockAPGDoorSingle.BlockEntity> APG_DOOR_SINGLE_RIGHT = Registry.registerBlockEntityType("apg_door_single_right", (pos, state) -> new BlockAPGDoorSingle.BlockEntity(pos, state, false), BlockList.APG_DOOR_SINGLE_RIGHT::get);
     BlockEntityTypeRegistryObject<BlockPSDDoorSingle.BlockEntity> PSD_DOOR_SINGLE_LEFT = Registry.registerBlockEntityType("psd_door_single_left", (pos, state) -> new BlockPSDDoorSingle.BlockEntity(pos, state, true), BlockList.PSD_DOOR_SINGLE_LEFT::get);
     BlockEntityTypeRegistryObject<BlockPSDDoorSingle.BlockEntity> PSD_DOOR_SINGLE_RIGHT = Registry.registerBlockEntityType("psd_door_single_right", (pos, state) -> new BlockPSDDoorSingle.BlockEntity(pos, state, false), BlockList.PSD_DOOR_SINGLE_RIGHT::get);
+    BlockEntityTypeRegistryObject<BlockRailwaySignSingle.BlockEntity> RAILWAY_SIGN_SINGLE = Registry.registerBlockEntityType("railway_sign_single", BlockRailwaySignSingle.BlockEntity::new, BlockList.RAILWAY_SIGN_SINGLE::get);
 
     static void registerBlockEntities() {
         // Calling this class to initialize constants
