@@ -222,5 +222,7 @@
     "block.tjmetro.psd_door_single_left": "高站台门（单扇、左侧）",
     "block.tjmetro.psd_door_single_right": "高站台门（单扇、右侧）",
     "config.tjmetro.disable_filters": "禁用筛选器",
-    "tooltip.tjmetro.disable_filters": "你将无法从物品栏打开设置界面"
+    "tooltip.tjmetro.disable_filters": "你将无法从物品栏打开设置界面",
+    "block.tjmetro.ticket_barrier_outbound_transfer_exit": "出站换乘闸机",
+    "gui.tjmetro.outbound_transfer_exit": "出站换乘 - 10 分钟内有效"
 }
