@@ -224,5 +224,8 @@
     "config.tjmetro.disable_filters": "禁用筛选器",
     "tooltip.tjmetro.disable_filters": "你将无法从物品栏打开设置界面",
     "block.tjmetro.ticket_barrier_outbound_transfer_exit": "出站换乘闸机",
-    "gui.tjmetro.outbound_transfer_exit": "出站换乘 - 10 分钟内有效"
+    "gui.tjmetro.outbound_transfer_exit": "出站换乘 - 10 分钟内有效",
+    "block.tjmetro.railway_sign_single": "指示牌（单格）",
+    "gui,tjmetro.outbound_transfer_success": "出站换乘 - 接续之前的行程",
+    "tooltip.tjmetro.outbound_transfer": "在不结束行程的前提下，离开收费区进行换乘。"
 }
