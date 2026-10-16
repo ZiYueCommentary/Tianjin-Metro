@@ -27,7 +27,8 @@ import java.util.function.Consumer;
  * @since 1.1.3
  */
 @Mixin(TicketSystem.class)
-public abstract class TicketSystemMixin {
+public abstract class TicketSystemMixin
+{
     @Shadow(remap = false)
     private static void setPlayerScore(World world, PlayerEntity player, String objective, String title, int value) {
         throw new UnsupportedOperationException("Implemented via mixin");
@@ -122,7 +123,10 @@ public abstract class TicketSystemMixin {
                 Station station = stations.get(0);
                 boolean isEntering;
                 if (isEntrance && isExit) {
-                    isEntering = !entered(getPlayerScore(world, player, "mtr_entry_zone_1", "Entry Zone 1"), getPlayerScore(world, player, "mtr_entry_zone_2", "Entry Zone 2"), getPlayerScore(world, player, "mtr_entry_zone_3", "Entry Zone 3"));
+                    isEntering = !entered(
+                            getPlayerScore(world, player, ENTRY_ZONE_1_OBJECTIVE, ENTRY_ZONE_1_TITLE),
+                            getPlayerScore(world, player, ENTRY_ZONE_2_OBJECTIVE, ENTRY_ZONE_2_TITLE), 
+                            getPlayerScore(world, player, ENTRY_ZONE_3_OBJECTIVE, ENTRY_ZONE_3_TITLE));
                 } else {
                     isEntering = isEntrance;
                 }
@@ -132,10 +136,18 @@ public abstract class TicketSystemMixin {
                     canOpen = onEnter(world, station, player, remindIfNoRecord);
                 } else {
                     if (world.getBlockState(blockPos).getBlock().data instanceof BlockTicketBarrierOutboundTransfer) {
-                        setPlayerScore(world, player, OUTBOUND_TRANSFER_STATION_OBJECTIVE, OUTBOUND_TRANSFER_STATION_TITLE, (int) station.getId());
-                        setPlayerScore(world, player, OUTBOUND_TRANSFER_TIME_OBJECTIVE, OUTBOUND_TRANSFER_TIME_TITLE, (int) (Instant.now().getEpochSecond() / 60));
-                        player.sendMessage(Text.cast(TextHelper.translatable("gui.tjmetro.outbound_transfer_exit")), true);
-                        canOpen = true;
+                        int entryZone1 = getPlayerScore(world, player, ENTRY_ZONE_1_OBJECTIVE, ENTRY_ZONE_1_TITLE);
+                        int entryZone2 = getPlayerScore(world, player, ENTRY_ZONE_2_OBJECTIVE, ENTRY_ZONE_2_TITLE);
+                        int entryZone3 = getPlayerScore(world, player, ENTRY_ZONE_3_OBJECTIVE, ENTRY_ZONE_3_TITLE);
+                        if (entered(entryZone1, entryZone2, entryZone3)) {
+                            setPlayerScore(world, player, OUTBOUND_TRANSFER_STATION_OBJECTIVE, OUTBOUND_TRANSFER_STATION_TITLE, (int) station.getId());
+                            setPlayerScore(world, player, OUTBOUND_TRANSFER_TIME_OBJECTIVE, OUTBOUND_TRANSFER_TIME_TITLE, (int) (Instant.now().getEpochSecond() / 60));
+                            player.sendMessage(Text.cast(TextHelper.translatable("gui.tjmetro.outbound_transfer_exit")), true);
+                            canOpen = true;
+                        } else {
+                            player.sendMessage(Text.cast(TextHelper.translatable("gui.tjmetro.outbound_no_journey")), true);
+                            canOpen = false;
+                        }
                     } else {
                         setPlayerScore(world, player, OUTBOUND_TRANSFER_STATION_OBJECTIVE, OUTBOUND_TRANSFER_STATION_TITLE, 0);
                         setPlayerScore(world, player, OUTBOUND_TRANSFER_TIME_OBJECTIVE, OUTBOUND_TRANSFER_TIME_TITLE, 0);

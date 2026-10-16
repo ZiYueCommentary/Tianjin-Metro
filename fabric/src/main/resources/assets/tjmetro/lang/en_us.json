@@ -143,6 +143,7 @@
     "gui.tjmetro.outbound_transfer_invalid": "Entered %s - outbound transfer failed - last cost: $%s",
     "gui.tjmetro.outbound_transfer_expired": "Entered %s - outbound transfer expired - last cost: $%s",
     "gui,tjmetro.outbound_transfer_success": "Outbound transfer - continue previous journey",
+    "gui.tjmetro.outbound_no_journey": "Can't find journey record - outbound transfer failed",
 
     "sign.tjmetro.tianjin_metro": "天津地铁|Tianjin Metro",
     "sign.tjmetro.train": "列车|Train",
