@@ -111,7 +111,7 @@
 		{
 			"from": [12.5, 8, 16.1],
 			"to": [15, 10.5, 16.1],
-			"shade_direction_override": "up",
+			"shade": false,
 			"faces": {
 				"south": {"uv": [0, 0, 16, 16], "texture": "#arrow", "cullface": "south"}
 			}
@@ -119,7 +119,7 @@
 		{
 			"from": [12.75, 10.75, 16.1],
 			"to": [14.75, 12.75, 16.1],
-			"shade_direction_override": "up",
+			"shade": false,
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2.5, 0]},
 			"faces": {
 				"south": {"uv": [0, 0, 16, 16], "texture": "#transfer", "cullface": "south"}

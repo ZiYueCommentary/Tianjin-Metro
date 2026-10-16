@@ -1,0 +1,6 @@
+{
+	"parent": "tjmetro:block/ticket_barrier_tianjin_closed_base",
+	"textures": {
+		"tex": "tjmetro:block/ticket_barrier_outbound_transfer_tianjin"
+	}
+}
