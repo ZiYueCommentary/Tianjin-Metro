@@ -222,5 +222,11 @@
     "block.tjmetro.psd_door_single_left": "片開き式フルスクリーンホームドア(左)",
     "block.tjmetro.psd_door_single_right": "片開き式フルスクリーンホームドア(右)",
     "config.tjmetro.disable_filters": "絞り込みを無効化",
-    "tooltip.tjmetro.disable_filters": "タブから設定画面を開けなくなるため注意。"
+    "tooltip.tjmetro.disable_filters": "タブから設定画面を開けなくなるため注意。",
+    "gui.tjmetro.outbound_transfer_expired": "入場:%s - 改札外乗り換えの制限時間を超えました - 最終運賃: $%s",
+    "gui.tjmetro.outbound_transfer_exit": "改札外乗り換え - 10分以内に乗り換え先の改札機に通過してください",
+    "gui.tjmetro.outbound_transfer_invalid": "入場:%s - 改札外乗り換えに失敗しました - 最終運賃: $%s",
+    "gui,tjmetro.outbound_transfer_success": "改札外乗り換え完了",
+    "block.tjmetro.ticket_barrier_outbound_transfer_exit": "改札外乗り換え用自動改札機",
+    "tooltip.tjmetro.outbound_transfer": "一度改札を出ても一定時間以内に所定の改札機へ通過した場合、運賃の再計算を行わないようにできる自動改札機です。"
 }
