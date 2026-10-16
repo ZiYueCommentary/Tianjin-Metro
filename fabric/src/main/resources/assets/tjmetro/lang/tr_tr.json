@@ -45,5 +45,11 @@
     "block.tjmetro.station_name_wall_legacy": "İstasyon Adı (Duvar, Eski Tip)",
     "block.tjmetro.ceiling_not_lit": "Tavan (Işıksız)",
     "block.mtr.ceiling_not_lit": "Tavan (Işıksız)",
-    "block.tjmetro.bench": "Bank"
+    "block.tjmetro.bench": "Bank",
+    "block.tjmetro.apg_corner": "PAKS Köşesi",
+    "block.tjmetro.player_detector": "Oyuncu Dedektörü",
+    "block.tjmetro.high_speed_repeater": "Yüksek Hızlı Yineleyici",
+    "block.tjmetro.time_display": "Saat Ekranı",
+    "block.tjmetro.time_display_even": "Saat Ekranı (Düz)",
+    "block.tjmetro.metal_detection_door": "Metal Dedektörü"
 }
