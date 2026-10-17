@@ -22,7 +22,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.chunk.UpgradeData;
 import net.minecraft.world.gen.chunk.BlendingData;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 #endif
 
 #if MC_VERSION > "11902"

@@ -1,6 +1,5 @@
 package ziyue.tjmetro.mod.block;
 
-import org.jetbrains.annotations.Nullable;
 import org.mtr.mapping.holder.BlockView;
 import org.mtr.mapping.holder.ItemStack;
 import org.mtr.mapping.holder.MutableText;
@@ -9,6 +8,7 @@ import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.block.BlockTicketBarrier;
 import ziyue.tjmetro.mod.data.IGuiExtension;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**

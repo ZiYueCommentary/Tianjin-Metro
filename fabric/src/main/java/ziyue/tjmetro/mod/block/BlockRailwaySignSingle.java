@@ -1,7 +1,5 @@
 package ziyue.tjmetro.mod.block;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.*;
 import org.mtr.mapping.tool.HolderBase;
@@ -13,6 +11,7 @@ import ziyue.tjmetro.mod.data.IGuiExtension;
 import ziyue.tjmetro.mod.packet.PacketOpenBlockRailwaySignSingleScreen;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,7 +52,7 @@ public class BlockRailwaySignSingle extends BlockExtension implements IBlock, Di
     }
 
     @Override
-    public @NotNull VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public @Nonnull VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
         return VoxelShapes.union(
                 IBlock.getVoxelShapeByDirection(3.5, 3, 6, 12.5, 12, 10, facing),
