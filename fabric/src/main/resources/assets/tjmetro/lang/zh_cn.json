@@ -227,5 +227,10 @@
     "gui.tjmetro.outbound_transfer_exit": "出站换乘 - 10 分钟内有效",
     "block.tjmetro.railway_sign_single": "指示牌（单格）",
     "gui,tjmetro.outbound_transfer_success": "出站换乘 - 接续之前的行程",
-    "tooltip.tjmetro.outbound_transfer": "在不结束行程的前提下，离开收费区进行换乘。"
+    "tooltip.tjmetro.outbound_transfer": "在不结束行程的前提下，离开收费区进行换乘。",
+    "block.tjmetro.ticket_barrier_outbound_transfer_tianjin": "出站换乘闸机（天津）",
+    "gui.tjmetro.outbound_transfer_invalid": "入站 %s - 出站换乘失败 - 上一行程车费：$%s",
+    "gui.tjmetro.outbound_transfer_expired": "入站 %s - 出站换乘超时 - 上一行程车费：$%s",
+    "gui.tjmetro.outbound_no_journey": "无法找到行程记录 - 出站换乘失败",
+    "tooltip.tjmetro.railway_sign_single": "用钟表柱可以加长其柱子。"
 }
