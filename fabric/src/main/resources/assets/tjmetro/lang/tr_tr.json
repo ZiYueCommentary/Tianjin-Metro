@@ -51,5 +51,11 @@
     "block.tjmetro.high_speed_repeater": "Yüksek Hızlı Yineleyici",
     "block.tjmetro.time_display": "Saat Ekranı",
     "block.tjmetro.time_display_even": "Saat Ekranı (Düz)",
-    "block.tjmetro.metal_detection_door": "Metal Dedektörü"
+    "block.tjmetro.metal_detection_door": "Metal Dedektörü",
+    "block.tjmetro.service_corridor_sign": "Servis Koridoru Tabelası",
+    "block.tjmetro.psd_tianjin": "Peron Ayırıcı Kapı Sistemi (Tianjin)",
+    "block.tjmetro.station_name_entrance_tianjin_bmt_pinyin": "İstasyon Adı (Giriş, Tianjin, Hat 9, Pinyin).",
+    "block.tjmetro.station_name_entrance_tianjin_jinjing": "İstasyon Adı (Giriş, Tianjin, Jinjing Hattı)",
+    "block.tjmetro.apg_tianjin": "Otomatik Platform Kapıları (Tianjin)",
+    "block.tjmetro.apg_tianjin_bmt": "Otomatik Platform Kapıları (Tianjin, Hat 9)"
 }
