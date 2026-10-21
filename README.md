@@ -10,4 +10,6 @@ Tianjin Metro mod is an expanding mod for [Minecraft Transit Railway](https://gi
 
 [![](https://weblate.ziyuesinicization.site/widget/tianjin-metro/multi-auto.svg)](https://weblate.ziyuesinicization.site/engage/tianjin-metro/)
 
-<img src="icons/requires_java17.svg" width="191px" alt="Requires Java 17">
+<img src="icons/requires_java17.svg" height="64px" alt="Requires Java 17"/>
+<ima src="icons/afdian.svg" height="64px" alt="Sponsor me on Afdian"/>
+<ima src="icons/ko-fi.png" height="64px" alt="Support me on Ko-fi"/>
