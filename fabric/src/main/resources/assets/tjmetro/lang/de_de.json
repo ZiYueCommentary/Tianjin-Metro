@@ -222,5 +222,15 @@
     "advertisement.tjmetro.weblate": "Mach mit bei der Übersetzung von Tianjin Metro!",
     "advertisement.tjmetro.bde": "Bomb Disposal Expert ist eine lustige Mod, die dir erlaubt Bomben und Creeper zu entschärfen!",
     "gamerule.preventBlockFalling": "Verhindere fallende Blöcke",
-    "gamerule.preventBlockFalling.description": "Verhindert den Fall von Blöcken wie Sand oder Ambossen. Diese Gamerule wurde von der Tianjin Metro Mod hinzugefügt."
+    "gamerule.preventBlockFalling.description": "Verhindert den Fall von Blöcken wie Sand oder Ambossen. Diese Gamerule wurde von der Tianjin Metro Mod hinzugefügt.",
+    "block.tjmetro.ticket_barrier_outbound_transfer_exit": "Automatische Ticketkontrolle (Umstieg)",
+    "block.tjmetro.railway_sign_single": "Fahrgastinformationsschild (Einzeln)",
+    "block.tjmetro.ticket_barrier_outbound_transfer_tianjin": "Automatische Ticketkontrolle (Umstieg, Tianjin)",
+    "gui.tjmetro.outbound_transfer_exit": "Umstieg - gültig für 10min",
+    "gui.tjmetro.outbound_transfer_invalid": "%s betreten - Umstieg fehlgeschlagen - letzte Kosten: $%s",
+    "gui.tjmetro.outbound_transfer_expired": "%s betreten - Umstieg abgelaufen - letzte Kosten: $%s",
+    "gui,tjmetro.outbound_transfer_success": "Umstieg - vorherige Reise wird fortgesetzt",
+    "gui.tjmetro.outbound_no_journey": "Konnte keine Fahrtaufzeichnung finden - Umstieg fehlgeschlagen",
+    "tooltip.tjmetro.outbound_transfer": "Steige außerhalb der Tarifzone um, ohne dabei die momentane Reise zu beenden.",
+    "tooltip.tjmetro.railway_sign_single": "Benutze den Uhren-Deckenpfosten um die Deckenaufhängung der Uhr zu verlängern."
 }

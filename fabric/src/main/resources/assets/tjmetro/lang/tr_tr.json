@@ -57,5 +57,6 @@
     "block.tjmetro.station_name_entrance_tianjin_bmt_pinyin": "İstasyon Adı (Giriş, Tianjin, Hat 9, Pinyin).",
     "block.tjmetro.station_name_entrance_tianjin_jinjing": "İstasyon Adı (Giriş, Tianjin, Jinjing Hattı)",
     "block.tjmetro.apg_tianjin": "Otomatik Platform Kapıları (Tianjin)",
-    "block.tjmetro.apg_tianjin_bmt": "Otomatik Platform Kapıları (Tianjin, Hat 9)"
+    "block.tjmetro.apg_tianjin_bmt": "Otomatik Platform Kapıları (Tianjin, Hat 9)",
+    "block.tjmetro.apg_tianjin_trt": "Otomatik Platform Kapıları (Tianjin, Hat 1)"
 }
