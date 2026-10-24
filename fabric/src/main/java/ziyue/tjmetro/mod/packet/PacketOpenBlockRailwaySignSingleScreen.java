@@ -4,7 +4,6 @@ import org.mtr.mapping.holder.BlockPos;
 import org.mtr.mapping.registry.PacketHandler;
 import org.mtr.mapping.tool.PacketBufferReceiver;
 import org.mtr.mapping.tool.PacketBufferSender;
-import ziyue.tjmetro.mod.screen.RailwaySignSingleScreen;
 
 /**
  * @author ZiYueCommentary
@@ -35,6 +34,6 @@ public final class PacketOpenBlockRailwaySignSingleScreen extends PacketHandler
 
     @Override
     public void runClient() {
-        ClientPacketHelper.openScreen(new RailwaySignSingleScreen(blockPos, index), screen -> true);
+        ClientPacketHelper.openRailwaySignSingleScreen(blockPos, index);
     }
 }

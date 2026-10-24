@@ -60,6 +60,10 @@ public final class ClientPacketHelper
         });
     }
 
+    public static void openRailwaySignSingleScreen(BlockPos blockPos, int index) {
+        openScreen(new RailwaySignSingleScreen(blockPos, index), screen -> true);
+    }
+
     public static void openScreen(ScreenExtension screenExtension, Predicate<ScreenExtension> isInstance) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         Screen screen = minecraftClient.getCurrentScreenMapped();
