@@ -68,7 +68,7 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
 
         storedMatrixTransformations.add(matricesNew -> matricesNew.translate(open * (side ? -1 : 1), 0, 0));
 
-        MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, "textures/block/apg_door_tianjin_trt_" + (half ? "top" : "bottom") + "_" + (side ? "right" : "left") + ".png"), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+        MainRenderer.scheduleRender(CachedIdentifier.of("textures/block/apg_door_tianjin_trt_" + (half ? "top" : "bottom") + "_" + (side ? "right" : "left") + ".png"), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset);
             (half ? MODEL_APG_TOP : MODEL_APG_BOTTOM).render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
             graphicsHolderNew.pop();
