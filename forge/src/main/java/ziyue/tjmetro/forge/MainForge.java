@@ -24,6 +24,7 @@ public final class MainForge
         TianjinMetro.init();
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             TianjinMetroClient.init();
+            DoorAnimationTicker.init();
             MainForgeClient.registerConfigMenu();
         });
         MinecraftForge.EVENT_BUS.register(this);

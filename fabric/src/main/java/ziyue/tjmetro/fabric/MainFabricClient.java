@@ -14,6 +14,7 @@ public final class MainFabricClient implements ClientModInitializer
     @Override
     public void onInitializeClient() {
         TianjinMetroClient.init();
+        DoorAnimationTicker.init();
         Filters.init();
     }
 }

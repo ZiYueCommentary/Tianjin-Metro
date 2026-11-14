@@ -1,6 +1,7 @@
 package ziyue.tjmetro.fabric.mixin;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -10,10 +11,12 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.GameRules;
 import ziyue.tjmetro.mod.block.BlockSmokeAlarm;
 import ziyue.tjmetro.mod.block.IBlockExtension;
+import ziyue.tjmetro.fabric.DoorAnimationTicker;
 
 #if MC_VERSION > "11701"
 import net.minecraft.util.math.ChunkPos;
@@ -48,6 +51,9 @@ public abstract class WorldChunkMixin implements Chunk
     @Shadow
     public abstract World getWorld();
 
+    @Shadow
+    public abstract BlockEntity getBlockEntity(BlockPos pos);
+
 #if MC_VERSION > "11902"
     public WorldChunkMixin(ChunkPos pos, UpgradeData upgradeData, HeightLimitView heightLimitView, Registry<Biome> biomeRegistry, long inhabitedTime, @Nullable ChunkSection[] sectionArray, @Nullable BlendingData blendingData) {
         super(pos, upgradeData, heightLimitView, biomeRegistry, inhabitedTime, sectionArray, blendingData);
@@ -57,6 +63,16 @@ public abstract class WorldChunkMixin implements Chunk
         super(pos, upgradeData, heightLimitView, biome, inhabitedTime, sectionArrayInitializer, blendingData);
     }
 #endif
+
+    @Inject(at = @At("TAIL"), method = "addBlockEntity")
+    private void afterAddBlockEntity(BlockEntity blockEntity, CallbackInfo ci) {
+        if (this.getWorld().isClient()) DoorAnimationTicker.register(blockEntity);
+    }
+
+    @Inject(at = @At("HEAD"), method = "removeBlockEntity")
+    private void beforeRemoveBlockEntity(BlockPos pos, CallbackInfo ci) {
+        if (this.getWorld().isClient()) DoorAnimationTicker.unregister(this.getBlockEntity(pos));
+    }
 
     /**
      * Listening block changed and activate nearby smoke alarms.

@@ -12,6 +12,7 @@ import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
 import ziyue.tjmetro.mod.Reference;
+import ziyue.tjmetro.mod.DoorAnimationState;
 import ziyue.tjmetro.mod.block.BlockAPGDoorTianjinTRT;
 import ziyue.tjmetro.mod.block.BlockAPGGlassTianjinTRT;
 
@@ -37,14 +38,12 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         final World world = entity.getWorld2();
         if (world == null) return;
 
-        entity.tick(tickDelta);
-
         final BlockPos blockPos = entity.getPos2();
         final Direction facing = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.FACING);
         final boolean side = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.SIDE) == EnumSide.RIGHT;
         final boolean half = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.HALF) == DoubleBlockHalf.UPPER;
         final boolean unlocked = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.UNLOCKED);
-        final double open = Math.min(entity.getDoorValue(), 1);
+        final double open = Math.min(DoorAnimationState.getInterpolatedDoorValue(entity, tickDelta), 1);
 
         final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations(0.5 + entity.getPos2().getX(), entity.getPos2().getY(), 0.5 + entity.getPos2().getZ());
         storedMatrixTransformations.add(graphicsHolderNew -> {

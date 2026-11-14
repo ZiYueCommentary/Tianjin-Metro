@@ -5,6 +5,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ziyue.tjmetro.forge.DoorAnimationTicker;
 import ziyue.tjmetro.mod.BlockList;
 import ziyue.tjmetro.mod.GameRules;
 import ziyue.tjmetro.mod.block.BlockSmokeAlarm;
@@ -15,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.LevelChunk;
 
@@ -44,6 +47,9 @@ public abstract class LevelChunkMixin implements ChunkAccess
     @Shadow
     public abstract Level getLevel();
 
+    @Shadow
+    public abstract BlockEntity getBlockEntity(BlockPos pos);
+
 #if MC_VERSION > "11701"
     public LevelChunkMixin(ChunkPos p_187621_, UpgradeData p_187622_, LevelHeightAccessor p_187623_, Registry<Biome> p_187624_, long p_187625_, @Nullable LevelChunkSection[] p_187626_, @Nullable BlendingData p_187627_) {
         super(p_187621_, p_187622_, p_187623_, p_187624_, p_187625_, p_187626_, p_187627_);
@@ -72,6 +78,16 @@ public abstract class LevelChunkMixin
     public abstract BlockState setBlockState(BlockPos pos, BlockState state, boolean moved);
 
 #endif
+
+    @Inject(at = @At("TAIL"), method = "addAndRegisterBlockEntity")
+    private void afterAddBlockEntity(BlockEntity blockEntity, CallbackInfo ci) {
+        if (this.getLevel().isClientSide()) DoorAnimationTicker.register(blockEntity);
+    }
+
+    @Inject(at = @At("HEAD"), method = "removeBlockEntity")
+    private void beforeRemoveBlockEntity(BlockPos pos, CallbackInfo ci) {
+        if (this.getLevel().isClientSide()) DoorAnimationTicker.unregister(this.getBlockEntity(pos));
+    }
 
     /**
      * Listening block changed and activate nearby smoke alarms.
