@@ -37,7 +37,13 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         final World world = entity.getWorld2();
         if (world == null) return;
 
-        entity.tick(tickDelta);
+        // Door fully closed -> throttle tick(): the animation is idle, but tick()
+        // would still run 4 redstone block lookups per frame (see TickThrottle).
+        if (entity.getDoorValue() <= 0 && TickThrottle.skip(entity)) {
+            // throttled this frame
+        } else {
+            entity.tick(tickDelta);
+        }
 
         final BlockPos blockPos = entity.getPos2();
         final Direction facing = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.FACING);
