@@ -2,6 +2,7 @@ package ziyue.tjmetro.mod;
 
 import org.mtr.mapping.mapper.BlockEntityExtension;
 import org.mtr.mod.block.BlockPSDAPGDoorBase;
+import org.mtr.mod.block.IBlock;
 import ziyue.tjmetro.mod.block.*;
 
 import java.util.IdentityHashMap;
@@ -19,35 +20,39 @@ public final class DoorAnimationState
      * Two units give a two-second complete opening at 20 TPS.
      */
     private static final float ANIMATION_TICK_DELTA = 2;
-    private static final Map<BlockPSDAPGDoorBase.BlockEntityBase, Double> PREVIOUS_VALUES = new IdentityHashMap<>();
+    private static final Map<BlockPSDAPGDoorBase.BlockEntityBase, AnimationValue> VALUES = new IdentityHashMap<>();
 
     private DoorAnimationState() {
     }
 
     public static void register(BlockEntityExtension blockEntity) {
         if (blockEntity instanceof BlockPSDAPGDoorBase.BlockEntityBase door && isTianjinDoor(door)) {
-            PREVIOUS_VALUES.putIfAbsent(door, door.getDoorValue());
+            VALUES.computeIfAbsent(door, ignored -> new AnimationValue(door.getDoorValue()));
         }
     }
 
     public static void unregister(BlockEntityExtension blockEntity) {
         if (blockEntity instanceof BlockPSDAPGDoorBase.BlockEntityBase door) {
-            PREVIOUS_VALUES.remove(door);
+            VALUES.remove(door);
         }
     }
 
     public static double getInterpolatedDoorValue(BlockPSDAPGDoorBase.BlockEntityBase door, float tickDelta) {
-        final double current = door.getDoorValue();
-        final double previous = PREVIOUS_VALUES.getOrDefault(door, current);
+        final AnimationValue value = VALUES.get(door);
+        if (value == null) return door.getDoorValue();
         final float progress = Math.max(0, Math.min(1, tickDelta));
-        return previous + (current - previous) * progress;
+        return value.previous + (value.current - value.previous) * progress;
     }
 
     public static void tick() {
-        for (final Map.Entry<BlockPSDAPGDoorBase.BlockEntityBase, Double> entry : PREVIOUS_VALUES.entrySet()) {
-            final BlockPSDAPGDoorBase.BlockEntityBase door = entry.getKey();
-            entry.setValue(door.getDoorValue());
-            door.tick(ANIMATION_TICK_DELTA);
+        for (final AnimationValue value : VALUES.values()) {
+            value.previous = value.current;
+        }
+        for (final BlockPSDAPGDoorBase.BlockEntityBase door : VALUES.keySet()) {
+            if (isAnimationController(door)) door.tick(ANIMATION_TICK_DELTA);
+        }
+        for (final Map.Entry<BlockPSDAPGDoorBase.BlockEntityBase, AnimationValue> entry : VALUES.entrySet()) {
+            entry.getValue().current = entry.getKey().getDoorValue();
         }
     }
 
@@ -61,5 +66,22 @@ public final class DoorAnimationState
                 || door instanceof BlockAPGDoorTianjinJinjing.BlockEntity
                 || door instanceof BlockAPGDoorSingle.BlockEntity
                 || door instanceof BlockPSDDoorSingle.BlockEntity;
+    }
+
+    private static boolean isAnimationController(BlockPSDAPGDoorBase.BlockEntityBase door) {
+        if (IBlock.getStatePropertySafe(door.getCachedState2(), IBlock.HALF) == IBlock.DoubleBlockHalf.UPPER) return false;
+        if (door instanceof BlockAPGDoorSingle.BlockEntity || door instanceof BlockPSDDoorSingle.BlockEntity) return true;
+        return IBlock.getStatePropertySafe(door.getCachedState2(), IBlock.SIDE) != IBlock.EnumSide.RIGHT;
+    }
+
+    private static final class AnimationValue
+    {
+        private double previous;
+        private double current;
+
+        private AnimationValue(double value) {
+            previous = value;
+            current = value;
+        }
     }
 }

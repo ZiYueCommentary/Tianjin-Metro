@@ -39,10 +39,11 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
         if (world == null) return;
 
         final BlockPos blockPos = entity.getPos2();
-        final Direction facing = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.FACING);
-        final boolean side = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.SIDE) == EnumSide.RIGHT;
-        final boolean half = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.HALF) == DoubleBlockHalf.UPPER;
-        final boolean unlocked = IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.UNLOCKED);
+        final BlockState blockState = entity.getCachedState2();
+        final Direction facing = IBlock.getStatePropertySafe(blockState, BlockAPGDoorTianjinTRT.FACING);
+        final boolean side = IBlock.getStatePropertySafe(blockState, BlockAPGDoorTianjinTRT.SIDE) == EnumSide.RIGHT;
+        final boolean half = IBlock.getStatePropertySafe(blockState, BlockAPGDoorTianjinTRT.HALF) == DoubleBlockHalf.UPPER;
+        final boolean unlocked = IBlock.getStatePropertySafe(blockState, BlockAPGDoorTianjinTRT.UNLOCKED);
         final double open = Math.min(DoorAnimationState.getInterpolatedDoorValue(entity, tickDelta), 1);
 
         final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations(0.5 + entity.getPos2().getX(), entity.getPos2().getY(), 0.5 + entity.getPos2().getZ());
@@ -67,13 +68,13 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
 
         storedMatrixTransformations.add(matricesNew -> matricesNew.translate(open * (side ? -1 : 1), 0, 0));
 
-        MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, String.format("textures/block/apg_door_tianjin_trt_%s_%s.png", half ? "top" : "bottom", side ? "right" : "left")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+        MainRenderer.scheduleRender(DoorTextureCache.trt(half, side), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset);
             (half ? MODEL_APG_TOP : MODEL_APG_BOTTOM).render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
             graphicsHolderNew.pop();
         });
         if (half && !unlocked) {
-            MainRenderer.scheduleRender(new Identifier(Init.MOD_ID, "textures/block/sign/door_not_in_use.png"), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+            MainRenderer.scheduleRender(DoorTextureCache.locked(), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
                 storedMatrixTransformations.transform(graphicsHolderNew, offset);
                 MODEL_APG_DOOR_LOCKED.render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
                 graphicsHolderNew.pop();
@@ -87,7 +88,7 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
     }
 
     protected void tryUpdateLightState(World world, BlockPos blockPos, BlockAPGDoorTianjinTRT.LightProperty lightProperty) {
-        if (IBlock.getStatePropertySafe(world, blockPos, BlockAPGDoorTianjinTRT.LIGHT) != lightProperty) {
+        if (IBlock.getStatePropertySafe(blockState, BlockAPGDoorTianjinTRT.LIGHT) != lightProperty) {
             world.setBlockState(blockPos, world.getBlockState(blockPos).with(new Property<>(BlockAPGDoorTianjinTRT.LIGHT.data), lightProperty));
         }
     }
