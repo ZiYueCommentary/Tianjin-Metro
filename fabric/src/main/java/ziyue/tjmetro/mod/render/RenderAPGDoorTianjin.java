@@ -56,7 +56,7 @@ public class RenderAPGDoorTianjin<T extends BlockPSDAPGDoorBase.BlockEntityBase>
         if (half) {
             final Block block = world.getBlockState(blockPos.offset(side ? facing.rotateYClockwise() : facing.rotateYCounterclockwise())).getBlock();
             if (block.data instanceof BlockAPGGlass || block.data instanceof BlockAPGGlassEnd) {
-                MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, String.format("textures/block/apg_door_tianjin_light_%s.png", open > 0 ? "on" : "off")), false, open > 0 ? QueuedRenderLayer.LIGHT_TRANSLUCENT : QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+                MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, "textures/block/apg_door_tianjin_light_" + (open > 0 ? "on" : "off") + ".png"), false, open > 0 ? QueuedRenderLayer.LIGHT_TRANSLUCENT : QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
                     storedMatrixTransformationsLight.transform(graphicsHolderNew, offset);
                     graphicsHolderNew.translate(side ? -0.515625 : 0.515625, 0, 0);
                     graphicsHolderNew.scale(0.5F, 1, 1);
@@ -68,7 +68,7 @@ public class RenderAPGDoorTianjin<T extends BlockPSDAPGDoorBase.BlockEntityBase>
 
         storedMatrixTransformations.add(matricesNew -> matricesNew.translate(open * (side ? -1 : 1), 0, 0));
 
-        MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, String.format("textures/block/apg_door_tianjin_%s_%s.png", half ? "top" : "bottom", side ? "right" : "left")), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
+        MainRenderer.scheduleRender(new Identifier(Reference.MOD_ID, "textures/block/apg_door_tianjin_" + (half ? "top" : "bottom") + "_" + (side ? "right" : "left") + ".png"), false, QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
             storedMatrixTransformations.transform(graphicsHolderNew, offset);
             (half ? MODEL_APG_TOP : MODEL_APG_BOTTOM).render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
             graphicsHolderNew.pop();
