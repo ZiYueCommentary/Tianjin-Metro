@@ -77,8 +77,12 @@ public abstract class LevelChunkMixin
     @Shadow
     public abstract BlockState setBlockState(BlockPos pos, BlockState state, boolean moved);
 
+    @Shadow
+    public abstract net.minecraft.tileentity.TileEntity getBlockEntity(BlockPos pos);
+
 #endif
 
+#if MC_VERSION > "11605"
     @Inject(at = @At("TAIL"), method = "addAndRegisterBlockEntity")
     private void afterAddBlockEntity(BlockEntity blockEntity, CallbackInfo ci) {
         if (this.getLevel().isClientSide()) DoorAnimationTicker.register(blockEntity);
@@ -88,6 +92,17 @@ public abstract class LevelChunkMixin
     private void beforeRemoveBlockEntity(BlockPos pos, CallbackInfo ci) {
         if (this.getLevel().isClientSide()) DoorAnimationTicker.unregister(this.getBlockEntity(pos));
     }
+#else
+    @Inject(at = @At("TAIL"), method = "addAndRegisterBlockEntity")
+    private void afterAddBlockEntity(net.minecraft.tileentity.TileEntity blockEntity, CallbackInfo ci) {
+        if (this.getLevel().isClientSide) DoorAnimationTicker.register(blockEntity);
+    }
+
+    @Inject(at = @At("HEAD"), method = "removeBlockEntity")
+    private void beforeRemoveBlockEntity(BlockPos pos, CallbackInfo ci) {
+        if (this.getLevel().isClientSide) DoorAnimationTicker.unregister(this.getBlockEntity(pos));
+    }
+#endif
 
     /**
      * Listening block changed and activate nearby smoke alarms.

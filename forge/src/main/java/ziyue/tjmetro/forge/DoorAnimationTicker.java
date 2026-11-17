@@ -1,6 +1,10 @@
 package ziyue.tjmetro.forge;
 
+#if MC_VERSION > "11605"
 import net.minecraft.world.level.block.entity.BlockEntity;
+#else
+import net.minecraft.tileentity.TileEntity;
+#endif
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,13 +25,21 @@ public final class DoorAnimationTicker
         MinecraftForge.EVENT_BUS.register(DoorAnimationTicker.class);
     }
 
+#if MC_VERSION > "11605"
     public static void register(BlockEntity blockEntity) {
+#else
+    public static void register(TileEntity blockEntity) {
+#endif
         if (blockEntity instanceof BlockEntityExtension entity) {
             DoorAnimationState.register(entity);
         }
     }
 
+#if MC_VERSION > "11605"
     public static void unregister(BlockEntity blockEntity) {
+#else
+    public static void unregister(TileEntity blockEntity) {
+#endif
         if (blockEntity instanceof BlockEntityExtension entity) {
             DoorAnimationState.unregister(entity);
         }

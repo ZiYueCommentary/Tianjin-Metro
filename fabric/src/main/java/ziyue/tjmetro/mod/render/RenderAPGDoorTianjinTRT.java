@@ -5,13 +5,11 @@ import org.mtr.mapping.mapper.BlockEntityRenderer;
 import org.mtr.mapping.mapper.EntityModelExtension;
 import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mapping.mapper.ModelPartExtension;
-import org.mtr.mod.Init;
 import org.mtr.mod.block.*;
 import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.MainRenderer;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
-import ziyue.tjmetro.mod.Reference;
 import ziyue.tjmetro.mod.DoorAnimationState;
 import ziyue.tjmetro.mod.block.BlockAPGDoorTianjinTRT;
 import ziyue.tjmetro.mod.block.BlockAPGGlassTianjinTRT;
@@ -88,7 +86,7 @@ public class RenderAPGDoorTianjinTRT<T extends BlockPSDAPGDoorBase.BlockEntityBa
     }
 
     protected void tryUpdateLightState(World world, BlockPos blockPos, BlockAPGDoorTianjinTRT.LightProperty lightProperty) {
-        if (IBlock.getStatePropertySafe(blockState, BlockAPGDoorTianjinTRT.LIGHT) != lightProperty) {
+        if (IBlock.getStatePropertySafe(world.getBlockState(blockPos), BlockAPGDoorTianjinTRT.LIGHT) != lightProperty) {
             world.setBlockState(blockPos, world.getBlockState(blockPos).with(new Property<>(BlockAPGDoorTianjinTRT.LIGHT.data), lightProperty));
         }
     }
