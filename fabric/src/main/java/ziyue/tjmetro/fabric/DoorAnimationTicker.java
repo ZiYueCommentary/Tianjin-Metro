@@ -11,7 +11,7 @@ import ziyue.tjmetro.mod.DoorAnimationState;
  * Registers the common animation state with Fabric's client lifecycle.
  *
  * @author Codex
- * @since 1.2.0-alpha
+ * @since 1.1.2.261117
  */
 public final class DoorAnimationTicker
 {

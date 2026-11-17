@@ -14,7 +14,7 @@ import ziyue.tjmetro.mod.DoorAnimationState;
 /**
  * Hooks the fixed-rate door animation clock into Forge's client tick.
  * @author Codex
- * @since 1.2.0-alpha
+ * @since 1.1.2.261117
  */
 public final class DoorAnimationTicker
 {

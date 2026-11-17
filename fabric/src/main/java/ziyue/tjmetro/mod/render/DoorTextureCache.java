@@ -8,7 +8,7 @@ import ziyue.tjmetro.mod.Reference;
  * Prebuilt texture identifiers used by the door renderers' hot path.
  *
  * @author Codex
- * @since 1.2.0-alpha
+ * @since 1.1.2.261117
  */
 public final class DoorTextureCache
 {
